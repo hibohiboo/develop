@@ -22,9 +22,16 @@ Vagrant.configure(2) do |config|
   config.vm.box = "hibohiboo/ubuntu-16.04.1"
 
   # ネットワーク設定。
-  config.vm.network "private_network", ip: "192.168.50.10", auto_config: false
+  # config.vm.network "private_network", ip: "192.168.50.10", auto_config: false
   # config.vm.network "forwarded_port", guest: 80, host: 3000
-  
+  # うまくいかない
+  # http://qiita.com/iganari/items/7cceb33c9d885dbdc9a9
+  # config.vm.provision "shell", inline: <<-SHELL
+  #   ifconfig enp0s8 192.168.50.10
+  #   sed -i 's/exit\ 0/ifconfig\ enp0s8\ 192\.168\.50\.10/g' /etc/rc.local
+  #   echo 'exit 0' >> /etc/rc.local
+  # SHELL
+
   # 共有するフォルダの設定
   # ex.) config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
   
@@ -39,6 +46,8 @@ Vagrant.configure(2) do |config|
     vm.customize [ "modifyvm", :id, "--ioapic", "on"]
     # ↓起動が止まるときの確認用
     # vm.gui = true
+
+    vm.network "private_network", ip: "192.168.50.10", auto_config: false
   end
 
   # vagrant provision を行ったときに以下のエラーが出る対策
@@ -52,4 +61,10 @@ Vagrant.configure(2) do |config|
     # provision 実行
     sudo ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
   SHELL
+
+  config.vm.provision "shell", inline: <<-SHELL
+    # provision 実行
+    sudo ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
+  SHELL
+
 end
