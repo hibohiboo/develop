@@ -1,0 +1,36 @@
+---
+ - name: gitのバージョンが2.7（初期状態)か判定。
+   shell: git --version | grep 2.7 warn=no
+   register: res
+   ignore_errors: True
+   always_run: yes
+   failed_when: no
+   changed_when: res.rc == 0
+
+ - name: step 0
+   apt: name=git state=absent
+   when: res|success
+
+# http://lifeonubuntu.com/ubuntu-missing-add-apt-repository-command/
+# http://lifeonubuntu.com/upgrading-ubuntu-to-use-the-latest-git-version/
+ - name: step 1
+   apt: name={{item}} state=present update_cache=yes
+   with_items:
+    - build-essential
+    - libssl-dev
+    - libcurl4-gnutls-dev
+    - libexpat1-dev
+    - gettext
+    - unzip
+    - software-properties-common
+    - python-software-properties
+   when: res|success
+
+ - name: step2
+   shell: add-apt-repository ppa:git-core/ppa
+   when: res|success
+
+
+ - name: step3
+   apt: name=git state=present update_cache=yes
+   when: res|success

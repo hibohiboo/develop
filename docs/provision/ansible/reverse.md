@@ -1,0 +1,53 @@
+# ansible reverse
+
+## git clone
+
+```
+- git: repo=git@github.com:seizans/ansible-tut.git
+  dest=/path/to/dir version=master accept_hostkey=yes
+```
+
+## チェックしてから実行
+
+```
+- hosts: localhost
+  tasks:
+    - shell: test -e /tmp/hoge
+      register: res
+      always_run: yes
+      failed_when: no
+      changed_when: res.rc != 0
+
+    - shell: uname -a > /tmp/hoge
+      when: res|changed
+```
+
+[*2][*2]
+[*5][*5]
+
+
+### 自動返答
+
+```
+expect
+```
+
+[*4][*4]
+
+## 参考
+
+[Ansible で git clone させる][*1]  
+[Goの環境を作るAnsibleの設定をリファクタした][*2]
+[apt][*3]
+[自動返答][*4]
+[Ansible の shell モジュールでチェックモードも考慮する][*5]
+[はじめてAnsibleを使う人が知っておきたい7つのモジュール][*6]
+[Ansibleでshellを実行させるときのノウハウ][*7]
+
+[*1]:http://qiita.com/seizans/items/f5f052aec1592c47767f
+[*2]:http://leko.jp/archives/823
+[*3]:http://qiita.com/taisho6339/items/b6e19b8906b8d2a092e7
+[*4]:http://qiita.com/ruby_kumagoro/items/4afdab4715dc85a7187a
+[*5]:http://qiita.com/ngyuki/items/69c33065f7daa0cd571d
+[*6]:https://www.infiniteloop.co.jp/blog/2013/08/ansible/
+[*7]:http://qiita.com/chroju/items/ec2f7bb87d9ae3603c6a
