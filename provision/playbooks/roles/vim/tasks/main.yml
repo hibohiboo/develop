@@ -1,18 +1,21 @@
 ---
- - name: test インストールされていなければインストール
-   command: vim --version
-   register: result
-   ignore_errors: True
-   always_run: yes
-   failed_when: no
-   changed_when: result.rc != 0
+  - name: test vim8でなければインストール
+    shell: vim --version  | grep "IMproved 8" warn=no
+    register: result
+    ignore_errors: True
+    always_run: yes
+    failed_when: no
+    changed_when: result.rc != 0
 
 # Installation vim8
 # https://itsfoss.com/vim-8-release-install/
- - name: step1
-   apt_repository: repo="ppa:jonathonf/vim"
-   when: result|failed
+  - block:
+    - name: step 0
+      apt: name=vim state=absent
 
- - name: step2
-   apt: name=vim state=present update_cache=yes
-   when: result|failed
+    - name: step1
+      apt_repository: repo="ppa:jonathonf/vim"
+
+    - name: step2
+      apt: name=vim state=present update_cache=yes
+    when: result|failed
