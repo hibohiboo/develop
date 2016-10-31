@@ -149,6 +149,9 @@ $ ifconfig
 
 VirtualBoxを開く
 
+ネットワーク > アダプター2 > 割当て > ホストオンリーアダプタ  
+ホストオンリーアダプタを有効可する。
+
 ネットワーク > アダプター1 > 高度な設定 > ポートフォワーディング  
 VMの22番ポートをホスト側の任意のポートに割り当てる。
 
@@ -164,16 +167,6 @@ $ ssh vagrant@127.0.0.1 -p 2222
 `password:`には`vagrant`  
 接続できることを確認する
 ![img1](./img/package/45.png)
-
-## システムの更新
-
-インストール前に現在のソフトウェアを最新に更新
-
-```bash
-$ sudo apt-get update
-$ sudo apt-get upgrade
-```
-
 
 ## root設定
 
@@ -328,7 +321,6 @@ $ sudo sh /media/cdrom/VBoxLinuxAdditions.run
 
 ![img1](./img/package/59.png)
 
-
 ## 掃除
 
 掃除をしてシャットダウン
@@ -378,6 +370,37 @@ $ vagrant up
 
 ```bash
 $ vagrant box remove hibohiboo/ubuntu-16.04.1
+```
+
+## 以下、追加で行った作業
+
+上記の手順だと、セキュリティの更新が促されたので更新する
+
+## システムの更新
+
+現在のソフトウェアを最新に更新
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get upgrade
+```
+
+再度ログインすると、 0 updates are security update と表示される
+
+## （カーネルの更新)
+
+upgradeが残っていたので更新してみる。  
+ただし、カーネルのアップデートは動かなくなるパッケージがある可能性があるので注意。
+
+```bash
+$ sudo apt-get update
+$ sudo apt-get dist-upgrade
+```
+
+カーネルヘッダも合わせておく（必要なかった模様）
+
+```bash
+$ sudo apt-get install -y linux-headers-$(uname -r) build-essential
 ```
 
 

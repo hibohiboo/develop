@@ -4,10 +4,10 @@
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/
 
 # 一部環境では以下を実行しないとエラーが発生
-#  - name: step1.5
-#    shell: killall -KILL apt.systemd.daily
-#    when: result|failed
-#    ignore_errors: True
+ - name: step1.5
+   shell: killall -KILL apt.systemd.daily
+   when: result|failed
+   ignore_errors: True
 
  - name: test インストールされていなければインストール
    command: docker

@@ -19,10 +19,11 @@ Vagrant.configure(2) do |config|
   # vagrant packageで5.1系で作り直し
   # doc/provision/vagrant/package.mdを参照
   # vagrant add hibohiboo/ubuntu-16.04.1 package.box 
-  config.vm.box = "hibohiboo/ubuntu-16.04.1"
+  # ネットワーク設定をおこなったパッケージを追加
+  config.vm.box = "hibo/ubuntu-16.04.1"
 
   # ネットワーク設定。
-  # config.vm.network "private_network", ip: "192.168.50.10", auto_config: false
+  config.vm.network "private_network", ip: "192.168.50.10"
   # config.vm.network "forwarded_port", guest: 80, host: 3000
   # うまくいかない
   # http://qiita.com/iganari/items/7cceb33c9d885dbdc9a9
@@ -47,7 +48,6 @@ Vagrant.configure(2) do |config|
     # ↓起動が止まるときの確認用
     # vm.gui = true
 
-    vm.network "private_network", ip: "192.168.50.10", auto_config: false
   end
 
   # vagrant provision を行ったときに以下のエラーが出る対策
