@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World\n'
+    return 'Hello World\n Docker'
 
 
 if __name__ == '__main__':
