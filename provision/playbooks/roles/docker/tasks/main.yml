@@ -2,83 +2,73 @@
 # docker 
 # Installation ubuntu 
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/
-
-# 一部環境では以下を実行しないとエラーが発生
- - name: step1.5
-   shell: killall -KILL apt.systemd.daily
-   when: result|failed
-   ignore_errors: True
-
- - name: test インストールされていなければインストール
-   command: docker
-   register: result
-   ignore_errors: True
-   always_run: yes
-   failed_when: no
-   changed_when: result.rc != 0
-
-# 不要なのと、実行するたびにhostsに追記されていく問題
-#  - name: step1
-#    shell: echo 127.0.1.1 $(hostname) >> /etc/hosts
-#    when: result|failed
+  
+  - name: test インストールされていなければインストール
+    command: docker
+    register: result
+    ignore_errors: True
+    always_run: yes
+    failed_when: no
+    changed_when: result.rc != 0
+  
+  - block:
+    - name: step0.5
+      shell: echo 127.0.1.1 $(hostname) >> /etc/hosts
 
 # http://qiita.com/udzura/items/576c2c782adb241070bc
 # https://gist.github.com/indykish/a6facea4748dc578abbaf2b09065ead5
- - name: step1
-   shell: export DEBIAN_FRONTEND=noninteractive
-   when: result|failed
+    - name: step1
+      shell: export DEBIAN_FRONTEND=noninteractive
 
- - name: step2
-   apt: name={{item}} state=present update_cache=yes
-   with_items:
-    - apt-transport-https
-    - ca-certificates
-   when: result|failed
+# 一部環境では以下を実行しないとエラーが発生
+# aptが起動していて次のタスクが立ち上がらないエラー
+    - name: step1.5
+      shell: killall -KILL apt.systemd.daily
+      ignore_errors: True
 
- - name: step3.1
-   shell: apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-   register: res3
-   ignore_errors: True
-   when: result|failed
+    - name: step2
+      apt: name={{item}} state=present update_cache=yes
+      with_items:
+        - apt-transport-https
+        - ca-certificates
+
+    - name: step3.1
+      shell: apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+      register: res3
+      ignore_errors: True
 
 # gpgエラーでstep3が失敗することがある。しかしこれでもstep5.1で失敗。
 #  - name: step3.1.1
 #    shell: wget -q -O - https://get.docker.com/gpg | apt-key add -
 #    when: res3|failed
 # 3.1.1が失敗するのでこちらの書き方に変更
- - name: step3.1.2
-   shell: wget -qO- https://get.docker.com/ | sh
-   when: res3|failed
+    - name: step3.1.2
+      shell: wget -qO- https://get.docker.com/ | sh
+      when: res3|failed
 
- - name: step4
-   shell: echo "deb https://apt.dockerproject.org/repo ubuntu-xenial experimental" > /etc/apt/sources.list.d/docker.list
-   when: result|failed
+    - name: step4
+      shell: echo "deb https://apt.dockerproject.org/repo ubuntu-xenial experimental" > /etc/apt/sources.list.d/docker.list
 
- - name: step5.1
-   shell: apt update
-   when: result|failed
+    - name: step5.1
+      shell: apt update
 
 # apt モジュールを使えと警告がでるのをカット
- - name: step5.2
-   shell: apt-get purge lxc-docker warn=no
-   when: result|failed
+    - name: step5.2
+      shell: apt-get purge lxc-docker warn=no
 
- - name: step5.3
-   shell: apt-cache policy docker-engine
-   when: result|failed
+    - name: step5.3
+      shell: apt-cache policy docker-engine
 
 # apt モジュールを使えと警告がでるのをカット
- - name: step6
-   shell: apt-get install -y linux-image-extra-$(uname -r) warn=no
-   when: result|failed
+    - name: step6
+      shell: apt-get install -y linux-image-extra-$(uname -r) warn=no
 
- - name: step7
-   apt: name={{item}} state=present update_cache=yes
-   with_items:
-    - docker-engine
-    - docker-compose
-   when: result|failed
+    - name: step7
+      apt: name={{item}} state=present update_cache=yes
+      with_items:
+        - docker-engine
+        - docker-compose
 
- - name: step8
-   shell: gpasswd -a vagrant docker
-   when: result|failed
+    - name: step8
+      shell: gpasswd -a vagrant docker
+    when: result|failed

@@ -3,7 +3,8 @@
     shell: vim --version  | grep "IMproved 8" warn=no
     register: result
     ignore_errors: True
-    always_run: yes
+    # deprecated always_run: yes
+    check_mode: no
     failed_when: no
     changed_when: result.rc != 0
 
