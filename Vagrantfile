@@ -19,22 +19,14 @@ Vagrant.configure(2) do |config|
   # vagrant packageで5.1系で作り直し
   # doc/provision/vagrant/package.mdを参照
   # vagrant add hibohiboo/ubuntu-16.04.1 package.box 
-  # ネットワーク設定をおこなったパッケージを追加
+  # ホストオンリーネットワーク設定をおこなったパッケージを追加
   config.vm.box = "hibo/ubuntu-16.04.1"
 
   # ネットワーク設定。
   config.vm.network "private_network", ip: "192.168.50.10"
   # config.vm.network "forwarded_port", guest: 80, host: 3000
-  # うまくいかない
-  # http://qiita.com/iganari/items/7cceb33c9d885dbdc9a9
-  # config.vm.provision "shell", inline: <<-SHELL
-  #   ifconfig enp0s8 192.168.50.10
-  #   sed -i 's/exit\ 0/ifconfig\ enp0s8\ 192\.168\.50\.10/g' /etc/rc.local
-  #   echo 'exit 0' >> /etc/rc.local
-  # SHELL
-
   # 共有するフォルダの設定
-  # ex.) config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
+  config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
   
   # 使用するメモリ容量を変更。
   # デフォルトだと512で少ないためdockerのbuildが失敗しやすい
