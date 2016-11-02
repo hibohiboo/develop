@@ -11,19 +11,13 @@ SHELL
 # virtual machine設定
 Vagrant.configure(2) do |config|
   # 使用するディストリビューションのボックスの設定
-  # config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/ubuntu-16.04"
   # bento/ubuntu-16.04 2.3.0だと A start job is running for LSB: Raise network interfaces と言われて
   # 起動に5分ほどかかるので前のバージョンを指定  
-  # config.vm.box_version = "2.2.9"
-  # bentoのboxはvirtualbox5.0.26で作成されていたので
-  # vagrant packageで5.1系で作り直し
-  # doc/provision/vagrant/package.mdを参照
-  # vagrant add hibohiboo/ubuntu-16.04.1 package.box 
-  # ホストオンリーネットワーク設定をおこなったパッケージを追加
-  config.vm.box = "hibo/ubuntu-16.04.1"
+  config.vm.box_version = "2.2.9"
 
   # ネットワーク設定。
-    config.vm.network "private_network", ip: "192.168.50.10"
+  config.vm.network "private_network", ip: "192.168.50.10"
   # config.vm.network "forwarded_port", guest: 80, host: 3000
   # 共有するフォルダの設定
   # config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
@@ -57,5 +51,4 @@ Vagrant.configure(2) do |config|
     # provision 実行
     sudo ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
   SHELL
-
 end
