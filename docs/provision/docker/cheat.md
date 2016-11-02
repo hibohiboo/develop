@@ -20,6 +20,47 @@
 | -q, --quiet | 名前のみを表示 |
 | status=     | status (created 	restarting 	running 	paused 	exited 	dead) |
 
+## docker-comose up
+
+Composeのファイルで定義された全てのコンテナを起動。  
+出力されるログを集約。
+
+| オプション | 意味                  |
+| --         | :--                   |
+| -d         |バックグラウンドで動作 |
+
+## docker-compose build
+
+Dockerfiles群から生成されるイメージを再構築する。  
+upコマンドはイメージの更新はしないので、
+イメージの更新はこのコマンドが必要。
+
+## docker-compose ps
+
+コンテナの状態の情報を提供する。
+
+## docker-compose run
+
+単発のコマンドを実行するためにコンテナを起動
+
+## docker-compose logs
+
+Composeが管理しているコンテナのログをカラー付きで集約して出力。
+
+## docker-compose stop
+
+コンテナを停止
+
+## docker-compose rm
+
+停止しているコンテナを削除。
+
+| オプション | 意味                             |
+| --         | :--                              |
+| -V         | dockerが管理するボリュームを削除 |
+
+
+
 ## 参考
 
 [Docker コマンドラインリファレンス][*2]
