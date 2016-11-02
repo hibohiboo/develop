@@ -52,13 +52,14 @@ A start job is running for LSB: Raise network interfacesと言われた場合。
 
  CONFIGURTE_INTERFACES を noに。
 
- ## 参考
-[vagrant ダウンロードサイト](https://www.vagrantup.com/downloads.html)
+## 参考
 
-[ssh 参考](http://qiita.com/Sanche/items/43d615beef05cd9417e2)
+[vagrant ダウンロードサイト][*1]
+[ssh 参考][*2]
+[A start job][*3]
+[VagrantFileを読もう(主にNetwork周り)][*4]
 
-[A start job](http://www.k.nakao.name/noisefactory/2014/12/09/2014-12-09-post_554/)
-
-
-
-
+[*1]:https://www.vagrantup.com/downloads.html
+[*2]:http://qiita.com/Sanche/items/43d615beef05cd9417e2
+[*3]:http://www.k.nakao.name/noisefactory/2014/12/09/2014-12-09-post_554/
+[*4]:http://hao03.github.io/blog/2014/07/16/vagrant-network/

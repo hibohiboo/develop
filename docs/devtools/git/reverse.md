@@ -1,5 +1,9 @@
 # git 逆引き
 
+## チュートリアル
+
+[try.github.io][*2]
+
 ## 設定を確認したい
 
 ```bash
@@ -34,5 +38,7 @@ git checkout hogebranch
 ## 参考
 
 [gitを使い始める][*1]
+[チュートリアル][*2]
 
 [*1]:https://git-scm.com/book/ja/v1/%E4%BD%BF%E3%81%84%E5%A7%8B%E3%82%81%E3%82%8B-%E6%9C%80%E5%88%9D%E3%81%AEGit%E3%81%AE%E6%A7%8B%E6%88%90
+[*2]:https://try.github.io
