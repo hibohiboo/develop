@@ -3,7 +3,7 @@
 # Installation ubuntu 
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/
   
-  - name: test インストールされていなければインストール
+  - name: dockerがインストールされていなければインストール
     command: docker
     register: result
     ignore_errors: True
@@ -67,8 +67,22 @@
       apt: name={{item}} state=present update_cache=yes
       with_items:
         - docker-engine
-        - docker-compose
 
     - name: step8
       shell: gpasswd -a vagrant docker
+    when: result|failed
+
+  
+  - name: test docker-composeが インストールされていなければインストール
+    command: docker-compose --version
+    register: result
+    ignore_errors: True
+    check_mode: no
+    failed_when: no
+    changed_when: result.rc != 0
+  
+  - block:
+    - name: step1
+      shell: curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
+
     when: result|failed
