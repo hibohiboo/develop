@@ -1,0 +1,4 @@
+---
+# docker-composeのインストールに使用。
+- name: curl install
+  apt: name=curl state=present

@@ -47,9 +47,4 @@ Vagrant.configure(2) do |config|
     # provision 実行
     sudo ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
   SHELL
-
-  config.vm.provision "shell", inline: <<-SHELL
-    # provision 実行
-    sudo ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
-  SHELL
 end
