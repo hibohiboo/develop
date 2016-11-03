@@ -3,7 +3,7 @@
    shell: git --version | grep 2.7 warn=no
    register: res
    ignore_errors: True
-   always_run: yes
+   check_mode: no
    failed_when: no
    changed_when: res.rc == 0
 

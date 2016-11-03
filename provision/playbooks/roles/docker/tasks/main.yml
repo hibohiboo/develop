@@ -7,7 +7,7 @@
     command: docker
     register: result
     ignore_errors: True
-    always_run: yes
+    check_mode: no
     failed_when: no
     changed_when: result.rc != 0
   
