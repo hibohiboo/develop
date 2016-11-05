@@ -1,2 +1,4 @@
 .vagrant
 tutorial/vendor
+repo/*
+!repo/gitkeep
