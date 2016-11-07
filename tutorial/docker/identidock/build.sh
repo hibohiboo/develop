@@ -1,1 +1,1 @@
-cd /vagrant/tutorial/lesson/identidock && docker build -t identidock .
+docker build -t identidock:1.0 .
