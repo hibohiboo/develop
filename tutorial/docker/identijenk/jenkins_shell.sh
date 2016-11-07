@@ -1,3 +1,6 @@
+# permission
+sudo chmod 777 cmd.sh
+
 #Default compose args
 COMPOSE_ARGS=" -f jenkins.yml -p jenkins "
 
