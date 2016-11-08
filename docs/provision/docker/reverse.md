@@ -29,6 +29,30 @@ UIDはコンテナとホストで共通のため、ホストのルート権限�
 USER hogeUser
 ```
 
+## ロギング
+
+```bash
+$ docker logs hogeContainer
+```
+
+動作中のコンテナからログをストリーミング
+
+```bash
+$ docker logs -f ahogeContainer
+```
+
+デフォルトのログインログはSTDOUTとSTDERRのみ。  
+ログローテーションの機能がないのでディスクドライブの空き領域がコンテナに食い尽くされるおそれがある。
+
+ `--log-driver`でロガーを変更出来る。
+| ロガー    |                                           |
+| --        | :--                                       |
+| json-file | デフォルト                                |
+| syslog    | syslogドライバ                            |
+| journald  | systemdジャーナル用ドライバ               |
+| gelf      | Graylog Extended Log フォーマットドライバ |
+| fluentd   | fluentdにフォワード                       |
+| none      | ロギングを無効にする                      |
 
 ## 参考
 
