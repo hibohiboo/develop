@@ -2,3 +2,5 @@
 tutorial/vendor
 repo/*
 !repo/gitkeep
+tutorial/docker/vendor/*
+!tutorial/docker/vendor/.gitkeep
