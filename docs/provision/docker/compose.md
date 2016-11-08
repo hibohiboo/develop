@@ -1,5 +1,30 @@
 # docker compose
 
+## コンテナのリンク
+
+例えば、identidockコンテナからhttp://dnmonster/
+でdnmonsterコンテナにアクセスする場合、以下のようにする。
+
+コマンドライン
+
+```bash
+$ docker run -d ---name dnmonster amouat/dnmonster:1.0
+$ docker run --link dnmonster:dnmonster identidock
+```
+
+または、docker-compose.yml
+
+```
+identidock:
+  build: .
+  links:
+   - dnmonster
+
+dnmonster:
+  image: amouat/dnmonster:1.0
+```
+
+
 ## 参考
 
 [Docker Compose - docker-compose.yml リファレンス][*1]
