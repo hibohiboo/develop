@@ -6,14 +6,16 @@ proxy:
     - "80:80"
   environment:
     - NGINX_HOST=192.168.50.10
-    - NGNINX_PROXY=192.168.50.10:9090
+    - NGINX_PROXY=http://192.168.50.10:5000
 
 identidock:
   image: identidock:1.0
   environment:
-    ENV: PROD
+    ENV: DEV
   volumes:
-   - ./app:/app
+    - ./app:/app
+  ports:
+    - "5000:5000"
   links:
    - dnmonster
    - redis

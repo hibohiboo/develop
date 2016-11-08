@@ -9,7 +9,7 @@ cache = redis.StrictRedis(host = 'redis', port=6379, db=0)
 salt = "UNIQUE_SALT"
 default_name = 'Joe'
 
-@app.route('/test', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def mainpage():
 
     name = default_name

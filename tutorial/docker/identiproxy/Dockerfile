@@ -1,4 +1,4 @@
-FROM nginx:1.10.2
+FROM nginx:1.11.5
 
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY entrypoint.sh /entrypoint.sh
