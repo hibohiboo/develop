@@ -1,1 +1,1 @@
-docker build -t identidock:1.0 .
+docker build -t identidock .
