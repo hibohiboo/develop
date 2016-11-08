@@ -6,12 +6,12 @@ proxy:
     - "80:80"
   environment:
     - NGINX_HOST=192.168.50.10
-    - NGINX_PROXY=http://identidock:5000
+    - NGINX_PROXY=http://identidock:9090
 
 identidock:
   image: identidock:1.0
   environment:
-    ENV: DEV
+    ENV: PROD
   volumes:
     - ./app:/app
   links:
