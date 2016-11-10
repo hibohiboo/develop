@@ -27,6 +27,8 @@ Logstash用のコンテナにlogstashアダプタは含まれていないので�
 
 [logspout][*1]
 [logspout-logstash][*2]
+[メモリの必要要件が4Gのもよう][*3]
 
 [*1]:https://github.com/gliderlabs/Logspout
 [*2]:https://github.com/looplab/logspout-Logstash
+[*3]:http://snickerjp.blogspot.jp/2016/06/elk-elasticsearch-kibana-beatsfilebeat.html

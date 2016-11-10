@@ -1,23 +1,20 @@
 
 logstash:
   image: logstash:5.0
-  volumes:
-    - ./logstash.conf:/etc/logstash.conf
+#  volumes:
+#    - ./logstash.conf:/etc/logstash.conf
   links:
     - elasticsearch
-  ports:
-    - "5544:5544"
   command: -f /etc/logstash.conf
 
 elasticsearch:
   image: elasticsearch:5.0
-  volumes:
-    - ./elasticsearch.yml:/etc/elasticsearch/elasticsearch.yml
+#  volumes:
+#    - ./elasticsearch.yml:/etc/elasticsearch/elasticsearch.yml
 
 kibana:
-  image: kibana:4.1
+  image: kibana:5.0
   environment:
-    LOGSPOUT: ignore
     ELASTICSEARCH_URL: http://elasticsearch:9200
   links:
     - elasticsearch
