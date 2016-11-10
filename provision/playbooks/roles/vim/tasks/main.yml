@@ -20,3 +20,17 @@
     - name: step2
       apt: name=vim state=present update_cache=yes
     when: result|failed
+
+  - name: vimパッケージディレクトリ作成
+    file: path=/home/vagrant/.vim/pack/mypack/ state=directory
+
+  - name: 空白ハイライトのpackageのソースダウンロード
+    git: repo=https://github.com/bronson/vim-trailing-whitespace.git dest=/home/vagrant/.vim/pack/mypack/opt/vim-trailing-whitespace/ version=master accept_hostkey=yes depth=1
+
+  - name: 設定ファイルをコピー
+    copy: >
+      src=.vimrc
+      dest=/home/vagrant/.vimrc
+      owner=vagrant
+      group=vagrant
+      mode=0644
