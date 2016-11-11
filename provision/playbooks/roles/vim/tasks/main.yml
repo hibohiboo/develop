@@ -10,15 +10,78 @@
 
 # Installation vim8
 # https://itsfoss.com/vim-8-release-install/
+# 初期インストールされているvimを削除
   - block:
     - name: step 0
       apt: name=vim state=absent
 
-    - name: step1
-      apt_repository: repo="ppa:jonathonf/vim"
+    # luaなしの場合はaptからでOK
+    # - name: step1
+    #   apt_repository: repo="ppa:jonathonf/vim"
 
-    - name: step2
-      apt: name=vim state=present update_cache=yes
+    # - name: step2
+    #   apt: name=vim state=present update_cache=yes
+    # when: result|failed
+
+    # - name: install dependences lua + vim
+    #   apt: name={{ item }}  state=present update_cache=yes
+    #   with_items:
+    #     - mercurial 
+    #     - ncurses-dev 
+    #     - lua5.2 
+    #     - liblua5.2-dev 
+    #     - luajit 
+    #     - python-dev 
+    #     - python3-dev
+    ## lua install
+    # - name: mkdir
+    #   file: path=/usr/local/src/lua/ state=directory
+
+    # - name: install dependences vim package lua
+    #   get_url:
+    #     url: http://www.lua.org/ftp/lua-5.3.3.tar.gz
+    #     dest: /usr/local/src/lua/lua-5.3.3.tar.gz
+
+    # - name: lua unpackage
+    #   shell: cd /usr/local/src/lua/ && tar zxf lua-5.3.3.tar.gz
+
+    # - name: make all lua
+    #   make:
+    #      chdir: /usr/local/src/lua/lua-5.3.3
+    #      target: linux
+    # # make installが効かない
+    # - name: make all lua
+    #   make:
+    #      chdir: /usr/local/src/lua/lua-5.3.3
+    #      target: linux install
+
+    - name: vim dependency package
+      apt: name={{ item }}  state=present update_cache=yes
+      with_items:
+        - gettext
+        - libncurses5-dev
+        - libacl1-dev
+        - libgpm-dev
+        - lua5.2
+        - liblua5.2-dev
+        - luajit
+        - libluajit-5.1-dev
+
+    - name: download source
+      git: repo=https://github.com/vim/vim.git dest=/usr/local/src/vim version=master accept_hostkey=yes depth=1
+
+    - name: configure
+      shell: cd /usr/local/src/vim && ./configure --with-features=huge --enable-multibyte --enable-luainterp=yes  --with-luajit --enable-gpm --enable-cscope --enable-fontset
+
+    - name: make all
+      make:
+         chdir: /usr/local/src/vim
+         target: all
+    - name: make install
+      make:
+         chdir: /usr/local/src/vim
+         target: install
+
     when: result|failed
 
   - name: vimパッケージディレクトリ作成
@@ -26,6 +89,16 @@
 
   - name: 空白ハイライトのpackageのソースダウンロード
     git: repo=https://github.com/bronson/vim-trailing-whitespace.git dest=/home/vagrant/.vim/pack/mypack/opt/vim-trailing-whitespace/ version=master accept_hostkey=yes depth=1
+
+  - name: 入力補完
+    git: repo=https://github.com/Shougo/neocomplete.vim.git dest=/home/vagrant/.vim/pack/mypack/opt/neocomplete/ version=master accept_hostkey=yes depth=1
+  
+  - name: 入力補完（スニペット)
+    git: repo=https://github.com/Shougo/neosnippet.vim.git  dest=/home/vagrant/.vim/pack/mypack/opt/neosnippet/ version=master accept_hostkey=yes depth=1
+
+  - name: スニペット
+    git: repo=https://github.com/Shougo/neosnippet-snippets.git  dest=/home/vagrant/.vim/pack/mypack/opt/neosnippet-snippets/ version=master accept_hostkey=yes depth=1
+
 
   - name: 設定ファイルをコピー
     copy: >

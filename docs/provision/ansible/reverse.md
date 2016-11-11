@@ -85,6 +85,8 @@ fileモジュールでstateパラメータにdirectoryと指定
 [git clone ansible ][*10]
 [ansible のモジュール(ファイル操作等)をまとめてみました][*11]
 [ansible リモートにあるファイルをリモートにコピーする][*12]
+[Ansibleのmakeモジュールやnuarchiveモジュールを使ってGitをソースからインストールしてみる][*13]
+[ansible make][*14]
 
 [*1]:http://qiita.com/seizans/items/f5f052aec1592c47767f
 [*2]:http://leko.jp/archives/823
@@ -98,3 +100,5 @@ fileモジュールでstateパラメータにdirectoryと指定
 [*10]:http://qiita.com/seizans/items/f5f052aec1592c47767f
 [*11]:http://qiita.com/waterada/items/4e64cc6f810a92001c95
 [*12]:http://yume-build.com/blog/archives/338
+[*13]:http://qiita.com/olympic2020/items/623665d45d90a4fb1b98
+[*14]:https://docs.ansible.com/ansible/make_module.html
