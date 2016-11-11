@@ -59,6 +59,9 @@ VagrantDevelop
 | [alt]  | altキー     |
 | [space]| 空白キー    |
 
+連続で入力[:][e]
+
+押しながら[ctrl]+[v]
 
 ### 用語ルール
 

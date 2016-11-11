@@ -6,6 +6,7 @@
   become_user: root # 以下、sudoコマンドが不要になる 
   roles:
     - common
-    - docker
-    - vim
     - git
+    - docker
+    - node
+    - vim

@@ -85,19 +85,19 @@
     when: result|failed
 
   - name: vimパッケージディレクトリ作成
-    file: path=/home/vagrant/.vim/pack/mypack/ state=directory
+    file: path=/home/vagrant/.vim/pack/mypack/ state=directory owner=vagrant group=vagrant
 
   - name: 空白ハイライトのpackageのソースダウンロード
     git: repo=https://github.com/bronson/vim-trailing-whitespace.git dest=/home/vagrant/.vim/pack/mypack/opt/vim-trailing-whitespace/ version=master accept_hostkey=yes depth=1
 
-  - name: 入力補完
-    git: repo=https://github.com/Shougo/neocomplete.vim.git dest=/home/vagrant/.vim/pack/mypack/opt/neocomplete/ version=master accept_hostkey=yes depth=1
+  # - name: 入力補完
+  #   git: repo=https://github.com/Shougo/neocomplete.vim.git dest=/home/vagrant/.vim/pack/mypack/opt/neocomplete/ version=master accept_hostkey=yes depth=1
   
-  - name: 入力補完（スニペット)
-    git: repo=https://github.com/Shougo/neosnippet.vim.git  dest=/home/vagrant/.vim/pack/mypack/opt/neosnippet/ version=master accept_hostkey=yes depth=1
+  # - name: 入力補完（スニペット)
+  #   git: repo=https://github.com/Shougo/neosnippet.vim.git  dest=/home/vagrant/.vim/pack/mypack/opt/neosnippet/ version=master accept_hostkey=yes depth=1
 
-  - name: スニペット
-    git: repo=https://github.com/Shougo/neosnippet-snippets.git  dest=/home/vagrant/.vim/pack/mypack/opt/neosnippet-snippets/ version=master accept_hostkey=yes depth=1
+  # - name: スニペット
+  #   git: repo=https://github.com/Shougo/neosnippet-snippets.git  dest=/home/vagrant/.vim/pack/mypack/opt/neosnippet-snippets/ version=master accept_hostkey=yes depth=1
 
 
   - name: 設定ファイルをコピー
