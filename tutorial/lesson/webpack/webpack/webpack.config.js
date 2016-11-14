@@ -6,7 +6,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.yml$/, loader: 'json-loader!yaml-loader'}
+      {test: /\.yml$/, loaders: ['json-loader', 'yaml-loader']}
     ]
   }
 };

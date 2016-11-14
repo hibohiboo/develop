@@ -338,6 +338,11 @@ module.exports = {
 };
 ```
 
+```app.js
+import {cats} from './cats.yml';
+console.log(cats);
+```
+
 ここでも`-loader`を省略しようとすると動かないもよう。
 
 preLoaderやpostLoaderを指定することも可能。
