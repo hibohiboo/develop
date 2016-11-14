@@ -15,6 +15,9 @@
     - name: step 0
       apt: name=vim state=absent
 
+    - name: step 0.1
+      apt: name=vimtutor state=absent
+
     # luaなしの場合はaptからでOK
     # - name: step1
     #   apt_repository: repo="ppa:jonathonf/vim"

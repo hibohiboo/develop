@@ -14,6 +14,14 @@ virtual box 5.1.16
 ```bash
 $ vagrant up 
 ```
+@TODO:原因と対策を調べる
+※ docker インストールのプロビジョニングで一度目は失敗する。  
+以下のコマンドでプロビジョニングをやり直す。
+
+```bash
+$ vagrant provision
+```
+
 
 ### 終了
 

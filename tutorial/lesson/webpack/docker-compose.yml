@@ -1,0 +1,5 @@
+webpack:
+  build: ./webpack
+  volumes:
+   - ./app:/my_webpack/app
+   - ./webpack/package.json:/my_webpack/package.json
