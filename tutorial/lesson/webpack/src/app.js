@@ -1,2 +1,2 @@
-import {cats} from 'json-loader!yaml-loader!./cats.yml';
+import {cats} from './cats.yml';
 console.log(cats);

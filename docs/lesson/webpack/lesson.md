@@ -321,6 +321,31 @@ $ docker-compose up
 $ docker-compose run --rm webpack node dist/bundle.js
 ```
 
+## module.Loaderで指定
+
+```webpack.config.js
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: 'dist',
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+      {test: /\.yml$/, loader: 'json-loader!yaml-loader'}
+    ]
+  }
+};
+```
+
+ここでも`-loader`を省略しようとすると動かないもよう。
+
+preLoaderやpostLoaderを指定することも可能。
+
+1. module.preLoaders（設定ファイル)
+1. module.Loaders（設定ファイル)
+1. require内のLoader（ソースコード)
+1. module.postLoaders（設定ファイル)
 
 ## 参考
 
