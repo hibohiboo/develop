@@ -85,6 +85,55 @@ app
   - bundle.js
 ```
 
+## 実行方法の最適化
+
+package.jsonにビルドスクリプトを記述する。
+
+```package.json
+{
+  "name": "my_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack app/app.js app/bundle.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "2.1.0-beta.26"
+  }
+}
+```
+
+Dockerfileを修正。
+
+```Dockerfile
+FROM node:7.1.0
+WORKDIR /my_webpack
+RUN npm init -y
+RUN npm install --save-dev webpack@2.1.0-beta.26
+
+CMD ["npm", "run", "build"]
+```
+
+コンテナを作り直してビルド実行
+
+```bash
+$ docker-compose build
+$ docker-compose up
+```
+
+## ビルドしたjsを実行
+
+```bash
+$ docker-compose run --rm webpack node app/bundle.js
+```
+
+※ --rm: コンテナを実行し終わったら削除
+
 ## 参考
 
 [step by stepで始めるwebpack][*1]

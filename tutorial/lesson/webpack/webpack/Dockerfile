@@ -1,6 +1,6 @@
 FROM node:7.1.0
 WORKDIR /my_webpack
-COPY ./package.json package.json 
-RUN npm install
+RUN npm init -y
+RUN npm install --save-dev webpack@2.1.0-beta.26
 
-CMD ["node", "node_modules/.bin/webpack", "app/app.js", "app/bundle.js"]
+CMD ["npm", "run", "build"]

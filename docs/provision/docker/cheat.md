@@ -43,6 +43,15 @@ upコマンドはイメージの更新はしないので、
 
 単発のコマンドを実行するためにコンテナを起動
 
+```
+$ docker-compose run --rm hogeContainer bash
+```
+
+| オプション | 意味                  |
+| --         | :--                   |
+| --rm       |実行し終わったら削除   |
+
+
 ## docker-compose logs
 
 Composeが管理しているコンテナのログをカラー付きで集約して出力。
