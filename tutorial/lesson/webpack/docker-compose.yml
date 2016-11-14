@@ -1,6 +1,7 @@
 webpack:
   build: ./webpack
   volumes:
-   - ./app:/my_webpack/app
+   - ./src:/my_webpack/src
+   - ./dist:/my_webpack/dist
    - ./webpack/package.json:/my_webpack/package.json
    - ./webpack/webpack.config.js:/my_webpack/webpack.config.js

@@ -154,6 +154,63 @@ webpack:
    - ./webpack/webpack.config.js:/my_webpack/webpack.config.js
 ```
 
+実行。ビルドしなおす必要はない。
+
+```bash
+$ docker-compose up
+```
+
+
+## ディレクトリの分割
+
+```
+tutorial
+  - webpack
+    - src
+      - app.js
+      - cats.js
+    - dist
+       - .gitignore
+       - …ここにbunle.jsが作成される。
+    - webpack
+      - Dockerfile
+      - package.json
+    - docker-compose.yml
+```
+
+```webpack/webpack.config.js
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: 'dist',
+    filename: './bundle.js'
+  }
+};
+```
+
+```docker-compose.md
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: 'dist',
+    filename: 'bundle.js'
+  }
+};
+```
+
+distディレクトリのものはgitの管理外にしたいので.gitignoreを入れておく。  
+webpackとは関係ない。
+
+```dist/.gitignore
+*
+!.gitignore
+```
+
+実行。
+
+```bash
+$ docker-compose up
+```
 
 ## 参考
 
