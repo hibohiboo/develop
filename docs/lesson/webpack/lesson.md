@@ -132,7 +132,28 @@ $ docker-compose up
 $ docker-compose run --rm webpack node app/bundle.js
 ```
 
-※ --rm: コンテナを実行し終わったら削除
+※ --rm: コンテナを実行し終わったら削除[*](../../provision/docker/compose.md)
+
+## webpack.config.jsの作成
+
+```webpack/webpack.config.js
+module.exports = {
+  entry: './app/app.js',
+  output: {
+    filename: './app/bundle.js'
+  }
+};
+```
+
+```docker-compose.yml
+webpack:
+  build: ./webpack
+  volumes:
+   - ./app:/my_webpack/app
+   - ./webpack/package.json:/my_webpack/package.json
+   - ./webpack/webpack.config.js:/my_webpack/webpack.config.js
+```
+
 
 ## 参考
 

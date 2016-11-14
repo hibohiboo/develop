@@ -3,3 +3,4 @@ webpack:
   volumes:
    - ./app:/my_webpack/app
    - ./webpack/package.json:/my_webpack/package.json
+   - ./webpack/webpack.config.js:/my_webpack/webpack.config.js
