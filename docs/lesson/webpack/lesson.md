@@ -306,6 +306,22 @@ $ docker-compose run --rm webpack node dist/bundle.js
 * Loaderを通すことでJavaScript以外のリソースを読み込める
 * 最終的にJavaScriptの形に変換
 
+## importsの使用
+
+requireはnode.jsの書き方。  
+ES6で使用されるimportにwebpack2から対応。
+
+```src/app.js
+import {cats} from 'json-loader!yaml-loader!./cats.yml';
+console.log(cats);
+```
+
+```bash
+$ docker-compose up
+$ docker-compose run --rm webpack node dist/bundle.js
+```
+
+
 ## 参考
 
 [step by stepで始めるwebpack][*1]
