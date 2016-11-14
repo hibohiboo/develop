@@ -212,6 +212,36 @@ webpackとは関係ない。
 $ docker-compose up
 ```
 
+## Loaderサンプル:json
+
+loaderのインストール
+
+```Dockerfile
+FROM node:7.1.0
+WORKDIR /my_webpack
+RUN npm init -y
+RUN npm install --save-dev webpack@2.1.0-beta.26
+RUN npm install --save-dev json-loader
+
+CMD ["npm", "run", "build"]
+```
+
+```src/cats.json
+["cats.json", "tama", "kuro", "tora"]
+```
+
+```src/app.js
+var cats = require('json-loader!./cats.json');
+console.log(cats);
+```
+
+※ -loaderが省略できなかった。省略すると` require('json!./cats.json');`
+
+```bash
+$ docker-compose build
+$ docker-compose up
+```
+
 ## 参考
 
 [step by stepで始めるwebpack][*1]
