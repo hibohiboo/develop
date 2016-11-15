@@ -1,0 +1,6 @@
+express:
+  build: ./express
+  volumes:
+   - ./app/app.js:/my_express/app.js
+  ports:
+    - "80:3000"
