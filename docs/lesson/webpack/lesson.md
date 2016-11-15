@@ -352,6 +352,111 @@ preLoaderやpostLoaderを指定することも可能。
 1. require内のLoader（ソースコード)
 1. module.postLoaders（設定ファイル)
 
+## loaderの配列での指定
+
+上のwebpack.config.jsと同義。loaderをloadersにすると配列で指定可能。
+
+```webpack.config.js
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: 'dist',
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+      {test: /\.yml$/, loaders: ['json-loader', 'yaml-loader']}
+    ]
+  }
+};
+```
+
+## 拡張子の省略
+
+ymlを省略出来るようにしてみる。
+
+```webpack.config.js
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: 'dist',
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ["", ".webpack.js", ".web.js", ".js", ".yml"]
+  },
+  module: {
+    loaders: [
+      {test: /\.yml$/, loaders: ['json-loader', 'yaml-loader']}
+    ]
+  }
+};
+```
+
+### デフォルト
+
+特に指定しなかった場合は`["", ".webpack.js", ".web.js", ".js"]`がデフォルトで設定される。
+
+### ファイルを探す順序
+
+配列に書かれた順番で探索していく。
+
+1. catsのファイルを探しにいく -> 見つからない
+1. cats.webpack.jsのファイルを探しにいく -> 見つからない
+1. cats.web.jsのファイルを探しにいく -> 見つからない
+1. cats.jsのファイルを探しにいく -> 見つかった！ -> require('./cats.js')として扱う。
+
+### 省略のメリット・デメリット
+
+どのファイルを読み込んでいるのか分かりくくなる反面、、
+疎結合となる。
+
+## プラグインの利用
+
+HTMLを自動生成するプラグインと圧縮するプラグインを使用する。
+圧縮はwebpack本体に同梱されているプラグイン。
+
+```Dockerfile
+FROM node:7.1.0
+WORKDIR /my_webpack
+RUN npm init -y
+RUN npm install --save-dev webpack@2.1.0-beta.26
+RUN npm install --save-dev json-loader
+RUN npm install --save-dev yaml-loader
+RUN npm install --save-dev html-webpack-plugin
+
+CMD ["npm", "run", "build"]
+```
+
+```webpack.config.js
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: 'dist',
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: [".webpack.js", ".web.js", ".js", ".yml"]
+  },
+  module: {
+    loaders: [
+      {test: /\.yml$/, loaders: ['json-loader', 'yaml-loader']}
+    ]
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Sample Page'
+    })
+  ]
+};
+```
+
+
+
 ## 参考
 
 [step by stepで始めるwebpack][*1]

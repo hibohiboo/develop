@@ -4,5 +4,6 @@ RUN npm init -y
 RUN npm install --save-dev webpack@2.1.0-beta.26
 RUN npm install --save-dev json-loader
 RUN npm install --save-dev yaml-loader
+RUN npm install --save-dev html-webpack-plugin
 
 CMD ["npm", "run", "build"]
