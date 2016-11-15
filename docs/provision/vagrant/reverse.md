@@ -44,6 +44,18 @@ iface enp0s8 inet static
 #VAGRANT-END
 ```
 
+起動
+
+```
+$ sudo sudo ifup enp0s8
+```
+
+再起動
+
+```
+$ sudo ifdown enp0s8 && sudo ifup enp0s8
+```
+
 [*3][*3]
 
 ## 参考
@@ -51,7 +63,9 @@ iface enp0s8 inet static
 [Vagrantのprivate_networkをCentOS7.0で設定][*1]
 [VagrantのboxをUbuntu16.04に上げた時にIPを固定出来なかったのを無理やりなんとかした話][*2]
 [Vagrant1.8.6 + ubuntu16.04.1 + virtual box5.1. 8で private_networkが動かなかったことについてメモ][*3]
+[Ubuntuでネットワーク設定の変更をする][*4]
 
 [*1]:http://qiita.com/ftakao2007/items/b332f562b0ea74e9f97e
 [*2]:http://qiita.com/iganari/items/7cceb33c9d885dbdc9a9
 [*3]:http://qiita.com/hibohiboo/items/f65d140114b26ddb7e4a
+[*4]:http://qiita.com/norami_dream/items/e238562a9560b9e2bab2
