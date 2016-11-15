@@ -20,5 +20,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Sample Page'
     })
-  ]
+  ],
+  devtool: '#cheap-module-eval-source-map'
 };
