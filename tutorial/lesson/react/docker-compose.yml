@@ -1,0 +1,4 @@
+react:
+  build: ./react
+  command: [npm, start]
+
