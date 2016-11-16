@@ -312,7 +312,7 @@ requireはnode.jsの書き方。
 ES6で使用されるimportにwebpack2から対応。
 
 ```src/app.js
-import {cats} from 'json-loader!yaml-loader!./cats.yml';
+import cats from 'json-loader!yaml-loader!./cats.yml';
 console.log(cats);
 ```
 
@@ -339,7 +339,7 @@ module.exports = {
 ```
 
 ```app.js
-import {cats} from './cats.yml';
+import cats from './cats.yml';
 console.log(cats);
 ```
 
@@ -487,9 +487,162 @@ module.exports = {
 };
 ```
 
+## babelの利用
+
+[webpackとbabelでES6コードをさくっと書く][*2]を参考にして、
+es6がwebpackで書けるように試してみる。
+
+少しディレクトリ構成を変えた
+
+```
+config
+  - webpack.config.babel.js
+  - .babelrc
+src
+  - app.js
+  - cats.yml
+  - es6.js
+webpack
+  - Dockerfile
+  - package.json
+```
+
+```Dockerfile
+FROM node:7.1.0
+WORKDIR /my_webpack
+RUN npm init -y
+RUN npm install --save-dev webpack@2.1.0-beta.26
+RUN npm install --save-dev json-loader
+RUN npm install --save-dev yaml-loader
+RUN npm install --save-dev html-webpack-plugin
+RUN npm i --save babel-polyfill
+RUN npm i --save-dev babel-core 
+RUN npm i --save-dev babel-loader
+RUN npm i --save-dev babel-preset-es2015
+RUN npm i --save-dev babel-preset-stage-0
+RUN npm i --save-dev babel-plugin-add-module-exports
+
+CMD ["npm", "run", "build"]
+```
+
+```docker-compose.yml
+webpack:
+  build: ./webpack
+  volumes:
+   - ./src:/my_webpack/src
+   - ./dist:/my_webpack/dist
+   - ./webpack/package.json:/my_webpack/package.json
+   - ./config/webpack.config.babel.js:/my_webpack/webpack.config.babel.js
+   - ./config/.babelrc:/my_webpack/.babelrc
+```
+
+```webpack.config.babel.js
+import 'babel-polyfill';
+
+// コンテナ中では/my_webpack/webpack.config.babel.jsに配置
+
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: 'dist',
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: [".js", ".yml"]
+  },
+  module: {
+    loaders: [
+      {test: /\.yml$/, loaders: ['json-loader', 'yaml-loader']},
+      {test: /\.js$/, loaders: ['babel-loader']},
+    ]
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Sample Page'
+    })
+  ],
+  devtool: '#cheap-module-eval-source-map'
+};
+```
+
+```.babelrc
+{
+  "presets": [
+    "es2015",
+    "stage-0"
+  ],
+  "plugins": [
+    "add-module-exports"
+  ]
+}
+```
+
+```app.js
+import cats from './cats.yml';
+import es6 from './es6';
+console.log(cats);
+```
+
+```es6.js
+import 'babel-polyfill';
+
+const sleep = (msec) => new Promise((resolve) => {
+  setTimeout(resolve, msec);
+});
+
+(async () => {
+  console.log('start');
+  await sleep(2000);
+  console.log('end');
+})();
+```
+
+```bash
+$ docker-compose build
+$ docker-compose up
+$ docker-compose run webpack node ./dist/bundle.js
+```
+
+### export default
+
+add-module-exportsがある
+
+```js
+// a.js
+export default 'hoge';
+```
+
+```js
+// b.js
+import a from './a.js';
+console.log(a); // 'hoge'
+```
+
+ない
+
+```js
+// a.js
+export default 'hoge';
+```
+
+```js
+// b.js
+import a from './a.js';
+console.log(a); // { default: 'hoge' }
+```
 
 ## 参考
 
 [step by stepで始めるwebpack][*1]
+[webpackとbabelでES6コードをさくっと書く][*2]
+[webpack.config.jsの読み方、書き方][*3]
+[webpackを使い倒す][*4]
 
 [*1]:http://qiita.com/howdy39/items/48d85c430f90a21075cd
+[*2]:http://geta6.hatenablog.com/entry/2016/04/05/165201
+[*3]:http://dackdive.hateblo.jp/entry/2016/04/13/123000
+[*4]:http://thujikun.github.io/blog/2014/12/07/webpack/

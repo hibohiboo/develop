@@ -1,5 +1,9 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+import 'babel-polyfill';
+
+// コンテナ中では/my_webpack/webpack.config.babel.jsに配置
+
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 module.exports = {
   entry: './src/app.js',
@@ -8,11 +12,12 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: [".webpack.js", ".web.js", ".js", ".yml"]
+    extensions: [".js", ".yml"]
   },
   module: {
     loaders: [
-      {test: /\.yml$/, loaders: ['json-loader', 'yaml-loader']}
+      {test: /\.yml$/, loaders: ['json-loader', 'yaml-loader']},
+      {test: /\.js$/, loaders: ['babel-loader']},
     ]
   },
   plugins: [
