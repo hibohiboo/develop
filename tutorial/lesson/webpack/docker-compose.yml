@@ -4,4 +4,5 @@ webpack:
    - ./src:/my_webpack/src
    - ./dist:/my_webpack/dist
    - ./webpack/package.json:/my_webpack/package.json
-   - ./webpack/webpack.config.js:/my_webpack/webpack.config.js
+   - ./config/webpack.config.babel.js:/my_webpack/webpack.config.babel.js
+   - ./config/.babelrc:/my_webpack/.babelrc
