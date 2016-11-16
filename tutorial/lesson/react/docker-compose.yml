@@ -2,3 +2,10 @@ react:
   build: ./react
   command: [npm, start]
 
+# express:
+#   build: ./express
+#   volumes:
+#    - ./myapp/app.js:/my_express/myapp/app.js
+#   ports:
+#     - "80:3000"
+#   command: [node, bin/www]
