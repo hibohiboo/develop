@@ -10,4 +10,6 @@ RUN npm i --save-dev babel-preset-stage-0
 RUN npm i --save-dev babel-preset-react
 RUN npm i --save react
 RUN npm i --save react-dom
+RUN npm i --save-dev webpack-dev-server
+RUN npm i --save-dev html-webpack-plugin
 CMD ["npm", "run", "build"]

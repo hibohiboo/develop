@@ -1,13 +1,13 @@
-server:
-  build: ./express
-  volumes:
-   - ./myapp/views:/my_express/myapp/views
-   - ./dist:/my_express/myapp/public/javascripts
-  ports:
-    - "80:3000"
-  command: [node, bin/www]
+# server:
+#   build: ./express
+#   volumes:
+#    - ./myapp/views:/my_express/myapp/views
+#    - ./dist:/my_express/myapp/public/javascripts
+#   ports:
+#     - "80:3000"
+#   command: [node, bin/www]
 
-webpack:
+buildtool:
   build: ./webpack
   volumes:
    - ./src:/my_webpack/src
@@ -15,4 +15,7 @@ webpack:
    - ./webpack/package.json:/my_webpack/package.json
    - ./webpack/webpack.config.babel.js:/my_webpack/webpack.config.babel.js
    - ./webpack/.babelrc:/my_webpack/.babelrc
-  command: [npm, run, build]
+  ports:
+    - "80:8080"
+  command: [npm, run, start]
+  # command: [npm, run, build]

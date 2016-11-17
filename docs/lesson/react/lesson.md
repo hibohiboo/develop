@@ -221,6 +221,10 @@ $ docker-compose up
 
 [react tutorial][*1]
 [Webpack + React + ES6の最小構成を考えてみる。][*2]
+[webpack-dev-serverの基本的な使い方とポイント][*3]
+[意訳][*4]
 
 [*1]:https://facebook.github.io/react/docs/installation.html
 [*2]:http://uraway.hatenablog.com/entry/2015/12/25/Webpack_%2B_React_%2B_ES6%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A7%8B%E6%88%90%E3%82%92%E8%80%83%E3%81%88%E3%81%A6%E3%81%BF%E3%82%8B%E3%80%82
+[*3]:http://dackdive.hateblo.jp/entry/2016/05/07/183335
+[*4]:http://qiita.com/chuck0523/items/caacbf4137642cb175ec#webpack
