@@ -217,6 +217,143 @@ $ docker-compose up
 
 ブラウザでアクセスするとHello worldが表示される。
 
+## webpack-dev-serverの使用
+
+ホストを0.0.0.0とする設定に気が付かずに、サーバを起動しても繋がらないと２時間くらい悩んだ。
+
+```webpack.config.babel.json
+import 'babel-polyfill';
+
+// コンテナ中では/my_webpack/webpack.config.babel.jsに配置
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+module.exports = {
+  entry: './src/app.js',
+  output: {
+    path: 'dist',
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: [".js", ".jsx"]
+  },
+  module: {
+    loaders: [
+      { test: /\.jsx?$/, loaders: ['babel-loader']}
+    ]
+  },
+// HTMLファイル作成プラグインを追加
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    })
+  ],
+// ブラウザの開発ツールでソースマップを確認できるようにする
+  devtool: '#cheap-module-eval-source-map',
+// webpack-dev-server用の設定
+  devServer: {
+    contentBase: './dist', // サーバーが見に行くディレクトリ
+    inline: true,          // http:localhost:8080/webpack-dev-server/ではなくhtttp:localhost:8080/でアクセスできるようになる。
+    port: 8080,            // ポート設定
+    host:"0.0.0.0"         // ※ dockerのコンテナで立てたサーバが他のホストからアクセスできるように全てのネットワークインターフェースに接続
+  }
+};
+```
+
+```Dockerfile
+FROM node:7.1.0
+WORKDIR /my_webpack
+RUN npm init -y
+RUN npm install --save-dev webpack@2.1.0-beta.26
+RUN npm i --save babel-polyfill
+RUN npm i --save-dev babel-core 
+RUN npm i --save-dev babel-loader
+RUN npm i --save-dev babel-preset-es2015
+RUN npm i --save-dev babel-preset-stage-0
+RUN npm i --save-dev babel-preset-react
+RUN npm i --save react
+RUN npm i --save react-dom
+RUN npm i --save-dev webpack-dev-server  # 追加
+RUN npm i --save-dev html-webpack-plugin # 追加
+```
+
+```src/app.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function formatName(user) {
+  return user.firstName + ' ' + user.lastName;
+}
+
+const user = {
+  firstName: 'Harper',
+  lastName: 'Perez'
+};
+
+const element = (
+  <h1>
+    Hello, {formatName(user)}!
+  </h1>
+);
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+```
+
+```src/index.html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
+```
+
+startのスクリプトを追加
+
+```webpack/package.json
+{
+  "name": "my_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+最後のコマンドを[npm, run, start]に変更
+
+```docker-compose:yml
+devserver:
+  build: ./webpack
+  volumes:
+   - ./src:/my_webpack/src
+   - ./dist:/my_webpack/dist
+   - ./webpack/package.json:/my_webpack/package.json
+   - ./webpack/webpack.config.babel.js:/my_webpack/webpack.config.babel.js
+   - ./webpack/.babelrc:/my_webpack/.babelrc
+  ports:
+    - "80:8080"
+  command: [npm, run, start]
+```
+
+```bash
+$ docker-compose build
+$ docker-compose up
+```
+
 ## 参考
 
 [react tutorial][*1]
