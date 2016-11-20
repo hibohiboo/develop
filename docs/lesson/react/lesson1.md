@@ -221,7 +221,8 @@ $ docker-compose up
 
 ホストを0.0.0.0とする設定に気が付かずに、サーバを起動しても繋がらないと２時間くらい悩んだ。
 
-```webpack.config.babel.json
+```js
+// webpack.config.babel.json
 import 'babel-polyfill';
 
 // コンテナ中では/my_webpack/webpack.config.babel.jsに配置
@@ -241,15 +242,15 @@ module.exports = {
       { test: /\.jsx?$/, loaders: ['babel-loader']}
     ]
   },
-// HTMLファイル作成プラグインを追加
+  // HTMLファイル作成プラグインを追加
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html'
     })
   ],
-// ブラウザの開発ツールでソースマップを確認できるようにする
+  // ブラウザの開発ツールでソースマップを確認できるようにする
   devtool: '#cheap-module-eval-source-map',
-// webpack-dev-server用の設定
+  // webpack-dev-server用の設定
   devServer: {
     contentBase: './dist', // サーバーが見に行くディレクトリ
     inline: true,          // http:localhost:8080/webpack-dev-server/ではなくhtttp:localhost:8080/でアクセスできるようになる。
@@ -357,7 +358,6 @@ $ docker-compose up
 ## webpack-dev-serverのhotloaderを有効にする。
 
 ファイルの変更を検知して、モジュール単位で置き換える。
-通常は`--hot`オプションを追加するのみ。  
 
 ```webpack/package.json
 {
@@ -368,7 +368,7 @@ $ docker-compose up
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "webpack-dev-server --hot"
+    "start": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
@@ -376,27 +376,60 @@ $ docker-compose up
 }
 ```
 
-Reactは追加で設定が必要。
+babelのauto compactが有効になっていて警告がでているので消す設定もついでに行う。  
+Vagrantを使用しているため、ポーリングの設定をしないとファイルの変更が検知されない。
 
-```Dockerfile
-FROM node:7.1.0
-WORKDIR /my_webpack
-RUN npm init -y
-RUN npm install --save-dev webpack@2.1.0-beta.26
-RUN npm i --save babel-polyfill
-RUN npm i --save-dev babel-core 
-RUN npm i --save-dev babel-loader
-RUN npm i --save-dev babel-preset-es2015
-RUN npm i --save-dev babel-preset-stage-0
-RUN npm i --save-dev babel-preset-react
-RUN npm i --save react
-RUN npm i --save react-dom
-RUN npm i --save-dev webpack-dev-server
-RUN npm i --save-dev html-webpack-plugin
-RUN npm i --save-dev babel-preset-react-hmre # 追加
+```js
+// webpack.config.babel.js
+import 'babel-polyfill';
+import path from 'path';
+import webpack from 'webpack'; // hotmoduleを使用するために必要
+
+module.exports = {
+  context: __dirname + '/src',
+  entry: {
+    javascript: './app.js',
+    html: './index.html'
+  },
+  output: {
+    path: 'dist',
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ["", ".js", ".jsx"]
+  },
+  module: {
+    loaders: [
+      { test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader?compact=false',
+        include: path.join(__dirname, 'src'),
+      },
+      {
+        test: /\.html$/,
+        loader: 'file-loader?name=[path][name].[ext]'
+      }
+    ]
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin() // hot-loaderプラグイン
+
+  ],
+  devServer: {
+    contentBase: './dist',
+    inline: true,
+    port: 8080,
+    host:"0.0.0.0",
+    hot: true,  // hot-loaderの使用設定。
+  },
+  // vagrantの仕様で、pollingを使用しないとファイルの変更が検知できない。
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 5000 // 5秒ごとにファイルの更新を確認
+  }
+};
 ```
 
-babelのauto compactが有効になっていて警告がでているので消す設定もついでに行う。
 
 ## 参考
 
