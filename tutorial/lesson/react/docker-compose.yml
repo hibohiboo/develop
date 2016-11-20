@@ -16,6 +16,6 @@ buildtool:
    - ./webpack/webpack.config.babel.js:/my_webpack/webpack.config.babel.js
    - ./webpack/.babelrc:/my_webpack/.babelrc
   ports:
-    - "80:8080"
+    - "8080:8080"
   command: [npm, run, start]
   # command: [npm, run, build]

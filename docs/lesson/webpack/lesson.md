@@ -641,8 +641,10 @@ console.log(a); // { default: 'hoge' }
 [webpackとbabelでES6コードをさくっと書く][*2]
 [webpack.config.jsの読み方、書き方][*3]
 [webpackを使い倒す][*4]
+[migrate webpack2][*5]
 
 [*1]:http://qiita.com/howdy39/items/48d85c430f90a21075cd
 [*2]:http://geta6.hatenablog.com/entry/2016/04/05/165201
 [*3]:http://dackdive.hateblo.jp/entry/2016/04/13/123000
 [*4]:http://thujikun.github.io/blog/2014/12/07/webpack/
+[*5]:http://javascriptplayground.com/blog/2016/10/moving-to-webpack-2/

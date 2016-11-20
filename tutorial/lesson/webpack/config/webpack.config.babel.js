@@ -15,7 +15,7 @@ module.exports = {
     extensions: [".js", ".yml"]
   },
   module: {
-    loaders: [
+    rules: [
       {test: /\.yml$/, loaders: ['json-loader', 'yaml-loader']},
       {test: /\.js$/, loaders: ['babel-loader']},
     ]

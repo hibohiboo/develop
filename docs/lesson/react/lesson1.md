@@ -354,14 +354,70 @@ $ docker-compose build
 $ docker-compose up
 ```
 
+## webpack-dev-serverのhotloaderを有効にする。
+
+ファイルの変更を検知して、モジュール単位で置き換える。
+通常は`--hot`オプションを追加するのみ。  
+
+```webpack/package.json
+{
+  "name": "my_webpack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server --hot"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+Reactは追加で設定が必要。
+
+```Dockerfile
+FROM node:7.1.0
+WORKDIR /my_webpack
+RUN npm init -y
+RUN npm install --save-dev webpack@2.1.0-beta.26
+RUN npm i --save babel-polyfill
+RUN npm i --save-dev babel-core 
+RUN npm i --save-dev babel-loader
+RUN npm i --save-dev babel-preset-es2015
+RUN npm i --save-dev babel-preset-stage-0
+RUN npm i --save-dev babel-preset-react
+RUN npm i --save react
+RUN npm i --save react-dom
+RUN npm i --save-dev webpack-dev-server
+RUN npm i --save-dev html-webpack-plugin
+RUN npm i --save-dev babel-preset-react-hmre # 追加
+```
+
+babelのauto compactが有効になっていて警告がでているので消す設定もついでに行う。
+
 ## 参考
 
 [react tutorial][*1]
 [Webpack + React + ES6の最小構成を考えてみる。][*2]
 [webpack-dev-serverの基本的な使い方とポイント][*3]
 [意訳][*4]
+[build modulesNote: The code generator has deoptimised the styling of "D:/path/to/project/node_modules/ramda/dist/ramda.js" as it exceeds the max of "100KB"の対応][*5]
+[webpack.config.js sample - hot-loader redux][*6]
+[react-transform-hmr][*7]
+[transform-decorators-legacy][*8]
+[100KBを超えたら勝手に最適化するのがBabelの標準動作][*9]
+[webpackでbabel際はnode_modulesをexcludeし忘れるべからず][*10]
 
 [*1]:https://facebook.github.io/react/docs/installation.html
 [*2]:http://uraway.hatenablog.com/entry/2015/12/25/Webpack_%2B_React_%2B_ES6%E3%81%AE%E6%9C%80%E5%B0%8F%E6%A7%8B%E6%88%90%E3%82%92%E8%80%83%E3%81%88%E3%81%A6%E3%81%BF%E3%82%8B%E3%80%82
 [*3]:http://dackdive.hateblo.jp/entry/2016/05/07/183335
 [*4]:http://qiita.com/chuck0523/items/caacbf4137642cb175ec#webpack
+[*5]:http://stackoverflow.com/questions/29576341/what-does-the-code-generator-has-deoptimised-the-styling-of-some-file-as-it-e
+[*6]:https://github.com/mattkrick/meatier/blob/master/webpack/webpack.config.dev.js
+[*7]:https://github.com/gaearon/react-transform-hmr
+[*8]:https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy
+[*9]:http://hone0.blog103.fc2.com/blog-entry-889.html
+[*10]:http://qiita.com/haribote/items/73ede4fcdf9c942f1c4f

@@ -1,7 +1,7 @@
 FROM node:7.1.0
 WORKDIR /my_webpack
 RUN npm init -y
-RUN npm install --save-dev webpack@2.1.0-beta.26
+RUN npm install --save-dev webpack
 RUN npm i --save babel-polyfill
 RUN npm i --save-dev babel-core 
 RUN npm i --save-dev babel-loader
@@ -11,5 +11,4 @@ RUN npm i --save-dev babel-preset-react
 RUN npm i --save react
 RUN npm i --save react-dom
 RUN npm i --save-dev webpack-dev-server
-RUN npm i --save-dev html-webpack-plugin
-CMD ["npm", "run", "build"]
+RUN npm i --save-dev file-loader
