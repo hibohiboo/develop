@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import element from './hello.jsx';
+import main from './welcome.jsx';
 
-ReactDOM.render(
-  element,
-  document.getElementById('myroot')
-);
+main();
