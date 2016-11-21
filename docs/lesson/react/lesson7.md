@@ -52,6 +52,18 @@ const listItems = numbers.map((number) =>
 );
 ```
 
+もし、今回のnumberのように一意になるものでなかった場合はindexを使う方法もある。
+
+```jsx```jsx
+const numbers = [1, 2, 3, 3, 5];
+const listItems = numbers.map((number, index) =>
+  <li key={index}>
+    {number}
+  </li>
+);
+```
+
+
 
 ## 参考
 
