@@ -18,6 +18,41 @@ ReactDOM.render(
 );
 ```
 
+上のソースをさらにタグにするには以下。
+
+```jsx
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li>{number}</li>
+  );
+  return (
+    <ul>{listItems}</ul>
+  );
+}
+
+const numbers = [1, 2, 3, 4, 5];
+ReactDOM.render(
+  <NumberList numbers={numbers} />,
+  document.getElementById('root')
+);
+```
+
+## keys
+
+上記のソースだと、consoleにkeyがないと警告がでる。  
+以下のようにして、一意のkeyをつけてやる。
+
+```jsx
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) =>
+  <li key={number.toString()}>
+    {number}
+  </li>
+);
+```
+
+
 ## 参考
 
 [react tutorial][*1]
