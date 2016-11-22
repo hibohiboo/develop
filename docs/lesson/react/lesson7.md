@@ -52,7 +52,8 @@ const listItems = numbers.map((number) =>
 );
 ```
 
-もし、今回のnumberのように一意になるものでなかった場合はindexを使う方法もある。
+もし、今回のnumberのように一意になるものでなかった場合はindexを使う方法もある。  
+※ただし、推奨されない方法
 
 ```jsx```jsx
 const numbers = [1, 2, 3, 3, 5];

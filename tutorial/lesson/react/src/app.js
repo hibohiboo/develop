@@ -1,3 +1,3 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import sample from './list_map.jsx';
+import sample from './form.jsx';
