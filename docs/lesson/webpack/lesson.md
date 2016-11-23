@@ -642,6 +642,7 @@ console.log(a); // { default: 'hoge' }
 [webpack.config.jsの読み方、書き方][*3]
 [webpackを使い倒す][*4]
 [参考：webpack + babel + react][*5]
+[migrate webpack2][*6]
 
 
 [*1]:http://qiita.com/howdy39/items/48d85c430f90a21075cd
@@ -649,4 +650,4 @@ console.log(a); // { default: 'hoge' }
 [*3]:http://dackdive.hateblo.jp/entry/2016/04/13/123000
 [*4]:http://thujikun.github.io/blog/2014/12/07/webpack/
 [*5]:https://github.com/alicoding/react-webpack-babel
-
+[*6]:http://javascriptplayground.com/blog/2016/10/moving-to-webpack-2/
