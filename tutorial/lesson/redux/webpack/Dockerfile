@@ -12,3 +12,5 @@ RUN npm i --save react
 RUN npm i --save react-dom
 RUN npm i --save-dev webpack-dev-server
 RUN npm i --save-dev file-loader
+RUN npm i --save-dev redux
+RUN npm i --save react-redux
