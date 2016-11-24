@@ -1,11 +1,20 @@
+# redux example
+
+## counter
+
+```js
+// Reduxの読み込み
 import { createStore } from 'redux';
 
 // Reducer
 // 状態を更新する関数
+// 第一引数に状態、第二引数にアクションを受け取る。
 function counter(state, action) {
   if (typeof state === 'undefined') {
     return 0
   }
+  // アクションのtypeによって動作を制御する
+  // 返り値で状態を更新する
   switch (action.type) {
     case 'INCREMENT':
       return state + 1
@@ -54,3 +63,4 @@ document.getElementById('incrementAsync')
       store.dispatch({ type: 'INCREMENT' })
     }, 1000)
   })
+```
