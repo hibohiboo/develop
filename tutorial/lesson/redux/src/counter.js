@@ -24,6 +24,7 @@ var store = createStore(counter)
 // 状態を使って描画する
 var valueEl = document.getElementById('value')
 function render() {
+  // getState()で状態を取得する
   valueEl.innerHTML = store.getState().toString()
 }
 render()
