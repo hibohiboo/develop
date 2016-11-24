@@ -28,7 +28,7 @@ function render() {
 }
 render()
 
-// storeにrenderを登録
+// storeにrenderをリスナーとして登録
 store.subscribe(render)
 
 
