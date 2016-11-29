@@ -1,23 +1,18 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import { createStore } from 'redux'
-import Counter from './components/Counter'
-import counter from './reducers'
+import { Provider } from 'react-redux'
+import App from './components/App'
+import reducer from './reducers'
 
-// Storeを定義
-const store = createStore(counter)
 
-// 要素を取得
-const rootEl = document.getElementById('root')
+// ストアの作成
+const store = createStore(reducer)
 
-const render = () => ReactDOM.render(
-  <Counter
-    value={store.getState()}                                   // 状態を渡す
-    onIncrement={() => store.dispatch({ type: 'INCREMENT' })}  // dispatchにアクションを渡す
-    onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
-  />,
-  rootEl
+// 画面に描画
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 )
-
-render()
-store.subscribe(render)
