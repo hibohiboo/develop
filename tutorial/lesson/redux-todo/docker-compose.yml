@@ -1,0 +1,13 @@
+
+buildtool:
+  build: ./webpack
+  volumes:
+   - ./src:/my_webpack/src
+   - ./dist:/my_webpack/dist
+   - ./public:/my_webpack/public
+   - ./webpack/package.json:/my_webpack/package.json
+   - ./webpack/webpack.config.babel.js:/my_webpack/webpack.config.babel.js
+   - ./webpack/.babelrc:/my_webpack/.babelrc
+  ports:
+    - "8080:8080"
+  command: [npm, run, start]
