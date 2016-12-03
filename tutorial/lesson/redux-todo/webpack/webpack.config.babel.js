@@ -25,7 +25,7 @@ module.exports = {
         exclude: /node_modules/,
         // ビルド時に警告が出るのでcompact=falseを指定
         loader: 'babel-loader?compact=false',
-        include: path.join(__dirname, 'src'),
+        include: path.join(__dirname, 'src')
       }
     ]
   },
@@ -34,17 +34,19 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   // source-mapを出力して、ブラウザの開発者ツールからデバッグできるようにする。
-  devtool: '#cheap-module-eval-source-map',
+  // devtool: '#cheap-module-eval-source-map',
   // 開発サーバの設定
   devServer: {
     // public/index.htmlをデフォルトのホームとする
     contentBase: './public',
+    // インラインモード
     inline: true,
+    // 8080番ポートで起動
     port: 8080,
     // dockerのコンテナ上でサーバを動かすときは以下の設定で全ての接続を受け入れる
     host:"0.0.0.0",
     // hot loadを有効にする
-    hot: true,
+    hot: true
   },
   // vagrantの仕様でポーリングしないとファイルの変更を感知できない
   watchOptions: {
