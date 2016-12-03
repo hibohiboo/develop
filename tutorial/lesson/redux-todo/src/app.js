@@ -23,6 +23,10 @@ store.dispatch(helloAction)
 // storeが保持しているstateをstore.getStateで取得
 console.log(store.getState()) // => Object {id: 0, text: "Hello World!"}
 
+// dispatch関数でstateを更新
+store.dispatch(addTodo('Hello React!'))
+store.dispatch(addTodo('Hello Redux!'))
+
 render(
   // providerにstoreは必須
   <Provider store={store}>

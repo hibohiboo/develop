@@ -34,7 +34,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   // source-mapを出力して、ブラウザの開発者ツールからデバッグできるようにする。
-  // devtool: '#cheap-module-eval-source-map',
+  devtool: '#cheap-module-eval-source-map',
   // 開発サーバの設定
   devServer: {
     // public/index.htmlをデフォルトのホームとする
