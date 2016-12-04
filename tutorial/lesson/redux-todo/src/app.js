@@ -5,7 +5,7 @@ import { createStore } from 'redux'
 import todo from './reducers'
 import App from './components/App'
 
-import { addTodo } from './actions'
+import { addTodo, toggleTodo } from './actions'
 
 // stateを保存するstoreを作成。
 // reducerとしてtodoを登録
@@ -26,6 +26,7 @@ console.log(store.getState()) // => Object {id: 0, text: "Hello World!"}
 // dispatch関数でstateを更新
 store.dispatch(addTodo('Hello React!'))
 store.dispatch(addTodo('Hello Redux!'))
+store.dispatch(toggleTodo(0))
 
 render(
   // providerにstoreは必須
