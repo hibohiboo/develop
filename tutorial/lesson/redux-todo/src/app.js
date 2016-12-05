@@ -6,6 +6,8 @@ import todo from './reducers'
 import App from './components/App'
 
 import { addTodo, toggleTodo } from './actions'
+import { setVisibilityFilter } from './actions'
+
 
 // stateを保存するstoreを作成。
 // reducerとしてtodoを登録
@@ -27,6 +29,11 @@ console.log(store.getState()) // => Object {id: 0, text: "Hello World!"}
 store.dispatch(addTodo('Hello React!'))
 store.dispatch(addTodo('Hello Redux!'))
 store.dispatch(toggleTodo(0))
+
+// 正しく格納できるか確認
+console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "SHOW_ALL"}
+store.dispatch(setVisibilityFilter('SHOW_COMPLETED'))
+console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "SHOW_COMPLETED"}
 
 render(
   // providerにstoreは必須
