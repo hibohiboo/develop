@@ -35,6 +35,8 @@ console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "
 store.dispatch(setVisibilityFilter('SHOW_COMPLETED'))
 console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "SHOW_COMPLETED"}
 
+store.dispatch(setVisibilityFilter('SHOW_ALL'))
+
 render(
   // providerにstoreは必須
   <Provider store={store}>

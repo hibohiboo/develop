@@ -388,5 +388,7 @@ http://192.168.50.10:8080/
 ## 参考
 
 [Redux ExampleのTodo Listをはじめからていねいに][*1]
+[reat-redux api][*2]
 
 [*1]:http://qiita.com/xkumiyu/items/9dfe51d2bcb3bdb06da3
+[*2]https://github.com/reactjs/react-redux/blob/master/docs/api.md:
