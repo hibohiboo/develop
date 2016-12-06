@@ -1,7 +1,7 @@
 import React from 'react'
 import AddTodo from '../containers/AddTodo'
 import VisibleTodoList from '../containers/VisibleTodoList'
-
+import Footer from './Footer'
 
 const App = () => (
   <div>
@@ -11,6 +11,7 @@ const App = () => (
     {/* TodoListコンポーネントをconnectした
        VisibleTodoListコンテナを表示*/}
     <VisibleTodoList />
+    <Footer />
   </div>
 )
 export default App
