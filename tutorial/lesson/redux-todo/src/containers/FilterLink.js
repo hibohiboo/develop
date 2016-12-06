@@ -4,7 +4,11 @@ import Link from '../components/Link'
 
 // mapStateToProps(state, [ownProps])
 const mapStateToProps = (state, ownProps) => {
-  return { state: state }
+  // Linkコンポーネントが現在の状態を知るために、props.activeとして値を渡す。
+  return {
+    // 現在のフィルターの値（state.visibilityFilter）を自身のpropsの値と比較
+    active: ownProps.filter === state.visibilityFilter
+  }
 }
 
 // 引数は mapDispatchToProps(dispatch, [ownProps])
