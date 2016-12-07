@@ -1,0 +1,25 @@
+# buildtool_react_tsというコンテナ名で作成
+buildtool_react_ts:
+  # webpackディレクトリ内のDockerfileビルド
+  build: ./webpack
+  # webpackを使用するディレクトリを共有する。
+  volumes:
+   # ビルドするソースファイル
+   - ./src:/my_webpack/src
+   # ビルドファイルの出力先
+   - ./dist:/my_webpack/dist
+   # 開発用サーバのホームページに使用するhtml用ディレクトリ
+   - ./public:/my_webpack/public
+   # コンテナ上のpackage.jsonを上書き
+   - ./webpack/package.json:/my_webpack/package.json
+   # webpackの設定ファイル
+   - ./webpack/webpack.config.babel.js:/my_webpack/webpack.config.babel.js
+   # babelの設定ファイル
+   - ./webpack/.babelrc:/my_webpack/.babelrc
+   # typescriptの設定ファイル
+   - ./webpack/tsconfig.json:/my_webpack/tsconfig.json
+  # ホストのポート8080をコンテナのポート8080にポートフォワーディング
+  ports:
+    - "8080:8080" # ホスト:コンテナでポート指定
+  # docker-compose run を行ったときにコンテナ上で下のコマンドを行う
+  command: [npm, run, start]
