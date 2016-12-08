@@ -109,6 +109,7 @@ RUN npm i --save-dev ts-loader
 RUN npm i --save-dev @types/react
 RUN npm i --save-dev @types/react-dom
 RUN npm i --save-dev @types/redux
+RUN npm i --save-dev @types/react-redux
 ```
 
 ```json:webpack/package.json
@@ -128,6 +129,7 @@ RUN npm i --save-dev @types/redux
   "devDependencies": {
     "@types/react": "^0.14.54",
     "@types/react-dom": "^0.14.19",
+    "@types/react-redux": "^4.4.35",
     "@types/redux": "^3.6.0",
     "redux": "^3.6.0",
     "ts-loader": "^1.3.0",
@@ -377,6 +379,9 @@ render(
 );
 ```
 
+### ここの時点のソース
+
+[github](https://github.com/hibohiboo/develop/tree/d70140d0de5fe96da19052aec9cb7e0544af2bda/tutorial/lesson/react-ts)
 
 
 ## 参考
