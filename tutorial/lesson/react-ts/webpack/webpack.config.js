@@ -1,6 +1,5 @@
-import 'babel-polyfill'; // このファイルでes6の記法が使えるようにする
-import path from 'path';
-import webpack from 'webpack';
+
+var webpack = require('webpack');
 
 module.exports = {
   // src以下のソースをビルド対象とする
@@ -16,17 +15,11 @@ module.exports = {
   },
   // importするときに、以下の配列に登録した拡張子は省略できる
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"]
+    extensions: [".js", ".ts", ".tsx"]
   },
   module: {
     rules: [
-      // .js, .jsxに一致する拡張子のファイルはbabel-loaderを通してトランスパイル
-      { test: /\.jsx?$/,
-        exclude: /node_modules/,
-        // ビルド時に警告が出るのでcompact=falseを指定
-        loader: 'babel-loader?compact=false',
-        include: path.join(__dirname, 'src')
-      },
+      // .ts, .tsxに一致する拡張子のファイルはts-loaderを通してトランスパイル
       { test: /\.tsx?$/, exclude: /node_modules/, loader: "ts-loader" }
     ]
   },

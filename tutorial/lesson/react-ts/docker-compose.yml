@@ -13,9 +13,7 @@ buildtool_react_ts:
    # コンテナ上のpackage.jsonを上書き
    - ./webpack/package.json:/my_webpack/package.json
    # webpackの設定ファイル
-   - ./webpack/webpack.config.babel.js:/my_webpack/webpack.config.babel.js
-   # babelの設定ファイル
-   - ./webpack/.babelrc:/my_webpack/.babelrc
+   - ./webpack/webpack.config.js:/my_webpack/webpack.config.js
    # typescriptの設定ファイル
    - ./webpack/tsconfig.json:/my_webpack/tsconfig.json
   # ホストのポート8080をコンテナのポート8080にポートフォワーディング
