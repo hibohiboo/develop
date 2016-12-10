@@ -6,7 +6,7 @@ interface IStateToProps {
     todos: TodoState[];
 }
 
-const mapStateToProps = (store:any): IStateToProps=> {
+const mapStateToProps = (store:any): IStateToProps => {
   return { todos: store.todos };
 };
 

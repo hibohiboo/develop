@@ -23,7 +23,7 @@ RUN npm i --save-dev redux
 RUN npm i --save react-redux
 
 # typescript
-RUN npm i --save-dev typescript
+RUN npm i --save-dev typescript@next
 
 # webpack用typescript loader
 RUN npm i --save-dev ts-loader

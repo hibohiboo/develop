@@ -100,7 +100,7 @@ RUN npm i --save-dev redux
 RUN npm i --save react-redux
 
 # typescript
-RUN npm i --save-dev typescript
+RUN npm i --save-dev typescript@next
 
 # webpack用typescript loader
 RUN npm i --save-dev ts-loader
@@ -132,8 +132,8 @@ RUN npm i --save-dev @types/react-redux
     "@types/react-redux": "^4.4.35",
     "@types/redux": "^3.6.0",
     "redux": "^3.6.0",
-    "ts-loader": "^1.3.0",
-    "typescript": "^2.0.10",
+    "ts-loader": "^1.3.1",
+    "typescript": "^2.2.0-dev.20161210",
     "webpack": "^2.1.0-beta.27",
     "webpack-dev-server": "^2.1.0-beta.12"
   },
@@ -544,11 +544,59 @@ render(
 );
 ```
 
-この時点でのソース  
-[github](https://github.com/hibohiboo/develop/tree/e6227b28660d249bc8a9d6ddbe45ce937005924d/tutorial/lesson/react-ts)
+### この時点でのソース  
+[github](https://github.com/hibohiboo/develop/tree/190094d27c80ea21349b8974debd7e8ceaab7f58/tutorial/lesson/react-ts)
 
 ## 4. フォームからtodoを追加
 
+```ts:AddTodo.tsx
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from '../actions';
+
+interface IDispatch {
+  // ?をつけないと以下のエラーが発生
+  // Property 'dispatch' is missing in type 'IntrinsicAttributes & IDispatch'.
+  dispatch?: any;
+}
+
+let AddTodo = ({ dispatch }:IDispatch) => {
+  let input:HTMLInputElement;
+
+  return (
+    <div>
+      <input ref={(node) => {
+        input = node
+      }} />
+      <button onClick={() => {
+        dispatch(addTodo(input.value))
+        input.value = ''
+      }}>
+        Add Todo
+      </button>
+    </div>
+  );
+};
+
+AddTodo = connect()(AddTodo);
+
+export default AddTodo;
+```
+
+```ts:components/App.tsx
+import * as React from 'react';
+import VisibleTodoList from '../containers/VisibleTodoList'
+import AddTodo from '../containers/AddTodo';
+
+const App = () => (
+  <div>
+    <AddTodo />
+    <VisibleTodoList />
+  </div>
+);
+
+export default App;
+```
 
 
 ## 参考
