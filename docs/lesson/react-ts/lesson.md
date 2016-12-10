@@ -598,6 +598,9 @@ const App = () => (
 export default App;
 ```
 
+### この時点でのソース  
+[github](https://github.com/hibohiboo/develop/tree/1067a0310b968786ebc1f177ecc243dd999b91fb/tutorial/lesson/react-ts)
+
 
 ## 参考
 
@@ -605,6 +608,7 @@ export default App;
 [ReduxのTodo Listをdockerを使ってビルドする準備][*6]  
 [TypeScriptを使ってreactのチュートリアルを進めると捗るかなと思った。][*1]  
 [React + TypeScript + Webpackの最小構成][*2]  
+[Redux Example の TODO List を TypeScript で作成][*15]
 [npmでTypeScriptの型定義を管理できるtypesパッケージについて][*3]  
 [TypeScript2.0での型定義ファイルの管理][*4]  
 [Redux typed actions でReducerを型安全に書く (TypeScriptのバージョン別)][*7]  
@@ -615,6 +619,7 @@ export default App;
 [TypeScript 1.8 のString literal typesでReactのPropを静的検証][*12]  
 [TypeScript, React and Redux][*13]
 [TypeScriptでReactを書く(3)：propTypes][*14]
+
 
 [*1]:http://qiita.com/m0a/items/d723259cdeebe382b5f6
 [*2]:http://qiita.com/uryyyyyyy/items/63969d6ed9341affdffb
@@ -630,3 +635,4 @@ export default App;
 [*12]:http://qiita.com/wadahiro/items/b54e115bdd208641c22f
 [*13]:http://www.mattgreer.org/articles/typescript-react-and-redux/
 [*14]:http://qiita.com/KeitaMoromizato/items/5e8503a87cd2b5da9213
+[*15]:http://qiita.com/NariseT/items/7b5d0e1bc7ba1d21c35b#_reference-b27da31c4db9bd08f0bc
