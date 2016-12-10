@@ -383,6 +383,38 @@ render(
 
 [github](https://github.com/hibohiboo/develop/tree/d70140d0de5fe96da19052aec9cb7e0544af2bda/tutorial/lesson/react-ts)
 
+## 3. storeで保持したstateをViewで表示する
+
+まずは、クラスを使った書き方になおしてみた。
+
+```ts/components/Todo.tsx
+import * as React from 'react';
+import { PropTypes } from 'react';
+
+// PropsをReact.Props<設定予定のコンポーネント>で継承して作ると補完が効く
+// パラメータが足りないとエラーを吐く
+interface IProps extends React.Props<Todo> {
+    text: string;
+}
+
+class Todo extends React.Component<IProps, {}> {
+    render() {
+        return (
+          <li>
+            {this.props.text}
+          </li>
+        )
+    }
+}
+
+export default Todo;
+```
+
+この時点でのソース  
+[github](https://github.com/hibohiboo/develop/tree/58d8aefb976b836f4271c2474c263678d9d8cc86/tutorial/lesson/react-ts)
+
+ Statless Functionsで書くのがよいらしいので、そちらに書き換える。[*9][*9]
+
 
 ## 参考
 
@@ -393,6 +425,8 @@ render(
 [npmでTypeScriptの型定義を管理できるtypesパッケージについて][*3]
 [TypeScript2.0での型定義ファイルの管理][*4]
 [Redux typed actions でReducerを型安全に書く (TypeScriptのバージョン別)][*7]
+[Reactチュートリアル: Intro To React【日本語翻訳】][*8]
+[Stateless な React Component の記法をまとめてみた][*9]
 
 [*1]:http://qiita.com/m0a/items/d723259cdeebe382b5f6
 [*2]:http://qiita.com/uryyyyyyy/items/63969d6ed9341affdffb
@@ -401,3 +435,5 @@ render(
 [*5]:http://qiita.com/xkumiyu/items/9dfe51d2bcb3bdb06da3
 [*6]:http://qiita.com/hibohiboo/items/de698113721a693c4eed
 [*7]:http://qiita.com/wadahiro/items/7c421b668f28a99e2a29
+[*8]:http://mae.chab.in/archives/2943
+[*9]:http://qiita.com/kotaroito/items/e36ebac185b6b1d8538d
