@@ -1,8 +1,13 @@
 import { connect } from 'react-redux';
 import TodoList from '../components/TodoList';
+import { TodoState } from '../reducers/todos';
 
-const mapStateToProps = (state) => {
-  return { todos: state.todos }
+interface IStateToProps {
+    todos: TodoState[];
+}
+
+const mapStateToProps = (store:any): IStateToProps=> {
+  return { todos: store.todos }
 }
 
 const VisibleTodoList = connect(

@@ -1,6 +1,6 @@
 import { AddTodoAction } from '../actions';
 
-class TodoState {
+export class TodoState {
   constructor(
     public id: number,
     public text: string
