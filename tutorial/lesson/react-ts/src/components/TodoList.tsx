@@ -1,22 +1,25 @@
 import * as React from 'react';
 import { PropTypes } from 'react';
 import Todo from './Todo';
+import { TodoState } from '../reducers/todos';
 
-// interface TodoListProps extends React.Props<TodoList> {
-//     todos: TodoState[];
-// }
+interface IProps extends React.Props<TodoList> {
+    todos: TodoState[];
+}
 
-
-
-const TodoList = ({ todos }) => (
-  <ul>
-    {todos.map((todo) =>
-      <Todo
-        key={todo.id}
-        {...todo}
-      />
-    )}
-  </ul>
-);
+class TodoList extends React.Component<IProps, {}> {
+    render() {
+        return (
+          <ul>
+            {this.props.todos.map((todo) =>
+              <Todo
+                key={todo.id}
+                {...todo}
+              />
+            )}
+          </ul>
+        )
+    }
+}
 
 export default TodoList;
