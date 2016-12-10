@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { PropTypes } from 'react';
+import {PropTypes} from 'react';
 
-// PropsをReact.Props<設定予定のコンポーネント>で継承して作ると補完が効く
-// パラメータが足りないとエラーを吐く
-interface IProps extends React.Props<Todo> {
+interface IProps {
     text: string;
 }
 
-class Todo extends React.Component<IProps, {}> {
-    render() {
-        return (
-          <li>
-            {this.props.text}
-          </li>
-        )
-    }
+// propsを展開して分割代入
+const Todo = ({ text }:IProps) => (
+  <li>
+    {text}
+  </li>
+);
+
+// Todo.propTypesとするとProperty 'propTypes' does not exist on typeのエラーがでる。
+Todo.prototype.propTypes = {
+  text: PropTypes.string.isRequired
 }
 
 export default Todo;

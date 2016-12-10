@@ -260,18 +260,6 @@ bin_dir=$(cd $(dirname $0) && pwd)
 cd $bin_dir/../ && docker-compose run buildtool_ts_react npm run build
 ```
 
-コンテナ内の環境を確かめたい時用。
-
-```bash:bin/bash.sh
-#!/bin/bash
-
-# このシェルスクリプトのディレクトリの絶対パスを取得。
-bin_dir=$(cd $(dirname $0) && pwd)
-
-# docker-composeの起動。 コンテナ内に入る
-cd $bin_dir/../ && docker-compose run buildtool_ts_react /bin/bash
-```
-
 ## Hello world
 
 [Hellor world](http://qiita.com/xkumiyu/items/9dfe51d2bcb3bdb06da3#1-hello-world)
@@ -316,6 +304,8 @@ http://192.168.50.10:8080/
 
 ## 2. actionCreatorで発行したactionをreducerに渡してstoreのstateを更新する
 
+### Acitions
+
 ```ts:src/actions/index.js
 import { Action } from 'redux';
 
@@ -339,6 +329,8 @@ export function addTodo(text:string) : AddTodoAction {
   }
 }
 ```
+
+### Reducers
 
 ```ts:src/reducers/index.js
 import { AddTodoAction } from '../actions';
@@ -365,7 +357,7 @@ const todo = (state: TodoState, action: AddTodoAction) => {
 export default todo
 ```
 
-### 確認
+### Store
 
 ```ts:app.tsx
 // 省略
@@ -385,48 +377,196 @@ render(
 
 ## 3. storeで保持したstateをViewで表示する
 
-まずは、クラスを使った書き方になおしてみた。
+### TodoListの作成
 
-```ts/components/Todo.tsx
+TodoStateを他のソースからも参照するので、statesディレクトリを作成してそこに切り分けた。
+
+```ts:states/TodoState.tsx
+export default class TodoState {
+  constructor(
+    public id: number,
+    public text: string
+  ){}
+}
+```
+
+```ts:reducers/todos.tsx
+import { AddTodoAction } from '../actions';
+import TodoState from '../states/TodoState';
+
+// 現在のstateとactionを受け取り、新しいstateを返す関数
+const todo = (state:any, action: AddTodoAction) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return new TodoState(action.id, action.text);
+    // それ以外のときはstateを変化させない
+    default:
+      return state
+  }
+};
+
+const todos = (state: TodoState[] = [], action: AddTodoAction) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        todo(undefined, action)
+      ]
+    default:
+      return state
+  }
+};
+
+export default todos;
+```
+
+### ContainerとComponent
+
+Stateless Functionsで書くのがよいらしいが、Typescriptだとどうすべきか。[*9][*9]  
+2つの書き方を試してみる。  
+
+Todo.tsxはStateless Function。
+
+```ts:components/Todo.tsx
 import * as React from 'react';
-import { PropTypes } from 'react';
+import {PropTypes} from 'react';
 
-// PropsをReact.Props<設定予定のコンポーネント>で継承して作ると補完が効く
-// パラメータが足りないとエラーを吐く
-interface IProps extends React.Props<Todo> {
+interface IProps {
     text: string;
 }
 
-class Todo extends React.Component<IProps, {}> {
-    render() {
-        return (
-          <li>
-            {this.props.text}
-          </li>
-        )
-    }
+// propsを展開して分割代入
+const Todo = ({ text }:IProps) => (
+  <li>
+    {text}
+  </li>
+);
+
+// Todo.propTypesとするとProperty 'propTypes' does not exist on typeのエラーがでる。
+Todo.prototype.propTypes = {
+  text: PropTypes.string.isRequired
 }
 
 export default Todo;
 ```
 
-この時点でのソース  
-[github](https://github.com/hibohiboo/develop/tree/58d8aefb976b836f4271c2474c263678d9d8cc86/tutorial/lesson/react-ts)
+TodoListはReact.Componentをextend。
 
- Statless Functionsで書くのがよいらしいので、そちらに書き換える。[*9][*9]
+
+```ts:TodoList.tsx
+import * as React from 'react';
+import Todo from './Todo';
+import TodoState from '../states/TodoState';
+
+// PropsをReact.Props<設定予定のコンポーネント>で継承して作ると補完が効く
+// パラメータが足りないとエラーを吐く
+interface IProps extends React.Props<TodoList> {
+    todos: TodoState[];
+}
+
+class TodoList extends React.Component<IProps, {}> {
+  constructor(public props: IProps) {
+    super(props);
+  }
+  render(){
+    return (
+      <ul>
+        {this.props.todos.map((todo) =>
+          <Todo
+            key={todo.id}
+            {...todo}
+          />
+        )}
+      </ul>
+    );
+  }
+ }
+
+ export default TodoList;
+```
+
+### コンポーネントをconnectするコンテナ
+
+```ts:containers/VisibleTodoList.tsx
+import { connect } from 'react-redux';
+import TodoList from '../components/TodoList';
+import TodoState from '../states/TodoState';
+
+interface IStateToProps {
+    todos: TodoState[];
+}
+
+const mapStateToProps = (store:any): IStateToProps=> {
+  return { todos: store.todos };
+};
+
+const VisibleTodoList = connect(
+  mapStateToProps
+)(TodoList);
+
+export default VisibleTodoList;
+```
+
+### ようやくブラウザに表示
+
+```ts:App.tsx
+import * as React from 'react';
+import VisibleTodoList from '../containers/VisibleTodoList'
+
+const App = () => (
+  <div>
+    <VisibleTodoList />
+  </div>
+);
+
+export default App;
+```
+
+```ts:app.tsx
+import * as React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './components/App';
+import { createStore } from 'redux';
+import todo from './reducers';
+import { addTodo } from './actions'
+
+let store = createStore(todo);
+store.dispatch(addTodo('Hello React!'));
+store.dispatch(addTodo('Hello Redux!'));
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  // reactのコンポーネントを#root以下に作成する
+  document.getElementById('root')
+);
+```
+
+この時点でのソース  
+[github](https://github.com/hibohiboo/develop/tree/e6227b28660d249bc8a9d6ddbe45ce937005924d/tutorial/lesson/react-ts)
+
+## 4. フォームからtodoを追加
+
 
 
 ## 参考
 
-[Redux ExampleのTodo Listをはじめからていねいに][*5]
-[ReduxのTodo Listをdockerを使ってビルドする準備][*6]
-[TypeScriptを使ってreactのチュートリアルを進めると捗るかなと思った。][*1]
-[React + TypeScript + Webpackの最小構成][*2]
-[npmでTypeScriptの型定義を管理できるtypesパッケージについて][*3]
-[TypeScript2.0での型定義ファイルの管理][*4]
-[Redux typed actions でReducerを型安全に書く (TypeScriptのバージョン別)][*7]
-[Reactチュートリアル: Intro To React【日本語翻訳】][*8]
-[Stateless な React Component の記法をまとめてみた][*9]
+[Redux ExampleのTodo Listをはじめからていねいに][*5]  
+[ReduxのTodo Listをdockerを使ってビルドする準備][*6]  
+[TypeScriptを使ってreactのチュートリアルを進めると捗るかなと思った。][*1]  
+[React + TypeScript + Webpackの最小構成][*2]  
+[npmでTypeScriptの型定義を管理できるtypesパッケージについて][*3]  
+[TypeScript2.0での型定義ファイルの管理][*4]  
+[Redux typed actions でReducerを型安全に書く (TypeScriptのバージョン別)][*7]  
+[Reactチュートリアル: Intro To React【日本語翻訳】][*8]  
+[Stateless な React Component の記法をまとめてみた][*9]  
+[もうはじめよう、ES6~ECMAScript6の基本構文まとめ(JavaScript)~][*10]  
+[React JSX with TypeScript(1.6)][*10]  
+[TypeScript 1.8 のString literal typesでReactのPropを静的検証][*12]  
+[TypeScript, React and Redux][*13]
+[TypeScriptでReactを書く(3)：propTypes][*14]
 
 [*1]:http://qiita.com/m0a/items/d723259cdeebe382b5f6
 [*2]:http://qiita.com/uryyyyyyy/items/63969d6ed9341affdffb
@@ -437,3 +577,8 @@ export default Todo;
 [*7]:http://qiita.com/wadahiro/items/7c421b668f28a99e2a29
 [*8]:http://mae.chab.in/archives/2943
 [*9]:http://qiita.com/kotaroito/items/e36ebac185b6b1d8538d
+[*10]:http://qiita.com/takeharu/items/cbbe017bbdd120015ca0
+[*11]:http://qiita.com/Quramy/items/70f97e68d21859d91ed8
+[*12]:http://qiita.com/wadahiro/items/b54e115bdd208641c22f
+[*13]:http://www.mattgreer.org/articles/typescript-react-and-redux/
+[*14]:http://qiita.com/KeitaMoromizato/items/5e8503a87cd2b5da9213

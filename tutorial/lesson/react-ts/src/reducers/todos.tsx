@@ -1,11 +1,5 @@
 import { AddTodoAction } from '../actions';
-
-export class TodoState {
-  constructor(
-    public id: number,
-    public text: string
-  ){}
-}
+import TodoState from '../states/TodoState';
 
 // 現在のstateとactionを受け取り、新しいstateを返す関数
 const todo = (state:any, action: AddTodoAction) => {
