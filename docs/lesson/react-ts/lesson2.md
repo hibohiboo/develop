@@ -358,13 +358,104 @@ store.dispatch(toggleTodo(0))
 // 省略
 ```
 
+#### ここの時点のソース
+
+[github](https://github.com/hibohiboo/develop/tree/d46e7950d6535e83c9265933e74b818bc948f954/tutorial/lesson/react-ts)
+
+## 2. クリックしてcompletedの値を変える
+
+```tsx:src/containers/VisibleTodoList.tsx
+// 省略
+import { toggleTodo } from '../actions';
+
+// 省略
+
+interface IDispatchToProps{
+  onTodoClick: Function
+}
+
+// 省略
+
+const mapDispatchToProps = (dispatch:Function):IDispatchToProps => {
+  return {
+    onTodoClick: (id:number) => {
+      dispatch(toggleTodo(id))
+    }
+  }
+}
+
+const VisibleTodoList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoList);
+
+export default VisibleTodoList;
+```
+
+```tsx:src/components/TodoList.tsx
+// 省略
+
+interface IProps extends React.Props<TodoList> {
+    todos: TodoState[];
+    onTodoClick: Function;
+}
+
+class TodoList extends React.Component<IProps, {}> {
+  render(): JSX.Element{
+    return (
+      <ul>
+        {this.props.todos.map((todo) =>
+          <Todo
+            key={todo.id}
+            {...todo}
+            onClick={() => this.props.onTodoClick(todo.id)}
+          />
+        )}
+      </ul>
+    );
+  }
+ }
+
+ export default TodoList;
+ ```
+
+`onClick: PropTypes.func.isRequired,`を追加したら`Todo.prototype.propTypes`が通らなくなったので、
+Todo.tsxもクラスを使う形に変更している。  
+余談だがこのあたりで、VSCodeで`import * as React from 'react';`のコード補完が効いていなかったので効くようにした。[*メモ][*4]]
+
+```tsx:src/components/Todo.tsx
+import * as React from 'react';
+import { Props, EventHandler, MouseEvent, Component} from 'react';
+
+interface IProps extends Props<Todo>{
+    onClick: EventHandler<MouseEvent<HTMLElement>>,
+    completed: boolean;
+    text: string;
+}
+
+interface IComponentNameState {};
+
+export default class Todo extends Component<IProps, IComponentNameState> {
+  render(): JSX.Element{
+    return (<li
+      onClick={this.props.onClick} 
+      style={{textDecoration: this.props.completed ? 'line-through' : 'none'}}
+    >
+      {this.props.text}
+    </li>
+    )
+  }
+}
+```
 
 ## 参考
 
 [Redux ExampleのTodo Listをはじめからていねいに(2)][*1]  
 [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(1)][*2]
 [Redux typed actions でReducerを型安全に書く (TypeScriptのバージョン別)][*3]  
+[VSCodeでTypescriptの型定義ファイルを設定したときのメモ][*4]  
 
 [*1]:http://qiita.com/xkumiyu/items/e7e1e8ed6a5d6a6e20dd
 [*2]:http://qiita.com/hibohiboo/items/e344d2bbbaaab0ba8a66
 [*3]:http://qiita.com/wadahiro/items/7c421b668f28a99e2a29
+[*4]:http://qiita.com/hibohiboo/items/5210c10236f00e7529ea

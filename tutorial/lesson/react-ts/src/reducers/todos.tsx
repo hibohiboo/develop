@@ -12,7 +12,7 @@ const todo = (state?:TodoState, action?: Actions) => {
         return state
       }
       // completedだけを反転
-      return  new TodoState(state.id, state.text, !state.completed);
+      return new TodoState(state.id, state.text, !state.completed);
     // それ以外のときはstateを変化させない
     default:
       return state

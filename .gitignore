@@ -5,3 +5,4 @@ repo/*
 tutorial/docker/vendor/*
 !tutorial/docker/vendor/.gitkeep
 project/
+typings/

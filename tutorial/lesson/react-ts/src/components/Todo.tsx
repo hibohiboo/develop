@@ -1,22 +1,22 @@
 import * as React from 'react';
-import {PropTypes} from 'react';
+import { Props, EventHandler, MouseEvent, Component} from 'react';
 
-interface IProps {
+interface IProps extends Props<Todo>{
+    onClick: EventHandler<MouseEvent<HTMLElement>>,
     completed: boolean;
     text: string;
 }
 
-// propsを展開して分割代入
-const Todo = ({ completed, text }:IProps) => (
-  <li style={{textDecoration: completed ? 'line-through' : 'none'}}>
-    {text}
-  </li>
-);
+interface IComponentNameState {};
 
-// Todo.propTypesとするとProperty 'propTypes' does not exist on typeのエラーがでる。
-Todo.prototype.propTypes = {
-  completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
+export default class Todo extends Component<IProps, IComponentNameState> {
+  render(): JSX.Element{
+    return (<li
+      onClick={this.props.onClick} 
+      style={{textDecoration: this.props.completed ? 'line-through' : 'none'}}
+    >
+      {this.props.text}
+    </li>
+    )
+  }
 }
-
-export default Todo;

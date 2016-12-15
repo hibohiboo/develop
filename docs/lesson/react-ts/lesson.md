@@ -606,6 +606,7 @@ export default App;
 
 [Redux ExampleのTodo Listをはじめからていねいに][*5]  
 [ReduxのTodo Listをdockerを使ってビルドする準備][*6]  
+[VSCodeでTypescriptの型定義ファイルを設定したときのメモ ][*16]  
 [TypeScriptを使ってreactのチュートリアルを進めると捗るかなと思った。][*1]  
 [React + TypeScript + Webpackの最小構成][*2]  
 [Redux Example の TODO List を TypeScript で作成][*15]
@@ -636,3 +637,4 @@ export default App;
 [*13]:http://www.mattgreer.org/articles/typescript-react-and-redux/
 [*14]:http://qiita.com/KeitaMoromizato/items/5e8503a87cd2b5da9213
 [*15]:http://qiita.com/NariseT/items/7b5d0e1bc7ba1d21c35b#_reference-b27da31c4db9bd08f0bc
+[*16]:http://qiita.com/hibohiboo/items/5210c10236f00e7529ea

@@ -6,19 +6,18 @@ import TodoState from '../states/TodoState';
 // パラメータが足りないとエラーを吐く
 interface IProps extends React.Props<TodoList> {
     todos: TodoState[];
+    onTodoClick: Function;
 }
 
 class TodoList extends React.Component<IProps, {}> {
-  constructor(public props: IProps) {
-    super(props);
-  }
-  render(){
+  render(): JSX.Element{
     return (
       <ul>
         {this.props.todos.map((todo) =>
           <Todo
             key={todo.id}
             {...todo}
+            onClick={() => this.props.onTodoClick(todo.id)}
           />
         )}
       </ul>
