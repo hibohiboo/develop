@@ -1,9 +1,16 @@
 import { Action } from 'redux';
 
+export type Actions = AddTodoAction | ToggleTodoAction;
+
 export interface AddTodoAction extends Action {
     type: 'ADD_TODO';
     id: number;
     text: string;
+}
+
+export interface ToggleTodoAction extends Action {
+    type: 'TOGGLE_TODO';
+    id: number;
 }
 
 let nextTodoId:number = 0;
@@ -17,5 +24,12 @@ export function addTodo(text:string) : AddTodoAction {
     type: 'ADD_TODO',
     id: nextTodoId++,
     text
+  }
+}
+
+export const toggleTodo = (id:number) : ToggleTodoAction => {
+  return {
+    type: 'TOGGLE_TODO',
+    id
   }
 }

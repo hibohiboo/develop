@@ -275,13 +275,96 @@ export default class TodoState {
 
 `completed = true`にしてブラウザでアクセス。
 
+#### ここの時点のソース
 
+[github](https://github.com/hibohiboo/develop/tree/f5e504fa91b331b1c5a8b7e26157a8bd2461d4c6/tutorial/lesson/react-ts)
+
+### actionCreatorからcompleted要素を操作する
+
+```tsx:src/actions/index.tsx
+import { Action } from 'redux';
+
+export type Actions = AddTodoAction | ToggleTodoAction;
+
+// 省略
+
+export interface ToggleTodoAction extends Action {
+    type: 'TOGGLE_TODO';
+    id: number;
+}
+
+// 省略
+
+export const toggleTodo = (id:number) : ToggleTodoAction => {
+  return {
+    type: 'TOGGLE_TODO',
+    id
+  }
+}
+```
+
+```tsx:src/reducers/todos.tsx
+import { Actions } from '../actions';
+import TodoState from '../states/TodoState';
+
+// 現在のstateとactionを受け取り、新しいstateを返す関数
+const todo = (state?:TodoState, action?: Actions) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return new TodoState(action.id, action.text);
+    case 'TOGGLE_TODO':
+      // actionCreatorに渡したidと一致するtodoのみ処理
+      if (state.id !== action.id) {
+        return state
+      }
+      // completedだけを反転
+      return  new TodoState(state.id, state.text, !state.completed);
+    // それ以外のときはstateを変化させない
+    default:
+      return state
+  }
+};
+
+const todos = (state: TodoState[] = [], action: Actions) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        todo(undefined, action)
+      ];
+    case 'TOGGLE_TODO':
+      return state.map((t) =>
+        todo(t, action)
+      );
+    default:
+      return state
+  }
+};
+
+export default todos;
+```
+
+#### 確認
+
+```tsx:src/app.tsx
+// 省略
+import { addTodo, toggleTodo } from './actions'
+
+let store = createStore(todo);
+store.dispatch(addTodo('Hello React!'));
+store.dispatch(addTodo('Hello Redux!'));
+store.dispatch(toggleTodo(0))
+
+// 省略
+```
 
 
 ## 参考
 
 [Redux ExampleのTodo Listをはじめからていねいに(2)][*1]  
 [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(1)][*2]
+[Redux typed actions でReducerを型安全に書く (TypeScriptのバージョン別)][*3]  
 
 [*1]:http://qiita.com/xkumiyu/items/e7e1e8ed6a5d6a6e20dd
 [*2]:http://qiita.com/hibohiboo/items/e344d2bbbaaab0ba8a66
+[*3]:http://qiita.com/wadahiro/items/7c421b668f28a99e2a29
