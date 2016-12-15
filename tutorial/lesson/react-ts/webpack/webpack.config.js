@@ -6,7 +6,9 @@ module.exports = {
   context: __dirname + '/src',
   // エントリーポイントとしてapp.jsを起点にビルドする
   entry: {
-    typescript: './app.tsx'
+    typescript: './app.tsx',
+    // code-splitting用の設定
+    vendor: ['react', 'react-dom', 'redux', 'react-redux']
   },
   // distにビルドしたファイルをbundle.jsの名前で保存
   output: {
@@ -23,12 +25,15 @@ module.exports = {
       { test: /\.tsx?$/, exclude: /node_modules/, loader: "ts-loader" }
     ]
   },
-  // hot loadを有効にするためのプラグイン
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    // hot loadを有効にするためのプラグイン
+    new webpack.HotModuleReplacementPlugin(),
+    // code-splittingを有効にするプラグイン
+    new webpack.optimize.CommonsChunkPlugin({/* chunkName= */name: "vendor", /* filename= */ filename: "vendor.bundle.js"})
   ],
   // source-mapを出力して、ブラウザの開発者ツールからデバッグできるようにする。
-  devtool: '#cheap-module-eval-source-map',
+  // webpack-dev-serverなら不要？
+  // devtool: '#cheap-module-source-map',
   // 開発サーバの設定
   devServer: {
     // public/index.htmlをデフォルトのホームとする
