@@ -228,7 +228,7 @@ module.exports = {
 todos.tsxは`new Todostate()`をしているだけなので今回は変更しない。  
 代わりにTodoState.tsxを更新
 
-```tsx:TodoState.tsx
+```ts:TodoState.tsx
 export default class TodoState {
   constructor(
     public id: number,
@@ -238,7 +238,7 @@ export default class TodoState {
 }
 ```
 
-```tsx:src/components/Todo.tsx
+```ts:src/components/Todo.tsx
 import * as React from 'react';
 import {PropTypes} from 'react';
 
@@ -263,7 +263,7 @@ export default Todo;
 
 #### 確認
 
-```tsx:TodoState.tsx
+```ts:TodoState.tsx
 export default class TodoState {
   constructor(
     public id: number,
@@ -281,7 +281,7 @@ export default class TodoState {
 
 ### actionCreatorからcompleted要素を操作する
 
-```tsx:src/actions/index.tsx
+```ts:src/actions/index.tsx
 import { Action } from 'redux';
 
 export type Actions = AddTodoAction | ToggleTodoAction;
@@ -303,7 +303,7 @@ export const toggleTodo = (id:number) : ToggleTodoAction => {
 }
 ```
 
-```tsx:src/reducers/todos.tsx
+```ts:src/reducers/todos.tsx
 import { Actions } from '../actions';
 import TodoState from '../states/TodoState';
 
@@ -346,7 +346,7 @@ export default todos;
 
 #### 確認
 
-```tsx:src/app.tsx
+```ts:src/app.tsx
 // 省略
 import { addTodo, toggleTodo } from './actions'
 
@@ -364,7 +364,7 @@ store.dispatch(toggleTodo(0))
 
 ## 2. クリックしてcompletedの値を変える
 
-```tsx:src/containers/VisibleTodoList.tsx
+```ts:src/containers/VisibleTodoList.tsx
 // 省略
 import { toggleTodo } from '../actions';
 
@@ -392,7 +392,7 @@ const VisibleTodoList = connect(
 export default VisibleTodoList;
 ```
 
-```tsx:src/components/TodoList.tsx
+```ts:src/components/TodoList.tsx
 // 省略
 
 interface IProps extends React.Props<TodoList> {
@@ -421,9 +421,9 @@ class TodoList extends React.Component<IProps, {}> {
 
 `onClick: PropTypes.func.isRequired,`を追加したら`Todo.prototype.propTypes`が通らなくなったので、
 Todo.tsxもクラスを使う形に変更している。  
-余談だがこのあたりで、VSCodeで`import * as React from 'react';`のコード補完が効いていなかったので効くようにした。[*メモ][*4]]
+余談だがこのあたりで、VSCodeで`import * as React from 'react';`のコード補完が効いていなかったので効くようにした。[*メモ][*4]
 
-```tsx:src/components/Todo.tsx
+```ts:src/components/Todo.tsx
 import * as React from 'react';
 import { Props, EventHandler, MouseEvent, Component} from 'react';
 
@@ -448,10 +448,15 @@ export default class Todo extends Component<IProps, IComponentNameState> {
 }
 ```
 
+### ここの時点のソース
+
+[github](https://github.com/hibohiboo/develop/tree/8759b31a75c6b43d08857316fe0f1e9d6524a979/tutorial/lesson/react-ts)
+
+
 ## 参考
 
 [Redux ExampleのTodo Listをはじめからていねいに(2)][*1]  
-[Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(1)][*2]
+[Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(1)][*2]  
 [Redux typed actions でReducerを型安全に書く (TypeScriptのバージョン別)][*3]  
 [VSCodeでTypescriptの型定義ファイルを設定したときのメモ][*4]  
 

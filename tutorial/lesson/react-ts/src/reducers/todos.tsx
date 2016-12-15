@@ -1,8 +1,8 @@
-import { Actions } from '../actions';
+import { TodoActions } from '../actions';
 import TodoState from '../states/TodoState';
 
 // 現在のstateとactionを受け取り、新しいstateを返す関数
-const todo = (state?:TodoState, action?: Actions) => {
+const todo = (state?:TodoState, action?: TodoActions) => {
   switch (action.type) {
     case 'ADD_TODO':
       return new TodoState(action.id, action.text);
@@ -19,7 +19,7 @@ const todo = (state?:TodoState, action?: Actions) => {
   }
 };
 
-const todos = (state: TodoState[] = [], action: Actions) => {
+const todos = (state: TodoState[] = [], action: TodoActions) => {
   switch (action.type) {
     case 'ADD_TODO':
       return [
