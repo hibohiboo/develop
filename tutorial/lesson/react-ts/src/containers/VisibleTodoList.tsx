@@ -29,7 +29,6 @@ const mapStateToProps = (store): IStateToProps => {
   }
 }
 
-
 const mapDispatchToProps = (dispatch:Function):IDispatchToProps => {
   return {
     onTodoClick: (id:number) => {

@@ -165,14 +165,194 @@ export default class Footer extends Component<IProps, IState> {
 }
 ```
 
+```ts:src/components/App.tsx
+import Footer from './Footer'
+
+const App = () => (
+  <div>
+    <AddTodo />
+    <VisibleTodoList />
+    <Footer />
+  </div>
+)
+```
+
+#### ここの時点のソース
+[github](https://github.com/hibohiboo/develop/tree/8f5755aa43dcba541b91c3b35f7916b9124472ac/tutorial/lesson/react-ts)
+
+### Linkコンテナでdispatch(setVisibilityFilter())を呼び出せるようにする
+
+```ts:src/components/FilterLink.tsx
+import { connect } from 'react-redux';
+import { setVisibilityFilter } from '../actions';
+import Link from '../components/Link';
+import { VisibilityFilterType } from '../states/VisibilityFilterType';
+
+interface IState{
+  visibilityFilter: VisibilityFilterType
+}
+
+interface IProps{
+  filter:VisibilityFilterType
+}
+
+interface IStateToProps{
+  state:any
+}
+
+interface IDispatchToProps{
+  onClick: Function
+}
+
+const mapStateToProps = (state:IState, ownProps:IProps):IStateToProps => {
+  return { 
+    state:state
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps:IProps):IDispatchToProps => {
+  return {
+    onClick: () => {
+      dispatch(setVisibilityFilter(ownProps.filter))
+    }
+  }
+}
+
+const FilterLink = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Link);
+
+export default FilterLink
+```
+
+```ts:src/components/Footer.tsx
+import * as React from 'react'; 
+import {  Props, EventHandler, MouseEvent, Component } from 'react';
+import Link from './Link';
+import FilterLink from '../containers/FilterLink'
+
+interface IProps {};
+
+interface IState {};
+
+export default class Footer extends Component<IProps, IState> {
+  render(): JSX.Element{
+    return (
+        <p>
+          Show:
+          {" "}
+          <FilterLink filter="SHOW_ALL">
+            All
+          </FilterLink>
+          {", "}
+          <FilterLink filter="SHOW_ACTIVE">
+            Active
+          </FilterLink>
+          {", "}
+          <FilterLink filter="SHOW_COMPLETED">
+            Completed
+          </FilterLink>
+        </p>
+      );
+  }
+}
+```
+
+### クリックしたときにonClickを呼ぶ
+
+
+```ts:src/components/Link.tsx
+import * as React from 'react'; 
+import {  Props, Component } from 'react';
+
+interface ILinkProps extends Props<Link>{
+    children?:any;
+    state:any;
+    onClick:Function; 
+}
+interface ILinkState {};
+
+class Link extends Component<ILinkProps, ILinkState> {
+  render(): JSX.Element{
+    return (
+      <a href="#"
+         onClick={(e) => {
+           e.preventDefault()
+           this.props.onClick()
+         }}
+      >{this.props.children}</a>
+    );
+  }
+}
+
+export default Link;
+```
+
+### activeな状態なリンクを押せないようにする
+
+```ts:src/components/FilterLink.tsx
+// 省略
+
+interface IStateToProps{
+  active: boolean
+}
+
+// 省略
+
+const mapStateToProps = (state:IState, ownProps:IProps):IStateToProps => {
+  return { 
+    active: ownProps.filter === state.visibilityFilter
+  }
+}
+// 省略
+
+```
+
+```ts:src/components/Link.tsx
+import * as React from 'react'; 
+import {  Props, Component } from 'react';
+
+interface ILinkProps extends Props<Link>{
+    children?:any;
+    active:boolean;
+    onClick:Function; 
+}
+interface ILinkState {};
+
+class Link extends Component<ILinkProps, ILinkState> {
+  render(): JSX.Element{
+    if (this.props.active) {
+      return <span>{this.props.children}</span>
+    }
+
+    return (
+      <a href="#"
+         onClick={(e) => {
+           e.preventDefault()
+           this.props.onClick()
+         }}
+      >{this.props.children}</a>
+    );
+  }
+}
+
+export default Link;
+```
+
 ## 参考
 
 [Redux ExampleのTodo Listをはじめからていねいに(3)][*1]  
 [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(2)][*2]  
 [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(1)][*3]  
-[TypeScriptでのイベント名を管理・指定するもう一つの方法(＋ストリングリテラル型にも対応)][*4]
+[TypeScriptでのイベント名を管理・指定するもう一つの方法(＋ストリングリテラル型にも対応)][*4]  
+[TypeScript の JSX/React サポートを試す][*5]
+[TypeScript をざっとペロる][*6]
+
 
 [*1]:http://qiita.com/xkumiyu/items/1ba476b8043b71561f52
 [*2]:http://qiita.com/hibohiboo/items/ca9d5a5bb04d0a50db00
 [*3]:http://qiita.com/hibohiboo/items/e344d2bbbaaab0ba8a66
-[*]:http://qiita.com/ConquestArrow/items/02826db3ddbe98d280bd
+[*4]:http://qiita.com/ConquestArrow/items/02826db3ddbe98d280bd
+[*5]:http://qiita.com/kimamula/items/11873444e6a4df19df37
+[*6]:http://qiita.com/Chrowa3/items/a566489392fc1c969b88

@@ -1,14 +1,28 @@
 import * as React from 'react'; 
-import {  Props, EventHandler, MouseEvent, Component } from 'react';
+import {  Props, Component } from 'react';
 
-interface IProps extends Props<Link>{
-    children?: React.ReactElement<any>[];
+interface ILinkProps extends Props<Link>{
+    children?:any;
+    active:boolean;
+    onClick:Function; 
 }
+interface ILinkState {};
 
-interface IState {};
-
-export default class Link extends Component<IProps, IState> {
+class Link extends Component<ILinkProps, ILinkState> {
   render(): JSX.Element{
-    return (<a href="#">{this.props.children}</a>);
+    if (this.props.active) {
+      return <span>{this.props.children}</span>
+    }
+
+    return (
+      <a href="#"
+         onClick={(e) => {
+           e.preventDefault()
+           this.props.onClick()
+         }}
+      >{this.props.children}</a>
+    );
   }
 }
+
+export default Link;

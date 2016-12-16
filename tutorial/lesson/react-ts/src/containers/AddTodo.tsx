@@ -8,7 +8,7 @@ interface IDispatch {
   dispatch?: any;
 }
 
-let AddTodo = ({ dispatch }:IDispatch) => {
+let AddTodo = ({ dispatch }:IDispatch): JSX.Element => {
   let input:HTMLInputElement;
 
   return (
