@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import { createStore } from 'redux';
 import todo from './reducers';
-import { addTodo, toggleTodo, setVisibilityFilter } from './actions'
+import { addTodo, toggleTodo, setVisibilityFilter } from './actions';
 
 let store = createStore(todo);
 store.dispatch(addTodo('Hello React!'));

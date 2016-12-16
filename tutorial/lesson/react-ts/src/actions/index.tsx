@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+import { VisibilityFilterType } from '../states/VisibilityFilterType';
 
 export type TodoActions = IAddTodoAction | IToggleTodoAction;
 
@@ -15,7 +16,7 @@ export interface IToggleTodoAction extends Action {
 
 export interface IVisibilityFilter extends Action{
     type: 'SET_VISIBILITY_FILTER',
-    filter: string
+    filter: VisibilityFilterType
 }
 
 let nextTodoId:number = 0;
@@ -39,7 +40,7 @@ export const toggleTodo = (id:number) : IToggleTodoAction => {
   }
 }
 
-export const setVisibilityFilter = (filter:string) : IVisibilityFilter => {
+export const setVisibilityFilter = (filter:VisibilityFilterType) : IVisibilityFilter => {
   return {
     type: 'SET_VISIBILITY_FILTER',
     filter

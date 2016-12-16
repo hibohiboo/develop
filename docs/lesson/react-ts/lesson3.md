@@ -69,6 +69,11 @@ console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "
 // 省略
 ```
 
+### ここの時点のソース
+
+[github](https://github.com/hibohiboo/develop/tree/72a4f4790dd18fe9d085408df6be9a924074ffb4/tutorial/lesson/react-ts)
+
+
 ## 参考
 
 [Redux ExampleのTodo Listをはじめからていねいに(3)][*1]  
