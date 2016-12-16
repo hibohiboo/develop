@@ -340,6 +340,10 @@ class Link extends Component<ILinkProps, ILinkState> {
 export default Link;
 ```
 
+### ここの時点のソース
+[github](https://github.com/hibohiboo/develop/tree/bfa404246f49c4a658a2e5d5034404de1a71c9ca/tutorial/lesson/react-ts)
+
+
 ## 参考
 
 [Redux ExampleのTodo Listをはじめからていねいに(3)][*1]  
