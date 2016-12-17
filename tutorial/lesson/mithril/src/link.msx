@@ -1,0 +1,14 @@
+import m from 'mithril';
+var links = [
+    {title: "アイテム 1", url: "/item1"}
+];
+
+var link = [
+    m("ul.nav", [
+        m("li", links.map(function(link) {
+            return m("a", {href: link.url, config: m.route}, link.title)
+        }))
+    ])
+];
+
+export default link;
