@@ -6,3 +6,4 @@ tutorial/docker/vendor/*
 !tutorial/docker/vendor/.gitkeep
 project/
 typings/
+node_modules/*
