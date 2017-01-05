@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "typedoc": "typedoc",
-    "doc": "npm run typedoc -- --target es6 --jsx react --moduleResolution node --ignoreCompilerErrors --out ./dist/ ./src/"
+    "doc": "npm run typedoc -- --target es6 --jsx react  --moduleResolution node --ignoreCompilerErrors --out ./dist/ ./src/"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +16,7 @@
     "@types/react": "^0.14.55",
     "@types/react-dom": "^0.14.20",
     "@types/react-redux": "^4.4.35",
-    "@types/redux": "^3.6.0",
+    "redux": "^3.6.0",
     "typedoc": "^0.5.3",
     "typescript": "^2.2.0-dev.20170104"
   }

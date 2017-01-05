@@ -16,8 +16,8 @@ RUN npm i --save-dev typescript@next
 
 # reduxは型定義ファイルを独自に定義
 RUN npm i --save-dev redux
-RUN npm i --save-dev @types/redux
-RUN cp ./node_modules/redux/index.d.ts ./node_modules/@types/redux/
+# RUN npm i --save-dev @types/redux
+# RUN cp ./node_modules/redux/index.d.ts ./node_modules/@types/redux/
 
 # typescriptの型定義ファイル
 RUN npm i --save-dev @types/react
