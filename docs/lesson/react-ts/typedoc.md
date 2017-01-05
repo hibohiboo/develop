@@ -162,6 +162,11 @@ bin_dir=$(cd $(dirname $0) && pwd)
 cd $bin_dir/../ && docker-compose run doc_tool npm run doc
 ```
 
+## ここの時点のソース
+
+[github](https://github.com/hibohiboo/develop/tree/7a3acef4c1ff514912a61a9a49a049673fe7558d/tutorial/lesson/react-ts)
+
+
 ## 参考
 
 [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(3)][*3]
