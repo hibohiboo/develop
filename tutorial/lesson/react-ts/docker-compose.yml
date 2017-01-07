@@ -11,7 +11,7 @@ lesson_buildtool_react_ts:
    # 開発用サーバのホームページに使用するhtml用ディレクトリ
    - ./public:/my_webpack/public
    # コンテナ上のpackage.jsonを上書き
-   - ./webpack/package.json:/my_webpack/package.json
+  #  - ./webpack/package.json:/my_webpack/package.json
    # webpackの設定ファイル
    - ./webpack/webpack.config.js:/my_webpack/webpack.config.js
    # typescriptの設定ファイル

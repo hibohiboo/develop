@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
-
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 interface IDispatch {
   // ?をつけないと以下のエラーが発生
   // Property 'dispatch' is missing in type 'IntrinsicAttributes & IDispatch'.
@@ -16,12 +17,14 @@ let AddTodo = ({ dispatch }:IDispatch): JSX.Element => {
       <input ref={(node) => {
         input = node
       }} />
-      <button onClick={() => {
-        dispatch(addTodo(input.value))
-        input.value = ''
-      }}>
-        Add Todo
-      </button>
+      <FloatingActionButton 
+        onClick={() => {
+          dispatch(addTodo(input.value))
+          input.value = ''
+        }}
+       >
+        <ContentAdd />
+       </FloatingActionButton>
     </div>
   );
 };

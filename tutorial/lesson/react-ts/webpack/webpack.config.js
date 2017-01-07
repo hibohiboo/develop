@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     typescript: './app.tsx',
     // code-splitting用の設定
-    vendor: ['react', 'react-dom', 'redux', 'react-redux']
+    vendor: ['react', 'react-dom', 'redux', 'react-redux', 'material-ui', 'react-tap-event-plugin']
   },
   // distにビルドしたファイルをbundle.jsの名前で保存
   output: {
