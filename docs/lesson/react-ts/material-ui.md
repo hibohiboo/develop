@@ -165,10 +165,18 @@ AddTodo = connect()(AddTodo);
 export default AddTodo;
 ```
 
+## ここの時点のソース
+
+[github](https://github.com/hibohiboo/develop/tree/64d552421fc1ce94eaf6a0f62f1e520d8d338f4d/tutorial/lesson/react-ts)
+
+
 ## 参考
 
 [material-ui][*1]  
 [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(3)][*2]
+[webpack+React+material-uiの環境を最小手順で作成][*3]
+
 
 [*1]:http://www.material-ui.com/#/get-started/installation
 [*2]:http://qiita.com/hibohiboo/items/5af878b068c4d11d1b43
+[*3]:http://qiita.com/takaki@github/items/724d97a20d3ae194ded4
