@@ -1,5 +1,5 @@
-# buildtool_react_tsというコンテナ名で作成
-buildtool_react_ts:
+# lesson_buildtool_react_tsというコンテナ名で作成
+lesson_buildtool_react_ts:
   # webpackディレクトリ内のDockerfileビルド
   build: ./webpack
   # webpackを使用するディレクトリを共有する。
@@ -24,7 +24,7 @@ buildtool_react_ts:
 
 
 # document作成
-doc_tool:
+lesson_doc_tool:
   build: ./typedoc
   volumes:
    # ビルドするソースファイル

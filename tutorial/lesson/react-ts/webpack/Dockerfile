@@ -33,3 +33,7 @@ RUN npm i --save-dev @types/react
 RUN npm i --save-dev @types/react-dom
 RUN npm i --save-dev @types/redux
 RUN npm i --save-dev @types/react-redux
+
+# material-ui
+RUN npm i --save material-ui
+RUN npm i --save-dev @types/material-ui
