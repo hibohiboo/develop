@@ -1,0 +1,20 @@
+{
+  "name": "my_lint",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tslint": "tslint -c tslint.json 'src/**/*.ts', 'src/**/*.tsx'",
+    "eslint": "eslint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.5",
+    "typescript-eslint-parser": "^1.0.2"
+  }
+}

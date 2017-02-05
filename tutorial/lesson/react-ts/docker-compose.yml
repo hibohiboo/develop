@@ -35,3 +35,17 @@ lesson_doc_tool:
    - ./typedoc/package.json:/my_typedoc/package.json
    # typescriptの設定ファイル
    - ./webpack/tsconfig.json:/my_webpack/tsconfig.json
+
+
+# lint-tool
+lesson_lint_tool:
+  build: ./lint
+  volumes:
+    # ビルドするソースファイル
+    - ./src:/my_lint/src
+    # コンテナ上のpackage.jsonを上書き
+    - ./lint/package.json:/my_lint/package.json
+    # tslint設定ファイル
+    - ./lint/tslint.json:/my_lint/tslint.json
+    # typescriptの設定ファイル
+    - ./webpack/tsconfig.json:/lint/tsconfig.json
