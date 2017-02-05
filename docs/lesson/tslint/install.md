@@ -100,10 +100,14 @@ run taskと入力して[enter] → tslintを選択して[enter]
 [Visual Studio Codeの使い勝手をよくするツール (1/5)][*3]  
 [qiita vscode moca][*4]  
 [Visual Studio Code を使う上で良くわかっていなかった(基本的な)用語とか][*5]
+[tslint-json][*7]
+[tslint-cli][*8]
 
 [*1]:https://marketplace.visualstudio.com/items?itemName=eg2.tslint
 [*2]:https://github.com/Microsoft/vscode-tslint
 [*3]:http://www.atmarkit.co.jp/ait/articles/1509/08/news019.html
 [*4]:http://qiita.com/xingyanhuan/items/46ab06dc6ad9ffaec4f2
 [*5]:http://qiita.com/satokaz/items/dd2f16fc953e7bdb6d2f
-
+[*6]:https://github.com/yannickcr/eslint-plugin-react#list-of-supported-rules
+[*7]:https://palantir.github.io/tslint/usage/tslint-json/
+[*8]:https://palantir.github.io/tslint/usage/cli/

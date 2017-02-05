@@ -47,5 +47,7 @@ lesson_lint_tool:
     - ./lint/package.json:/my_lint/package.json
     # tslint設定ファイル
     - ./lint/tslint.json:/my_lint/tslint.json
+    # eslint設定ファイル
+    - ./lint/.eslintrc:/my_lint/.eslintrc
     # typescriptの設定ファイル
     - ./webpack/tsconfig.json:/lint/tsconfig.json
