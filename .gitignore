@@ -7,3 +7,4 @@ tutorial/docker/vendor/*
 project/
 typings/
 node_modules/*
+npm-debug.log

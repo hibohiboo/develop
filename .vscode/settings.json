@@ -1,0 +1,7 @@
+// ユーザ設定を上書き
+{
+	"editor.insertSpaces": false,
+  "tslint.enable": true,
+  "tslint.configFile": "./tslint.json",
+  "typescript.tsdk": "./node_modules/typescript/lib"
+}

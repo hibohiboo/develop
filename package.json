@@ -1,0 +1,35 @@
+{
+  "name": "develop",
+  "version": "1.0.0",
+  "description": "開発用テスト環境",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "material-ui": "^0.16.6",
+    "material-ui-number-input": "^5.0.16",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-tap-event-plugin": "^1.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-tslint": "^7.1.0",
+    "tslint": "^4.4.2",
+    "typescript": "^2.1.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hibohiboo/develop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hibohiboo/develop/issues"
+  },
+  "homepage": "https://github.com/hibohiboo/develop#readme"
+}

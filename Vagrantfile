@@ -19,7 +19,7 @@ Vagrant.configure(2) do |config|
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。
   config.vm.network "private_network", ip: "192.168.50.10", auto_config:false
-  # config.vm.network "forwarded_port", guest: 80, host: 3000
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
   # 共有するフォルダの設定
   # config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
   
