@@ -38,16 +38,24 @@ lesson_doc_tool:
 
 
 # lint-tool
-lesson_lint_tool:
-  build: ./lint
+lesson_tslint_tool:
+  build: ./tslint
   volumes:
     # ビルドするソースファイル
     - ./src:/my_lint/src
     # コンテナ上のpackage.jsonを上書き
-    - ./lint/package.json:/my_lint/package.json
+    - ./tslint/package.json:/my_lint/package.json
     # tslint設定ファイル
-    - ./lint/tslint.json:/my_lint/tslint.json
-    # eslint設定ファイル
-    - ./lint/.eslintrc.json:/my_lint/.eslintrc.json
+    - ./tslint/tslint.json:/my_lint/tslint.json
     # typescriptの設定ファイル
     - ./webpack/tsconfig.json:/lint/tsconfig.json
+
+lesson_eslint_tool:
+  build: ./eslint
+  volumes:
+    # ビルドするソースファイル
+    - ./src:/my_lint/src
+    # eslint設定ファイル
+    - ./eslint/.eslintrc.json:/my_lint/.eslintrc.json
+    # コンテナ上のpackage.jsonを上書き
+    - ./eslint/package.json:/my_lint/package.json
