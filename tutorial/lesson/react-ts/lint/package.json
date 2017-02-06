@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "tslint": "tslint -c tslint.json 'src/**/*.ts', 'src/**/*.tsx'",
     "eslint": "eslint --ext .tsx src/components/App.tsx",
-    "eslint-fix": "eslint --ext --fix .ts src"
+    "eslint-fix": "eslint --ext .tsx --fix src/components/App.tsx"
   },
   "keywords": [],
   "author": "",

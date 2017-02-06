@@ -27,7 +27,10 @@
         ],
         "quotes": [
             "error",
-            "backtick"
+            "single",
+            {
+                "allowTemplateLiterals": false
+            }
         ],
         "semi": [
             "error",
