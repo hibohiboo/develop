@@ -4,4 +4,4 @@
 bin_dir=$(cd $(dirname $0) && pwd)
 
 # docker-composeの起動。 コンテナ内に入る
-cd $bin_dir/../ && docker-compose run lesson_lint_tool npm run -s tslint
+cd $bin_dir/../ && docker-compose run lesson_lint_tool npm run -s eslint-fix
