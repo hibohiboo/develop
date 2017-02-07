@@ -15,34 +15,34 @@ export interface IToggleTodoAction extends Action {
 }
 
 export interface IVisibilityFilter extends Action{
-    type: 'SET_VISIBILITY_FILTER',
-    filter: VisibilityFilterType
+    type: 'SET_VISIBILITY_FILTER';
+    filter: VisibilityFilterType;
 }
 
-let nextTodoId:number = 0;
+let nextTodoId: number = 0;
 
 // actionを発行する関数
-export function addTodo(text:string) : IAddTodoAction {
+export function addTodo(text: string) : IAddTodoAction {
   // actionはtypeを持つオブジェクト
   // この場合、アクションタイプはADD_TODO
   // データはidとtextとなる。
   return {
     type: 'ADD_TODO',
     id: nextTodoId++,
-    text
-  }
+    text,
+  };
 }
 
-export const toggleTodo = (id:number) : IToggleTodoAction => {
+export const toggleTodo = (id: number) : IToggleTodoAction => {
   return {
     type: 'TOGGLE_TODO',
-    id
-  }
-}
+    id,
+  };
+};
 
-export const setVisibilityFilter = (filter:VisibilityFilterType) : IVisibilityFilter => {
+export const setVisibilityFilter = (filter: VisibilityFilterType) : IVisibilityFilter => {
   return {
     type: 'SET_VISIBILITY_FILTER',
-    filter
-  }
-}
+    filter,
+  };
+};

@@ -1,7 +1,7 @@
-import * as React from 'react'; 
-import {  Props, EventHandler, MouseEvent, Component } from 'react';
+import * as React from 'react';
+import {  Component, EventHandler, MouseEvent, Props } from 'react';
+import FilterLink from '../containers/FilterLink';
 import Link from './Link';
-import FilterLink from '../containers/FilterLink'
 
 interface IProps {};
 
@@ -12,15 +12,15 @@ export default class Footer extends Component<IProps, IState> {
     return (
         <p>
           Show:
-          {" "}
+          {' '}
           <FilterLink filter="SHOW_ALL">
             All
           </FilterLink>
-          {", "}
+          {', '}
           <FilterLink filter="SHOW_ACTIVE">
             Active
           </FilterLink>
-          {", "}
+          {', '}
           <FilterLink filter="SHOW_COMPLETED">
             Completed
           </FilterLink>

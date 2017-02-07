@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Todo from './Todo';
 import TodoState from '../states/TodoState';
+import Todo from './Todo';
 
 // PropsをReact.Props<設定予定のコンポーネント>で継承して作ると補完が効く
 // パラメータが足りないとエラーを吐く
@@ -18,7 +18,7 @@ class TodoList extends React.Component<IProps, {}> {
             key={todo.id}
             {...todo}
             onClick={() => this.props.onTodoClick(todo.id)}
-          />
+          />,
         )}
       </ul>
     );
