@@ -3,9 +3,8 @@ WORKDIR /my_express
 RUN npm init -y
 RUN npm install express-generator -g
 # .gitignoreの追加
-# stylesheetエンジンにlessを使用
 # viewエンジンにpugを使用
-RUN express myapp --git --css less --pug --view pug 
+RUN express myapp --git --pug --view pug 
 WORKDIR /my_express/myapp
 RUN npm install body-parser --save
 RUN npm install cookie-parser --save

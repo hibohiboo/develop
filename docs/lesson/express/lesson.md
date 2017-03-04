@@ -12,6 +12,7 @@
 [pug][*4]
 [express5][*5]
 [generator][*6]
+[express-generatorサンプル][*7]
 
 [*1]:https://gist.github.com/mitsuruog/fc48397a8e80f051a145
 [*2]:http://expressjs.com/ja/
@@ -19,3 +20,4 @@
 [*4]:https://expressjs.com/en/guide/using-template-engines.html
 [*5]:http://expressjs.com/ja/guide/migrating-5.html
 [*6]:https://github.com/expressjs/generator
+[*7]:http://qiita.com/abgata20000/items/765b9e3fa86c25fa6d74
