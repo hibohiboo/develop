@@ -1,7 +1,8 @@
 express:
   build: ./express
   volumes:
-   - ./myapp/app.js:/my_express/myapp/app.js
+  #  - ./myapp/app.js:/my_express/myapp/app.js
+   - ./myapp/public:/my_express/test
   ports:
     - "80:3000"
   command: [node, bin/www]

@@ -8,6 +8,14 @@
 
 [express実践入門][*1]
 [API doc][*2]
+[Node.js + Express入門][*3]
+[pug][*4]
+[express5][*5]
+[generator][*6]
 
 [*1]:https://gist.github.com/mitsuruog/fc48397a8e80f051a145
 [*2]:http://expressjs.com/ja/
+[*3]:http://qiita.com/etet-etet/items/1c65b934dbe7fc33490b
+[*4]:https://expressjs.com/en/guide/using-template-engines.html
+[*5]:http://expressjs.com/ja/guide/migrating-5.html
+[*6]:https://github.com/expressjs/generator
