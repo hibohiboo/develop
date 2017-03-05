@@ -1,0 +1,8 @@
+sqlite:
+  build: ./sqlite
+  volumes:
+   - ./src/module:/my_work/module
+   - ./src/app.js:/my_work/app.js
+   - ./db:/my_work/db
+  ports:
+    - "80:3000"
