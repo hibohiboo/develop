@@ -28,7 +28,10 @@ db.serialize(function () {
   });
 });
 
-// データの挿入
+/**
+ * データ挿入
+ * @param {*} param 
+ */
 var insert = function (param){
   db.serialize(function () {
  
