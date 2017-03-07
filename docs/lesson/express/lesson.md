@@ -1,18 +1,20 @@
 # express lesson
 
 [express実践入門][*1]をdockerを使って試してみる。
+lesson/express以下参照。
 
 ## インストール
 
 ## 参考
 
-[express実践入門][*1]
-[API doc][*2]
-[Node.js + Express入門][*3]
-[pug][*4]
-[express5][*5]
-[generator][*6]
-[express-generatorサンプル][*7]
+[express実践入門][*1]  
+[API doc][*2]  
+[Node.js + Express入門][*3]  
+[pug][*4]  
+[express5][*5]  
+[generator][*6]  
+[express-generatorサンプル][*7]  
+
 
 [*1]:https://gist.github.com/mitsuruog/fc48397a8e80f051a145
 [*2]:http://expressjs.com/ja/

@@ -20,7 +20,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+// express.static 関数に指定するパスは、node プロセスを起動するディレクトリーに対して相対的
+// 別のディレクトリーから Express アプリケーションを実行する場合は、
+// 提供するディレクトリーの絶対パスを使用する方が安全。
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', index);
 app.use('/users', users);
