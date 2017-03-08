@@ -11,7 +11,7 @@
 		request.open(method, 'method_test', false);
 		request.send();
 		if (request.status === 200) {
-			console.log(request.responseText);
+			console.log(request);
 			message.textContent = request.responseText;
 		}
 	}

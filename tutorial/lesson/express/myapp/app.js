@@ -31,6 +31,12 @@ app.use('/', index);
 app.use('/users', users);
 
 // メソッドのテスト
+
+app.all('/method_test', function (req, res, next) {
+  console.log('Accessing the secret section ...');
+  next(); // pass control to the next handler
+});
+
 // GET method route
 app.get('/method_test', function (req, res) {
   res.send('GET request to the homepage')
