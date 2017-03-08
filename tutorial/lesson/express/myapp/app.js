@@ -54,8 +54,19 @@ app.put('/method_test', function (req, res) {
 // DELETE method route
 app.delete('/method_test', function (req, res) {
   res.send('DELETE request to the homepage')
-})
+});
 
+
+// その他のメソッドのテスト
+['head',     'trace',     'copy',        'lock',   'mkcol',     'move', 
+ 'purge',    'propfind',  'proppatch',   'unlock', 'report',    'mkactivity',
+ 'checkout', 'merge',     'm-search',    'notify', 'subscribe', 'unsubscribe', 
+ 'patch',    'search',    'connect'
+].forEach(_method=>{
+    app[_method]('/method_test', function(req, res){
+      res.send(`${_method} request to the homepage`)
+    });
+});
 
 
 // catch 404 and forward to error handler

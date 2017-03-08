@@ -9,4 +9,8 @@ block content
   button(id="post") POSTテスト
   button(id="put") PUTテスト
   button(id="delete") DELETEテスト
+  ul
+  each val in   ['head',     'trace',     'copy',        'lock',   'mkcol',     'move', 'purge',    'propfind',  'proppatch',   'unlock', 'report',    'mkactivity', 'checkout', 'merge',     'm-search',    'notify', 'subscribe', 'unsubscribe', 'patch',    'search',    'connect']
+    li
+      button(id=val)=val
   script(src="static/javascripts/method_test.js")
