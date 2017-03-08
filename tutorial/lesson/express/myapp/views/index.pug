@@ -2,4 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p(id="message") Welcome to #{title}
+  form(method="POST" action="method_test")
+    input(type="submit" value="POSTForm")
+  button(id="get") GETテスト
+  button(id="post") POSTテスト
+  button(id="put") PUTテスト
+  button(id="delete") DELETEテスト
+  script(src="static/javascripts/method_test.js")

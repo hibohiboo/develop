@@ -6,7 +6,6 @@ nodejs/express以下参照。
 ## インストール
 
 ## Serving static files in Express
-htmlがうまく表示されない。
 
 ## 参考
 

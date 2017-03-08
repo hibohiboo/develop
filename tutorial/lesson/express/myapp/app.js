@@ -30,6 +30,28 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
+// メソッドのテスト
+// GET method route
+app.get('/method_test', function (req, res) {
+  res.send('GET request to the homepage')
+})
+
+// POST method route
+app.post('/method_test', function (req, res) {
+  res.send('POST request to the homepage')
+})
+
+// PUT method route
+app.put('/method_test', function (req, res) {
+  res.send('PUT request to the homepage')
+})
+// DELETE method route
+app.delete('/method_test', function (req, res) {
+  res.send('DELETE request to the homepage')
+})
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
