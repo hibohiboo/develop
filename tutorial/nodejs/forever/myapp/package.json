@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "forever start -l /my_express/myapp/logs/forever.log -o /my_express/myapp/logs/out.log -e /my_express/myapp/logs/err.log ./bin/www"
+    "start": "forever -a /my_express/myapp/logs/forever/forever.log -o /my_express/myapp/logs/forever/out.log -e /my_express/myapp/logs/forever/err.log /my_express/myapp/bin/www"
   },
   "dependencies": {
     "body-parser": "^1.16.1",
