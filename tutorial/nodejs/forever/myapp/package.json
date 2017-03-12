@@ -1,0 +1,17 @@
+{
+  "name": "myapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "forever start -l /my_express/myapp/logs/forever.log -o /my_express/myapp/logs/out.log -e /my_express/myapp/logs/err.log ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.1",
+    "express": "^5.0.0-alpha.5",
+    "morgan": "^1.7.0",
+    "pug": "^2.0.0-beta11",
+    "serve-favicon": "^2.3.2"
+  }
+}
