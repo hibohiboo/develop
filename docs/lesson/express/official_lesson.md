@@ -10,6 +10,7 @@
 	  - container_build.sh # docker-compose build
 	  - bash.sh            # docker-compose run express /bin/bash
 		- start.sh           # docker-compose up
+		- debug.sh           # docker-compose run express npm run debug
 	- express # dockerfile用フォルダ
 	  - Dockerfile
 	- docker-compose.yml # docker-compose 設定ファイル
@@ -69,6 +70,31 @@ RUN npm install express@5.0.0-alpha.5 --save
 
 テンプレートエンジンのjadeがライセンスの関係で[pug][*3]に変わるようなので、
 そちらに対応。
+
+package.json
+```json
+{
+  "name": "myapp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "debug":"DEBUG=express:* node ./bin/www",
+		"product":"ENV=production ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.1",
+    "express": "^5.0.0-alpha.5",
+    "morgan": "^1.7.0",
+    "pug": "^2.0.0-beta11",
+    "serve-favicon": "^2.3.2"
+  }
+}
+デバッグモードを追記。
+
+```
 
 ## 静的ファイルを使用するサンプル
 
