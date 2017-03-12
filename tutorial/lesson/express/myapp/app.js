@@ -26,47 +26,10 @@ app.use(cookieParser());
 // 提供するディレクトリーの絶対パスを使用する方が安全。
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
-
 app.use('/', index);
 app.use('/users', users);
 
-// メソッドのテスト
 
-app.all('/method_test', function (req, res, next) {
-  console.log('Accessing the secret section ...');
-  next(); // pass control to the next handler
-});
-
-// GET method route
-app.get('/method_test', function (req, res) {
-  res.send('GET request to the homepage')
-})
-
-// POST method route
-app.post('/method_test', function (req, res) {
-  res.send('POST request to the homepage')
-})
-
-// PUT method route
-app.put('/method_test', function (req, res) {
-  res.send('PUT request to the homepage')
-})
-// DELETE method route
-app.delete('/method_test', function (req, res) {
-  res.send('DELETE request to the homepage')
-});
-
-
-// その他のメソッドのテスト
-['head',     'trace',     'copy',        'lock',   'mkcol',     'move', 
- 'purge',    'propfind',  'proppatch',   'unlock', 'report',    'mkactivity',
- 'checkout', 'merge',     'm-search',    'notify', 'subscribe', 'unsubscribe', 
- 'patch',    'search',    'connect'
-].forEach(_method=>{
-    app[_method]('/method_test', function(req, res){
-      res.send(`${_method} request to the homepage`)
-    });
-});
 
 
 // catch 404 and forward to error handler

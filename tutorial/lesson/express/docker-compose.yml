@@ -1,7 +1,7 @@
 express:
   build: ./express
   volumes:
-  #  - ./myapp/package.json:/my_express/myapp/package.json
+   - ./myapp/package.json:/my_express/myapp/package.json
    - ./myapp/app.js:/my_express/myapp/app.js
    - ./myapp/public:/my_express/myapp/public
    - ./myapp/views:/my_express/myapp/views
