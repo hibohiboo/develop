@@ -7,17 +7,16 @@ router.get('/', function(req, res, next) {
 });
 
 // ミドルウェアのテスト
-router.use('/user/:id', function(req, res, next) {
-  console.log('Request URL:', req.originalUrl);
-  next();
-}, function (req, res, next) {
-  console.log('Request Type:', req.method);
-  next();
-});
-
 router.get('/user/:id', function (req, res, next) {
-  res.send('USER');
-});
+  console.log('ID:', req.params.id)
+  next()
+}, function (req, res, next) {
+  res.send('User Info')
+})
 
-
+// handler for the /user/:id path, which prints the user ID
+// こちらは表示されない
+router.get('/user/:id', function (req, res, next) {
+  res.end(req.params.id)
+})
 module.exports = router;
