@@ -36,7 +36,8 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handler
+// エラーハンドラ
+// 引数は４つ。
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

@@ -70,7 +70,7 @@ RUN npm install express@5.0.0-alpha.5 --save
 テンプレートエンジンのjadeがライセンスの関係で[pug][*3]に変わるようなので、
 そちらに対応。
 
-## Serving static files in Expressa
+## 静的ファイルを使用するサンプル
 
 ```js
 var express = require('express');
@@ -163,8 +163,12 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
 ```
+
+staticのオプションについては以下を参照。
+
+[標準ミドルウェア（static)オプション][*4]
+
 ## 参考
 
 [expressチュートリアル日本語][*1]  
@@ -175,3 +179,4 @@ module.exports = app;
 [*1]:http://expressjs.com/ja/starter/installing.html
 [*2]:http://expressjs.com/en/starter/installing.html
 [*3]:https://expressjs.com/en/guide/using-template-engines.html
+[*4]:http://expressjs.com/ja/guide/using-middleware.html#middleware.built-in
