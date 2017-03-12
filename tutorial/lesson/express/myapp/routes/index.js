@@ -7,7 +7,10 @@ router.get('/', function(req, res, next) {
 });
 
 // ミドルウェアのテスト
-router.use('/user/:id', function (req, res, next) {
+router.use('/user/:id', function(req, res, next) {
+  console.log('Request URL:', req.originalUrl);
+  next();
+}, function (req, res, next) {
   console.log('Request Type:', req.method);
   next();
 });
