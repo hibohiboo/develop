@@ -1,4 +1,4 @@
-FROM node:7.7.1
+FROM node:7.7.2
 WORKDIR /my_express
 RUN npm init -y
 RUN npm install express-generator -g
@@ -12,4 +12,5 @@ RUN npm install debug --save
 RUN npm install morgan --save
 RUN npm install serve-favicon --save
 RUN npm install pug --save
+RUN npm install helmet --save
 RUN npm install express@5.0.0-alpha.5 --save
