@@ -1,9 +1,11 @@
 express:
   build: ./express
   volumes:
+  #  - ./myapp/package.json:/my_express/myapp/package.json
    - ./myapp/app.js:/my_express/myapp/app.js
    - ./myapp/public:/my_express/myapp/public
    - ./myapp/views:/my_express/myapp/views
+   - ./myapp/routes:/my_express/myapp/routes
   ports:
     - "80:3000"
   command: [node, bin/www]
