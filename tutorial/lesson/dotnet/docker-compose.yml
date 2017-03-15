@@ -1,0 +1,18 @@
+version: '2'
+services:
+  proxy:
+    build: ./nginx
+    links:
+      - dotnet
+    ports:
+      - "80:80"
+  dotnet:
+    build: ./dotnet
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ./dotnet/project/src/SampleWebApplication/Program.cs:/aspnetapp/project/src/SampleWebApplication/Program.cs
+    #  - ./myapp/app.js:/my_express/myapp/app.js
+    #  - ./myapp/public:/my_express/myapp/public
+    #  - ./myapp/views:/my_express/myapp/views
+    #  - ./myapp/routes:/my_express/myapp/routes
