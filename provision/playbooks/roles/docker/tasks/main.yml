@@ -29,49 +29,36 @@
     - name: step2
       apt: name={{item}} state=present update_cache=yes
       with_items:
-        - apt-transport-https
-        - ca-certificates
+        - apt-transport-https 
+        - ca-certificates 
+        - curl
+        - software-properties-common
 
     - name: step3.1
-      shell: apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+      shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
       register: res3
       ignore_errors: True
 
-# gpgエラーでstep3が失敗することがある。しかしこれでもstep5.1で失敗。
-#  - name: step3.1.1
-#    shell: wget -q -O - https://get.docker.com/gpg | apt-key add -
-#    when: res3|failed
-# 3.1.1が失敗するのでこちらの書き方に変更
-    - name: step3.1.2
-      shell: wget -qO- https://get.docker.com/ | sh
-      when: res3|failed
-
     - name: step4
-      shell: echo "deb https://apt.dockerproject.org/repo ubuntu-xenial experimental" > /etc/apt/sources.list.d/docker.list
+      shell: apt-key fingerprint 0EBFCD88 warn=no
 
     - name: step5.1
-      shell: apt update
+      shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" warn=no
 
-# apt モジュールを使えと警告がでるのをカット
     - name: step5.2
-      shell: apt-get purge lxc-docker warn=no
+      shell: apt-get update warn=no
 
-    - name: step5.3
-      shell: apt-cache policy docker-engine
-
-# apt モジュールを使えと警告がでるのをカット
     - name: step6
-      shell: apt-get install -y linux-image-extra-$(uname -r) warn=no
-
-    - name: step7
       apt: name={{item}} state=present update_cache=yes
       with_items:
-        - docker-engine
+        - docker-ce
+
+    - name: step6.2
+      shell: apt-cache madison docker-ce warn=no
 
     - name: step8
       shell: gpasswd -a vagrant docker
     when: result|failed
-
   
   - name: test docker-composeが インストールされていなければインストール
     command: docker-compose --version
@@ -83,6 +70,6 @@
   
   - block:
     - name: step1
-      shell: curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
+      shell: curl -L "https://github.com/docker/compose/releases/download/1.11.2/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
 
     when: result|failed
