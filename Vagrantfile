@@ -12,9 +12,6 @@ SHELL
 Vagrant.configure(2) do |config|
   # 使用するディストリビューションのボックスの設定
   config.vm.box = "bento/ubuntu-16.04"
-  # bento/ubuntu-16.04 2.3.0だと A start job is running for LSB: Raise network interfaces と言われて
-  # 起動に5分ほどかかるので前のバージョンを指定  
-  config.vm.box_version = "2.2.9"
 
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。
