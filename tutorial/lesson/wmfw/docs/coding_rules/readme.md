@@ -41,7 +41,43 @@ eslint.rcに下記を追加。
   }],
  ```
 
-## 構文のルール
+## スタイルのルール
+
+googleの規約から一部を使用。
+
+### 命名規約
+
+|        | 記法 |例|
+|:--     |:--|:--|
+|関数    |camelCase  |functionNamesLikeThis|
+|変数    |camelCase  |variableNamesLikeThis|
+|クラス  |PascalCase |ClassNamesLikeThis|
+|列挙型  |PascalCase |EnumNamesLikeThis|
+|メソッド|camelCase  |methodNamesLikeThis|
+|定数    |~~UPPER~~ camelCase|~~CONSTANT_VALUES_LIKE_THIS~~|
+|名前空間|camelCase|foo.namespaceNamesLikeThis.bar|
+|ファイル|lower|filenameslikethis.js|
+
+#### 定数
+
+定数は`const`で宣言する。記法は変数と同じ。
+
+#### ファイル名
+
+大文字小文字を区別するプラットフォームで混乱が生じることを避けるため、ファイル名には小文字のみを使う。  
+ファイル名は.jsで終わらねばならず、-と_以外の区切り文字を含んではならない（より好ましいのは_より-の方）。
+
+#### プロパティとメソッド
+
+privateなプロパティ、メソッドには末尾にアンダースコアをつける。  
+protected なプロパティ、メソッドには（publicと同様に）末尾にアンダースコアをつけない。
+
+
+#### メソッドと関数のパラメータ
+
+省略可能な関数の引数は名前の先頭をopt_とする。
+
+
 
 ### importを使う。
 
@@ -89,12 +125,31 @@ X
       return isInRange;
     }
 ```
+### 三項演算子
 
+```js
+let x = a ? b : c; // 収まるなら1行にまとめる。
+
+// 最初のオペランドの位置までインデントするのもOK 
+let z = a ? 
+        moreComplicatedB : 
+        moreComplicatedC;
+```
+
+### ドット
+
+```
+let x = foo.bar(). 
+    doSomething(). 
+    doSomethingElse();
+```
 
 ## 参考
 
-
+[airbnb][*1]
+[node規約][*2]
+[google規約][*3]
 
 [*1]:http://mitsuruog.github.io/javascript-style-guide/
 [*2]:http://popkirby.github.io/contents/nodeguide/style.html
-[*3]:http://qiita.com/rooooomania/items/4c999d93ae745e9d8657
+[*4]:https://www38.atwiki.jp/aias-jsstyleguide2/pages/1.html
