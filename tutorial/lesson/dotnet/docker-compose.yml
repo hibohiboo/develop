@@ -11,8 +11,6 @@ services:
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
     volumes:
-      - ./dotnet/project/src/SampleWebApplication/Program.cs:/aspnetapp/project/src/SampleWebApplication/Program.cs
-    #  - ./myapp/app.js:/my_express/myapp/app.js
-    #  - ./myapp/public:/my_express/myapp/public
-    #  - ./myapp/views:/my_express/myapp/views
-    #  - ./myapp/routes:/my_express/myapp/routes
+      # - ./dotnet/project/src/SampleWebApplication/Program.cs:/aspnetapp/project/src/SampleWebApplication/Program.cs
+      # - ./dotnet/project/src/:/aspnetapp/project/src/
+      - ./dotnet/project/src/aspnetcoreapp/Program.cs:/aspnetapp/project/src/aspnetcoreapp/Program.cs
