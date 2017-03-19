@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "eslint --ext .js --ext .jsx --ext www src",
-    "eslint-fix": "eslint --fix --ext .js --ext .jsx --ext www src"
+    "eslint": "eslint --ext .js --ext .jsx  src",
+    "eslint-fix": "eslint --fix --ext .js --ext .jsx src"
   },
   "keywords": [],
   "author": "",
