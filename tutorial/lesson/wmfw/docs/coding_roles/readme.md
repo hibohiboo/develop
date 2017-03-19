@@ -8,7 +8,7 @@
 
 ./bin/fix-eslint.shを利用し、自動で修正できるものは修正する。
 
-## 独自ルール
+## eslintの独自ルール
 
 ### no-use-before-define
 
@@ -37,6 +37,12 @@ eslint.rcに下記を追加。
 	  "ignore": ["express"] 
 	}]
  ```
+
+## 構文のルール
+
+### importを使う。
+
+モジュールのインポート方法に`require`と`import`とあるので、混在しないようにする。[*][*3]
 
 ### return文は早めに
 
@@ -88,3 +94,4 @@ X
 
 [*1]:http://mitsuruog.github.io/javascript-style-guide/
 [*2]:http://popkirby.github.io/contents/nodeguide/style.html
+[*3]:http://qiita.com/rooooomania/items/4c999d93ae745e9d8657

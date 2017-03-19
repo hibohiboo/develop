@@ -3,7 +3,8 @@ services:
   wmfw:
     build: ./express
     volumes:
-    - ./project/src/wmfwapp/package.json:/wmfw/wmfwapp/package.json
+    - ./express/package.json:/wmfw/wmfwapp/package.json
+    - ./express/.babelrc:/wmfw/wmfwapp/.babelrc
     - ./project/src/wmfwapp/bin:/wmfw/wmfwapp/bin
     - ./project/src/wmfwapp/app.js:/wmfw/wmfwapp/app.js
     #  - ./myapp/public:/my_express/myapp/public
@@ -11,4 +12,4 @@ services:
     #  - ./myapp/routes:/my_express/myapp/routes
     ports:
       - "3000:3000"
-    command: [node, bin/www]
+    command: [npm, run, start]

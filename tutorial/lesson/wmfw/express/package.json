@@ -1,0 +1,21 @@
+{
+  "name": "wmfwapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node ./bin/www",
+    "debug":"DEBUG=express:* babel-node ./bin/www"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-cli": "^6.24.0",
+    "express": "^5.0.0-alpha.5"
+  },
+  "devDependencies": {
+    "babel-preset-latest": "^6.24.0"
+  }
+}
