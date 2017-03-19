@@ -1,7 +1,7 @@
 # hello world
 ## ソース
 
-`http://localhost:3000`にアクセスでHellovWorld
+`http://localhost:3000`にアクセスでHello World
 
 app.js
 ```js
