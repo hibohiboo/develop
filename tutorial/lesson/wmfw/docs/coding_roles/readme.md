@@ -33,9 +33,12 @@ node_modulesは別のコンテナにあるので、eslintのコンテナから�
 eslint.rcに下記を追加。
 
 ```json
-  "import/no-unresolved": [2, { 
+  "import/extensions": [2, { 
 	  "ignore": ["express"] 
 	}]
+  "import/no-unresolved": [2, {
+     "ignore": ["express"] 
+  }],
  ```
 
 ## 構文のルール
