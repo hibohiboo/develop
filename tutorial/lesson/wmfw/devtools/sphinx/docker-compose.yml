@@ -5,9 +5,11 @@ services:
     volumes:
       - ./Makefile:/root/Makefile
       # ビルドするソースファイル
-      - ../../project/src:/root/src
-      # ビルドするドキュメントファイル
-      - ./source:/root/source
+      # - ../../project/src:/root/src
+      - ./source/_templates:/root/source/_templates
+      - ./source/conf.py:/root/source/conf.py
+      - ./source/index.rst:/root/source/index.rst
+      - ./conf.json:/root/conf.json
       # ビルドされた結果ファイル
       - ../../dist/docs:/root/build
       # - ../../docs:/root/docs

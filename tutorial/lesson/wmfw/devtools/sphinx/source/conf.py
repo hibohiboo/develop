@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # wmfw documentation build configuration file, created by
-# sphinx-quickstart on Sun Mar 19 15:45:25 2017.
+# sphinx-quickstart on Tue Mar 21 13:36:54 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -15,6 +15,8 @@
 import sys
 import os
 
+sys.path.append(os.path.abspath('/root/source/site-packages/sphinx-js'))
+jsdoc_config_path = '/root/conf.json'
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -30,7 +32,9 @@ import os
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
     'sphinx.ext.coverage',
+    'sphinx_js'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
