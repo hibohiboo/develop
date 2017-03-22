@@ -1,0 +1,5 @@
+=========================
+autofunction
+=========================
+
+.. js:autofunction:: linkDensity

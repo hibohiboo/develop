@@ -11,6 +11,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   api/index
+   api/autofunction_minimal.rst
 
 
 Indices and tables
