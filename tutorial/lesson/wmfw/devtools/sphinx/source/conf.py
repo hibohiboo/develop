@@ -15,8 +15,8 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath('/root/source/site-packages/sphinx-js'))
-jsdoc_config_path = '/root/conf.json'
+js_source_path = '/root/src/wmfwapp'
+# jsdoc_config_path = '/root/conf.json'
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
