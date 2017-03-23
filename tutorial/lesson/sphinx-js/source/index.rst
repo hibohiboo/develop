@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    api/index
+   api/autofunction_minimal
 
 
 Indices and tables

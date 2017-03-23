@@ -1,0 +1,11 @@
+version: '2'
+services:
+  sphinx-js:
+    build: ./sphinx
+    volumes:
+      # jsのファイル
+      - ./src:/root/src
+      # ビルドするソースファイル
+      - ./source:/root/source
+      # ビルドされた結果ファイル
+      - ./build:/root/build
