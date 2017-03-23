@@ -1,1 +1,5 @@
+=========================
+autoclass
+=========================
+
 .. js:autoclass:: ContainingClass
