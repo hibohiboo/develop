@@ -92,8 +92,8 @@ function publish(taffyData, options, tutorials) {
   var actions = [];
   actions.push(generate(
     helper.getUniqueFilename('index'), require('./view-models/home')));
-  actions.push(generate(
-    'conf.py', require('./view-models/sphinx-config')));
+  // actions.push(generate(
+  //   'conf.py', require('./view-models/sphinx-config')));
   var docletModel = require('./view-models/doclet');
   context.data().each(function(doclet) {
     var url = helper.longnameToUrl[doclet.longname];

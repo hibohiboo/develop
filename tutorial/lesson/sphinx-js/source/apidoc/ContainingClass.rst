@@ -16,7 +16,7 @@ Children
 Description
 ===========
 
-Constructor doc.
+コンストラクタ doc.
 
 
 .. _ContainingClass.someMethod:
@@ -25,7 +25,7 @@ Constructor doc.
 Function: ``someMethod``
 ========================
 
-Here.
+protectedのメソッド。
 
 .. js:function:: someMethod()
 
@@ -37,7 +37,7 @@ Here.
 Function: ``secret``
 ====================
 
-Private thing.
+Privateな関数
 
 .. js:function:: secret()
 
@@ -46,11 +46,11 @@ Private thing.
 
 .. _ContainingClass.someVar:
 
-Member: ``someVar``: A var
+Member: ``someVar``: A クラスのプロパティ
 
 .. _ContainingClass.bar:
 
-Member: ``bar``: Setting this also frobs the frobnicator.
+Member: ``bar``: ゲッターとセッター
 
 .. _ContainingClass.bar:
 

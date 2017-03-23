@@ -1,10 +1,8 @@
 /**
- * Return the ratio of the inline text length of the links in an element to
- * the inline text length of the entire element.
+ * 要素内のリンクのインラインテキスト長と要素全体のインラインテキスト長の比を返します
  *
- * @param {Node} node - Something of a single type
- * @throws {PartyError|FartyError} Something with multiple types and a line
- *    that wraps
+ * @param {Node} node - 要素
+ * @throws {PartyError|FartyError} 複数のタイプとラップする行のあるものは例外を投げる
  * @returns {Number} What a thing
  */
 function linkDensity(node) {
@@ -15,30 +13,30 @@ function linkDensity(node) {
 }
 
 /**
- * Class doc.
+ * クラスドキュメント
  */
 class ContainingClass {
     /**
-     * Constructor doc.
+     * コンストラクタ doc.
      *
-     * @arg ho A thing
+     * @arg ho 特に意味のない引数
      */
     constructor(ho) {
         /**
-         * A var
+         * A クラスのプロパティ
          */
         this.someVar = 4;
     }
 
     /**
-     * Here.
+     * protectedのメソッド。
      * @protected
      */
     someMethod(hi) {
     }
 
     /**
-     * Setting this also frobs the frobnicator.
+     * ゲッターとセッター
      */
     get bar() {
       return this._bar;
@@ -48,32 +46,32 @@ class ContainingClass {
     }
 
     /**
-     * Private thing.
+     * Privateな関数
      * @private
      */
     secret() {}
 }
 
-// We won't add any new members to this class, because it would break some tests.
+// このクラスに新しいメンバーを追加することはありません。なぜなら、いくつかのテストを壊すからです。
 /** Closed class. */
 class ClosedClass {
     /**
-     * Public thing.
+     * Public thingなメソッド.
      */
     publical() {}
 
     /**
-     * Public thing 2.
+     * Public thing なメソッド2.
      */
     publical2() {}
 
     /**
-     * Public thing 3.
+     * Public thing なメソッド3.
      */
     publical3() {}
 }
 
-/** Non-alphabetical class. */
+/**関数がアルファベット順でない class. */
 class NonAlphabetical {
     /** Fun z. */
     z() {}

@@ -25,7 +25,7 @@ Description
 Function: ``publical``
 ======================
 
-Public thing.
+Public thingなメソッド.
 
 .. js:function:: publical()
 
@@ -37,7 +37,7 @@ Public thing.
 Function: ``publical2``
 =======================
 
-Public thing 2.
+Public thing なメソッド2.
 
 .. js:function:: publical2()
 
@@ -49,7 +49,7 @@ Public thing 2.
 Function: ``publical3``
 =======================
 
-Public thing 3.
+Public thing なメソッド3.
 
 .. js:function:: publical3()
 
