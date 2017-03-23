@@ -12,12 +12,13 @@ Contents:
    autofunction_long
    autofunction_explicit
    autoclass
-   autoclass_alphabetial
+   autoclass_alphabetical
    autoclass_exclude_members
    autoclass_members_list
    autoclass_members
    autoclass_private_members
    getter_setter
+   autoattribute
 
 Indices and tables
 ==================

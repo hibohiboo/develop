@@ -76,6 +76,8 @@ js_source_path = '/root/src/wmfwapp'
 [extension][*9]
 [okikata][*10]
 [拡張][*11]
+[study 日本語解説][*12]
+[jsdoc-sphinx][*13]
 
 [*1]:http://www.rhoboro.com/2016/09/04/docker-build-sphinx.html
 [*2]:http://sphinx-users.jp/event/20101203_jus_benkyoukai/practical_sample/index.html
@@ -88,3 +90,5 @@ js_source_path = '/root/src/wmfwapp'
 [*9]:http://tk0miya.hatenablog.com/entry/20111206/p1
 [*10]:http://oktavia.info/ja/pages/what/what.html
 [*11]:http://sphinx.shibu.jp/extensions.html
+[*12]:http://planset-study-sphinx.readthedocs.io/ja/latest/01.html
+[*13]:https://github.com/HumanBrainProject/jsdoc-sphinx

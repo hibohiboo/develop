@@ -1,0 +1,49 @@
+{{#doclet.rstReference}}
+.. _{{doclet.rstReference}}:
+
+{{/doclet.rstReference}}
+{{#h1}}{{#titlecase}}{{doclet.kind}}{{/titlecase}}: ``{{doclet.name}}``{{/h1}}
+
+{{#doclet.parentRstLink}}
+Member Of :doc:`{{doclet.parentRstLink}}`
+{{/doclet.parentRstLink}}
+
+.. contents:: Local Navigation
+   :local:
+
+{{#h2}}Children{{/h2}}
+
+.. toctree::
+   :maxdepth: 1
+   {{#pre}}
+   {{> toctreeChildren }}
+   {{/pre}}
+
+{{#h2}}Description{{/h2}}
+
+{{doclet.description}}
+
+{{#function}}
+{{>func}}
+{{/function}}
+
+{{#member}}
+{{>member}}
+{{/member}}
+
+{{#constant}}
+{{>constant}}
+{{/constant}}
+
+{{#typedef}}
+{{>typedef}}
+{{/typedef}}
+
+
+{{#doclet.examples.length}}
+{{#h2}}Examples{{/h2}}
+
+{{/doclet.examples.length}}
+{{#doclet.examples}}
+{{#example}}{{.}}{{/example}}
+{{/doclet.examples}}

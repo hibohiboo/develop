@@ -1,0 +1,15 @@
+
+{{#rstReference}}
+.. _{{rstReference}}:
+
+{{/rstReference}}
+
+{{#h2}}{{#titlecase}}{{kind}}{{/titlecase}}: ``{{name}}``{{/h2}}
+
+{{description}}
+
+{{#properties.length}}
+{{#h3}}Properties{{/h3}}
+{{#properties}}- ``{{#type.names}}{{.}} {{/type.names}}{{name}}``: {{description}}
+{{/properties}}
+{{/properties.length}}

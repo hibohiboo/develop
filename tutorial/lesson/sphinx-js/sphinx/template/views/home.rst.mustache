@@ -1,0 +1,20 @@
+{{#h1}}{{package.name}}{{/h1}}
+
+{{package.description}}
+
+{{#h2}}Contents{{/h2}}
+
+.. toctree::
+   :maxdepth: 1
+
+   {{#pre}}
+   {{>toctreeChildren}}
+   {{/pre}}
+
+{{#readme}}
+{{#h2}}README{{/h2}}
+
+------------------------
+
+{{.}}
+{{/readme}}

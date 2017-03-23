@@ -11,8 +11,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   api/index
-   api/autofunction_minimal
+   test/index
+   apidoc/autofunction_minimal
 
 
 Indices and tables
