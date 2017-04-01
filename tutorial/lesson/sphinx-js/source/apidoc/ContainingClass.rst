@@ -18,44 +18,8 @@ Description
 
 コンストラクタ doc.
 
-
-.. _ContainingClass.someMethod:
-
-
-Function: ``someMethod``
-========================
-
-protectedのメソッド。
-
-.. js:function:: someMethod()
-
-    
-    
-.. _ContainingClass.secret:
+.. js:autofunction:: someMethod()
 
 
-Function: ``secret``
-====================
-
-Privateな関数
-
-.. js:function:: secret()
-
-    
-    
-
-.. _ContainingClass.someVar:
-
-Member: ``someVar``: A クラスのプロパティ
-
-.. _ContainingClass.bar:
-
-Member: ``bar``: ゲッターとセッター
-
-.. _ContainingClass.bar:
-
-Member: ``bar``: 
-
-
-
+.. js:autofunction:: secret()
 

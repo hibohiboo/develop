@@ -4,9 +4,9 @@ var logger = require('jsdoc/util/logger');
 module.exports = docletModel;
 
 /**
- * The Mustache ViewModel to render a doclet.
- * @param  {object} doclet the doclet to render
- * @return {function}      the template helper func
+ * ドックレットをレンダリングするためのMustacheテンプレートViewModel。
+ * @param  {object} doclet レンダリングするドックレット
+ * @return {function}      関数ヘルパー
  */
 function docletModel(doclet) {
   return function(context, cb) {

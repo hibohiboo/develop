@@ -18,31 +18,10 @@ Description
 
 
 
+.. js:autofunction:: z()
 
-.. _NonAlphabetical.z:
+.. js:autofunction:: a()
 
-
-Function: ``z``
-===============
-
-Fun z.
-
-.. js:function:: z()
-
-    
-    
-.. _NonAlphabetical.a:
-
-
-Function: ``a``
-===============
-
-Fun a.
-
-.. js:function:: a()
-
-    
-    
 
 
 

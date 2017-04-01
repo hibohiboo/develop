@@ -4,15 +4,21 @@ services:
     build: .
     volumes:
       - ./Makefile:/root/Makefile
-      # ビルドするソースファイル
-      - ../../project/src:/root/src
+
+      # 生成するHTMLのテンプレート
       - ./source/_templates:/root/source/_templates
-      - ./source/api:/root/source/api
+      # sphinxのコンフィグファイル
       - ./source/conf.py:/root/source/conf.py
+      # sphinxでコンパイルするときの開始ファイル
       - ./source/index.rst:/root/source/index.rst
-      - ./conf.json:/root/conf.json
-      # ビルドされた結果ファイル
+      # ビルドされたファイルの格納ディレクトリ
       - ../../dist/docs:/root/build
+      # apiドキュメントを作成したいソースファイルの格納ディレクトリ
+      #- ../../project/src:/root/src
+      # sphinx処理前のapiドキュメント
+      #- ./source/api:/root/source/api
+      # jsdoc用の設定ファイル
+      #- ./conf.json:/root/conf.json
       # - ../../docs:/root/docs
       # コンテナ上のpackage.jsonを上書き
       # - ./package.json:/my_jsdoc/package.json

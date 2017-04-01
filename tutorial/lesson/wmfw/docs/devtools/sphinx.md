@@ -78,6 +78,9 @@ js_source_path = '/root/src/wmfwapp'
 [拡張][*11]
 [study 日本語解説][*12]
 [jsdoc-sphinx][*13]
+[jsdocをbootstrapできれいに整形する][*14]
+[JSDoc使い方メモ][*15]
+[wordpress js規約日本語訳][*16]
 
 [*1]:http://www.rhoboro.com/2016/09/04/docker-build-sphinx.html
 [*2]:http://sphinx-users.jp/event/20101203_jus_benkyoukai/practical_sample/index.html
@@ -92,3 +95,6 @@ js_source_path = '/root/src/wmfwapp'
 [*11]:http://sphinx.shibu.jp/extensions.html
 [*12]:http://planset-study-sphinx.readthedocs.io/ja/latest/01.html
 [*13]:https://github.com/HumanBrainProject/jsdoc-sphinx
+[*14]:https://blog.agektmr.com/2014/02/jsdocbootstrap.html
+[*15]:http://qiita.com/opengl-8080/items/a36679f7926f4cac0a81
+[*16]:https://wpdocs.osdn.jp/JavaScript_%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E8%A6%8F%E7%B4%84

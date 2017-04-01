@@ -4,7 +4,7 @@ var mustache = require('mustache');
 var async = require('async');
 var _ = require('lodash');
 
-// Disable HTML escaping
+// HTMLエスケープを無効化
 mustache.escape = function(v) {
   return v;
 };
@@ -15,11 +15,11 @@ module.exports = _.extend({
 }, require('./template'));
 
 /**
- * Generate the output string given a template name and the model.
+ * テンプレート名とモデルを指定して出力文字列
  *
- * @param  {string}       name  the template name without the extension.
- * @param  {object}       model the ViewModel to use with the template
- * @param  {viewCallback} cb callback
+ * @param  {string}       name 拡張子を覗いたテンプレート名
+ * @param  {object}       model テンプレートで使用するビューモデル
+ * @param  {viewCallback} cb コルバック関数
  */
 function view(name, model, cb) {
   var basePath = path.join(path.dirname(__filename), '../views');

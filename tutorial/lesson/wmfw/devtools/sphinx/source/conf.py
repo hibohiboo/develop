@@ -15,7 +15,7 @@
 import sys
 import os
 
-js_source_path = '/root/src/wmfwapp'
+#js_source_path = '/root/src/wmfwapp'
 # jsdoc_config_path = '/root/conf.json'
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -34,7 +34,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.coverage',
-    'sphinx_js'
+#    'sphinx_js'
 ]
 
 # Add any paths that contain templates here, relative to this directory.

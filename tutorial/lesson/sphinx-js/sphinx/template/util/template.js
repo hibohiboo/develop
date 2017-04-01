@@ -15,12 +15,12 @@ module.exports = {
 };
 
 /**
- * Find the doclet children of a given type.
+ * 指定されたタイプのドックレットの子を検索
  *
- * @param  {object} context the jsdoc context
- * @param  {object} doclet  the doclet to use
- * @param  {string} kinds   the kind of children to return (function, module, ...)
- * @return {array}          All the children doclet matching the parameters
+ * @param  {object} context jsdocコンテキスト
+ * @param  {object} doclet  ドックレットを使用
+ * @param  {string} kinds   戻り値の種類 (function, module, ...)
+ * @return {array}          パラメータに一致するすべての子ドックレット
  */
 function docletChildren(context, doclet, kinds) {
   if (!kinds) {

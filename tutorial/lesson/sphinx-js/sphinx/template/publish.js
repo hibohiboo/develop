@@ -14,19 +14,19 @@ var async = require('async');
 var context;
 
 /**
- * @param {TAFFY} taffyData See <http://taffydb.com/>.
- * @param {object} options JSDoc passed options
- * @param {Tutorial} tutorials List of tutorial
+ * @param {TAFFY} taffyData 参照： <http://taffydb.com/>.
+ * @param {object} options jsdocに渡すオプション
+ * @param {Tutorial} tutorials チュートリアルのリスト
  * @return {undefined}
  */
 function publish(taffyData, options, tutorials) {
   logger.debug('Tutorials', tutorials);
   logger.debug('Options', options);
 
-  // Use .rst as default extension
+  // デフォルトでは出力ファイルの拡張子に.rstを使用
   helper.fileExtension = '.rst';
 
-  // README.rst must be kept as it is.
+  // README.rstはそのまま保持する必要がある
   var readme = _.find(env.opts._, /README.rst/);
   if (readme && !fs.lstatSync(readme).isDirectory()) {
     logger.debug('Load README.rst file:', readme);
@@ -37,21 +37,21 @@ function publish(taffyData, options, tutorials) {
     }
   }
 
-  // define a global context that should be available by all function
+  // 全ての関数を使用できるようにするglobal contexの定義
   context = _.extend({
     data: taffyData
   }, options);
 
-  // Augment data with needed informations
+  // 必要なデータで拡張する
   context.data().each(registerLink);
 
   _.each(helper.find(context.data, {kind: 'function'}), improveFunc);
   _.each(helper.find(context.data, {kind: 'member'}), improveFunc);
 
   /**
-   * Write the function signature for the current function doclet.
+   * 現在の関数のドックレットを記述
    *
-   * @param  {object} doclet function doclet
+   * @param  {object} doclet 関数ドックレット
    */
   function improveFunc(doclet) {
     doclet.signature = doclet.name + '(';
@@ -88,12 +88,11 @@ function publish(taffyData, options, tutorials) {
     });
   }
 
-  // build the list of page generation actions.
+  // ページのリストを作成
   var actions = [];
   actions.push(generate(
     helper.getUniqueFilename('index'), require('./view-models/home')));
-  // actions.push(generate(
-  //   'conf.py', require('./view-models/sphinx-config')));
+
   var docletModel = require('./view-models/doclet');
   context.data().each(function(doclet) {
     var url = helper.longnameToUrl[doclet.longname];
@@ -114,11 +113,10 @@ function publish(taffyData, options, tutorials) {
 }
 
 /**
- * Return a function that will asynchronously generate the documentation
- * and write the result.
- * @param  {object} target      the target
- * @param  {function} generator the generator function to use
- * @return {function}           the function that will build this part of the documentation
+ * 非同期でドキュメントを作成し、結果を記述する
+ * @param  {object} target ターゲット
+ * @param  {function} generator 使用するジェネレータ関数
+ * @return {function}  ドキュメントを作成する関数の一部
  */
 function generate(target, generator) {
   return function(cb) {
@@ -135,8 +133,8 @@ function generate(target, generator) {
 }
 
 /**
- * Add a link to the link registry.
- * @param  {object} doclet the doclet to create a link for
+ * リンクレジストリにリンクを追加
+ * @param  {object} doclet リンク作成のためのドックレット
  */
 function registerLink(doclet) {
   var url = helper.createLink(doclet);
@@ -157,12 +155,12 @@ function registerLink(doclet) {
 }
 
 /**
- * Handle all write operations.
+ * 書込処理
  *
  * @private
- * @param {string}   relPath Relative path in the ouput directory
- * @param {string}   data    File content
- * @param {publish.writeCallback} cb node fs.write compatible callback
+ * @param {string}   relPath 出力するディレクトリの相対パス
+ * @param {string}   data    コンテンツファイル
+ * @param {publish.writeCallback} cb node fs.write 互換性のあるコールバック
  * @return {undefined}
  */
 function write(relPath, data, cb) {
@@ -176,9 +174,9 @@ function write(relPath, data, cb) {
 }
 
 /**
- * Gracefully handle errors in callback.
- * @param  {Function} cb the callback to handle error for
- * @return {any}         the result of cb
+ * コールバックのエラーを処理
+ * @param  {Function} cb エラー処理を行うコールバック関数
+ * @return {any}         コールバック関数の処理結果
  */
 function handleErrorCallback(cb) {
   return function(err) {
@@ -192,13 +190,13 @@ function handleErrorCallback(cb) {
 
 /**
  * @callback errCallback
- * The callback function receive an error as first argument if any.
+ * コールバック関数は、もしあれば最初の引数としてエラーを受け取る。
  *
- * @param {error} err The error cause
+ * @param {error} err エラーの原因
  */
 
 /**
  * @callback publish.writeCallback
- * @param {error} err The error cause
- * @param {string} filePath The written file path
+ * @param {error} err エラーの原因
+ * @param {string} filePath 記述するファイルのパス
  */

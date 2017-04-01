@@ -9,3 +9,4 @@ services:
       - ./source:/root/source
       # ビルドされた結果ファイル
       - ./build:/root/build
+      - ./sphinx/template:/root/template
