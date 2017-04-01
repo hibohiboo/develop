@@ -1,3 +1,3 @@
-*
 !.gitignore
-!docs/html/*
+docs/doctrees/*
+docs/html/_sources/*

@@ -2582,5 +2582,3 @@ We encourage you to fork this guide and change the rules to fit your team's styl
 
 我々はこのガイドをforkして、あなたのチームに適したスタイルガイドとして変更することを勧めます。以下にあなたがスタイルガイドに加えた変更をリストにしてください。
 こうすることで、マージの煩わしさに気を取られることなく、あなたのスタイルガイドを定期的に更新することができます。
-
-# };

@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ドキュメント作成ツール &#8212; wmfw 0.1 ドキュメント</title>
+    
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="フレームワークチュートリアル" href="../gettingStarted/index.html" />
+    <link rel="prev" title="eslint" href="eslint.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="">
+<span id="id1"></span><h1>ドキュメント作成ツール<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="sphinx">
+<span id="sphinx"></span><h2>sphinx<a class="headerlink" href="#sphinx" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>python用のドキュメント作成だが、拡張が豊富。
+日本語のドキュメントもそこそこ最近まで更新されている。</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pip install git+https://github.com/sphinx-doc/sphinx@stable
+</pre></div>
+</div>
+</div>
+<div class="section" id="sphinx-js">
+<span id="sphinx-js"></span><h2>sphinx-jsの導入<a class="headerlink" href="#sphinx-js" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>jsdocが必要。node.jsのない場合は先にインストール</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">curl</span>
+<span class="n">sudo</span> <span class="n">curl</span> <span class="o">-</span><span class="n">sL</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">deb</span><span class="o">.</span><span class="n">nodesource</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">setup_6</span><span class="o">.</span><span class="n">x</span> <span class="o">|</span> <span class="n">bash</span> <span class="o">-</span>
+<span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">nodejs</span>
+<span class="n">npm</span> <span class="n">i</span> <span class="o">-</span><span class="n">g</span> <span class="n">jsdoc</span> 
+</pre></div>
+</div>
+<p>sphinx-js本体のインストール</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install <span class="s1">&#39;sphinx-js&gt;=1.5,&lt;2.0&#39;</span>
+</pre></div>
+</div>
+<p>conf.pyの編集</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinx_js&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>この状態で、<code class="docutils literal"><span class="pre">make</span> <span class="pre">html</span></code>をすると、jsのソースファイルの場所が見つからない場合に以下のエラーがでる。
+<code class="docutils literal"><span class="pre">jsdoc</span> <span class="pre">source_path</span> <span class="pre">-X</span></code>で取得したjson文字列がpythonに渡されるため、
+これが空の場合、nullとなって<code class="docutils literal"><span class="pre">Expecting</span> <span class="pre">value</span></code>が発生する。</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>sphinx-build -b html -d build/doctrees   source build/html
+Running Sphinx v1.5.4+
+loading translations [ja]... done
+loading pickled environment... done
+Exception occurred:
+  File &quot;/usr/local/lib/python3.6/json/decoder.py&quot;, line 357, in raw_decode
+    raise JSONDecodeError(&quot;Expecting value&quot;, s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+The full traceback has been saved in /tmp/sphinx-err-6x85g_us.log, if you want to report the issue to the developers.
+Please also report this if it was a user error, so that a better error message can be provided next time.
+A bug report can be filed in the tracker at &lt;https://github.com/sphinx-doc/sphinx/issues&gt;. Thanks!
+Makefile:56: recipe for target &#39;html&#39; failed
+make: *** [html] Error 1
+</pre></div>
+</div>
+<p>ソースのある位置をconf.pyに追記。</p>
+<div class="highlight-py"><div class="highlight"><pre><span></span><span class="n">js_source_path</span> <span class="o">=</span> <span class="s1">&#39;/root/src/wmfwapp&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h2>参考<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="http://www.rhoboro.com/2016/09/04/docker-build-sphinx.html">SphinxドキュメントをDockerでビルドする</a>
+<a class="reference external" href="http://sphinx-users.jp/event/20101203_jus_benkyoukai/practical_sample/index.html">業務での利用事例Add Star</a>
+<a class="reference external" href="http://qiita.com/icoxfog417/items/9e2eb932b61aa9b9e427">PythonプロジェクトのドキュメントをSphinxで作成する</a>
+<a class="reference external" href="http://sphinx-users.jp/gettingstarted/make_project.html#id2">プロジェクトを作る</a>
+<a class="reference external" href="http://sphinx-users.jp/reverse-dict/index.html">逆引き辞典</a>
+<a class="reference external" href="http://www.sphinx-doc.org/ja/stable/domains.html">ドメイン</a>
+<a class="reference external" href="https://github.com/erikrose/sphinx-js">sphinx-js</a>
+<a class="reference external" href="http://www.sphinx-doc.org/ja/stable/config.html">conf.py</a>
+<a class="reference external" href="http://tk0miya.hatenablog.com/entry/20111206/p1">extension</a>
+<a class="reference external" href="http://oktavia.info/ja/pages/what/what.html">okikata</a>
+<a class="reference external" href="http://sphinx.shibu.jp/extensions.html">拡張</a>
+<a class="reference external" href="http://planset-study-sphinx.readthedocs.io/ja/latest/01.html">study 日本語解説</a>
+<a class="reference external" href="https://github.com/HumanBrainProject/jsdoc-sphinx">jsdoc-sphinx</a>
+<a class="reference external" href="https://blog.agektmr.com/2014/02/jsdocbootstrap.html">jsdocをbootstrapできれいに整形する</a>
+<a class="reference external" href="http://qiita.com/opengl-8080/items/a36679f7926f4cac0a81">JSDoc使い方メモ</a>
+<a class="reference external" href="https://wpdocs.osdn.jp/JavaScript_%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88%E8%A6%8F%E7%B4%84">wordpress js規約日本語訳</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ドキュメント作成ツール</a><ul>
+<li><a class="reference internal" href="#sphinx">sphinx</a></li>
+<li><a class="reference internal" href="#sphinx-js">sphinx-jsの導入</a></li>
+<li><a class="reference internal" href="#">参考</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">開発ツール</a><ul>
+      <li>Previous: <a href="eslint.html" title="前の章へ">eslint</a></li>
+      <li>Next: <a href="../gettingStarted/index.html" title="次の章へ">フレームワークチュートリアル</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/contents/devtools/sphinx.md.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>クイック検索</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="検索" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, hibo.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.4+</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../../_sources/contents/devtools/sphinx.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
