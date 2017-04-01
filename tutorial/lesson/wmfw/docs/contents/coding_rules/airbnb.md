@@ -3,7 +3,7 @@
 
 [元文書:https://github.com/airbnb/javascript](https://github.com/airbnb/javascript)
 
-# Airbnb JavaScript スタイルガイド() {
+# Airbnb JavaScript スタイルガイド
 
 *常に気をつけたい、JavaScriptへの正しい接し方*
 

@@ -14,9 +14,23 @@
 
 import sys
 import os
+import shlex
 
+# マークダウンが使用できるように設定
+import recommonmark
+from recommonmark.parser import CommonMarkParser
+from recommonmark.transform import AutoStructify
+
+source_parsers = {
+    '.md': CommonMarkParser
+}
+
+source_suffix = ['.rst', '.md']
+
+#jsdocのautodocumentを出来るように設定
 #js_source_path = '/root/src/wmfwapp'
 # jsdoc_config_path = '/root/conf.json'
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -31,7 +45,9 @@ import os
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    # 'sphinx.ext.autodoc',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.mathjax',
     # 'sphinx.ext.doctest',
     # 'sphinx.ext.coverage',
 #    'sphinx_js'
@@ -40,10 +56,7 @@ extensions = [
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
-# The suffix(es) of source filenames.
-# You can specify multiple suffix as a list of string:
-# source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+# source_suffix = '.rst'
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
@@ -288,3 +301,14 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+# マークダウン用設定
+# app setup hook
+github_doc_root = 'https://github.com/hibohiboo/develop/tree/develop/dist/html'
+
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+            'url_resolver': lambda url: github_doc_root + url,
+            'auto_toc_tree_section': 'Contents',
+            }, True)
+    app.add_transform(AutoStructify)

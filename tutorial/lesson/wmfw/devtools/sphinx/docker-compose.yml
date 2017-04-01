@@ -7,10 +7,16 @@ services:
 
       # 生成するHTMLのテンプレート
       - ./source/_templates:/root/source/_templates
+      # 静的HTMLファイル
+      - ./source/_templates:/root/source/_static
       # sphinxのコンフィグファイル
       - ./source/conf.py:/root/source/conf.py
       # sphinxでコンパイルするときの開始ファイル
-      - ./source/index.rst:/root/source/index.rst
+      - ../../docs/index.rst:/root/source/index.rst
+      # ドキュメントディレクトリのreadmeファイル
+      - ../../docs/readme.md:/root/source/readme.md
+      # ドキュメントのフォルダ
+      - ../../docs/contents:/root/source/contents
       # ビルドされたファイルの格納ディレクトリ
       - ../../dist/docs:/root/build
       # apiドキュメントを作成したいソースファイルの格納ディレクトリ
