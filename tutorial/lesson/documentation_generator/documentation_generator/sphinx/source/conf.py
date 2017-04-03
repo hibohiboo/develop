@@ -5,11 +5,9 @@ import shlex
 # マークダウンが使用できるように設定
 import recommonmark
 from recommonmark.parser import CommonMarkParser
-
 source_parsers = {
     '.md': CommonMarkParser
 }
-
 source_suffix = ['.rst', '.md']
 
 extensions = []

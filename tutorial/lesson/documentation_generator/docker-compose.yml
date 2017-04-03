@@ -17,6 +17,11 @@ services:
       # esdocの設定ファイル
       - ./documentation_generator/esdoc/.esdoc.json:/root/.esdoc.json
 
+      # jsdocの設定ファイル
+      - ./documentation_generator/jsdoc/.jsdoc.json:/root/.jsdoc.json
+
+      # jsdocのREADMEファイル
+      - ./documentation_generator/jsdoc/README.md:/root/README.md
       # sphinxでコンパイルするときの開始ファイル
       - ./docs/index.rst:/root/source/index.rst
       # ドキュメントのフォルダ

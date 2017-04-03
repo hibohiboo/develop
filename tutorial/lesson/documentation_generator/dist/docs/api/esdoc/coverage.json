@@ -1,6 +1,12 @@
 {
-  "coverage": "0%",
-  "expectCount": 0,
-  "actualCount": 0,
-  "files": {}
+  "coverage": "100%",
+  "expectCount": 2,
+  "actualCount": 2,
+  "files": {
+    "src/esdoc/MyClass.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    }
+  }
 }

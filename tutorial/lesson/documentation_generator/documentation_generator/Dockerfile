@@ -19,11 +19,14 @@ RUN pip install git+https://github.com/sphinx-doc/sphinx@stable
 # sphinxのマークダウン記法を可能にするプラグイン
 RUN pip install recommonmark 
 
-# sphinxの設定ファイルをコピー
-WORKDIR /root
-COPY ./sphinx/build.sh /root/
-
-# esdocのテスト
+# esdocのインストール
 RUN npm install -g esdoc
+
+# 作業ディレクトリに移動
+WORKDIR /root
+
+# jsdocテンプレートminamiのインストール
+RUN npm init -y
+RUN npm install --save-dev minami
 
 CMD ["/bin/sh", "/root/build.sh"]

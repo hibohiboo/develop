@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "root/src/esdoc/myclass.js~myclass",
+    "class/src/esdoc/MyClass.js~MyClass.html",
+    "<span>MyClass</span> <span class=\"search-result-import-path\">root/src/esdoc/MyClass.js</span>",
+    "class"
+  ],
+  [
     "builtinexternal/ecmascriptexternal.js~array",
     "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -334,5 +340,17 @@ window.esdocSearchIndex = [
     "file/src/code.js.html",
     "src/code.js",
     "file"
+  ],
+  [
+    "src/esdoc/myclass.js",
+    "file/src/esdoc/MyClass.js.html",
+    "src/esdoc/MyClass.js",
+    "file"
+  ],
+  [
+    "src/esdoc/myclass.js~myclass#sum",
+    "class/src/esdoc/MyClass.js~MyClass.html#instance-method-sum",
+    "src/esdoc/MyClass.js~MyClass#sum",
+    "method"
   ]
 ]
