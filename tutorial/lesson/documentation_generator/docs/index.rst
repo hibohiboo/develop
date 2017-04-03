@@ -9,7 +9,7 @@ Contents:
    contents/esdoc
    contents/jsdoc
    contents/sphinx
-   
+   contents/jsdoc-sphinx/index
 
 Apiドキュメント
 ==================
