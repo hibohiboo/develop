@@ -20,7 +20,7 @@ services:
       # ビルドされたファイルの格納ディレクトリ
       - ../../dist/docs:/root/build
       # apiドキュメントを作成したいソースファイルの格納ディレクトリ
-      #- ../../project/src:/root/src
+      - ../../project/src:/root/src
       # sphinx処理前のapiドキュメント
       #- ./source/api:/root/source/api
       # jsdoc用の設定ファイル

@@ -12,6 +12,10 @@ Contents:
    contents/gettingStarted/index
    contents/modules/index
 
+Apiドキュメント
+==================
+* `APIドキュメント <../api/index.html>`_ 
+
 索引
 ==================
 
