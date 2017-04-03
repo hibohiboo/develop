@@ -11,7 +11,8 @@ source_parsers = {
 source_suffix = ['.rst', '.md']
 
 # sphinx-jsを使用するための設定
-js_source_path = '/root/src'
+js_source_path = '/root/src'        # jsソースのパス
+jsdoc_config_path = './.jsdoc.json' # jsdocのconfigファイルのパス
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx_js'

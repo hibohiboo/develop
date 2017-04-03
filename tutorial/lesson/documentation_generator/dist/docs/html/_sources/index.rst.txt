@@ -10,6 +10,7 @@ Contents:
    contents/jsdoc
    contents/sphinx
    contents/jsdoc-sphinx/index
+   contents/sphinx-js/index
 
 Apiドキュメント
 ==================
