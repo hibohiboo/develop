@@ -29,4 +29,7 @@ WORKDIR /root
 RUN npm init -y
 RUN npm install --save-dev minami
 
+# jsdocテンプレートjsdoc-sphinxのインストール
+RUN npm install jsdoc-sphinx
+
 CMD ["/bin/sh", "/root/build.sh"]
