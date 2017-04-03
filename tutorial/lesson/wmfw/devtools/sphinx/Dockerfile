@@ -17,4 +17,7 @@ RUN pip install recommonmark
 WORKDIR /root
 COPY build.sh /root/
 
+# esdocのテスト
+RUN npm install -g esdoc
+
 CMD ["/bin/sh", "/root/build.sh"]

@@ -1,9 +1,0 @@
-version: '2'
-services:
-  wmfw_jsdoc:
-    build: .
-    volumes:
-      # ビルドするソースファイル
-      - ../../project/src:/my_jsdoc/src
-      # コンテナ上のpackage.jsonを上書き
-      # - ./package.json:/my_jsdoc/package.json

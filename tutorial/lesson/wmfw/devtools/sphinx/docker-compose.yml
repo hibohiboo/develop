@@ -21,6 +21,11 @@ services:
       - ../../dist/docs:/root/build
       # apiドキュメントを作成したいソースファイルの格納ディレクトリ
       - ../../project/src:/root/src
+
+      # esdocの設定ファイル
+      - ./.esdoc.json:/root/.esdoc.json
+
+      # shpinx-jsがうまく使えないので以下をコメントアウト
       # sphinx処理前のapiドキュメント
       #- ./source/api:/root/source/api
       # jsdoc用の設定ファイル
