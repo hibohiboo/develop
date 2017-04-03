@@ -12,7 +12,9 @@ services:
       # shpinxの静的HTMLファイル
       - ./documentation_generator/sphinx/source/_templates:/root/source/_static
       # sphinxのコンフィグファイル
-      - ./documentation_generator/sphinx/source/conf.py:/root/source/conf.py
+      # - ./documentation_generator/sphinx/source/conf.py:/root/source/conf.py
+      # sphinx-jsのコンフィグファイル
+      - ./documentation_generator/sphinx-js/source/conf.py:/root/source/conf.py
 
       # esdocの設定ファイル
       - ./documentation_generator/esdoc/.esdoc.json:/root/.esdoc.json

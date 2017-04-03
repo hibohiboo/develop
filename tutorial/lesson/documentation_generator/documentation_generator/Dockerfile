@@ -32,4 +32,7 @@ RUN npm install --save-dev minami
 # jsdocテンプレートjsdoc-sphinxのインストール
 RUN npm install jsdoc-sphinx
 
+# sphinx-jsのインストール
+RUN pip install 'sphinx-js>=1.5,<2.0'
+
 CMD ["/bin/sh", "/root/build.sh"]
