@@ -15,6 +15,8 @@ cd $bin_dir/../ && docker-compose run documentation_generator jsdoc -t node_modu
 # esdoc作成
 cd $bin_dir/../ && docker-compose run documentation_generator esdoc -c /root/.esdoc.json
 
+# typedoc作成
+cd $bin_dir/../ && docker-compose run documentation_generator_typedoc npm run doc
 
 # sphinxドキュメント作成
 cd $bin_dir/../ && docker-compose run documentation_generator make html

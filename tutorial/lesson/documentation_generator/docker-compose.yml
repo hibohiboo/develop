@@ -32,5 +32,15 @@ services:
       - ./dist/docs:/root/build
       # apiドキュメントを作成したいソースファイルの格納ディレクトリ
       - ./src:/root/src
-
-
+  # typedoc
+  documentation_generator_typedoc:
+    build: ./typedoc
+    volumes:
+    # ビルドするソースファイル
+    - ./src:/my_typedoc/src
+    # ビルドファイルの出力先
+    - ./dist/docs/api/typedoc:/my_typedoc/dist
+    # コンテナ上のpackage.jsonを上書き
+    - ./typedoc/package.json:/my_typedoc/package.json
+    # typescriptの設定ファイル
+    - ./typedoc/tsconfig.json:/my_webpack/tsconfig.json

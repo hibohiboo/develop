@@ -18,6 +18,7 @@ Apiドキュメント
 * `Jsdoc APIドキュメント <../api/jsdoc/index.html>`_ 
 * `Jsdoc - minami APIドキュメント <../api/minami/root/1.0.0/index.html>`_ 
 * `Esdoc APIドキュメント <../api/esdoc/index.html>`_ 
+* `Typedoc APIドキュメント <../api/typedoc/index.html>`_ 
 
 索引
 ==================
