@@ -90,6 +90,7 @@ $ ls
 ## 参考
 
 [メタ構文文字列][*1]
+[documentation](./dist/docs/html/index.html)
 
 [*1]:https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%BF%E6%A7%8B%E6%96%87%E5%A4%89%E6%95%B0
 
