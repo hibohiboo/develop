@@ -1,14 +1,7 @@
 {
-  "name": "my_typedoc",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "typedoc": "typedoc",
     "doc": "npm run typedoc -- --target es6 --jsx react  --moduleResolution node --ignoreCompilerErrors --out ./dist/ ./src/"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  }
 }
