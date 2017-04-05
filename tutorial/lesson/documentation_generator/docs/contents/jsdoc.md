@@ -1,9 +1,12 @@
-# esdoc
+# jsdoc
+
+jsdocコメントについて。
 
 ## 参考
 
-[esdoc-blog][*1]
-[esdoc][*2]
+[google規約][*1]
+[jsdoc][*2]
 
-[*1]:http://blog.h13i32maru.jp/entry/2015/05/06/221041
+[*1]:https://www38.atwiki.jp/aias-jsstyleguide2/pages/14.html
+[*2]:https://github.com/jsdoc3/jsdoc
 
