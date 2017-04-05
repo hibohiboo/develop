@@ -1,0 +1,13 @@
+version: '2'
+services:
+  wmfw_devtools_jsdoc:
+    build: .
+    volumes:
+      # jsdocの設定ファイル
+      - ./.jsdoc.json:/root/.jsdoc.json
+      # jsdocのREADMEファイル
+      - ./README.md:/root/README.md
+      # ビルドされたファイルの格納ディレクトリ
+      - ../../dist/docs:/root/build
+      # apiドキュメントを作成したいソースファイルの格納ディレクトリ
+      - ../../project/src:/root/src

@@ -1,10 +1,10 @@
 version: '2'
 services:
-  wmfw_sphinx:
+  wmfw_devtools_sphinx:
     build: .
     volumes:
+      # makefile
       - ./Makefile:/root/Makefile
-
       # 生成するHTMLのテンプレート
       - ./source/_templates:/root/source/_templates
       # 静的HTMLファイル
@@ -21,15 +21,3 @@ services:
       - ../../dist/docs:/root/build
       # apiドキュメントを作成したいソースファイルの格納ディレクトリ
       - ../../project/src:/root/src
-
-      # esdocの設定ファイル
-      - ./.esdoc.json:/root/.esdoc.json
-
-      # shpinx-jsがうまく使えないので以下をコメントアウト
-      # sphinx処理前のapiドキュメント
-      #- ./source/api:/root/source/api
-      # jsdoc用の設定ファイル
-      #- ./conf.json:/root/conf.json
-      # - ../../docs:/root/docs
-      # コンテナ上のpackage.jsonを上書き
-      # - ./package.json:/my_jsdoc/package.json

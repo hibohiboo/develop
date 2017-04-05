@@ -1,4 +1,4 @@
-FROM node:7.7.3
+FROM node:7.8.0
 # WORKDIR /wmfw
 # RUN mkdir wmfwapp
 WORKDIR /wmfw/wmfwapp

@@ -12,20 +12,20 @@ sudo pip install git+https://github.com/sphinx-doc/sphinx@stable
 
 ## 参考
 
-[SphinxドキュメントをDockerでビルドする][*1]
-[業務での利用事例Add Star][*2]
-[PythonプロジェクトのドキュメントをSphinxで作成する][*3]
-[プロジェクトを作る][*4]
-[逆引き辞典][*5]
-[ドメイン][*6]
-[sphinx-js][*7]
-[conf.py][*8]
-[extension][*9]
-[okikata][*10]
-[拡張][*11]
-[study 日本語解説][*12]
-[jsdoc-sphinx][*13]
-
+[SphinxドキュメントをDockerでビルドする][*1]  
+[業務での利用事例Add Star][*2]  
+[PythonプロジェクトのドキュメントをSphinxで作成する][*3]  
+[プロジェクトを作る][*4]  
+[逆引き辞典][*5]  
+[ドメイン][*6]  
+[sphinx-js][*7]  
+[conf.py][*8]  
+[extension][*9]  
+[okikata][*10]  
+[拡張][*11]  
+[study 日本語解説][*12]  
+[jsdoc-sphinx][*13]  
+[Sphinxでblockdiagを使って簡単にシーケンス図、ブロック図を含めたHTMLベースのドキュメントを生成する環境を整える][*14]
 
 [*1]:http://www.rhoboro.com/2016/09/04/docker-build-sphinx.html
 [*2]:http://sphinx-users.jp/event/20101203_jus_benkyoukai/practical_sample/index.html
@@ -40,3 +40,4 @@ sudo pip install git+https://github.com/sphinx-doc/sphinx@stable
 [*11]:http://sphinx.shibu.jp/extensions.html
 [*12]:http://planset-study-sphinx.readthedocs.io/ja/latest/01.html
 [*13]:https://github.com/HumanBrainProject/jsdoc-sphinx
+[*14]:http://qiita.com/yamionp/items/8f8d52d6b41bf9d4d16d
