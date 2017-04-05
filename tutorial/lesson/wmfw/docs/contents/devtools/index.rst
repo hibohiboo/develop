@@ -8,3 +8,4 @@ Contents:
 
    eslint
    sphinx
+   jsdoc

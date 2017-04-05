@@ -19,5 +19,3 @@ services:
       - ../../docs/contents:/root/source/contents
       # ビルドされたファイルの格納ディレクトリ
       - ../../dist/docs:/root/build
-      # apiドキュメントを作成したいソースファイルの格納ディレクトリ
-      - ../../project/src:/root/src

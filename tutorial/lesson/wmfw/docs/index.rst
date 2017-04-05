@@ -14,7 +14,7 @@ Contents:
 
 Apiドキュメント
 ==================
-* `APIドキュメント <../api/index.html>`_ 
+* `APIドキュメント <../api/minami/root/1.0.0/index.html>`_ 
 
 索引
 ==================
