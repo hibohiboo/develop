@@ -9,4 +9,4 @@ COPY ./project/src/aspnetcoreapp ./project/src/aspnetcoreapp
 WORKDIR /aspnetapp/project/src/aspnetcoreapp
 RUN dotnet restore
 
-ENTRYPOINT ["dotnet", "run"]
+# ENTRYPOINT ["dotnet", "run"]

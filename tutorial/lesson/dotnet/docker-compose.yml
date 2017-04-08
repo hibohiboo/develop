@@ -13,4 +13,7 @@ services:
     volumes:
       # - ./dotnet/project/src/SampleWebApplication/Program.cs:/aspnetapp/project/src/SampleWebApplication/Program.cs
       # - ./dotnet/project/src/:/aspnetapp/project/src/
+      # Program.csの置き換え
       - ./dotnet/project/src/aspnetcoreapp/Program.cs:/aspnetapp/project/src/aspnetcoreapp/Program.cs
+      - ./dotnet/project/src/aspnetcoreapp/wwwroot:/aspnetapp/project/src/aspnetcoreapp/wwwroot
+    command: [dotnet, run]
