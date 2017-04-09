@@ -8,6 +8,11 @@
 
 [Program.cs](https://github.com/hibohiboo/develop/tree/c8d37776bcb0b62e2204a92fa66fe8b2d24c41b3/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js)
 
+## 出力先の設定
+
+ログローテーションの設定も合わせて行う。
+
+
 ## フォーマット
 
 |指定する引数|説明|フォーマット|
@@ -26,8 +31,10 @@
 [Express middleware][*2]
 [Express 4 のログ出力とフォームの処理][*3]
 [apache LogFormat][*4]
+[ログローテート][*5]
 
 [*1]:https://expressjs.com/en/resources/middleware/morgan.html
 [*2]:https://expressjs.com/en/resources/middleware.html
 [*3]:http://qiita.com/hoshi-takanori/items/7f5602d7fd7ee0fa6427
 [*4]:https://httpd.apache.org/docs/2.0/ja/logs.html
+[*5]:https://www.npmjs.com/package/rotating-file-stream

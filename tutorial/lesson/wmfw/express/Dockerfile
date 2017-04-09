@@ -7,5 +7,8 @@ RUN npm install babel-cli --save
 RUN npm install express@5.0.0-alpha.5 --save
 RUN npm install --save-dev babel-preset-latest
 
-# logger
+# ログ取得
 RUN npm install morgan --save
+
+# ログローテーション
+RUN npm install rotating-file-stream --save
