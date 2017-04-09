@@ -7,8 +7,10 @@
 import app from '../app';
 import debug_module from 'debug';
 import http from 'http';
+import log4js from 'log4js';   // ロガー
 
 const debug = debug_module('wmfwapp:server');
+const logger = log4js.getLogger('wmfw.www');
 
 /**
  * Get port from environment and store in Express.
@@ -67,14 +69,19 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(`${bind} requires elevated privileges`);
+      const errorMessage = `${bind} requires elevated privileges`;
+      console.error(errorMessage);
+      logger.error(errorMessage);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`${bind} is already in use`);
+      const errorMessage = `${bind} is already in use`;
+      console.error(errorMessage);
+      logger.error(errorMessage);
       process.exit(1);
       break;
     default:
+      logger.error(`${error.code}:${error.val}`);
       throw error;
   }
 }

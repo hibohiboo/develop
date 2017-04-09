@@ -25,7 +25,11 @@ const logger = log4js.getLogger('wmfw.app');
 logger.setLevel('DEBUG');
 
 const app = express();
+
+// log4jのアクセスログ設定
 app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
+
+// ルーティングファイルにデータを渡す
 app.use('/', index);
 
 module.exports = app;
