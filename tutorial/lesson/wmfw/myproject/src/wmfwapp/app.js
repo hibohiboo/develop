@@ -41,14 +41,13 @@ app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
  * @param {callback} middlewear - Expressのミドルウェア
  */
 app.get('/', (req, res) => {
-logger.trace('trace log4js');
-logger.debug('ddbug log4js');
-logger.info('info log4js');
-logger.warn('warn log4js');
-logger.error('error log4js');
-logger.fatal('fatal log4js');
+  logger.trace('trace log4js');
+  logger.debug('ddbug log4js');
+  logger.info('info log4js');
+  logger.warn('warn log4js');
+  logger.error('error log4js');
+  logger.fatal('fatal log4js');
   res.send('Hello World!');
-
 });
 
 

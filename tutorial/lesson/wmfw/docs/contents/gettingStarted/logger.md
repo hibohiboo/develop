@@ -1,8 +1,8 @@
 # logについて
 
-## アクセスロガー
+## log4js
 
-標準とされているmorganを使用する。
+loggerとしてよく使われているlog4jのjsバージョン。
 
 ## 最小限の使用例
 
@@ -38,7 +38,7 @@
 [Node.js + Express における log4js の 使い方][*7]
 [github - log4js-node][*8]
 [log4jsの覚え書き - log4.jsを使ってみた ][*9]
-
+[log4js-example][*10]
 
 [*1]:https://expressjs.com/en/resources/middleware/morgan.html
 [*2]:https://expressjs.com/en/resources/middleware.html
@@ -49,3 +49,4 @@
 [*7]:https://garafu.blogspot.jp/2016/07/how-to-use-log4js-on-nodejs-express.html
 [*8]:https://github.com/nomiddlename/log4js-node/tree/v1.1.1
 [*9]:http://qiita.com/_daisuke/items/865cf929a403cc9eec53
+[*10]:https://github.com/nomiddlename/log4js-example
