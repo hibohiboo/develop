@@ -4,7 +4,29 @@
 
 loggerとしてよく使われているlog4jのjsバージョン。
 
+### 使用例
+
+[app.js](https://github.com/hibohiboo/develop/tree/a0587c92f20e5d32dd14a9730022c648dfc7558b/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js)
+
+`import log4js from 'log4js'; `で読み込んで使用する。
+
+|ログレベル|説明|
+|:--|:--|
+|レベル|説明|
+|OFF|ログファイルにログを出力しない|
+|FATAL|	FATAL以上のレベルのログを出力。|
+|ERROR|	ERROR以上のレベルのログを出力。|
+|WARN|	WARN以上のレベルのログを出力。|
+|INFO|	INFO以上のレベルのログを出力。|
+|DEBUG|	DEBUG以上のレベルのログを出力。|
+|TRACE|	TRACE以上のレベルのログを出力。|
+|ALL|	全てのログレベルの出力|
+
+
 ### 設定
+
+設定ファイルは、今回は環境変数` LOG4JS_CONFIG=/wmfw/wmfwapp/config/log4js.json`で設定。  
+[log4js.json](https://github.com/hibohiboo/develop/tree/a0587c92f20e5d32dd14a9730022c648dfc7558b/tutorial/lesson/wmfw/myproject/src/wmfwapp/config/log4js.json)
 
 * appenders
   * ログの出力処理の指定。ログの出力方式を配列で複数指定可能。
@@ -24,7 +46,7 @@ typeの設定値
 |datefile|	日付毎にローテーションしてファイルに書き出す。|
 |console|	コンソールに書き出す。|
 
-patterの設定値
+patternの設定値
 |書式|説明|
 |:--|:--|
 |yyyy|西暦を4桁|
@@ -37,17 +59,7 @@ patterの設定値
 |sss|ミリ秒|
 |O|	タイムゾーン|
 
-
-## フォーマット
-
-|指定する引数|説明|フォーマット|
-|:--         |:-- |:--|
-|combined|apache combineログ出力フォーマット|`:remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"`|
-|common|apache common ログ出力フォーマット|`:remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length]`|
-|dev|:statusに色がつく|`:method :url :status :response-time ms - :res[content-length]`|
-|short|短いフォーマット。レスポンスタイムが出力される。|`:remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms`|
-|tiny|最小限のログ出力|`:method :url :status :res[content-length] - :response-time ms`|
-
+filenameが"app.log"でpatternが”-yyyy-MM-dd”なのでローテーションのタイミング(AM:0:00)でsystem-yyyy-MM-dd.logになる。
 
 
 ## 参考
