@@ -1,15 +1,20 @@
 /** Express
+ * @file Expressサーバの基本設定を行う
+ * 
  * @module app
  * @requires express
+ * @requires morgan
+ * 
+ * @author hibohiboo
  */
 
-/**
- * express module
- * @const
- */
 import express from 'express';
+import logger from 'morgan';
 
 const app = express();
+
+// log取得の設定.
+app.use(logger('combined'));
 
 /**
  * ルートのコントローラ
