@@ -11,6 +11,7 @@ services:
     - ./myproject/src/wmfwapp/app.js:/wmfw/wmfwapp/app.js
     - ./myproject/src/wmfwapp/config:/wmfw/wmfwapp/config
     - ./dist/logs:/wmfw/dist/logs
+    - ./myproject/src/wmfwapp/routes:/wmfw/wmfwapp/routes
     #  - ./myapp/public:/my_express/myapp/public
     #  - ./myapp/views:/my_express/myapp/views
     #  - ./myapp/routes:/my_express/myapp/routes
