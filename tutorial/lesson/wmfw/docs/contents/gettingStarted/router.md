@@ -10,7 +10,6 @@
 
 ルーティングミドルウェアでそれを受取り、ルーティングを行う
 
-
 [routes/index.js](https://github.com/hibohiboo/develop/tree/26bbca7faff626da40e7e369c354b7e30e7abbc2/tutorial/lesson/wmfw/myproject/src/wmfwapp/routes/index.js)
 
 ## 参考

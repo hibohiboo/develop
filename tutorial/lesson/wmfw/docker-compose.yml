@@ -3,11 +3,14 @@ services:
   wmfw:
     build: ./express
     environment: 
+
     # log4j用設定ファイルの場所
     - LOG4JS_CONFIG=/wmfw/wmfwapp/config/log4js.json
+
     # 標準時刻を日本に設定
     - TZ=Asia/Tokyo
     volumes:
+
     # サーバ設定
     - ./express/package.json:/wmfw/wmfwapp/package.json
     - ./express/.babelrc:/wmfw/wmfwapp/.babelrc
