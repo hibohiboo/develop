@@ -9,3 +9,6 @@ RUN npm install --save-dev babel-preset-latest
 
 # ログ取得
 RUN npm install log4js --save
+
+# デフォルトのfavicon
+RUN npm install serve-favicon --save

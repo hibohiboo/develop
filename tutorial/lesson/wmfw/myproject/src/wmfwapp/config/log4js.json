@@ -1,8 +1,11 @@
 {
   "appenders": [
-    { "type": "console" },
+    { "type": "console",
+      "level":"INFO"
+    },
     {
       "type": "clustered",
+      "level":"DEBUG",
       "appenders": [
         {
           "type": "dateFile",

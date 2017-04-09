@@ -8,10 +8,18 @@
  * @author hibohiboo
  */
 
-import express from 'express'; // expressサーバ
+// node.jsのモジュール
 import fs from 'fs';           // ファイル操作
-import log4js from 'log4js';   // ロガー
+import path from 'path';       // パス
 
+// フレームワーク
+import express from 'express'; // expressサーバ
+
+// ミドルウェア
+import log4js from 'log4js';   // ロガー
+import favicon from 'serve-favicon';
+
+// アプリケーション
 import index from './routes/index'; // ルーティングファイル
 
 // ログ出力ディレクトリ
@@ -22,12 +30,17 @@ fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 
 // ロガー設定
 const logger = log4js.getLogger('wmfw.app');
-logger.setLevel('DEBUG');
 
 const app = express();
 
 // log4jのアクセスログ設定
 app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
+
+// favicon設定
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+// 静的ファイルの設定
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // ルーティングファイルにデータを渡す
 app.use('/', index);

@@ -67,15 +67,16 @@ function onError(error) {
     : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
+  let errorMessage = ``;
   switch (error.code) {
     case 'EACCES':
-      const errorMessage = `${bind} requires elevated privileges`;
+      errorMessage = `${bind} requires elevated privileges`;
       console.error(errorMessage);
       logger.error(errorMessage);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      const errorMessage = `${bind} is already in use`;
+      errorMessage = `${bind} is already in use`;
       console.error(errorMessage);
       logger.error(errorMessage);
       process.exit(1);

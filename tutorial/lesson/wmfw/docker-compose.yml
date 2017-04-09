@@ -3,15 +3,27 @@ services:
   wmfw:
     build: ./express
     environment: 
+    # log4j用設定ファイルの場所
     - LOG4JS_CONFIG=/wmfw/wmfwapp/config/log4js.json
+    # 標準時刻を日本に設定
+    - TZ=Asia/Tokyo
     volumes:
+    # サーバ設定
     - ./express/package.json:/wmfw/wmfwapp/package.json
     - ./express/.babelrc:/wmfw/wmfwapp/.babelrc
-    - ./myproject/src/wmfwapp/bin:/wmfw/wmfwapp/bin
-    - ./myproject/src/wmfwapp/app.js:/wmfw/wmfwapp/app.js
-    - ./myproject/src/wmfwapp/config:/wmfw/wmfwapp/config
+
+    # ログ格納
     - ./dist/logs:/wmfw/dist/logs
+
+    # アプリケーション設定
+    - ./myproject/src/wmfwapp/app.js:/wmfw/wmfwapp/app.js
+
+    # アプリケーションソース
+    - ./myproject/src/wmfwapp/bin:/wmfw/wmfwapp/bin
+    - ./myproject/src/wmfwapp/config:/wmfw/wmfwapp/config
     - ./myproject/src/wmfwapp/routes:/wmfw/wmfwapp/routes
+    - ./myproject/src/wmfwapp/public/favicon.ico:/wmfw/wmfwapp/public/favicon.ico
+
     #  - ./myapp/public:/my_express/myapp/public
     #  - ./myapp/views:/my_express/myapp/views
     #  - ./myapp/routes:/my_express/myapp/routes
