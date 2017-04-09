@@ -4,15 +4,38 @@
 
 loggerとしてよく使われているlog4jのjsバージョン。
 
-## 最小限の使用例
+### 設定
 
-[Program.cs](https://github.com/hibohiboo/develop/tree/c8d37776bcb0b62e2204a92fa66fe8b2d24c41b3/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js)
+* appenders
+  * ログの出力処理の指定。ログの出力方式を配列で複数指定可能。
+* type
+  * ログの出力タイプを指定。
+* category
+ * 出力するログのカテゴリ。カテゴリ毎に出力内容を分けることができる。
+* filename
+  * ログの出力先（ファイル名）
+* pattern
+  * ファイルの出力パターン
 
-## 出力先の設定
+typeの設定値
+|値|説明|
+|:--|:--|
+|file|	ファイルに書き出す。|
+|datefile|	日付毎にローテーションしてファイルに書き出す。|
+|console|	コンソールに書き出す。|
 
-`rotating-file-stream`モジュールを使い、ログローテーションの設定も合わせて行う。
-[Program.cs](https://github.com/hibohiboo/develop/tree/5d69016c38940f543d2634fa210c431f68db4f04/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js)
-
+patterの設定値
+|書式|説明|
+|:--|:--|
+|yyyy|西暦を4桁|
+|yy|西暦2桁|
+|MM|月|
+|dd|日|
+|hh|時間（24時間表示）|
+|mm|分|
+|ss|秒|
+|sss|ミリ秒|
+|O|	タイムゾーン|
 
 
 ## フォーマット

@@ -8,24 +8,20 @@
  * @author hibohiboo
  */
 
-// expressサーバ
-import express from 'express';
 
-// access logger
-// import morgan from 'morgan';
-import fs from 'fs';
-// import rfs from 'rotating-file-stream';
-
-// logger
-import log4js from 'log4js';
-
-const logger = log4js.getLogger('wmfw');
-logger.setLevel('DEBUG'); //
+import express from 'express'; // expressサーバ
+import fs from 'fs';           // ファイル操作
+import log4js from 'log4js';   // ロガー
 
 // ログ出力ディレクトリ
 const logDirectory = '/wmfw/dist/logs';
+
 // ディレクトリが無ければ作成
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+// ロガー設定
+const logger = log4js.getLogger('wmfw');
+logger.setLevel('DEBUG');
 
 const app = express();
 
