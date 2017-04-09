@@ -2,11 +2,14 @@ version: '2'
 services:
   wmfw:
     build: ./express
+    environment: 
+    - LOG4JS_CONFIG=/wmfw/wmfwapp/config/log4js.json
     volumes:
     - ./express/package.json:/wmfw/wmfwapp/package.json
     - ./express/.babelrc:/wmfw/wmfwapp/.babelrc
     - ./myproject/src/wmfwapp/bin:/wmfw/wmfwapp/bin
     - ./myproject/src/wmfwapp/app.js:/wmfw/wmfwapp/app.js
+    - ./myproject/src/wmfwapp/config:/wmfw/wmfwapp/config
     - ./dist/logs:/wmfw/dist/logs
     #  - ./myapp/public:/my_express/myapp/public
     #  - ./myapp/views:/my_express/myapp/views

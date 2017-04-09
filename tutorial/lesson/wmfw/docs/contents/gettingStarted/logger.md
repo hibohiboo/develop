@@ -1,6 +1,6 @@
 # logについて
 
-## logger
+## アクセスロガー
 
 標準とされているmorganを使用する。
 
@@ -10,7 +10,9 @@
 
 ## 出力先の設定
 
-ログローテーションの設定も合わせて行う。
+`rotating-file-stream`モジュールを使い、ログローテーションの設定も合わせて行う。
+[Program.cs](https://github.com/hibohiboo/develop/tree/5d69016c38940f543d2634fa210c431f68db4f04/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js)
+
 
 
 ## フォーマット
@@ -27,14 +29,23 @@
 
 ## 参考
 
-[moragn][*1]
+[morgan][*1]
 [Express middleware][*2]
 [Express 4 のログ出力とフォームの処理][*3]
 [apache LogFormat][*4]
 [ログローテート][*5]
+[log4js-nodeを使ってみた][*6]
+[Node.js + Express における log4js の 使い方][*7]
+[github - log4js-node][*8]
+[log4jsの覚え書き - log4.jsを使ってみた ][*9]
+
 
 [*1]:https://expressjs.com/en/resources/middleware/morgan.html
 [*2]:https://expressjs.com/en/resources/middleware.html
 [*3]:http://qiita.com/hoshi-takanori/items/7f5602d7fd7ee0fa6427
 [*4]:https://httpd.apache.org/docs/2.0/ja/logs.html
 [*5]:https://www.npmjs.com/package/rotating-file-stream
+[*6]:http://qiita.com/toshiyukihina/items/b76ee2f89402b808f736
+[*7]:https://garafu.blogspot.jp/2016/07/how-to-use-log4js-on-nodejs-express.html
+[*8]:https://github.com/nomiddlename/log4js-node/tree/v1.1.1
+[*9]:http://qiita.com/_daisuke/items/865cf929a403cc9eec53

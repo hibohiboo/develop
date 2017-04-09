@@ -12,3 +12,6 @@ RUN npm install morgan --save
 
 # ログローテーション
 RUN npm install rotating-file-stream --save
+
+# ログローテーション
+RUN npm install log4js --save
