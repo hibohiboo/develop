@@ -37,7 +37,7 @@
         <link rel="search" title="検索" href="../../search.html"/>
     <link rel="top" title="wmfw 0.1 ドキュメント" href="../../index.html"/>
         <link rel="up" title="フレームワークチュートリアル" href="index.html"/>
-        <link rel="next" title="フレームワークを構成するモジュール" href="../modules/index.html"/>
+        <link rel="next" title="ルーティングについて" href="router.html"/>
         <link rel="prev" title="基礎編" href="foundamental.html"/> 
 
   
@@ -100,12 +100,16 @@
 <li class="toctree-l2"><a class="reference internal" href="firstapp.html">hello world</a></li>
 <li class="toctree-l2"><a class="reference internal" href="foundamental.html">基礎編</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">logについて</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#logger">logger</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#">最小限の使用例</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#">フォーマット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log4js">log4js</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#">使用例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#">設定</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#">参考</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="router.html">ルーティングについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="static.html">静的ファイルについて</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/index.html">フレームワークを構成するモジュール</a></li>
@@ -176,30 +180,81 @@
             
   <div class="section" id="log">
 <span id="log"></span><h1>logについて<a class="headerlink" href="#log" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<div class="section" id="logger">
-<span id="logger"></span><h2>logger<a class="headerlink" href="#logger" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>標準とされているmorganを使用する。</p>
+<div class="section" id="log4js">
+<span id="log4js"></span><h2>log4js<a class="headerlink" href="#log4js" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>loggerとしてよく使われているlog4jのjsバージョン。</p>
+<div class="section" id="">
+<span id="id1"></span><h3>使用例<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://github.com/hibohiboo/develop/tree/a0587c92f20e5d32dd14a9730022c648dfc7558b/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js">app.js</a></p>
+<p><code class="docutils literal"><span class="pre">import</span> <span class="pre">log4js</span> <span class="pre">from</span> <span class="pre">'log4js';</span></code>で読み込んで使用する。</p>
+<p>|ログレベル|説明|
+|:&#8211;|:&#8211;|
+|レベル|説明|
+|OFF|ログファイルにログを出力しない|
+|FATAL| FATAL以上のレベルのログを出力。|
+|ERROR| ERROR以上のレベルのログを出力。|
+|WARN|  WARN以上のレベルのログを出力。|
+|INFO|  INFO以上のレベルのログを出力。|
+|DEBUG| DEBUG以上のレベルのログを出力。|
+|TRACE| TRACE以上のレベルのログを出力。|
+|ALL|   全てのログレベルの出力|</p>
 </div>
 <div class="section" id="">
-<span id="id1"></span><h2>最小限の使用例<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://github.com/hibohiboo/develop/tree/c8d37776bcb0b62e2204a92fa66fe8b2d24c41b3/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js">Program.cs</a></p>
+<span id="id2"></span><h3>設定<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>設定ファイルは、今回は環境変数<code class="docutils literal"><span class="pre">LOG4JS_CONFIG=/wmfw/wmfwapp/config/log4js.json</span></code>で設定。<a class="reference external" href="https://github.com/hibohiboo/develop/tree/a0587c92f20e5d32dd14a9730022c648dfc7558b/tutorial/lesson/wmfw/myproject/src/wmfwapp/config/log4js.json">log4js.json</a></p>
+<ul class="simple">
+<li>appenders<ul>
+<li>ログの出力処理の指定。ログの出力方式を配列で複数指定可能。</li>
+</ul>
+</li>
+<li>type<ul>
+<li>ログの出力タイプを指定。</li>
+</ul>
+</li>
+<li>category</li>
+<li>出力するログのカテゴリ。カテゴリ毎に出力内容を分けることができる。</li>
+<li>filename<ul>
+<li>ログの出力先（ファイル名）</li>
+</ul>
+</li>
+<li>pattern<ul>
+<li>ファイルの出力パターン</li>
+</ul>
+</li>
+</ul>
+<p>typeの設定値
+|値|説明|
+|:&#8211;|:&#8211;|
+|file|  ファイルに書き出す。|
+|datefile|  日付毎にローテーションしてファイルに書き出す。|
+|console|   コンソールに書き出す。|</p>
+<p>patternの設定値
+|書式|説明|
+|:&#8211;|:&#8211;|
+|yyyy|西暦を4桁|
+|yy|西暦2桁|
+|MM|月|
+|dd|日|
+|hh|時間（24時間表示）|
+|mm|分|
+|ss|秒|
+|sss|ミリ秒|
+|O| タイムゾーン|</p>
+<p>filenameが&#8221;app.log&#8221;でpatternが”-yyyy-MM-dd”なのでローテーションのタイミング(AM:0:00)でsystem-yyyy-MM-dd.logになる。</p>
 </div>
-<div class="section" id="">
-<span id="id2"></span><h2>フォーマット<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p>|指定する引数|説明|フォーマット|
-|:&#8211;         |:&#8211; |:&#8211;|
-|combined|apache combineログ出力フォーマット|<code class="docutils literal"><span class="pre">:remote-addr</span> <span class="pre">-</span> <span class="pre">:remote-user</span> <span class="pre">[:date[clf]]</span> <span class="pre">&quot;:method</span> <span class="pre">:url</span> <span class="pre">HTTP/:http-version&quot;</span> <span class="pre">:status</span> <span class="pre">:res[content-length]</span> <span class="pre">&quot;:referrer&quot;</span> <span class="pre">&quot;:user-agent&quot;</span></code>|
-|common|apache common ログ出力フォーマット|<code class="docutils literal"><span class="pre">:remote-addr</span> <span class="pre">-</span> <span class="pre">:remote-user</span> <span class="pre">[:date[clf]]</span> <span class="pre">&quot;:method</span> <span class="pre">:url</span> <span class="pre">HTTP/:http-version&quot;</span> <span class="pre">:status</span> <span class="pre">:res[content-length]</span></code>|
-|dev|:statusに色がつく|<code class="docutils literal"><span class="pre">:method</span> <span class="pre">:url</span> <span class="pre">:status</span> <span class="pre">:response-time</span> <span class="pre">ms</span> <span class="pre">-</span> <span class="pre">:res[content-length]</span></code>|
-|short|短いフォーマット。レスポンスタイムが出力される。|<code class="docutils literal"><span class="pre">:remote-addr</span> <span class="pre">:remote-user</span> <span class="pre">:method</span> <span class="pre">:url</span> <span class="pre">HTTP/:http-version</span> <span class="pre">:status</span> <span class="pre">:res[content-length]</span> <span class="pre">-</span> <span class="pre">:response-time</span> <span class="pre">ms</span></code>|
-|tiny|最小限のログ出力|<code class="docutils literal"><span class="pre">:method</span> <span class="pre">:url</span> <span class="pre">:status</span> <span class="pre">:res[content-length]</span> <span class="pre">-</span> <span class="pre">:response-time</span> <span class="pre">ms</span></code>|</p>
 </div>
 <div class="section" id="">
 <span id="id3"></span><h2>参考<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
-<p><a class="reference external" href="https://expressjs.com/en/resources/middleware/morgan.html">moragn</a>
+<p><a class="reference external" href="https://expressjs.com/en/resources/middleware/morgan.html">morgan</a>
 <a class="reference external" href="https://expressjs.com/en/resources/middleware.html">Express middleware</a>
 <a class="reference external" href="http://qiita.com/hoshi-takanori/items/7f5602d7fd7ee0fa6427">Express 4 のログ出力とフォームの処理</a>
-<a class="reference external" href="https://httpd.apache.org/docs/2.0/ja/logs.html">apache LogFormat</a></p>
+<a class="reference external" href="https://httpd.apache.org/docs/2.0/ja/logs.html">apache LogFormat</a>
+<a class="reference external" href="https://www.npmjs.com/package/rotating-file-stream">ログローテート</a>
+<a class="reference external" href="http://qiita.com/toshiyukihina/items/b76ee2f89402b808f736">log4js-nodeを使ってみた</a>
+<a class="reference external" href="https://garafu.blogspot.jp/2016/07/how-to-use-log4js-on-nodejs-express.html">Node.js + Express における log4js の 使い方</a>
+<a class="reference external" href="https://github.com/nomiddlename/log4js-node/tree/v1.1.1">github - log4js-node</a>
+<a class="reference external" href="http://qiita.com/_daisuke/items/865cf929a403cc9eec53">log4jsの覚え書き - log4.jsを使ってみた </a>
+<a class="reference external" href="https://github.com/nomiddlename/log4js-example">log4js-example</a></p>
 </div>
 </div>
 
@@ -213,7 +268,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../modules/index.html" class="btn btn-neutral float-right" title="フレームワークを構成するモジュール" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="router.html" class="btn btn-neutral float-right" title="ルーティングについて" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="foundamental.html" class="btn btn-neutral" title="基礎編" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

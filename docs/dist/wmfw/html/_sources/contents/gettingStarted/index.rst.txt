@@ -12,3 +12,5 @@ ASP.NET COREを参考に、node.js expressにフレームワークとして必�
    firstapp
    foundamental
    logger
+   router
+   static

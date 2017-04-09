@@ -9,3 +9,4 @@ Contents:
    eslint
    sphinx
    jsdoc
+   docker

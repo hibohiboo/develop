@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>routes/index.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,29 +28,51 @@
 
 <div id="main">
     
+    <h1 class="page-title">routes/index.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** 
+ * @file ルーティングを行う
+ * 
+ * @module router
+ * @requires express
+ * @requires morgan
+ * 
+ * @author hibohiboo
+ */
+
+import express from 'express'; // expressサーバ
+import log4js from 'log4js';   // ロガー
+
+const router = express.Router();
+const logger = log4js.getLogger('wmfw.router');
+
+/**
+ * ルートのコントローラ
+ * @name get /
+ * @function
+ * @memberof module:router
+ * @inner
+ * @param {string} path Expressが処理するルーティングパス
+ * @param {callback} middlewear - Expressのミドルウェア
+ */
+router.get('/', (req, res) => {
+  logger.debug('trace log4js');
+  res.send('Hello World!');
+});
 
 
-
-
-
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>jsdoc - readmeサンプル</h1><h2>概要</h2><p>readmeのサンプル</p></article>
+module.exports = router;
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
