@@ -5,7 +5,7 @@ WORKDIR /aspnetapp
 # RUN dotnet restore
 # RUN bower install --allow-root
 # ENTRYPOINT ["dotnet", "run"]
-COPY ./project/src/aspnetcoreapp ./project/src/aspnetcoreapp
+COPY ./myproject/src/aspnetcoreapp ./project/src/aspnetcoreapp
 WORKDIR /aspnetapp/project/src/aspnetcoreapp
 RUN dotnet restore
 
