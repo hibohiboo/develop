@@ -9,7 +9,7 @@ namespace MyApp
             var host = new WebHostBuilder() // builder パターン。アプリケーションホスト生成
                 .UseKestrel() // kestrel webサーバを使用
                 .UseUrls("http://0.0.0.0:5001") // dockerコンテナに外からアクセスするために0.0.0.0のアドレスで起動
-                .UseStartup<Startup>()
+                .UseStartup<Startup>() // アプリケーションのStartupクラスを指定
                 .Build();  // IWebHost オブジェクトを生成
 
             host.Run(); // HTTP リクエストのリスニングを開始
