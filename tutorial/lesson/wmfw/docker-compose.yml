@@ -25,7 +25,13 @@ services:
     - ./myproject/src/wmfwapp/bin:/wmfw/wmfwapp/bin
     - ./myproject/src/wmfwapp/config:/wmfw/wmfwapp/config
     - ./myproject/src/wmfwapp/routes:/wmfw/wmfwapp/routes
+
+    # mvc
+    - ./myproject/src/client/views:/wmfw/wmfwapp/views
+
+    # 静的ファイル
     - ./myproject/src/wmfwapp/public/favicon.ico:/wmfw/wmfwapp/public/favicon.ico
+    - ./myproject/src/client/css:/wmfw/wmfwapp/public/css
 
     #  - ./myapp/public:/my_express/myapp/public
     #  - ./myapp/views:/my_express/myapp/views

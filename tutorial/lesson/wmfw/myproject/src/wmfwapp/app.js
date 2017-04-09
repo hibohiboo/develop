@@ -39,6 +39,10 @@ app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
 // favicon設定
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
+// view engine 設定
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
 // 静的ファイルの設定
 app.use('/public', express.static(path.join(__dirname, 'public')));
 

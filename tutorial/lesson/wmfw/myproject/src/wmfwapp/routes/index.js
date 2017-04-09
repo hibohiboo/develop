@@ -25,7 +25,7 @@ const logger = log4js.getLogger('wmfw.router');
  */
 router.get('/', (req, res) => {
   logger.debug('trace log4js');
-  res.send('Hello World!');
+  res.render('home/index', { title: 'Express' });
 });
 
 

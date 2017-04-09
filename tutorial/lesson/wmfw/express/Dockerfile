@@ -12,3 +12,9 @@ RUN npm install log4js --save
 
 # デフォルトのfavicon
 RUN npm install serve-favicon --save
+
+# ビューエンジン
+RUN npm install pug --save
+
+# デバッグ用
+# RUN npm install debug --save
