@@ -8,6 +8,8 @@ services:
       # jsdocのREADMEファイル
       - ./README.md:/root/README.md
       # ビルドされたファイルの格納ディレクトリ
-      - ../../dist/docs:/root/build
+      #- ../../dist/docs:/root/build
+      # github pagesのディレクトリ
+      - ../../../../../docs/dist/wmfw:/root/build
       # apiドキュメントを作成したいソースファイルの格納ディレクトリ
       - ../../project/src:/root/src

@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>javascript コーディングルール &mdash; wmfw 0.1 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="検索" href="../../search.html"/>
+    <link rel="top" title="wmfw 0.1 ドキュメント" href="../../index.html"/>
+        <link rel="up" title="コーディングルール" href="index.html"/>
+        <link rel="next" title="Airbnb JavaScript スタイルガイド" href="airbnb.html"/>
+        <link rel="prev" title="コーディングルール" href="index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> wmfw
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">WhiteMapFrameWorkドキュメントについて</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">コーディングルール</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">javascript  コーディングルール</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">静的解析ツールの利用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eslint">eslintの独自ルール</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#no-use-before-define">no-use-before-define</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#no-shadow">no-shadow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#unresolved">モジュールのunresolvedの無視</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#">スタイルのルール</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#">命名規約</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#import">importを使う。</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#return">return文は早めに</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#">三項演算子</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#">ドット</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#">参考</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="airbnb.html">Airbnb JavaScript スタイルガイド</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jsdoc.html">コメントについての規約</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../devtools/index.html">開発ツール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingStarted/index.html">フレームワークチュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingStarted/index.html#id2">目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/index.html">フレームワークを構成するモジュール</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">wmfw</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">コーディングルール</a> &raquo;</li>
+        
+      <li>javascript  コーディングルール</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/contents/coding_rules/readme.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="javascript">
+<span id="javascript"></span><h1>javascript  コーディングルール<a class="headerlink" href="#javascript" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>基本は<a class="reference external" href="http://mitsuruog.github.io/javascript-style-guide/">airbnb</a>を利用</p>
+<div class="section" id="">
+<span id="id1"></span><h2>静的解析ツールの利用<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>./bin/eslint.shを利用し、ルールに違反しているものを探す。</p>
+<p>./bin/fix-eslint.shを利用し、自動で修正できるものは修正する。</p>
+</div>
+<div class="section" id="eslint">
+<span id="eslint"></span><h2>eslintの独自ルール<a class="headerlink" href="#eslint" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="no-use-before-define">
+<span id="no-use-before-define"></span><h3>no-use-before-define<a class="headerlink" href="#no-use-before-define" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>functionは巻き上げられるため、定義より前の文に使っても良いとする。</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span>&quot;no-use-before-define&quot;: [&quot;error&quot;, { &quot;functions&quot;: false, &quot;classes&quot;: true }]
+</pre></div>
+</div>
+</div>
+<div class="section" id="no-shadow">
+<span id="no-shadow"></span><h3>no-shadow<a class="headerlink" href="#no-shadow" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>スコープが適切に定義されていれば問題ないため、外のスコープで定義されている変数名と被ってもよい。</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="s2">&quot;no-shadow&quot;</span><span class="o">:</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="unresolved">
+<span id="unresolved"></span><h3>モジュールのunresolvedの無視<a class="headerlink" href="#unresolved" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>node_modulesは別のコンテナにあるので、eslintのコンテナからは見えない。
+別のコンテナでnpm installしたモジュールはソース内からインポートしないことを伝える。
+eslint.rcに下記を追加。</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span>  &quot;import/extensions&quot;: [2, { 
+      &quot;ignore&quot;: [&quot;express&quot;] 
+    }]
+  &quot;import/no-unresolved&quot;: [2, {
+     &quot;ignore&quot;: [&quot;express&quot;] 
+  }],
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h2>スタイルのルール<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>googleの規約から一部を使用。</p>
+<div class="section" id="">
+<span id="id3"></span><h3>命名規約<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>|        | 記法 |例|
+|:&#8211;     |:&#8211;|:&#8211;|
+|関数    |camelCase  |functionNamesLikeThis|
+|変数    |camelCase  |variableNamesLikeThis|
+|クラス  |PascalCase |ClassNamesLikeThis|
+|列挙型  |PascalCase |EnumNamesLikeThis|
+|メソッド|camelCase  |methodNamesLikeThis|
+|定数    |~~UPPER~~ camelCase|~~CONSTANT_VALUES_LIKE_THIS~~|
+|名前空間|camelCase|foo.namespaceNamesLikeThis.bar|
+|ファイル|lower|filenameslikethis.js|</p>
+<div class="section" id="">
+<span id="id4"></span><h4>定数<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>定数は<code class="docutils literal"><span class="pre">const</span></code>で宣言する。記法は変数と同じ。</p>
+</div>
+<div class="section" id="">
+<span id="id5"></span><h4>ファイル名<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>大文字小文字を区別するプラットフォームで混乱が生じることを避けるため、ファイル名には小文字のみを使う。ファイル名は.jsで終わらねばならず、-と<em>以外の区切り文字を含んではならない（より好ましいのは</em>より-の方）。</p>
+</div>
+<div class="section" id="">
+<span id="id6"></span><h4>プロパティとメソッド<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>privateなプロパティ、メソッドには末尾にアンダースコアをつける。protected なプロパティ、メソッドには（publicと同様に）末尾にアンダースコアをつけない。</p>
+</div>
+<div class="section" id="">
+<span id="id7"></span><h4>メソッドと関数のパラメータ<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h4>
+<p>省略可能な関数の引数は名前の先頭をopt_とする。</p>
+</div>
+</div>
+<div class="section" id="import">
+<span id="import"></span><h3>importを使う。<a class="headerlink" href="#import" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>モジュールのインポート方法に<code class="docutils literal"><span class="pre">require</span></code>と<code class="docutils literal"><span class="pre">import</span></code>とあるので、混在しないようにする。[<em>][</em>3]</p>
+</div>
+<div class="section" id="return">
+<span id="return"></span><h3>return文は早めに<a class="headerlink" href="#return" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>if分の深いネストを避けるために、出来るだけ早く関数から値をreturnすること。
+<a class="reference external" href="http://popkirby.github.io/contents/nodeguide/style.html#return-statements">*</a></p>
+<p>◎</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">isPercentage</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>X</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">isPercentage</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>この例の場合はもっと短くしてもいい。</p>
+<p>◎</p>
+<div class="highlight-js"><div class="highlight"><pre><span></span>    <span class="kd">function</span> <span class="nx">isPercentage</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">isInRange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">val</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">val</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">isInRange</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id8"></span><h3>三項演算子<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">?</span> <span class="nx">b</span> <span class="o">:</span> <span class="nx">c</span><span class="p">;</span> <span class="c1">// 収まるなら1行にまとめる。</span>
+
+<span class="c1">// 最初のオペランドの位置までインデントするのもOK </span>
+<span class="kd">let</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">?</span> 
+        <span class="nx">moreComplicatedB</span> <span class="o">:</span> 
+        <span class="nx">moreComplicatedC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id9"></span><h3>ドット<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">x</span> <span class="o">=</span> <span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span><span class="o">.</span> 
+    <span class="n">doSomething</span><span class="p">()</span><span class="o">.</span> 
+    <span class="n">doSomethingElse</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="">
+<span id="id10"></span><h2>参考<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="http://mitsuruog.github.io/javascript-style-guide/">airbnb</a>
+<a class="reference external" href="http://popkirby.github.io/contents/nodeguide/style.html">node規約</a>
+[google規約][*3]</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="airbnb.html" class="btn btn-neutral float-right" title="Airbnb JavaScript スタイルガイド" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="コーディングルール" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, hibo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

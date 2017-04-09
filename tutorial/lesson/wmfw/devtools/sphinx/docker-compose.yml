@@ -17,5 +17,7 @@ services:
       - ../../docs/readme.md:/root/source/readme.md
       # ドキュメントのフォルダ
       - ../../docs/contents:/root/source/contents
-      # ビルドされたファイルの格納ディレクトリ
-      - ../../dist/docs:/root/build
+      # # ビルドされたファイルの格納ディレクトリ
+      # - ../../dist/docs:/root/build
+      # github pagesのディレクトリ
+      - ../../../../../docs/dist/wmfw:/root/build
