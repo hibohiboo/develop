@@ -5,8 +5,8 @@ services:
     volumes:
     - ./express/package.json:/wmfw/wmfwapp/package.json
     - ./express/.babelrc:/wmfw/wmfwapp/.babelrc
-    - ./project/src/wmfwapp/bin:/wmfw/wmfwapp/bin
-    - ./project/src/wmfwapp/app.js:/wmfw/wmfwapp/app.js
+    - ./myproject/src/wmfwapp/bin:/wmfw/wmfwapp/bin
+    - ./myproject/src/wmfwapp/app.js:/wmfw/wmfwapp/app.js
     #  - ./myapp/public:/my_express/myapp/public
     #  - ./myapp/views:/my_express/myapp/views
     #  - ./myapp/routes:/my_express/myapp/routes
