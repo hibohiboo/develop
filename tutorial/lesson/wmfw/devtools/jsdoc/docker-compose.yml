@@ -10,6 +10,6 @@ services:
       # ビルドされたファイルの格納ディレクトリ
       #- ../../dist/docs:/root/build
       # github pagesのディレクトリ
-      - ../../../../../docs/dist/wmfw:/root/build
+      - ../../../../../docs/dist/wmfw/api/minami:/root/build/api/minami
       # apiドキュメントを作成したいソースファイルの格納ディレクトリ
-      - ../../project/src:/root/src
+      - ../../myproject/src:/root/src
