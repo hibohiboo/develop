@@ -16,8 +16,9 @@ import path from 'path';       // パス
 import express from 'express'; // expressサーバ
 
 // ミドルウェア
-import log4js from 'log4js';   // ロガー
-import favicon from 'serve-favicon';
+import log4js from 'log4js';         // ロガー
+import favicon from 'serve-favicon'; // favicon
+import bodyParser from 'body-parser';
 
 // アプリケーション
 import index from './routes/index'; // ルーティングファイル
@@ -35,6 +36,15 @@ const app = express();
 
 // log4jのアクセスログ設定
 app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
+
+// json文字列をオブジェクトとして格納
+app.use(bodyParser.json());
+
+// urlのkey-valueのペアをオブジェクトとして格納
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// cookieをオブジェクトとして格納
+app.use(cookieParser());
 
 // favicon設定
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

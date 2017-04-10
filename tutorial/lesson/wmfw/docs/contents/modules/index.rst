@@ -8,3 +8,6 @@ Contents:
 
    express
    logger
+   serve-favicon
+   body-parser
+   cookie-parser

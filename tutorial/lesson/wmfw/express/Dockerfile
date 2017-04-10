@@ -7,14 +7,24 @@ RUN npm install babel-cli --save
 RUN npm install express@5.0.0-alpha.5 --save
 RUN npm install --save-dev babel-preset-latest
 
-# ログ取得
-RUN npm install log4js --save
+# postデータのパース
+RUN npm install body-parser --save
+
+# cookieデータのパース
+RUN npm install cookie-parser --save
 
 # デフォルトのfavicon
 RUN npm install serve-favicon --save
 
+# デバッグ用
+RUN npm install debug --save-dev
+
+# ログ取得
+RUN npm install log4js --save
+
 # ビューエンジン
 RUN npm install pug --save
 
-# デバッグ用
-# RUN npm install debug --save
+
+
+
