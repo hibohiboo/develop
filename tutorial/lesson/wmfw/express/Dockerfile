@@ -16,11 +16,14 @@ RUN npm install cookie-parser --save
 # デフォルトのfavicon
 RUN npm install serve-favicon --save
 
-# デバッグ用
-RUN npm install debug --save-dev
-
 # ログ取得
 RUN npm install log4js --save
+
+# セキュリティ
+RUN npm install helmet --save
+
+# デバッグ用
+RUN npm install debug --save-dev
 
 # ビューエンジン
 RUN npm install pug --save

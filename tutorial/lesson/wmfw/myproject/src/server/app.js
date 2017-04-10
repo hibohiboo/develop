@@ -19,6 +19,8 @@ import express from 'express'; // expressサーバ
 import log4js from 'log4js';         // ロガー
 import favicon from 'serve-favicon'; // favicon
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 
 // アプリケーション
 import index from './routes/index'; // ルーティングファイル
@@ -33,6 +35,9 @@ fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 const logger = log4js.getLogger('wmfw.app');
 
 const app = express();
+
+// セキュリティ
+app.use(helmet());
 
 // log4jのアクセスログ設定
 app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
