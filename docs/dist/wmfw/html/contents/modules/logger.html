@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>logについて &mdash; wmfw 0.1 ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="検索" href="../../search.html"/>
+    <link rel="top" title="wmfw 0.1 ドキュメント" href="../../index.html"/>
+        <link rel="up" title="フレームワークを構成するモジュール" href="index.html"/>
+        <link rel="next" title="serve-favicon" href="serve-favicon.html"/>
+        <link rel="prev" title="expressサーバ" href="express.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> wmfw
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">WhiteMapFrameWorkドキュメントについて</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coding_rules/index.html">コーディングルール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devtools/index.html">開発ツール</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingStarted/index.html">フレームワークチュートリアル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gettingStarted/index.html#id2">チュートリアルの目的</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">フレームワークを構成するモジュール</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="express.html">expressサーバ</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">logについて</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#log4js">log4js</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#">使用例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#">設定</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#">参考</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="serve-favicon.html">serve-favicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="body-parser.html">body-parser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie-parser.html">cookie-parser</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">wmfw</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">フレームワークを構成するモジュール</a> &raquo;</li>
+        
+      <li>logについて</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/contents/modules/logger.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="log">
+<span id="log"></span><h1>logについて<a class="headerlink" href="#log" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="log4js">
+<span id="log4js"></span><h2>log4js<a class="headerlink" href="#log4js" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>loggerとしてよく使われているlog4jのjsバージョン。</p>
+<div class="section" id="">
+<span id="id1"></span><h3>使用例<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><a class="reference external" href="https://github.com/hibohiboo/develop/tree/a0587c92f20e5d32dd14a9730022c648dfc7558b/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js">app.js</a></p>
+<p><code class="docutils literal"><span class="pre">import</span> <span class="pre">log4js</span> <span class="pre">from</span> <span class="pre">'log4js';</span></code>で読み込んで使用する。</p>
+<p>|ログレベル|説明|
+|:&#8211;|:&#8211;|
+|レベル|説明|
+|OFF|ログファイルにログを出力しない|
+|FATAL| FATAL以上のレベルのログを出力。|
+|ERROR| ERROR以上のレベルのログを出力。|
+|WARN|  WARN以上のレベルのログを出力。|
+|INFO|  INFO以上のレベルのログを出力。|
+|DEBUG| DEBUG以上のレベルのログを出力。|
+|TRACE| TRACE以上のレベルのログを出力。|
+|ALL|   全てのログレベルの出力|</p>
+</div>
+<div class="section" id="">
+<span id="id2"></span><h3>設定<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p>設定ファイルは、今回は環境変数<code class="docutils literal"><span class="pre">LOG4JS_CONFIG=/wmfw/wmfwapp/config/log4js.json</span></code>で設定。<a class="reference external" href="https://github.com/hibohiboo/develop/tree/a0587c92f20e5d32dd14a9730022c648dfc7558b/tutorial/lesson/wmfw/myproject/src/wmfwapp/config/log4js.json">log4js.json</a></p>
+<ul class="simple">
+<li>appenders<ul>
+<li>ログの出力処理の指定。ログの出力方式を配列で複数指定可能。</li>
+</ul>
+</li>
+<li>type<ul>
+<li>ログの出力タイプを指定。</li>
+</ul>
+</li>
+<li>category</li>
+<li>出力するログのカテゴリ。カテゴリ毎に出力内容を分けることができる。</li>
+<li>filename<ul>
+<li>ログの出力先（ファイル名）</li>
+</ul>
+</li>
+<li>pattern<ul>
+<li>ファイルの出力パターン</li>
+</ul>
+</li>
+</ul>
+<p>typeの設定値
+|値|説明|
+|:&#8211;|:&#8211;|
+|file|  ファイルに書き出す。|
+|datefile|  日付毎にローテーションしてファイルに書き出す。|
+|console|   コンソールに書き出す。|</p>
+<p>patternの設定値
+|書式|説明|
+|:&#8211;|:&#8211;|
+|yyyy|西暦を4桁|
+|yy|西暦2桁|
+|MM|月|
+|dd|日|
+|hh|時間（24時間表示）|
+|mm|分|
+|ss|秒|
+|sss|ミリ秒|
+|O| タイムゾーン|</p>
+<p>filenameが&#8221;app.log&#8221;でpatternが”-yyyy-MM-dd”なのでローテーションのタイミング(AM:0:00)でsystem-yyyy-MM-dd.logになる。</p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id3"></span><h2>参考<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="https://expressjs.com/en/resources/middleware/morgan.html">morgan</a>
+<a class="reference external" href="https://expressjs.com/en/resources/middleware.html">Express middleware</a>
+<a class="reference external" href="http://qiita.com/hoshi-takanori/items/7f5602d7fd7ee0fa6427">Express 4 のログ出力とフォームの処理</a>
+<a class="reference external" href="https://httpd.apache.org/docs/2.0/ja/logs.html">apache LogFormat</a>
+<a class="reference external" href="https://www.npmjs.com/package/rotating-file-stream">ログローテート</a>
+<a class="reference external" href="http://qiita.com/toshiyukihina/items/b76ee2f89402b808f736">log4js-nodeを使ってみた</a>
+<a class="reference external" href="https://garafu.blogspot.jp/2016/07/how-to-use-log4js-on-nodejs-express.html">Node.js + Express における log4js の 使い方</a>
+<a class="reference external" href="https://github.com/nomiddlename/log4js-node/tree/v1.1.1">github - log4js-node</a>
+<a class="reference external" href="http://qiita.com/_daisuke/items/865cf929a403cc9eec53">log4jsの覚え書き - log4.jsを使ってみた </a>
+<a class="reference external" href="https://github.com/nomiddlename/log4js-example">log4js-example</a></p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="serve-favicon.html" class="btn btn-neutral float-right" title="serve-favicon" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="express.html" class="btn btn-neutral" title="expressサーバ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, hibo.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

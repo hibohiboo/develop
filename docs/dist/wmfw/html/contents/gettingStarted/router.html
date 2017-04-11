@@ -38,7 +38,7 @@
     <link rel="top" title="wmfw 0.1 ドキュメント" href="../../index.html"/>
         <link rel="up" title="フレームワークチュートリアル" href="index.html"/>
         <link rel="next" title="静的ファイルについて" href="static.html"/>
-        <link rel="prev" title="logについて" href="logger.html"/> 
+        <link rel="prev" title="基礎編" href="foundamental.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -95,15 +95,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">WhiteMapFrameWorkドキュメントについて</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../coding_rules/index.html">コーディングルール</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../devtools/index.html">開発ツール</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index.html">フレームワークチュートリアル</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html#id2">目的</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">フレームワークチュートリアル</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="firstapp.html">hello world</a></li>
 <li class="toctree-l2"><a class="reference internal" href="foundamental.html">基礎編</a></li>
-<li class="toctree-l2"><a class="reference internal" href="logger.html">logについて</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ルーティングについて</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ルーティングについて</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#">ルーティング設定を行う</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#">基本的なルーティング設定</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#">参考</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="static.html">静的ファイルについて</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#id2">チュートリアルの目的</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../modules/index.html">フレームワークを構成するモジュール</a></li>
 </ul>
 
@@ -172,6 +178,20 @@
             
   <div class="section" id="">
 <span id="id1"></span><h1>ルーティングについて<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="">
+<span id="id2"></span><h2>ルーティング設定を行う<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="section" id="">
+<span id="id3"></span><h3>基本的なルーティング設定<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">app.js</span></code>でリクエストパスのルート<code class="docutils literal"><span class="pre">/</span></code>をルーティングミドルウェアに渡す。</p>
+<p><a class="reference external" href="https://github.com/hibohiboo/develop/tree/26bbca7faff626da40e7e369c354b7e30e7abbc2/tutorial/lesson/wmfw/myproject/src/wmfwapp/app.js">app.js</a></p>
+<p>ルーティングミドルウェアでそれを受取り、ルーティングを行う</p>
+<p><a class="reference external" href="https://github.com/hibohiboo/develop/tree/26bbca7faff626da40e7e369c354b7e30e7abbc2/tutorial/lesson/wmfw/myproject/src/wmfwapp/routes/index.js">routes/index.js</a></p>
+</div>
+</div>
+<div class="section" id="">
+<span id="id4"></span><h2>参考<a class="headerlink" href="#" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><a class="reference external" href="https://expressjs.com/ja/guide/routing.html">公式ドキュメント</a></p>
+</div>
 </div>
 
 
@@ -187,7 +207,7 @@
         <a href="static.html" class="btn btn-neutral float-right" title="静的ファイルについて" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="logger.html" class="btn btn-neutral" title="logについて" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="foundamental.html" class="btn btn-neutral" title="基礎編" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

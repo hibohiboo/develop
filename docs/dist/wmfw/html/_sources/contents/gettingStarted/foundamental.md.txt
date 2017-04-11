@@ -4,6 +4,8 @@
 
 expressはnode.js上で動作するアプリケーションである。
 
+expressを基本に、ミドルウェアを追加してアプリケーションを構築する。
+
 ## middleware
 [ミドルウェアについてを参照](https://expressjs.com/ja/guide/using-middleware.html)
 

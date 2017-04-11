@@ -7,3 +7,7 @@ Contents:
    :maxdepth: 1
 
    express
+   logger
+   serve-favicon
+   body-parser
+   cookie-parser
