@@ -1,10 +1,10 @@
 /** Express
  * @file Expressサーバの基本設定を行う
- * 
+ *
  * @module app
  * @requires express
  * @requires morgan
- * 
+ *
  * @author hibohiboo
  */
 
@@ -40,7 +40,7 @@ const app = express();
 app.use(helmet());
 
 // log4jのアクセスログ設定
-app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
+app.use(log4js.connectLogger(log4js.getLogger('http'), { level: 'auto' }));
 
 // json文字列をオブジェクトとして格納
 app.use(bodyParser.json());

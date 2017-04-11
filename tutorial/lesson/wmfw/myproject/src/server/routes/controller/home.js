@@ -1,17 +1,18 @@
-/** 
+/**
  * @file HomeControlelr
- * 
+ *
  * @module HomeController
  * @requires log4js
- * 
+ *
  * @author hibohiboo
  */
 
 import log4js from 'log4js';   // ロガー
+
 const logger = log4js.getLogger('wmfw.controller.home');
 
 /** Class Homeコントローラ. */
-class HomeController{
+class HomeController {
 
   /**
    * トップページ
@@ -19,7 +20,7 @@ class HomeController{
    * @param {express.Response} res - レスポンスオブジェクト.
    * @return {undefined}
    */
-  index (req, res) {
+  static index(req, res) {
     logger.debug('index start');
     res.render('home/index', { title: 'Home Index' });
   }
@@ -30,10 +31,10 @@ class HomeController{
    * @param {express.Response} res - レスポンスオブジェクト.
    * @return {undefined}
    */
-  about (req, res) {
+  static about(req, res) {
     logger.debug('about start');
-    const message = `アプリケーションについての説明`;
-    res.render('home/about', { title: 'Home About', message:message });
+    const message = 'アプリケーションについての説明';
+    res.render('home/about', { title: 'Home About', message });
   }
 
   /**
@@ -42,10 +43,10 @@ class HomeController{
    * @param {express.Response} res - レスポンスオブジェクト.
    * @return {undefined}
    */
-  contact (req, res) {
+  static contact(req, res) {
     logger.debug('contact start');
-    const message = `連絡先`;
-    res.render('home/contact', { title: 'Home Contact', message:message });
+    const message = '連絡先';
+    res.render('home/contact', { title: 'Home Contact', message });
   }
 }
 

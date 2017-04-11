@@ -1,13 +1,13 @@
-/** 
+/**
  * @file HelloWorldControlelr
- * 
+ *
  * @module HelloWorldController
- * 
+ *
  * @author hibohiboo
  */
 
 /** Class HelloWorldコントローラ. */
-class HelloWorldController{
+class HelloWorldController {
 
   /**
    * デフォルト
@@ -15,7 +15,7 @@ class HelloWorldController{
    * @param {express.Response} res - レスポンスオブジェクト.
    * @return {undefined}
    */
-  index (req, res) {
+  static index(req, res) {
     res.send('デフォルト');
   }
 
@@ -25,7 +25,7 @@ class HelloWorldController{
    * @param {express.Response} res - レスポンスオブジェクト.
    * @return {undefined}
    */
-  welcome (req, res) {
+  static welcome(req, res) {
     res.send('ウェルカム');
   }
 }
