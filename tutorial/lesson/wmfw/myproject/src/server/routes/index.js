@@ -21,7 +21,7 @@ const router = express.Router();
 const logger = log4js.getLogger('wmfw.router');
 
 /**
- * ルートのコントローラ
+ * トップページ
  * @name get /
  * @function
  * @memberof module:router
@@ -29,7 +29,14 @@ const logger = log4js.getLogger('wmfw.router');
  * @param {string} path Expressが処理するルーティングパス
  * @param {callback} middlewear - Expressのミドルウェア
  */
-router.get('/', home.index);
+router.get('/', (req, res) => {
+    logger.debug('index start');
+    res.render('home/index', { title: 'トップページ' });
+});
 
+// ホーム
+router.get('/home/index', home.index);
+router.get('/home/about', home.about);
+router.get('/home/contact', home.contact);
 
 module.exports = router;

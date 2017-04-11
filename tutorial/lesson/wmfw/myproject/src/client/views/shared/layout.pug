@@ -3,5 +3,29 @@ html
   head
     title= title
     link(rel='stylesheet', href='/public/css/style.css')
+    link(rel='stylesheet', href='https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css')
   body
-    block content
+    div(class="navbar navbar-inverse navbar-fixed-top")
+      div(class="container")
+        div(class="navbar-header")
+          button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+            span(class="sr-only") Toggle navigation
+            span(class="icon-bar")
+            span(class="icon-bar")
+            span(class="icon-bar")
+          a(href="/") SampleWebApplication
+        div(class="navbar-collapse collapse")
+          ul(class="nav navbar-nav")
+            li
+              a(href="/home/index") Home
+            li
+              a(href="/home/about") About
+            li
+              a(href="/home/contact") Contact
+    div(class="container body-content")
+      block content
+      hr
+      footer
+        p &copy; 2017 - SampleWebApplication
+    script(src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js")
+    script(src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js")
