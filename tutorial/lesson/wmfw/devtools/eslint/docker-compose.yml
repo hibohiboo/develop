@@ -4,7 +4,7 @@ services:
     build: .
     volumes:
       # ビルドするソースファイル
-      - ../../project/src:/my_lint/src
+      - ../../myproject/src:/my_lint/src
       # eslint設定ファイル
       - ./.eslintrc.json:/my_lint/.eslintrc.json
       # コンテナ上のpackage.jsonを上書き

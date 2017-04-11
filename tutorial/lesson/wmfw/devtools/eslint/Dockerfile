@@ -1,6 +1,6 @@
 # docker-hubからnode入りコンテナを取得
 # https://hub.docker.com/_/node/
-FROM node:7.7.3
+FROM node:7.8.0
 
 # コンテナ上の作業ディレクトリ作成
 WORKDIR /my_lint

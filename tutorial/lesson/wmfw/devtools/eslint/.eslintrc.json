@@ -25,8 +25,8 @@
             }
         ],
         "no-use-before-define": ["error", { "functions": false, "classes": true }],
-        "import/no-unresolved": [2, { "ignore": ["express"] }],
-        "import/extensions": [2, { "ignore": ["express"] }],
+        "import/no-unresolved": [2, { "ignore": ["express", "log4js"] }],
+        "import/extensions": [0],
         "no-shadow": 0
     }
 }
