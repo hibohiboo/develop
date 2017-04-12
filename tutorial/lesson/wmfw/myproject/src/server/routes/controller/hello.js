@@ -16,7 +16,7 @@ class HelloWorldController {
    * @return {undefined}
    */
   static index(req, res) {
-    res.render('hello/index', {title:'Movie List'});
+    res.render('hello/index', {title:'Movie List', list:['zero', 'one', 'two']});
   }
 
   /**

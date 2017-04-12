@@ -3,3 +3,7 @@ extends ../shared/layout
 block content
   h2 My Movie List
   p Hello from our View Template!
+
+  ul
+    each val, index in list
+      li= index + ': ' + val
