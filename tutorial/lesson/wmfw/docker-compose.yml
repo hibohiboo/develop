@@ -25,6 +25,8 @@ services:
     - ./myproject/src/server/bin:/wmfw/wmfwapp/bin
     - ./myproject/src/server/config:/wmfw/wmfwapp/config
     - ./myproject/src/server/routes:/wmfw/wmfwapp/routes
+    - ./myproject/src/server/controllers:/wmfw/wmfwapp/controllers
+    - ./myproject/src/server/models:/wmfw/wmfwapp/models
 
     # mvc
     - ./myproject/src/client/views:/wmfw/wmfwapp/views
