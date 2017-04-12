@@ -1,0 +1,10 @@
+{
+  "development": {
+    "dialect": "sqlite",
+    "storage": "/wmfw/dist/db/db.development.sqlite"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": ":memory:"
+  }
+}

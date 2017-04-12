@@ -28,6 +28,14 @@ RUN npm install debug --save-dev
 # ビューエンジン
 RUN npm install pug --save
 
+# ORMマッパー
+RUN npm install sequelize --save 
 
+# sequalizeのコマンドライン用クライアント
+
+RUN npm install sequelize-cli --save
+
+# データベース
+RUN npm install sqlite3 --save
 
 

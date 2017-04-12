@@ -35,6 +35,13 @@ services:
     - ./myproject/src/server/public/favicon.ico:/wmfw/wmfwapp/public/favicon.ico
     - ./myproject/src/client/css:/wmfw/wmfwapp/public/css
 
+    # データベースファイル
+    - ./dist/db:/wmfw/dist/db
+
+    # データベースマイグレーション用ディレクトリ
+    - ./myproject/src/server/data/migrations:/wmfw/wmfwapp/migrations
+    - ./myproject/src/server/data/seeders:/wmfw/wmfwapp/seeders
+
     #  - ./myapp/public:/my_express/myapp/public
     #  - ./myapp/views:/my_express/myapp/views
     #  - ./myapp/routes:/my_express/myapp/routes
