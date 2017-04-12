@@ -12,12 +12,8 @@ import express from 'express'; // expressサーバ
 import log4js from 'log4js';   // ロガー
 
 // コントローラクラスのインポート
-import HomeController from './controller/home';
-import HelloWorldController from './controller/hello';
-
-// コントローラのインスタンス化
-const home = new HomeController();
-const hello = new HelloWorldController();
+import home from './controller/home';
+import hello from './controller/hello';
 
 const router = express.Router();
 const logger = log4js.getLogger('wmfw.router');

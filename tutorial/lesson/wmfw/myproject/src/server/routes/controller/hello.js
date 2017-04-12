@@ -26,7 +26,13 @@ class HelloWorldController {
    * @return {undefined}
    */
   static welcome(req, res) {
-    res.send('ウェルカム');
+    let message = 'ウェルカム';
+    const {name, numTimes} = req.query;
+
+    if(name&&numTimes){
+      message = `ハロー, ${name}, NumTimes is: ${numTimes}`;
+    }
+    res.send(message);
   }
 }
 
