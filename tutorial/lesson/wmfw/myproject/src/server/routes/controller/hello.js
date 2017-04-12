@@ -16,7 +16,7 @@ class HelloWorldController {
    * @return {undefined}
    */
   static index(req, res) {
-    res.send('デフォルト');
+    res.render('hello/index', {title:'Movie List'});
   }
 
   /**

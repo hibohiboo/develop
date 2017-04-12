@@ -8,6 +8,7 @@
    foundamental
    router
    static
+   tutorial
 
 
 チュートリアルの目的
