@@ -14,7 +14,7 @@ import log4js from 'log4js';   // ロガー
 // コントローラクラスのインポート
 import home from '../controllers/HomeController';
 import hello from '../controllers/HelloWorldController';
-import movies from '../controllers/MoviesController';
+import moviesRouter from '../controllers/MoviesController';
 
 
 const router = express.Router();
@@ -46,8 +46,6 @@ helloRouter.get('/welcome', hello.welcome);
 router.use('/helloworld', helloRouter);
 
 // 映画
-const moviesRouter = express.Router();
-moviesRouter.get(/\/(index)?$/, movies.index);
 router.use('/movies', moviesRouter);
 
 module.exports = router;

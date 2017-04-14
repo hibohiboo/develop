@@ -9,7 +9,7 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
     return queryInterface.createTable(
-      'movies',
+      'Movies',
       {
         id: {
           type: Sequelize.INTEGER,
@@ -22,6 +22,12 @@ module.exports = {
         },
         genre: Sequelize.STRING,
         price: Sequelize.INTEGER,
+        createdAt: {
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          type: Sequelize.DATE
+        },
       }
     );
   },

@@ -4,6 +4,34 @@ Node.jsのORM
 
 ## マイグレーション
 
+サンプルを参照[*][*4]
+
+## 自動的にテーブルを作る。
+
+```js
+#!/usr/bin/env node
+
+var app = require('../app');
+var debug = require('debug')('init:server');
+var http = require('http');
+var models = require("../models");
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+var server = http.createServer(app);
+
+// sync() will create all table if they doesn't exist in database
+models.sequelize.sync().then(function () {
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
+
+function normalizePort(val) { /* ... */ }
+function onError(error) { /* ... */ }
+function onListening() { /* ... */ }
+```
 
 ## 参考
 

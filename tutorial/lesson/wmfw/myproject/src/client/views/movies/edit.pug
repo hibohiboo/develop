@@ -1,0 +1,8 @@
+extends ../shared/layout
+
+block content
+  h2 #{title}
+
+  form(method="post")
+    input(name="title")
+    input(type="submit" value="作成")
