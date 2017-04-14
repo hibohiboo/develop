@@ -18,7 +18,6 @@ moviesRouter.get(/\/(index)?$/, (req, res)=> {
     .findAll()
     .then(function(movies) {
       res.render('movies/index', {
-        title: 'Sequelize: Express Example',
         models: movies
       });
     });
