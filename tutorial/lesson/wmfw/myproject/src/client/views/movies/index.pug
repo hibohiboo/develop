@@ -1,7 +1,12 @@
-extends ../shared/layout
+extends ../shared/_layout
+
+append variables 
+ - var title="List"
 
 block content
   h2  #{title}
+  p
+    a(href="./movies/create") 新規作成
   ul
     each model in models
       li= model.title
