@@ -4,13 +4,16 @@
  * Module dependencies.
  */
 
-import app from '../app';
+// import app from '../app';
+import Server from '../server';
 import debug_module from 'debug';
 import http from 'http';
 import log4js from 'log4js';   // ロガー
 
 const debug = debug_module('wmfwapp:server');
 const logger = log4js.getLogger('wmfw.www');
+
+const app = Server.bootstrap().app;
 
 /**
  * Get port from environment and store in Express.

@@ -20,6 +20,7 @@ services:
 
     # アプリケーション設定
     - ./myproject/src/server/app.js:/wmfw/wmfwapp/app.js
+    - ./myproject/src/server/server.js:/wmfw/wmfwapp/server.js
 
     # アプリケーションソース
     - ./myproject/src/server/bin:/wmfw/wmfwapp/bin
