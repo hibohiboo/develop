@@ -9,11 +9,11 @@
  */
 
 import express from 'express'; // expressサーバ
-import log4js from 'log4js';   // ロガー
+import log4js  from 'log4js';   // ロガー
 
 // コントローラクラスのインポート
-import home from '../controllers/home-controller';
-import hello from '../controllers/hello-world-controller';
+import home         from '../controllers/home-controller';
+import hello        from '../controllers/hello-world-controller';
 import moviesRouter from '../controllers/movies-controller';
 
 

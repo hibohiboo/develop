@@ -38,6 +38,7 @@
         "no-use-before-define": ["error", { "functions": false, "classes": true }],
         "no-unused-expressions":[2, { "allowShortCircuit": true }],
         "no-shadow": 0,
+        "no-multi-spaces": 0,
         "require-jsdoc":1,
         "valid-jsdoc":1,
         "import/no-extraneous-dependencies": 0,
