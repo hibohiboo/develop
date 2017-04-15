@@ -1,6 +1,6 @@
 
 module.exports = {
-  up: function (queryInterface, Sequelize) {
+  up(queryInterface, Sequelize) {
     /*
       Add altering commands here.
       Return a promise to correctly handle asynchronicity.
@@ -14,25 +14,25 @@ module.exports = {
         id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
-          autoIncrement: true
+          autoIncrement: true,
         },
         title: Sequelize.STRING,
         releaseDate: {
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
         genre: Sequelize.STRING,
         price: Sequelize.INTEGER,
         createdAt: {
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
         updatedAt: {
-          type: Sequelize.DATE
+          type: Sequelize.DATE,
         },
-      }
+      },
     );
   },
 
-  down: function (queryInterface, Sequelize) {
+  down(queryInterface, Sequelize) {
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
@@ -41,5 +41,5 @@ module.exports = {
       return queryInterface.dropTable('users');
     */
     return queryInterface.dropTable('movies');
-  }
+  },
 };

@@ -12,9 +12,9 @@ import express from 'express'; // expressサーバ
 import log4js from 'log4js';   // ロガー
 
 // コントローラクラスのインポート
-import home from '../controllers/HomeController';
-import hello from '../controllers/HelloWorldController';
-import moviesRouter from '../controllers/MoviesController';
+import home from '../controllers/home-controller';
+import hello from '../controllers/hello-world-controller';
+import moviesRouter from '../controllers/movies-controller';
 
 
 const router = express.Router();
@@ -43,9 +43,11 @@ router.get('/home/contact', home.contact);
 const helloRouter = express.Router();
 helloRouter.get(/\/(index)?$/, hello.index);
 helloRouter.get('/welcome', hello.welcome);
+
 router.use('/helloworld', helloRouter);
 
 // 映画
 router.use('/movies', moviesRouter);
 
-module.exports = router;
+const routes = router;
+export default routes;

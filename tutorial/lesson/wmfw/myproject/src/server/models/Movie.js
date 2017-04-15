@@ -1,5 +1,5 @@
 /**
- * @file Movie
+ * @file movie
  *
  * @module Movie
  *
@@ -16,12 +16,12 @@ class Movie {
    * @param {string} genre - ジャンル
    * @param {number} price - 価格
    */
-  constructor({id, title, releaseDate, genre, price}){
-    this.id=id;
-    this.title=title;
-    this.releaseDate=releaseDate;
-    this.genre=genre;
-    this.price=price;
+  constructor({ id, title, releaseDate, genre, price }) {
+    this.id = id;
+    this.title = title;
+    this.releaseDate = releaseDate;
+    this.genre = genre;
+    this.price = price;
   }
 }
 

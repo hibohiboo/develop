@@ -37,6 +37,12 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 
+/**
+ * ポート番号の標準化。
+ * ポート番号が数値であればそのまま返し、そうでなければfalseを返す。
+ * @param  {} val ポート番号
+ * @return {Number|bool} port|false
+ */
 function normalizePort(val) {
   const port = parseInt(val, 10);
 

@@ -13,8 +13,19 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "filenames"
     ],
+    "settings":{
+        "ignore":[
+            "express", 
+            "log4js", 
+            "serve-favicon", 
+            "body-parser", 
+            "cookie-parser", 
+            "helmet",
+            "sequelize"]
+    },
     "rules": {
         "no-unused-vars": ["off"],
         "quotes": [
@@ -25,10 +36,23 @@
             }
         ],
         "no-use-before-define": ["error", { "functions": false, "classes": true }],
-        "import/no-unresolved": [2, { "ignore": ["express", "log4js", "serve-favicon", "body-parser", "cookie-parser", "helmet"] }],
-        "import/extensions": [0],
-        "import/no-extraneous-dependencies": 0,
         "no-unused-expressions":[2, { "allowShortCircuit": true }],
-        "no-shadow": 0
+        "no-shadow": 0,
+        "require-jsdoc":1,
+        "valid-jsdoc":1,
+        "import/no-extraneous-dependencies": 0,
+        "import/no-unresolved":[0, {
+          "ignore":[
+            "express", 
+            "log4js", 
+            "serve-favicon", 
+            "body-parser", 
+            "cookie-parser", 
+            "helmet",
+            "sequelize"]
+        }],
+        "import/extensions": 0,
+        "filenames/match-regex": [2, "^[a-z-][a-z0-9-]+$", true],
+        "filenames/match-exported": [2, [ null, "kebab" ] ]
     }
 }

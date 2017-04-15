@@ -16,7 +16,7 @@ class HelloWorldController {
    * @return {undefined}
    */
   static index(req, res) {
-    res.render('hello/index', {title:'Movie List', list:['zero', 'one', 'two']});
+    res.render('hello/index', { title: 'Movie List', list: ['zero', 'one', 'two'] });
   }
 
   /**
@@ -27,9 +27,9 @@ class HelloWorldController {
    */
   static welcome(req, res) {
     let message = 'ウェルカム';
-    const {name, numTimes} = req.query;
+    const { name, numTimes } = req.query;
 
-    if(name&&numTimes){
+    if (name && numTimes) {
       message = `ハロー, ${name}, NumTimes is: ${numTimes}`;
     }
     res.send(message);

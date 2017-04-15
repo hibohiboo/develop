@@ -41,7 +41,7 @@ services:
     # データベースマイグレーション用ディレクトリ
     - ./myproject/src/server/data/migrations:/wmfw/wmfwapp/migrations
     - ./myproject/src/server/data/seeders:/wmfw/wmfwapp/seeders
-    - ./myproject/src/server/data/models:/wmfw/wmfwapp/data/models
+    - ./myproject/src/server/data/db:/wmfw/wmfwapp/data/db
 
     #  - ./myapp/public:/my_express/myapp/public
     #  - ./myapp/views:/my_express/myapp/views
