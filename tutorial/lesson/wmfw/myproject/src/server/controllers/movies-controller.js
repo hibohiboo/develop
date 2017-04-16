@@ -9,32 +9,45 @@
 import express from 'express';       // expressサーバ
 import log4js from 'log4js';         // ロガー
 import Movie from '../models/movie';
-import db from '../data/db';
 
-const moviesRouter = express.Router();
+class MoviesController {
 
-moviesRouter.get(/\/(index)?$/, (req, res) => {
-  db.Movie
-    .findAll()
-    .then((movies) => {
-      res.render('movies/index', {
-        models: movies,
+  constructor(db){
+    this.db = db;
+  }
+
+  getRouter(){
+    const router = express.Router();
+
+    // 関数で使用するthisをインスタンスと紐付けるためにbindを使用
+    router.get(/\/(index)?$/, this.getIndex.bind(this));
+    router.get('/create',     this.getCreatem);
+    router.post('/create',    this.postCreate.bind(this));
+    return router;
+  }
+
+  getIndex (req, res){
+    this.db.Movie
+      .findAll()
+      .then((movies) => {
+        res.render('movies/index', {
+          models: movies,
+        });
       });
-    });
-});
+  }
 
-moviesRouter.get('/create', (req, res) => {
-  const model = new Movie({ title: 'movie - 新規作成' });
-  res.render('movies/edit', { title: 'Movie Create', model });
-});
 
-moviesRouter.post('/create', (req, res) => {
-  db.Movie.create({
-    title: req.body.title,
-  }).then(() => {
-    res.redirect('/movies/index');
-  });
-});
+  getCreate (req, res) {
+      const model = new Movie({ title: 'movie - 新規作成' });
+      res.render('movies/edit', { title: 'Movie Create', model });
+  }
 
-const moviesController = moviesRouter;
-export default moviesController;
+  postCreate (req, res) {
+      this.db.Movie.create({
+        title: req.body.title,
+      }).then(() => {
+        res.redirect('/movies/index');
+      });
+  }
+}
+export default MoviesController;

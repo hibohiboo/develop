@@ -11,17 +11,18 @@
 import express from 'express'; // expressサーバ
 import log4js  from 'log4js';   // ロガー
 
-// コントローラクラスのインポート
-import home         from '../controllers/home-controller';
-import hello        from '../controllers/hello-world-controller';
-import moviesRouter from '../controllers/movies-controller';
+import db from '../data/db';
 
+// コントローラクラスのインポート
+import HomeController       from '../controllers/home-controller';
+import HelloWorldController from '../controllers/hello-world-controller';
+import MoviesController      from '../controllers/movies-controller';
 
 const router = express.Router();
 const logger = log4js.getLogger('wmfw.router');
-
+const indexReg = /\/(index)?$/;
 /**
- * トップページ
+ * トップページサンプル
  * @name get /
  * @function
  * @memberof module:router
@@ -29,25 +30,24 @@ const logger = log4js.getLogger('wmfw.router');
  * @param {string} path Expressが処理するルーティングパス
  * @param {callback} middlewear - Expressのミドルウェア
  */
-router.get('/', (req, res) => {
-  logger.debug('index start');
-  res.render('home/index', { title: 'トップページ' });
-});
+router.get('/', HomeController.index);
 
 // ホーム
-router.get('/home/index', home.index);
-router.get('/home/about', home.about);
-router.get('/home/contact', home.contact);
+router.get('/home/index',   HomeController.index);
+router.get('/home/about',   HomeController.about);
+router.get('/home/contact', HomeController.contact);
 
 // ハローワールド
 const helloRouter = express.Router();
-helloRouter.get(/\/(index)?$/, hello.index);
-helloRouter.get('/welcome', hello.welcome);
 
-router.use('/helloworld', helloRouter);
+helloRouter.get(indexReg, HelloWorldController.index);
+helloRouter.get('/welcome',    HelloWorldController.welcome);
+
+router.use('/HelloWorldControllerworld', helloRouter);
 
 // 映画
-router.use('/movies', moviesRouter);
+const moviesController = new MoviesController(db); 
+router.use('/movies', moviesController.getRouter());
 
 const routes = router;
 export default routes;

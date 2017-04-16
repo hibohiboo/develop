@@ -55,27 +55,14 @@ class Server {
    * @constructor
    */
   constructor() {
-    //create expressjs application
+    // expressjs applicationを作成
     this.app = express();
 
-    //configure application
+    // applicationの設定
     this.config();
 
-    //add routes
+    // ルーティングの設定
     this.routes();
-
-    //add api
-    this.api();
-  }
-
-  /**
-   * Create REST API routes
-   *
-   * @class Server
-   * @method api
-   */
-  api() {
-    //empty for now
   }
 
   /**
