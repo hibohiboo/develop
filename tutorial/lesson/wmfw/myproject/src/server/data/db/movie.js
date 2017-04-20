@@ -13,7 +13,7 @@ function Movie(sequelize, DataTypes) {
       autoIncrement: true,
     },
     title: DataTypes.STRING,
-    releaseDate: DataTypes.DATE,
+    releaseDate: DataTypes.DATEONLY,
     genre: DataTypes.STRING,
     price: DataTypes.INTEGER,
   });

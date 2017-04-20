@@ -6,7 +6,22 @@ append variables
 block content
   h2  #{title}
   p
-    a(href="./movies/create") 新規作成
-  ul
+    a(href=`/movies/create`) 新規作成
+  table.table.table-bordered.table-responsive.table-hover.table-striped
+    tr
+      th title
+      th Release Date
+      th Genre
+      th Price
+      th
     each model in models
-      li= model.title
+      tr
+        td= model.title
+        td= (new Date(model.releaseDate)).toISOString('YYYY-MM-DD').split('T')[0]
+        td= model.genre
+        td= model.price
+        td
+         a(href=`/movies/edit/${model.id}`) Edit |
+         a(href=`/movies/details/${model.id}`) Details |
+         a(href=`/movies/delete/${model.id}`) Delete
+         

@@ -18,7 +18,7 @@ module.exports = {
         },
         title: Sequelize.STRING,
         releaseDate: {
-          type: Sequelize.DATE,
+          type: Sequelize.DATEONLY,
         },
         genre: Sequelize.STRING,
         price: Sequelize.INTEGER,
@@ -28,7 +28,7 @@ module.exports = {
         updatedAt: {
           type: Sequelize.DATE,
         },
-      },
+      }
     );
   },
 

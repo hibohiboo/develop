@@ -47,7 +47,7 @@ router.use('/HelloWorldControllerworld', helloRouter);
 
 // 映画
 const moviesController = new MoviesController(db); 
-router.use('/movies', moviesController.getRouter());
+router.use('/movies', moviesController.createRouter());
 
 const routes = router;
 export default routes;

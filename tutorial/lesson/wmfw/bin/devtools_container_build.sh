@@ -4,7 +4,7 @@
 bin_dir=$(cd $(dirname $0) && pwd)
 
 # eslint
-cd $bin_dir/../devtools/eslint && docker-compose build
+docker-compose -f $bin_dir/../devtools/eslint/docker-compose.yml build
 
 # jsdoc
 cd $bin_dir/../devtools/jsdoc && docker-compose build

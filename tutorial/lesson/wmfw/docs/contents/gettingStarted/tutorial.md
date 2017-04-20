@@ -33,9 +33,15 @@ getパラメータの取得は`req.query`で行う
 [index.pug](https://github.com/hibohiboo/develop/tree/0e1e3b01aef93edec477d9f369f1a81cc78ee6d3/tutorial/lesson/wmfw/myproject/src/client/views/hello/index.pug)
 
 
+## 変数
+
+`=`やes6の記法で書くことができる。
+
+
 ## 参考
 
 [first mvc app][*1]
 
-[*1][https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/]
+[*1]:https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/
 [*2]:https://pugjs.org/language/iteration.html
+[*3]:https://github.com/aspnet/MusicStore

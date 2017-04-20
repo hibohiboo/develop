@@ -3,6 +3,21 @@ extends ../shared/_layout
 block content
   h2 #{title}
 
-  form(method="post")
-    input(name="title")
+  form(method="post").form-horizonta
+    div.form-group
+      label(for="title").col-md-2.control-label Title
+      div.col-md-10
+        input(name="title" id="title" value=`${model.title}`)
+    div.form-group
+      label(for="releaseDate").col-md-2.control-label Rease Date
+      div.col-md-10
+        input(name="releaseDate" id="releaseDate" type="date" value=`${model.releaseDate}`)
+    div.form-group
+      label(for="genre").col-md-2.control-label Genre
+      div.col-md-10
+        input(name="genre" id="genre" value=`${model.genre}`)
+    div.form-group
+      label(for="price").col-md-2.control-label Price
+      div.col-md-10
+        input(name="price" id="price" value=`${model.price}`)
     input(type="submit" value="作成")
