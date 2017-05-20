@@ -1,0 +1,7 @@
+ruby:
+  build: ./ruby
+  volumes:
+   - ./bin:/home/bin
+   - ./gist:/home/gist
+  ports:
+    - "80:80"
