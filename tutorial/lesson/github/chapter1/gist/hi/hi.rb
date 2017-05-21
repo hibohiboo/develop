@@ -1,8 +1,8 @@
 require 'sinatra'
 require 'octokit'
 
-ENV["SSL_CERT_FILE"] = "./cacert.pem"
-
+set :bind, '0.0.0.0'
+set :port, 8080
 set :views, "."
 
 get '/:username' do |username|
