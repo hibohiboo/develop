@@ -3,7 +3,7 @@ nvm_repo: "git://github.com/creationix/nvm.git"
 # This could be set to 'user' to support user installs.
 nvm_env: user
 
-nvm_version: v0.32.1
+nvm_version: v0.33.2
 
 # This sets the nvm global nodejs version.| stable:最新, lts/boron:6.9.1, lts/argon:4.6.2 
 nvm_default_node_version: lts/boron
