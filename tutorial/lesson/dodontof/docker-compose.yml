@@ -1,0 +1,6 @@
+version: '2'
+services:
+  dodontof:
+    build: ./nginx
+    ports:
+      - "80:80"
