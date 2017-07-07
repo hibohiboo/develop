@@ -1,11 +1,16 @@
 # ansibleインストール用shell
 $ansible_install = <<SHELL
-    if ! type ansible > /dev/null 2>&1; then
-      sudo apt-get update
-      sudo apt-get -y install libffi-dev libssl-dev python-pip # package管理ツール
-      sudo pip install --upgrade pip
-      sudo pip install ansible           # provisioning ツール
-    fi
+  if ! type virtualenv > /dev/null 2>&1; then
+    # rootユーザとして実行されるためsudo不要
+    sudo apt-get update
+    sudo apt-get -y install curl
+    sudo apt-get -y install libffi-dev libssl-dev python-pip
+    sudo pip install --upgrade pip
+    sudo pip install virtualenv
+
+    # vagrantユーザとしてvirtualenvとansibleをインストール
+    su -c "source /vagrant/provision/bash/install_ansible.sh" vagrant
+  fi
 SHELL
 
 # virtual machine設定
@@ -41,7 +46,9 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: $ansible_install
   # ansibleを実行
   config.vm.provision "shell", inline: <<-SHELL
+    # virtualenv起動
+    source /home/vagrant/venv/bin/activate
     # provision 実行
-    sudo ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
+    ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
   SHELL
 end

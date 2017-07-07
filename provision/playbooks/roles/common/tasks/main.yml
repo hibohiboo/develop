@@ -1,7 +1,8 @@
 ---
 # docker-composeのインストールに使用。
-- name: curl install
-  apt: name=curl state=present
+# anibleのインストールに利用するようになったためそちらに移動
+#- name: curl install
+#  apt: name=curl state=present
 # 対話型シェルの自動化に使用
 - name: expect install
   apt: name=expect state=present
