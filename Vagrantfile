@@ -33,7 +33,7 @@ Vagrant.configure(2) do |config|
     # Vagrant1.8から利用出来るLinked Cloneをオンにする。
     vm.linked_clone = true
     # vm.cpus = 2
-    vm.customize [ "modifyvm", :id, "--ioapic", "on"]
+    vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
     # ↓起動が止まるときの確認用
     # vm.gui = true
   end
@@ -49,6 +49,6 @@ Vagrant.configure(2) do |config|
     # virtualenv起動
     source /home/vagrant/venv/bin/activate
     # provision 実行
-    ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
+    ANSIBLE_CONFIG=/vagrant/provision/.ansible.cfg ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
   SHELL
 end
