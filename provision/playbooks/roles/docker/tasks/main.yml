@@ -108,7 +108,7 @@
     shell: rm /usr/local/bin/docker-compose
     when: ver_check_compose|failed
 
-  - name: check docker
+  - name: check docker-compose
     command: docker-compose
     register: result_compose
     ignore_errors: True
