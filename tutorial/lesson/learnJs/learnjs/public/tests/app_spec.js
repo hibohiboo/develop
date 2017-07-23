@@ -31,9 +31,9 @@ describe('LearnJs', function(){
   })
 
   describe('problem view', ()=>{
-    it('has a title that includes the prblem number', ()=>{
+    it('has a title that includes the problem number', ()=>{
       var view = learnjs.problemView('1');
-      expect(view.text()).toEqual('Problem #1 Comming Soon!');
+      expect(view.text().trim()).toEqual('Problem #1 Comming Soon!');
     });
   });
 });
