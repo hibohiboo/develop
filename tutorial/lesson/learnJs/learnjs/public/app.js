@@ -15,3 +15,6 @@ learnjs.showView = function(hash){
   }
   $('.view-container').empty().append(viewFn(hashParts[1]));
 }
+learnjs.appOnReady = ()=>{
+  learnjs.showView(window.location.hash);
+}

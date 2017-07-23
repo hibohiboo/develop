@@ -15,6 +15,13 @@ describe('LearnJs', function(){
     learnjs.showView('#problem-42');
     expect(learnjs.problemView).toHaveBeenCalledWith('42');
   });
+
+  it('invokes the route when loaded', ()=>{
+    spyOn(learnjs, 'showView');
+    learnjs.appOnReady();
+    expect(learnjs.showView).toHaveBeenCalledWith(window.location.hash);
+  })
+
   describe('problem view', ()=>{
     it('has a title that includes the prblem number', ()=>{
       var view = learnjs.problemView('1');
