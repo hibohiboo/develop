@@ -14,5 +14,11 @@ describe('LearnJs', function(){
     spyOn(learnjs, 'problemView');
     learnjs.showView('#problem-42');
     expect(learnjs.problemView).toHaveBeenCalledWith('42');
-  })
-})
+  });
+  describe('problem view', ()=>{
+    it('has a title that includes the prblem number', ()=>{
+      var view = learnjs.problemView('1');
+      expect(view.text()).toEqual('Problem #1 Comming Soon!');
+    });
+  });
+});
