@@ -18,6 +18,13 @@ learnjs.applyObject = (obj, elem)=>{
   }
 }
 
+learnjs.flashElement = (elem, content)=>{
+  elem.fadeOut('fast', ()=>{
+    elem.html(content);
+    elem.fadeIn();
+  });
+}
+
 learnjs.problemView = (data)=>{
   const problemNumber = parseInt(data, 10);
   const title = 'Problem #' + problemNumber;
@@ -36,7 +43,7 @@ learnjs.problemView = (data)=>{
     if(checkAnswer()){
       text = 'Correct!';
     }
-    resultFlash.text(text);
+    learnjs.flashElement( resultFlash, text);
     return false;
   }
 
