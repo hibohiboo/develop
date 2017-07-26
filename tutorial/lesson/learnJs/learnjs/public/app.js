@@ -1,13 +1,34 @@
 'use strict';
 var learnjs = {};
-learnjs.problemView = (problemNumber)=>{
-  var title = 'Problem #' + problemNumber + ' Comming Soon!';
 
-  var view = $('.templates .problem-view').clone();
+learnjs.problems = [
+  {
+    description : "What is truth?",
+    code :  "function problem() { return __; }"
+  },
+  {
+    description: "Simple Math",
+    code: "function problem(){return 42 === 6 * __ ;}"
+  }
+];
+
+learnjs.applyObject = (obj, elem)=>{
+  for(let key in obj){
+    elem.find('[data-name="' + key + '"]').text(obj[key]);
+  }
+}
+
+learnjs.problemView = (data)=>{
+  let problemNumber = parseInt(data, 10);
+  let title = 'Problem #' + problemNumber;
+  let view = $('.templates .problem-view').clone();
+
   view.find('.title').text(title);
+  learnjs.applyObject(learnjs.problems[problemNumber], view);
 
   return view;
-};
+}
+
 learnjs.showView = function(hash){
   var routes = {
     '#problem' : learnjs.problemView
@@ -25,4 +46,5 @@ learnjs.appOnReady = ()=>{
     learnjs.showView(window.location.hash);
   }
   learnjs.showView(window.location.hash);
-}
+};
+
