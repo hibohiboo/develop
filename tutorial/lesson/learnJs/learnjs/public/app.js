@@ -1,5 +1,5 @@
 'use strict';
-var learnjs = {};
+const learnjs = {};
 
 learnjs.problems = [
   {
@@ -19,22 +19,40 @@ learnjs.applyObject = (obj, elem)=>{
 }
 
 learnjs.problemView = (data)=>{
-  let problemNumber = parseInt(data, 10);
-  let title = 'Problem #' + problemNumber;
-  let view = $('.templates .problem-view').clone();
+  const problemNumber = parseInt(data, 10);
+  const title = 'Problem #' + problemNumber;
+  const view = $('.templates .problem-view').clone();
+  const problemData = learnjs.problems[problemNumber-1];
+  const resultFlash = view.find('.result');
 
+  function checkAnswer(){
+    const answer = view.find('.answer').val();
+    const test = problemData.code.replace('__', answer) + '; problem();';
+    return eval(test);
+  }
+
+  function checkAnswerClick(){
+    let text = 'Incorrect!';
+    if(checkAnswer()){
+      text = 'Correct!';
+    }
+    resultFlash.text(text);
+    return false;
+  }
+
+  view.find('.check-btn').on('click', checkAnswerClick);
   view.find('.title').text(title);
-  learnjs.applyObject(learnjs.problems[problemNumber], view);
+  learnjs.applyObject(problemData, view);
 
   return view;
 }
 
 learnjs.showView = function(hash){
-  var routes = {
+  const routes = {
     '#problem' : learnjs.problemView
   };
-  var hashParts = hash.split('-');
-  var viewFn = routes[hashParts[0]];
+  const hashParts = hash.split('-');
+  const viewFn = routes[hashParts[0]];
   if(!viewFn){
     return;
   }

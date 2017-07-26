@@ -37,11 +37,28 @@ describe('LearnJs', function(){
     });
     it('has a description that includes the problem number', ()=>{
       var view = learnjs.problemView('1');
-      expect(view.find('[data-name="description"]').text().trim()).toEqual(learnjs.problems[1].description);
+      expect(view.find('[data-name="description"]').text().trim()).toEqual('What is truth?');
     });
     it('has a description that includes the problem number', ()=>{
       var view = learnjs.problemView('1');
-      expect(view.find('[data-name="code"]').text().trim()).toEqual(learnjs.problems[1].code);
+      expect(view.find('[data-name="code"]').text().trim()).toEqual('function problem() { return __; }');
     });
   });
+  describe('answer section', ()=>{
+    var view;
+    beforeEach(function() {
+        view = learnjs.problemView('1');
+    });
+    it('can check a correct answer by hitting a button', ()=>{
+      console.log(view);
+      view.find('.answer').val('true');
+      view.find('.check-btn').click();
+      expect(view.find('.result').text()).toEqual('Correct!');
+    });
+    it('reject an incorrect answer', ()=>{
+      view.find('.answer').val('false');
+      view.find('.check-btn').click();
+      expect(view.find('.result').text()).toEqual('Incorrect!');
+    })
+  })
 });
