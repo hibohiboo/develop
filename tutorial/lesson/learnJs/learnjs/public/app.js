@@ -80,6 +80,7 @@ learnjs.problemView = (data)=>{
 learnjs.showView = function(hash){
   const routes = {
     '#problem' : learnjs.problemView,
+    '#':learnjs.landingView,
     '':learnjs.landingView
   };
   const hashParts = hash.split('-');
