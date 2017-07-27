@@ -25,10 +25,14 @@ learnjs.flashElement = (elem, content)=>{
   });
 }
 
+learnjs.template = (name)=>{
+  return $('.templates .'+name).clone();
+}
+
 learnjs.problemView = (data)=>{
   const problemNumber = parseInt(data, 10);
   const title = 'Problem #' + problemNumber;
-  const view = $('.templates .problem-view').clone();
+  const view = learnjs.template('problem-view');
   const problemData = learnjs.problems[problemNumber-1];
   const resultFlash = view.find('.result');
 
@@ -39,11 +43,15 @@ learnjs.problemView = (data)=>{
   }
 
   function checkAnswerClick(){
-    let text = 'Incorrect!';
+
     if(checkAnswer()){
-      text = 'Correct!';
+      const correctFlash = learnjs.template('correct-flash');
+      correctFlash.find('a').attr('href', '#problem-' + (problemNumber + 1));
+      learnjs.flashElement(resultFlash, correctFlash);
+      return false;
     }
-    learnjs.flashElement( resultFlash, text);
+
+    learnjs.flashElement( resultFlash, 'Incorrect!');
     return false;
   }
 
