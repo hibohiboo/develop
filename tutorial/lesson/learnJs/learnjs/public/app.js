@@ -29,6 +29,18 @@ learnjs.template = (name)=>{
   return $('.templates .'+name).clone();
 }
 
+learnjs.buildCorrectFlash = (problemNum)=>{
+  const correctFlash = learnjs.template('correct-flash');
+  const link = correctFlash.find('a');
+  if(problemNum < learnjs.problems.length){
+    link.attr('href', '#problem-' + (problemNum + 1));
+  }else{
+    link.attr('href', '');
+    link.text("You're Finished!")
+  }
+  return correctFlash;
+}
+
 learnjs.problemView = (data)=>{
   const problemNumber = parseInt(data, 10);
   const title = 'Problem #' + problemNumber;
@@ -45,8 +57,7 @@ learnjs.problemView = (data)=>{
   function checkAnswerClick(){
 
     if(checkAnswer()){
-      const correctFlash = learnjs.template('correct-flash');
-      correctFlash.find('a').attr('href', '#problem-' + (problemNumber + 1));
+      const correctFlash = learnjs.buildCorrectFlash(problemNumber);
       learnjs.flashElement(resultFlash, correctFlash);
       return false;
     }
@@ -73,6 +84,7 @@ learnjs.showView = function(hash){
   }
   $('.view-container').empty().append(viewFn(hashParts[1]));
 }
+
 learnjs.appOnReady = ()=>{
   // イベントハンドラの登録
   window.onhashchange = ()=>{
