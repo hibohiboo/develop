@@ -50,6 +50,6 @@ Vagrant.configure(2) do |config|
     # virtualenv起動
     source /home/vagrant/venv/bin/activate
     # provision 実行
-    ANSIBLE_CONFIG=/vagrant/provision/.ansible.cfg ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local
+    ANSIBLE_CONFIG=/vagrant/provision/.ansible.cfg ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local -v
   SHELL
 end

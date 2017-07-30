@@ -10,34 +10,36 @@
   failed_when: no
   changed_when: result.rc != 0
 
+# - block:
+#   - name: dockerがインストールされていればバージョンを確認
+#     shell: docker --version | grep {{ docker_version }}
+#     register: ver_check
+#     ignore_errors: True
+#     check_mode: no
+#     failed_when: no
+#     changed_when: ver_check.rc != 0
+
+#   - name: バージョンがvarsで指定されたものと異なれば、Remove "docker" package
+#     apt:
+#       name: docker-ce
+#       state: absent
+#     when: ver_check|failed
+
+#   - name: check docker
+#     command: docker-compose
+#     register: result
+#     ignore_errors: True
+#     check_mode: no
+#     failed_when: no
+#     changed_when: result.rc != 0
+#     when: ver_check|failed
+#   when: result|success
+
 - block:
-  - name: dockerがインストールされていればバージョンを確認
-    shell: docker --version | grep {{ docker_version }}
-    register: ver_check
-    ignore_errors: True
-    check_mode: no
-    failed_when: no
-    changed_when: ver_check.rc != 0
+  - name: debug dockreインストール
+    debug: var=result
 
-  - name: バージョンがvarsで指定されたものと異なれば、Remove "docker" package
-    apt:
-      name: docker-ce
-      state: absent
-    when: ver_check|failed
-
-  - name: check docker
-    command: docker-compose
-    register: result
-    ignore_errors: True
-    check_mode: no
-    failed_when: no
-    changed_when: result.rc != 0
-    when: ver_check|failed
-  when: result|success
-
-- block:
   - name: step0.5
-    #shell: echo 127.0.1.1 $(hostname) >> /etc/hosts
     lineinfile:
       path: /etc/hosts
       line: '127.0.1.1 vagrant'
@@ -95,28 +97,28 @@
   failed_when: no
   changed_when: result_compose.rc != 0
 
-- block:
-  - name: docker-composeがインストールされていればバージョンを確認
-    shell: docker-compose --version | grep {{ docker-compose_version }}
-    register: ver_check_compose
-    ignore_errors: True
-    check_mode: no
-    failed_when: no
-    changed_when: ver_check_compose.rc != 0
+# - block:
+#   - name: docker-composeがインストールされていればバージョンを確認
+#     shell: docker-compose --version | grep {{ docker-compose_version }}
+#     register: ver_check_compose
+#     ignore_errors: True
+#     check_mode: no
+#     failed_when: no
+#     changed_when: ver_check_compose.rc != 0
 
-  - name: バージョンがvarsで指定されたものと異なれば、Remove "docker-compose" package
-    shell: rm /usr/local/bin/docker-compose
-    when: ver_check_compose|failed
+#   - name: バージョンがvarsで指定されたものと異なれば、Remove "docker-compose" package
+#     shell: rm /usr/local/bin/docker-compose
+#     when: ver_check_compose|failed
 
-  - name: check docker-compose
-    command: docker-compose
-    register: result_compose
-    ignore_errors: True
-    check_mode: no
-    failed_when: no
-    changed_when: result_compose.rc != 0
-    when: ver_check_compose|failed
-  when: result_compose|success
+#   - name: check docker-compose
+#     command: docker-compose
+#     register: result_compose
+#     ignore_errors: True
+#     check_mode: no
+#     failed_when: no
+#     changed_when: result_compose.rc != 0
+#     when: ver_check_compose|failed
+#   when: result_compose|success
 
 # 現在のバージョンに合わせてURLを変えること
 - block:
