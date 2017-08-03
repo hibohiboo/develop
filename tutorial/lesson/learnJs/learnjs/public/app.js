@@ -3,6 +3,8 @@ const learnjs = {
   poolId: 'us-east-1:6c68560f-6729-4443-b598-c7aadf77d2ca'
 };
 
+learnjs.identity = new $.Deferred();
+
 learnjs.problems = [
   {
     description : "What is truth?",
@@ -94,7 +96,6 @@ learnjs.problemView = (data)=>{
   return view;
 }
 
-learnjs.identity = new $.Deferred();
 
 learnjs.profileView=()=>{
   const view = learnjs.template('profile-view');
@@ -139,10 +140,8 @@ learnjs.awsRefresh = ()=>{
   const defered = new $.Deferred();
   AWS.config.credentials.refresh(function(err){
     if(err){
-      defered.reject(err);
-      return;
+      return defered.reject(err);
     }
-
     return defered.resolve(AWS.config.credentials.identityId);
   });
   return defered.promise();
@@ -162,6 +161,16 @@ function googleSignIn(googleUser){
       }
     })
   });
+  function refresh(){
+    return gapi.auth2.getAuthInstance().signIn({
+      prompt: 'login'
+    }).then(function(userUpdate){
+      const creds = AWS.config.credentials;
+      const newToken = userUpdate.getAuthResponse().id_token;
+      creds.params.Logins['accounts.google.com'] = newToken;
+      return learnjs.awsRefresh();
+    })
+  }
   learnjs.awsRefresh().then(function(id){
     learnjs.identity.resolve({
       id: id,
@@ -169,15 +178,6 @@ function googleSignIn(googleUser){
       refresh: refresh
     });
   });
+
 }
 
-function refresh(){
-  return gapi.auth2.getAuthInstance().signIn({
-    prompt: 'login'
-  }).then(function(userUpdate){
-    const creds = AWS.config.credentials;
-    const newToken = userUpdate.getAuthResponse.id_token;
-    creds.params.Logins['accounts.google.com'] = newToken;
-    return learnjs.awsRefresh();
-  })
-}
