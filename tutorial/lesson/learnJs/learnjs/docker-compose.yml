@@ -1,0 +1,8 @@
+version: '3'
+services:
+  node:
+    build: "."
+    volumes:
+      - ./dist:/dist
+      - ./bin/build_bundle.sh:/home/node/build_bundle.sh
+    command: /home/node/build_bundle.sh

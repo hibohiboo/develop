@@ -200,21 +200,30 @@ function create_table() {
     --policy-name ${table_name}_table_access
 }
 
+# 仮想環境でnpm installが動かないためDockerに以降
+# function build_bundle() {
+#   check_node_deps
+#   pushd services
+#   rm archive.zip
+#   npm install || exit 1
+#   mkdir -p dist
+#   cp -r node_modules dist/
+#   cp -r lib/* dist/
+#   cd dist
+#   chmod -R a+r *
+#   zip -r archive.zip *
+#   mv archive.zip ..
+#   cd ..
+#   rm -rf dist
+#   popd
+# }
+
 function build_bundle() {
-  check_node_deps
-  pushd services
-  rm archive.zip
-  npm install || exit 1
-  mkdir -p dist
-  cp -r node_modules dist/
-  cp -r lib/* dist/
-  cd dist
-  chmod -R a+r *
-  zip -r archive.zip *
-  mv archive.zip ..
-  cd ..
-  rm -rf dist
-  popd
+  mkdir dist
+  rm services/archiive.zip
+  docker-compose run node
+  mv dist/archive.zip ./services/
+  rm -r dist
 }
 
 function deploy_bundle {
