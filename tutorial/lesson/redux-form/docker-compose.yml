@@ -1,0 +1,27 @@
+version: '3'
+services:
+  lesson_buildtool_redux_form:
+    # webpackディレクトリ内のDockerfileビルド
+    build: ./webpack
+    # webpackを使用するディレクトリを共有する。
+    volumes:
+    # ビルドするソースファイル
+    - ./src:/home/vagrant/src
+    # ビルドファイルの出力先
+    - ./dist:/home/vagrant/dist
+    # 開発用サーバのホームページに使用するhtml用ディレクトリ
+    - ./public:/home/vagrant/public
+    # コンテナ上のpackage.jsonを上書き
+    - ./webpack/package.json:/home/vagrant/package.json
+    # webpackの設定ファイル
+    - ./webpack/webpack.config.js:/home/vagrant/webpack.config.js
+    # typescriptの設定ファイル
+    - ./webpack/tsconfig.json:/home/vagrant/tsconfig.json
+    # babelの設定ファイル
+    - ./webpack/.babelrc:/home/vagrant/.babelrc
+    ports:
+      - "8080:8080" # ホスト:コンテナでポート指定
+    # docker-compose run を行ったときにコンテナ上で下のコマンドを行う
+    command: [npm, run, start]
+
+    
