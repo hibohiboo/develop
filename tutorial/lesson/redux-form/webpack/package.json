@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --display-error-details",
     "start": "webpack-dev-server"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
@@ -24,6 +26,10 @@
     "@types/react-redux": "^5.0.4",
     "@types/redux": "^3.6.0",
     "@types/redux-form": "^7.0.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
     "ts-loader": "^2.3.3",
     "typescript": "^2.6.0-dev.20170819",
     "webpack": "^3.5.5",

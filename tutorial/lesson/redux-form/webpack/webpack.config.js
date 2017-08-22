@@ -5,7 +5,7 @@ module.exports = {
   context: __dirname + '/src',
   // エントリーポイントとしてapp.jsを起点にビルドする
   entry: {
-    typescript: './app.jsx',
+    typescript: './app.tsx',
     // code-splitting用の設定
     vendor: ['react', 'react-dom', 'redux', 'react-redux', 'redux-form']
   },
