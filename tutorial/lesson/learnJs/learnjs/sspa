@@ -221,6 +221,7 @@ function create_table() {
 function build_bundle() {
   mkdir dist
   rm services/archiive.zip
+  docker-compose build
   docker-compose run node
   mv dist/archive.zip ./services/
   rm -r dist

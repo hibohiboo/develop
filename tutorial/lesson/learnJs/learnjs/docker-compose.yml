@@ -5,4 +5,5 @@ services:
     volumes:
       - ./dist:/dist
       - ./bin/build_bundle.sh:/home/node/build_bundle.sh
+      - ./sspa:/home/node/sspa
     command: /home/node/build_bundle.sh

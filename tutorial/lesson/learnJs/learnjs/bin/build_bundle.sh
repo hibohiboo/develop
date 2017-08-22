@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
-  check_node_deps
-#  pushd services
+#  check_node_deps
+  pushd services
 #  rm archive.zip
 #  npm install || exit 1
   mkdir -p dist

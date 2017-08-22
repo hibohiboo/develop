@@ -126,6 +126,19 @@ learnjs.landingView = ()=>{
   return learnjs.template('landing-view');
 }
 
+learnjs.popularAnswers = (problemId)=>{
+  return learnjs.identity.then(()=>{
+    const lambda = new AWS.Lambda();
+    const params = {
+      FunctionName: 'learnjs_popularAnswers',
+      Payload: JSON.stringify({problemNumber: problemId})
+    };
+    return learnjs.sendAwsRequest(lambda.invoke(params), function(){
+      return learnjs.popularAnswers(problemId);
+    })
+  })
+}
+
 learnjs.problemView = (data)=>{
   const problemNumber = parseInt(data, 10);
   const title = 'Problem #' + problemNumber;
