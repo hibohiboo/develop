@@ -15,6 +15,8 @@ services:
     - ./webpack/package.json:/home/vagrant/package.json
     # webpackの設定ファイル
     - ./webpack/webpack.config.js:/home/vagrant/webpack.config.js
+    # webpackの出力用設定ファイル
+    - ./webpack/webpack.config.prod.js:/home/vagrant/webpack.config.prod.js
     # typescriptの設定ファイル
     - ./webpack/tsconfig.json:/home/vagrant/tsconfig.json
     # babelの設定ファイル
