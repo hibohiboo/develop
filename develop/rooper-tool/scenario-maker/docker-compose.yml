@@ -1,0 +1,15 @@
+version: '3'
+services:
+  server:
+    image: nginx:1.13.3
+    volumes:
+      - ./public:/usr/share/nginx/html:ro 
+    ports:
+      -  80:80
+
+  awscli:
+    build: ./aws-cli  
+    volumes:
+      - ./public:/public
+      - ./aws-cli/.aws:/root/.aws
+      - ./aws-cli/conf:/conf
