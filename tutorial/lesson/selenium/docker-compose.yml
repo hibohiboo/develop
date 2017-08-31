@@ -24,3 +24,10 @@ services:
     build: ./chromium
     volumes:
       - /dev/shm:/dev/shm
+  alpine:
+    build: ./alpine
+    links:
+      - hub
+      - chrome
+    volumes:
+      - ./src:/home/selenium/src
