@@ -15,15 +15,6 @@ services:
       - HUB_PORT_4444_TCP_ADDR=hub
       - HUB_PORT_4444_TCP_PORT=4444
       - HUB_ENV_no_proxy=localhost
-  node:
-    build: ./nodejs
-    volumes:
-      - ./src:/home/selenium/src
-      - /dev/shm:/dev/shm
-  chromium:
-    build: ./chromium
-    volumes:
-      - /dev/shm:/dev/shm
   alpine:
     build: ./alpine
     links:

@@ -1,4 +1,7 @@
+# http://dev.classmethod.jp/tool/docker/apline-accelerates-docker-dev/
 FROM alpine:edge
+
+# http://qiita.com/dd511805/items/dfe03c5486bf1421875a
 
 # node.js stable のインストール
 RUN echo http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
