@@ -13,3 +13,4 @@ services:
     working_dir: /home/workdir
     volumes:
       - ./src:/home/workdir/src
+      - ./public:/home/workdir/public
