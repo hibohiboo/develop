@@ -6,3 +6,10 @@ services:
     build: ./tools/lint
     volumes: 
       - ./src:/home/workdir/src
+  
+  # node.js
+  node:
+    image: node:latest
+    working_dir: /home/workdir
+    volumes:
+      - ./src:/home/workdir/src
