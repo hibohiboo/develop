@@ -1,0 +1,38 @@
+#! /bin/sh
+
+if [ -z "$(git branch)" ]; then
+    exit 0
+fi
+
+if [ -n "${GIT_DIR}" ]; then
+    hooksdir="./${GIT_DIR}/hooks/"
+else
+    hooksdir="./"
+fi
+
+. "${hooksdir}common.sh"
+
+isOnMasterBranch
+if [ $? -eq 0 ]; then
+    echo "can't commit on master branch."
+    echo "please commit on topic branch."
+    exit 1
+fi
+
+isOnDevelopBranch
+if [ $? -eq 0 ]; then
+    echo "can't commit on develop branch."
+    echo "please commit on topic branch."
+    exit 1
+fi
+
+isOnFixBranch
+if [ $? -eq 1 ]; then
+    echo "can't commit on not fix/#[0-9]+/hogehoge branch."
+    echo "please rename branch and commit ."
+    echo "git br -m before-name after-name"
+    exit 1
+fi
+
+
+exit 0
