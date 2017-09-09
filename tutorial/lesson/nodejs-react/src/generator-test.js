@@ -1,17 +1,20 @@
 /**
- * Generator関数定義
+ * フィボナッチ数を列挙するGenerator関数定義
  */
-function * counter () {
-  yield 1
-  yield 2
-  yield 3
+function * genFibonacci () {
+  let a = 0
+  let b = 1
+  while (true) {
+    [a, b] = [b, a + b]
+    yield a
+  }
 }
 
 // Generatorオブジェクト作成
-const g = counter()
+const fib = genFibonacci()
 
 // next()メソッドを呼ぶ
-console.log(g.next())
-console.log(g.next())
-console.log(g.next())
-console.log(g.next())
+for (const num of fib) {
+  if (num > 50) break
+  console.log(num)
+}
