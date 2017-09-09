@@ -1,0 +1,8 @@
+version: '3'
+services:
+  
+  # 構文チェックツール
+  lint:
+    build: ./tools/lint
+    volumes: 
+      - ./src:/home/workdir/src
