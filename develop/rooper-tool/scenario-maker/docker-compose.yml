@@ -13,3 +13,13 @@ services:
       - ./public:/public
       - ./aws-cli/.aws:/root/.aws
       - ./aws-cli/conf:/conf
+  
+  jasmine:
+    build: ./tools/jasmine
+    volumes:
+      - ./public:/home/workdir/public
+      - ./tools/jasmine/app.js:/home/workdir/app.js
+    ports:
+      -  3000:3000
+    working_dir: /home/workdir
+    command: node app.js
