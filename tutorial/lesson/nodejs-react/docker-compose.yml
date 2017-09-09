@@ -1,12 +1,5 @@
 version: '3'
 services:
-  
-  # 構文チェックツール
-  lint:
-    build: ./tools/lint
-    volumes: 
-      - ./src:/home/workdir/src
-  
   # node.js
   node:
     image: node:latest
@@ -14,3 +7,15 @@ services:
     volumes:
       - ./src:/home/workdir/src
       - ./public:/home/workdir/public
+    
+  # 構文チェックツール
+  lint:
+    build: ./tools/lint
+    volumes: 
+      - ./src:/home/workdir/src
+  # トランスパイラ
+  babel:
+    build: ./tools/babel
+    volumes: 
+      - ./src:/home/workdir/src
+      - ./dist:/home/workdir/dist 
