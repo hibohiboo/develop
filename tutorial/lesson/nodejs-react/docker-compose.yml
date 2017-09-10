@@ -7,18 +7,15 @@ services:
     volumes:
       - ./src:/home/workdir/src
       - ./public:/home/workdir/public
-    
-  # 構文チェックツール
-  lint:
-    build: ./tools/lint
-    volumes: 
-      - ./src:/home/workdir/src
-  # トランスパイラ
-  babel:
-    build: ./tools/babel
-    volumes: 
-      - ./src:/home/workdir/src
-      - ./dist:/home/workdir/dist
-    environment:
-      - CHOKIDAR_USEPOLLING=true # watchするときにdocker上のファイル更新を検知のために必要。
-    command: npm run watch:compact
+  
+  # React雛形
+  react-app:
+    build: ./server/react-app
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app/src:/home/workdir/app/src
+      - ./app/public:/home/workdir/app/public
+      - ./app/package.json:/home/workdir/app/package.json
+    working_dir: /home/workdir/app
+    command: npm start
