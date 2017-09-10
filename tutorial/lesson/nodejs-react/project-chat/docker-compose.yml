@@ -1,0 +1,15 @@
+version: '3'
+services:
+  
+  # React開発サーバ
+  chat:
+    build: ./server/express
+    ports:
+      - 3001:3001
+    volumes:
+      - ./app/src:/home/workdir/app/src
+      - ./app/public:/home/workdir/app/public
+      - ./app/chat-server.js:/home/workdir/app/chat-server.js
+
+    working_dir: /home/workdir/app
+    command: node chat-server.js
