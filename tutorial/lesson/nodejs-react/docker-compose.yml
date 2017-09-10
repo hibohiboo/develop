@@ -28,3 +28,12 @@ services:
   create-react-app:
     build: ./server/react-app
     container_name: create-react-app
+  
+  # ビルド結果確認用サーバー
+  serve:
+    build: ./server/serve
+    ports:
+      - 3001:3001
+    volumes:
+      - ./build:/home/workdir/build
+    command: serve -s /home/workdir/build -p 3001
