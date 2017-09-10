@@ -1,0 +1,15 @@
+version: '3'
+services:
+  
+  # React開発サーバ
+  bbs:
+    build: ./server/express
+    ports:
+      - 3001:3001
+    volumes:
+      - ./app/src:/home/workdir/app/src
+      - ./app/public:/home/workdir/app/public
+      - ./app/bbs-server.js:/home/workdir/app/bbs-server.js
+
+    working_dir: /home/workdir/app
+    command: node bbs-server.js

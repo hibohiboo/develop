@@ -1,0 +1,9 @@
+version: '3'
+services:
+  # トランスパイラ
+  webpack:
+    build: ./webpack
+    volumes: 
+      - ../app/src:/home/workdir/src
+      - ../app/public:/home/workdir/public
+    working_dir: /home/workdir
