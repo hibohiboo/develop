@@ -17,6 +17,7 @@ services:
       - ./app/src:/home/workdir/app/src
       - ./app/public:/home/workdir/app/public
       - ./app/package.json:/home/workdir/app/package.json
+      - ./build:/home/workdir/app/build
     working_dir: /home/workdir/app
     # Docker用にpollingの設定。ファイルを書き換えた時のブラウザ自動更新を有効化
     environment:
