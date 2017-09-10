@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "babel",
-    "watch": "babel src -w -d dest"
+    "watch:compact": "npm run watch:base -- --compact=true --source-maps",
+    "watch:base": "babel src -w -d dist"
   },
   "keywords": [],
   "author": "",

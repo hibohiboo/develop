@@ -18,7 +18,7 @@ services:
     build: ./tools/babel
     volumes: 
       - ./src:/home/workdir/src
-      - ./dest:/home/workdir/dest
+      - ./dist:/home/workdir/dist
     environment:
       - CHOKIDAR_USEPOLLING=true # watchするときにdocker上のファイル更新を検知のために必要。
-    command: npm run watch
+    command: npm run watch:compact
