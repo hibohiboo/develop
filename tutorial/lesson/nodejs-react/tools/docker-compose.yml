@@ -27,4 +27,4 @@ services:
   jest:
     build: ./jest
     volumes: 
-      - ../src:/home/workdir/src
+      - ../dist:/home/workdir/dist
