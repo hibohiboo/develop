@@ -8,7 +8,7 @@ services:
       - ./src:/home/workdir/src
       - ./public:/home/workdir/public
   
-  # React雛形
+  # React開発サーバ
   react-app:
     build: ./server/react-app
     ports:
@@ -18,4 +18,12 @@ services:
       - ./app/public:/home/workdir/app/public
       - ./app/package.json:/home/workdir/app/package.json
     working_dir: /home/workdir/app
+    # Docker用にpollingの設定。ファイルを書き換えた時のブラウザ自動更新を有効化
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     command: npm start
+
+  # React雛形取り出し
+  create-react-app:
+    build: ./server/react-app
+    container_name: create-react-app
