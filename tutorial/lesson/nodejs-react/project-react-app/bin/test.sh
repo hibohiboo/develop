@@ -3,6 +3,5 @@
 # このシェルスクリプトのディレクトリの絶対パスを取得。
 bin_dir=$(cd $(dirname $0) && pwd)
 
-# docker-composeのコンテナ作成
-cd $bin_dir/../ && docker-compose build
-cd $bin_dir/../tools && docker-compose build
+# docker-composeの起動。 
+cd $bin_dir/../ && docker-compose run react-app npm run test

@@ -16,3 +16,8 @@ services:
       - CHOKIDAR_USEPOLLING=true # watchするときにdocker上のファイル更新を検知のために必要。
     # srcディレクトリを監視してdistディレクトリにトランスパイル後のファイルを出力する
     command: npm run watch:compact
+  # 静的チェック
+  flow:
+    build: ./flow
+    volumes: 
+      - ../src:/home/workdir/src
