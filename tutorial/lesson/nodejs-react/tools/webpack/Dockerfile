@@ -15,3 +15,4 @@ RUN npm i -D react-dom
 
 COPY ./package.json package.json
 COPY ./webpack.config.js webpack.config.js
+COPY ./.babelrc .babelrc
