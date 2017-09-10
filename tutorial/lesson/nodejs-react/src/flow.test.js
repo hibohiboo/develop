@@ -4,4 +4,4 @@ function foo(x) {
   return x.split(' ');
 }
 
-foo(34);
+foo('3 4');
