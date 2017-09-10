@@ -1,12 +1,5 @@
 version: '3'
 services:
-  # node.js
-  node:
-    image: node:latest
-    working_dir: /home/workdir
-    volumes:
-      - ./src:/home/workdir/src
-      - ./public:/home/workdir/public
   
   # React開発サーバ
   react-app:
