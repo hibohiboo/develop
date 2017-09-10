@@ -88,7 +88,10 @@ es2015で追加された規約をそれ以前の環境でも使用できるよ�
 [共有設定でらくらく ESLint][*1]
 [Docker cpコマンドでホスト・コンテナ間のファイルのコピーをする][*2]
 [Flowによる型チェックでJavaScriptのつまらないミスを防ぐ方法][*3]
+[jest][*4]
+
 
 [*1]:http://qiita.com/mysticatea/items/dc35ced6bd5e782f50cd
 [*2]:http://unskilled.site/docker-cp%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%81%A7%E3%83%9B%E3%82%B9%E3%83%88%E3%83%BB%E3%82%B3%E3%83%B3%E3%83%86%E3%83%8A%E9%96%93%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%B3/
 [*3]:https://www.webprofessional.jp/writing-better-javascript-with-flow/
+[*4]:https://facebook.github.io/jest/docs/en/getting-started.html
