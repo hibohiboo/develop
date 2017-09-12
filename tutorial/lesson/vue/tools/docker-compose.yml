@@ -1,0 +1,26 @@
+version: '3'
+services:
+  # 構文チェックツール
+  lint:
+    build: ./lint
+    volumes: 
+      - ../src:/home/workdir/src
+
+  # トランスパイラ
+  babel:
+    build: ./babel
+    volumes: 
+      - ../src:/home/workdir/src
+      - ../dist:/home/workdir/dist
+    environment:
+      - CHOKIDAR_USEPOLLING=true # watchするときにdocker上のファイル更新を検知のために必要。
+    # srcディレクトリを監視してdistディレクトリにトランスパイル後のファイルを出力する
+    command: npm run watch:compact
+
+  # # トランスパイラ
+  # webpack:
+  #   build: ./webpack
+  #   volumes: 
+  #     - ../src:/home/workdir/src
+  #     - ../dist:/home/workdir/dist
+  #   working_dir: /home/workdir

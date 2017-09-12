@@ -1,0 +1,9 @@
+version: '3'
+services:
+  # node.js
+  node:
+    build: ./server/express
+    working_dir: /home/workdir/app
+    volumes:
+      - ./dist:/home/workdir/app
+    command: node app.js
