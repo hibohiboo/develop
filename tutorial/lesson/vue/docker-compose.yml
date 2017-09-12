@@ -9,3 +9,11 @@ services:
     volumes:
       - ./dist:/home/workdir/app
     command: node app.js
+  
+  # dev-server
+  cli:
+    build: ./server/cli
+    working_dir: /home/workdir
+    volumes: 
+      - ./src:/home/workdir/src
+    command: npm run dev
