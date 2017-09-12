@@ -19,9 +19,9 @@ if exist "%ALLUSERSPROFILE%\chocolatey\bin\" (
 
 :chocoend
 
-rem gitのインストールは必要ないのでコメントアウト
-rem echo gitインストール
-rem choco install git -y
+
+echo gitインストール
+choco install -y git
 
 rem goto end
 
@@ -41,8 +41,6 @@ echo "git branch -> git br | git log -> git hist"
 copy %currentDir%\git\config %currentDir%\..\.git\config
 
 
-echo gitインストール
-choco install -y git
 
 echo virtualboxインストール
 choco install -y virtualbox

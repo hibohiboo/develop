@@ -1,3 +1,6 @@
 {
-  "extends": "google"
+  "extends": ["eslint:recommended", "airbnb-base", "google"],
+  "env": {
+    "node": true
+  }
 }

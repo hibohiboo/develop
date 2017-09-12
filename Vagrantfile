@@ -20,6 +20,10 @@ Vagrant.configure(2) do |config|
 
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。
+  # auto enp0s8
+  # iface enp0s8 inet static
+  #       address 192.168.50.10
+  #       netmask 255.255.255.0
   # sudo ifconfig enp0s8 192.168.50.10
   config.vm.network "private_network", ip: "192.168.50.10", auto_config:false
   config.vm.network "forwarded_port", guest: 8080, host: 8080
