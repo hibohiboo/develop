@@ -6,18 +6,19 @@ services:
       - ./public:/usr/share/nginx/html:ro 
     ports:
       -  80:80
-
+  # awsへの接続を行う
   awscli:
     build: ./aws-cli  
     volumes:
       - ./public:/public
       - ./aws-cli/.aws:/root/.aws
       - ./aws-cli/conf:/conf
-  
+  # 単体テストサーバー
   jasmine:
     build: ./tools/jasmine
     volumes:
       - ./public:/home/workdir/public
+      - ./src:/home/workdir/src
       - ./tools/jasmine/app.js:/home/workdir/app.js
     ports:
       -  3000:3000
