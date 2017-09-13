@@ -40,7 +40,8 @@ echo "git checkout -> git co | git status -> git st"
 echo "git branch -> git br | git log -> git hist"
 copy %currentDir%\git\config %currentDir%\..\.git\config
 
-
+echo gitkの文字化け対策
+git config --global gui.encoding utf-8
 
 echo virtualboxインストール
 choco install -y virtualbox
