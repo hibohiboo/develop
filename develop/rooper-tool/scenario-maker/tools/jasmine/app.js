@@ -11,8 +11,8 @@ const app = express();
 
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/lib', express.static(path.join(__dirname, 'jasmine/lib')));
-app.use('/src', express.static(path.join(__dirname, 'src')));
+app.use('/tests/lib', express.static(path.join(__dirname, 'jasmine/lib')));
+app.use('/tests/src', express.static(path.join(__dirname, 'src')));
 
 
 app.listen(PORT, HOST);

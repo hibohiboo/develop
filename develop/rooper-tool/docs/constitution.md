@@ -18,4 +18,10 @@ rooper-tool
       - Dockerfile         # awscliツールのコンテナ情報
     - conf
       + s3                 # s3bucketの設定
+    - tools                # 開発用ツール
+      + babel              # トランスパイラ
+      + jasmine            # 単体テスト
+      + lint               # 構文チェック
+    + dist                 # 出力結果
+    
 ```
