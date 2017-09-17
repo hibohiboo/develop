@@ -10,7 +10,7 @@ services:
     ports:
       -  80:80
     command: [nginx-debug, '-g', 'daemon off;']
-
+  # webサーバー
   nginx:
     volumes:
       - ./public:/usr/share/nginx/html:ro 
