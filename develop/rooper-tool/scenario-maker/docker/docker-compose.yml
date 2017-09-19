@@ -4,9 +4,9 @@ services:
   # http://192.168.50.10/ -> http://server/
   # http://192.168.50.10/tests -> http://jasmine/tests/
   proxy:
-    build: ./tools/proxy
+    build: ./server/proxy
     volumes:
-      - ./tools/proxy/conf.d:/etc/nginx/conf.d:ro  
+      - ./server/proxy/conf.d:/etc/nginx/conf.d:ro  
     ports:
       -  80:80
     command: [nginx-debug, '-g', 'daemon off;']

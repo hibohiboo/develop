@@ -1,10 +1,13 @@
 version: '3'
 services:
-  # # 構文チェックツール
-  # lint:
-  #   build: ./lint
-  #   volumes: 
-  #     - ../src:/home/workdir/src
+
+  # 構文チェック
+  lint:
+    build: ./lint
+    volumes: 
+      - ./lint/package.json:/home/workdir/package.json
+      - ./config/.eslintrc:/home/workdir/.eslintrc
+      - ../../src/browser:/home/workdir/src
 
   # トランスパイラ
   babel:
