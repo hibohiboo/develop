@@ -18,6 +18,9 @@ rooper-tool
         - config             # 設定
           - .eslintrc        # 
           - .babelrc         # 
+          - global_path.js   # e2eテストの接続先URL設定
+          - nightwatch.conf.js # e2eテストの設定
+        + e2e                # end to end(e2e) テスト。
         + babel              # トランスパイラ
         + jasmine            # 単体テスト
         + lint               # 構文チェック

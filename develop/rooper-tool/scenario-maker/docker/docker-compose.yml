@@ -21,7 +21,7 @@ services:
   jasmine:
     build: ./tools/jasmine
     volumes:
-      - ../public:/home/workdir/public
+      - ../tests/unit/public:/home/workdir/public
       - ../src:/home/workdir/src
       - ./tools/jasmine/app.js:/home/workdir/app.js
     working_dir: /home/workdir
