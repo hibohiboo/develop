@@ -25,3 +25,7 @@ rooper-tool
     + dist                 # 出力結果
     
 ```
+
+## 参考
+
+[nginx設定ファイル格納先](http://gakumon.tech/nginx/nginx_conf_directory.html)

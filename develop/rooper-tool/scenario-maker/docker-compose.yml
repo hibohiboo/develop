@@ -6,6 +6,7 @@ services:
   proxy:
     build: ./tools/proxy
     volumes:
+      - ./tools/proxy/conf.d:/etc/nginx/conf.d:ro  
       - ./tools/proxy/nginx.conf:/etc/nginx/nginx.conf:ro  
     ports:
       -  80:80
