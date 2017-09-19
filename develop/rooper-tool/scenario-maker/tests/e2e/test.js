@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  'Display sample -> search -> assert': function (browser) {
-    const {Builder, By, Key, until} = require('selenium-webdriver');
+  'タイトルページ接続テスト': function (browser) {
+    //const {Builder, By, Key, until} = require('selenium-webdriver');
 
     browser
       .windowMaximize()

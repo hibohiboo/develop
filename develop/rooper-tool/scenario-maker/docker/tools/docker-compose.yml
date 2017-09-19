@@ -8,6 +8,8 @@ services:
       - ./lint/package.json:/home/workdir/package.json
       - ./config/.eslintrc:/home/workdir/.eslintrc
       - ../../src/browser:/home/workdir/src
+      - ./config/.node.eslintrc:/home/workdir/.node.eslintrc
+      - ../../tests/e2e:/home/workdir/e2e
 
   # トランスパイラ
   babel:

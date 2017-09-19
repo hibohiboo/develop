@@ -29,6 +29,13 @@ rooper-tool
           - Dockerfile       # awscliツールのコンテナ情報
           - conf
             + s3           # s3bucketの設定
+    - tests
+      - e2e
+        - tests.js         # e2eテストコード
+      - unit
+        - public
+          - tests
+            - index.html   # 単体テストの確認ページHTML。
     + dist                 # 出力結果
     
 ```
