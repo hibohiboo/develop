@@ -9,9 +9,12 @@ services:
   # トランスパイラ
   babel:
     build: ./babel
-    volumes: 
-      - ../src:/home/workdir/src
-      - ../dist:/home/workdir/dist
+    volumes:
+      - ./config/.babelrc:/home/workdir/.babelrc
+      - ./babel/package.json:/home/workdir/package.json
+      - ../../public:/home/workdir/public
+      - ../../src:/home/workdir/src
+      - ../../dist:/home/workdir/dist
     environment:
       - CHOKIDAR_USEPOLLING=true # watchするときにdocker上のファイル更新を検知のために必要。
     # srcディレクトリを監視してdistディレクトリにトランスパイル後のファイルを出力する
