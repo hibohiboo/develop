@@ -1,0 +1,30 @@
+version: '3'
+services:
+  hub:
+    image: selenium/hub
+    ports:
+      - 4444:4444
+  chrome:
+    image: selenium/node-chrome-debug
+    ports:
+      - 15900:5900
+    depends_on:
+      - hub
+    environment:
+      - no_proxy=localhost
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_ENV_no_proxy=localhost
+
+  alpine:
+    build: ./alpine
+    links:
+      - hub
+      - chrome
+    volumes:
+      - ./src:/home/selenium/src
+      - ./config/globals_path.js:/home/selenium/globals_path.js
+      - ./config/nightwatch.conf.js:/home/selenium/nightwatch.conf.js
+      - ./alpine/package.json:/home/selenium/package.json
+    command: npm run grid
+    
