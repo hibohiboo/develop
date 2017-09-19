@@ -7,30 +7,22 @@ services:
     build: ./tools/proxy
     volumes:
       - ./tools/proxy/conf.d:/etc/nginx/conf.d:ro  
-
     ports:
       -  80:80
     command: [nginx-debug, '-g', 'daemon off;']
+
   # webサーバー
   nginx:
-    volumes:
-      - ./public:/usr/share/nginx/html:ro 
     image: nginx
-
-  # awsへの接続を行う
-  awscli:
-    build: ./aws-cli  
     volumes:
-      - ./public:/public
-      - ./aws-cli/.aws:/root/.aws
-      - ./aws-cli/conf:/conf
+      - ../public:/usr/share/nginx/html:ro 
 
   # 単体テストサーバーの起動
   jasmine:
     build: ./tools/jasmine
     volumes:
-      - ./public:/home/workdir/public
-      - ./src:/home/workdir/src
+      - ../public:/home/workdir/public
+      - ../src:/home/workdir/src
       - ./tools/jasmine/app.js:/home/workdir/app.js
     working_dir: /home/workdir
     command: node app.js

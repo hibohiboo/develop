@@ -16,3 +16,10 @@ services:
       - CHOKIDAR_USEPOLLING=true # watchするときにdocker上のファイル更新を検知のために必要。
     # srcディレクトリを監視してdistディレクトリにトランスパイル後のファイルを出力する
     # command: npm run watch:compact
+  # awsへの接続を行う
+  awscli:
+    build: ./aws-cli  
+    volumes:
+      - ../../public:/public
+      - ../../aws-cli/.aws:/root/.aws
+      - ../../aws-cli/conf:/conf
