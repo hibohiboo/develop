@@ -15,14 +15,16 @@ services:
   nginx:
     image: nginx
     volumes:
-      - ../public:/usr/share/nginx/html:ro 
+      - ../public/index.html:/usr/share/nginx/html/index.html
+      - ../dist/bundle-webpack:/usr/share/nginx/html/js:ro
 
   # 単体テストサーバーの起動
   jasmine:
     build: ./tools/jasmine
     volumes:
       - ../tests/unit/public:/home/workdir/public
-      - ../src:/home/workdir/src
+      - ../src/browser:/home/workdir/src/spec
+      - ../dist/bundle-webpack:/home/workdir/src/js
       - ./tools/jasmine/app.js:/home/workdir/app.js
     working_dir: /home/workdir
     command: node app.js

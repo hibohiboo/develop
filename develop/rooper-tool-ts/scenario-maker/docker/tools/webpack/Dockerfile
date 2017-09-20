@@ -1,0 +1,31 @@
+FROM node:8.5.0
+
+# コンテナ上の作業ディレクトリ作成
+WORKDIR /home/workdir
+
+# 後で確認出来るようにpackage.jsonを作成
+RUN npm init -y
+
+# typescript
+RUN npm i -D typescript
+
+# ビルドツール
+RUN npm i -D webpack
+
+# 開発用サーバ
+RUN npm i -D webpack-dev-server
+
+# es6用トランスパイラ
+RUN npm i -D babel-loader
+RUN npm i -D babel-core
+RUN npm i -D babel-preset-es2015
+RUN npm i -D babel-preset-env
+
+# webpack用typescript loader
+RUN npm i -D ts-loader
+
+# jsViewライブラリmithril
+RUN npm i -S mithril
+
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"webpack\": \"webpack\",/g" /home/workdir/package.json
+

@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "dependencies": {
-    "material-ui": "^0.16.6",
+    "material-ui": "^0.18.6",
     "material-ui-number-input": "^5.0.16",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -17,6 +17,7 @@
     "redux-form-website-template": "0.0.50"
   },
   "devDependencies": {
+    "@types/mithril": "^1.1.8",
     "@types/react": "^16.0.3",
     "@types/react-dom": "^15.5.4",
     "@types/react-redux": "^5.0.4",
@@ -24,7 +25,7 @@
     "@types/redux-form": "^7.0.2",
     "gulp": "^3.9.1",
     "gulp-tslint": "^7.1.0",
-    "tslint": "^4.4.2",
+    "tslint": "^4.5.1",
     "typescript": "^2.1.5"
   },
   "scripts": {
