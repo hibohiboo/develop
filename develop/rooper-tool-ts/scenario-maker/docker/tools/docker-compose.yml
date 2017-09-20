@@ -1,0 +1,66 @@
+version: '3'
+services:
+
+  # 構文チェック
+  lint:
+    build: ./lint
+    volumes: 
+      - ./lint/package.json:/home/workdir/package.json
+      - ./config/.eslintrc:/home/workdir/.eslintrc
+      - ../../src/browser:/home/workdir/src
+      - ./config/.node.eslintrc:/home/workdir/.node.eslintrc
+      - ../../tests/e2e:/home/workdir/e2e
+
+  # トランスパイラ
+  babel:
+    build: ./babel
+    volumes:
+      - ./config/.babelrc:/home/workdir/.babelrc
+      - ./babel/package.json:/home/workdir/package.json
+      - ../../public:/home/workdir/public
+      - ../../src:/home/workdir/src
+      - ../../dist:/home/workdir/dist
+    environment:
+      - CHOKIDAR_USEPOLLING=true # watchするときにdocker上のファイル更新を検知のために必要。
+    # srcディレクトリを監視してdistディレクトリにトランスパイル後のファイルを出力する
+    # command: npm run watch:compact
+
+  # e2eテスト用 seleniumハブサーバ
+  hub:
+    image: selenium/hub
+    ports:
+      - 4444:4444
+
+  # e2eテスト用 selenium chromeサーバ
+  chrome:
+    image: selenium/node-chrome-debug
+    ports:
+      - 15900:5900
+    depends_on:
+      - hub
+    environment:
+      - no_proxy=localhost
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_ENV_no_proxy=localhost
+
+  # e2eテストコード実行用環境
+  e2e:
+    build: ./e2e/alpine
+    links:
+      - hub
+      - chrome
+    volumes:
+      - ../../dist/screenshots:/home/selenium/screenshots
+      - ../../tests/e2e:/home/selenium/src
+      - ./config/globals_path.js:/home/selenium/globals_path.js
+      - ./config/nightwatch.conf.js:/home/selenium/nightwatch.conf.js
+      - ./e2e/alpine/package.json:/home/selenium/package.json
+
+  # awsへの接続
+  awscli:
+    build: ./aws-cli  
+    volumes:
+      - ../../public:/public
+      - ../../aws-cli/.aws:/root/.aws
+      - ../../aws-cli/conf:/conf

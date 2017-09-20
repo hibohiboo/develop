@@ -1,0 +1,28 @@
+version: '3'
+services:
+  # プロキシサーバー
+  # http://192.168.50.10/ -> http://server/
+  # http://192.168.50.10/tests -> http://jasmine/tests/
+  proxy:
+    build: ./server/proxy
+    volumes:
+      - ./server/proxy/conf.d:/etc/nginx/conf.d:ro  
+    ports:
+      -  80:80
+    command: [nginx-debug, '-g', 'daemon off;']
+
+  # webサーバー
+  nginx:
+    image: nginx
+    volumes:
+      - ../public:/usr/share/nginx/html:ro 
+
+  # 単体テストサーバーの起動
+  jasmine:
+    build: ./tools/jasmine
+    volumes:
+      - ../tests/unit/public:/home/workdir/public
+      - ../src:/home/workdir/src
+      - ./tools/jasmine/app.js:/home/workdir/app.js
+    working_dir: /home/workdir
+    command: node app.js
