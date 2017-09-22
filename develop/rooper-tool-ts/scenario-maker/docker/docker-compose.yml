@@ -6,19 +6,18 @@ services:
   proxy:
     build: ./server/proxy
     volumes:
-      - ./server/proxy/conf.d:/etc/nginx/conf.d:ro  
+      - ./server/proxy/conf.d/:/etc/nginx/conf.d/:ro  
+      - /etc/localtime:/etc/localtime:ro
     ports:
       -  80:80
 
   # webサーバー
   nginx:
     build: ./server/nginx
-    ports:
-      -  8080:80
     volumes:
-      - ../public/index.html:/usr/share/nginx/html/index.html
-      - ../dist/bundle-webpack:/usr/share/nginx/html/js:ro
-      - ./server/nginx/conf.d:/etc/nginx/conf.d:ro  
+      - ../public/:/usr/share/nginx/html/
+      - ../dist/bundle-webpack/:/usr/share/nginx/assets/js/:ro
+      - ./server/nginx/conf.d/:/etc/nginx/conf.d/:ro
       - /etc/localtime:/etc/localtime:ro
 
   # 単体テストサーバーの起動
@@ -29,5 +28,6 @@ services:
       - ../src/browser:/home/workdir/src/spec
       - ../dist/bundle-webpack:/home/workdir/src/js
       - ./tools/jasmine/app.js:/home/workdir/app.js
+      - /etc/localtime:/etc/localtime:ro
     working_dir: /home/workdir
     command: node app.js
