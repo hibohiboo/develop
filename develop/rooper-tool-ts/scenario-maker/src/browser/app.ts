@@ -6,5 +6,5 @@ import home from './components/home';
 
 m.route(document.getElementById('root'), '/', {
   '/': home,
-  '/about': about,
+  '/about':  about,
 });

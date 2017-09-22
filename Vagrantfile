@@ -52,6 +52,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: $ansible_install
   # ansibleを実行
   config.vm.provision "shell", inline: <<-SHELL
+    # timezoneを日本に変更
+    timedatectl set-timezone Asia/Tokyo
     # virtualenv起動
     source /home/vagrant/venv/bin/activate
     # provision 実行

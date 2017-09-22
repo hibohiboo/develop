@@ -14,6 +14,7 @@ services:
   tslint:
     build: ./tslint
     volumes: 
+      - ./config/tsconfig.json:/home/workdir/tsconfig.json
       - ./config/tslint.json:/home/workdir/tslint.json
       - ../../src/browser:/home/workdir/src
 

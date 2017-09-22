@@ -9,14 +9,17 @@ services:
       - ./server/proxy/conf.d:/etc/nginx/conf.d:ro  
     ports:
       -  80:80
-    command: [nginx-debug, '-g', 'daemon off;']
 
   # webサーバー
   nginx:
-    image: nginx
+    build: ./server/nginx
+    ports:
+      -  8080:80
     volumes:
       - ../public/index.html:/usr/share/nginx/html/index.html
       - ../dist/bundle-webpack:/usr/share/nginx/html/js:ro
+      - ./server/nginx/conf.d:/etc/nginx/conf.d:ro  
+      - /etc/localtime:/etc/localtime:ro
 
   # 単体テストサーバーの起動
   jasmine:

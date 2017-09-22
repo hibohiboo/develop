@@ -12,4 +12,9 @@ RUN npm i -D typescript
 # 
 RUN npm i -D tslint
 
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint\",/g" /home/workdir/package.json
+RUN npm i -D tslint-config-airbnb
+
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json' --type-check\",/g" /home/workdir/package.json
+
+# 使用module
+RUN npm i -D @types/mithril

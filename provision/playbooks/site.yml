@@ -10,4 +10,4 @@
     - docker
     - node
     - vim
-    - aws
+    # - aws

@@ -1,33 +1,7 @@
 {
-  "extends": ["tslint:latest"],
+  "extends": ["tslint:latest", "tslint-config-airbnb"],
 	"rules": {
-    "quotemark": [true, "single", "jsx-double", "avoid-escape"],
-		"curly": true,
-		"class-name": true,
-		"semicolon": [true, "always"],
-		"triple-equals": true,
-		"indent": [true, "spaces", 2],
-    "typedef-whitespace": [
-      false,
-      {
-        "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
-      }
-    ],
-    "variable-name": [
-      true,
-      "ban-keywords"
-    ],
-    "whitespace": [
-      false,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type"
-    ]
-	}
+    "strict-boolean-expressions": [true, "allow-boolean-or-undefined"]
+  },
+  "typeCheck": true
 }
