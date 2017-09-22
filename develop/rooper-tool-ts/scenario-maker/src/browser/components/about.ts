@@ -5,10 +5,10 @@ const component: m.Component<{}, {}> = {
   view(vnode) {
     return m('.page', [
       m(nav),
-      m('h1', 'このページについて'),
+      m('h2', 'このページについて'),
       m('p', '惨劇RoopeRをオンラインで遊ぶツールです.'),
     ]);
   },
 };
 
-export default component as m.Component<{}, {}>;
+export default component;

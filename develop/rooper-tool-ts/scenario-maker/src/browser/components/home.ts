@@ -5,7 +5,7 @@ const component: m.Component<{}, {}> = {
   view(vnode) {
     return m('.page', [
       m(nav),
-      m('h1', '惨劇RoopeRオンラインツール'),
+      m('h2', 'トップ'),
       m('p', '惨劇ルーパーオンラインツールへようこそ.'),
     ]);
   },
