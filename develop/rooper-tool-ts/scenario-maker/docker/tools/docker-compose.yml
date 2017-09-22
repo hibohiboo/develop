@@ -45,37 +45,37 @@ services:
       - ./config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
       - ../../src/browser:/home/workdir/src
       - ../../dist/bundle-webpack:/home/workdir/dist
-  # # e2eテスト用 seleniumハブサーバ
-  # hub:
-  #   image: selenium/hub
-  #   ports:
-  #     - 4444:4444
+  # e2eテスト用 seleniumハブサーバ
+  hub:
+    image: selenium/hub
+    ports:
+      - 4444:4444
 
-  # # e2eテスト用 selenium chromeサーバ
-  # chrome:
-  #   image: selenium/node-chrome-debug
-  #   ports:
-  #     - 15900:5900
-  #   depends_on:
-  #     - hub
-  #   environment:
-  #     - no_proxy=localhost
-  #     - HUB_PORT_4444_TCP_ADDR=hub
-  #     - HUB_PORT_4444_TCP_PORT=4444
-  #     - HUB_ENV_no_proxy=localhost
+  # e2eテスト用 selenium chromeサーバ
+  chrome:
+    image: selenium/node-chrome-debug
+    ports:
+      - 15900:5900
+    depends_on:
+      - hub
+    environment:
+      - no_proxy=localhost
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_ENV_no_proxy=localhost
 
-  # # e2eテストコード実行用環境
-  # e2e:
-  #   build: ./e2e/alpine
-  #   links:
-  #     - hub
-  #     - chrome
-  #   volumes:
-  #     - ../../dist/screenshots:/home/selenium/screenshots
-  #     - ../../tests/e2e:/home/selenium/src
-  #     - ./config/globals_path.js:/home/selenium/globals_path.js
-  #     - ./config/nightwatch.conf.js:/home/selenium/nightwatch.conf.js
-  #     - ./e2e/alpine/package.json:/home/selenium/package.json
+  # e2eテストコード実行用環境
+  e2e:
+    build: ./e2e/alpine
+    links:
+      - hub
+      - chrome
+    volumes:
+      - ../../dist/screenshots:/home/selenium/screenshots
+      - ../../tests/e2e:/home/selenium/src
+      - ./config/globals_path.js:/home/selenium/globals_path.js
+      - ./config/nightwatch.conf.js:/home/selenium/nightwatch.conf.js
+      - ./e2e/alpine/package.json:/home/selenium/package.json
 
   # # awsへの接続
   # awscli:

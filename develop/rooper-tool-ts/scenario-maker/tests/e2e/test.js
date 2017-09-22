@@ -7,7 +7,7 @@ module.exports = {
     browser
       .windowMaximize()
       .url(browser.globals.applicationUrl)
-      .assert.containsText('body', 'Tragedy Rooper Scenario Maker')
+      .assert.containsText('h1', '惨劇RoopeRオンラインツール')
       .saveScreenshot('screenshots/test.png')
       .end();
   },
