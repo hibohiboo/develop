@@ -44,3 +44,4 @@ rooper-tool
 
 [nginx設定ファイル格納先](http://gakumon.tech/nginx/nginx_conf_directory.html)
 [alias](https://heartbeats.jp/hbblog/2012/04/nginx05.html)
+[nginx + virtualbox 更新されない](https://teratail.com/questions/93553)
