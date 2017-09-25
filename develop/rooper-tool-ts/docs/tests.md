@@ -10,6 +10,11 @@
 http://192.168.50.10/testsにアクセス。単体テストの結果を確認する。
 単体テストは、ソースコードのファイル`hoge.js`と同じディレクトリに`hoge.test.js`を作成すること。
 
+### スナップショットテスト
+
+コードを実行した際のHTMLを保存しておいて、差異をチェックするテスト。
+変更点が問題なければ、`bin/jest.sh --updateSnapshot`で更新する。
+
 ## end to end (e2e)テスト
 
 ブラウザで行うテスト。
@@ -28,4 +33,17 @@ http://192.168.50.10/testsにアクセス。単体テストの結果を確認す
 
 ## 参考
 
-https://bintray.com/tigervnc/stable/tigervnc/1.8.0
+[tigervnc][*1]  
+[生まれ変わったFacebook製テストフレームワーク「Jest」とは何か？][*3]  
+[ts-jest][*2]   
+[jest][*4]  
+[jestでテストカバレッジを見る][*5]
+[mithril-jest][*6]
+
+[*1]:https://bintray.com/tigervnc/stable/tigervnc/1.8.0
+[*2]:https://github.com/kulshekhar/ts-jest
+[*3]:https://www.webprofessional.jp/test-react-components-jest-1/
+[*4]:https://facebook.github.io/jest/docs/en/getting-started.html
+[*5]:https://qiita.com/monisoi/items/44931e36c5f7b1f4e683
+[*6]:https://github.com/ArthurClemens/mithril-jest
+[*7]:https://facebook.github.io/jest/docs/ja/snapshot-testing.html

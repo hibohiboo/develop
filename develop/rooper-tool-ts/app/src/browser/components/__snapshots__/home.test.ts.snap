@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component snapshot 1`] = `
+"<div>
+  <div class=\\"page\\">
+    <div>
+      <a href=\\"#!/\\">Home</a> <span>|</span> <a href=
+      \\"#!/about\\">About</a>
+    </div>
+    <h2>
+      トップ
+    </h2>
+    <p>
+      惨劇ルーパーオンラインツールへようこそ.
+    </p>
+  </div>
+</div>
+"
+`;

@@ -50,7 +50,9 @@ services:
   jest:
     build: ./jest
     volumes:
-      - ../../src/browser:/home/workdir/__tests__
+      - ../../src:/home/workdir/src
+      - ./jest/package.json:/home/workdir/package.json
+      - ./config/tsconfig.json:/home/workdir/tsconfig.json
 
   # e2eテスト用 seleniumハブサーバ
   hub:

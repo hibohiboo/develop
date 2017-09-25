@@ -8,5 +8,9 @@
 		"class-name": true,
 		"semicolon": ["always"],
 		"triple-equals": true
-	}
+	},
+	"env": {
+    "browser": true,
+    "jasmine": true
+  }
 }

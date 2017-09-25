@@ -11,4 +11,13 @@ RUN npm i -D babel-polyfill
 RUN npm i -D babel-preset-es2015 
 RUN npm i -D jest
 
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"jest\": \"jest\",/g" /home/workdir/package.json
+RUN npm i -D typescript
+RUN npm i -D ts-jest 
+RUN npm i -D @types/jest
+
+# jsViewライブラリmithril
+RUN npm i -S mithril
+
+# 
+RUN npm i -D tidy-html5
+RUN npm i -D mithril-jest
