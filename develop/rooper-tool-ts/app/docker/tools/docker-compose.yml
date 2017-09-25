@@ -45,6 +45,13 @@ services:
       - ./config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
       - ../../src/browser:/home/workdir/src
       - ../../dist/bundle-webpack:/home/workdir/dist
+
+  # ユニットテスト用 jest
+  jest:
+    build: ./jest
+    volumes:
+      - ../../src/browser:/home/workdir/__tests__
+
   # e2eテスト用 seleniumハブサーバ
   hub:
     image: selenium/hub
