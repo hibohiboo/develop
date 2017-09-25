@@ -88,9 +88,9 @@ services:
       - ./e2e/alpine/package.json:/home/selenium/package.json
 
   # # awsへの接続
-  # awscli:
-  #   build: ./aws-cli  
-  #   volumes:
-  #     - ../../public:/public
-  #     - ../../aws-cli/.aws:/root/.aws
-  #     - ../../aws-cli/conf:/conf
+  awscli:
+    build: ./aws-cli  
+    volumes:
+      - ../../dist/deploy:/public
+      - ./aws-cli/.aws:/root/.aws
+      - ./aws-cli/conf:/conf
