@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Home component snapshot 1`] = `
+exports[`About component snapshot 1`] = `
 "<div>
   <div class=\\"page\\">
     <div>
@@ -8,10 +8,10 @@ exports[`Home component snapshot 1`] = `
       \\"#!/about\\">About</a>
     </div>
     <h2>
-      トップ
+      このページについて
     </h2>
     <p>
-      惨劇ルーパーオンラインツールへようこそ.
+      惨劇RoopeRをオンラインで遊ぶツールです.
     </p>
   </div>
 </div>

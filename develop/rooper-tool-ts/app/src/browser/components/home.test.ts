@@ -9,11 +9,6 @@ const page = {
 };
 
 describe("Home component", () => {
-  it("snapshot", () => {
-    const cmp = m(page);
-    const html = tidy(cmp);
-    expect(html).toMatchSnapshot();
-  });
   it("title should be h2 with label 'トップ'", () => {
     const cmp = m(page);
     const html = tidy(cmp);

@@ -23,14 +23,10 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
 
-  # 単体テストサーバーの起動
-  jasmine:
-    build: ./tools/jasmine
+  # 単体テスト結果
+  unit:
+    build: ./server/nginx
     volumes:
-      - ../tests/unit/public:/home/workdir/public
-      - ../src/browser:/home/workdir/src/spec
-      - ../dist/bundle-webpack:/home/workdir/src/js
-      - ./tools/jasmine/app.js:/home/workdir/app.js
+      - ../dist/coverage-jest/lcov-report:/usr/share/nginx/html/coverage/
+      - ./server/nginx/conf.d/:/etc/nginx/conf.d/:ro
       - /etc/localtime:/etc/localtime:ro
-    working_dir: /home/workdir
-    command: node app.js
