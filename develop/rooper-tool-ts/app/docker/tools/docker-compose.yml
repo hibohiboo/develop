@@ -53,6 +53,7 @@ services:
       - ../../src:/home/workdir/src
       - ./jest/package.json:/home/workdir/package.json
       - ./config/tsconfig.json:/home/workdir/tsconfig.json
+      - ../../dist/coverage-jest:/home/workdir/coverage
 
   # e2eテスト用 seleniumハブサーバ
   hub:

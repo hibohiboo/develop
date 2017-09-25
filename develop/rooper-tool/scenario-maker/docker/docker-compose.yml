@@ -7,6 +7,7 @@ services:
     build: ./server/proxy
     volumes:
       - ./server/proxy/conf.d:/etc/nginx/conf.d:ro  
+      - ./server/proxy/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       -  80:80
     command: [nginx-debug, '-g', 'daemon off;']
@@ -16,7 +17,7 @@ services:
     image: nginx
     volumes:
       - ../public:/usr/share/nginx/html:ro 
-
+      - ./server/proxy/nginx.conf:/etc/nginx/nginx.conf:ro
   # 単体テストサーバーの起動
   jasmine:
     build: ./tools/jasmine
