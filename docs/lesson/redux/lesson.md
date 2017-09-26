@@ -35,5 +35,5 @@ Container componentsからpropsを通してデータを受け取り、Viewを構
 [Reduxの実装とReactとの連携を超シンプルなサンプルを使って解説][*1]
 [github redux-sample][*2]
 
-[*1]http://mae.chab.in/archives/2885
+[*1]:http://mae.chab.in/archives/2885
 [*2]:https://github.com/maechabin/redux-sample
