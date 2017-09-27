@@ -6,7 +6,9 @@ const component: m.Component<{}, {}> =  {
              m('a', { href: '/', oncreate: m.route.link }, 'Home'),
              m('span', ' | '),
              m('a', { href: '/about', oncreate: m.route.link }, 'About'),
-    );
+             m('span', ' | '),
+             m('a', { href: '/scenariomaker', oncreate: m.route.link }, 'シナリオ作成'),
+            );
   },
 };
 export default component;
