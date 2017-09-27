@@ -45,6 +45,8 @@ services:
       - ./config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
       - ../../src/browser:/home/workdir/src
       - ../../dist/bundle-webpack:/home/workdir/dist
+    environment:
+      - NODE_ENV=production
 
   # ユニットテスト用 jest
   jest:

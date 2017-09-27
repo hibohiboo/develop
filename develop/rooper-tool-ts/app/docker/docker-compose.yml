@@ -22,6 +22,17 @@ services:
       - ./server/nginx/conf.d/:/etc/nginx/conf.d/:ro
       - /etc/localtime:/etc/localtime:ro
 
+  dev-server:
+    build: ./tools/webpack
+    volumes:
+      - ./tools/config/.babelrc:/home/workdir/.babelrc
+      - ./tools/config/tsconfig.json:/home/workdir/tsconfig.json
+      - ./tools/config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
+      - ../src/browser:/home/workdir/src
+      - ../public:/home/workdir/public
+    command: [npm, run, dev-server]
+    ports:
+      -  8080:8080
 
   # 単体テスト結果
   unit:

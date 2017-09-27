@@ -6,7 +6,7 @@ const component: m.Component<{}, {}> = {
     return m('.page', [
       m(nav),
       m('h2', 'このページについて'),
-      m('p', '惨劇RoopeRをオンラインで遊ぶツールです.'),
+      m('p', '惨劇RoopeRをオンラインで遊ぶツールです。'),
     ]);
   },
 };
