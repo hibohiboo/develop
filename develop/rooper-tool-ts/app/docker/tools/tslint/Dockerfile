@@ -18,3 +18,5 @@ RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.js
 
 # 使用module
 RUN npm i -D @types/mithril
+RUN npm i -D mithril-jest
+RUN npm i -D @types/jest
