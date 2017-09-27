@@ -6,4 +6,4 @@ RUN npm init -y
 RUN npm i -D babel-cli
 RUN npm i -D babel-preset-env
 RUN npm i -D babel-preset-node8
-
+RUN npm i -D babel-plugin-transform-react-jsx

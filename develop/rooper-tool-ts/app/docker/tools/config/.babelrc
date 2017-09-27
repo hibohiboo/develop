@@ -7,5 +7,10 @@
       "include": ["transform-es2015-arrow-functions", "es6.map"],
       "exclude": ["transform-regenerator", "es6.set"]
     }]
+  ],
+  "plugins": [
+    ["transform-react-jsx", {
+        "pragma": "m"
+    }]
   ]
 }

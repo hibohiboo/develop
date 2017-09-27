@@ -3,16 +3,18 @@ import { tragedySetList, TragedySetType } from '../../../models/TragedySet';
 
 const TragedySetForm: m.Component<{}, {}> =  {
   view(vnode) {
-    return m('div',
-             m('span', {}, '惨劇セット'),
-             m('select',
+    return (<div>
+             <span>惨劇セット</span>
+             <select>
+              {
                 tragedySetList.map((set) => {
                  return  m('option', { value:set.id }, set.name);
-               }),
-
-            ),
+               })
+              }
+              </select>
+            </div>
     );
-  },
+  }
 };
 
 // (
