@@ -35,6 +35,7 @@ services:
       - ./config/tsconfig.json:/home/workdir/tsconfig.json
       - ../../src:/home/workdir/src
       - ../../dist/transpiled-tsc:/home/workdir/dist
+      - ../../dist/typedoc:/home/workdir/typedoc
 
   # ビルドツール
   webpack:
@@ -89,10 +90,19 @@ services:
       - ./config/nightwatch.conf.js:/home/selenium/nightwatch.conf.js
       - ./e2e/alpine/package.json:/home/selenium/package.json
 
-  # # awsへの接続
+  # markdown to html
+  pandoc:
+    build: ./pandoc
+    working_dir: /home/workdir/docs
+    volumes:
+      - ../../../docs:/home/workdir/docs
+      - ../../dist/pandoc:/home/workdir/dist
+
+  # awsへの接続
   awscli:
     build: ./aws-cli  
     volumes:
       - ../../dist/deploy:/public
       - ./aws-cli/.aws:/root/.aws
       - ./aws-cli/conf:/conf
+  

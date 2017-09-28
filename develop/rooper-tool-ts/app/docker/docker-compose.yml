@@ -34,10 +34,19 @@ services:
     ports:
       -  8080:8080
 
-  # 単体テスト結果
-  unit:
+  # 静的ドキュメント
+  static:
     build: ./server/nginx
     volumes:
+      # 単体テスト結果
       - ../dist/coverage-jest/lcov-report:/usr/share/nginx/html/coverage/
+      # ドキュメント
+      - ../dist/pandoc:/usr/share/nginx/html/docs/
+      # apidoc
+      - ../dist/typedoc:/usr/share/nginx/html/typedoc/
+      # 設定
       - ./server/nginx/conf.d/:/etc/nginx/conf.d/:ro
+      - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      # 時刻合わせ
       - /etc/localtime:/etc/localtime:ro
+
