@@ -1,8 +1,10 @@
 import * as m from 'mithril';
 import { tragedySetList, TragedySetType } from '../../../models/TragedySet';
 
-const TragedySetForm: m.Component<{}, {}> =  {
-  view(vnode) {
+class TragedySetForm implements m.Component<{}, {}> {
+  TragedySetForm(vnode) {
+  }
+  view() {
     return (<div>
              <span>惨劇セット</span>
              <select>
@@ -15,7 +17,23 @@ const TragedySetForm: m.Component<{}, {}> =  {
             </div>
     );
   }
-};
+}
+
+// const TragedySetForm: m.Component<{}, {}> =  {
+//   view(vnode) {
+//     return (<div>
+//              <span>惨劇セット</span>
+//              <select>
+//               {
+//                 tragedySetList.map((set) => {
+//                  return  m('option', { value:set.id }, set.name);
+//                })
+//               }
+//               </select>
+//             </div>
+//     );
+//   }
+// };
 
 // (
 //   <SelectField
