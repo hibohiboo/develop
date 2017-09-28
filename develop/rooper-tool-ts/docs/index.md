@@ -3,8 +3,9 @@
 ## 目次
 
 * [構成について](./constitution.md)
-* [ドキュメントについて](./document.md)
-* [サーバについて](./server.md)
-* [テストについて](./tests.md)
-* [TypeScriptについて](./typescript.md)
 * [コーディング規約について](./linting.md)
+* [tsdoc](http://192.168.50.10/typedoc/)
+* [テストについて](./tests.md)
+* [サーバについて](./server.md)
+* [ドキュメントについて](./document.md)
+* [TypeScriptについて](./typescript.md)

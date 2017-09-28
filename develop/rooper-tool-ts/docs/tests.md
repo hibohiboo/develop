@@ -38,8 +38,8 @@
 [生まれ変わったFacebook製テストフレームワーク「Jest」とは何か？][*3]  
 [ts-jest][*2]   
 [jest][*4]  
-[jestでテストカバレッジを見る][*5]
-[mithril-jest][*6]
+[jestでテストカバレッジを見る][*5]  
+[mithril-jest][*6]  
 
 [*1]:https://bintray.com/tigervnc/stable/tigervnc/1.8.0
 [*2]:https://github.com/kulshekhar/ts-jest

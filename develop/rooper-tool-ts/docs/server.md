@@ -25,7 +25,7 @@ jsは`docker/bin/webpack.sh`で作成される`dist/bundle-webpack`内のもの�
 以下にアクセスすると、typescriptのapiを確認できる。
 `docker/bin/typedoc.sh`で作成される`dist/typedoc/`が実体。
 
-[coverage](http://192.168.50.10/typedoc/)
+[typedoc](http://192.168.50.10/typedoc/)
 
 ## 参考
 [webpack-dev-server][*1]
