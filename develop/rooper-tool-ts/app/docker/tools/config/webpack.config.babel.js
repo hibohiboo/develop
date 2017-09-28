@@ -43,7 +43,7 @@ export default {
   entry: {
     app: './app.ts',
     // code-splitting用の設定
-    vendor: ['mithril']
+    vendor: ['mithril', 'jquery']
   },
   // distにビルドしたファイルをbundle.jsの名前で保存
   output: {

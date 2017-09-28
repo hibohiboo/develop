@@ -31,5 +31,7 @@ RUN npm i -D @types/jest
 
 RUN npm i -D babel-plugin-transform-react-jsx
 
+RUN npm i -D jquery
+
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"webpack\": \"webpack\",/g" /home/workdir/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev-server\": \"webpack-dev-server\", /g" /home/workdir/package.json

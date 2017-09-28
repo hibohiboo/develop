@@ -3,9 +3,9 @@
 import * as m from 'mithril';
 import about from './components/about';
 import home from './components/home';
-import scenariomaker from './scenariomaker';
+import scenariomaker from './components/scenariomaker';
 
-m.route(document.getElementById('root') as Element, '/', {
+m.route(document.getElementById('app') as Element, '/', {
   '/': home,
   '/about':  about,
   '/scenariomaker': scenariomaker,
