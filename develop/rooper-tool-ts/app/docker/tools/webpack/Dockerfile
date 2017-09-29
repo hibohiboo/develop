@@ -38,5 +38,8 @@ RUN npm i -D tslint
 RUN npm i -D tslint-config-airbnb
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json' --type-check\",/g" /home/workdir/package.json
 
+# async
+RUN npm i -D babel-preset-es2017
+
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"webpack\": \"webpack\",/g" /home/workdir/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev-server\": \"webpack-dev-server\", /g" /home/workdir/package.json

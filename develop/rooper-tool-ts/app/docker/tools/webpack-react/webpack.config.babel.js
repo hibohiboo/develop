@@ -8,7 +8,7 @@ module.exports = {
   entry: {
     typescript: ['./app.tsx'],
     // code-splitting用の設定
-    vendor: ['react', 'react-dom', 'redux', 'react-redux', 'axios',  'material-ui', 'material-ui-number-input']
+    vendor: [ 'react', 'react-dom', 'redux', 'react-redux', 'axios',  'material-ui', 'material-ui-number-input', 'babel-polyfill']
   },
   // distにビルドしたファイルをbundle.jsの名前で保存
   output: {
