@@ -23,7 +23,7 @@ module.exports = {
     rules: [
       // .ts, .tsxに一致する拡張子のファイルはts-loader -> babel-loaderを通してトランスパイル
       { test: /\.tsx?$/, exclude: /node_modules/, loaders:["babel-loader", "ts-loader"] },
-      // .js, .jsxに一致するファイルはbabel-loaderを通してコンパイル
+      // .js, .jsxに一致するファイルはbabel-loaderを通す。 uglifyを行うためにnode_module内もトランスパイル
       { test: /\.js(x?)$/, exclude: /node_modules/, loaders:["babel-loader"] },
       { test: /\.json$/, exclude: /node_modules/, loaders:["json-loader"] },
     ]

@@ -1,26 +1,19 @@
-import * as m from 'mithril';
 import * as $ from 'jquery';
+import * as m from 'mithril';
 import nav from './nav';
 
 class ScenarioMaker implements m.Component<{}, {}> {
-  TragedySetForm(vnode) {
+  public ScenarioMaker(vnode) {
 
   }
-  oncreate() {
-    console.log('oncreate')
-    $.getScript( "assets/js/vendor.react.bundle.js", function( data, textStatus, jqxhr ) {
-      console.log( textStatus ); // Success
-      console.log( jqxhr.status ); // 200
-      console.log( "Load was performed. vendor" );
-    }).then(function(){
-      $.getScript( "assets/js/scenariomaker.bundle.js", function( data, textStatus, jqxhr ) {
-        console.log( textStatus ); // Success
-        console.log( jqxhr.status ); // 200
-        console.log( "Load was performed. scenariomaker" );
-      })
-    });
+  public oncreate() {
+
+    (async ()=> {
+      const a = await  $.getScript('assets/js/vendor.react.bundle.js');
+      const b = await $.getScript('assets/js/scenariomaker.bundle.js');
+    })()
   }
-  view() {
+  public view() {
     return m('.page', [
       m(nav),
       m('h2', 'シナリオメーカー'),

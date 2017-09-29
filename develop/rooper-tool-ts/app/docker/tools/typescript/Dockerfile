@@ -12,3 +12,4 @@ RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc\",/g" /home/workdir/p
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"typedoc\": \"typedoc\",/g" /home/workdir/package.json
 
 RUN npm i -S mithril
+RUN npm i -S jquery
