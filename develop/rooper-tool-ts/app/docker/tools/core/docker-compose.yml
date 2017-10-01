@@ -91,11 +91,3 @@ services:
       - ./config/nightwatch.conf.js:/home/selenium/nightwatch.conf.js
       - ./e2e/alpine/package.json:/home/selenium/package.json
 
-  # markdown to html
-  pandoc:
-    build: ./pandoc
-    working_dir: /home/workdir/docs
-    volumes:
-      - ../../../../docs:/home/workdir/docs
-      - ../../../dist/pandoc:/home/workdir/dist
-  

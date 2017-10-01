@@ -8,4 +8,11 @@ services:
       - ../../dist/deploy:/public
       - ./aws-cli/.aws:/root/.aws
       - ./aws-cli/conf:/conf
+  # markdown to html
+  pandoc:
+    build: ./pandoc
+    working_dir: /home/workdir/docs
+    volumes:
+      - ../../../docs:/home/workdir/docs
+      - ../../dist/pandoc:/home/workdir/dist
   
