@@ -4,7 +4,8 @@ exports[`nav component snapshot 1`] = `
 "<div>
   <div>
     <a href=\\"#!/\\">Home</a> <span>|</span> <a href=
-    \\"#!/about\\">About</a>
+    \\"#!/about\\">About</a> <span>|</span> <a href=
+    \\"#!/scenariomaker\\">シナリオ作成</a>
   </div>
 </div>
 "

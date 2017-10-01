@@ -5,7 +5,8 @@ exports[`About component snapshot 1`] = `
   <div class=\\"page\\">
     <div>
       <a href=\\"#!/\\">Home</a> <span>|</span> <a href=
-      \\"#!/about\\">About</a>
+      \\"#!/about\\">About</a> <span>|</span> <a href=
+      \\"#!/scenariomaker\\">シナリオ作成</a>
     </div>
     <h2>
       このページについて
