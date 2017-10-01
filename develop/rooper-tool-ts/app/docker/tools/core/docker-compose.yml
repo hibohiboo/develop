@@ -43,7 +43,7 @@ services:
       - ./config/.babelrc:/home/workdir/.babelrc
       - ./config/tsconfig.json:/home/workdir/tsconfig.json
       - ./config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
-      - ../../../src/browser:/home/workdir/src
+      - ../../../src/browser/core:/home/workdir/src
       - ../../../dist/bundle-webpack:/home/workdir/dist
       # 構文チェック用設定
       - ./config/tslint.json:/home/workdir/tslint.json
