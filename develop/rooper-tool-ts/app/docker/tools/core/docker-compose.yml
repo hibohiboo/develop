@@ -11,11 +11,11 @@ services:
 
   # 構文チェック(ts)
   tslint:
-    build: ./tslint
+    build: ./webpack
     volumes: 
       - ./config/tsconfig.json:/home/workdir/tsconfig.json
       - ./config/tslint.json:/home/workdir/tslint.json
-      - ../../../src/browser:/home/workdir/src
+      - ../../../src/browser/core:/home/workdir/src
 
   # トランスパイラ(js)
   babel:

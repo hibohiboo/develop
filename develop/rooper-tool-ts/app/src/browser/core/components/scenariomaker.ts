@@ -5,17 +5,14 @@ import nav from './nav';
 declare var TragedyLooperTools: any;
 
 class ScenarioMaker implements m.Component<{}, {}> {
-  public ScenarioMaker(vnode) {
-
-  }
   public oncreate() {
 
-    (async ()=> {
+    (async () => {
       await $.getScript('assets/js/vendor.react.bundle.js');
       await $.getScript('assets/js/TragedyLooperTools.ScenarioMaker.js');
-      
+
       TragedyLooperTools.ScenarioMaker.default.render();
-    })()
+    })();
   }
   public view() {
     return m('.page', [
