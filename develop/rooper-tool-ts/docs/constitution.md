@@ -8,44 +8,63 @@ rooper-tool
     - linting.md           # 構文チェックについて
     - server.md            # サーバについて
     - tests.md             # テストについて
-    - typescript           # TypeScriptについて
-  - scenario-maker         # シナリオ作成ページ
+    - typescript.md        # TypeScriptについて
+    - webpack.md           # ビルドツールについて
+  
+  - app                    # シナリオ作成ページ
     - docker               # コンテナ関連ファイルまとめ 
       + bin                # dockerコンテナの起動シェル。後述する。
       - server 
         - nginx              # アプリケーションサーバ
         - proxy              # プロキシサーバ
       - tools                # 開発用ツール
-        - config             # 設定
-          - .eslintrc        # 
-          - .babelrc         # 
-          - global_path.js   # e2eテストの接続先URL設定
-          - nightwatch.conf.js # e2eテストの設定
-          - tsconfig.json    # typescriptの設定
-          - tslint.json      # tslintの設定
-          - webpack.config.bable.js # webpackの設定
-        + e2e                # end to end(e2e) テスト。
-        + babel              # トランスパイラ
-        + jest               # 単体テスト
-        + tslint             # 構文チェック
-        + typescript         # Typescript
+        + bin                # 実行用のシェルファイル
+        - core               # 基本画面用ツール
+          + bin              # 実行用のシェルファイル
+          - config             # 設定
+            - .eslintrc        # 
+            - .babelrc         # 
+            - global_path.js   # e2eテストの接続先URL設定
+            - nightwatch.conf.js # e2eテストの設定
+            - tsconfig.json    # typescriptの設定
+            - tslint.json      # tslintの設定
+            - webpack.config.bable.js # webpackの設定
+          + e2e                # end to end(e2e) テスト。
+          + babel              # トランスパイラ
+          + jest               # 単体テスト
+          + tslint             # 構文チェック
+          + typescript         # Typescript
+          - docker-compose.yml
+        - plugins
+          - react              # react用プラグインビルドツール
+            + bin              # 実行用のシェルファイル
+            + webpack
+            - docker-compose.yml
         + pandoc             # markdownをhtmlに変換
         - aws-cli            # aws関連
           + .aws             # awsのユーザ情報（非公開）
           - Dockerfile       # awscliツールのコンテナ情報
           - conf
             + s3           # s3bucketの設定
+        - docker-compose.yml
+      - docker-compose.yml
     - tests
       - e2e
         - tests.js         # e2eテストコード
+    - src                  # ソースコード
+      - browser            # クライアント側
+        + core             # 基本画面
+        - plugins          # 追加画面
+          - ScenarioMaker  # シナリオ作成画面
+            + react        # pc向け reactで作成
+            + mithril      # スマホ向け
+    + public               # 静的ファイル置き場
     + dist                 # 出力結果
 ```
 
 ## shell
 
 ```yml
-app
-  - docker
     - bin
       - babel.sh           # （学習用）es6をブラウザ向けにトランスパイルする。dist/transpiled-tsc/*をdist/transpiled-babel/*に出力。
       - bash.sh            # コンテナのbash起動。`bash.sh hoge`でhogeコンテナのbashに入る。
