@@ -2,6 +2,7 @@
 
 # option
 # --updateSnapshot スナップショットの更新
+# -u スナップショットの更新
 # --coverage カバレッジの出力
 option=${@:---coverage}
 

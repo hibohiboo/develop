@@ -41,5 +41,13 @@ RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.js
 # async
 RUN npm i -D babel-preset-es2017
 
+# typedoc
+RUN npm i -D typedoc 
+
+# tsc
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc\",/g" /home/workdir/package.json
+
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"typedoc\": \"typedoc\",/g" /home/workdir/package.json
+
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"webpack\": \"webpack\",/g" /home/workdir/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev-server\": \"webpack-dev-server\", /g" /home/workdir/package.json

@@ -29,10 +29,10 @@ services:
 
   # typescriptトランスパイラ
   tsc:
-    build: ./typescript
+    build: ./webpack
     volumes:
       - ./config/tsconfig.json:/home/workdir/tsconfig.json
-      - ../../../src:/home/workdir/src
+      - ../../../src/browser/core:/home/workdir/src
       - ../../../dist/transpiled-tsc:/home/workdir/dist
       - ../../../dist/typedoc:/home/workdir/typedoc
 
