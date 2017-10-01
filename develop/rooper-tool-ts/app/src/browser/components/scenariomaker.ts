@@ -9,8 +9,9 @@ class ScenarioMaker implements m.Component<{}, {}> {
   public oncreate() {
 
     (async ()=> {
-      const a = await  $.getScript('assets/js/vendor.react.bundle.js');
-      const b = await $.getScript('assets/js/scenariomaker.bundle.js');
+      await $.getScript('assets/js/vendor.react.bundle.js');
+      await $.getScript('assets/js/scenariomaker.bundle.js');
+      console.log('scenario loaded')
     })()
   }
   public view() {

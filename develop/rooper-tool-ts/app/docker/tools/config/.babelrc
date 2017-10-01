@@ -6,9 +6,7 @@
       },
       "include": ["transform-es2015-arrow-functions", "es6.map"],
       "exclude": ["transform-regenerator", "es6.set"]
-    }],
-    "es2015",
-    "es2017"
+    }]
   ],
   "plugins": [
     ["transform-react-jsx", {
