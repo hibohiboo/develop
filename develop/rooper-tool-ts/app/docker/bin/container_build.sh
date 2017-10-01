@@ -7,4 +7,4 @@ bin_dir=$(cd $(dirname $0) && pwd)
 cd $bin_dir/../ && docker-compose build
 cd $bin_dir/../tools && docker-compose build
 cd $bin_dir/../tools/core && docker-compose build
-cd $bin_dir/../tools/plugins && docker-compose build
+cd $bin_dir/../tools/plugins/react && docker-compose build

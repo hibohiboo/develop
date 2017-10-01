@@ -6,7 +6,7 @@ module.exports = {
   context: __dirname + '/src',
   // エントリーポイントとしてapp.jsを起点にビルドする
   entry: {
-    ScenarioMaker: ['./app.tsx'],
+    ScenarioMaker: ['./ScenarioMaker/app.tsx'],
     // code-splitting用の設定
     vendor: [ 'react', 'react-dom', 'redux', 'react-redux', 'axios',  'material-ui', 'material-ui-number-input']
   },

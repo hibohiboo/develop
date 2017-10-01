@@ -7,5 +7,5 @@
         "allowJs":true,
         "jsx": "react"
     },
-    "files":["src/lib.d.ts"]
+    "files":["src/ScenarioMaker/lib.d.ts"]
 }
