@@ -1,0 +1,101 @@
+version: '3'
+services:
+  # 構文チェック(js)
+  eslint:
+    build: ./eslint
+    volumes: 
+      - ./config/.eslintrc:/home/workdir/.eslintrc
+      - ../../../src/browser:/home/workdir/src
+      - ./config/.node.eslintrc:/home/workdir/.node.eslintrc
+      - ../../../tests/e2e:/home/workdir/e2e
+
+  # 構文チェック(ts)
+  tslint:
+    build: ./tslint
+    volumes: 
+      - ./config/tsconfig.json:/home/workdir/tsconfig.json
+      - ./config/tslint.json:/home/workdir/tslint.json
+      - ../../../src/browser:/home/workdir/src
+
+  # トランスパイラ(js)
+  babel:
+    build: ./babel
+    volumes:
+      - ./config/.babelrc:/home/workdir/.babelrc
+      - ./babel/package.json:/home/workdir/package.json
+      - ../../../public:/home/workdir/public
+      - ../../../dist/transpiled-tsc:/home/workdir/src
+      - ../../../dist/transpiled-babel:/home/workdir/dist
+
+  # typescriptトランスパイラ
+  tsc:
+    build: ./typescript
+    volumes:
+      - ./config/tsconfig.json:/home/workdir/tsconfig.json
+      - ../../../src:/home/workdir/src
+      - ../../../dist/transpiled-tsc:/home/workdir/dist
+      - ../../../dist/typedoc:/home/workdir/typedoc
+
+  # ビルドツール
+  webpack:
+    build: ./webpack
+    volumes:
+      - ./config/.babelrc:/home/workdir/.babelrc
+      - ./config/tsconfig.json:/home/workdir/tsconfig.json
+      - ./config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
+      - ../../../src/browser:/home/workdir/src
+      - ../../../dist/bundle-webpack:/home/workdir/dist
+      # 構文チェック用設定
+      - ./config/tslint.json:/home/workdir/tslint.json
+    environment:
+      - NODE_ENV=production
+
+  # ユニットテスト用 jest
+  jest:
+    build: ./jest
+    volumes:
+      - ../../../src:/home/workdir/src
+      - ./jest/package.json:/home/workdir/package.json
+      - ./config/tsconfig.json:/home/workdir/tsconfig.json
+      - ../../../dist/coverage-jest:/home/workdir/coverage
+
+  # e2eテスト用 seleniumハブサーバ
+  hub:
+    image: selenium/hub
+    ports:
+      - 4444:4444
+
+  # e2eテスト用 selenium chromeサーバ
+  chrome:
+    image: selenium/node-chrome-debug
+    ports:
+      - 15900:5900
+    depends_on:
+      - hub
+    environment:
+      - no_proxy=localhost
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - HUB_ENV_no_proxy=localhost
+
+  # e2eテストコード実行用環境
+  e2e:
+    build: ./e2e/alpine
+    links:
+      - hub
+      - chrome
+    volumes:
+      - ../../../dist/screenshots:/home/selenium/screenshots
+      - ../../../tests/e2e:/home/selenium/src
+      - ./config/globals_path.js:/home/selenium/globals_path.js
+      - ./config/nightwatch.conf.js:/home/selenium/nightwatch.conf.js
+      - ./e2e/alpine/package.json:/home/selenium/package.json
+
+  # markdown to html
+  pandoc:
+    build: ./pandoc
+    working_dir: /home/workdir/docs
+    volumes:
+      - ../../../../docs:/home/workdir/docs
+      - ../../../dist/pandoc:/home/workdir/dist
+  

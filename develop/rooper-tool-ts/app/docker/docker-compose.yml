@@ -23,11 +23,11 @@ services:
       - /etc/localtime:/etc/localtime:ro
 
   dev-server:
-    build: ./tools/webpack
+    build: ./tools/core/webpack
     volumes:
-      - ./tools/config/.babelrc:/home/workdir/.babelrc
-      - ./tools/config/tsconfig.json:/home/workdir/tsconfig.json
-      - ./tools/config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
+      - ./tools/core/config/.babelrc:/home/workdir/.babelrc
+      - ./tools/core/config/tsconfig.json:/home/workdir/tsconfig.json
+      - ./tools/core/config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
       - ../src/browser:/home/workdir/src
       - ../public:/home/workdir/public
     command: [npm, run, dev-server]
