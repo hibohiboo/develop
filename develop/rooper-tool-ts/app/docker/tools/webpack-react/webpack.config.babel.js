@@ -6,14 +6,16 @@ module.exports = {
   context: __dirname + '/src',
   // エントリーポイントとしてapp.jsを起点にビルドする
   entry: {
-    typescript: ['./app.tsx'],
+    ScenarioMaker: ['./app.tsx'],
     // code-splitting用の設定
     vendor: [ 'react', 'react-dom', 'redux', 'react-redux', 'axios',  'material-ui', 'material-ui-number-input']
   },
   // distにビルドしたファイルをbundle.jsの名前で保存
   output: {
     path: __dirname + '/dist',
-    filename: 'scenariomaker.bundle.js'
+		filename: "TragedyLooperTools.[name].js",
+		library: ["TragedyLooperTools", "[name]"],
+		libraryTarget: "var"
   },
   // importするときに、以下の配列に登録した拡張子は省略できる
   resolve: {

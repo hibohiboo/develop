@@ -65,3 +65,4 @@ RUN npm i --save-dev babel-plugin-transform-class-properties
 RUN npm i --save material-ui-number-input
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"webpack\": \"webpack\",/g" /home/workdir/package.json
+
