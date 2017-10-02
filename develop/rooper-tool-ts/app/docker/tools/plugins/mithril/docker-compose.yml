@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  # 構文チェック(ts)
+  tslint:
+    build: ./webpack
+    volumes: 
+      - ./config/tsconfig.json:/app/tsconfig.json
+      - ./config/tslint.json:/app/tslint.json
+      - ../../../../src/browser/plugins/ScenarioMaker/mithril:/app/src/ScenarioMaker
+      - ../../../../src/browser/plugins/ScenarioMaker/common:/app/src/common
+  # ビルドツール
+  webpack:
+    build: ./webpack
+    volumes:
+      - ./config/.babelrc:/app/.babelrc
+      - ./config/tsconfig.json:/app/tsconfig.json
+      - ./config/webpack.config.babel.js:/app/webpack.config.babel.js
+      - ../../../../src/browser/plugins/ScenarioMaker/mithril:/app/src/ScenarioMaker
+      - ../../../../src/browser/plugins/ScenarioMaker/common:/app/src/common
+      - ../../../../dist/bundle-webpack:/app/dist
+      - ../../../../src/browser/plugins/ScenarioMaker/public:/app/public
+      # 構文チェック用設定
+      - ./config/tslint.json:/app/tslint.json
+    command: [npm, run, dev-server]
+    ports:
+      -  8080:8080
+
+  # ユニットテスト用 jest
+  jest:
+    build: ./jest
+    volumes:
+      - ../../../../src/plugins/ScenarioMaker/mithril:/app/src/ScenarioMaker
+      - ./jest/package.json:/app/package.json
+      - ./config/tsconfig.json:/app/tsconfig.json
+      - ../../../../dist/coverage-jest:/app/coverage

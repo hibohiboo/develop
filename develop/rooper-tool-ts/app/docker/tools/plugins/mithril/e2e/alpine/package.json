@@ -1,0 +1,19 @@
+{
+  "name": "xxxx",
+  "version": "1.0.0",
+  "description": "Nightwatch example.",
+  "main": "index.js",
+  "scripts": {
+    "grid": "nightwatch --grid=true -e chrome",
+    "nightwatch": "nightwatch"
+  },
+  "keywords": [],
+  "author": "xxxx",
+  "license": "ISC",
+  "devDependencies": {
+    "nightwatch": "^0.9.16"
+  },
+  "dependencies": {
+    "selenium-webdriver": "^3.5.0"
+  }
+}

@@ -1,0 +1,44 @@
+FROM node:8.5.0
+
+# コンテナ上の作業ディレクトリ作成
+WORKDIR /app
+
+# 後で確認出来るようにpackage.jsonを作成
+RUN npm init -y
+
+# typescript
+RUN npm i -D typescript
+
+# tslint
+RUN npm i -D tslint
+RUN npm i -D tslint-config-airbnb
+
+# typedoc
+RUN npm i -D typedoc 
+
+# ビルドツール
+RUN npm i -D webpack
+
+# 開発用サーバ
+RUN npm i -D webpack-dev-server
+
+# es6用トランスパイラ
+RUN npm i -D babel-loader
+RUN npm i -D babel-core
+RUN npm i -D babel-preset-es2015
+RUN npm i -D babel-preset-env
+RUN npm i -D babel-plugin-transform-react-jsx
+# async
+RUN npm i -D babel-preset-es2017
+
+# webpack用typescript loader
+RUN npm i -D ts-loader
+
+# jsViewライブラリmithril
+RUN npm i -S mithril
+
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json' --type-check\",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc\",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"typedoc\": \"typedoc\",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"webpack\": \"webpack\",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev-server\": \"webpack-dev-server\", /g" /app/package.json
