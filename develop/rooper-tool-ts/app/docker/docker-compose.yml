@@ -28,7 +28,7 @@ services:
       - ./tools/core/config/.babelrc:/home/workdir/.babelrc
       - ./tools/core/config/tsconfig.json:/home/workdir/tsconfig.json
       - ./tools/core/config/webpack.config.babel.js:/home/workdir/webpack.config.babel.js
-      - ../src/browser:/home/workdir/src
+      - ../src/browser/core:/home/workdir/src
       - ../public:/home/workdir/public
     command: [npm, run, dev-server]
     ports:
