@@ -8,3 +8,4 @@ cd $bin_dir/../ && docker-compose build
 cd $bin_dir/../tools && docker-compose build
 cd $bin_dir/../tools/core && docker-compose build
 cd $bin_dir/../tools/plugins/react && docker-compose build
+cd $bin_dir/../tools/plugins/mithril && docker-compose build

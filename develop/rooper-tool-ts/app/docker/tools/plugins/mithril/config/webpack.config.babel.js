@@ -24,7 +24,8 @@ const plugins = isProduction ? [
   // code-splittingを有効にするプラグイン
   new webpack.optimize.CommonsChunkPlugin({
     name: "vendor",
-    chunks: ['app'],
+    filename: "vendor.mithril.bundle.js",
+    //chunks: ['app'],
     minChunks: Infinity,}),
   new webpack.LoaderOptionsPlugin({
     minimize: true,
@@ -43,7 +44,7 @@ export default {
   entry: {
     ScenarioMaker: './ScenarioMaker/app.ts',
     // code-splitting用の設定
-    vendor: ['mithril']
+    vendor: ['mithril', 'redux', 'redux-actions', 'redux-saga']
   },
   output: {
     path: __dirname + '/dist',

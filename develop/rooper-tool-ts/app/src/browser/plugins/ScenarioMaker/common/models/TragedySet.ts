@@ -1,6 +1,6 @@
 import { IIncident } from './IIncident';
 
-export default class TragedySet {
+export class TragedySet {
   constructor(
                public id: number = 0,
                public name: string = '',
@@ -13,11 +13,3 @@ export default class TragedySet {
 export enum TragedySetType {
   first, basic, midnight, mystery, haunted,
 }
-
-export const tragedySetList = [
-  { id:TragedySetType.first,    name: `First Steps`,   fileName: `firstSteps.json` },
-  { id:TragedySetType.basic,    name: `Basic Tragedy`, fileName: `basicTragedy.json` },
-  { id:TragedySetType.midnight, name: `Midnight Zone`, fileName: `midnightZone.json` },
-  { id:TragedySetType.mystery,  name: `Mystery Circle`,   fileName: `mysteryCircle.json` },
-  { id:TragedySetType.haunted,  name: `Haunted Stage`, fileName: `hauntedStage.json` },
-];

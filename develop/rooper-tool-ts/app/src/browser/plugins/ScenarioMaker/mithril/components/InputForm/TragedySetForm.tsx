@@ -1,8 +1,10 @@
 import * as m from 'mithril';
-import { tragedySetList, TragedySetType } from '../../../common/models/TragedySet';
+import { TragedySetType } from '../../../common/models/TragedySet';
 
 class TragedySetForm implements m.Component<{}, {}> {
-  view() {
+  view(vnode) {7
+    const {tragedySetList} = vnode.attrs;
+
     return (
     <div>
       <span>惨劇セット</span>

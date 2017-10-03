@@ -9,6 +9,7 @@
   "dependencies": {
     "material-ui": "^0.18.6",
     "material-ui-number-input": "^5.0.16",
+    "mithril": "^1.1.4",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
@@ -20,7 +21,6 @@
     "@types/axios": "^0.14.0",
     "@types/jest": "^21.1.0",
     "@types/jquery": "^3.2.12",
-    "@types/mithril": "^1.1.8",
     "@types/react": "^16.0.3",
     "@types/react-dom": "^15.5.4",
     "@types/react-redux": "^5.0.4",
@@ -29,6 +29,9 @@
     "gulp": "^3.9.1",
     "gulp-tslint": "^7.1.0",
     "mithril-jest": "^0.1.7",
+    "mithril-redux": "^1.0.0",
+    "redux-actions": "^2.2.1",
+    "redux-thunk": "^2.2.0",
     "tslint": "^4.5.1",
     "typescript": "^2.1.5"
   },
