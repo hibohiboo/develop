@@ -2,7 +2,7 @@ import * as m from 'mithril';
 import { TragedySetType } from '../../../common/models/TragedySet';
 
 class TragedySetForm implements m.Component<{}, {}> {
-  view(vnode) {7
+  view(vnode) {
     const {tragedySetList} = vnode.attrs;
 
     return (
@@ -11,8 +11,8 @@ class TragedySetForm implements m.Component<{}, {}> {
       <select>
         {
           tragedySetList.map((set) => {
-          return  m('option', { value:set.id }, set.name);
-        })
+            return  m('option', { value:set.id }, set.name);
+          })
         }
         </select>
     </div>

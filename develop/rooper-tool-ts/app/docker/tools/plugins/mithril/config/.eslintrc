@@ -1,8 +1,0 @@
-{
-  "extends": "airbnb-base",
-  "plugins": [ "jasmine" ],
-  "env": {
-    "browser": true,
-    "jasmine": true
-  }
-}

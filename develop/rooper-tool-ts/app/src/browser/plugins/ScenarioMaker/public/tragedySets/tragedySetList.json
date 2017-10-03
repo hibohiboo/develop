@@ -1,0 +1,7 @@
+[
+  { "id": 1, "name": "First Steps",   "fileName": "firstSteps.json" },
+  { "id": 2, "name": "Basic Tragedy", "fileName": "basicTragedy.json" },
+  { "id": 3, "name": "Midnight Zone", "fileName": "midnightZone.json" },
+  { "id": 4, "name": "Mystery Circle",   "fileName": "mysteryCircle.json" },
+  { "id": 5, "name": "Haunted Stage", "fileName": "hauntedStage.json" }
+]
