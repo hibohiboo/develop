@@ -8,9 +8,10 @@ export async function get(url) {
   }
 
   cache[url] = [];
+
   return await m.request({
     method: 'GET',
-    // tslint:disable-next-line 
+    // tslint:disable-next-line
     url,
   });
 }

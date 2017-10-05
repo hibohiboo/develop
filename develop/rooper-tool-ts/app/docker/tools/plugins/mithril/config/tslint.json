@@ -2,6 +2,7 @@
   "extends": ["tslint:latest", "tslint-config-airbnb"],
 	"rules": {
     "strict-boolean-expressions": [true, "allow-boolean-or-undefined"],
+    "no-submodule-imports": [false]
   },
   "typeCheck": true
 }

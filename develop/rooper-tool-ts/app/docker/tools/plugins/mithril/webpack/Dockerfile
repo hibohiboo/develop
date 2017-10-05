@@ -39,9 +39,9 @@ RUN npm i -S mithril
 
 # フレームワーク
 RUN npm i -S redux
-RUN npm i -S mithril-redux
 RUN npm i -S redux-actions
 RUN npm i -S redux-saga
+RUN npm i -S redux-logger
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json' --type-check\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc\",/g" /app/package.json
