@@ -4,18 +4,13 @@
 from flask import Flask, jsonify, json
 # from flask_restful import Resource, Api
 from sqlalchemy import Column, ForeignKey, Integer, String, create_engine, DateTime, Float
-from sqlalchemy.orm import Session, relationship, backref, joinedload_all
+from sqlalchemy.orm import Session, relationship, backref, joinedload_all, relationship
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm.collections import attribute_mapped_collection
+from pprint import pprint
 
-# datetimeを扱う
-import datetime
-
+# decimal
 import decimal
-def datetime_handler(x):
-    if isinstance(x, datetime.datetime):
-        return x.isoformat()
-    raise TypeError("Unknown type")
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -40,25 +35,30 @@ class Customer(Base):
     Country = Column(String(40), nullable=True)
     Phone = Column(String(20), nullable=True)
 
-    def __init__(self, firstName, lastName, city, country, phone):
+    Orders = relationship("Order")
+
+    def __init__(self, firstName, lastName, city, country, phone, orders):
         self.FirstName = firstName
         self.LastName = lastName
         self.City = city
         self.Country = country
         self.Phone = phone
+        self.Orders = orders
 
     def __repr__(self):
-        return "Customer(Id=%r, FirstName=%r, LastName=%r, City=%r, Country=%r, Phone=%r)" % (
+        return "Customer(Id=%r, FirstName=%r, LastName=%r, City=%r, Country=%r, Phone=%r, Orders=%r)" % (
             self.Id,
             self.FirstName,
             self.LastName,
             self.City,
             self.Country,
-            self.Phone
+            self.Phone,
+            self.Orders
         )
 
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
 
 
 class Order(Base):
@@ -66,7 +66,7 @@ class Order(Base):
     Id = Column(Integer, primary_key=True)
     OrderDate = Column(DateTime, nullable=True)
     OrderNumber = Column(String(10), nullable=True)
-    CustomerId = Column(Integer, nullable=False)
+    CustomerId = Column(Integer, ForeignKey('Customer.Id'))
     TotalAmount = Column(Float, nullable=True)
 
     def __init__(self, orderDate, orderNumber, customerId, totalAmount):
@@ -120,21 +120,15 @@ def test_db():
     engine = create_engine(url, echo=True)
     session = Session(engine)
 
-    # customer = session.query(Customer).first()
-    # return jsonify(customer.as_dict())
+    customer = session.query(Customer).filter(Customer.Id == 2).first()
+    pprint(vars(customer))
+    return jsonify(customer.as_dict())
 
-    customers = session.query(Customer).all()
-    if type(customers) == list:
-        return jsonify(results=[c.as_dict() for c in customers])
-    else:
-        return jsonify(result=customers.as_dict())
-
-# flask.jsonを継承して作成
-# class DecimalEncoder(json.JSONEncoder):
-#     def _iterencode(self, o, markers=None):
-#         if isinstance(o, decimal.Decimal):
-#             return (str(o) for o in [o])
-#         return super(DecimalEncoder, self)._iterencode(o, markers)
+    # customers = session.query(Customer).all()
+    # if type(customers) == list:
+    #     return jsonify(results=[c.as_dict() for c in customers])
+    # else:
+    #     return jsonify(result=customers.as_dict())
 
 @app.route('/order', methods=['GET'])
 def test_db_order():
@@ -144,9 +138,6 @@ def test_db_order():
 
     order = session.query(Order).first()
     return jsonify(order.as_dict())
-    # return json.dumps(order.as_dict(), default=datetime_handler)
-
-
 
 # Hello World
 # class HelloWorld(Resource):
