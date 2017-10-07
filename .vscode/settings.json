@@ -20,4 +20,6 @@
   "tslint.enable": true,
   "tslint.configFile": "./tslint.json",
   "typescript.tsdk": "./node_modules/typescript/lib"
+    // 有効な場合、ファイルを開くときに文字セット エンコードを推測します
+    //,"files.autoGuessEncoding": false,
 }
