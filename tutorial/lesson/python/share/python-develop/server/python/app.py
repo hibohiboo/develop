@@ -44,7 +44,7 @@ class Customer(Base):
 
 @app.route("/")
 def hello():
-    return "Hello World!!日本語"
+    return "Hello World!!日本語!!"
 
 tasks = [
     {
