@@ -1,0 +1,14 @@
+<html>
+  <head><title>ログインしてください</title></head>
+  <body>
+    <form action="login.php" method="post">
+      ユーザ名<input type="text" name="id"><br>
+      パスワード<input type="text" name="pwd"><br>
+      <input type="submit" value="ログイン">
+    </form>
+    <p>ユーザ名：test, パスワード:passwordでログイン成功を試す。</p>
+    <p>ユーザ名：test, パスワード:password以外でログイン失敗を試す。</p>
+    <p>ユーザ名：' or 'a'='a' or 'b'='b, パスワード:password以外 でSQLインジェクションでのログイン成功を試す。</p>
+    
+  </body>
+</html>
