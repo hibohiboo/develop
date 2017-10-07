@@ -121,8 +121,8 @@ def test_db():
     session = Session(engine)
 
     customer = session.query(Customer).filter(Customer.Id == 2).first()
-    pprint(vars(customer))
-    return jsonify(customer.as_dict())
+    pprint(vars(customer.Orders))
+    return jsonify(customer.Orders[0].as_dict())
 
     # customers = session.query(Customer).all()
     # if type(customers) == list:
