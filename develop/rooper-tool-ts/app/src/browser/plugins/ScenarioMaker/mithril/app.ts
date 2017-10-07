@@ -4,32 +4,32 @@ import { createStore } from 'redux';
 import { TragedySet } from '../common/models/TragedySet';
 import { requsetTragedySetList } from './actions/tragedySet';
 import { get } from './browser/request';
-// import InputForm from './components/InputForm';
-import TragedySetForm from './components/InputForm/TragedySetForm';
-import ITragedySetListItem from './interfaces/ITragedySetListItem';
-import store from './store';
 import InputForm from './components/InputForm';
+// import InputForm from './components/InputForm';
+// import TragedySetForm from './components/InputForm/TragedySetForm';
+import TragedySetFormContainer from './containers/TragedySetFormContainer';
+import ITragedySetListItem from './interfaces/ITragedySetListItem';
 import Provider from './mithril-redux';
+import store from './store';
 
+/**
+ * アプリケーションコンテナ。
+ *
+ * @class App
+ * @implements {m.Component<{}, {}>}
+ */
 class App implements m.Component<{}, {}> {
-  public props;
-  view(vnode): Element{
-    console.log(vnode)
-    console.log('app')
-    console.log(this)
-    const state = vnode.attrs.props.state as {tragedySetList: TragedySet[]};    
-    const tragedySetList = state.tragedySetList;
+  public view(vnode): Element {
     return m('div',[
-      m(TragedySetForm, { tragedySetList }),
-      m(InputForm)
+      m(TragedySetFormContainer),
+      m(InputForm),
     ]);
   }
- }
-
+}
 
 const root = document.getElementById('app');
 function render() {
-  m.render(root, m(Provider,{store}, App));
+  m.render(root, m(Provider,{ store }, App));
 }
 
 // subscribeによって、dispatchのたびにrenderが呼ばれる。

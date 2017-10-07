@@ -3,7 +3,9 @@ import { TragedySetType } from '../../../common/models/TragedySet';
 
 class TragedySetForm implements m.Component<{}, {}> {
   view(vnode) {
-    const {tragedySetList} = vnode.attrs;
+    console.log('form')
+    console.log(vnode)
+    const {tragedySetList} = vnode.attrs.props;
 
     return (
     <div>

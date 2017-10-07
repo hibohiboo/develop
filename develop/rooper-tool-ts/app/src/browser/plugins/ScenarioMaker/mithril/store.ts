@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
  // tslint:disable-next-line
 import createSagaMiddleware from 'redux-saga';
-import {createLogger} from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import reducers from './reducers';
 import sagas from './sagas';
 
