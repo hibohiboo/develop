@@ -15,10 +15,13 @@ export default class Provider implements m.Component<{}, {}> {
   private app;
   
   constructor(vnode){
+    store = vnode.attrs.store;
     this.props = {
-      store: vnode.attrs.store
+      state: store.getState()
     };
-    this.app = vnode.children[0];
+    console.log('mithril-redux-const')
+    console.log(vnode)
+    this.app = vnode.children[0].children;
   }
   /**
    * 
@@ -27,7 +30,12 @@ export default class Provider implements m.Component<{}, {}> {
    * @returns 
    * @memberof Provider
    */
-  view(vnode) {
-    return this.app;
+  view() {
+    const app = this.app;
+    return m(app, {
+      props: {
+        state: store.getState()
+      }
+    })
   }
 }

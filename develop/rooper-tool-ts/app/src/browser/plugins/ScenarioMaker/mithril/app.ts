@@ -12,8 +12,12 @@ import InputForm from './components/InputForm';
 import Provider from './mithril-redux';
 
 class App implements m.Component<{}, {}> {
+  public props;
   view(vnode): Element{
-    const state = store.getState() as {tragedySetList: TragedySet[]};
+    console.log(vnode)
+    console.log('app')
+    console.log(this)
+    const state = vnode.attrs.props.state as {tragedySetList: TragedySet[]};    
     const tragedySetList = state.tragedySetList;
     return m('div',[
       m(TragedySetForm, { tragedySetList }),
@@ -25,7 +29,7 @@ class App implements m.Component<{}, {}> {
 
 const root = document.getElementById('app');
 function render() {
-  m.render(root, m(Provider,{store}, [m(App)]));
+  m.render(root, m(Provider,{store}, App));
 }
 
 // subscribeによって、dispatchのたびにrenderが呼ばれる。

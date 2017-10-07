@@ -14,7 +14,7 @@ class TragedySetForm implements m.Component<{}, {}> {
             return  m('option', { value:set.id }, set.name);
           })
         }
-        </select>
+      </select>
     </div>
     );
   }
