@@ -384,6 +384,7 @@ m.render(root, m(App));
 docker-compose upを行い、
 `http://192.168.50.10:8080/webpack-dev-server/` もしくは`http://192.168.50.10:8080/`に接続で確認。
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/0ec13baf019069fe639b3cb4710fac22d2f63ced/tutorial/lesson/redux-todo-mithril)
 
 ## 参考
 
@@ -412,9 +413,9 @@ docker-compose upを行い、
 [Revised Revised TypeScript in Definitelyland][t*2]
 
 [airbnb][l*1]  
-[node規約][l*2]  
-[google規約][l*3]  
-[ESLint 最初の一歩][l*4]  
+[node規約][l*2]
+[google規約][l*3]
+[ESLint 最初の一歩][l*4]
 [Microsoft Typescript][l*5]
 [TypeScriptのインターフェースに「I」のプリフィクスを付けるのはよくないのか][l*6]
 
@@ -447,7 +448,7 @@ docker-compose upを行い、
 [l*1]:http://mitsuruog.github.io/javascript-style-guide/
 [l*2]:http://popkirby.github.io/contents/nodeguide/style.html
 [l*3]:https://www38.atwiki.jp/aias-jsstyleguide2/pages/1.html
-[l*4]:http://qiita.com/mysticatea/items/f523dab04a25f617c87d)
+[l*4]:http://qiita.com/mysticatea/items/f523dab04a25f617c87d
 [l*5]:https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines
 [l*6]:https://saku.io/use-i-as-interface-prefix-in-typescript/
 
