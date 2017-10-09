@@ -419,16 +419,19 @@ export const addTodo = createAction(ADD,
 
 ### Reducers
 
-```typescript:src/reducers/index.ts
-import { handleActions } from 'redux-actions';
-import { ADD } from '../actions';
-
+```typescript:src/models/TodoState.ts
 export class TodoState {
   constructor(
     public id: number,
     public text: string,
   ) {}
 }
+```
+
+```typescript:src/reducers/index.ts
+import { handleActions } from 'redux-actions';
+import { ADD } from '../actions';
+import { TodoState } from '../models/TodoState';
 
 export default handleActions({
   [ADD]: (state,  { payload }) => {
@@ -455,6 +458,10 @@ console.log(store.getState())
 const root = document.getElementById('app');
 m.render(root, m(App));
 ```
+
+## 3. storeで保持したstateをViewで表示する
+
+
 
 ## 参考
 

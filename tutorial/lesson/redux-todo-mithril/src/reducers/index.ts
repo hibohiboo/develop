@@ -1,12 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { ADD } from '../actions';
-
-export class TodoState {
-  constructor(
-    public id: number,
-    public text: string,
-  ) {}
-}
+import { TodoState } from '../models/TodoState';
 
 export default handleActions({
   [ADD]: (state,  { payload }) => {
