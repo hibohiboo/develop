@@ -8,6 +8,8 @@ services:
       - ./config/tsconfig.json:/app/tsconfig.json
       - ../src:/app/src
       - ../dist/transpiled-tsc:/app/dist
+    command: [npm, run, tsc]
+
 
   # トランスパイル(babel)
   babel:
@@ -16,6 +18,9 @@ services:
       - ./config/.babelrc:/app/.babelrc
       - ../dist/transpiled-tsc:/app/src
       - ../dist/transpiled-babel:/app/dist
+    depends_on:
+      - tsc
+    command: [npm, run, babel, --, src, -d, dist]
 
   # 構文チェック(ts)
   tslint:
@@ -24,6 +29,7 @@ services:
       - ./config/tsconfig.json:/app/tsconfig.json
       - ./config/tslint.json:/app/tslint.json
       - ../src:/app/src
+    command: [npm, run, -s, tslint, --, -c, tslint.json, 'src/**/*.ts', 'src/**/*.tsx']
 
   # Apiドキュメント
   typedoc:
@@ -32,6 +38,7 @@ services:
       - ./config/tsconfig.json:/app/tsconfig.json
       - ../src:/app/src
       - ../dist/apidoc:/app/typedoc
+    command: [npm, run, typedoc, --, --target, es6, --jsx, preserve, --ignoreCompilerErrors, --exclude, '**/*.test.ts', --out, ./typedoc/, ./src/]
 
   # ビルドツール
   webpack:

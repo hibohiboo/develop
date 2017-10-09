@@ -28,6 +28,10 @@ const plugins = isProduction ?
 [
     // hot loadを有効にするためのプラグイン
     new webpack.HotModuleReplacementPlugin(),
+    // mithrilをグローバル変数として登録。これをしないとjsxのみのファイルでm not findのエラーとなる
+    new webpack.ProvidePlugin({
+      m: "mithril",
+  })
 ];
 
 export default {
