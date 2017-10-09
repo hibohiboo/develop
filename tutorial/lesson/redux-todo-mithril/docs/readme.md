@@ -328,7 +328,7 @@ services:
       -  8080:8080
 ```
 
-## ソース
+## 1. Hello World
 
 ```html:public/index.html
 <!DOCTYPE html>
@@ -384,7 +384,77 @@ m.render(root, m(App));
 docker-compose upを行い、
 `http://192.168.50.10:8080/webpack-dev-server/` もしくは`http://192.168.50.10:8080/`に接続で確認。
 
-[この時点のソース](https://github.com/hibohiboo/develop/tree/0ec13baf019069fe639b3cb4710fac22d2f63ced/tutorial/lesson/redux-todo-mithril)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/73fe5cd8c746f55bbafabda1d423127a87b01062/tutorial/lesson/redux-todo-mithril)
+
+## 2. actionCreatorで発行したactionをreducerに渡してstoreのstateを更新する
+
+### Acitions
+
+```typescript:src/actions/index.ts
+import { Action } from 'redux';
+import { createAction } from 'redux-actions';
+
+export const ADD = 'ADD_TODO';
+
+/**
+ * id保存用
+ */
+let nextTodoId = 0;
+
+/**
+ * actionを発行する関数。
+ * actionは以下のオブジェクト
+ * {
+ *  type: 'ADD_TODO';
+ *  payload: {
+ *    id: number;
+ *    text: string;
+ *  }
+ * }
+ */
+export const addTodo = createAction(ADD,
+                                    text => ({ text, id: nextTodoId++ })
+);
+```
+
+### Reducers
+
+```typescript:src/reducers/index.ts
+import { handleActions } from 'redux-actions';
+import { ADD } from '../actions';
+
+export class TodoState {
+  constructor(
+    public id: number,
+    public text: string,
+  ) {}
+}
+
+export default handleActions({
+  [ADD]: (state,  { payload }) => {
+    // actionTypeがADDのとき、
+    // 新しいTodoStateを返す
+    return new TodoState(payload.id, payload.text);
+  },
+},                           new TodoState(0, '')); // 初期状態
+```
+
+### Store
+
+```typescript:src/app.ts
+import * as m from 'mithril';
+import App from './components/App';
+import {createStore } from 'redux';
+import { addTodo } from './actions'
+import reducers from './reducers';
+const store = createStore(reducers)
+
+store.dispatch(addTodo('Hello World!'))
+console.log(store.getState()) 
+
+const root = document.getElementById('app');
+m.render(root, m(App));
+```
 
 ## 参考
 
