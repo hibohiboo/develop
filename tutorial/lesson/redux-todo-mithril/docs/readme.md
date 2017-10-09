@@ -400,25 +400,21 @@ docker-compose upを行い、
 [Redux][f*10]
 [mithril-redux][f*11]
 [mithril-todomvc][f*12]
-
 [redux-sagaで非同期処理と戦う][r*3]  
-[redux-actions][r*5]  
-[connectを試す][r*6]  
-[redux図解][r*7]
-[redux-actionsについて学ぼう][r*1]
-[mithril-redux-starter][r*2]
-[redux-saga][r*4]
-
-[TypeScript2系のコンパイラのオプション一覧][t*1]
-[Revised Revised TypeScript in Definitelyland][t*2]
-
+[redux-actions][r*5]   
+[connectを試す][r*6]   
+[redux図解][r*7]  
+[redux-actionsについて学ぼう][r*1]  
+[mithril-redux-starter][r*2]  
+[redux-saga][r*4]  
+[TypeScript2系のコンパイラのオプション一覧][t*1]  
+[Revised Revised TypeScript in Definitelyland][t*2] 
 [airbnb][l*1]  
-[node規約][l*2]
-[google規約][l*3]
-[ESLint 最初の一歩][l*4]
-[Microsoft Typescript][l*5]
-[TypeScriptのインターフェースに「I」のプリフィクスを付けるのはよくないのか][l*6]
-
+[node規約][l*2]  
+[google規約][l*3]  
+[ESLint 最初の一歩][l*4]  
+[Microsoft Typescript][l*5]  
+[TypeScriptのインターフェースに「I」のプリフィクスを付けるのはよくないのか][l*6]  
 [tslint][*1]
 
 [f*1]:http://mithril-ja.js.org/index.html
