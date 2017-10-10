@@ -459,9 +459,43 @@ const root = document.getElementById('app');
 m.render(root, m(App));
 ```
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/f03a921df876419c33eae34c8e4755e28fa57281/tutorial/lesson/redux-todo-mithril)
+
+
 ## 3. storeで保持したstateをViewで表示する
 
+reducersで受け取るアクションを明確にするため、interfaceを追加
 
+```typescript:src/actions/index.ts
+import { Action } from 'redux';
+import { createAction } from 'redux-actions';
+
+export const ADD = 'ADD_TODO';
+
+export interface IAddTodoAction extends Action {
+  type: 'ADD_TODO';
+  payload: {
+    id: number;
+    text: string;
+  };
+}
+
+// 省略
+```
+
+TodoStateの配列を返すように変更。
+
+```typescript:src/reducers/index.ts
+import { handleActions } from 'redux-actions';
+import { ADD, IAddTodoAction } from '../actions';
+import { TodoState } from '../models/TodoState';
+
+export default handleActions({
+  [ADD]: (state: TodoState[],  { payload }: IAddTodoAction) => {
+    return [...state, new TodoState(payload.id, payload.text)];
+  },
+}, []);
+```
 
 ## 参考
 

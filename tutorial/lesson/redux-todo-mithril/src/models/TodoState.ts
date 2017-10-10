@@ -4,7 +4,7 @@
  * @export
  * @class TodoState
  */
-export class TodoState {
+export default class TodoState {
   /**
    * Creates an instance of TodoState.
    * @param {number} id

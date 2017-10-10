@@ -3,10 +3,14 @@ import App from './components/App';
 import {createStore } from 'redux';
 import { addTodo } from './actions'
 import reducers from './reducers';
-const store = createStore(reducers)
+import Provider from './mithril-redux';
+
+const todos = reducers;
+const store = createStore(todos)
 
 store.dispatch(addTodo('Hello World!'))
 console.log(store.getState()) 
 
 const root = document.getElementById('app');
-m.render(root, m(App));
+
+m.render(root, m(Provider,{ store }, m(App)));
