@@ -5,7 +5,7 @@ import VisibleTodoList from '../containers/VisibleTodoList';
 interface IAttr {}
 
 /**
- * ハローワールド
+ * App
  *
  * @export
  * @class App

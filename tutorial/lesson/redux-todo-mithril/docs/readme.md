@@ -12,6 +12,9 @@ mvcだと、mithrilはシンプルでけっこうキレイに書けている気�
 mithrilもreduxも勉強中なので、間違っていたりもっとよいやり方を知っていたら、教えていただけると幸い。
 まずはHello Worldまで。
 
+Typescriptは以下のサイトをまず読んでおくべきだった。  
+[型の国のTypeScript][t*2] 
+
 ## 環境
 
 ### エディタ
@@ -388,6 +391,9 @@ docker-compose upを行い、
 
 ## 2. actionCreatorで発行したactionをreducerに渡してstoreのstateを更新する
 
+Reduxの流れについては以下の記事が分かりやすかった。
+[たぶんこれが一番分かりやすいと思います React + Redux のフロー図解][r*7]
+
 ### Acitions
 
 ```typescript:src/actions/index.ts
@@ -464,6 +470,8 @@ m.render(root, m(App));
 
 ## 3. storeで保持したstateをViewで表示する
 
+### Actions
+
 reducersで受け取るアクションを明確にするため、interfaceを追加
 
 ```typescript:src/actions/index.ts
@@ -483,9 +491,11 @@ export interface IAddTodoAction extends Action {
 // 省略
 ```
 
+### Reducers
+
 TodoStateの配列を返すように変更。
 
-```typescript:src/reducers/index.ts
+```typescript:src/reducers/todos.ts
 import { handleActions } from 'redux-actions';
 import { ADD, IAddTodoAction } from '../actions';
 import { TodoState } from '../models/TodoState';
@@ -496,6 +506,242 @@ export default handleActions({
   },
 }, []);
 ```
+
+reducerのindexをcombineに。
+
+```typescript:src/reducers/index.ts
+import { combineReducers } from 'redux';
+import todos from './todos';
+
+export default combineReducers({
+  todos,
+});
+```
+
+### Components
+
+TodoListの作成
+
+```typescript:src/components/Todo.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';
+
+interface IAttr {
+  text: string;
+}
+
+export default class Todo implements  ClassComponent<IAttr> {
+  public view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    const { text } = vnode.attrs;
+    return (<li>
+      {text}
+    </li>);
+  }
+}
+```
+
+```typescript:src/components/TodoList.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';
+import TodoState from '../models/TodoState';
+import Todo from './Todo';
+
+interface IAttr {
+  props: {
+    todos: TodoState[],
+  };
+}
+
+export default class TodoList implements  ClassComponent<IAttr> {
+  public view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    const { todos } = vnode.attrs.props;
+    return (
+<ul>
+  {todos.map(todo => <Todo {...todo} />)}
+</ul>);
+  }
+}
+```
+
+VisbleTodoListはこの後に出てくる`Containers`の部分を参照。
+
+```typescript:src/components/App.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';
+import VisibleTodoList from '../containers/VisibleTodoList';
+interface IAttr {}
+
+export default class App implements  ClassComponent<IAttr> {
+  public view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    return (<div>
+      <VisibleTodoList />
+    </div>);
+  }
+}
+```
+
+### connect
+
+mithril-reduxのnpmは2年前だったので自作してみた。
+
+以下のサイトをみて必要そうな機能をピックアップ。  
+[ReactとReduxを結ぶパッケージ「react-redux」についてconnectの実装パターンを試す][r*6]
+
+```typescript:src/mithril-redux.ts
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril'; // tslint:disable-line: no-duplicate-imports
+let store;
+
+interface IAttr {
+  store: any,
+ }
+/**
+ * ラップしたコンポーネントにstore情報を渡す
+ * connect関数が使用できるようにする。
+ * 
+ * @export
+ * @class Provider
+ * @implements {ClassComponent<IAttr>}
+ */
+export default class Provider implements  ClassComponent<IAttr> {
+  /**
+   * storeをセットしてconnect関数を使用可能にする。
+   * 
+   * @param {any} vnode 
+   * @memberof Provider
+   */
+  oninit(vnode:Vnode<IAttr, {}>){
+    store = vnode.attrs.store;
+  }
+  /**
+   * App内でstateを参照できるようにする。
+   *
+   * @param {Vnode} vnode
+   * @returns
+   * @memberof Provider
+   */
+  public view(vnode:Vnode<IAttr, {}>) {
+    const app = vnode.children[0];
+    return m(app.tag, {
+      props: {
+        state: store.getState(),
+      },
+    });
+  }
+}
+
+
+/**
+ * ReduxとMithrilをバインディングする。
+ * 
+ * @export
+ * @param {*} [mapStateToProps=(state) => ({ state })] vnode.attrs.props.stateにアクセス可能となる
+ * @param {*} [mapDispatchToProps=(dispatch) => ({ dispatch })] vnode.attrs.props.dispatchにアクセス可能となる
+ * @returns 
+ */
+export function connect(
+  mapStateToProps: any = (state) => ({ state }),
+  mapDispatchToProps: any = (dispatch) => ({ dispatch }),
+) {
+  return (vnode) => {
+    return class implements  ClassComponent<{}> {
+      view() {
+        const props = getProps(mapStateToProps, mapDispatchToProps);
+        return m(vnode, { props });
+      }
+    };
+  };
+}
+
+/**
+ * propsにstateを渡す
+ * @param props
+ * @param mapStateToProps
+ */
+const stateToProps = (props, mapStateToProps) => {
+  const map = mapStateToProps(store.getState());
+  Object.assign(props, map);
+  return props;
+};
+
+/**
+ * propsにdispatchを渡す
+ * @param props
+ * @param mapDispatchToProps
+ */
+const dispatchToProps = (props, mapDispatchToProps) => {
+  const map = mapDispatchToProps(store.dispatch);
+  for (const prop in map) {
+    props[prop] = map[prop];
+  }
+  return props;
+};
+
+/**
+ * propsを作成。
+ *
+ * @param {any} mapStateToProps
+ * @param {any} mapDispatchToProps
+ */
+function getProps(mapStateToProps, mapDispatchToProps) {
+  let props: any = { };
+
+  props = stateToProps(props, mapStateToProps);
+  props = dispatchToProps(props, mapDispatchToProps);
+  return props;
+}
+
+```
+
+
+### Containers
+
+connectを思料する。
+
+```typescript:src/containers/VisbleTodoList.ts
+import TodoList from '../components/TodoList';
+import { connect } from '../mithril-redux';
+import TodoState from '../models/TodoState';
+
+interface IStateToProps {
+  todos: TodoState[];
+}
+
+const mapStateToProps = (store): IStateToProps => {
+  return { todos: store.todos };
+};
+
+export default connect(
+  mapStateToProps,
+)(TodoList);
+```
+
+### Store
+
+作成した`Provider`を使用。`m.render(root, m(Provider,{ store }, m(App)));`のようにするとProviderの中でconnectが使用可能。
+
+```typescript:src/app.ts
+import * as m from 'mithril';
+import App from './components/App';
+import {createStore } from 'redux';
+import { addTodo } from './actions'
+import reducers from './reducers';
+import Provider from './mithril-redux';
+
+const todos = reducers;
+const store = createStore(todos)
+
+store.dispatch(addTodo('Hello World!'))
+console.log(store.getState()) 
+
+const root = document.getElementById('app');
+
+m.render(root, m(Provider,{ store }, m(App)));
+```
+
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/07ec1a9cf77f94738164380a721d5cb99d4af31e/tutorial/lesson/redux-todo-mithril)
+
 
 ## 参考
 
