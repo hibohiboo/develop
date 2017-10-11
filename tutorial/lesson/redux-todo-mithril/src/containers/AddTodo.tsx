@@ -31,8 +31,9 @@ class _AddTodo implements  ClassComponent<IAttr> {
         <button
           onclick={
             () => {
-              onClick(this.value);
+              const val = this.value;
               this.value = '';
+              onClick(val); // dispatchのタイミングで画面が更新される。
             }
           }
         >

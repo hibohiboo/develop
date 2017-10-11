@@ -13,5 +13,10 @@ console.log(store.getState())
 
 const root = document.getElementById('app');
 
-m.mount(root, {view: ()=>m(Provider,{ store }, m(App))});
-store.subscribe(m.redraw)
+function render(){
+  m.render(root, m(Provider,{ store }, m(App)));
+}
+render();
+store.subscribe(render);
+// m.mount(root, {view: ()=>m(Provider,{ store }, m(App))});
+// store.subscribe(m.redraw)
