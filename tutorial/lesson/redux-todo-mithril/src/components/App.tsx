@@ -1,6 +1,5 @@
 import * as m from 'mithril';
-// tslint:disable-next-line: no-duplicate-imports
-import { ClassComponent, Vnode } from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
 import AddTodo from '../containers/AddTodo';
 import VisibleTodoList from '../containers/VisibleTodoList';
 

@@ -744,6 +744,116 @@ m.render(root, m(Provider,{ store }, m(App)));
 
 ## 4. フォームからtodoを追加
 
+```typescript:src/containers/AddTodo.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril'; // tslint:disable-line: no-duplicate-imports
+import { addTodo } from '../actions';
+import { connect } from '../mithril-redux';
+
+interface IAttr {}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onClick(text: string) {
+      dispatch(addTodo(text));
+    },
+  };
+}
+
+interface IDispatch {
+  onClick(text: string): void;
+}
+
+class AddTodoComponent implements  ClassComponent<IAttr> {
+  private value: string;
+  public view(vnode) {
+    const { onClick } = vnode.attrs.props;
+    return (
+      <div>
+        <input
+          oninput={m.withAttr('value', value => this.value = value)}
+          value={this.value}
+        />
+        <button
+          onclick={
+            () => {
+              const val = this.value;
+              this.value = '';
+              onClick(val); // dispatchのタイミングで画面が更新される。
+            }
+          }
+        >
+          Add Todo
+        </button>
+      </div>
+    );
+  }
+}
+
+export default connect(null, mapDispatchToProps)(AddTodoComponent);
+```
+
+```typescript:src/components/App.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
+import AddTodo from '../containers/AddTodo';
+import VisibleTodoList from '../containers/VisibleTodoList';
+
+interface IAttr {}
+
+export default class App implements  ClassComponent<IAttr> {
+  public view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    return (
+    <div>
+      <AddTodo />
+      <VisibleTodoList />
+    </div>);
+  }
+}
+```
+
+```typescript:src/app.ts
+import * as m from 'mithril';
+import App from './components/App';
+import {createStore } from 'redux';
+import { addTodo } from './actions'
+import reducers from './reducers';
+import Provider from './mithril-redux';
+
+const store = createStore(reducers)
+
+store.dispatch(addTodo('Hello World!'))
+
+const root = document.getElementById('app');
+
+function render(){
+  m.render(root, m(Provider,{ store }, m(App)));
+}
+render();
+store.subscribe(render);
+```
+
+### 描画について
+
+今回は`m.render`を使って以下のようにしている。
+
+```typescript
+function render(){
+  m.render(root, m(Provider,{ store }, m(App)));
+}
+render();
+store.subscribe(render);
+```
+
+以下のように、`m.mount`を使った場合、`m.withAttr`の値が変更されたタイミングでも画面の描画が行われる。
+これはreduxの流れとはずれてわかりにくくなってしまうと考え、今回は避けた。
+
+```typescript
+m.mount(root, {view: ()=>m(Provider,{ store }, m(App))});
+store.subscribe(m.redraw)
+```
+
+
 
 ## 参考
 
