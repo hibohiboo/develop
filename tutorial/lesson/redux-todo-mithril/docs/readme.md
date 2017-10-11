@@ -833,6 +833,10 @@ render();
 store.subscribe(render);
 ```
 
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/b7f5e1a11fe4c3ba130a330a42fdd849b9419a76/tutorial/lesson/redux-todo-mithril)
+
+
 ### 描画について
 
 今回は`m.render`を使って以下のようにしている。
