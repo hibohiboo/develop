@@ -742,6 +742,8 @@ m.render(root, m(Provider,{ store }, m(App)));
 
 [この時点のソース](https://github.com/hibohiboo/develop/tree/07ec1a9cf77f94738164380a721d5cb99d4af31e/tutorial/lesson/redux-todo-mithril)
 
+## 4. フォームからtodoを追加
+
 
 ## 参考
 
@@ -757,6 +759,8 @@ m.render(root, m(Provider,{ store }, m(App)));
 [Redux][f*10]
 [mithril-redux][f*11]
 [mithril-todomvc][f*12]
+[Mithril.js 試してみた(1) todo アプリを作り始める所まで][f*13]
+[俺たちのMithril.jsがこんなに遅いわけがない][f*14]
 [redux-sagaで非同期処理と戦う][r*3]  
 [redux-actions][r*5]   
 [connectを試す][r*6]   
@@ -786,6 +790,8 @@ m.render(root, m(Provider,{ store }, m(App)));
 [f*10]:http://redux.js.org/docs/introduction/
 [f*11]:https://github.com/colinbate/mithril-redux
 [f*12]:https://github.com/reubano/todomvc-mithril
+[f*13]:https://qiita.com/LightSpeedC/items/a2c967928f9cc13e0ebc
+[f*14]:https://qiita.com/shibukawa/items/5cb5d9a81e5ea76f015f
 
 [r*1]:http://grandbig.github.io/blog/2017/01/02/redux-base-4/
 [r*2]:https://github.com/colinbate/mithril-redux-starter/blob/master/src/actions.js

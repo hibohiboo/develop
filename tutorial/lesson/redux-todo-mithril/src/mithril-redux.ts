@@ -53,10 +53,17 @@ export function connect(
   mapStateToProps: any = (state) => ({ state }),
   mapDispatchToProps: any = (dispatch) => ({ dispatch }),
 ) {
+  if(!mapStateToProps){
+    mapStateToProps = (state) => ({ state });
+  }
+  if(!mapDispatchToProps){
+    mapDispatchToProps =  (dispatch) => ({ dispatch });
+  }
   return (vnode) => {
     return class implements  ClassComponent<{}> {
       view() {
         const props = getProps(mapStateToProps, mapDispatchToProps);
+        console.log(props)
         return m(vnode, { props });
       }
     };
@@ -81,9 +88,12 @@ const stateToProps = (props, mapStateToProps) => {
  */
 const dispatchToProps = (props, mapDispatchToProps) => {
   const map = mapDispatchToProps(store.dispatch);
+  console.log(map)
   for (const prop in map) {
+    console.log(map[prop])
     props[prop] = map[prop];
   }
+  console.log(props)
   return props;
 };
 
