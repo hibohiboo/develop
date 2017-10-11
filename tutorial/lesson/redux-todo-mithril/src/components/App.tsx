@@ -1,8 +1,8 @@
 import * as m from 'mithril';
 // tslint:disable-next-line: no-duplicate-imports
 import { ClassComponent, Vnode } from 'mithril';
-import VisibleTodoList from '../containers/VisibleTodoList';
 import AddTodo from '../containers/AddTodo';
+import VisibleTodoList from '../containers/VisibleTodoList';
 
 interface IAttr {}
 
