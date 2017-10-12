@@ -2,6 +2,7 @@ import * as m from 'mithril';
 import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
 import AddTodo from '../containers/AddTodo';
 import VisibleTodoList from '../containers/VisibleTodoList';
+import Footer from './Footer';
 
 interface IAttr {}
 
@@ -18,11 +19,12 @@ export default class App implements  ClassComponent<IAttr> {
    *
    * @param vnode
    */
-  public view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+  view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
     return (
     <div>
       <AddTodo />
       <VisibleTodoList />
+      <Footer />
     </div>);
   }
 }

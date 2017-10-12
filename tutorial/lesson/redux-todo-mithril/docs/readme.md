@@ -191,7 +191,7 @@ export const ALL = 'SHOW_ALL';
 export const COMPLETED = 'SHOW_COMPLETED';
 export const ACTIVE = 'SHOW_ACTIVE';
 
-type VisibilityFilterType = 'SHOW_ALL' | 'SHOW_COMPLETED' | 'SHOW_ACTIVE';
+export type VisibilityFilterType = 'SHOW_ALL' | 'SHOW_COMPLETED' | 'SHOW_ACTIVE';
 
 export interface IVisibilityFilter extends Action {
   type: 'SET_VISIBILITY_FILTER';
@@ -252,3 +252,106 @@ console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "
 [この時点のソース](https://github.com/hibohiboo/develop/tree/ad36e166cf642646f9aa69c9f0b481d9f184476c/tutorial/lesson/redux-todo-mithril)
 
 ## 4. フィルターの値によってviewを変更（手動でフィルターを操作して動作確認）
+```ts
+import { toggleTodo } from '../actions';
+import { VisibilityFilterType } from '../actions/filter';
+import TodoList from '../components/TodoList';
+import { connect } from '../mithril-redux';
+import TodoState from '../models/TodoState';
+
+interface IStateToProps {
+  todos: TodoState[];
+}
+interface IDispatchToProps { onTodoClick: (id: number) => void;}
+const getVisibleTodos = (todos: TodoState[], filter:VisibilityFilterType):TodoState[] => {
+  switch (filter) {
+    case 'SHOW_ALL':
+      return todos
+    case 'SHOW_COMPLETED':
+      return todos.filter((t) => t.completed)
+    case 'SHOW_ACTIVE':
+      return todos.filter((t) => !t.completed)
+  }
+}
+
+const mapStateToProps = (store): IStateToProps => {
+  return { todos: getVisibleTodos(store.todos, store.visibilityFilter) };
+};
+const mapDispatchToProps = (dispatch): IDispatchToProps => {
+  return {
+    onTodoClick: (id: number) => {
+      dispatch(toggleTodo(id));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/96e1f44fd04f288668e6843a0738b269529d0612/tutorial/lesson/redux-todo-mithril)
+
+## 5. リンクをクリックしてフィルターを操作してviewを変更
+
+### とりあえずリンク
+
+```ts:src/components/Link.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
+interface IAttr {}
+export default class Link implements  ClassComponent<IAttr> {
+  view({children}: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    return (<a href="#">{children}</a>);
+  }
+}
+```
+
+```ts:src/components/Footer.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
+import Link from './Link';
+
+interface IAttr {}
+
+export default class Footer implements  ClassComponent<IAttr> {
+  view({children}: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    return (
+      <p>
+      Show:
+      {" "}
+      <Link>
+        All
+      </Link>
+      {", "}
+      <Link>
+        Active
+      </Link>
+      {", "}
+      <Link>
+        Completed
+      </Link>
+    </p>
+
+    );
+  }
+}
+```
+
+```ts:src/components/App.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
+import AddTodo from '../containers/AddTodo';
+import VisibleTodoList from '../containers/VisibleTodoList';
+import Footer from './Footer';
+interface IAttr {}
+export default class App implements  ClassComponent<IAttr> {
+  view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    return (
+    <div>
+      <AddTodo />
+      <VisibleTodoList />
+      <Footer />
+    </div>);
+  }
+}
+```
+
+
