@@ -176,5 +176,75 @@ export default class Todo implements  ClassComponent<IAttr> {
 }
 ```
 
-[この時点のソース](https://github.com/hibohiboo/develop/tree/4e058b4040b39f3ddbb786170b81dcabe91f14e3/tutorial/lesson/redux-todo-mithril)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/268bb6aec371f212db7be66af945dff809607273/tutorial/lesson/redux-todo-mithril)
 
+## 3.  actionCreatorとreducerでフィルターの値をstore(state)に格納
+
+### actionCreatorの作成
+
+```ts:src/actions/filter.ts
+import { Action } from 'redux';
+import { createAction } from 'redux-actions';
+
+export const SET_VISIBILITY = 'SET_VISIBILITY_FILTER';
+export const ALL = 'SHOW_ALL';
+export const COMPLETED = 'SHOW_COMPLETED';
+export const ACTIVE = 'SHOW_ACTIVE';
+
+type VisibilityFilterType = 'SHOW_ALL' | 'SHOW_COMPLETED' | 'SHOW_ACTIVE';
+
+export interface IVisibilityFilter extends Action {
+  type: 'SET_VISIBILITY_FILTER';
+  payload: {
+    filter: VisibilityFilterType;
+  };
+}
+export const setVisibilityFilter = createAction(SET_VISIBILITY, (filter: VisibilityFilterType) => ({ filter }));
+```
+
+```ts:src/reducers/visibilityFilter.ts
+import { handleActions } from 'redux-actions';
+import { ALL, IVisibilityFilter, SET_VISIBILITY } from '../actions/filter';
+
+export default handleActions({
+  [SET_VISIBILITY]: (state, { payload:{ filter } }: IVisibilityFilter) => {
+    return filter;
+  },
+},                           ALL);
+```
+
+```ts:src/reducers/index.ts
+import { combineReducers } from 'redux';
+import todos from './todos';
+import visibilityFilter from './visibilityFilter';
+export default combineReducers({
+  todos, visibilityFilter,
+});
+```
+
+#### 確認
+
+```ts:src/app.ts
+import * as m from 'mithril';
+import App from './components/App';
+import {createStore } from 'redux';
+import { addTodo, toggleTodo } from './actions'
+import { setVisibilityFilter, COMPLETED } from './actions/filter'
+import reducers from './reducers';
+import Provider from './mithril-redux';
+
+const store = createStore(reducers);
+
+store.dispatch(addTodo('Hello World!'));
+
+const root = document.getElementById('app');
+
+function render(){
+  m.render(root, m(Provider,{ store }, m(App)));
+}
+render();
+store.subscribe(render);
+console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "SHOW_ALL"}
+store.dispatch(setVisibilityFilter(COMPLETED))
+console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "SHOW_COMPLETED"}
+```
