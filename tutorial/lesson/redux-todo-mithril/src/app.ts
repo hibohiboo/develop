@@ -1,14 +1,14 @@
 import * as m from 'mithril';
 import App from './components/App';
 import {createStore } from 'redux';
-import { addTodo } from './actions'
+import { addTodo, toggleTodo } from './actions'
 import reducers from './reducers';
 import Provider from './mithril-redux';
 
-const store = createStore(reducers)
+const store = createStore(reducers);
 
-store.dispatch(addTodo('Hello World!'))
-console.log(store.getState()) 
+store.dispatch(addTodo('Hello World!'));
+store.dispatch(toggleTodo(0));
 
 const root = document.getElementById('app');
 

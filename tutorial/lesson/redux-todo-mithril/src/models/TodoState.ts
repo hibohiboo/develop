@@ -6,14 +6,14 @@
  */
 export default class TodoState {
   /**
-   * 
-   * @param id 
-   * @param text 
-   * @param completed 
+   *
+   * @param id
+   * @param text
+   * @param completed
    */
   constructor(
     public id: number,
     public text: string,
-    public completed: boolean = true // TODO: true -> false
+    public completed: boolean = true, // TODO: true -> false
   ) {}
 }
