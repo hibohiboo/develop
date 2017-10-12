@@ -248,3 +248,7 @@ console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "
 store.dispatch(setVisibilityFilter(COMPLETED))
 console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "SHOW_COMPLETED"}
 ```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/ad36e166cf642646f9aa69c9f0b481d9f184476c/tutorial/lesson/redux-todo-mithril)
+
+## 4. フィルターの値によってviewを変更（手動でフィルターを操作して動作確認）

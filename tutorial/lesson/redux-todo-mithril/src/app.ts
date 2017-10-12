@@ -17,6 +17,3 @@ function render(){
 }
 render();
 store.subscribe(render);
-console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "SHOW_ALL"}
-store.dispatch(setVisibilityFilter(COMPLETED))
-console.log(store.getState()) // => Object {todos: Array[0], visibilityFilter: "SHOW_COMPLETED"}
