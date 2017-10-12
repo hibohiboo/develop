@@ -8,7 +8,6 @@ import Provider from './mithril-redux';
 const store = createStore(reducers);
 
 store.dispatch(addTodo('Hello World!'));
-store.dispatch(toggleTodo(0));
 
 const root = document.getElementById('app');
 

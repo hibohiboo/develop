@@ -85,6 +85,7 @@ export default handleActions({
   },
 },                           []);
 ```
+#### 確認
 
 ```ts:src/app.ts
 import * as m from 'mithril';
@@ -107,3 +108,73 @@ function render(){
 render();
 store.subscribe(render);
 ```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/4e058b4040b39f3ddbb786170b81dcabe91f14e3/tutorial/lesson/redux-todo-mithril)
+
+## 2. クリックしてcompletedの値を変える
+
+```ts:src/containers/VisibleTodoList.tsx
+import TodoList from '../components/TodoList';
+import { connect } from '../mithril-redux';
+import TodoState from '../models/TodoState';
+import { toggleTodo } from '../actions';
+interface IStateToProps { todos: TodoState[]; }
+interface IDispatchToProps{ onTodoClick: Function; }
+const mapStateToProps = (store): IStateToProps => {
+  return { todos: store.todos };
+};
+const mapDispatchToProps = (dispatch:Function):IDispatchToProps => {
+  return {
+    onTodoClick: (id:number) => {
+      dispatch(toggleTodo(id))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+```
+
+```ts:src/components/TodoList.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';
+import TodoState from '../models/TodoState';
+import Todo from './Todo';
+interface IAttr {
+  props: {
+    todos: TodoState[];
+    onTodoClick: (id: number) => void;
+  };
+}
+export default class TodoList implements  ClassComponent<IAttr> {
+  public view({ attrs:{ props } }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    const { todos, onTodoClick } = props;
+    return (
+<ul>
+  {todos.map(todo => <Todo {...todo} onClick={() => {onTodoClick(todo.id);}} />)}
+</ul>);
+  }
+}
+```
+
+```ts:src/components/Todo.tsx
+import { ClassComponent, Vnode } from 'mithril';
+import * as m from 'mithril';
+interface IAttr {
+  text: string;
+  completed: boolean;
+  onClick: (id: number) => void;
+}
+export default class Todo implements  ClassComponent<IAttr> {
+  public view({ attrs }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    const { text, completed, onClick } = attrs;
+    return (
+    <li
+      onclick={onClick}
+      style = {{ textDecoration: completed ? 'line-through' : 'none' }}>
+      {text}
+    </li>);
+  }
+}
+```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/4e058b4040b39f3ddbb786170b81dcabe91f14e3/tutorial/lesson/redux-todo-mithril)
+

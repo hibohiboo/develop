@@ -6,7 +6,8 @@ import Todo from './Todo';
 
 interface IAttr {
   props: {
-    todos: TodoState[],
+    todos: TodoState[];
+    onTodoClick: (id: number) => void;
   };
 }
 
@@ -19,11 +20,11 @@ interface IAttr {
  */
 export default class TodoList implements  ClassComponent<IAttr> {
 
-  public view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
-    const { todos } = vnode.attrs.props;
+  public view({ attrs:{ props } }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    const { todos, onTodoClick } = props;
     return (
 <ul>
-  {todos.map(todo => <Todo {...todo} />)}
+  {todos.map(todo => <Todo {...todo} onClick={() => {onTodoClick(todo.id);}} />)}
 </ul>);
   }
 }
