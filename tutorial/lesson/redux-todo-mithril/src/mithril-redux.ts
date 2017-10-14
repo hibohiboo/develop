@@ -61,9 +61,9 @@ export function connect(
   }
   return (vnode) => {
     return class implements  ClassComponent<{}> {
-      view() {
-        const props = getProps(mapStateToProps, mapDispatchToProps);
-        return m(vnode, { props });
+      view({attrs, children}:Vnode<{},{}>) {
+        const props = getProps(mapStateToProps, mapDispatchToProps, attrs);
+        return m(vnode, { props }, children);
       }
     };
   };
@@ -73,9 +73,10 @@ export function connect(
  * propsにstateを渡す
  * @param props
  * @param mapStateToProps
+ * @param ownProps バインディングされたコンポーネントの属性
  */
-const stateToProps = (props, mapStateToProps) => {
-  const map = mapStateToProps(store.getState());
+const stateToProps = (props, mapStateToProps, ownProps) => {
+  const map = mapStateToProps(store.getState(), ownProps);
   Object.assign(props, map);
   return props;
 };
@@ -84,9 +85,10 @@ const stateToProps = (props, mapStateToProps) => {
  * propsにdispatchを渡す
  * @param props
  * @param mapDispatchToProps
+ * @param ownProps
  */
-const dispatchToProps = (props, mapDispatchToProps) => {
-  const map = mapDispatchToProps(store.dispatch);
+const dispatchToProps = (props, mapDispatchToProps, ownProps) => {
+  const map = mapDispatchToProps(store.dispatch, ownProps);
   for (const prop in map) {
     props[prop] = map[prop];
   }
@@ -98,11 +100,12 @@ const dispatchToProps = (props, mapDispatchToProps) => {
  *
  * @param {any} mapStateToProps
  * @param {any} mapDispatchToProps
+ * @param {any} ownProps
  */
-function getProps(mapStateToProps, mapDispatchToProps) {
-  let props: any = { };
+function getProps(mapStateToProps, mapDispatchToProps, ownProps) {
+  let props = { };
 
-  props = stateToProps(props, mapStateToProps);
-  props = dispatchToProps(props, mapDispatchToProps);
+  props = stateToProps(props, mapStateToProps, ownProps);
+  props = dispatchToProps(props, mapDispatchToProps, ownProps);
   return props;
 }

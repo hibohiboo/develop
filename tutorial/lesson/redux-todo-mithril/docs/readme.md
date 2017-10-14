@@ -355,3 +355,167 @@ export default class App implements  ClassComponent<IAttr> {
 ```
 
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/dea3358ee7b36782eb2608fb444ad399a790be46/tutorial/lesson/redux-todo-mithril)
+
+### Linkコンテナでdispatch(setVisibilityFilter())を呼び出せるようにする
+
+```ts
+import { connect } from 'react-redux';
+import { setVisibilityFilter } from '../actions';
+import Link from '../components/Link';
+import { VisibilityFilterType } from '../states/VisibilityFilterType';
+
+interface IState{
+  visibilityFilter: VisibilityFilterType
+}
+
+interface IProps{
+  filter:VisibilityFilterType
+}
+
+interface IStateToProps{
+  state:any
+}
+
+interface IDispatchToProps{
+  onClick: Function
+}
+
+const mapStateToProps = (state:IState, ownProps:IProps):IStateToProps => {
+  return { 
+    state:state
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps:IProps):IDispatchToProps => {
+  return {
+    onClick: () => {
+      dispatch(setVisibilityFilter(ownProps.filter))
+    }
+  }
+}
+
+const FilterLink = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Link);
+
+```
+
+
+### Linkコンテナでdispatchを呼べるようにする。
+
+```ts:src/containers/FilterLink.ts
+import { setVisibilityFilter, VisibilityFilterType  } from '../actions/filter';
+import Link from '../components/Link';
+import { connect } from '../mithril-redux';
+
+interface IOwnProps {
+  filter: VisibilityFilterType;
+}
+
+interface IDispatchToProps {
+  onClick: ()=>void;
+}
+
+const mapDispatchToProps = (dispatch, ownProps: IOwnProps): IDispatchToProps => {
+  return {
+    onClick: () => {
+      dispatch(setVisibilityFilter(ownProps.filter));
+    },
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Link);
+```
+
+```ts:src/components/Footer.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
+import { ACTIVE, ALL, COMPLETED } from '../actions/filter';
+import FilterLink from '../containers/FilterLink';
+
+interface IAttr {}
+
+export default class Footer implements  ClassComponent<IAttr> {
+  public view({ children }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    return (
+    <p>
+      Show:
+      {' '}
+      <FilterLink filter={ALL}> {/* ここのfilter属性がcontainerのownProps.filter となる */}
+        All
+      </FilterLink>
+      {', '}
+      <FilterLink filter={ACTIVE}>
+        Active
+      </FilterLink>
+      {', '}
+      <FilterLink filter={COMPLETED}>
+        Completed
+      </FilterLink>
+    </p>
+    );
+  }
+}
+```
+
+### LinkコンポーネントでクリックしたときにonClickを呼ぶようにする。
+
+```ts:src/components/Link.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
+interface IAttr {
+  props:{
+    onClick: ()=>void
+  };
+}
+export default class Link implements  ClassComponent<IAttr> {
+  public view({ children, attrs:{ props:{ onClick } } }: Vnode<IAttr, this>) {
+    return (
+    <a href="#" onclick={(e: Event) => {
+      e.preventDefault();
+      onClick();
+    }
+    }>
+      {children}
+    </a>);
+  }
+}
+```
+
+### activeな状態のリンクを押せないようにする
+
+```ts:src/containers/FilterLink.ts
+import { setVisibilityFilter, VisibilityFilterType  } from '../actions/filter';
+import Link from '../components/Link';
+import { connect } from '../mithril-redux';
+
+interface IOwnProps {
+  filter: VisibilityFilterType;
+}
+interface IDispatchToProps {
+  onClick: ()=>void;
+}
+const mapStateToProps = (state, ownProps:IOwnProps) => {
+  return { 
+    active: ownProps.filter === state.visibilityFilter
+  }
+}
+const mapDispatchToProps = (dispatch, ownProps: IOwnProps): IDispatchToProps => {
+  return {
+    onClick: () => {
+      dispatch(setVisibilityFilter(ownProps.filter));
+    },
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Link);
+```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/dea3358ee7b36782eb2608fb444ad399a790be46/tutorial/lesson/redux-todo-mithril)

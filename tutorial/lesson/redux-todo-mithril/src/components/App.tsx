@@ -19,7 +19,7 @@ export default class App implements  ClassComponent<IAttr> {
    *
    * @param vnode
    */
-  view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+  public view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
     return (
     <div>
       <AddTodo />

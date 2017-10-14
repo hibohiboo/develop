@@ -1,26 +1,27 @@
 import * as m from 'mithril';
 import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
-import Link from './Link';
+import { ACTIVE, ALL, COMPLETED } from '../actions/filter';
+import FilterLink from '../containers/FilterLink';
 
 interface IAttr {}
 
 export default class Footer implements  ClassComponent<IAttr> {
-  view({children}: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+  public view({ children }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
     return (
       <p>
       Show:
-      {" "}
-      <Link>
+      {' '}
+      <FilterLink filter={ALL}>
         All
-      </Link>
-      {", "}
-      <Link>
+      </FilterLink>
+      {', '}
+      <FilterLink filter={ACTIVE}>
         Active
-      </Link>
-      {", "}
-      <Link>
+      </FilterLink>
+      {', '}
+      <FilterLink filter={COMPLETED}>
         Completed
-      </Link>
+      </FilterLink>
     </p>
 
     );

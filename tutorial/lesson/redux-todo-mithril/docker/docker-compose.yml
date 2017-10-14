@@ -50,7 +50,8 @@ services:
       - ../src:/app/src
       - ../dist/bundle-webpack:/app/dist
       - ../public:/app/public
+    environment:
+      - NODE_ENV=develop
     command: [npm, run, dev-server]
     ports:
       -  8080:8080
-
