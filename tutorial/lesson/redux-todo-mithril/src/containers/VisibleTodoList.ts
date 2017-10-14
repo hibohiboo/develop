@@ -1,5 +1,5 @@
-import { toggleTodo } from '../actions';
-import { VisibilityFilterType, ALL, COMPLETED, ACTIVE } from '../actions/filter';
+import { ACTIVE, ALL, COMPLETED, VisibilityFilterType } from '../actions/filter';
+import { toggleTodo } from '../actions/todos';
 import TodoList from '../components/TodoList';
 import { connect } from '../mithril-redux';
 import TodoState from '../models/TodoState';

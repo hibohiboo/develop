@@ -7,14 +7,14 @@ interface IOwnProps {
 }
 
 interface IDispatchToProps {
-  onClick: ()=>void;
+  onClick: () => void;
 }
 
-const mapStateToProps = (state, ownProps:IOwnProps) => {
-  return { 
-    active: ownProps.filter === state.visibilityFilter
-  }
-}
+const mapStateToProps = (state, ownProps: IOwnProps) => {
+  return {
+    active: ownProps.filter === state.visibilityFilter,
+  };
+};
 const mapDispatchToProps = (dispatch, ownProps: IOwnProps): IDispatchToProps => {
   return {
     onClick: () => {

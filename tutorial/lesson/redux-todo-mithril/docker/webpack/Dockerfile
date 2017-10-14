@@ -44,6 +44,8 @@ RUN npm i -S redux-actions
 RUN npm i -S redux-saga
 RUN npm i -S redux-logger
 
+RUN npm i -S babel-polyfill
+
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json' --type-check\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"babel\": \"babel\",/g" /app/package.json

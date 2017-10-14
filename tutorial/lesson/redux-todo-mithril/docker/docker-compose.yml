@@ -1,27 +1,6 @@
 version: '3'
 services:
 
-  # トランスパイル(ts)
-  tsc:
-    build: ./webpack
-    volumes: 
-      - ./config/tsconfig.json:/app/tsconfig.json
-      - ../src:/app/src
-      - ../dist/transpiled-tsc:/app/dist
-    command: [npm, run, tsc]
-
-
-  # トランスパイル(babel)
-  babel:
-    build: ./webpack
-    volumes: 
-      - ./config/.babelrc:/app/.babelrc
-      - ../dist/transpiled-tsc:/app/src
-      - ../dist/transpiled-babel:/app/dist
-    depends_on:
-      - tsc
-    command: [npm, run, babel, --, src, -d, dist]
-
   # 構文チェック(ts)
   tslint:
     build: ./webpack
@@ -55,3 +34,24 @@ services:
     command: [npm, run, dev-server]
     ports:
       -  8080:8080
+
+  # トランスパイル(ts)
+  tsc:
+    build: ./webpack
+    volumes: 
+      - ./config/tsconfig.json:/app/tsconfig.json
+      - ../src:/app/src
+      - ../dist/transpiled-tsc:/app/dist
+    command: [npm, run, tsc]
+
+
+  # トランスパイル(babel)
+  babel:
+    build: ./webpack
+    volumes: 
+      - ./config/.babelrc:/app/.babelrc
+      - ../dist/transpiled-tsc:/app/src
+      - ../dist/transpiled-babel:/app/dist
+    depends_on:
+      - tsc
+    command: [npm, run, babel, --, src, -d, dist]

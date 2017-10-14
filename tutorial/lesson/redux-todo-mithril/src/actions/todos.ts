@@ -7,7 +7,6 @@ export const TOGGLE = 'TOGGLE_TODO';
 export interface IAddTodoAction extends Action {
   type: 'ADD_TODO';
   payload: {
-    id: number;
     text: string;
   };
 }
@@ -19,12 +18,7 @@ export interface IToggleTodoAction extends Action {
 }
 
 /**
- * id保存用
- */
-let nextTodoId = 0;
-
-/**
  * actionを発行する関数。
  */
-export const addTodo    = createAction(ADD,    (text: string) => ({ text, id: nextTodoId++ })); // tslint:disable-line: no-increment-decrement max-line-length
+export const addTodo    = createAction(ADD,    (text: string) => ({ text }));
 export const toggleTodo = createAction(TOGGLE, (id: number) => ({ id }));

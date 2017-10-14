@@ -1,19 +1,12 @@
 import { handleActions } from 'redux-actions';
-import { ADD, IAddTodoAction, IToggleTodoAction, TOGGLE } from '../actions';
+import { GET_SUCCESS, PUT_SUCCESS } from '../actions/storage';
 import TodoState from '../models/TodoState';
 
 export default handleActions({
-  [ADD]: (state: TodoState[],  { payload: { id, text } }: IAddTodoAction) => {
-    return [...state, new TodoState(id, text)];
+  [GET_SUCCESS]: (state: TodoState[],  { payload: { todoList } }: any) => {
+    return todoList.map(todo => new TodoState(todo));
   },
-  [TOGGLE]: (state: TodoState[] ,{ payload:{ id } }: IToggleTodoAction) => {
-    return state.map((t) => {
-      // actionCreatorに渡したidと一致するtodoのみ処理
-      if (t.id !== id) {
-        return t;
-      }
-      // completedだけを反転
-      return  new TodoState(t.id, t.text, !t.completed);
-    });
+  [PUT_SUCCESS]: (state: TodoState[],  { payload: { todoList } }: any) => {
+    return todoList;
   },
 },                           []);

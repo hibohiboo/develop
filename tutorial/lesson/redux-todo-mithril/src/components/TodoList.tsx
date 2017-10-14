@@ -19,7 +19,6 @@ interface IAttr {
  * @implements {ClassComponent<IAttr>}
  */
 export default class TodoList implements  ClassComponent<IAttr> {
-
   public view({ attrs:{ props } }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
     const { todos, onTodoClick } = props;
     return (

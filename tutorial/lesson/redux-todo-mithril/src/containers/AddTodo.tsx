@@ -1,7 +1,7 @@
 
 import * as m from 'mithril';
 import { ClassComponent, Vnode } from 'mithril'; // tslint:disable-line: no-duplicate-imports
-import { addTodo } from '../actions';
+import { addTodo } from '../actions/todos';
 import { connect } from '../mithril-redux';
 
 interface IAttr {}
