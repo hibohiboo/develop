@@ -518,4 +518,5 @@ export default connect(
 )(Link);
 ```
 
-[この時点のソース](https://github.com/hibohiboo/develop/tree/dea3358ee7b36782eb2608fb444ad399a790be46/tutorial/lesson/redux-todo-mithril)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/dd3ee37d630e980c99bfab6bfdd535f839444974/tutorial/lesson/redux-todo-mithril)
+

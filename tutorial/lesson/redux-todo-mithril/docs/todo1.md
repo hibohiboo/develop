@@ -897,6 +897,7 @@ store.subscribe(m.redraw)
 [Microsoft Typescript][l*5]  
 [TypeScriptのインターフェースに「I」のプリフィクスを付けるのはよくないのか][l*6]  
 [tslint][*1]
+[react習得記まとめ][*3]
 
 [f*1]:http://mithril-ja.js.org/index.html
 [f*2]:https://mithril.js.org/
@@ -932,3 +933,4 @@ store.subscribe(m.redraw)
 [l*6]:https://saku.io/use-i-as-interface-prefix-in-typescript/
 
 [*1]:https://azriton.github.io/2017/09/16/TypeScript%E3%81%AEtslint.json%E3%82%92%E8%AA%BF%E3%81%B9%E3%82%8B/
+[*3]:https://qiita.com/ryo_t/items/67e319f8cc41c2d96eb9#_reference-9343d0f9299a73f67c23
