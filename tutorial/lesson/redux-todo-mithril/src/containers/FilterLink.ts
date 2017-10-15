@@ -9,7 +9,7 @@ interface IOwnProps {
 const mapStateToProps = (state, ownProps: IOwnProps) => {
   return {
     active: ownProps.filter === state.visibilityFilter,
-    filter: ownProps.filter
+    filter: ownProps.filter,
   };
 };
 

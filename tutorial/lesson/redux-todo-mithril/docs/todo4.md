@@ -72,8 +72,57 @@ export default class Todo implements  ClassComponent<IAttr> {
 }
 ```
 
-[この時点のソース](https://github.com/hibohiboo/develop/tree/a6b11aa974caa51b4dfc60231d8ac2170dbb3b65/tutorial/lesson/redux-todo-mithril)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/8f44d7ce20881ba57e2b8dc89e4517d15bf08066/tutorial/lesson/redux-todo-mithril)
 
+## すべてのチェックボックスのオンオフを切り替えるチェックボックスを作成する。
+
+### すべてのチェックボックスがオンの時にチェックが入るチェックボックスを作成
+
+```ts:src/containers/AllCompleted.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril'; // tslint:disable-line: no-duplicate-imports
+import { addTodo } from '../actions/todos';
+import { connect } from '../mithril-redux';
+import TodoState from '../models/TodoState';
+interface IAttr {
+  props: {
+    completed: boolean;
+  };
+}
+const mapStateToProps = (store: {todos: TodoState[]}): {completed: boolean} => {
+  return { completed: store.todos.every(todo => todo.completed) };
+};
+class AllCompleted implements  ClassComponent<IAttr> {
+  public view(vnode: Vnode<IAttr, {}>) {
+    const { completed } = vnode.attrs.props;
+    return (
+      <input class="toggle" type="checkbox" checked={completed} />
+    );
+  }
+}
+export default connect(mapStateToProps, null)(AllCompleted);
+```
+
+```ts:src/components/App.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
+import AddTodo from '../containers/AddTodo';
+import VisibleTodoList from '../containers/VisibleTodoList';
+import Footer from './Footer';
+import AllCompleted from '../containers/AllCompleted';
+interface IAttr {}
+export default class App implements  ClassComponent<IAttr> {
+  public view(vnode: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    return (
+    <div>
+      <AddTodo />
+      <label> check all: <AllCompleted /> </label>
+      <VisibleTodoList />
+      <Footer />
+    </div>);
+  }
+}
+```
 
 ## 参考
 
