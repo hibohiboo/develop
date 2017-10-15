@@ -35,6 +35,7 @@
     "gulp-tslint": "^7.1.0",
     "mithril-jest": "^0.1.7",
     "mithril-redux": "^1.0.0",
+    "moducks": "^0.2.2",
     "redux-actions": "^2.2.1",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.6",

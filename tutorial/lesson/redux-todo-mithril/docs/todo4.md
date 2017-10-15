@@ -124,6 +124,60 @@ export default class App implements  ClassComponent<IAttr> {
 }
 ```
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/b96959f1e9baff65f3ef304b5ec69f05e3602ae1/tutorial/lesson/redux-todo-mithril)
+
+### アクションを作成。
+
+action や sagaをまとめた ducksパターンを使用してみる。
+
+```ts:src/ducks/allComplete.ts
+import { Action } from 'redux';
+import { createAction } from 'redux-actions';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { PUT_REQUEST } from '../actions/storage';
+import TodoState from '../models/TodoState';
+
+export const ALL_COMPLETED = 'ALL_COMPLETED';
+export const ALL_INCOMPLETED = 'ALL_INCOMPLETED';
+
+export const allCompleted    = createAction(ALL_COMPLETED);
+export const allIncompleted = createAction(ALL_INCOMPLETED);
+
+function* toggleCompletedTodoList(completed:boolean){
+  const todos: TodoState[] = yield select((state: {todos: TodoState[]}) => state.todos);
+  const todoList = todos.map((todo) => {todo.completed = completed; return todo;});
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+export function* allCompletedTodoList(action: { type: string }) {
+  yield toggleCompletedTodoList(true);
+}
+export function* allIncompletedTodoList(action: { type: string }) {
+  yield toggleCompletedTodoList(false);
+}
+```
+
+```ts:src/sagas/index.ts
+import { takeEvery } from 'redux-saga/effects';
+import { GET_REQUEST, PUT_REQUEST } from '../actions/storage';
+import { ADD, TOGGLE } from '../actions/todos';
+import { ALL_COMPLETED, ALL_INCOMPLETED,
+         allCompletedTodoList, allIncompletedTodoList } from '../ducks/allCompoeted';
+import { addTodoList, getTodoList, putTodoList, toggleTodo } from './todos';
+
+function* mySaga() {
+  yield takeEvery(ADD, addTodoList);
+  yield takeEvery(TOGGLE, toggleTodo);
+  yield takeEvery(GET_REQUEST, getTodoList);
+  yield takeEvery(PUT_REQUEST, putTodoList);
+  yield takeEvery(ALL_COMPLETED, allCompletedTodoList);
+  yield takeEvery(ALL_INCOMPLETED, allIncompletedTodoList);
+}
+
+export default mySaga;
+```
+
+
+
 ## 参考
 
 [todomvc][*1]
