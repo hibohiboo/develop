@@ -384,6 +384,105 @@ render();
 store.subscribe(render);
 ```
 
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/96acdedbcdaa70d80df6b9088e9c0738cbce9696/tutorial/lesson/redux-todo-mithril)
+
+## ルーティング機能
+
+mithrilのm.routeを使うと、dispatchのタイミングとredrawのタイミングがうまく制御できない。
+page.jsを使ってルーティングを行う。
+
+```docker:docker/webpack/Dockerfile
+// 省略
+npm i -S page
+//省略
+```
+
+```js:docker/config/webpack.config.babel.js
+// 省略
+    vendor: ['mithril', 'redux', 'redux-actions', 'redux-saga', 'babel-polyfill', 'page']
+// 省略
+```
+
+```ts:src/app.ts
+import * as m from 'mithril';
+import * as page from 'page';
+import App from './components/App';
+import {createStore } from 'redux';
+import { toggleTodo } from './actions/todos'
+import { setVisibilityFilter } from './actions/filter'
+import {getRequsetTodoList, putRequsetTodoList } from './actions/storage';
+import reducers from './reducers';
+import Provider from './mithril-redux';
+import store from './store';
+
+const root = document.getElementById('app');
+
+store.dispatch(getRequsetTodoList());
+
+function render(){
+  m.render(root, m(Provider,{ store }, m(App)));
+}
+
+page('/', (ctx)=>{
+  if(ctx.hash){
+    store.dispatch(setVisibilityFilter(ctx.hash));
+  }
+});
+page();
+store.subscribe(render);
+```
+
+aタグのURLを#filterに変更
+
+```ts:src/components/Link.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
+interface IAttr {
+  props: {
+    active: boolean;
+    filter: string;
+  };
+}
+export default class Link implements  ClassComponent<IAttr> {
+  public view({ children, attrs:{ props } }: Vnode<IAttr, this>) {
+    if (props.active) {
+      return <span>{children}</span>;
+    }
+
+    return (
+    <a href={`/#${props.filter}`} >
+      {children}
+    </a>);
+  }
+}
+```
+
+propsにfilterを追加。onClickを削除。
+
+```ts
+import { setVisibilityFilter, VisibilityFilterType  } from '../actions/filter';
+import Link from '../components/Link';
+import { connect } from '../mithril-redux';
+
+interface IOwnProps {
+  filter: VisibilityFilterType;
+}
+
+const mapStateToProps = (state, ownProps: IOwnProps) => {
+  return {
+    active: ownProps.filter === state.visibilityFilter,
+    filter: ownProps.filter
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  null,
+)(Link);
+```
+
+
 ## 参考
 [mithril todo mvc][*1]
 [todo-redux-saga][*2]

@@ -41,7 +41,7 @@ export default {
   entry: {
     todo: './app.ts',
     // code-splitting用の設定
-    vendor: ['mithril', 'redux', 'redux-actions', 'redux-saga', 'babel-polyfill']
+    vendor: ['mithril', 'redux', 'redux-actions', 'redux-saga', 'babel-polyfill', 'page']
   },
   output: {
     path: __dirname + '/dist',

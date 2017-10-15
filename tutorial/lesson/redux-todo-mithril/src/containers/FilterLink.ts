@@ -6,24 +6,14 @@ interface IOwnProps {
   filter: VisibilityFilterType;
 }
 
-interface IDispatchToProps {
-  onClick: () => void;
-}
-
 const mapStateToProps = (state, ownProps: IOwnProps) => {
   return {
     active: ownProps.filter === state.visibilityFilter,
-  };
-};
-const mapDispatchToProps = (dispatch, ownProps: IOwnProps): IDispatchToProps => {
-  return {
-    onClick: () => {
-      dispatch(setVisibilityFilter(ownProps.filter));
-    },
+    filter: ownProps.filter
   };
 };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(Link);

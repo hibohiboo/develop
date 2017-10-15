@@ -15,4 +15,4 @@ export interface IVisibilityFilter extends Action {
   };
 }
 export const setVisibilityFilter =
-  createAction(SET_VISIBILITY, (filter: VisibilityFilterType) => ({ filter }));
+  createAction(SET_VISIBILITY, (filter: string) => ({ filter }));

@@ -2,8 +2,8 @@ import * as m from 'mithril';
 import { ClassComponent, Vnode } from 'mithril';  // tslint:disable-line: no-duplicate-imports
 interface IAttr {
   props: {
-    onClick: () => void;
     active: boolean;
+    filter: string;
   };
 }
 export default class Link implements  ClassComponent<IAttr> {
@@ -13,11 +13,7 @@ export default class Link implements  ClassComponent<IAttr> {
     }
 
     return (
-    <a href="#" onclick={(e: Event) => {
-      e.preventDefault();
-      props.onClick();
-    }
-    }>
+    <a href={`/#${props.filter}`} >
       {children}
     </a>);
   }
