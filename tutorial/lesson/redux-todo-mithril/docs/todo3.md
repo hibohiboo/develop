@@ -482,6 +482,8 @@ export default connect(
 )(Link);
 ```
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/a6b11aa974caa51b4dfc60231d8ac2170dbb3b65/tutorial/lesson/redux-todo-mithril)
+
 
 ## 参考
 [mithril todo mvc][*1]
@@ -491,6 +493,8 @@ export default connect(
 [redux-saga での stateの取り方 備忘録][*5]
 [redux-sagaで非同期処理と戦う][*6]
 [Reduxで非同期処理を行う方法を解説した記事の翻訳][*7]
+[moducks で Redux-Saga の冗長さと戦う][*8]
+[page.js][*9]
 
 [*1]:http://todomvc.com/examples/mithril/
 [*2]:https://github.com/r-park/todo-redux-saga
@@ -499,3 +503,5 @@ export default connect(
 [*5]:https://qiita.com/choro/items/464ee392395f6528bf80
 [*6]:https://qiita.com/kuy/items/716affc808ebb3e1e8ac
 [*7]:https://qiita.com/hachijirou/items/b9633e1dc7d2058d7528
+[*8]:https://qiita.com/mpyw/items/8a58dba95bc696947813#_reference-fc4dae8150172ce02c19
+[*9]:https://github.com/visionmedia/page.js
