@@ -14,11 +14,11 @@ export default class Todo implements  ClassComponent<IAttr> {
    */
   public view({ attrs }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
     const { text, completed, onClick } = attrs;
+    let classes = completed ? 'completed' : '';
     return (
-    <li
-      onclick={onClick}
-      style = {{ textDecoration: completed ? 'line-through' : 'none' }}>
-      {text}
+    <li class={classes}>
+      <input class="toggle" type="checkbox" onclick={onClick} checked={completed} />
+      <label>{text}</label>
     </li>);
   }
 }
