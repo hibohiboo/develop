@@ -1,4 +1,6 @@
-# 
+# Mithril + Redux のTodo ListをTypescriptで(2)
+
+[前回](https://qiita.com/hibohiboo/items/335ba837425978eb5f4a)の続き。
 
 ## completeの切り替えをinputにする。
 
