@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "esnext",
+        "outDir": "./dist",
+        "lib": [
+            "dom", 
+            "es2015"
+        ],
+        "jsx": "preserve",
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "sourceMap": false
+    },
+    "include":[
+        "./src/**/*" 
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
