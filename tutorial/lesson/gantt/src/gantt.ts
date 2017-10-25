@@ -13,7 +13,7 @@ interface IGraphData {
   label: string;
 }
 
-class Gantt {
+export default class Gantt {
   public table: GanttTable;
 
   constructor(private config: IConfig, private datasets: IGraphData[] = []) {
