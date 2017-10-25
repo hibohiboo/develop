@@ -13,11 +13,10 @@ interface IGraphData {
   label: string;
 }
 
-export class Gantt {
+class Gantt {
   public table: GanttTable;
-  private datasets: IGraphData[];
 
-  constructor(private config: IConfig) {
+  constructor(private config: IConfig, private datasets: IGraphData[] = []) {
     this.table = this.makeTable(this.config);
   }
 
@@ -61,7 +60,7 @@ type HTMLElementTagName = keyof HTMLElementTagNameMap;
  * @class CacheElement
  */
 class CacheElement {
-  public parent: CacheElement;
+  protected _parent: CacheElement;
   protected cache: {element?: HTMLElement} = {};
   protected children: CacheElement[] = [];
   private tagname: string;
@@ -86,18 +85,22 @@ class CacheElement {
     return elm;
   }
 
+  get parent() {
+    return this._parent;
+  }
+
   public appendChild = (node: HTMLElement | CacheElement) => {
     if (node instanceof HTMLElement) {
       node = new CacheElement(node); // tslint:disable-line no-param-reassign
     }
 
-    if (node.parent) {
-      node.parent.children = node.parent.children.filter(c => c !== node);
+    if (node._parent) {
+      node._parent.children = node._parent.children.filter(c => c !== node);
     }
 
     this.children.push(node);
     this.children.forEach((child) => {
-      child.parent = this;
+      child._parent = this;
       this.element.appendChild(child.element);
     });
     return this;
@@ -118,6 +121,8 @@ class GanttTable extends CacheElement {
   public static CELL_WIDTH_CONTAINS_BORDER = 42;
   public static CELL_OFFSET = -6;
   public static ROW_HEIGHT: number;
+  public rowHeight: number;
+  public columnWidth: number;
   private dataMap: TableData[][] = [];
   private rowsLength: number = 0;
   private colsLength: number = 0;
@@ -144,7 +149,6 @@ class GanttTable extends CacheElement {
     elm.setAttribute('cellpadding', `0`);
     elm.style.width = `${this.width}px`;
     elm.style.height = `${this.height}px`;
-    console.log(elm);
     return elm;
   }
   public setTd(row: number, col: number, td: TableData) {
@@ -163,8 +167,10 @@ class GanttTable extends CacheElement {
     if (col > this.colsLength - 1) {
       this.colsLength = col + 1;
     }
+
     this.dataMap[row][col] = td;
   }
+
   public getTd(row: number, col: number) {
     const rc = this.checkRangeRow(row);
     const cc = this.checkRangeCol(col);
@@ -174,6 +180,7 @@ class GanttTable extends CacheElement {
     if (cc > 0) {col = this.colsLength - 1;} // tslint:disable-line no-param-reassign
     return this.dataMap[row][col];
   }
+
   public inner(opt: {row: number, col: number, squares: number}) {
     const { row, col, squares } = opt;
     const colend = col + squares - 1;
@@ -184,9 +191,10 @@ class GanttTable extends CacheElement {
     }
     return true;
   }
+
   private checkRangeRow(row: number) {
     if (row < 0) { return -1;}
-    if (row > this.rowsLength - 1) {return 1;}
+    if (row > this.rowsLength - 1) { return 1;}
     return 0;
   }
 
@@ -256,10 +264,11 @@ class Graph {
 
   constructor(private data: IGraphData, private field: GanttTable) {
     const { colend, colstart, label, id } = data;
-    // マス数を計算
-    const numberOfSquare = colend - colstart;
 
-    this.box = new GraphBox(id, numberOfSquare);
+    // マス数を計算
+    const squares = colend - colstart;
+
+    this.box = new GraphBox(id, squares);
 
     this.middle = new GraphBoxMoveHandle(this.box.width, label, this.moveStart, this.moveEnd);
     this.left = new GraphBoxResizeHandle('left', this.resizeStart, this.resizeEnd);
@@ -319,7 +328,6 @@ class Graph {
     this.field.element.addEventListener('mousemove',  this.resizingLister);
     this.field.element.addEventListener('mouseleave', this.resizeEndLister);
     this.field.element.addEventListener('mouseup',    this.resizeEndLister);
-    console.log(this.field);
   }
 
   private resizing = (target: GraphBoxResizeHandle, event: MouseEvent) => {
