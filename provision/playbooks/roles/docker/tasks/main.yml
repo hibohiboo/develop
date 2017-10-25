@@ -2,6 +2,23 @@
 # docker 
 # Installation ubuntu 
 # https://docs.docker.com/engine/installation/linux/ubuntulinux/
+
+- block:
+  - name: dockerがインストールされていればバージョンを確認
+    shell: docker --version | grep {{ docker_version }}
+    register: ver_check
+    ignore_errors: True
+    check_mode: no
+    failed_when: no
+    changed_when: ver_check.rc != 0
+
+  - name: バージョンがvarsで指定されたものと異なれば、Remove "docker" package
+    apt:
+      name: docker-ce
+      state: absent
+    when: ver_check|failed
+    ignore_errors: True
+
 - name: dockerがインストールされていなければインストール
   command: docker
   register: result
@@ -9,31 +26,6 @@
   check_mode: no
   failed_when: no
   changed_when: result.rc != 0
-
-# - block:
-#   - name: dockerがインストールされていればバージョンを確認
-#     shell: docker --version | grep {{ docker_version }}
-#     register: ver_check
-#     ignore_errors: True
-#     check_mode: no
-#     failed_when: no
-#     changed_when: ver_check.rc != 0
-
-#   - name: バージョンがvarsで指定されたものと異なれば、Remove "docker" package
-#     apt:
-#       name: docker-ce
-#       state: absent
-#     when: ver_check|failed
-
-#   - name: check docker
-#     command: docker-compose
-#     register: result
-#     ignore_errors: True
-#     check_mode: no
-#     failed_when: no
-#     changed_when: result.rc != 0
-#     when: ver_check|failed
-#   when: result|success
 
 - block:
   - name: debug dockreインストール
