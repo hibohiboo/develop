@@ -6,5 +6,9 @@
         "sourceMap": false,
         "jsx": "preserve",
         "allowJs":true
-    }
+    },
+    "exclude": [
+        "node_modules",
+        "**/dist/*"
+    ]
 }
