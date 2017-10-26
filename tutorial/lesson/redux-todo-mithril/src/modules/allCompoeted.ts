@@ -16,7 +16,7 @@ export const ALL_INCOMPLETED = 'ALL_INCOMPLETED';
 /**
  * actionを発行
  */
-export const allCompleted    = createAction(ALL_COMPLETED);
+export const allCompleted   = createAction(ALL_COMPLETED);
 export const allIncompleted = createAction(ALL_INCOMPLETED);
 
 // Saga:ALL_COMPLETED Action によって起動するワーカー

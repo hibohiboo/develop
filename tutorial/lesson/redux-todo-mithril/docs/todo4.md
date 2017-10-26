@@ -226,7 +226,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllCompleted);
 [todomvc][*1]
 [todomvc-common][*2]
 [todomvc-app-css][*3]
+[shadow-dom][*4]
 
 [*1]:https://github.com/tastejs/todomvc
 [*2]:https://github.com/tastejs/todomvc-common
 [*3]:https://github.com/tastejs/todomvc-app-css
+[*4]:https://sbfl.net/blog/2016/07/17/shadow-dom-v1/

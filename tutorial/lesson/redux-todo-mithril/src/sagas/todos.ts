@@ -45,3 +45,10 @@ export function* getTodoList(action: {type: string;}) {
     yield put({ type: GET_FAILED, message: e.message });
   }
 }
+
+export function* deleteTodo(action: {type: string, payload: {id}}) {
+  const todos = yield select((state: any) => state.todos);
+  const { id } = action.payload;
+  const todoList = todos.filter((t) =>  t.id !== id);
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}

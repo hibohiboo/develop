@@ -17,3 +17,12 @@ export const putFailureTodoList = createAction(PUT_FAILED, message => message);
 
 export const PUT_SUCCESS = 'TODO_LIST_PUT_SUCCEEDED';
 export const putSuccessTodoList = createAction(PUT_SUCCESS, todoList => ({ todoList }));
+
+// export const DELETE_REQUEST = 'TODO_LIST_DELETE_REQUESTED';
+// export const deleteRequsetTodoList = createAction(DELETE_REQUEST, todoList => ({ todoList }));
+
+// export const DELETE_FAILED = 'TODO_LIST_DELETE_FAILED';
+// export const deleteFailureTodoList = createAction(DELETE_FAILED, message => message);
+
+// export const DELETE_SUCCESS = 'TODO_LIST_DELETE_SUCCEEDED';
+// export const deleteSuccessTodoList = createAction(DELETE_SUCCESS, todoList => ({ todoList }));

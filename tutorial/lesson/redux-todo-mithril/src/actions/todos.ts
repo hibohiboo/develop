@@ -3,6 +3,7 @@ import { createAction } from 'redux-actions';
 
 export const ADD = 'ADD_TODO';
 export const TOGGLE = 'TOGGLE_TODO';
+export const DELETE = 'DELETE_TODO';
 
 export interface IAddTodoAction extends Action {
   type: 'ADD_TODO';
@@ -22,3 +23,4 @@ export interface IToggleTodoAction extends Action {
  */
 export const addTodo    = createAction(ADD,    (text: string) => ({ text }));
 export const toggleTodo = createAction(TOGGLE, (id: number) => ({ id }));
+export const deleteTodo = createAction(DELETE, (id: number) => ({ id }));
