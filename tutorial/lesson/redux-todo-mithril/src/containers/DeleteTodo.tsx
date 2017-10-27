@@ -6,8 +6,7 @@ import { connect } from '../mithril-redux';
 
 interface IAttr {
   props: {
-    active: boolean;
-    filter: string;
+    onClick: ()=>void;
   };
 }
 
@@ -15,14 +14,9 @@ interface IOwnProps {
   id:number;
 }
 
-const mapStateToProps = (state, {id}: IOwnProps) => {
-  return {id};
-};
-
-
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, {id}: IOwnProps) {
   return {
-    onClick(id: number) {
+    onClick() {
       dispatch(deleteTodo(id));
     },
   };
@@ -30,17 +24,11 @@ function mapDispatchToProps(dispatch) {
 
 class DeleteTodoComponent implements  ClassComponent<IAttr> {
   public view(vnode): Vnode<IAttr, HTMLElement> {
-    const { onClick, id } = vnode.attrs.props;
+    const { onClick } = vnode.attrs.props;
     return (
-      <button  class="destroy" 
-          onclick={
-            () => onClick(id)
-          }
-        >
-          x
-        </button>
+      <button  class="destroy" onclick={onClick}></button>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteTodoComponent);
+export default connect(null, mapDispatchToProps)(DeleteTodoComponent);

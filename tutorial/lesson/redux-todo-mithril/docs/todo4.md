@@ -221,6 +221,192 @@ export default connect(mapStateToProps, mapDispatchToProps)(AllCompleted);
 [この時点のソース](https://github.com/hibohiboo/develop/tree/67f2a08ebe812be34135c142eb004c8c78bef014/tutorial/lesson/redux-todo-mithril)
 
 
+## 削除ボタンを作成する。
+
+```ts:src/actions/todos.ts
+import { Action } from 'redux';
+import { createAction } from 'redux-actions';
+
+export const ADD = 'ADD_TODO';
+export const TOGGLE = 'TOGGLE_TODO';
+export const DELETE = 'DELETE_TODO';
+
+export interface IAddTodoAction extends Action {
+  type: 'ADD_TODO';
+  payload: {
+    text: string;
+  };
+}
+export interface IToggleTodoAction extends Action {
+  type: 'TOGGLE_TODO';
+  payload: {
+    id: number;
+  };
+}
+
+/**
+ * actionを発行する関数。
+ */
+export const addTodo    = createAction(ADD,    (text: string) => ({ text }));
+export const toggleTodo = createAction(TOGGLE, (id: number) => ({ id }));
+export const deleteTodo = createAction(DELETE, (id: number) => ({ id }));
+```
+
+```ts:src/sagas/todos.ts
+import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { GET_FAILED, GET_REQUEST, GET_SUCCESS,
+         PUT_FAILED, PUT_REQUEST, PUT_SUCCESS } from '../actions/storage';
+import { get as getTodo, put as putTodo } from '../browser/storage';
+import TodoState from '../models/TodoState';
+
+// ワーカー Saga:GET_REQUEST Action によって起動する
+export function* addTodoList(action: {type: string, payload: {text}}) {
+  const todos = yield select((state: any) => state.todos);
+  const { text } = action.payload;
+  const todoList = [...todos, new TodoState({ text })];
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+export function* toggleTodo(action: {type: string, payload: {id}}) {
+  const todos = yield select((state: any) => state.todos);
+  const { id } = action.payload;
+  const todoList = todos.map((t) => {
+    // actionCreatorに渡したidと一致するtodoのみ処理
+    if (t.id !== id) {
+      return t;
+    }
+    // completedだけを反転
+    return  new TodoState({ id:t.id, text:t.text, completed: !t.completed });
+  });
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+// ワーカー Saga:PUT_REQUEST Action によって起動する
+export function* putTodoList(action: {type: string, payload: {todoList: TodoState[]}}) {
+  try {
+    yield call(putTodo, action.payload.todoList);
+    yield put({ type: PUT_SUCCESS, payload:{ todoList: action.payload.todoList } });
+  } catch (e) {
+    yield put({ type: PUT_FAILED, message: e.message });
+  }
+}
+
+// ワーカー Saga:GET_REQUEST Action によって起動する
+export function* getTodoList(action: {type: string;}) {
+  try {
+    const todoList: TodoState[] = yield call(getTodo);
+    yield put({ type: GET_SUCCESS, payload:{ todoList } });
+  } catch (e) {
+    yield put({ type: GET_FAILED, message: e.message });
+  }
+}
+
+export function* deleteTodo(action: {type: string, payload: {id}}) {
+  const todos = yield select((state: any) => state.todos);
+  const { id } = action.payload;
+  const todoList = todos.filter((t) =>  t.id !== id);
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+```
+
+```ts:src/sagas/index.ts
+import { takeEvery } from 'redux-saga/effects';
+import { GET_REQUEST, PUT_REQUEST } from '../actions/storage';
+import { ADD, TOGGLE, DELETE } from '../actions/todos';
+import { ALL_COMPLETED, ALL_INCOMPLETED,
+         allCompletedTodoList, allIncompletedTodoList } from '../modules/allCompoeted';
+import { addTodoList, getTodoList, putTodoList, toggleTodo, deleteTodo } from './todos';
+
+function* mySaga() {
+  yield takeEvery(ADD, addTodoList);
+  yield takeEvery(TOGGLE, toggleTodo);
+  yield takeEvery(DELETE, deleteTodo);
+  yield takeEvery(GET_REQUEST, getTodoList);
+  yield takeEvery(PUT_REQUEST, putTodoList);
+  yield takeEvery(ALL_COMPLETED, allCompletedTodoList);
+  yield takeEvery(ALL_INCOMPLETED, allIncompletedTodoList);
+}
+
+export default mySaga;
+```
+
+```ts:src/containers/DeleteTodo.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode } from 'mithril'; // tslint:disable-line: no-duplicate-imports
+import { deleteTodo } from '../actions/todos';
+import { connect } from '../mithril-redux';
+
+interface IAttr {
+  props: {
+    active: boolean;
+    filter: string;
+  };
+}
+interface IOwnProps {
+  id:number;
+}
+const mapStateToProps = (state, {id}: IOwnProps) => {
+  return {id};
+};
+function mapDispatchToProps(dispatch) {
+  return {
+    onClick(id: number) {
+      dispatch(deleteTodo(id));
+    },
+  };
+}
+class DeleteTodoComponent implements  ClassComponent<IAttr> {
+  public view(vnode): Vnode<IAttr, HTMLElement> {
+    const { onClick, id } = vnode.attrs.props;
+    return (
+      <button 
+          class="destroy" 
+          onclick={ () => onClick(id) }
+        >
+          x
+      </button>
+    );
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteTodoComponent);
+```
+
+```ts:src/components/Todo.tsx
+import { ClassComponent, Vnode } from 'mithril';
+import * as m from 'mithril'; // tslint:disable-line: no-duplicate-imports
+import TodoState from '../models/TodoState';
+import DeleteTodo from '../containers/DeleteTodo';
+
+interface IAttr extends TodoState {
+  onClick: (id: number) => void;
+}
+
+export default class Todo implements  ClassComponent<IAttr> {
+  /**
+   *
+   * @param vnode
+   */
+  public view({ attrs }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    const { id, text, completed, onClick } = attrs;
+    const classes = completed ? 'completed' : '';
+    console.log(attrs);
+    return (
+    <li class={classes}>
+      <label>
+        <input class="toggle" type="checkbox" onclick={onClick} checked={completed} />
+        {text}
+      </label>
+      <DeleteTodo id={id}>x</DeleteTodo>
+    </li>);
+  }
+}
+```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/5f4c50e4fc2695385ae47a65ec8693f52d8539d4/tutorial/lesson/redux-todo-mithril)
+
+
+
 ## 参考
 
 [todomvc][*1]

@@ -18,11 +18,13 @@ export default class Todo implements  ClassComponent<IAttr> {
     console.log(attrs);
     return (
     <li class={classes}>
-      <label>
+      <div class="view">
         <input class="toggle" type="checkbox" onclick={onClick} checked={completed} />
-        {text}
-      </label>
-      <DeleteTodo id={id}>x</DeleteTodo>
+        <label>
+          {text}
+        </label>
+        <DeleteTodo id={id}>x</DeleteTodo>
+      </div>
     </li>);
   }
 }
