@@ -331,6 +331,7 @@ export default mySaga;
 ```
 
 ```ts:src/containers/DeleteTodo.tsx
+
 import * as m from 'mithril';
 import { ClassComponent, Vnode } from 'mithril'; // tslint:disable-line: no-duplicate-imports
 import { deleteTodo } from '../actions/todos';
@@ -338,38 +339,32 @@ import { connect } from '../mithril-redux';
 
 interface IAttr {
   props: {
-    active: boolean;
-    filter: string;
+    onClick: ()=>void;
   };
 }
+
 interface IOwnProps {
   id:number;
 }
-const mapStateToProps = (state, {id}: IOwnProps) => {
-  return {id};
-};
-function mapDispatchToProps(dispatch) {
+
+function mapDispatchToProps(dispatch, {id}: IOwnProps) {
   return {
-    onClick(id: number) {
+    onClick() {
       dispatch(deleteTodo(id));
     },
   };
 }
+
 class DeleteTodoComponent implements  ClassComponent<IAttr> {
   public view(vnode): Vnode<IAttr, HTMLElement> {
-    const { onClick, id } = vnode.attrs.props;
+    const { onClick } = vnode.attrs.props;
     return (
-      <button 
-          class="destroy" 
-          onclick={ () => onClick(id) }
-        >
-          x
-      </button>
+      <button  class="destroy" onclick={onClick}></button>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DeleteTodoComponent);
+export default connect(null, mapDispatchToProps)(DeleteTodoComponent);
 ```
 
 ```ts:src/components/Todo.tsx
@@ -403,7 +398,18 @@ export default class Todo implements  ClassComponent<IAttr> {
 }
 ```
 
-[この時点のソース](https://github.com/hibohiboo/develop/tree/5f4c50e4fc2695385ae47a65ec8693f52d8539d4/tutorial/lesson/redux-todo-mithril)
+cssでbuttonの後にxを表示している。
+
+```css
+
+#todo-list li .destroy:after {
+	content: '×';
+}
+
+```
+
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/347ed0a0e768dad6bb4f3d73135ad1d3dd27a244/tutorial/lesson/redux-todo-mithril)
 
 
 
