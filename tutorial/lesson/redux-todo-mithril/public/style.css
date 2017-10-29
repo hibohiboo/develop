@@ -11,6 +11,11 @@
 	border-bottom: 1px solid #ededed;
 }
 
+#todo-list li div {
+	position: relative;
+}
+
+
 #todo-list li .toggle {
 	text-align: center;
 	width: 40px;
@@ -37,10 +42,8 @@
   color: #d9d9d9;
   text-decoration: line-through;
 }
-#todo-list li .edit {
-	display: none;
-}
-#todo-list li label {
+
+#todo-list li label{
 	white-space: pre-line;
 	word-break: break-all;
 	padding: 15px 60px 15px 15px;
@@ -48,6 +51,14 @@
 	display: block;
 	line-height: 1.2;
 	transition: color 0.4s;
+}
+
+#todo-list li .editing label {
+	display: none;
+}
+
+#todo-list li .edit {
+	display: none;
 }
 #todo-list li .destroy {
 	display: none;
@@ -76,3 +87,10 @@
 	display: block;
 }
 
+
+#todo-list .editing .edit {
+	display: block;
+	width: 506px;
+	padding: 13px 17px 12px 17px;
+	margin: 0 0 0 55px;
+}

@@ -2,6 +2,7 @@ import { ClassComponent, Vnode } from 'mithril';
 import * as m from 'mithril'; // tslint:disable-line: no-duplicate-imports
 import TodoState from '../models/TodoState';
 import DeleteTodo from '../containers/DeleteTodo';
+import EditTodo from '../containers/EditTodo';
 
 interface IAttr extends TodoState {
   onClick: (id: number) => void;
@@ -20,9 +21,7 @@ export default class Todo implements  ClassComponent<IAttr> {
     <li class={classes}>
       <div class="view">
         <input class="toggle" type="checkbox" onclick={onClick} checked={completed} />
-        <label>
-          {text}
-        </label>
+        <EditTodo text={text} />
         <DeleteTodo id={id}>x</DeleteTodo>
       </div>
     </li>);
