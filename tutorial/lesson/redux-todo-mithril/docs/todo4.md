@@ -1,6 +1,7 @@
 # Mithril + Redux のTodo ListをTypescriptで(2)
 
 [前回](https://qiita.com/hibohiboo/items/335ba837425978eb5f4a)の続き。
+MithrilのTodoMVCをReduxで再現したメモ。
 
 ## completeの切り替えをinputにする。
 
@@ -737,8 +738,268 @@ export default mySaga;
 
 ### 編集を確定させる。
 
-```ts
+doneEditingのアクションを追加
+
+```ts:src/actions/todos.ts
+import { Action } from 'redux';
+import { createAction } from 'redux-actions';
+
+export const ADD = 'ADD_TODO';
+export const TOGGLE = 'TOGGLE_TODO';
+export const DELETE = 'DELETE_TODO';
+export const EDITING = 'EDITING_TODO';
+export const DONE_EDITING = 'DONE_EDITING_TODO';
+
+export interface IAddTodoAction extends Action {
+  type: 'ADD_TODO';
+  payload: {
+    text: string;
+  };
+}
+export interface IToggleTodoAction extends Action {
+  type: 'TOGGLE_TODO';
+  payload: {
+    id: number;
+  };
+}
+export interface IEditingAction extends Action {
+  type: 'EDITING_TODO';
+  payload: {
+    id: number;
+  };
+}
+export interface IDoneEditingAction extends Action {
+  type: 'EDITING_TODO';
+  payload: {
+    id: number;
+    text: string;
+  };
+}
+/**
+ * actionを発行する関数。
+ */
+export const addTodo    = createAction(ADD,    (text: string) => ({ text }));
+export const toggleTodo = createAction(TOGGLE, (id: number) => ({ id }));
+export const deleteTodo = createAction(DELETE, (id: number) => ({ id }));
+export const editingTodo = createAction(EDITING, (id: number) => ({ id }));
+export const doneEditingTodo = createAction(DONE_EDITING, (id:number, text: string) =>({id, text}));
 ```
+
+doneEditingのsagaを追加
+
+```ts:src/sagas/todos.ts
+import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { GET_FAILED, GET_REQUEST, GET_SUCCESS,
+         PUT_FAILED, PUT_REQUEST, PUT_SUCCESS } from '../actions/storage';
+import { get as getTodo, put as putTodo } from '../browser/storage';
+import TodoState from '../models/TodoState';
+
+export function* addTodoList(action: {type: string, payload: {text}}) {
+  const todos = yield select((state: any) => state.todos);
+  const { text } = action.payload;
+  const todoList = [...todos, new TodoState({ text })];
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+export function* toggleTodo(action: {type: string, payload: {id}}) {
+  const todos = yield select((state: any) => state.todos);
+  const { id } = action.payload;
+  const todoList = todos.map((t) => {
+    if (t.id !== id) {
+      return t;
+    }
+    t.completed = !t.completed;
+    return  new TodoState(t);
+  });
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+export function* putTodoList(action: {type: string, payload: {todoList: TodoState[]}}) {
+  try {
+    yield call(putTodo, action.payload.todoList);
+    yield put({ type: PUT_SUCCESS, payload:{ todoList: action.payload.todoList } });
+  } catch (e) {
+    yield put({ type: PUT_FAILED, message: e.message });
+  }
+}
+
+export function* getTodoList(action: {type: string;}) {
+  try {
+    const todoList: TodoState[] = yield call(getTodo);
+    yield put({ type: GET_SUCCESS, payload:{ todoList } });
+  } catch (e) {
+    yield put({ type: GET_FAILED, message: e.message });
+  }
+}
+
+export function* deleteTodo(action: {type: string, payload: {id}}) {
+  const todos = yield select((state: any) => state.todos);
+  const { id } = action.payload;
+  const todoList = todos.filter((t) =>  t.id !== id);
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+export function* editingTodo(action: {type: string, payload: {id}}) {
+  const todos = yield select((store: any) => store.todos);
+  const { id } = action.payload;
+  const todoList = todos.map((t) => {
+    if (t.id !== id) {
+      return t;
+    }
+    t.editing = true;
+    return  new TodoState(t);
+  });
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+export function* doneEditingTodo(action: {type: string, payload: {id, text}}) {
+  const todos = yield select((store: any) => store.todos);
+  const { id, text } = action.payload;
+  const todoList = todos.map((t) => {
+    if (t.id !== id) {
+      return t;
+    }
+
+    t.editing = false;
+    t.text = text;
+    return  new TodoState(t);
+  });
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+```
+
+```ts:src/sagas/index.ts
+import { takeEvery } from 'redux-saga/effects';
+import { GET_REQUEST, PUT_REQUEST } from '../actions/storage';
+import { ADD, TOGGLE, DELETE, EDITING, DONE_EDITING } from '../actions/todos';
+import { ALL_COMPLETED, ALL_INCOMPLETED,
+         allCompletedTodoList, allIncompletedTodoList } from '../modules/allCompoeted';
+import { addTodoList, getTodoList, putTodoList, toggleTodo, deleteTodo, editingTodo, doneEditingTodo } from './todos';
+function* mySaga() {
+  yield takeEvery(ADD, addTodoList);
+  yield takeEvery(TOGGLE, toggleTodo);
+  yield takeEvery(DELETE, deleteTodo);
+  yield takeEvery(GET_REQUEST, getTodoList);
+  yield takeEvery(PUT_REQUEST, putTodoList);
+  yield takeEvery(ALL_COMPLETED, allCompletedTodoList);
+  yield takeEvery(ALL_INCOMPLETED, allIncompletedTodoList);
+  yield takeEvery(EDITING, editingTodo);
+  yield takeEvery(DONE_EDITING, doneEditingTodo);
+}
+export default mySaga;
+```
+
+componentに編集確定イベントとキャンセルイベントの追加
+
+```ts:src/containers/EditTodo.tsx
+import * as m from 'mithril';
+import { ClassComponent, Vnode, VnodeDOM } from 'mithril'; // tslint:disable-line: no-duplicate-imports
+import { connect } from '../mithril-redux';
+import { editingTodo, doneEditingTodo } from '../actions/todos';
+import TodoState from '../models/TodoState';
+interface IAttr{}
+interface IOwnProps {
+  id:number;
+  text: string;
+  editing: boolean;
+}
+
+const mapStateToProps = (store, { text, editing}: IOwnProps) => {
+  return { text, editing };
+};
+const mapDispatchToProps = (dispatch, {id}: IOwnProps) => {
+  return {
+    onDoubleClick() {
+      dispatch(editingTodo(id));
+    },
+    onBlur(text:string){
+      dispatch(doneEditingTodo(id, text));
+    }
+  };
+}
+
+class EditTodoComponent implements  ClassComponent<IAttr> {
+  private value: string;
+
+  public view(vnode): Vnode<IAttr, HTMLElement> {
+    const { onDoubleClick, onBlur, text, editing } = vnode.attrs.props;
+    this.value = text;
+    const doneEditing = () => {
+      const val = this.value;
+      this.value = '';
+      onBlur(val);
+    };
+
+    return (
+      <div>
+        <label ondblclick={onDoubleClick}>
+          {text}
+        </label>
+        <input 
+          class="edit" 
+          value={this.value}
+          onupdate={
+            (vnode: VnodeDOM<{}, this>)=>{
+              if(editing){
+                const element = vnode.dom as HTMLElement;
+                element.focus();
+              }
+            }
+          }
+          oninput={m.withAttr('value', value => this.value = value)}
+          onblur={doneEditing}
+          onkeyup={
+            (e:KeyboardEvent)=>{
+              if(e.key === 'Enter'){
+                doneEditing();
+              }
+              else if(e.key === "Escape"){
+                this.value = text;
+                onBlur(text);
+              }
+            }
+          }
+          />
+      </div>
+    );
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(EditTodoComponent);
+```
+
+editingの追加。
+
+```ts:src/components/Todo.tsx
+import { ClassComponent, Vnode } from 'mithril';
+import * as m from 'mithril'; // tslint:disable-line: no-duplicate-imports
+import TodoState from '../models/TodoState';
+import DeleteTodo from '../containers/DeleteTodo';
+import EditTodo from '../containers/EditTodo';
+
+interface IAttr extends TodoState {
+  onClick: (id: number) => void;
+}
+
+export default class Todo implements  ClassComponent<IAttr> {
+  public view({ attrs }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
+    const { id, text, completed, editing, onClick } = attrs;
+    const classes = ( completed ? 'completed ' : '') + 
+                    ( editing   ? 'editing '   : '');
+    return (
+    <li class={classes}>
+      <div class="view">
+        <input class="toggle" type="checkbox" onclick={onClick} checked={completed} />
+        <EditTodo text={text} id={id} editing={editing} />
+        <DeleteTodo id={id} />
+      </div>
+    </li>);
+  }
+}
+```
+
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/ad966f7077260fd66d112bd7cd4ec868040eeb98/tutorial/lesson/redux-todo-mithril)
+
 
 ## 参考
 
