@@ -21,7 +21,7 @@ export default class Todo implements  ClassComponent<IAttr> {
     <li class={classes}>
       <div class="view">
         <input class="toggle" type="checkbox" onclick={onClick} checked={completed} />
-        <EditTodo text={text} id={id} />
+        <EditTodo text={text} id={id} editing={editing} />
         <DeleteTodo id={id} />
       </div>
     </li>);

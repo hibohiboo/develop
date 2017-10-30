@@ -55,7 +55,6 @@ export function* deleteTodo(action: {type: string, payload: {id}}) {
 }
 
 export function* editingTodo(action: {type: string, payload: {id}}) {
-  console.log(action);
   const todos = yield select((store: any) => store.todos);
   const { id } = action.payload;
   const todoList = todos.map((t) => {
@@ -65,6 +64,22 @@ export function* editingTodo(action: {type: string, payload: {id}}) {
     }
     // editingをtrueに
     t.editing = true;
+    return  new TodoState(t);
+  });
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+export function* doneEditingTodo(action: {type: string, payload: {id, text}}) {
+  const todos = yield select((store: any) => store.todos);
+  const { id, text } = action.payload;
+  const todoList = todos.map((t) => {
+    // actionCreatorに渡したidと一致するtodoのみ処理
+    if (t.id !== id) {
+      return t;
+    }
+
+    t.editing = false;
+    t.text = text;
     return  new TodoState(t);
   });
   yield put({ type: PUT_REQUEST, payload:{ todoList } });

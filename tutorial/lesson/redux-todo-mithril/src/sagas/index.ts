@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga/effects';
 import { GET_REQUEST, PUT_REQUEST } from '../actions/storage';
-import { ADD, TOGGLE, DELETE, EDITING } from '../actions/todos';
+import { ADD, TOGGLE, DELETE, EDITING, DONE_EDITING } from '../actions/todos';
 import { ALL_COMPLETED, ALL_INCOMPLETED,
          allCompletedTodoList, allIncompletedTodoList } from '../modules/allCompoeted';
-import { addTodoList, getTodoList, putTodoList, toggleTodo, deleteTodo, editingTodo } from './todos';
+import { addTodoList, getTodoList, putTodoList, toggleTodo, deleteTodo, editingTodo, doneEditingTodo } from './todos';
 
 function* mySaga() {
   yield takeEvery(ADD, addTodoList);
@@ -14,6 +14,7 @@ function* mySaga() {
   yield takeEvery(ALL_COMPLETED, allCompletedTodoList);
   yield takeEvery(ALL_INCOMPLETED, allIncompletedTodoList);
   yield takeEvery(EDITING, editingTodo);
+  yield takeEvery(DONE_EDITING, doneEditingTodo);
 }
 
 export default mySaga;

@@ -735,6 +735,10 @@ export default mySaga;
 
 [この時点のソース](https://github.com/hibohiboo/develop/tree/ee49fc6ad7e2231c90993c3a65330d8f7ffbba06/tutorial/lesson/redux-todo-mithril)
 
+### 編集を確定させる。
+
+```ts
+```
 
 ## 参考
 
