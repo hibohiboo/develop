@@ -53,7 +53,7 @@
 	transition: color 0.4s;
 }
 
-#todo-list li .editing label {
+#todo-list li.editing label {
 	display: none;
 }
 
@@ -86,7 +86,9 @@
 #todo-list li:hover .destroy {
 	display: block;
 }
-
+#todo-list li.editing .destroy {
+	display: none;
+}
 
 #todo-list .editing .edit {
 	display: block;

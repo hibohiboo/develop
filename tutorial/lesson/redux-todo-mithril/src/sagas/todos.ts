@@ -21,7 +21,8 @@ export function* toggleTodo(action: {type: string, payload: {id}}) {
       return t;
     }
     // completedだけを反転
-    return  new TodoState({ id:t.id, text:t.text, completed: !t.completed });
+    t.completed = !t.completed;
+    return  new TodoState(t);
   });
   yield put({ type: PUT_REQUEST, payload:{ todoList } });
 }
@@ -50,5 +51,21 @@ export function* deleteTodo(action: {type: string, payload: {id}}) {
   const todos = yield select((state: any) => state.todos);
   const { id } = action.payload;
   const todoList = todos.filter((t) =>  t.id !== id);
+  yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+export function* editingTodo(action: {type: string, payload: {id}}) {
+  console.log(action);
+  const todos = yield select((store: any) => store.todos);
+  const { id } = action.payload;
+  const todoList = todos.map((t) => {
+    // actionCreatorに渡したidと一致するtodoのみ処理
+    if (t.id !== id) {
+      return t;
+    }
+    // editingをtrueに
+    t.editing = true;
+    return  new TodoState(t);
+  });
   yield put({ type: PUT_REQUEST, payload:{ todoList } });
 }

@@ -16,6 +16,7 @@ export default class TodoState {
   public id: number;
   public text: string;
   public completed: boolean = false;
+  public editing: boolean = false;
   /**
    *
    * @param id
@@ -26,5 +27,6 @@ export default class TodoState {
     this.id = uniqueId();
     this.text = data.text;
     this.completed = data.completed || false;
+    this.editing = data.editing || false;
   }
 }

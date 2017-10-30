@@ -14,15 +14,15 @@ export default class Todo implements  ClassComponent<IAttr> {
    * @param vnode
    */
   public view({ attrs }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
-    const { id, text, completed, onClick } = attrs;
-    const classes = completed ? 'completed' : '';
-    console.log(attrs);
+    const { id, text, completed, editing, onClick } = attrs;
+    const classes = ( completed ? 'completed ' : '') + 
+                    ( editing   ? 'editing '   : '');
     return (
     <li class={classes}>
       <div class="view">
         <input class="toggle" type="checkbox" onclick={onClick} checked={completed} />
-        <EditTodo text={text} />
-        <DeleteTodo id={id}>x</DeleteTodo>
+        <EditTodo text={text} id={id} editing={editing} />
+        <DeleteTodo id={id} />
       </div>
     </li>);
   }
