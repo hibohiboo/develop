@@ -428,9 +428,7 @@ cssを使って編集中のときだけ表示するようにする。
 	font-size: 24px;
 	border-bottom: 1px solid #ededed;
 }
-#todo-list li div {
-	position: relative;
-}
+
 #todo-list li .toggle {
 	text-align: center;
 	width: 40px;
@@ -734,6 +732,9 @@ function* mySaga() {
 }
 export default mySaga;
 ```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/ee49fc6ad7e2231c90993c3a65330d8f7ffbba06/tutorial/lesson/redux-todo-mithril)
+
 
 ## 参考
 
