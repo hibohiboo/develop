@@ -8,12 +8,11 @@ interface IAttr{}
 
 interface IOwnProps {
   id:number;
-  editing: boolean;
   text: string;
 }
 
-const mapStateToProps = (store, {editing, text}: IOwnProps) => {
-  return { editing, text };
+const mapStateToProps = (store, { text}: IOwnProps) => {
+  return { text };
 };
 
 
@@ -27,7 +26,7 @@ const mapDispatchToProps = (dispatch, {id}: IOwnProps) => {
 
 class EditTodoComponent implements  ClassComponent<IAttr> {
   public view(vnode): Vnode<IAttr, HTMLElement> {
-    const { text, editing, onDoubleClick } = vnode.attrs.props;
+    const { text, onDoubleClick } = vnode.attrs.props;
 
     return (
       <div>

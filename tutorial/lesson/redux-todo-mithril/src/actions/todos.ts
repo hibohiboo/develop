@@ -18,14 +18,12 @@ export interface IToggleTodoAction extends Action {
     id: number;
   };
 }
-
 export interface IEditingAction extends Action {
   type: 'EDITING_TODO';
   payload: {
     id: number;
   };
 }
-
 /**
  * actionを発行する関数。
  */
