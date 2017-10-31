@@ -55,3 +55,11 @@ services:
     depends_on:
       - tsc
     command: [npm, run, babel, --, src, -d, dist]
+
+  # heroku cli
+  heroku:
+    build: ./heroku
+    volumes: 
+      - ./heroku/.ssh:/root/.ssh
+      - ./heroku/.git:/app/.git
+      - ../public:/app/public

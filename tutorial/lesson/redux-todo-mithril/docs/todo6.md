@@ -4,6 +4,8 @@
 
 前回作った、[mithril mvc](https://qiita.com/hibohiboo/items/05020a6a17ea8907d893)にバリデーションを追加する。
 
+herokuに出来たものを公開した。 [redux-todo-mithril](https://redux-todo-mithril.herokuapp.com/)
+
 ## 環境設定
 
 ```Dockerfile:docker/webpack/Dockerfile
@@ -223,9 +225,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(EditTodoComponent);
 [powerform][*3]
 [React + ReduxのプロジェクトでRedux Formを使ったので使い方のまとめと注意点][*4]
 [Modern JavaScript概観、そしてElectronへ][*5]
+[Herokuで静的ページを公開する][*6]
 
 [*1]:https://qiita.com/inuscript/items/5bed7812b3c1447b7b60
 [*2]:https://qiita.com/notsunohito/items/76d912c5e266670f2662
 [*3]:https://github.com/ludbek/powerform
 [*4]:https://ichimaruni-design.com/2016/10/react-redux-form/
 [*5]:https://blog.satotaichi.info/modern-javascript_201701/
+[*6]:http://www.wegirls.tech/entry/2016/08/25/085200
