@@ -28,10 +28,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class AllCompleted implements  ClassComponent<IAttr> {
-  public view(vnode: Vnode<IAttr, {}>) {
+  public view(vnode: Vnode<IAttr, this>) {
     const { completed, onClick } = vnode.attrs.props;
     return (
-      <input class="toggle"
+      <input className="toggle"
              type="checkbox"
              onclick={() => onClick(completed)}
              checked={completed} />

@@ -4,11 +4,20 @@ import { ClassComponent, Vnode, VnodeDOM } from 'mithril'; // tslint:disable-lin
 import { connect } from '../mithril-redux';
 import { editingTodo, doneEditingTodo } from '../actions/todos';
 import TodoState from '../models/TodoState';
-interface IAttr{}
+
 interface IOwnProps {
   id:number;
   text: string;
   editing: boolean;
+}
+
+interface IProps extends IOwnProps{
+  onDoubleClick: ()=>void;
+  onBlur: (text:string)=>void;
+}
+
+interface IAttr{
+  props: IProps;
 }
 
 const mapStateToProps = (store, { text, editing}: IOwnProps) => {
@@ -28,7 +37,7 @@ const mapDispatchToProps = (dispatch, {id}: IOwnProps) => {
 class EditTodoComponent implements  ClassComponent<IAttr> {
   private value: string;
 
-  public view(vnode): Vnode<IAttr, HTMLElement> {
+  public view(vnode: Vnode<IAttr, this>) {
     const { onDoubleClick, onBlur, text, editing } = vnode.attrs.props;
     this.value = text;
     const doneEditing = () => {
@@ -43,7 +52,7 @@ class EditTodoComponent implements  ClassComponent<IAttr> {
           {text}
         </label>
         <input 
-          class="edit" 
+          className="edit" 
           value={this.value}
           onupdate={
             (vnode: VnodeDOM<{}, this>)=>{

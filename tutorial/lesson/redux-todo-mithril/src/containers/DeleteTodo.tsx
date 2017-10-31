@@ -23,10 +23,10 @@ function mapDispatchToProps(dispatch, {id}: IOwnProps) {
 }
 
 class DeleteTodoComponent implements  ClassComponent<IAttr> {
-  public view(vnode): Vnode<IAttr, HTMLElement> {
+  public view(vnode: Vnode<IAttr, this>) {
     const { onClick } = vnode.attrs.props;
     return (
-      <button  class="destroy" onclick={onClick}></button>
+      <button  className="destroy" onclick={onClick}></button>
     );
   }
 }

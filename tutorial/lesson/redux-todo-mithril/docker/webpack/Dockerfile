@@ -1,4 +1,4 @@
-FROM node:8.6.0
+FROM node:8.8.1
 
 # コンテナ上の作業ディレクトリ作成
 WORKDIR /app
@@ -46,7 +46,11 @@ RUN npm i -S redux-logger
 
 RUN npm i -S babel-polyfill
 
+# ルーティング
 RUN npm i -S page
+
+# バリデーション
+RUN npm i -S redux-form
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json' --type-check\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json

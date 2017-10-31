@@ -25,7 +25,7 @@ class AddTodoComponent implements  ClassComponent<IAttr> {
     return (
       <div>
         <input
-          class="toggle"
+          className="toggle"
           oninput={m.withAttr('value', value => this.value = value)}
           value={this.value}
         />
