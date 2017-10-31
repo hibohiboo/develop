@@ -1,38 +1,38 @@
 
 import * as m from 'mithril';
-import { ClassComponent, Vnode, VnodeDOM } from 'mithril'; // tslint:disable-line: no-duplicate-imports
+import { ClassComponent, Vnode, VnodeDOM } from 'mithril'; // tslint:disable-line: no-duplicate-imports max-line-length
+import { doneEditingTodo, editingTodo } from '../actions/todos';
 import { connect } from '../mithril-redux';
-import { editingTodo, doneEditingTodo } from '../actions/todos';
 import TodoState from '../models/TodoState';
 
 interface IOwnProps {
-  id:number;
+  id: number;
   text: string;
   editing: boolean;
 }
 
-interface IProps extends IOwnProps{
-  onDoubleClick: ()=>void;
-  onBlur: (text:string)=>void;
+interface IProps extends IOwnProps {
+  onDoubleClick: () => void;
+  onBlur: (text: string) => void;
 }
 
-interface IAttr{
+interface IAttr {
   props: IProps;
 }
 
-const mapStateToProps = (store, { text, editing}: IOwnProps) => {
+const mapStateToProps = (store, { text, editing }: IOwnProps) => {
   return { text, editing };
 };
-const mapDispatchToProps = (dispatch, {id}: IOwnProps) => {
+const mapDispatchToProps = (dispatch, { id }: IOwnProps) => {
   return {
     onDoubleClick() {
       dispatch(editingTodo(id));
     },
-    onBlur(text:string){
+    onBlur(text: string) {
       dispatch(doneEditingTodo(id, text));
-    }
+    },
   };
-}
+};
 
 class EditTodoComponent implements  ClassComponent<IAttr> {
   private value: string;
@@ -40,8 +40,15 @@ class EditTodoComponent implements  ClassComponent<IAttr> {
   public view(vnode: Vnode<IAttr, this>) {
     const { onDoubleClick, onBlur, text, editing } = vnode.attrs.props;
     this.value = text;
+    const cancelEditing = () => {
+      this.value = text;
+      onBlur(text);
+    };
     const doneEditing = () => {
       const val = this.value;
+      if (val === '') {
+        return cancelEditing();
+      }
       this.value = '';
       onBlur(val);
     };
@@ -51,13 +58,13 @@ class EditTodoComponent implements  ClassComponent<IAttr> {
         <label ondblclick={onDoubleClick}>
           {text}
         </label>
-        <input 
-          className="edit" 
+        <input
+          className="edit"
           value={this.value}
           onupdate={
-            (vnode: VnodeDOM<{}, this>)=>{
-              if(editing){
-                const element = vnode.dom as HTMLElement;
+            (node: VnodeDOM<{}, this>) => {
+              if (editing) {
+                const element = node.dom as HTMLElement;
                 element.focus();
               }
             }
@@ -65,13 +72,11 @@ class EditTodoComponent implements  ClassComponent<IAttr> {
           oninput={m.withAttr('value', value => this.value = value)}
           onblur={doneEditing}
           onkeyup={
-            (e:KeyboardEvent)=>{
-              if(e.key === 'Enter'){
+            (e: KeyboardEvent) => {
+              if (e.key === 'Enter') {
                 doneEditing();
-              }
-              else if(e.key === "Escape"){
-                this.value = text;
-                onBlur(text);
+              } else if (e.key === 'Escape') {
+                cancelEditing();
               }
             }
           }

@@ -6,15 +6,15 @@ import { connect } from '../mithril-redux';
 
 interface IAttr {
   props: {
-    onClick: ()=>void;
+    onClick: () => void;
   };
 }
 
 interface IOwnProps {
-  id:number;
+  id: number;
 }
 
-function mapDispatchToProps(dispatch, {id}: IOwnProps) {
+function mapDispatchToProps(dispatch, { id }: IOwnProps) {
   return {
     onClick() {
       dispatch(deleteTodo(id));

@@ -39,4 +39,4 @@ export const addTodo    = createAction(ADD,    (text: string) => ({ text }));
 export const toggleTodo = createAction(TOGGLE, (id: number) => ({ id }));
 export const deleteTodo = createAction(DELETE, (id: number) => ({ id }));
 export const editingTodo = createAction(EDITING, (id: number) => ({ id }));
-export const doneEditingTodo = createAction(DONE_EDITING, (id:number, text: string) =>({id, text}));
+export const doneEditingTodo = createAction(DONE_EDITING, (id: number, text: string) => ({ id, text })); // tslint:disable-line max-line-length

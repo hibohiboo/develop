@@ -1,6 +1,7 @@
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 import { GET_FAILED, GET_REQUEST, GET_SUCCESS,
          PUT_FAILED, PUT_REQUEST, PUT_SUCCESS } from '../actions/storage';
+import { ADD, DELETE, DONE_EDITING, EDITING, TOGGLE } from '../actions/todos';
 import { get as getTodo, put as putTodo } from '../browser/storage';
 import TodoState from '../models/TodoState';
 
@@ -50,7 +51,7 @@ export function* getTodoList(action: {type: string;}) {
 export function* deleteTodo(action: {type: string, payload: {id}}) {
   const todos = yield select((state: any) => state.todos);
   const { id } = action.payload;
-  const todoList = todos.filter((t) =>  t.id !== id);
+  const todoList = todos.filter(t =>  t.id !== id);
   yield put({ type: PUT_REQUEST, payload:{ todoList } });
 }
 
@@ -83,4 +84,14 @@ export function* doneEditingTodo(action: {type: string, payload: {id, text}}) {
     return  new TodoState(t);
   });
   yield put({ type: PUT_REQUEST, payload:{ todoList } });
+}
+
+export default function* () {
+  yield takeEvery(ADD, addTodoList);
+  yield takeEvery(TOGGLE, toggleTodo);
+  yield takeEvery(DELETE, deleteTodo);
+  yield takeEvery(GET_REQUEST, getTodoList);
+  yield takeEvery(PUT_REQUEST, putTodoList);
+  yield takeEvery(EDITING, editingTodo);
+  yield takeEvery(DONE_EDITING, doneEditingTodo);
 }

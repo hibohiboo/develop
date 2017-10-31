@@ -50,7 +50,8 @@ RUN npm i -S babel-polyfill
 RUN npm i -S page
 
 # バリデーション
-RUN npm i -S redux-form
+RUN npm i -S validatex
+RUN npm i -S powerform
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json' --type-check\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json

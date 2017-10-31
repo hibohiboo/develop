@@ -1,8 +1,8 @@
 import { ClassComponent, Vnode } from 'mithril';
 import * as m from 'mithril'; // tslint:disable-line: no-duplicate-imports
-import TodoState from '../models/TodoState';
 import DeleteTodo from '../containers/DeleteTodo';
 import EditTodo from '../containers/EditTodo';
+import TodoState from '../models/TodoState';
 
 interface IAttr extends TodoState {
   onClick: (id: number) => void;
@@ -15,8 +15,8 @@ export default class Todo implements  ClassComponent<IAttr> {
    */
   public view({ attrs }: Vnode<IAttr, this>): Vnode<IAttr, HTMLElement> {
     const { id, text, completed, editing, onClick } = attrs;
-    const classes = ( completed ? 'completed ' : '') + 
-                    ( editing   ? 'editing '   : '');
+    const classes = (completed ? 'completed ' : '') +
+                    (editing   ? 'editing '   : '');
     return (
     <li class={classes}>
       <div class="view">

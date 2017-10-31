@@ -1,6 +1,8 @@
 
 import * as m from 'mithril';
 import { ClassComponent, Vnode } from 'mithril'; // tslint:disable-line: no-duplicate-imports
+import * as powerform from 'powerform';
+import { required } from 'validatex';
 import { addTodo } from '../actions/todos';
 import { connect } from '../mithril-redux';
 
@@ -20,6 +22,9 @@ interface IDispatch {
 
 class AddTodoComponent implements  ClassComponent<IAttr> {
   private value: string;
+  private form = powerform({
+    todo: [required(true)],
+  },                       true);
   public view(vnode) {
     const { onClick } = vnode.attrs.props;
     return (
@@ -32,6 +37,8 @@ class AddTodoComponent implements  ClassComponent<IAttr> {
         <button
           onclick={
             () => {
+              this.form.todo(this.value);
+              if (!this.form.isValid()) { return; }
               const val = this.value;
               this.value = '';
               onClick(val); // dispatchのタイミングで画面が更新される。
