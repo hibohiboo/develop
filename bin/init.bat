@@ -1,17 +1,17 @@
 @echo off
 
-rem •¶ŽšƒR[ƒh‚ðutf8‚Å•\Ž¦‚µ‚æ‚¤‚Æ‚µ‚½‚ªA“ú–{Œê‘Î‰ž‚ª“ï‚µ‚©‚Á‚½‚Ì‚Å‘f’¼‚ÉShift JIS‚Å•Û‘¶
+rem ï¿½ï¿½ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½utf8ï¿½Å•\ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½{ï¿½ï¿½Î‰ï¿½ï¿½ï¿½ï¿½ï‚µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‘fï¿½ï¿½ï¿½ï¿½Shift JISï¿½Å•Û‘ï¿½
 rem chcp 65001
 
-rem ƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚ðƒoƒbƒ`‚Ì’u‚¢‚Ä‚ ‚éƒfƒBƒŒƒNƒgƒŠ‚É•ÏX
+rem ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½gï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½oï¿½bï¿½`ï¿½Ì’uï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½É•ÏX
 set currentDir=%~dp0
 
-rem chocolateyƒCƒ“ƒXƒg[ƒ‹
-echo chocolateyƒCƒ“ƒXƒg[ƒ‹
+rem chocolateyï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½
+echo chocolateyï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½
 if exist "%ALLUSERSPROFILE%\chocolatey\bin\" (
     WHERE /Q choco
     if %ERRORLEVEL% == 0 (
-        echo chocolateyƒCƒ“ƒXƒg[ƒ‹Ï‚Ý
+        echo chocolateyï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½ï¿½Ï‚ï¿½
         goto chocoend
     )
 )
@@ -20,39 +20,39 @@ if exist "%ALLUSERSPROFILE%\chocolatey\bin\" (
 :chocoend
 
 
-echo gitƒCƒ“ƒXƒg[ƒ‹
+echo gitï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½
 choco install -y git
 
 rem goto end
 
-echo git‚ÌÝ’è‚ÌŠJŽn
+echo gitï¿½ÌÝ’ï¿½ÌŠJï¿½n
 
-rem redmine—pgit_hook‚ÌÝ’è‚ðs‚¤
-rem echo ƒRƒ~ƒbƒgŽž‚Éredmine‚Ìƒ`ƒPƒbƒg‚Æ•R‚Ã‚¯‚é”Žš‚ðƒuƒ‰ƒ“ƒ`–¼‚©‚çŽæ“¾‚µ‚ÄƒRƒ~ƒbƒgƒƒbƒZ[ƒW‚É’Ç‰Á
+rem redmineï¿½pgit_hookï¿½ÌÝ’ï¿½ï¿½sï¿½ï¿½
+rem echo ï¿½Rï¿½~ï¿½bï¿½gï¿½ï¿½ï¿½ï¿½redmineï¿½Ìƒ`ï¿½Pï¿½bï¿½gï¿½Æ•Rï¿½Ã‚ï¿½ï¿½é”ï¿½ï¿½ï¿½ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½ï¿½ï¿½ÄƒRï¿½~ï¿½bï¿½gï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½É’Ç‰ï¿½
 rem copy %currentDir%\git\commit-msg %currentDir%\..\.git\hooks\commit-msg
 rem copy %currentDir%\git\common.sh %currentDir%\..\.git\hooks\common.sh
-rem echo develop, masterƒuƒ‰ƒ“ƒ`‹y‚Ñfix/#0/hogeˆÈŠO‚ÌŒ`Ž®‚Ìƒuƒ‰ƒ“ƒ`–¼‚ÌƒRƒ~ƒbƒg‚ð‹ÖŽ~
+rem echo develop, masterï¿½uï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½yï¿½ï¿½fix/#0/hogeï¿½ÈŠOï¿½ÌŒ`ï¿½ï¿½ï¿½Ìƒuï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ÌƒRï¿½~ï¿½bï¿½gï¿½ï¿½ÖŽ~
 rem copy %currentDir%\git\pre-commit %currentDir%\..\.git\hooks\pre-commit
 
-echo git•Û‘¶Žž‚Écrlf‚ð•ÏX‚µ‚È‚¢‚æ‚¤‚É‚·‚é
-echo alias‚ðˆÈ‰º‚Ì‚æ‚¤‚ÉÝ’è‚·‚é
+echo gitï¿½Û‘ï¿½ï¿½ï¿½ï¿½ï¿½crlfï¿½ï¿½ÏXï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
+echo aliasï¿½ï¿½È‰ï¿½ï¿½Ì‚æ‚¤ï¿½ÉÝ’è‚·ï¿½ï¿½
 echo "git checkout -> git co | git status -> git st" 
 echo "git branch -> git br | git log -> git hist"
 copy %currentDir%\git\config %currentDir%\..\.git\config
 
-echo gitk‚Ì•¶Žš‰»‚¯‘Îô
+echo gitkï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îï¿½
 git config --global gui.encoding utf-8
 
-echo virtualboxƒCƒ“ƒXƒg[ƒ‹
+echo virtualboxï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½
 choco install -y virtualbox
 
-echo vagrantƒCƒ“ƒXƒg[ƒ‹
+echo vagrantï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½
 choco install -y vagrant
 
-echo visual studio code ƒCƒ“ƒXƒg[ƒ‹
-choco install -y visualstudiocode-insiders --pre
+echo visual studio code ï¿½Cï¿½ï¿½ï¿½Xï¿½gï¿½[ï¿½ï¿½
+choco install -y visualstudiocode --pre
 
 :end
-echo ‰ŠúÝ’è‚ðŠ®—¹‚µ‚Ü‚µ‚½
+echo ï¿½ï¿½ï¿½ï¿½ï¿½Ý’ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½
 pause > nul
 exit
