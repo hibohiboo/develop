@@ -1,3 +1,5 @@
 !.gitignore
 !Dockerfile
 init.sh
+login.sh
+git

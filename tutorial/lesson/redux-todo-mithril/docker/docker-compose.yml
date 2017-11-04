@@ -61,5 +61,5 @@ services:
     build: ./heroku
     volumes: 
       - ./heroku/.ssh:/root/.ssh
-      - ./_heroku/.git:/app/.git
+      - ./heroku/git/.git:/app/.git
       - ../public:/app/public
