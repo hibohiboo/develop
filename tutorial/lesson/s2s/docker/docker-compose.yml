@@ -1,10 +1,7 @@
 version: '3'
 services:
-
-  # 構文チェック(ts)
   s2s:
     build: ./s2s
     volumes:
       - ../src:/app/s2s/examples/getting-started/src
-
     command: [yarn, run, s2s]
