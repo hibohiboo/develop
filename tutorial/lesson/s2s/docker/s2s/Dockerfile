@@ -1,4 +1,4 @@
-FROM node:9.1.0
+FROM node:9.2.0
 
 # コンテナ上の作業ディレクトリ作成
 WORKDIR /app
@@ -14,6 +14,6 @@ WORKDIR /app/s2s/
 RUN yarn
 
 # example用設定
-WORKDIR /app/s2s/examples/getting-started
+WORKDIR /app/s2s/examples/shopping-cart
 RUN yarn
 RUN yarn run flow

@@ -1,10 +1,23 @@
-/*
- * @flow
- * Welcome to s2s https://github.com/akameco/s2s.
- * This example is very small. However Useful :)
- * This plugin is that initializing variable with flow information. 
-*/
+// @flow
+import * as React from 'react'
+import { Provider } from 'react-redux'
+import ReactDOM from 'react-dom'
+import App from './containers/App'
+import registerServiceWorker from './registerServiceWorker'
+import configureStore from './store'
+import { getAllProducts } from './containers/CartContainer/logic'
 
-type User = { id: number, name: string }
-// type `var user: User` and save!
-var user: User 
+const store = configureStore()
+store.dispatch(getAllProducts())
+
+const rootEl = document.getElementById('root')
+
+if (rootEl) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    rootEl
+  )
+  registerServiceWorker()
+}

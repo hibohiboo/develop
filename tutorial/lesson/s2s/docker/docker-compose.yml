@@ -3,5 +3,7 @@ services:
   s2s:
     build: ./s2s
     volumes:
-      - ../src:/app/s2s/examples/getting-started/src
+      - ../src:/app/s2s/examples/shopping-cart/src
+      - ./config/.flowconfig:/app/s2s/example/shopping-cart/.flowconfig
+      - ./config/s2s.config.js:/app/s2s/example/shopping-cart/s2s.config.js
     command: [yarn, run, s2s]
