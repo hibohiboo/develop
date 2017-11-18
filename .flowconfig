@@ -1,0 +1,10 @@
+[ignore]
+.*/examples/.*
+
+[include]
+
+[libs]
+
+[options]
+include_warnings=true
+emoji=true

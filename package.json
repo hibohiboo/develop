@@ -37,6 +37,8 @@
     "@types/redux-saga": "^0.10.5",
     "eventemitter3": "^2.0.3",
     "firebase": "^4.6.2",
+    "flow": "^0.2.3",
+    "flow-bin": "^0.59.0",
     "gulp": "^3.9.1",
     "gulp-tslint": "^7.1.0",
     "history": "^4.7.2",

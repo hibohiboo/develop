@@ -22,4 +22,13 @@
   "typescript.tsdk": "./node_modules/typescript/lib"
     // 有効な場合、ファイルを開くときに文字セット エンコードを推測します
     //,"files.autoGuessEncoding": false,
+  // Flowに対する拡張
+  //,"javascript.validate.enable": false
+  //,"files.associations": {"*.js": "flow"}
+  ,"files.associations": {
+    "*.js": "javascriptreact"
+  }
+  ,"javascript.validate.enable": false
+  ,"flow.useNPMPackagedFlow": true
+  ,"flow.pathToFlow": "./node_modules/.bin/flow"
 }
