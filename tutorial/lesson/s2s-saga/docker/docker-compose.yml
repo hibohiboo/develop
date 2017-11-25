@@ -4,4 +4,13 @@ services:
     build: ./s2s
     volumes:
       - ../src:/app/s2s-redux-actions-sample/src
+      - ../dist/build:/app/s2s-redux-actions-sample/build
     command: [yarn, run, s2s]
+
+  dev-server:
+    build: ./s2s
+    volumes:
+      - ../src:/app/s2s-redux-actions-sample/src
+    ports:
+      -  8080:3000
+    command: [yarn, start]

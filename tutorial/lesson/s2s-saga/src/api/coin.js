@@ -1,3 +1,3 @@
 import axios from "../axiosConfig";
 
-export const getCoinRequest = config => axios.get(``, config);
+export const getCoinRequest = (id, config) => axios.get(`/v1/ticker/${id}/`, config);

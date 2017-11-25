@@ -12,6 +12,3 @@ RUN yarn
 
 # chokidarのポーリング設定
 RUN sed -i -e "s/\(ignoreInitial: true\)/\1,\n    usePolling: true, /g" /app/s2s-redux-actions-sample/node_modules/s2s/lib/index.js
-
-
-#RUN yarn start
