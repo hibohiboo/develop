@@ -1,4 +1,3 @@
-
 module.exports = {
   watch: './**/*.ts',
   plugins: [
