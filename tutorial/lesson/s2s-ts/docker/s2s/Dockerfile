@@ -15,5 +15,11 @@ RUN yarn
 
 # example用設定
 WORKDIR /app/s2s/examples/shopping-cart
+
+# typescript 用拡張をインストール
+RUN npm install --save-dev @babel/core@7.0.0-beta.34
+RUN npm install --save-dev @babel/plugin-syntax-typescript@7.0.0-beta.34
+RUN npm install --save-dev babel-plugin-s2s-action-types-ts
+
 RUN yarn
 RUN yarn run flow
