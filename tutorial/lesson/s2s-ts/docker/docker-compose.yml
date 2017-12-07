@@ -1,0 +1,22 @@
+version: '3'
+services:
+  s2s:
+    build: ./s2s
+    volumes:
+      - ../src:/app/s2s/examples/shopping-cart/src
+      - ./config/.flowconfig:/app/s2s/example/shopping-cart/.flowconfig
+      - ./config/s2s.config.js:/app/s2s/example/shopping-cart/s2s.config.js
+    command: [yarn, run, s2s]
+
+  webpack:
+    build: ./webpack
+    volumes:
+      - ../src:/app/src
+      - ./config/.flowconfig:/app/.flowconfig
+      - ./config/.babelrc:/app/.babelrc
+      - ./config/webpack.config.js:/app/webpack.config.js
+      - ../public:/app/public
+      - ../dist:/app/dist
+    ports:
+      -  8080:8080
+    command: [npm, run, dev-server, --, --history-api-fallback]

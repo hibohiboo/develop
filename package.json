@@ -35,6 +35,7 @@
     "@types/redux-actions": "^2.2.2",
     "@types/redux-logger": "^3.0.4",
     "@types/redux-saga": "^0.10.5",
+    "create-react-app": "^1.4.3",
     "eventemitter3": "^2.0.3",
     "firebase": "^4.6.2",
     "flow": "^0.2.3",
@@ -56,7 +57,7 @@
     "redux-saga": "^0.15.6",
     "redux-thunk": "^2.2.0",
     "tslint": "^4.5.1",
-    "typescript": "^2.5.3"
+    "typescript": "^2.6.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
