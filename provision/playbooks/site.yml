@@ -8,6 +8,6 @@
     - common
     - git
     - docker
-    - node
-    - vim
+    # - node
+    # - vim
     # - aws

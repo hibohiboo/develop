@@ -1,3 +1,5 @@
 ---
-docker_version: 17.10
+docker_version: 17.11
+# edge|stable
+docker_version_type: edge
 docker_compose_version: 1.17.1

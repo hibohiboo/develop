@@ -61,6 +61,8 @@ Vagrant.configure(2) do |config|
     # virtualenv起動
     source /home/vagrant/venv/bin/activate
     # provision 実行
+    # 失敗した場合は vagrant up後に vagrant provision
+    # それでも失敗した場合は、windows再起動後にもう一度vagrant up vagrant provision
     ANSIBLE_CONFIG=/vagrant/provision/.ansible.cfg ansible-playbook -i /vagrant/provision/playbooks/inventory/hosts /vagrant/provision/playbooks/site.yml -c local -v
   SHELL
 end

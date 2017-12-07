@@ -12,6 +12,9 @@
     failed_when: no
     changed_when: ver_check.rc != 0
 
+  - name: debug docker version
+    debug: var=ver_check
+
   - name: バージョンがvarsで指定されたものと異なれば、Remove "docker" package
     apt:
       name: docker-ce
@@ -19,16 +22,16 @@
     when: ver_check|failed
     ignore_errors: True
 
-- name: dockerがインストールされていなければインストール
-  command: docker
-  register: result
-  ignore_errors: True
-  check_mode: no
-  failed_when: no
-  changed_when: result.rc != 0
+  - name: dockerがインストールされていなければインストール
+    command: docker
+    register: result
+    ignore_errors: True
+    check_mode: no
+    failed_when: no
+    changed_when: result.rc != 0
 
 - block:
-  - name: debug dockreインストール
+  - name: debug dockerインストール
     debug: var=result
 
   - name: step0.5
@@ -36,13 +39,13 @@
       path: /etc/hosts
       line: '127.0.1.1 vagrant'
 
-# http://qiita.com/udzura/items/576c2c782adb241070bc
-# https://gist.github.com/indykish/a6facea4748dc578abbaf2b09065ead5
+  # http://qiita.com/udzura/items/576c2c782adb241070bc
+  # https://gist.github.com/indykish/a6facea4748dc578abbaf2b09065ead5
   - name: step1
     shell: export DEBIAN_FRONTEND=noninteractive
 
-# 一部環境では以下を実行しないとエラーが発生
-# aptが起動していて次のタスクが立ち上がらないエラー
+  # 一部環境では以下を実行しないとエラーが発生
+  # aptが起動していて次のタスクが立ち上がらないエラー
   - name: step1.5
     shell: killall -KILL apt.systemd.daily
     ignore_errors: True
@@ -56,7 +59,7 @@
       - software-properties-common
 
   - name: step3.1
-    shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - warn=no
     register: res3
     ignore_errors: True
 
@@ -64,7 +67,7 @@
     shell: apt-key fingerprint 0EBFCD88 warn=no
 
   - name: step5.1
-    shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" warn=no
+    shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) {{ docker_version_type }}" warn=no
 
   - name: step5.2
     shell: apt-get update warn=no
@@ -81,39 +84,36 @@
     shell: gpasswd -a vagrant docker
   when: result|failed
 
-- name: test docker-composeが インストールされていなければインストール
-  command: docker-compose
-  register: result_compose
-  ignore_errors: True
-  check_mode: no
-  failed_when: no
-  changed_when: result_compose.rc != 0
+- block:
+  - name: docker-composeがインストールされていればバージョンを確認
+    shell: docker-compose --version | grep {{ docker_compose_version }}
+    register: ver_check_compose
+    ignore_errors: True
+    check_mode: no
+    failed_when: no
+    changed_when: ver_check_compose.rc != 0
 
-# - block:
-#   - name: docker-composeがインストールされていればバージョンを確認
-#     shell: docker-compose --version | grep {{ docker-compose_version }}
-#     register: ver_check_compose
-#     ignore_errors: True
-#     check_mode: no
-#     failed_when: no
-#     changed_when: ver_check_compose.rc != 0
+  - name: debug docker-compose
+    debug: var=ver_check_compose
 
-#   - name: バージョンがvarsで指定されたものと異なれば、Remove "docker-compose" package
-#     shell: rm /usr/local/bin/docker-compose
-#     when: ver_check_compose|failed
+  - name: バージョンがvarsで指定されたものと異なれば、Remove "docker-compose" package
+    shell: rm /usr/local/bin/docker-compose
+    when: ver_check_compose|failed
 
-#   - name: check docker-compose
-#     command: docker-compose
-#     register: result_compose
-#     ignore_errors: True
-#     check_mode: no
-#     failed_when: no
-#     changed_when: result_compose.rc != 0
-#     when: ver_check_compose|failed
-#   when: result_compose|success
+  - name: check docker-compose
+    command: docker-compose
+    register: result_compose
+    ignore_errors: True
+    check_mode: no
+    failed_when: no
+    changed_when: result_compose.rc != 0
+    when: ver_check_compose|failed
+
 
 # 現在のバージョンに合わせてURLを変えること
 - block:
+  - name: debug docker-compose result
+    debug: var=result_compose
   - name: step1 install docker-compose
     shell: curl -L "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
   when: result_compose|failed
