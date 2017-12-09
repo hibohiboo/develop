@@ -4,7 +4,8 @@ services:
     build: ./s2s
     volumes:
       - ../src:/app/s2s/examples/shopping-cart/src
-      - ./config/s2s.config.js:/app/s2s/example/shopping-cart/s2s.config.js
+      - ./config/webpack.config.js:/app/webpack.config.js
+      - ./config/s2s.config.js:/app/s2s/examples/shopping-cart/s2s.config.js
     command: [yarn, run, s2s]
 
   # webpack:

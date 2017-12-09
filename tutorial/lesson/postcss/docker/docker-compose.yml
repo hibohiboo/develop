@@ -1,0 +1,10 @@
+version: '3'
+services:
+
+  postcss:
+    build: ./postcss
+    volumes:
+      - ./postcss/app.js:/app/app.js
+      - ../src:/app/src
+      - ../dist:/app/dest
+#    command: [npm, run, dev-server, --, --history-api-fallback]
