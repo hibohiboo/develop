@@ -1,4 +1,4 @@
-FROM node:9.2.1
+FROM node:9.3
 
 # コンテナ上の作業ディレクトリ作成
 WORKDIR /app
@@ -17,8 +17,5 @@ RUN npm i -D postcss-comment
 
 # ブラウザごとにプレフィックスの作成
 RUN npm i -D autoprefixer
-
-# 入れ子を可能にする
-RUN npm i -D postcss-nested
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"run\": \"node app.js\",/g" /app/package.json

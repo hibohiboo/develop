@@ -1,5 +1,16 @@
 # postcss
 
+## 入れ子のエラー
+
+`postcss-nested`や`postcss-nesting`を試してみようとしたら以下のエラーがでた。
+
+```
+Node#after is deprecated. Use Node#raws.after
+(node:16) UnhandledPromiseRejectionWarning: Unhandled promise rejection (rejection id: 2): TypeError: after.after is not a function
+```
+
+解決法がわからなかったので保留。知ってらっしゃる方いればお知恵をお借りしたく。。
+
 ## 参考
 
 [chokidar][*1]
@@ -11,6 +22,7 @@
 [PostCSSならCSSプリプロセッサーをもう乗り換え続けなくて済むかもよ！][*8]
 [Q)「CSS プリプロセッサを導入するなら？」A)「PostCSS かな」 ~ PostCSS, Stylus, Sass, Less ザックリ比較した話][*9]
 [CSS拡張メタ言語「SCSS(Sass)」と「LESS」の比較][*10]
+[postcss-comment][*11]
 
 [*1]:https://github.com/paulmillr/chokidar
 [*2]:https://shimz.me/blog/node-js/4123
@@ -22,3 +34,4 @@
 [*8]:https://www.webprofessional.jp/7-postcss-plugins-to-ease-you-into-postcss/
 [*9]:http://codenote.net/css/3698.html
 [*10]:http://dxd8.com/archives/217/
+[*11]:https://www.npmjs.com/package/postcss-comment

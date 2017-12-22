@@ -19,7 +19,7 @@
     apt:
       name: docker-ce
       state: absent
-    when: ver_check|failed
+    when: ver_check.rc != 0
     ignore_errors: True
 
   - name: dockerがインストールされていなければインストール
@@ -82,7 +82,7 @@
 
   - name: step8
     shell: gpasswd -a vagrant docker
-  when: result|failed
+  when: result.rc != 0
 
 - block:
   - name: docker-composeがインストールされていればバージョンを確認
@@ -98,17 +98,19 @@
 
   - name: バージョンがvarsで指定されたものと異なれば、Remove "docker-compose" package
     shell: rm /usr/local/bin/docker-compose
-    when: ver_check_compose|failed
+    ignore_errors: True
+    when: ver_check_compose.rc != 0
 
   - name: check docker-compose
-    command: docker-compose
+    command: docker-compose -v
     register: result_compose
     ignore_errors: True
     check_mode: no
     failed_when: no
     changed_when: result_compose.rc != 0
-    when: ver_check_compose|failed
 
+  - name: debug docker-compose
+    debug: var=result_compose
 
 # 現在のバージョンに合わせてURLを変えること
 - block:
@@ -116,4 +118,5 @@
     debug: var=result_compose
   - name: step1 install docker-compose
     shell: curl -L "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
-  when: result_compose|failed
+  when: result_compose.rc != 0
+  

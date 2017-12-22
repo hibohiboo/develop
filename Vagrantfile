@@ -25,7 +25,7 @@ Vagrant.configure(2) do |config|
   #       address 192.168.50.10
   #       netmask 255.255.255.0
   # sudo ifconfig enp0s8 192.168.50.10
-  config.vm.network "private_network", ip: "192.168.50.10", auto_config:false
+  config.vm.network "private_network", ip: "192.168.50.10"
   config.vm.network "forwarded_port", guest: 8080, host: 8080
   # SQL Server
   config.vm.network "forwarded_port", guest: 9292, host: 9292
