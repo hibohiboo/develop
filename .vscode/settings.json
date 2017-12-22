@@ -31,4 +31,7 @@
   ,"javascript.validate.enable": false
   ,"flow.useNPMPackagedFlow": true
   ,"flow.pathToFlow": "./node_modules/.bin/flow"
+  //postcssをとりあえずless記法とする。
+  ,"files.associations": {"*.pcss": "less"}
+
 }
