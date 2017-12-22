@@ -18,4 +18,11 @@ RUN npm i -D postcss-comment
 # ブラウザごとにプレフィックスの作成
 RUN npm i -D autoprefixer
 
+# ネスト
+RUN npm i -D postcss-nested
+
+# 
+RUN npm i -D postcss-cssnext
+
+
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"run\": \"node app.js\",/g" /app/package.json
