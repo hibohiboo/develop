@@ -28,7 +28,7 @@ function transpile(target){
   console.log('target:' + target);
 
   fs.readFile(target, (err, css) => {
-    postcss([   cssnext({
+    postcss([cssnext({
         features: {
           customProperties: false
         }

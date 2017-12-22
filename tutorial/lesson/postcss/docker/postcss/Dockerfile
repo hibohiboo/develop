@@ -27,4 +27,6 @@ RUN npm i -D postcss-cssnext
 # watcher
 RUN npm i -D chokidar
 
+RUN npm i -D postcss-selector-parser
+
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"run\": \"node app.js\",/g" /app/package.json
