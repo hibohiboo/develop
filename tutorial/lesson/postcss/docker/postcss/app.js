@@ -1,7 +1,7 @@
 const fs = require('fs');
 const postcss = require('postcss');
 const comment = require('postcss-comment');
-const nested = require('postcss-nested');
+//const nested = require('postcss-nested');
 const autoprefixer = require('autoprefixer');
 const cssnext = require('postcss-cssnext');
 const chokidar = require('chokidar');
@@ -25,10 +25,11 @@ chokidar.watch('/app/src/*', {
  * 
  */
 function transpile(target){
-  console.log('target:' + target);
 
   fs.readFile(target, (err, css) => {
-    postcss([cssnext({
+    postcss([
+     // nested({ bubble: ['phone'] }),
+      cssnext({
         features: {
           customProperties: false
         }

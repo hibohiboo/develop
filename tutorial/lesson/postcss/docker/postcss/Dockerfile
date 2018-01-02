@@ -12,9 +12,6 @@ RUN npm i -D chokidar
 # Cssプリプロセッサ
 RUN npm i -D postcss
 
-# //のコメントアウト
-RUN npm i -D postcss-comment
-
 # ブラウザごとにプレフィックスの作成
 RUN npm i -D autoprefixer
 
@@ -24,9 +21,7 @@ RUN npm i -D postcss-nested
 # 
 RUN npm i -D postcss-cssnext
 
-# watcher
-RUN npm i -D chokidar
-
-RUN npm i -D postcss-selector-parser
+# //のコメントアウト
+RUN npm i -D postcss-comment
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"run\": \"node app.js\",/g" /app/package.json
