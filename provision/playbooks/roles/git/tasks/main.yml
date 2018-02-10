@@ -1,11 +1,11 @@
 ---
-- name: gitのバージョンが2.7（初期状態)か判定。
-  shell: git --version | grep 2.7 warn=no
+- name: gitのバージョンが指定したバージョンか判定。
+  shell: git --version | grep {{ git_version }} warn=no
   register: res
   ignore_errors: True
   check_mode: no
   failed_when: no
-  changed_when: res.rc == 0
+  changed_when: res.rc != 0
 
 - block:
   - name: step 0
@@ -30,4 +30,4 @@
 
   - name: step3
     apt: name=git state=present update_cache=yes
-  when: res.rc == 0
+  when: res.rc != 0
