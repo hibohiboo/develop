@@ -1,0 +1,23 @@
+version: '3'
+services:
+  # firebase cli
+  firebase:
+    build: ./firebase
+    # firebaseのトークンは環境変数で管理。セキュリティのためgit管理しない。
+    env_file: .env
+    volumes:
+      - ../.firebaserc:/app/.firebaserc
+      - ../firebase.json:/app/firebase.json
+      - ../firebase-messaging-sw.js:/app/firebase-messaging-sw.js
+      - ../sw.js:/app/sw.js
+      - ../firestore.indexes.json:/app/firestore.indexes.json
+      - ../firestore.rules:/app/firestore.rules
+      - ../manifest.json:/app/manifest.json
+      - ../images:/app/images
+      - ../scripts:/app/scripts
+      - ../styles:/app/styles
+      - ../index.html:/app/index.html
+    ports:
+      - 5000:5000
+      - 9005:9005
+    command: [firebase, serve, -p, "5000", -o, "0.0.0.0", --token, "$FIREBASE_TOKEN"]
