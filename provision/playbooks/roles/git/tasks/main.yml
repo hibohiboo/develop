@@ -30,4 +30,23 @@
 
   - name: step3
     apt: name=git state=present update_cache=yes
+  
+  # bashにgitのブランチを表示する設定
+  # http://tm.root-n.com/unix:command:git:bash_prompt
+  # https://qiita.com/ArimaRyunosuke/items/1f9d840311584d8160bc
+  - name: git/completionのフォルダを作成
+    file: path=/usr/local/git/contrib/completion state=directory owner=vagrant group=vagrant mode=0755
+
+  - name: completion.bashをダウンロード
+    get_url:
+      url:  https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+      dest: /usr/local/git/contrib/completion/git-completion.bash
+
+  - name: completion.bashをダウンロード
+    get_url:
+      url:  https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
+      dest: /usr/local/git/contrib/completion/git-prompt.sh
+
   when: res.rc != 0
+
+

@@ -6,3 +6,11 @@
 # 対話型シェルの自動化に使用
 - name: expect install
   apt: name=expect state=present
+
+- name: bashの設定ファイルをコピー
+  copy: >
+    src=.bashrc
+    dest=/home/vagrant/.bashrc
+    owner=vagrant
+    group=vagrant
+    mode=0644
