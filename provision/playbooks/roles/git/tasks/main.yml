@@ -49,6 +49,9 @@
 
   # autofcrlfをオフ
   - git_config: name=core.autocrlf scope=global value=false
-
+  # エイリアスを設定
+  - git_config: name=alias.st scope=global value=status
+  - git_config: name=alias.br scope=global value=branch
+  - git_config: name=alias.co scope=global value=checkout
+  # バージョンが指定のものではなかったときのみブロックを実行
   when: res.rc != 0
-
