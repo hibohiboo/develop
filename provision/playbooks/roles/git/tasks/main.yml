@@ -47,6 +47,8 @@
       url:  https://raw.github.com/git/git/master/contrib/completion/git-prompt.sh
       dest: /usr/local/git/contrib/completion/git-prompt.sh
 
-  when: res.rc != 0
+  # autofcrlfをオフ
+  - git_config: name=core.autocrlf scope=global value=false
 
+  when: res.rc != 0
 
