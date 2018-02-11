@@ -16,6 +16,8 @@ services:
       - ../scripts:/app/scripts
       - ../styles:/app/styles
       - ../index.html:/app/index.html
+      # firebase use --add で作成したものを使用。
+      # firebase use --add を行うときには、要コメントアウト。ファイルが作成されなくなる
       - ../.firebaserc:/app/.firebaserc
     ports:
       - 5000:5000
