@@ -6,7 +6,6 @@ services:
     # firebaseのトークンは環境変数で管理。セキュリティのためgit管理しない。
     env_file: .env
     volumes:
-      - ../.firebaserc:/app/.firebaserc
       - ../firebase.json:/app/firebase.json
       - ../firebase-messaging-sw.js:/app/firebase-messaging-sw.js
       - ../sw.js:/app/sw.js
@@ -17,6 +16,7 @@ services:
       - ../scripts:/app/scripts
       - ../styles:/app/styles
       - ../index.html:/app/index.html
+      - ../.firebaserc:/app/.firebaserc
     ports:
       - 5000:5000
       - 9005:9005
