@@ -7,4 +7,4 @@ bin_dir=$(cd $(dirname $0) && pwd)
 composeFile=${1:-"docker-compose.yml"}
 
 # docker-composeの起動
-cd $bin_dir/../docker && docker-compose -f $composeFile up
+cd $bin_dir/../docker && docker-compose -f $composeFile up -d
