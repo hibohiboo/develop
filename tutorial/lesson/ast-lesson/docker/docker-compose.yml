@@ -1,0 +1,6 @@
+version: '3'
+services:
+  babel:
+    build: ./babel
+    volumes:
+      - ../scripts:/app/scripts
