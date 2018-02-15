@@ -1,0 +1,14 @@
+version: '3'
+services:
+  babel:
+    build: ./babel
+    volumes:
+      - ../scripts:/app/scripts
+
+  # ソースコードプロトタイピング
+  s2s:
+    build: ./s2s
+    volumes:
+      - ./config/s2s/s2s.config.js:/app/s2s.config.js
+      - ../src:/app/src
+    command: [yarn, run, s2s]
