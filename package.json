@@ -36,6 +36,7 @@
     "@types/redux-logger": "^3.0.4",
     "@types/redux-saga": "^0.10.5",
     "babel-core": "^7.0.0-beta.3",
+    "babel-traverse": "^7.0.0-beta.3",
     "babel-types": "^7.0.0-beta.3",
     "babylon": "^7.0.0-beta.40",
     "create-react-app": "^1.4.3",

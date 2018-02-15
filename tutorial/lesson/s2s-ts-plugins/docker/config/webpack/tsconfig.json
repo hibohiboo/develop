@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "outDir": "./dist",
+        "lib": [
+            "dom", 
+            "es2015"
+        ],
+        "jsx": "preserve",
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "sourceMap": false,
+        "allowJs":true
+    },
+    "include":[
+        "./src/**/*" 
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
