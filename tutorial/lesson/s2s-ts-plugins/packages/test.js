@@ -2,7 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var babel_core_1 = require("babel-core");
 var src = " 1 + 2 ";
+/**
+ *
+ * @param param0 {types:Types} tはbabel-types
+ */
 var plugin = function (_a) {
+    console.log(_a);
     var t = _a.types;
     return ({
         visitor: {
