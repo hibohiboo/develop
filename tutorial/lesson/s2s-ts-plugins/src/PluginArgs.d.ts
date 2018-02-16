@@ -23,6 +23,7 @@ import { Expression, SpreadElement, LVal, ArrayExpression, AssignmentExpression,
          Loop, While, ExpressionWrapper, For, ForXStatement, FunctionParent, Pureish, Literal, Immutable, UserWhitespacable, Method, ObjectMember,
          Property, UnaryLike, Pattern, Class, ExportDeclaration, ModuleSpecifier, FlowBaseAnnotation, FlowDeclaration, JSX,
       } from 'babel-types';
+import {transform, transformFromAst, transformFile,transformFileSync, traverse, template} from 'babel-core';
 
 interface TSAnyKeyword extends Node {
     type: "TSAnyKeyword";
@@ -361,7 +362,7 @@ interface ReactHelpers {
 }
 declare const react: ReactHelpers;
 
-export default class Types {
+export class Types {
    arrayExpression(elements?: Array<Expression | SpreadElement>): ArrayExpression;
    assignmentExpression(operator?: string, left?: LVal, right?: Expression): AssignmentExpression;
    binaryExpression(
@@ -1039,5 +1040,25 @@ export default class Types {
    assertTSUndefinedKeyword(node: object, opts?: object): void;
    assertTSUnionType(node: object, opts?: object): void;
    assertTSVoidKeyword(node: object, opts?: object): void;
-  
+}
+
+
+export default class PluginArgs{
+  types:Types;
+  version: string;
+  cache: any;
+  env: any;
+  getEnv: Function;
+  loadOptions: Function;
+  buildExternalHelpers: Function;
+  resolvePlugin: Function;
+  resolvePreset: Function;
+  Plugin;
+  transform;
+  transformFromAst;
+  transformFile;
+  transformFileSync;
+  traverse;
+  template;
+  DEFAULT_EXTENSIONS:any;
 }

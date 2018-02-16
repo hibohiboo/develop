@@ -115,7 +115,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-# gitt-completion.bash / git-prompt.sh
+# git-completion.bash / git-prompt.sh
 #
 if [ -f /usr/local/git/contrib/completion/git-prompt.sh ]; then
     source /usr/local/git/contrib/completion/git-prompt.sh

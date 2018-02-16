@@ -1,7 +1,7 @@
 import {transform, PluginObj} from 'babel-core';
 import {NodePath} from 'babel-traverse';
 import {BinaryExpression} from 'babel-types';
-import  Types from './types.d';
+import  PluginArgs from './PluginArgs.d';
 
 const src:string = ` 1 + 2 `;
 
@@ -9,7 +9,7 @@ const src:string = ` 1 + 2 `;
  * 
  * @param param0 {types:Types} tはbabel-types
  */
-const plugin = ({types:t}:{types:Types}):PluginObj =>({
+const plugin = ({types:t}:PluginArgs):PluginObj =>({
   visitor:{
     BinaryExpression: (nodePath: NodePath<BinaryExpression>) =>{
       if(nodePath.node.operator !== '*'){
