@@ -3,7 +3,7 @@ import {NodePath} from 'babel-traverse';
 import {BinaryExpression} from 'babel-types';
 import  PluginArgs from './PluginArgs.d';
 
-const src:string = process.argv.slice(2).join(' ');
+const src:string = 'var a = 1 + 1;';
 
 /**
  * 

@@ -3,7 +3,7 @@ services:
   babel:
     build: ./babel
     volumes:
-      - ../scripts:/app/scripts
+      - ../packages:/app/packages
 
   # ソースコードプロトタイピング
   s2s:

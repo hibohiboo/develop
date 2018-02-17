@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var babel_core_1 = require("babel-core");
-var src = process.argv.slice(2).join(' ');
+var src = 'var a = 1 + 1;';
 /**
  *
  * @param param0 {types:Types} tはbabel-types
