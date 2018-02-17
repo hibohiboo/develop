@@ -15,8 +15,8 @@ var plugin = function (_a) {
                     var newAst = t.binaryExpression('*', nodePath.node.left, nodePath.node.right);
                     nodePath.replaceWith(newAst);
                 }
-            }
-        }
+            },
+        },
     });
 };
 var code = babel_core_1.transform(src, { plugins: [plugin] }).code;

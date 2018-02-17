@@ -1,11 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-/**
- *
- * @param param0 {types:Types} tはbabel-types
- */
 var plugin = function (args) {
-    var t = args && args.types;
+    if (args === undefined) {
+        return { visitor: {} };
+    }
+    var t = args.types;
     return {
         visitor: {
             BinaryExpression: function (nodePath) {
@@ -13,8 +12,8 @@ var plugin = function (args) {
                     var newAst = t.binaryExpression('*', nodePath.node.left, nodePath.node.right);
                     nodePath.replaceWith(newAst);
                 }
-            }
-        }
+            },
+        },
     };
 };
 exports.default = plugin;

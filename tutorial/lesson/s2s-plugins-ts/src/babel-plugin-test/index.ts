@@ -1,10 +1,11 @@
-import { PluginObj, transform } from 'babel-core';
+import { PluginObj } from 'babel-core';
 import { NodePath } from 'babel-traverse';
 import { BinaryExpression } from 'babel-types';
 import PluginArgs from '../PluginArgs';
 
 const plugin = (args: PluginArgs): PluginObj => {
-  const t = args && args.types; // tslint:disable-line
+  if (args === undefined) { return { visitor:{} }; }
+  const t = args.types;
   return {
     visitor:{
       BinaryExpression: (nodePath: NodePath<BinaryExpression>) => {
