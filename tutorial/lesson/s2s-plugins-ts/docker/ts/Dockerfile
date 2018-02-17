@@ -47,4 +47,3 @@ RUN yarn add --dev babel-plugin-s2s-action-builders
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json'\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json
-RUN sed -i -e "s/\(\"scripts\": {\)/\"jest\": {\"transform\": {\"^.+\\\\\\\.ts$\": \"ts-jest\"},\"testRegex\": \"\(\/__tests__\/\\.*|\(\\\\\\\.|\/\)\(test|spec\)\)\\.\(ts\)$\",\"moduleFileExtensions\": [\"ts\", \"js\",\"json\", \"node\"]}, \n \1/g" /app/package.json
