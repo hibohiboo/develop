@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/babel-core": "^6.25.3",
+    "@types/babel-template": "^6.25.0",
     "@types/babel-traverse": "^6.25.3",
     "@types/babel-types": "^7.0.0",
     "@types/i18next": "^8.4.2",
