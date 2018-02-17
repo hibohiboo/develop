@@ -123,8 +123,12 @@ fi
 if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
     source /usr/local/git/contrib/completion/git-completion.bash
 fi
-GIT_PS1_SHOWDIRTYSTATE=false
+
+GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUPSTREAM=auto
 
+# //HEADを読まないようにする
+# https://qiita.com/fujieda/items/bf8def2d26d9c540db74
+GIT_CEILING_DIRECTORIES='/'
