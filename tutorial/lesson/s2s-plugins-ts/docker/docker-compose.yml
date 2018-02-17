@@ -10,7 +10,8 @@ services:
     build: ./s2s
     volumes:
       - ./config/s2s/s2s.config.js:/app/s2s.config.js
-      - ../src:/app/src
+      - ../packages/babel-plugin-test:/app/babel-plugin-test
+      - ../test/src:/app/src
     command: [yarn, run, s2s]
 
   # ビルドツール
