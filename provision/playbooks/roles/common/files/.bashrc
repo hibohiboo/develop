@@ -59,7 +59,8 @@ fi
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\][\033[36m\]\$(__git_ps1)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h$(__git_ps1):\w\$ '
+    # PS1='${debian_chroot:+($debian_chroot)}\u@\h$(__git_ps1):\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h$(__git_branch):\w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -117,18 +118,24 @@ if ! shopt -oq posix; then
 fi
 # git-completion.bash / git-prompt.sh
 #
-if [ -f /usr/local/git/contrib/completion/git-prompt.sh ]; then
-    source /usr/local/git/contrib/completion/git-prompt.sh
-fi
-if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
-    source /usr/local/git/contrib/completion/git-completion.bash
-fi
+# if [ -f /usr/local/git/contrib/completion/git-prompt.sh ]; then
+#     source /usr/local/git/contrib/completion/git-prompt.sh
+# fi
+# if [ -f /usr/local/git/contrib/completion/git-completion.bash ]; then
+#     source /usr/local/git/contrib/completion/git-completion.bash
+# fi
 
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWUNTRACKEDFILES=true
-GIT_PS1_SHOWSTASHSTATE=true
-GIT_PS1_SHOWUPSTREAM=auto
+# GIT_PS1_SHOWDIRTYSTATE=true
+# GIT_PS1_SHOWUNTRACKEDFILES=true
+# GIT_PS1_SHOWSTASHSTATE=true
+# GIT_PS1_SHOWUPSTREAM=auto
 
-# //HEADを読まないようにする
-# https://qiita.com/fujieda/items/bf8def2d26d9c540db74
-GIT_CEILING_DIRECTORIES='/'
+# # //HEADを読まないようにする
+# # https://qiita.com/fujieda/items/bf8def2d26d9c540db74
+# GIT_CEILING_DIRECTORIES='/'
+
+# ブランチを表示するだけ。
+# http://tagussan.rdy.jp/blog/archives/677
+function __git_branch() {
+    echo -n "[$(git name-rev --name-only HEAD 2> /dev/null)]"
+}
