@@ -1,5 +1,5 @@
-var test = require('./babel-plugin-test/index.js').default;
-console.log(test)
+var test = require('./babel-plugin-test').default;
+
 module.exports = {
   watch: './**/*.ts',
   plugins: [
