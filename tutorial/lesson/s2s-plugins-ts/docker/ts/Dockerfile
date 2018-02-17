@@ -36,6 +36,11 @@ RUN yarn add babel-core@next
 RUN yarn add babel-types@next
 RUN yarn add babel-traverse@next
 
-
+# テストツール
+RUN yarn add babel-plugin-tester
+RUN yarn add jest 
+RUN yarn add pretty-format
+RUN yarn add ts-jest
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json'\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\"jest\": {\"transform\": {\"^.+\\\\\\\.ts$\": \"ts-jest\"},\"testRegex\": \"\(\/__tests__\/\\.*|\(\\\\\\\.|\/\)\(test|spec\)\)\\.\(ts\)$\",\"moduleFileExtensions\": [\"ts\", \"js\",\"json\", \"node\"]}, \n \1/g" /app/package.json

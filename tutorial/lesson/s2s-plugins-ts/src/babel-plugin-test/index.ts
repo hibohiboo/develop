@@ -7,6 +7,7 @@ const plugin = (args: PluginArgs): PluginObj => {
   if (args === undefined) { return { visitor:{} }; }
   const { types:t } = args;
   return {
+    name: 'test',
     visitor:{
       BinaryExpression: (nodePath: NodePath<BinaryExpression>) => {
         if (nodePath.node.operator !== '*') {

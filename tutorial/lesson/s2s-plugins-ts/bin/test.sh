@@ -2,5 +2,6 @@
 
 # このシェルスクリプトのディレクトリの絶対パスを取得。
 bin_dir=$(cd $(dirname $0) && pwd)
-# tslint.sh --fix オプションで自動修正
-cd $bin_dir/../docker && docker-compose run babel node packages/test.js
+
+# docker-composeの起動。 コンテナ内に入る. 
+cd $bin_dir/../docker && docker-compose run  ts yarn run jest $@

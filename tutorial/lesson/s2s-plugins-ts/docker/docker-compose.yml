@@ -21,5 +21,6 @@ services:
       - ./config/ts/.babelrc:/app/.babelrc
       - ./config/ts/tsconfig.json:/app/tsconfig.json
       - ./config/ts/tslint.json:/app/tslint.json
+      - ./config/ts/jest.config.json:/app/jest.config.json
       - ../src:/app/src
       - ../packages:/app/dist
