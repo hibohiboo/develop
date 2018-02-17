@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`default basic: basic 1`] = `
+"
+import { createAction } from 'redux-actions'
+getCoinRequest
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import { createAction } from 'redux-actions';
+let getCoinRequest;
+let getCoinSuccess;
+let getCoinFailure;
+"
+`;
