@@ -8,12 +8,6 @@ var src = " 1 + 2 ";
  */
 var plugin = function (_a) {
     var t = _a.types;
-    for(let prop in _a){
-        if(_a.hasOwnProperty(prop)){
-            console.log(prop)
-        }
-
-    }
     return ({
         visitor: {
             BinaryExpression: function (nodePath) {

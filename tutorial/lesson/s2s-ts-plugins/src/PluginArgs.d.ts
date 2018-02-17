@@ -23,7 +23,8 @@ import { Expression, SpreadElement, LVal, ArrayExpression, AssignmentExpression,
          Loop, While, ExpressionWrapper, For, ForXStatement, FunctionParent, Pureish, Literal, Immutable, UserWhitespacable, Method, ObjectMember,
          Property, UnaryLike, Pattern, Class, ExportDeclaration, ModuleSpecifier, FlowBaseAnnotation, FlowDeclaration, JSX,
       } from 'babel-types';
-import {transform, transformFromAst, transformFile,transformFileSync, traverse, template} from 'babel-core';
+import {transform, transformFromAst, transformFile,transformFileSync, traverse, template, PluginObj, BabelFileResult,
+        TransformOptions, BabylonOptions, UseTemplate, TraverseOptions} from 'babel-core';
 
 interface TSAnyKeyword extends Node {
     type: "TSAnyKeyword";
@@ -362,7 +363,7 @@ interface ReactHelpers {
 }
 declare const react: ReactHelpers;
 
-export class Types {
+export declare class Types {
    arrayExpression(elements?: Array<Expression | SpreadElement>): ArrayExpression;
    assignmentExpression(operator?: string, left?: LVal, right?: Expression): AssignmentExpression;
    binaryExpression(
@@ -1042,8 +1043,7 @@ export class Types {
    assertTSVoidKeyword(node: object, opts?: object): void;
 }
 
-
-export default class PluginArgs{
+export default class PluginArgs {
   types:Types;
   version: string;
   cache: any;
@@ -1053,12 +1053,12 @@ export default class PluginArgs{
   buildExternalHelpers: Function;
   resolvePlugin: Function;
   resolvePreset: Function;
-  Plugin;
-  transform;
-  transformFromAst;
-  transformFile;
-  transformFileSync;
-  traverse;
-  template;
+  Plugin:PluginObj;
+  transform(code: string, opts?: TransformOptions): BabelFileResult;
+  transformFile(filename: string, opts: TransformOptions, callback: (err: any, result: BabelFileResult) => void): void;
+  transformFileSync(filename: string, opts?: TransformOptions): BabelFileResult;
+  transformFromAst(ast: Node, code?: string, opts?: TransformOptions): BabelFileResult;
+  traverse(node: Node | Node[], opts?: TraverseOptions, state?: any): void;
+  template(code: string, opts?: BabylonOptions): UseTemplate;
   DEFAULT_EXTENSIONS:any;
 }
