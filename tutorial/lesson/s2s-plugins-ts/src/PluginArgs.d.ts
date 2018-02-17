@@ -22,9 +22,13 @@ import { Expression, SpreadElement, LVal, ArrayExpression, AssignmentExpression,
          UnaryExpression, FunctionTypeAnnotation, Binary, Scopable, BlockParent, Block, Terminatorless, CompletionStatement, Conditional,
          Loop, While, ExpressionWrapper, For, ForXStatement, FunctionParent, Pureish, Literal, Immutable, UserWhitespacable, Method, ObjectMember,
          Property, UnaryLike, Pattern, Class, ExportDeclaration, ModuleSpecifier, FlowBaseAnnotation, FlowDeclaration, JSX,
+         
       } from 'babel-types';
 import {transform, transformFromAst, transformFile,transformFileSync, traverse, template, PluginObj, BabelFileResult,
-        TransformOptions, BabylonOptions, UseTemplate, TraverseOptions} from 'babel-core';
+        TransformOptions, BabylonOptions} from 'babel-core';
+import {TraverseOptions} from 'babel-traverse';
+
+type UseTemplate = (nodes?: {[placeholder: string]: Node}) => Node;
 
 interface TSAnyKeyword extends Node {
     type: "TSAnyKeyword";
