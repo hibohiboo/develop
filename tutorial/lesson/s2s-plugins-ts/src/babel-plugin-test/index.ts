@@ -5,7 +5,7 @@ import PluginArgs from '../PluginArgs';
 
 const plugin = (args: PluginArgs): PluginObj => {
   if (args === undefined) { return { visitor:{} }; }
-  const t = args.types;
+  const { types:t } = args;
   return {
     visitor:{
       BinaryExpression: (nodePath: NodePath<BinaryExpression>) => {
