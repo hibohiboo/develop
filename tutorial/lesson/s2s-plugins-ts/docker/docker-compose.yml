@@ -14,12 +14,11 @@ services:
     command: [yarn, run, s2s]
 
   # ビルドツール
-  webpack:
-    build: ./webpack
+  ts:
+    build: ./ts
     volumes:
-      - ./config/webpack/.babelrc:/app/.babelrc
-      - ./config/webpack/tsconfig.json:/app/tsconfig.json
-      - ./config/webpack/tslint.json:/app/tslint.json
-      - ./config/webpack.config.babel.js:/app/webpack.config.babel.js
+      - ./config/ts/.babelrc:/app/.babelrc
+      - ./config/ts/tsconfig.json:/app/tsconfig.json
+      - ./config/ts/tslint.json:/app/tslint.json
       - ../src:/app/src
       - ../packages:/app/dist

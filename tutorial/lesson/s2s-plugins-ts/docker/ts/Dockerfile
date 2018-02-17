@@ -17,11 +17,7 @@ RUN yarn add --dev tslint-config-airbnb
 # typedoc
 RUN yarn add --dev typedoc 
 
-# ビルドツール
-RUN yarn add --dev webpack
-
 # es6用トランスパイラ
-RUN yarn add --dev babel-loader@next
 RUN yarn add --dev babel-core@next
 RUN yarn add --dev babel-cli@next
 RUN yarn add --dev babel-preset-es2015
