@@ -18,7 +18,6 @@ RUN yarn add --dev tslint-config-airbnb
 RUN yarn add --dev typedoc 
 
 # es6用トランスパイラ
-RUN yarn add --dev babel-core@next
 RUN yarn add --dev babel-cli@next
 RUN yarn add --dev babel-preset-es2015
 RUN yarn add --dev babel-preset-env
@@ -31,6 +30,12 @@ RUN yarn add --dev babel-preset-es2017
 RUN yarn add --dev babel-preset-react
 
 RUN yarn add --dev @babel/plugin-syntax-typescript
+
+# babel7をインストール
+RUN yarn add babel-core@next
+RUN yarn add babel-types@next
+RUN yarn add babel-traverse@next
+
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json'\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json
