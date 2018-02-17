@@ -10,6 +10,5 @@ RUN npm init -y
 RUN npm install -D babel-core@next
 RUN npm install -D babylon@next
 RUN npm install -D babel-types@next
-RUN npm install -D @babel/plugin-syntax-typescript
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"fmt\": \"prettier --write scripts\/* styles\/*\", /g" /app/package.json

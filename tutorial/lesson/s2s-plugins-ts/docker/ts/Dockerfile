@@ -23,12 +23,14 @@ RUN yarn add --dev babel-cli@next
 RUN yarn add --dev babel-preset-es2015
 RUN yarn add --dev babel-preset-env
 RUN yarn add --dev babel-plugin-transform-react-jsx
+
 # async
 RUN yarn add --dev babel-preset-es2017
+
 # babelのreact用preset
 RUN yarn add --dev babel-preset-react
 
-# webpack用typescript loader
-RUN yarn add --dev ts-loader
+RUN yarn add --dev @babel/plugin-syntax-typescript
+
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json'\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json
