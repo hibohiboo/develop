@@ -1,10 +1,10 @@
-import * as path from 'path'
-import * as pluginTester from 'babel-plugin-tester'
-import * as plugin from 'babel-plugin-s2s-action-builders'
+import * as plugin from 'babel-plugin-s2s-action-builders';
+import * as pluginTester from 'babel-plugin-tester';
+import * as path from 'path';
 
 const getFixturesPath = x => path.resolve(__dirname, '__fixtures__', x);
 
-const fromWithStatePath = getFixturesPath('with-initial-state.js')
+const fromWithStatePath = getFixturesPath('with-initial-state.js');
 
 const testCases = [
   {
@@ -14,12 +14,11 @@ import { createAction } from 'redux-actions'
 getCoinRequest
 `,
   },
-]
+];
 
 pluginTester({
-  title: 'default',
   plugin,
+  title: 'default',
   snapshot: true,
   tests: testCases,
-})
-
+});

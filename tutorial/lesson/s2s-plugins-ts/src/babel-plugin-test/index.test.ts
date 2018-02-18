@@ -1,5 +1,5 @@
-import plugin from '.';
 import * as pluginTester from 'babel-plugin-tester';
+import * as plugin from '.';
 
 pluginTester({
   plugin,
@@ -7,7 +7,7 @@ pluginTester({
     {
       title: 'snapshot test',
       code: `var a = 1 + 1`,
-      snapshot: true
+      snapshot: true,
     },
     {
       title: 'no change',

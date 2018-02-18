@@ -5,7 +5,10 @@
     "no-empty-interface": [false],
     "no-submodule-imports": [false],
     "no-duplicate-imports": [false],
-    "no-console": [false]
+    "no-console": [false],
+    "import-name": [false],
+    "no-implicit-dependencies": [true, "dev"],
+    "object-literal-sort-keys": false
   },
   "typeCheck": true
 }
