@@ -44,6 +44,9 @@ RUN yarn add ts-jest
 
 # テスト用s2sプラグイン
 RUN yarn add --dev babel-plugin-s2s-action-builders
+RUN yarn add --dev babel-plugin-s2s-redux-actions-root
+RUN yarn add --dev babel-plugin-s2s-reducer-root
+RUN yarn add --dev babel-plugin-s2s-reducer-test-case
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json'\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json

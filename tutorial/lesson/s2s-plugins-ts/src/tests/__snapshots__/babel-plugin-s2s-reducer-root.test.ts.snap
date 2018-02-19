@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`s2s-reducer-root glob options: glob options 1`] = `
+"
+// show options
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// @flow
+// show options
+import { combineReducers } from \\"redux\\";
+import App from \\"./__fixtures__/app/reducer\\";
+
+export default combineReducers({
+  App
+});
+"
+`;
+
+exports[`s2s-reducer-root no parse: no parse 1`] = `
+"
+// @flow
+      const state = { ...state, a: 1}
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// @flow
+import { combineReducers } from \\"redux\\";
+import App from \\"./__fixtures__/app/reducer\\";
+
+export default combineReducers({
+  App
+});
+"
+`;
+
+exports[`s2s-reducer-root options: options 1`] = `
+"
+// @flow
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// @flow
+import { combineReducers } from \\"redux\\";
+import App from \\"./__fixtures__/app/reducer\\";
+
+export default combineReducers({
+  App
+});
+"
+`;
+
+exports[`s2s-reducer-root reducer options: reducer options 1`] = `
+"
+// @flow
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// @flow
+import { combineReducers } from \\"./myCombineReducers\\";
+import App from \\"./__fixtures__/app/reducer\\";
+
+export default combineReducers({
+  App
+});
+"
+`;

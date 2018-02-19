@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`s2s-redux-actions-root no parse: no parse 1`] = `
+"
+import { createAction } from \\"redux-actions\\";
+
+export const getCommentRequest = createAction(\\"GET_COMMENT_REQUEST\\");
+export const getCommentSuccess = createAction(\\"GET_COMMENT_SUCCESS\\");
+export const getCommentFailure = createAction(\\"GET_COMMENT_FAILURE\\");
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+
+"
+`;
