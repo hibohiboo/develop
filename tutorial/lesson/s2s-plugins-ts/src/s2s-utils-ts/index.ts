@@ -1,4 +1,4 @@
-import {  getImportPath as origGetImportPath } from 's2s-utils';
+import {  getImportPath as origGetImportPath } from 's2s-utils'; // tslint:disable-line
 
 export const getImportPath = (from: string, to: string) => {
   const path = origGetImportPath(from, to);

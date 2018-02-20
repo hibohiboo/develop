@@ -1,7 +1,4 @@
 "use strict";
-// https://github.com/cndlhvn/babel-plugin-s2s-redux-actions/blob/master/src/index.js
-// https://github.com/akameco/babel-plugin-s2s-action-root/blob/master/src/index.js
-// https://github.com/kamijin-fanta/babel-plugins/blob/master/packages/babel-plugin-s2s-action-root-ts/src/index.js
 Object.defineProperty(exports, "__esModule", { value: true });
 var plugin_syntax_typescript_1 = require("@babel/plugin-syntax-typescript");
 var globby = require("globby");
@@ -11,7 +8,7 @@ exports.default = (function (babel) {
         return { visitor: {} };
     }
     var t = babel.types;
-    var defaultExport = function (source) { return t.exportAllDeclaration(t.stringLiteral(source)); };
+    var defaultExport = (function (source) { return t.exportAllDeclaration(t.stringLiteral(source)); });
     return {
         name: 's2s-redux-actions-root-ts',
         inherits: plugin_syntax_typescript_1.default,

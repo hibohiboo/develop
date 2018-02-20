@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var s2s_utils_1 = require("s2s-utils");
+var s2s_utils_1 = require("s2s-utils"); // tslint:disable-line
 exports.getImportPath = function (from, to) {
     var path = s2s_utils_1.getImportPath(from, to);
     var formatted = path.replace(/\.\w+$/, '');

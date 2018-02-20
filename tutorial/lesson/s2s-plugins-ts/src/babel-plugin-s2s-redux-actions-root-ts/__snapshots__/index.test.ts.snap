@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`s2s-redux-actions-root-ts options: options 1`] = `
+exports[`s2s-redux-actions-root-ts index.tsが作成されて、内容が正しいこと: index.tsが作成されて、内容が正しいこと 1`] = `
 "
-import { createAction } from 'redux-actions';
+empty
 
       ↓ ↓ ↓ ↓ ↓ ↓
 

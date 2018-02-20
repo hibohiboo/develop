@@ -53,6 +53,8 @@ RUN yarn add --dev webpack
 RUN yarn add --dev babel-loader
 RUN yarn add --dev ts-loader
 
+# TODO: あとで上の必要ライブラリとまとめる。 開発時はキャッシュを使いたいので後ろに追加していく
+# 必要ライブラリ 
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json'\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json
