@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`s2s-redux-actions-root-ts options: options 1`] = `
+"
+import { createAction } from 'redux-actions';
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+export * from \\"../../__fixtures__/src/actions/coin\\";
+"
+`;

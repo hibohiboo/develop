@@ -1,4 +1,4 @@
-var reduxActionsRoot = require('./babel-plugin-s2s-redux-actions-root-ts').default;
+var reduxActionsRoot = require('./packages/babel-plugin-s2s-redux-actions-root-ts').default;
 
 module.exports = {
   watch: './**/*.ts',

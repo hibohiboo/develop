@@ -11,8 +11,7 @@ services:
     volumes:
       - ./config/s2s/s2s.config.js:/app/s2s.config.js
       - ./config/s2s/templates:/app/templates
-      - ../packages/babel-plugin-s2s-redux-actions-root-ts:/app/babel-plugin-s2s-redux-actions-root-ts
-      - ../packages/s2s-utils-ts:/app/s2s-utils-ts
+      - ../packages:/app/packages
       - ../test/src:/app/src
     command: [yarn, run, s2s]
 

@@ -23,8 +23,6 @@ let geCoinRequest
   },
 ];
 
-
-console.log(plugin)
 pluginTester({
   plugin,
   title: 'default',

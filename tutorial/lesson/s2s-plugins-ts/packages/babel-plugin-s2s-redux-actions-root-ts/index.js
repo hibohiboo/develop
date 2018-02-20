@@ -4,7 +4,7 @@
 // https://github.com/kamijin-fanta/babel-plugins/blob/master/packages/babel-plugin-s2s-action-root-ts/src/index.js
 Object.defineProperty(exports, "__esModule", { value: true });
 var plugin_syntax_typescript_1 = require("@babel/plugin-syntax-typescript");
-var globby_1 = require("globby");
+var globby = require("globby");
 var s2s_utils_ts_1 = require("../s2s-utils-ts");
 exports.default = (function (babel) {
     if (babel === undefined) {
@@ -13,7 +13,7 @@ exports.default = (function (babel) {
     var t = babel.types;
     var defaultExport = function (source) { return t.exportAllDeclaration(t.stringLiteral(source)); };
     return {
-        name: "s2s-redux-actions-root-ts",
+        name: 's2s-redux-actions-root-ts',
         inherits: plugin_syntax_typescript_1.default,
         visitor: {
             Program: {
@@ -25,15 +25,15 @@ exports.default = (function (babel) {
                     if (!output) {
                         throw new Error('require output option');
                     }
-                    var files = globby_1.sync(input);
+                    var files = globby.sync(input);
                     var index = files.indexOf(output);
                     if (index > -1) {
                         files.splice(index, 1);
                     }
                     var imports = files.map(function (f) { return defaultExport(s2s_utils_ts_1.getImportPath(output, f)); });
                     path.node.body = imports.slice();
-                }
-            }
-        }
+                },
+            },
+        },
     };
 });
