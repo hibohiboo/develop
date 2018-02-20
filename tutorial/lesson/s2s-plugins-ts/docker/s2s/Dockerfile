@@ -15,6 +15,11 @@ RUN yarn add --dev babel-plugin-s2s-action-builders
 RUN yarn add --dev babel-plugin-s2s-redux-actions-root
 RUN yarn add --dev babel-plugin-s2s-redux-actions
 
+# 必要ツール
+RUN yarn add --dev lodash
+RUN yarn add --dev globby
+RUN yarn add --dev @babel/plugin-syntax-typescript
+
 # chokidarのポーリング設定
 RUN sed -i -e "s/\(ignoreInitial: true\)/\1,\n    usePolling: true /g" /app/node_modules/s2s/lib/index.js
 

@@ -48,5 +48,11 @@ RUN yarn add --dev babel-plugin-s2s-reducer-test-case
 RUN yarn add --dev lodash
 RUN yarn add --dev globby
 
+# ビルドツール
+RUN yarn add --dev webpack
+RUN yarn add --dev babel-loader
+RUN yarn add --dev ts-loader
+
+
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json'\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json

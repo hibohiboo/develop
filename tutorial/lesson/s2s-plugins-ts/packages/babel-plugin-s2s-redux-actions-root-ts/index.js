@@ -3,15 +3,18 @@
 // https://github.com/akameco/babel-plugin-s2s-action-root/blob/master/src/index.js
 // https://github.com/kamijin-fanta/babel-plugins/blob/master/packages/babel-plugin-s2s-action-root-ts/src/index.js
 Object.defineProperty(exports, "__esModule", { value: true });
-var syntaxTypeScript = require("@babel/plugin-syntax-typescript");
+var plugin_syntax_typescript_1 = require("@babel/plugin-syntax-typescript");
 var globby_1 = require("globby");
 var s2s_utils_ts_1 = require("../s2s-utils-ts");
-module.exports = function (babel) {
+exports.default = (function (babel) {
+    if (babel === undefined) {
+        return { visitor: {} };
+    }
     var t = babel.types;
-    var defaultExport = function (source) { return t.ExportAllDeclaration(t.stringLiteral(source)); };
+    var defaultExport = function (source) { return t.exportAllDeclaration(t.stringLiteral(source)); };
     return {
-        name: "s2s-redux-actions-root",
-        inherits: syntaxTypeScript,
+        name: "s2s-redux-actions-root-ts",
+        inherits: plugin_syntax_typescript_1.default,
         visitor: {
             Program: {
                 exit: function (path, state) {
@@ -22,7 +25,7 @@ module.exports = function (babel) {
                     if (!output) {
                         throw new Error('require output option');
                     }
-                    var files = globby_1.default.sync(input);
+                    var files = globby_1.sync(input);
                     var index = files.indexOf(output);
                     if (index > -1) {
                         files.splice(index, 1);
@@ -33,4 +36,4 @@ module.exports = function (babel) {
             }
         }
     };
-};
+});

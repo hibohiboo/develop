@@ -2,21 +2,25 @@
 // https://github.com/akameco/babel-plugin-s2s-action-root/blob/master/src/index.js
 // https://github.com/kamijin-fanta/babel-plugins/blob/master/packages/babel-plugin-s2s-action-root-ts/src/index.js
 
-import * as syntaxTypeScript from '@babel/plugin-syntax-typescript';
-import globby from 'globby'
+import syntaxTypeScript from '@babel/plugin-syntax-typescript';
+import * as globby from 'globby'
 import { getImportPath,} from '../s2s-utils-ts'
+import { PluginObj } from 'babel-core';
+import PluginArgs from '../PluginArgs';
+import { NodePath } from 'babel-traverse';
+import { Program } from 'babel-types';
 
-module.exports = (babel) => {
-  var t = babel.types;
-
-  const defaultExport = (source) => t.ExportAllDeclaration( t.stringLiteral(source))
+export default (babel:PluginArgs):PluginObj => {
+  if (babel === undefined) { return { visitor:{} }; }
+  const {types:t} = babel;
+  const defaultExport = (source) => t.exportAllDeclaration( t.stringLiteral(source))
 
   return {
-    name: "s2s-redux-actions-root",
+    name: "s2s-redux-actions-root-ts",
     inherits: syntaxTypeScript,
     visitor: {
       Program: {
-        exit(path, state) {
+        exit(path:NodePath<Program>, state) {
 	        const { input, output } = state.opts
           if (!input) {
             throw new Error('require input option')

@@ -4,10 +4,6 @@ module.exports = {
   watch: './**/*.ts',
   plugins: [
     {
-      test: /.*.ts$/,
-      plugin: [test],
-    },
-    {
       test: /src\/actions\/(?!.*index).*\.ts/,
       plugin: ['s2s-redux-actions', {autocomplete: false}]
     },
