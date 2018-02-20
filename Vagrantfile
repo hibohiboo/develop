@@ -39,7 +39,7 @@ Vagrant.configure(2) do |config|
   # デフォルトだと512で少ないためdockerのbuildが失敗しやすい
   config.vm.provider "virtualbox" do |vm|
     # メモリを設定
-    vm.memory = 8192
+    vm.memory = 4096
     # Vagrant1.8から利用出来るLinked Cloneをオンにする。
     vm.linked_clone = true
     # vm.cpus = 2

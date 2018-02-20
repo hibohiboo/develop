@@ -6,6 +6,7 @@ var plugin = function (args) {
     }
     var t = args.types;
     return {
+        name: 'test',
         visitor: {
             BinaryExpression: function (nodePath) {
                 if (nodePath.node.operator !== '*') {

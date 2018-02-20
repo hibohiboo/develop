@@ -20,6 +20,7 @@
     "redux-form-website-template": "0.0.50"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-typescript": "^7.0.0-beta.40",
     "@types/axios": "^0.14.0",
     "@types/babel-core": "^6.25.3",
     "@types/babel-template": "^6.25.0",
@@ -56,12 +57,13 @@
     "gulp": "^3.9.1",
     "gulp-tslint": "^7.1.0",
     "history": "^4.7.2",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "material-ui": "^0.18.7",
     "mithril-jest": "^0.1.7",
     "mithril-redux": "^1.0.0",
     "moducks": "^0.2.2",
     "msx": "^0.4.1",
+    "normalize-path-sep": "^0.1.1",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.8",

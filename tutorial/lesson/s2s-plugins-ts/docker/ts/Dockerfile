@@ -19,12 +19,8 @@ RUN yarn add --dev typedoc
 
 # es6用トランスパイラ
 RUN yarn add --dev babel-cli@next
-RUN yarn add --dev babel-preset-es2015
 RUN yarn add --dev babel-preset-env
 RUN yarn add --dev babel-plugin-transform-react-jsx
-
-# async
-RUN yarn add --dev babel-preset-es2017
 
 # babelのreact用preset
 RUN yarn add --dev babel-preset-react
@@ -47,6 +43,10 @@ RUN yarn add --dev babel-plugin-s2s-action-builders
 RUN yarn add --dev babel-plugin-s2s-redux-actions-root
 RUN yarn add --dev babel-plugin-s2s-reducer-root
 RUN yarn add --dev babel-plugin-s2s-reducer-test-case
+
+# 必要ライブラリ
+RUN yarn add --dev lodash
+RUN yarn add --dev globby
 
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tslint\": \"tslint -p 'tsconfig.json'\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tsc\": \"tsc -p tsconfig.json \",/g" /app/package.json

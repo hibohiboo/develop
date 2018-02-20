@@ -18,6 +18,13 @@ pluginTester({
     globOptions: { cwd },
   },
   tests: [
+    // {
+    //   title: 'parse',
+    //   code: `
+    //   import { createAction } from "redux-actions";
+    //   getCommonRequest
+    //   `,
+    // },
     {
       title: 'no parse',
       code: `
