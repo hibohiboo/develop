@@ -20,3 +20,26 @@ pluginTester({
     },
   ],
 });
+
+pluginTester({
+  plugin,
+  tests: [
+    {
+      title: 'error',
+      code: `// throw error`,
+      error: /require input option/,
+    },
+  ],
+});
+
+pluginTester({
+  plugin,
+  pluginOptions: { input: 'src/__fixtures__/**/*.js' },
+  tests: [
+    {
+      title: 'error',
+      code: `// throw error`,
+      error: /require output option/,
+    },
+  ],
+});
