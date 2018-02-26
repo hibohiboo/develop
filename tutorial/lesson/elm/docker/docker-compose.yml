@@ -2,3 +2,7 @@ version: '3'
 services:
   elm:
     build: ./elm
+
+  elm-dev:
+    build: ./elm-dev
+  
