@@ -17,3 +17,6 @@ RUN npm i -S sanitize.css
 RUN npm i -D webpack-dev-server
 RUN npx elm package install elm-lang/html -y
 RUN npm i elm-test -D
+
+#     "source-directories": [ "src" ], に変更
+RUN sed -i -e "s/\".\"/\"src\"/" /app/elm-package.json

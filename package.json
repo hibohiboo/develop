@@ -52,6 +52,7 @@
     "create-react-app": "^1.4.3",
     "elm": "^0.18.0",
     "elm-format": "^0.6.1-alpha",
+    "elm-test": "^0.18.12",
     "eventemitter3": "^2.0.3",
     "firebase": "^4.6.2",
     "flow": "^0.2.3",

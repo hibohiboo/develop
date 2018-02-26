@@ -33,5 +33,5 @@
   ,"flow.pathToFlow": "./node_modules/.bin/flow"
   //postcssをとりあえずless記法とする。
   ,"files.associations": {"*.pcss": "less"}
-
+  //,"elm.formatCommand": "D:\\develop\\develop\\node_modules\\elm-test\\bin\\elm-test"
 }
