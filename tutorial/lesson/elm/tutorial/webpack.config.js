@@ -3,6 +3,7 @@ var path = require("path");
 const env = process.env.NODE_ENV;
 
 module.exports = {
+  mode: env || `development`,
   entry: {
     app: [
       './src/index.js'
@@ -62,6 +63,4 @@ module.exports = {
     // ５秒毎にポーリング
     poll: 5000
   },
-  mode: env || `development`
-
 };
