@@ -1,5 +1,7 @@
 var path = require("path");
 
+const env = process.env.NODE_ENV;
+
 module.exports = {
   entry: {
     app: [
@@ -59,6 +61,7 @@ module.exports = {
     aggregateTimeout: 300,
     // ５秒毎にポーリング
     poll: 5000
-  }
+  },
+  mode: env || `development`
 
 };

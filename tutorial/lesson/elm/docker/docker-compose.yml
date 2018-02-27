@@ -7,7 +7,9 @@ services:
       - ../tutorial/api.js:/app/api.js
       - ../tutorial/db.json:/app/db.json
       - ../tutorial/src:/app/src
+      - ../tutorial/Procfile:/app/Procfile
+      - ../tutorial/dist:/app/dist
     ports:
       - 3000:3000
       - 4000:4000
-    command: [node, api.js]
+    command: [yarn, start]
