@@ -1,8 +1,13 @@
 version: '3'
 services:
-  elm:
-    build: ./elm
-
   elm-dev:
     build: ./elm-dev
-  
+    volumes:
+      - ../tutorial/webpack.config.js:/app/webpack.config.js
+      - ../tutorial/api.js:/app/api.js
+      - ../tutorial/db.json:/app/db.json
+      - ../tutorial/src:/app/src
+    ports:
+      - 3000:3000
+      - 4000:4000
+    command: [node, api.js]
