@@ -1,0 +1,13 @@
+DROP DATABASE IF EXISTS test;
+
+CREATE DATABASE IF NOT EXISTS test;
+
+USE test;
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_mail` varchar(32) NOT NULL,
+  `user_pw` varchar(32) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
