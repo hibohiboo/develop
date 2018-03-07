@@ -7,13 +7,6 @@ RUN a2enmod rewrite
 RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install mysql
 
-# PHPのログを出力
-RUN echo '\
-log_errors = On\n\
-error_log = /dev/stderr\n\
-error_reporting = E_ALL\n\
-display_errors = Off\n\
-' >> /usr/local/etc/php/conf.d/docker.ini
 
 # Install xdebug for php debugging
 RUN apt-get update
@@ -32,3 +25,19 @@ RUN echo '\
 date.timezone = "Asia/Tokyo"\n\
 memory_limit = -1\n\
 ' >> /usr/local/etc/php/php.ini
+
+# PHPのログを出力
+# error_log = /dev/stderr\n\
+RUN echo '\
+log_errors = On\n\
+error_log = /var/log/apache2/php.log\n\
+error_reporting = E_ALL\n\
+display_errors = On\n\
+' >> /usr/local/etc/php/conf.d/docker.ini
+
+# apacheのログを出力
+RUN echo '\
+CustomLog /var/log/apache2/access.log combined \n\
+ErrorLog /var/log/apache2/error.log\n\
+LogLevel warn\n\
+' >> /etc/apache2/conf-enabled/log.conf
