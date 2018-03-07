@@ -24,8 +24,7 @@ RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)"
     && echo "debug.default_enable = 1" >> /usr/local/etc/php/conf.d/xdebug_settings.ini \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug_settings.ini \
     && echo "xdebug.remote_autostart=on" >> /usr/local/etc/php/conf.d/xdebug_settings.ini \
-    && echo "xdebug.remote_connect_back = 0" >> /usr/local/etc/php/conf.d/xdebug_settings.ini \
-    && echo "xdebug.remote_port = 9000" >> /usr/local/etc/php/conf.d/xdebug_settings.ini \
+    && echo "xdebug.remote_connect_back = on" >> /usr/local/etc/php/conf.d/xdebug_settings.ini \
     && echo "xdebug.remote_log = /var/log/apache2/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug_settings.ini
 
 # php設定

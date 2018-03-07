@@ -5,9 +5,6 @@ services:
   # php
   php: 
     build: ./server/apache
-    environment:
-      # replace with your local IP
-      XDEBUG_CONFIG: remote_host=192.168.15.8
     volumes:
       - ./src:/var/www/html
       - ./logs:/var/log/apache2
