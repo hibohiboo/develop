@@ -13,7 +13,7 @@
       "stopOnEntry": true,
       "log": true,
       "pathMappings": {
-          "/var/www/html": "D:\\develop\\develop\\tutorial\\lesson\\php-5.4\\src",
+          "/var/www/html": "${workspaceRoot}/src",
       }
     },
     {
