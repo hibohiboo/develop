@@ -1,0 +1,49 @@
+version: "3"
+services:
+  # サーバー
+  nginx: 
+    build: ./server/nginx
+    ports: 
+      - "80:80"
+    volumes:
+      - ./server/nginx/server.conf:/etc/nginx/conf.d/server.conf
+      - ./src:/var/www/html
+
+  # php
+  php7: 
+    build: ./server/php7
+    volumes:
+      - ./src:/var/www/html
+      - ./server/php7/php.ini:/usr/local/etc/php/php.ini
+
+  # データベースへアクセス
+  adminer:
+    image: adminer
+    ports: 
+      - "8080:8080"
+
+ # データボリュームコンテナ
+  sqldata:
+    image: busybox
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  # データベース
+  db:
+    build: ./server/mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro # 時刻の同期
+      - ./server/mysql/init:/docker-entrypoint-initdb.d # 初期実行
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      TZ: "Asia/Tokyo"
+
+volumes:
+  dbdata: # 名前付きボリューム名
+
+
+
+
