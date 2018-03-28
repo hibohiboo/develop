@@ -7,14 +7,16 @@ let driver = new Builder()
   .usingServer('http://hub:4444/wd/hub')
   .build();
 // https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/until.html
-driver.get('https://www.google.com').then(function () {
-  var query = driver.wait(until.elementLocated(By.name('q')));
+
+// google検索を行うサンプル
+const googleSearch = async ()=>{
+  await driver.get('https://www.google.com');
+  const query = driver.wait(until.elementLocated(By.name('q')));
   query.sendKeys('webdriver\n');
-  driver.wait(until.titleContains('webdriver'), 1000)
-        .then((result)=>{
-          driver.findElement(By.css('#resultStats')).then(elm=>{
-            elm.getText().then(s=>console.log(s));
-            driver.quit();
-          });
-        });
-});
+  await driver.wait(until.titleContains('webdriver'), 1000);
+  await driver.findElement(By.css('#resultStats'));
+  const elm = await driver.findElement(By.css('#resultStats'));
+  await elm.getText().then(s=>console.log(s));
+  driver.quit();
+};
+googleSearch();
