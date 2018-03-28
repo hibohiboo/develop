@@ -22,3 +22,5 @@ services:
       - chrome
     volumes:
       - ./src:/home/selenium/src
+      - ./data:/home/selenium/data
+      - ./result:/home/selenium/result

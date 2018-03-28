@@ -20,7 +20,7 @@ RUN apk add --update nodejs
 
 WORKDIR /home/selenium
 
- RUN apk add --update chromium-chromedriver
+RUN apk add --update chromium-chromedriver
 
 # 後で確認出来るようにpackage.jsonを作成
 RUN npm init -y 
@@ -33,3 +33,5 @@ RUN mv ./geckodriver /usr/local/bin
 
 RUN apk --update --no-cache add firefox-esr \
     && rm  -rf /tmp/* /var/cache/apk/*
+
+RUN npm i --save papaparse
