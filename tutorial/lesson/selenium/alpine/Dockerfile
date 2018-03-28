@@ -19,9 +19,11 @@ RUN apk add --update \
 RUN apk add --update nodejs
 
 WORKDIR /home/selenium
+
+ RUN apk add --update chromium-chromedriver
+
 # 後で確認出来るようにpackage.jsonを作成
 RUN npm init -y 
-RUN npm i chromedriver -g
 RUN npm i selenium-webdriver --save
 
 RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux64.tar.gz
