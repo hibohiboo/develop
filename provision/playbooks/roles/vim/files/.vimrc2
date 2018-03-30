@@ -1,0 +1,48 @@
+set encoding=utf-8
+scriptencoding utf-8
+set fileencodings=utf-8,cp932,iso-2022-jp,sjis,euc-jp
+set fileformats=unix,dos,mac
+colorscheme darkblue
+
+function! ZenkakuSpace()
+  highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+
+if has('syntax')
+  augroup ZenkakuSpace
+    autocmd!
+    autocmd ColorScheme       * call ZenkakuSpace()
+    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+  augroup END
+  call ZenkakuSpace()
+endif
+
+"####################"
+"##スペース、タブ、改行の可視化##"
+"####################"
+set list
+set listchars=tab:\◇→,trail:•,eol:↲,extends:>,precedes:<,nbsp:%
+highlight SpecialKey guibg=NONE guifg=Gray40 ctermfg=240
+
+highlight CursorLine cterm=NONE ctermbg=235
+highlight CursorLine gui=NONE guibg=#262626
+
+
+set number
+syntax on
+filetype on
+set hlsearch
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+set smartindent
+set paste
+
+set nowrapscan
+set cursorline
+set autoread
+set showmatch
+set linespace=0
