@@ -7,33 +7,33 @@ WORKDIR /app
 RUN npm init -y
 
 # elmインストール
-RUN npm i -S elm
-RUN npm i -D elm-test
+RUN yarn add  elm
+RUN yarn add --dev elm-test
 RUN npx elm package install elm-lang/html -y
 
 # webpackv4
-RUN npm i -S webpack
+RUN yarn add  webpack
 # v4から追加
-RUN npm i -D webpack-cli
+RUN yarn add --dev webpack-cli
 # 開発サーバ
-RUN npm i -D webpack-dev-server
+RUN yarn add --dev webpack-dev-server
 # loader
-RUN npm i -S elm-webpack-loader
-RUN npm i -S file-loader
-RUN npm i -S css-loader
-RUN npm i -S style-loader
-RUN npm i -S url-loader
+RUN yarn add  elm-webpack-loader
+RUN yarn add  file-loader
+RUN yarn add  css-loader
+RUN yarn add  style-loader
+RUN yarn add  url-loader
 
 # バックエンド
-RUN npm i -D json-server
+RUN yarn add --dev json-server
 
 # サーバ複数起動用
-RUN npm i -D foreman
+RUN yarn add --dev foreman
 
 # フロントエンド
-RUN npm i -S sanitize.css
-RUN npm i -S ace-css
-RUN npm i -S font-awesome
+RUN yarn add  sanitize.css
+RUN yarn add  ace-css
+RUN yarn add  font-awesome
 
 # "source-directories": [ "src" ], に変更
 RUN sed -i -e "s/\".\"/\"src\"/" /app/elm-package.json
