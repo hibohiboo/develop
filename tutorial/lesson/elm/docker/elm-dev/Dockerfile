@@ -47,3 +47,7 @@ RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"nf start\", /" /app/pac
 # https://medium.com/webpack/webpack-4-migration-guide-for-plugins-loaders-20a79b927202
 # deprecateなthis.optionsをthis.queryに置き換え。
 RUN sed -i -e "s/this\.options/this\.query/g" /app/node_modules/elm-webpack-loader/index.js
+
+# 追加モジュール
+RUN npx elm package install elm-lang/mouse -y
+RUN npx elm package install elm-lang/keyboard -y
