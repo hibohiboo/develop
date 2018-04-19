@@ -1,9 +1,8 @@
 module Main exposing (..)
 
-import Html exposing (Html, div, text, program)
-import Mouse
-import Keyboard
-
+import Html exposing (Html, div, button, text, program)
+import Html.Events exposing (onClick)
+import Random
 
 
 -- モデル
@@ -15,16 +14,15 @@ type alias Model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( 0, Cmd.none )
-
+    ( 1, Cmd.none )
 
 
 -- メッセージ
 
 
 type Msg
-    = MouseMsg Mouse.Position
-    | KeyMsg Keyboard.KeyCode
+    = Roll
+    | OnResult Int
 
 
 
@@ -34,7 +32,9 @@ type Msg
 view : Model -> Html Msg
 view model =
     div []
-        [ text (toString model) ]
+        [ button [ onClick Roll ] [ text "Roll" ]
+        , text (toString model)
+        ]
 
 
 
@@ -44,23 +44,11 @@ view model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        MouseMsg position ->
-            ( model + 1, Cmd.none )
+        Roll ->
+            ( model, Random.generate OnResult (Random.int 1 6) )
 
-        KeyMsg code ->
-            ( model + 2, Cmd.none )
-
-
-
--- サブスクリプション(購読)
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.batch
-        [ Mouse.clicks MouseMsg
-        , Keyboard.downs KeyMsg
-        ]
+        OnResult res ->
+            ( res, Cmd.none )
 
 
 -- MAIN
@@ -72,5 +60,5 @@ main =
         { init = init
         , view = view
         , update = update
-        , subscriptions = subscriptions
+        , subscriptions = (always Sub.none)
         }
