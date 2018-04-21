@@ -38,16 +38,18 @@ RUN yarn add  font-awesome
 # "source-directories": [ "src" ], に変更
 RUN sed -i -e "s/\".\"/\"src\"/" /app/elm-package.json
 
+# 追加モジュール
+RUN npx elm package install elm-lang/mouse -y
+RUN npx elm package install elm-lang/keyboard -y
+
 # package.json設定
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"api\": \"node api.js\", /" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build\": \"webpack\", /" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"client\": \"webpack-dev-server\", /" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"nf start\", /" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"watch\": \"webpack --watch\", /" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev\": \"webpack-dev-server --port 3000\", /" /app/package.json
 
 # https://medium.com/webpack/webpack-4-migration-guide-for-plugins-loaders-20a79b927202
 # deprecateなthis.optionsをthis.queryに置き換え。
 RUN sed -i -e "s/this\.options/this\.query/g" /app/node_modules/elm-webpack-loader/index.js
-
-# 追加モジュール
-RUN npx elm package install elm-lang/mouse -y
-RUN npx elm package install elm-lang/keyboard -y
