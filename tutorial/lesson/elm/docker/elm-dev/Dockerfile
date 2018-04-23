@@ -42,6 +42,8 @@ RUN sed -i -e "s/\".\"/\"src\"/" /app/elm-package.json
 RUN npx elm package install elm-lang/mouse -y
 RUN npx elm package install elm-lang/keyboard -y
 RUN npx elm package install elm-lang/http -y
+RUN npx elm package install elm-lang/navigation -y
+RUN npx elm package install evancz/url-parser -y
 
 # package.json設定
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"api\": \"node api.js\", /" /app/package.json
