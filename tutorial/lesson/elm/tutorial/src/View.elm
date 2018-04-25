@@ -1,12 +1,12 @@
 module View exposing (..)
 
 import Html exposing (Html, div, text)
-import Messages exposing (Msg(..))
+import Models exposing (Model, PlayerId)
 import Models exposing (Model)
+import Msgs exposing (Msg)
 import Players.Edit
 import Players.List
-import Players.Models exposing (PlayerId)
-import Routing exposing (Route(..))
+import RemoteData
 
 
 view : Model -> Html Msg
@@ -18,30 +18,41 @@ view model =
 page : Model -> Html Msg
 page model =
     case model.route of
-        PlayersRoute ->
-            Html.map PlayersMsg (Players.List.view model.players)
+        Models.PlayersRoute ->
+            Players.List.view model.players
 
-        PlayerRoute id ->
+        Models.PlayerRoute id ->
             playerEditPage model id
 
-        NotFoundRoute ->
+        Models.NotFoundRoute ->
             notFoundView
 
 
 playerEditPage : Model -> PlayerId -> Html Msg
 playerEditPage model playerId =
-    let
-        maybePlayer =
-            model.players
-                |> List.filter (\player -> player.id == playerId)
-                |> List.head
-    in
-        case maybePlayer of
-            Just player ->
-                Html.map PlayersMsg (Players.Edit.view player)
+    case model.players of
+        RemoteData.NotAsked ->
+            text ""
 
-            Nothing ->
-                notFoundView
+        RemoteData.Loading ->
+            text "Loading ..."
+
+        RemoteData.Success players ->
+            let
+                maybePlayer =
+                    players
+                        |> List.filter (\player -> player.id == playerId)
+                        |> List.head
+            in
+                case maybePlayer of
+                    Just player ->
+                        Players.Edit.view player
+
+                    Nothing ->
+                        notFoundView
+
+        RemoteData.Failure err ->
+            text (toString err)
 
 
 notFoundView : Html msg

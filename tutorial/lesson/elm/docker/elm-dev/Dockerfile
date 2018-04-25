@@ -9,7 +9,6 @@ RUN npm init -y
 # elmインストール
 RUN yarn add  elm
 RUN yarn add --dev elm-test
-RUN npx elm package install elm-lang/html -y
 
 # webpackv4
 RUN yarn add  webpack
@@ -35,15 +34,18 @@ RUN yarn add  sanitize.css
 RUN yarn add  ace-css
 RUN yarn add  font-awesome
 
+# 追加モジュール
+RUN yarn elm package install elm-lang/core -y
+RUN yarn elm package install elm-lang/mouse -y
+RUN yarn elm package install elm-lang/keyboard -y
+RUN yarn elm package install elm-lang/http -y
+RUN yarn elm package install elm-lang/navigation -y
+RUN yarn elm package install evancz/url-parser -y
+RUN yarn elm package install NoRedInk/elm-decode-pipeline -y
+RUN yarn elm package install krisajenkins/remotedata -y
+
 # "source-directories": [ "src" ], に変更
 RUN sed -i -e "s/\".\"/\"src\"/" /app/elm-package.json
-
-# 追加モジュール
-RUN npx elm package install elm-lang/mouse -y
-RUN npx elm package install elm-lang/keyboard -y
-RUN npx elm package install elm-lang/http -y
-RUN npx elm package install elm-lang/navigation -y
-RUN npx elm package install evancz/url-parser -y
 
 # package.json設定
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"api\": \"node api.js\", /" /app/package.json

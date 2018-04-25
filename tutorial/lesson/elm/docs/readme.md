@@ -3,6 +3,8 @@
 * チュートリアルをまずは試す
 * srcディレクトリは何が入っていたか忘れてしまったのでdocsにとりあえず移す。generatorで作ったテンプレート？
 
+* [チュートリアル終了時のソース](https://github.com/hibohiboo/develop/blob/edfda82c22dd47829e9878230a93ba57657b2160/tutorial/lesson/elm/)
+
 ## 参考
 
 [Elm チュートリアル][*1]
