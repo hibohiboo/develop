@@ -13,7 +13,10 @@ view model =
         [ counter model
         , increaseButton model
         , stepInput model
-        , text (Maybe.withDefault "No datetime." (Maybe.map toString model.datetime))
+        , model.datetime 
+            |> Maybe.map toString 
+            |> Maybe.withDefault "No datetime." 
+            |> text     
         ]
 
 counter : Model -> Html Msg
