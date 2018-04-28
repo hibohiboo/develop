@@ -2,6 +2,7 @@
 
 // index.htmlがdistにコピーされるようにRequireする
 require('./index.html');
+require('./css/style.css');
 
 var Elm = require('./Main.elm');
 var mountNode = document.getElementById('main');
