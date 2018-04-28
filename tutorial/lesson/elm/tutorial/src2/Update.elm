@@ -10,3 +10,9 @@ update msg model =
             model
         Increase ->
             { model | count = model.count + 1 }
+        Decrease ->
+            decrease model
+
+decrease : Model -> Model
+decrease model =
+     if model.count == 0 then model else { model | count = model.count - 1 }
