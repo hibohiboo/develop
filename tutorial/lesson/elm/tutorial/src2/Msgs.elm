@@ -4,3 +4,4 @@ type Msg
     = NoOp
     | Increase Int
     | UpdateCountStepInput String
+    | UpdateCountStepNum Int
