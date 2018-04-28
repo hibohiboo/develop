@@ -3,17 +3,17 @@ module Update exposing (..)
 import Msgs exposing(..)
 import Models exposing (Model)
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
         NoOp ->
-            model
+            model ! []
         Increase num ->
-            add model num
+            add model num ! []
         UpdateCountStepInput s ->
-            { model | countStepInput = s }
+            { model | countStepInput = s } ! []
         UpdateCountStepNum num ->
-            { model | countStepNum = num }
+            { model | countStepNum = num } ! []
 
 add : Model -> Int -> Model
 add model num =
