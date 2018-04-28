@@ -1,5 +1,6 @@
 module Models exposing (..)
 
+import Task
 import Msgs exposing(..)
 
 type alias Model =
@@ -13,4 +14,5 @@ initModel =
     { count = 0
     , countStepInput = ""
     , countStepNum = 0
-    } ! []
+    }
+    ! [ Task.perform UpdateCountStepInput (Task.succeed "5") ]
