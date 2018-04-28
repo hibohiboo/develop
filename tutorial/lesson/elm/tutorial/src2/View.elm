@@ -13,7 +13,7 @@ view model =
         [ counter model
         , increaseButton model
         , stepInput model
-        , text ("countStepInput = " ++ model.countStepInput)
+        , text (Maybe.withDefault "No datetime." (Maybe.map toString model.datetime))
         ]
 
 counter : Model -> Html Msg

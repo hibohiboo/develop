@@ -1,6 +1,7 @@
 module Update exposing (..)
 
 import Task
+import Date exposing (Date)
 import String exposing (toInt)
 import Msgs exposing(..)
 import Models exposing (Model)
@@ -13,7 +14,10 @@ update msg model =
         Increase num ->
             add model num ! []
         UpdateCountStepInput s ->
-        updateCountStep s model ! []
+            updateCountStep s model ! []
+        UpdateDatetime dt ->
+            { model | datetime = Just dt } ! []
+
 
 updateCountStep : String -> Model -> Model
 updateCountStep s model =
@@ -27,3 +31,5 @@ updateCountStep s model =
 add : Model -> Int -> Model
 add model num =
      if model.count + num < 0 then model else { model | count = model.count + num }
+
+
