@@ -1,5 +1,7 @@
 module Update exposing (..)
 
+import Task
+import String exposing (toInt)
 import Msgs exposing(..)
 import Models exposing (Model)
 
@@ -11,9 +13,18 @@ update msg model =
         Increase num ->
             add model num ! []
         UpdateCountStepInput s ->
-            { model | countStepInput = s } ! []
+            { model | countStepInput = s } ! [ Task.perform convertInputToMsg (Task.succeed s) ]
         UpdateCountStepNum num ->
             { model | countStepNum = num } ! []
+
+convertInputToMsg : String -> Msg
+convertInputToMsg s =
+    case (toInt s) of
+        Ok num ->
+            UpdateCountStepNum num
+
+        Err msg ->
+            NoOp
 
 add : Model -> Int -> Model
 add model num =

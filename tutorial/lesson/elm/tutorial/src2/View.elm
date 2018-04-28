@@ -4,7 +4,6 @@ import Html exposing (Html, text, p, div, button, form, input)
 import Html.Events exposing (onClick, onInput)
 import Html.Attributes exposing (value)
 import Html.Attributes exposing (value, type_)
-import String exposing (toInt)
 import Msgs exposing(..)
 import Models exposing (Model)
 
@@ -36,14 +35,4 @@ stepInput : Model -> Html Msg
 stepInput model =
     form []
         [ input [ onInput UpdateCountStepInput, value model.countStepInput ] []
-        , input [ type_ "button", onClick (convertInputToMsg model.countStepInput), value "Update"] []
         ]
-
-convertInputToMsg : String -> Msg
-convertInputToMsg s =
-    case (toInt s) of
-        Ok num ->
-            UpdateCountStepNum num
-
-        Err msg ->
-            NoOp
