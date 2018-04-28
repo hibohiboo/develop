@@ -10,6 +10,8 @@ update msg model =
             model
         Increase num ->
             add model num
+        UpdateCountStepInput s ->
+            { model | countStepInput = s }
 
 add : Model -> Int -> Model
 add model num =
