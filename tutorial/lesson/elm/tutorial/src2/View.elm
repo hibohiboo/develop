@@ -10,7 +10,6 @@ view model =
     div []
         [ counter model
         , increaseButton
-        , decreaseButton
         ]
 
 counter : Model -> Html Msg
@@ -24,13 +23,7 @@ counter model =
 increaseButton : Html Msg
 increaseButton =
     div []
-        [ button [ onClick (Increase 1)]
-            [ text "+1" ]
-        ]
-
-decreaseButton : Html Msg
-decreaseButton =
-    div []
-        [ button [ onClick Decrease ]
-            [ text "-1" ]
+        [ button [ onClick (Increase 1) ] [ text "+1" ]
+        , button [ onClick (Increase 5) ] [ text "+5" ]
+        , button [ onClick (Increase -1) ] [ text "-1" ]
         ]

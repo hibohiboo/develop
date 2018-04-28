@@ -9,10 +9,8 @@ update msg model =
         NoOp ->
             model
         Increase num ->
-            { model | count = model.count + num }
-        Decrease ->
-            decrease model
+            increase model
 
-decrease : Model -> Model
-decrease model =
-     if model.count == 0 then model else { model | count = model.count - 1 }
+increase : Model -> Model
+increase model =
+     if model.count <= 0 then model else { model | count = model.count + num }
