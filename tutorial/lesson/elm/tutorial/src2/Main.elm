@@ -1,8 +1,15 @@
 module Main exposing (..)
 
-import Html exposing (Html, text)
+import Html exposing (Html)
+import Msgs exposing(Msg)
+import Models exposing (Model, initModel)
+import Update exposing (update)
+import View exposing (view)
 
-
-main : Html a
+main : Program Never Model Msg
 main =
-    text "Hello, World!"
+    Html.beginnerProgram
+        { model = initModel
+        , update = update
+        , view = view
+        }
