@@ -6,9 +6,12 @@ services:
       - ../tutorial/webpack.config.js:/app/webpack.config.js
       - ../tutorial/api.js:/app/api.js
       - ../tutorial/db.json:/app/db.json
-      - ../tutorial/src:/app/src
       - ../tutorial/Procfile:/app/Procfile
       - ../tutorial/dist:/app/dist
+      # 公式チュートリアル
+      # - ../tutorial/src:/app/src
+      # qiita チュートリアル
+      - ../tutorial/src2:/app/src
     ports:
       - 3000:3000
       - 4000:4000
