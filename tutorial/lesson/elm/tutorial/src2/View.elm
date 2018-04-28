@@ -24,7 +24,7 @@ counter model =
 increaseButton : Html Msg
 increaseButton =
     div []
-        [ button [ onClick Increase ]
+        [ button [ onClick (Increase 1)]
             [ text "+1" ]
         ]
 

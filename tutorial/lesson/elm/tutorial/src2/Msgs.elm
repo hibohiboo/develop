@@ -2,5 +2,5 @@ module Msgs exposing(..)
 
 type Msg
     = NoOp
-    | Increase
+    | Increase Int
     | Decrease
