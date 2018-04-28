@@ -13,18 +13,16 @@ update msg model =
         Increase num ->
             add model num ! []
         UpdateCountStepInput s ->
-            { model | countStepInput = s } ! [ Task.perform convertInputToMsg (Task.succeed s) ]
-        UpdateCountStepNum num ->
-            { model | countStepNum = num } ! []
+        updateCountStep s model ! []
 
-convertInputToMsg : String -> Msg
-convertInputToMsg s =
+updateCountStep : String -> Model -> Model
+updateCountStep s model =
     case (toInt s) of
         Ok num ->
-            UpdateCountStepNum num
+            { model | countStepInput = s, countStepNum = num }
 
-        Err msg ->
-            NoOp
+        Err _ ->
+            { model | countStepInput = s }
 
 add : Model -> Int -> Model
 add model num =
