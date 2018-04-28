@@ -8,3 +8,5 @@ update msg model =
     case msg of
         NoOp ->
             model
+        Increase ->
+            { model | count = model.count + 1 }
