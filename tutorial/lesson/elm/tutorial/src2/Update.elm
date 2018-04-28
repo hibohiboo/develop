@@ -9,8 +9,8 @@ update msg model =
         NoOp ->
             model
         Increase num ->
-            increase model
+            add model num
 
-increase : Model -> Model
-increase model =
-     if model.count <= 0 then model else { model | count = model.count + num }
+add : Model -> Int -> Model
+add model num =
+     if model.count + num < 0 then model else { model | count = model.count + num }
