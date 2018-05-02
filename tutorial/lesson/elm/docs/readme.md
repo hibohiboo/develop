@@ -9,7 +9,7 @@
 
 [Elm チュートリアル][*1]
 [シンタックス][*2]
-[qiita入門elm][*3l4]
+[qiita入門elm][*3]
 [薄い本][*4]
 
 [*1]:https://www.elm-tutorial.org/jp/02-elm-arch/01-introduction.html
