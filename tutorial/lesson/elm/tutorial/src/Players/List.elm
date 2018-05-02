@@ -1,41 +1,23 @@
 module Players.List exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (class, href)
-import Models exposing (Player)
-import Msgs exposing (Msg)
-import RemoteData exposing (WebData)
-import Routing exposing (playerPath)
+import Html.Attributes exposing (class)
+import Players.Messages exposing (..)
+import Players.Models exposing (Player)
+import Html.Events exposing (onClick)
 
-
-view : WebData (List Player) -> Html Msg
-view response =
+view : List Player -> Html Msg
+view players =
     div []
-        [ nav
-        , maybeList response
+        [ nav players
+        , list players
         ]
 
 
-nav : Html Msg
-nav =
+nav : List Player -> Html Msg
+nav players =
     div [ class "clearfix mb2 white bg-black" ]
         [ div [ class "left p2" ] [ text "Players" ] ]
-
-
-maybeList : WebData (List Player) -> Html Msg
-maybeList response =
-    case response of
-        RemoteData.NotAsked ->
-            text ""
-
-        RemoteData.Loading ->
-            text "Loading..."
-
-        RemoteData.Success players ->
-            list players
-
-        RemoteData.Failure error ->
-            text (toString error)
 
 
 list : List Player -> Html Msg
@@ -54,26 +36,20 @@ list players =
             ]
         ]
 
-
 playerRow : Player -> Html Msg
 playerRow player =
     tr []
-        [ td [] [ text player.id ]
+        [ td [] [ text (toString player.id) ]
         , td [] [ text player.name ]
         , td [] [ text (toString player.level) ]
         , td []
             [ editBtn player ]
         ]
 
-
-editBtn : Player -> Html.Html Msg
+editBtn : Player -> Html Msg
 editBtn player =
-    let
-        path =
-            playerPath player.id
-    in
-        a
-            [ class "btn regular"
-            , href path
-            ]
-            [ i [ class "fa fa-pencil mr1" ] [], text "Edit" ]
+    button
+        [ class "btn regular"
+        , onClick (ShowPlayer player.id)
+        ]
+        [ i [ class "fa fa-pencil mr1" ] [], text "Edit" ]
