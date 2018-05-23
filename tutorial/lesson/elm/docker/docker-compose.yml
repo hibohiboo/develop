@@ -11,7 +11,11 @@ services:
       # 公式チュートリアル
       # - ../tutorial/src:/app/src
       # qiita チュートリアル
-      - ../tutorial/src2:/app/src
+      # - ../tutorial/src2:/app/src
+      # tddチュートリアル
+      - ../elm-tdd/src:/app/src
+      - ../elm-tdd/tests:/app/tests
+
     ports:
       - 3000:3000
       - 4000:4000

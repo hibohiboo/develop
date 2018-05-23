@@ -58,3 +58,6 @@ RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev\": \"webpack-dev-server --port
 # https://medium.com/webpack/webpack-4-migration-guide-for-plugins-loaders-20a79b927202
 # deprecateなthis.optionsをthis.queryに置き換え。
 RUN sed -i -e "s/this\.options/this\.query/g" /app/node_modules/elm-webpack-loader/index.js
+
+# テスト
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"elm-test\": \"elm-test\", /" /app/package.json
