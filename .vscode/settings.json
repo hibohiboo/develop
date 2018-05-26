@@ -14,8 +14,8 @@
   // Git Bash
   "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
   // C#拡張に関する設定
-  "csharp.suppressDotnetInstallWarning": true,
-  "csharp.suppressDotnetRestoreNotification": true,
+  // "csharp.suppressDotnetInstallWarning": true,
+  // "csharp.suppressDotnetRestoreNotification": true,
   // tslintに関する設定
   "tslint.enable": true,
   "tslint.configFile": "./tslint.json",
@@ -25,12 +25,12 @@
   // Flowに対する拡張
   //,"javascript.validate.enable": false
   //,"files.associations": {"*.js": "flow"}
-  ,"files.associations": {
-    "*.js": "javascriptreact"
-  }
-  ,"javascript.validate.enable": false
-  ,"flow.useNPMPackagedFlow": true
-  ,"flow.pathToFlow": "./node_modules/.bin/flow"
+  // ,"files.associations": {
+  //   "*.js": "javascriptreact"
+  // }
+  // ,"javascript.validate.enable": false
+  // ,"flow.useNPMPackagedFlow": true
+  // ,"flow.pathToFlow": "./node_modules/.bin/flow"
   //postcssをとりあえずless記法とする。
   ,"files.associations": {"*.pcss": "less"}
   //,"elm.formatCommand": "D:\\develop\\develop\\node_modules\\elm-test\\bin\\elm-test"
