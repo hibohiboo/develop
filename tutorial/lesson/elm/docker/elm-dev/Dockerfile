@@ -44,6 +44,16 @@ RUN yarn elm package install evancz/url-parser -y
 RUN yarn elm package install NoRedInk/elm-decode-pipeline -y
 RUN yarn elm package install krisajenkins/remotedata -y
 
+# elm 高速化
+ADD ./ensure_libsysconfcpus.sh /app/ensure_libsysconfcpus.sh
+ADD ./replace_elm_make.sh /app/replace_elm_make.sh
+
+RUN /app/ensure_libsysconfcpus.sh
+RUN /app/replace_elm_make.sh
+
+# テスト準備
+RUN yarn run elm-test init
+
 # "source-directories": [ "src" ], に変更
 RUN sed -i -e "s/\".\"/\"src\"/" /app/elm-package.json
 
@@ -61,3 +71,6 @@ RUN sed -i -e "s/this\.options/this\.query/g" /app/node_modules/elm-webpack-load
 
 # テスト
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"elm-test\": \"elm-test\", /" /app/package.json
+RUN sed -i -e "s/\(\"source-directories\": \[\)/\1\n        \"..\/src\", /" /app/tests/elm-package.json
+RUN sed -i -e "s/\"\.\"/\".\/tests\"/" /app/tests/elm-package.json
+

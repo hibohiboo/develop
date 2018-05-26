@@ -14,9 +14,15 @@ services:
       # - ../tutorial/src2:/app/src
       # tddチュートリアル
       - ../elm-tdd/src:/app/src
-      - ../elm-tdd/tests:/app/tests
-
+      - ../elm-tdd/tests:/app/tests/tests
+      - cache1:/app/elm-stuff
+      - cache2:/app/tests/elm-stuff
     ports:
       - 3000:3000
       - 4000:4000
     command: [yarn, start]
+
+
+volumes:
+  cache1: # 名前付きボリューム名
+  cache2:
