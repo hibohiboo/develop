@@ -16,7 +16,7 @@ SHELL
 # virtual machine設定
 Vagrant.configure(2) do |config|
   # 使用するディストリビューションのボックスの設定
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/ubuntu-18.04"
 
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。

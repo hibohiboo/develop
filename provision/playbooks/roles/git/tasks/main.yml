@@ -23,7 +23,6 @@
       - gettext
       - unzip
       - software-properties-common
-      - python-software-properties
 
   - name: step2
     shell: add-apt-repository ppa:git-core/ppa
