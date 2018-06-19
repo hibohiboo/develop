@@ -8,6 +8,7 @@
     - common
     - git
     - docker
+    - minikube
     # - node
     # - vim
     # - aws
