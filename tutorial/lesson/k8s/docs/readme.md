@@ -23,6 +23,8 @@ docker push hibohiboo66/kuard-amd64:1
 ## 参考
 [Docker Hubの使い方とGitHubからのDockerイメージ自動ビルド (1/2)][*1]
 [イメージのタグ付け、送信、取得][*2]
+[VirtualBox上のUbuntuでminikubeを起動する][*3]
 
 [*1]:http://www.atmarkit.co.jp/ait/articles/1408/26/news038.html
 [*2]:http://docs.docker.jp/linux/step_six.html
+[*3]:https://qiita.com/dev_user/items/e80ed4ffbedb0faf0ee2
