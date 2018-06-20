@@ -8,7 +8,8 @@
     - common
     - git
     - docker
-    - minikube
+    - andrewrothstein.kubectl
+    - andrewrothstein.minikube
     # - node
     # - vim
     # - aws
