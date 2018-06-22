@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# このシェルスクリプトのディレクトリの絶対パスを取得。
+# 変数設定
 bin_dir=$(cd $(dirname $0) && pwd)
-
-# up.sh docker-compose.camp.yml
 composeFile=${1:-"docker-compose.yml"}
+containerName=${2:-"elm"}
 
 # docker-composeの起動
-cd $bin_dir/../docker && docker-compose -f $composeFile run elm /bin/bash -c "yarn repl"
+cd $bin_dir/../docker && docker-compose -f $composeFile run $containerName /bin/bash -c "yarn repl"
