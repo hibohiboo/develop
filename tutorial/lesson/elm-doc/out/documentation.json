@@ -1,0 +1,69 @@
+[
+  {
+    "name": "Main",
+    "comment": " This application offers transforming a model into gained or losing.\n\n# Definition\n@docs Msg\n\n# Determine a next model.\n@docs init, update\n\n# Create view\n@docs view\n\n# Entry point\n@docs main\n",
+    "aliases": [],
+    "types": [
+      {
+        "name": "Msg",
+        "comment": " All of action of this Application.\n",
+        "args": [],
+        "cases": []
+      }
+    ],
+    "values": [
+      {
+        "name": "init",
+        "comment": " Initial model and effects.\n",
+        "type": "( Types.Model.Model, Platform.Cmd.Cmd Main.Msg )"
+      },
+      {
+        "name": "main",
+        "comment": " The entry point of this application.\n",
+        "type": "Platform.Program Basics.Never Types.Model.Model Main.Msg"
+      },
+      {
+        "name": "update",
+        "comment": " Updating model and generating effects.\n",
+        "type": "Main.Msg -> Types.Model.Model -> ( Types.Model.Model, Platform.Cmd.Cmd Main.Msg )"
+      },
+      {
+        "name": "view",
+        "comment": " Create views of this application.\n",
+        "type": "Types.Model.Model -> Html.Html Main.Msg"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  },
+  {
+    "name": "Types.Model",
+    "comment": " This module have a knowledge of model.\nFor example, a initial state and a way of how to change it.\n\n# Definition\n@docs Model\n\n# Initial Model\n@docs initial\n\n# Changing Model\n@docs gain, lose\n",
+    "aliases": [
+      {
+        "name": "Model",
+        "comment": " Type of model.\n",
+        "args": [],
+        "type": "Int"
+      }
+    ],
+    "types": [],
+    "values": [
+      {
+        "name": "gain",
+        "comment": " Change a model to gained form.\n",
+        "type": "Types.Model.Model -> Types.Model.Model"
+      },
+      {
+        "name": "initial",
+        "comment": " Initial model.\n",
+        "type": "Types.Model.Model"
+      },
+      {
+        "name": "lose",
+        "comment": " Change a model to lost form.\n",
+        "type": "Types.Model.Model -> Types.Model.Model"
+      }
+    ],
+    "generated-with-elm-version": "0.18.0"
+  }
+]

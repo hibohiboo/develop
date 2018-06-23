@@ -1,0 +1,12 @@
+version: '3'
+services:
+  elm:
+    build: ./elm
+    volumes:
+      - ./config/elm-package.json:/app/elm-package.json
+      - ../src:/app/src
+      - ../out:/app/out
+      - cache1:/app/elm-stuff
+
+volumes:
+  cache1: # 名前付きボリューム名
