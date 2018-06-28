@@ -2,17 +2,26 @@ module Main exposing (Msg, init, main, update, view)
 
 {-| This application offers transforming a model into gained or losing.
 
+
 # Definition
+
 @docs Msg
 
+
 # Determine a next model.
+
 @docs init, update
 
+
 # Create view
+
 @docs view
 
+
 # Entry point
+
 @docs main
+
 -}
 
 import Html exposing (Html, button, div, span, text)

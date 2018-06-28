@@ -3,14 +3,21 @@ module Types.Model exposing (Model, gain, initial, lose)
 {-| This module have a knowledge of model.
 For example, a initial state and a way of how to change it.
 
+
 # Definition
+
 @docs Model
 
+
 # Initial Model
+
 @docs initial
 
+
 # Changing Model
+
 @docs gain, lose
+
 -}
 
 

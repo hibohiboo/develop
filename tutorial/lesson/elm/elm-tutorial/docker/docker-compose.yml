@@ -1,0 +1,12 @@
+version: '3'
+services:
+  elm:
+    build: ./elm
+    volumes:
+      - cache1:/app/elm-stuff
+    ports:
+      - 3000:3000
+    command: [yarn, repl]
+
+volumes:
+  cache1: # 名前付きボリューム名
