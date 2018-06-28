@@ -30,3 +30,5 @@ RUN /app/replace_elm_make.sh
 # package.json設定
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"elm-package install --yes \&\& elm-live Main.elm --open --pushstate --output=elm.js\", /" /app/package.json
 
+
+CMD [yarn, start]
