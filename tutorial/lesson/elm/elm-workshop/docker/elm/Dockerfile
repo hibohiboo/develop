@@ -16,6 +16,9 @@ RUN npm init -y
 
 # elmインストール
 RUN yarn add  elm
+RUN yarn add elm-test 
+RUN yarn add elm-css 
+RUN yarn add elm-live
 
 # elm 高速化
 ADD ./ensure_libsysconfcpus.sh /app/ensure_libsysconfcpus.sh
@@ -24,11 +27,6 @@ ADD ./replace_elm_make.sh /app/replace_elm_make.sh
 RUN /app/ensure_libsysconfcpus.sh
 RUN /app/replace_elm_make.sh
 
-# test
-RUN yarn add --dev elm-test
-
-# 追加モジュール
-RUN yarn elm package install elm-lang/core -y
-
 # package.json設定
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"repl\": \"elm-repl\", /" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"elm-package install --yes \&\& elm-live Main.elm --open --pushstate --output=elm.js\", /" /app/package.json
+
