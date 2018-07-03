@@ -1,0 +1,5 @@
+{
+    "require": {
+        "laravel/lumen": "^5.6"
+    }
+}

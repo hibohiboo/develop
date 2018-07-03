@@ -1,0 +1,43 @@
+version: "3"
+services:
+  # php
+  php: 
+    build: ./server/apache
+    volumes:
+      - ../src:/var/www/html
+      - ./logs:/var/log/apache2
+    ports: 
+      - "80:80"
+
+  # composer
+  composer:
+    image: composer
+    volumes:
+      - ../src:/app
+    command: [composer, update]
+
+      # データベースへアクセス
+  adminer:
+    image: adminer
+    ports: 
+      - "8080:8080"
+
+  # データベース
+  db:
+    build: ./server/mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro # 時刻の同期
+      - ./server/mysql/init:/docker-entrypoint-initdb.d # 初期実行
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      TZ: "Asia/Tokyo"
+
+volumes:
+  dbdata: # 名前付きボリューム名
+
+
+
+
