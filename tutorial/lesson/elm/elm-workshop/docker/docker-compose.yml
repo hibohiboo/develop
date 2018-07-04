@@ -9,7 +9,7 @@ services:
       - cache1:/app/elm-stuff
     ports:
       - 8000:8000
-    command: [yarn, start]
+    command: [yarn, part1]
 
 volumes:
   cache1: # 名前付きボリューム名
