@@ -29,3 +29,8 @@ RUN /app/replace_elm_make.sh
 
 # chokidarのポーリング設定
 RUN sed -i -e "s/\(ignoreInitial: true,\)/\1\n    usePolling: true, /g" /app/node_modules/elm-live/source/elm-live.js
+
+# livereloadのホストが0.0.0.0だとwindowsではうまく動作しない
+# RUN sed -i -e "s/host: args.host,/host: '192.168.50.10',/g" /app/node_modules/elm-live/source/elm-live.js
+# RUN sed -i -e "s/local: true\s+})/local: false});liveInjector.host='192.168.50.10';/g" /app/node_modules/budo/lib/middleware.js
+RUN sed -i -e "s/if (live.host) liveInjector.host = live.host/liveInjector.host ='192.168.50.10'/g" /app/node_modules/budo/lib/middleware.js
