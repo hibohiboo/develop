@@ -1,17 +1,12 @@
-FROM php:5.4-apache
+FROM php:7.2-apache
 
 # Apacheモジュールインストール
 RUN a2enmod rewrite
 
 # PHPモジュールインストール
 RUN docker-php-ext-install mbstring
-RUN docker-php-ext-install mysql
-
-
-# Install xdebug for php debugging
-RUN apt-get update
-RUN apt-get install -y php-pear
-RUN pecl install xdebug-2.4.1
+RUN docker-php-ext-install pdo_mysql
+RUN pecl install xdebug
 
 RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug_settings.ini \
     && echo "debug.default_enable = 1" >> /usr/local/etc/php/conf.d/xdebug_settings.ini \

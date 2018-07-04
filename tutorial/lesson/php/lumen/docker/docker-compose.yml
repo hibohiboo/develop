@@ -26,7 +26,7 @@ services:
   db:
     build: ./server/mysql
     volumes:
-      - dbdata:/var/lib/mysql
+      - mysqldbdata:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro # 時刻の同期
       - ./server/mysql/init:/docker-entrypoint-initdb.d # 初期実行
     ports:
@@ -36,7 +36,7 @@ services:
       TZ: "Asia/Tokyo"
 
 volumes:
-  dbdata: # 名前付きボリューム名
+  mysqldbdata: # 名前付きボリューム名
 
 
 
