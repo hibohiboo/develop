@@ -12,3 +12,7 @@ services:
       - 8085:8080
     shm_size: 1g
     restart: unless-stopped
+  gradle:
+    build: ./gradle
+    volumes:
+      - ../src/hello:/app
