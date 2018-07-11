@@ -16,3 +16,11 @@ services:
     build: ./gradle
     volumes:
       - ../src/hello:/app
+    command: [echo, "no work"]
+  spring:
+    build: ./spring
+    ports:
+        - "8080:8080"
+    volumes:
+        - ../src/hello:/app
+    command: [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app/build/libs/hello-0.0.1-SNAPSHOT.jar"]
