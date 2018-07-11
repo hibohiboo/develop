@@ -4,3 +4,11 @@ services:
     build:
       context: ./oracle/11.2.0.2/
       dockerfile: Dockerfile.xe
+    env_file: .env
+    volumes:
+      - ./data:/u01/app/oracle/oradata
+    ports:
+      - 1521:1521
+      - 8085:8080
+    shm_size: 1g
+    restart: unless-stopped
