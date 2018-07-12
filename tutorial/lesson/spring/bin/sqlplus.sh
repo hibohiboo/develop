@@ -13,7 +13,13 @@ docker ps | grep $container_name
 # grepの戻り値$?の評価。 grep戻り値 0:一致した 1:一致しなかった
 if [ $? -eq 0 ]; then
   # 一致したときの処理
-  cd $bin_dir/../docker && docker-compose exec $container_name  sqlplus sys/$ORACLE_PWD@localhost:1521/XE as sysdba
+
+  # 初期ユーザ
+  # cd $bin_dir/../docker && docker-compose exec $container_name  sqlplus sys/$ORACLE_PWD@localhost:1521/XE as sysdba
+
+  # 作成したユーザ
+  cd $bin_dir/../docker && docker-compose exec $container_name  sqlplus testuser/$USER_PASS@localhost:1521/XE
+
 else
   # 一致しなかった時の処理
   # コンテナを立ち上げて接続
