@@ -4,10 +4,12 @@ spring:
 # ===============================
 # Set here configurations for the database connection
   datasource:
-    url: jdbc:oracle:thin:@database:1521:XE
+    url: jdbc:oracle:thin:@//database:1521:XE
     username: testuser
     password: pass
     driverClassName:  oracle.jdbc.driver.OracleDriver
+    testWhileIdle: true
+    validationQuery: SELECT 1
 # ===============================
 # = JPA / HIBERNATE
 # ===============================
@@ -18,9 +20,9 @@ spring:
       ddlAuto: create-drop
 # Naming strategy
       naming:
-        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicitStrategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+        physicalStrategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 # Allows Hibernate to generate SQL optimized for a particular DBMS
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.Oracle10gDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.Oracle10gDialect

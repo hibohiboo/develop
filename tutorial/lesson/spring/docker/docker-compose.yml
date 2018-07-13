@@ -20,7 +20,6 @@ services:
       - database
     volumes:
       - ../src/hello:/app
-      - ../data/maven-repo:/root/.m2
     command: [echo, "no work"]
 
   spring:

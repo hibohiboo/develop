@@ -21,6 +21,7 @@ ORACLE_PWD=MyOraclePassword
 [oracle spring sample][*5]
 [auto increment][*6]
 [SpringBootの開発環境をdockerでつくる][*7]
+[sample][*8]
 
 [*1]:http://ryoichi0102.hatenablog.com/entry/2017/12/14/183046
 [*2]:http://tmegos.hatenablog.jp/entry/docker-oracle-11g
@@ -29,3 +30,4 @@ ORACLE_PWD=MyOraclePassword
 [*5]:https://github.com/shawn-mcginty/spring-boot-oracle-example
 [*6]:https://stackoverflow.com/questions/10461861/use-database-command-on-sql-plus-oracle-11gr1
 [*7]:https://qiita.com/wataling/items/fa8b74fa50d80b88aea3
+[*8]:https://github.com/springframeworkguru/spring-boot-oracle-example
