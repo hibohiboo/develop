@@ -6,18 +6,27 @@ services:
       dockerfile: Dockerfile.xe
     env_file: .env
     volumes:
-      - ./data:/u01/app/oracle/oradata
+      - ../data/database:/u01/app/oracle/oradata
       - ./oracle/startup:/docker-entrypoint-initdb.d/startup
     ports:
       - 1521:1521
       - 8085:8080
     shm_size: 1g
     restart: unless-stopped
+
   gradle:
     build: ./gradle
     volumes:
       - ../src/hello:/app
+      # - ../data/maven-repo:/root/.m2
     command: [echo, "no work"]
+
+  maven:
+    build: ./maven
+    volumes:
+      - ../src/hello:/app
+      - ../data/maven-repo:/root/.m2
+
   spring:
     build: ./spring
     ports:

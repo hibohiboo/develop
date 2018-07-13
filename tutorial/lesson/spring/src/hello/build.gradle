@@ -21,10 +21,15 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+  maven {
+      url 'maven'
+  }
 }
 
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
+  compile('org.springframework.boot:spring-boot-starter-data-jpa')
+  compile("com.oracle:ojdbc7:11.2.0.2")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
