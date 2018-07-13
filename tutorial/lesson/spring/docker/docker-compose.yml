@@ -1,6 +1,6 @@
 version: '3'
 services:
-  database:
+  dbserver:
     build:
       context: ./oracle/11.2.0.2/
       dockerfile: Dockerfile.xe
@@ -17,7 +17,7 @@ services:
   gradle:
     build: ./gradle
     depends_on:
-      - database
+      - dbserver
     volumes:
       - ../src/hello:/app
     command: [echo, "no work"]
