@@ -1,0 +1,26 @@
+spring:
+# ===============================
+# = DATA SOURCE
+# ===============================
+# Set here configurations for the database connection
+  datasource:
+    url: jdbc:oracle:thin:@database:1521:XE
+    username: testuser
+    password: pass
+    driverClassName:  oracle.jdbc.driver.OracleDriver
+# ===============================
+# = JPA / HIBERNATE
+# ===============================
+# Show or not log for each sql query
+  jpa:
+    showSql: true
+    hibernate:
+      ddlAuto: create-drop
+# Naming strategy
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+# Allows Hibernate to generate SQL optimized for a particular DBMS
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.Oracle10gDialect

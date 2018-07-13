@@ -16,16 +16,12 @@ services:
 
   gradle:
     build: ./gradle
-    volumes:
-      - ../src/hello:/app
-      # - ../data/maven-repo:/root/.m2
-    command: [echo, "no work"]
-
-  maven:
-    build: ./maven
+    depends_on:
+      - database
     volumes:
       - ../src/hello:/app
       - ../data/maven-repo:/root/.m2
+    command: [echo, "no work"]
 
   spring:
     build: ./spring
