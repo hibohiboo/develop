@@ -22,6 +22,9 @@ ORACLE_PWD=MyOraclePassword
 [auto increment][*6]
 [SpringBootの開発環境をdockerでつくる][*7]
 [sample][*8]
+[Spring Data JPA でのクエリー実装方法まとめ][*10]
+[【JavaEE】今からでも間にあうJPA入門][*11]
+[初めてのJPA--シンプルで使いやすい、Java EEのデータ永続化機能の基本を学ぶ][*12]
 
 [*1]:http://ryoichi0102.hatenablog.com/entry/2017/12/14/183046
 [*2]:http://tmegos.hatenablog.jp/entry/docker-oracle-11g
@@ -32,3 +35,6 @@ ORACLE_PWD=MyOraclePassword
 [*7]:https://qiita.com/wataling/items/fa8b74fa50d80b88aea3
 [*8]:https://github.com/springframeworkguru/spring-boot-oracle-example
 [*9]:https://web-dev.hatenablog.com/entry/spring-boot/intro/jpa
+[*10]:https://qiita.com/tag1216/items/55742fdb442e5617f727
+[*11]:http://www.dcom-web.co.jp/technology/jpa1/
+[*12]:https://builder.japan.zdnet.com/sp_oracle/35067018/
