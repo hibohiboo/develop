@@ -21,20 +21,22 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
-  maven {
-    url "https://www.oracle.com/content/secure/maven/content"
-    credentials {
-      username ENV_USERNAME
-      password ENV_PASSWORD
-    }
-  }
+  // maven {
+  //   url "https://www.oracle.com/content/secure/maven/content"
+  //   credentials {
+  //     username 'name'
+  //     password 'pass'
+  //   }
+  // }
 }
 
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
   compile('org.springframework.boot:spring-boot-starter-data-jpa')
-  compile ('com.oracle.jdbc:ojdbc6:11.2.0.4')
+  compile files('lib/ojdbc7.jar')
+  //testCompile('com.h2database:h2')
+  // compile ('com.oracle.jdbc:ojdbc6:11.2.0.4')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 
 }

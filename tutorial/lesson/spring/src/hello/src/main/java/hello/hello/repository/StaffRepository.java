@@ -3,9 +3,9 @@
 // import java.util.Optional;
 // import org.springframework.data.repository.CrudRepository;
 
-// import hello.hello.model.Stuff;
+// import hello.hello.model.Staff;
 
-// public interface StuffRepository extends CrudRepository<Stuff, Long> {
+// public interface StaffRepository extends CrudRepository<Staff, Long> {
 //   // 引数の id に一致するエンティティを取得。
-//   Optional<Stuff> findByEmpId(long id);
+//   Optional<Staff> findByEmpId(long id);
 // }

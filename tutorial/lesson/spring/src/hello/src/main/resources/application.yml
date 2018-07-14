@@ -4,10 +4,10 @@ spring:
 # ===============================
 # Set here configurations for the database connection
   datasource:
-    url: jdbc:oracle:thin:@//dbserver:1521:XE
+    url: jdbc:oracle:thin:@//dbserver:1521/XE
     username: testuser
     password: pass
-    driverClassName:  oracle.jdbc.driver.OracleDriver
+    driverClassName: oracle.jdbc.driver.OracleDriver
     testWhileIdle: true
     validationQuery: SELECT 1
 # ===============================

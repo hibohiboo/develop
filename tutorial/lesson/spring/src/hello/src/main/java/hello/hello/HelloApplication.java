@@ -11,14 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hello.hello.model.Stuff;
-// import hello.hello.repository.StuffRepository;
+import hello.hello.model.Staff;
+// import hello.hello.repository.StaffRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 @SpringBootApplication
 @RestController
 public class HelloApplication {
-  // @Autowired StuffRepository repository;
+  // @Autowired StaffRepository repository;
 
   @PersistenceContext
   private EntityManager entityManager;
@@ -27,22 +27,22 @@ public class HelloApplication {
   public String home() {
       return "Hello World from Docker";
   }
-  @RequestMapping("/stuff")
-  public String stuff() {
-      // Optional<Stuff> optional =  repository.findByEmpId(1);
-      // Stuff stuff = optional.orElse(null);
+  @RequestMapping("/staff")
+  public String staff() {
+      // Optional<Staff> optional =  repository.findByEmpId(1);
+      // Staff staff = optional.orElse(null);
       String name = "";
-      // if(stuff != null){
-      //   name = stuff.stuff_name;
+      // if(staff != null){
+      //   name = staff.staff_name;
       // }
       return "Hello" + name;
   }
 
   @RequestMapping("/query")
   public String query() {
-      List<Stuff> results = entityManager
-            .createNativeQuery("select * from stuff where emp_id = :id", Stuff.class)
-            .setParameter(":id",1)
+      List<Staff> results = entityManager
+            .createNativeQuery("select * from staff where emp_id = :id ", Staff.class)
+            .setParameter("id",1)
             .getResultList();
       String name = results.get(0).getName();
       return "Hello" + name;

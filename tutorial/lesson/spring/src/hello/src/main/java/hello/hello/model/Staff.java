@@ -11,15 +11,15 @@ import javax.persistence.Column;
 
 // import org.hibernate.validator.constraints.NotEmpty;
 
-@Table(name="stuff")
+@Table(name="staff")
 @Entity
-public class Stuff {
+public class Staff {
 
   @Id 
   @Column(name="emp_id")
   private long id;
 
-  @Column(name="stuff_name")
+  @Column(name="staff_name")
   private String name;
 
   public void setId(long id){
