@@ -31,3 +31,4 @@ ORACLE_PWD=MyOraclePassword
 [*6]:https://stackoverflow.com/questions/10461861/use-database-command-on-sql-plus-oracle-11gr1
 [*7]:https://qiita.com/wataling/items/fa8b74fa50d80b88aea3
 [*8]:https://github.com/springframeworkguru/spring-boot-oracle-example
+[*9]:https://web-dev.hatenablog.com/entry/spring-boot/intro/jpa
