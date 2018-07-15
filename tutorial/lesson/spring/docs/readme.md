@@ -103,7 +103,11 @@ SQL>
 
 ## データベース
 
- oracle 11 を使用
+oracle 11 を使用。
+[DockerでOracleデータベース11g XEを構築][*1]を参考にした。
+oracle/docker-images の [11.0.2.2](https://github.com/oracle/docker-images/tree/master/OracleDatabase/SingleInstance/dockerfiles/11.2.0.2)ディレクトリをコピー。
+同じディレクトリにoracle-xe-11.2.0-1.0.x86_64.rpm.zipを配置。
+
 
 ## .envファイル
 
@@ -115,7 +119,7 @@ ORACLE_PWD=MyOraclePassword
 
 ## ソースメモ
 
-[oracle11g稼働時点](https://github.com/hibohiboo/develop/blob/e854b2e4f19264fd35c12ee94db55ae91f137123/tutorial/lesson/spring/)
+[oracle11g稼働時点](https://github.com/hibohiboo/develop/blob/d06194abd971670e3f06040d61199d6d66fbee8e/tutorial/lesson/spring/)
 
  ## 参考
 
