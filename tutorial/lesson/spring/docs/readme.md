@@ -10,8 +10,16 @@ project
     - gradle
       - Dockerfile
     - oracle
-      + 11.2.0.2
+      - 11.2.0.2
+        - Checksum.xe
+        - Dockerfile.xe
+        - checkDBStatus.sh
+        - rnOracle.sh
+        - setPasword.sh
+        - xe.rsp
+        - oracle-xe-11.2.0-1.0.x86_64.rpm.zip # Oracleからダウンロードしたもの。.gitignoreで無視
       - buildDockerImage.sh
+      + oracle-docker-images  # githubからcloneしたもの。.gitignoreで無視。11.2.0.2のディレクトリをコピーしただけなので実質不要
     - spring
       - Dockerfile
     - .env # docker-composer.yml で使用する環境変数設定
@@ -21,7 +29,7 @@ project
       - build.gradle
       - settings.gradle
       - lib
-        - ojdbc7.jar
+        - ojdbc7.jar # Oracleからダウンロードしたもの。.gitignoreで無視
       - src
         - main
           - java
