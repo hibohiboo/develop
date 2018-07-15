@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hello.hello.model.Staff;
-// import hello.hello.repository.StaffRepository;
+import hello.hello.repository.StaffRepository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 @SpringBootApplication
 @RestController
 public class HelloApplication {
-  // @Autowired StaffRepository repository;
+  @Autowired StaffRepository repository;
 
   @PersistenceContext
   private EntityManager entityManager;
@@ -29,13 +30,9 @@ public class HelloApplication {
   }
   @RequestMapping("/staff")
   public String staff() {
-      // Optional<Staff> optional =  repository.findByEmpId(1);
-      // Staff staff = optional.orElse(null);
-      String name = "";
-      // if(staff != null){
-      //   name = staff.staff_name;
-      // }
-      return "Hello" + name;
+      Optional<Staff> optional =  repository.findById(1);
+      Staff staff = optional.orElseGet(() -> new Staff());
+      return "Hello " + staff.getName();
   }
 
   @RequestMapping("/query")
@@ -44,8 +41,12 @@ public class HelloApplication {
             .createNativeQuery("select * from staff where emp_id = :id ", Staff.class)
             .setParameter("id",1)
             .getResultList();
-      String name = results.get(0).getName();
-      return "Hello" + name;
+      String name = "";
+
+      if(results.size() != 0){
+        name = results.get(0).getName();
+      }
+      return "Hello " + name;
   }
 	public static void main(String[] args) {
 		SpringApplication.run(HelloApplication.class, args);
