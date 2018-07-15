@@ -2,7 +2,7 @@
 
 # このシェルスクリプトのディレクトリの絶対パスを取得。
 bin_dir=$(cd $(dirname $0) && pwd)
-container_name=${1:-database}
+container_name=${1:-dbserver}
 
 # 環境変数読み込み
 . $bin_dir/../docker/.env

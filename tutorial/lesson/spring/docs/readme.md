@@ -1,6 +1,107 @@
 # スプリング環境テスト
 
- ## データベース
+## ディレクトリ構造
+
+```yaml
+project
+  + bin   # コマンド覚書用のシェルスクリプト
+  + data  # dockerの永続化用ディレクトリ
+  - docker
+    - gradle
+      - Dockerfile
+    - oracle
+      + 11.2.0.2
+      - buildDockerImage.sh
+    - spring
+      - Dockerfile
+    - .env # docker-composer.yml で使用する環境変数設定
+    - docker-compose.yml
+  - src
+    - hello
+      - build.gradle
+      - settings.gradle
+      - lib
+        - ojdbc7.jar
+      - src
+        - main
+          - java
+            - hello
+              - hello
+                - model
+                  - Staff.java
+                - repository
+                  - StaffRepository.java
+                - HelloApplication.java
+          - resouces
+            - application.yml
+        + test
+```
+
+## sqlplus.shについて
+
+まずは、` docker-compose up -d dbserver ` を行い、dbserverをバックグラウンドで起動しておく。
+
+次に、sqlplusでの接続を試みるが、一度で接続できないことが多い。
+
+```
+vagrant@vagrant[master]:/vagrant/tutorial/lesson/spring$ ./bin/sqlplus.sh
+```
+
+以下のエラーが出る。
+
+```
+7df144c6f135        docker_dbserver              "/bin/sh -c 'exec $O…"   19 seconds ago      Up 18 seconds (health: start
+ing)   0.0.0.0:1521->1521/tcp, 0.0.0.0:8085->8080/tcp   docker_dbserver_1
+WARNING: The JAVA_OPTS variable is not set. Defaulting to a blank string.
+
+SQL*Plus: Release 11.2.0.2.0 Production on Sun Jul 15 15:08:51 2018
+
+Copyright (c) 1982, 2011, Oracle.  All rights reserved.
+
+ERROR:
+ORA-12528: TNS:listener: all appropriate instances are blocking new connections
+```
+
+ Enterを2回押して一旦終了させる。
+
+```
+Enter user-name:
+ERROR:
+ORA-12547: TNS:lost contact
+
+
+Enter user-name:
+ERROR:
+ORA-12547: TNS:lost contact
+
+
+SP2-0157: unable to CONNECT to ORACLE after 3 attempts, exiting SQL*Plus
+```
+
+もう一度sqlplusでの接続を試みる。
+
+```
+vagrant@vagrant[master]:/vagrant/tutorial/lesson/spring$ ./bin/sqlplus.sh
+```
+
+```
+7df144c6f135        docker_dbserver              "/bin/sh -c 'exec $O…"   25 seconds ago      Up 23 seconds (health: start
+ing)   0.0.0.0:1521->1521/tcp, 0.0.0.0:8085->8080/tcp   docker_dbserver_1
+WARNING: The JAVA_OPTS variable is not set. Defaulting to a blank string.
+
+SQL*Plus: Release 11.2.0.2.0 Production on Sun Jul 15 15:08:55 2018
+
+Copyright (c) 1982, 2011, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - 64bit Production
+
+SQL> 
+```
+
+
+## データベース
 
  oracle 11 を使用
 
@@ -11,6 +112,10 @@
 ```env
 ORACLE_PWD=MyOraclePassword
 ```
+
+## ソースメモ
+
+[oracle11g稼働時点](https://github.com/hibohiboo/develop/blob/e854b2e4f19264fd35c12ee94db55ae91f137123/tutorial/lesson/spring/)
 
  ## 参考
 
@@ -28,6 +133,8 @@ ORACLE_PWD=MyOraclePassword
 [ Invalid number format for port number][*13]
 [Gradle使い方メモ][*14]
 [Dockerで- /etc/localtime:/etc/localtime:ro がMount Deniedを出すやつ][*15]
+[docker-compose][*16]
+[oracleでautoincrement][*17]
 
 
 [*1]:http://ryoichi0102.hatenablog.com/entry/2017/12/14/183046
@@ -46,3 +153,5 @@ ORACLE_PWD=MyOraclePassword
 [*13]:https://confluence.atlassian.com/bitbucketserverkb/io-error-invalid-number-format-for-port-number-when-connecting-to-oracle-database-939939845.html
 [*14]:https://qiita.com/opengl-8080/items/4c1aa85b4737bd362d9e
 [*15]:https://remicck.hatenablog.com/entry/2018/02/23/165032
+[*16]:https://docs.docker.com/compose/reference/up/
+[*17]:https://stackoverflow.com/questions/9733085/auto-increment-for-oracle
