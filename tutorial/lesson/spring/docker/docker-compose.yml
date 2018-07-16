@@ -4,9 +4,13 @@ services:
     build:
       context: ./oracle/11.2.0.2/
       dockerfile: Dockerfile.xe
+      # context: ./oracle/12.2.0.1/
+      # dockerfile: Dockerfile.se2
     volumes:
       - ../data/database:/u01/app/oracle/oradata
       - ./oracle/startup:/docker-entrypoint-initdb.d/startup
+      # - ../data/database12:/u01/app/oracle
+      # - ./oracle/startup12:/docker-entrypoint-initdb.d/startup
     ports:
       - 1521:1521
       - 8085:8080

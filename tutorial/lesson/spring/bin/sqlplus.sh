@@ -14,11 +14,14 @@ docker ps | grep $container_name
 if [ $? -eq 0 ]; then
   # 一致したときの処理
 
-  # 初期ユーザ
+  # 11g 初期ユーザ
   # cd $bin_dir/../docker && docker-compose exec $container_name  sqlplus sys/$ORACLE_PWD@localhost:1521/XE as sysdba
+  
+  # 12c 初期ユーザ
+  cd $bin_dir/../docker && docker-compose exec $container_name  sqlplus sys/$ORACLE_PWD_12@localhost:1521/XE as sysdba
 
   # 作成したユーザ
-  cd $bin_dir/../docker && docker-compose exec $container_name  sqlplus testuser/$USER_PASS@localhost:1521/XE
+  # cd $bin_dir/../docker && docker-compose exec $container_name  sqlplus testuser/$USER_PASS@localhost:1521/XE
 
 else
   # 一致しなかった時の処理
