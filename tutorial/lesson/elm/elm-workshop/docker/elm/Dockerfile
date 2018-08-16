@@ -1,4 +1,4 @@
-FROM node:10.5.0
+FROM node:10.9.0
 
 # Add Tini nodeはpid 1で動くようにできていないのでpid1でtiniを動かす。
 # http://ngzm.hateblo.jp/entry/2017/08/22/185224

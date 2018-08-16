@@ -1,5 +1,5 @@
 ---
-docker_version: 18.05
+docker_version: 18.06
 # edge|stable ubuntu18.04にはまだstableがない（2018.06.16)
 docker_version_type: edge
-docker_compose_version: 1.21.2
+docker_compose_version: 1.22.0
