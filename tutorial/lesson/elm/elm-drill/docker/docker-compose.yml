@@ -3,14 +3,14 @@ services:
   elm:
     build: ./elm
     volumes:
-      # - ../elm-workshop:/app
+      - ../elm-drill:/app
       - /app/node_modules # コンテナ内のnode_moduleをvolumesに登録
       - /app/sysconfcpus
       - cache1:/app/elm-stuff
     ports:
       - 8000:8000
       - 35729:35729
-    command: [yarn, part5]
+    # command: [yarn, test]
 
 volumes:
   cache1: # 名前付きボリューム名
