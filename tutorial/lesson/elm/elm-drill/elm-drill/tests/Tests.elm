@@ -25,7 +25,7 @@ suite =
         , only T3_Strings.suite
         , only T4_Tuples.suite
         , only T5_Records.suite
-        , T6_Functions.suite
+        , only T6_Functions.suite
         , T7_Lists.suite
         , T8_Maybes.suite
         , T9_Unions.suite

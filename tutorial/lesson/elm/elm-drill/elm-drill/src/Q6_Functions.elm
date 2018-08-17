@@ -24,7 +24,7 @@ greet isJapanese =
     if isJapanese then
         "こんにちは"
     else
-        Debug.crash "TODO"
+        "Hello"
 
 
 {-| ２ヶ国語の挨拶で誰かに呼びかけています。
@@ -37,9 +37,9 @@ greetSomeone isJapanese name =
             if isJapanese then
                 "こんにちは"
             else
-                Debug.crash "TODO"
+                "Hello"
     in
-    greeting ++ ", " ++ name
+        greeting ++ ", " ++ name
 
 
 {-| 時刻を `05:08` のように整形します。
@@ -50,7 +50,7 @@ formatTime ( hour, minute ) =
         pad =
             String.padLeft 2 '0'
     in
-    Debug.crash "TODO"
+        pad (toString hour) ++ ":" ++ pad (toString minute)
 
 
 {-| `String.trim`, `String.toUpper`, `String.reverse` を連続して適用します。
@@ -64,14 +64,14 @@ trimAndToUpperAndReverse s =
 -}
 trimAndToUpperAndReverseWithoutParens : String -> String
 trimAndToUpperAndReverseWithoutParens s =
-    Debug.crash "(function)" <| Debug.crash "(function)" <| Debug.crash "(function)" s
+    String.reverse <| String.toUpper <| String.trim s
 
 
 {-| `<<` を使うと関数を合成できます
 -}
 trimAndToUpperAndReverseComposed : String -> String
 trimAndToUpperAndReverseComposed =
-    Debug.crash "(function)" << Debug.crash "(function)" << Debug.crash "(function)"
+    String.reverse << String.toUpper << String.trim
 
 
 {-| `|>` を使うと左から右（上から下）に読むことができます
@@ -79,18 +79,18 @@ trimAndToUpperAndReverseComposed =
 trimAndToUpperAndReverseLeftToRight : String -> String
 trimAndToUpperAndReverseLeftToRight s =
     s
-        |> Debug.crash "(function)"
-        |> Debug.crash "(function)"
-        |> Debug.crash "(function)"
+        |> String.trim
+        |> String.toUpper
+        |> String.reverse
 
 
 {-| `>>` を使うと左から右に読めるように合成できます
 -}
 trimAndToUpperAndReverseLeftToRightComposed : String -> String
 trimAndToUpperAndReverseLeftToRightComposed =
-    Debug.crash "(function)"
-        >> Debug.crash "(function)"
-        >> Debug.crash "(function)"
+    String.trim
+        >> String.toUpper
+        >> String.reverse
 
 
 {-| 階乗を計算します。(n >= 0)
@@ -112,7 +112,7 @@ factorial n =
     if n == 0 then
         1
     else
-        Debug.crash "TODO"
+        n * factorial (n - 1)
 
 
 {-| フィボナッチ数を計算します
@@ -129,14 +129,17 @@ fibonacci n =
     else if n == 1 then
         1
     else
-        Debug.crash "TODO"
+        fibonacci (n - 2) + fibonacci (n - 1)
 
 
 {-| 1 から n までの和を計算します
 -}
 series : Int -> Int
 series n =
-    Debug.crash "TODO"
+    if n == 0 then
+        0
+    else
+        n + series (n - 1)
 
 
 {-| 1 から n までの和を計算します。
@@ -153,4 +156,4 @@ series2Help sum n =
     if n == 0 then
         sum
     else
-        Debug.crash "TODO"
+        series2Help (sum + n) (n - 1)
