@@ -42,7 +42,7 @@ type alias Person =
 -}
 getAge : Person -> Int
 getAge object =
-    Debug.crash "TODO"
+    object.age
 
 
 {-| Person 型を作ります
@@ -65,14 +65,14 @@ makePerson2 name age =
 -}
 rename : String -> Person -> Person
 rename newName person =
-    Debug.crash "TODO"
+    { person | name = newName }
 
 
 {-| 年齢を1つ増やします
 -}
 incrementAge : Person -> Person
 incrementAge person =
-    Debug.crash "TODO"
+    { person | age = person.age + 1 }
 
 
 {-| 有効なデータかどうかを判断します。
@@ -80,7 +80,7 @@ incrementAge person =
 -}
 isValid : Person -> Bool
 isValid person =
-    Debug.crash "TODO"
+    not (String.isEmpty person.name) && person.age > 0
 
 
 {-| `{ a | role : String }` は `role` というプロパティを持った何かです。
@@ -88,4 +88,4 @@ isValid person =
 -}
 getRole : { a | role : String } -> String
 getRole object =
-    Debug.crash "TODO"
+    object.role

@@ -24,7 +24,7 @@ suite =
         , only T2_Booleans.suite
         , only T3_Strings.suite
         , only T4_Tuples.suite
-        , T5_Records.suite
+        , only T5_Records.suite
         , T6_Functions.suite
         , T7_Lists.suite
         , T8_Maybes.suite
