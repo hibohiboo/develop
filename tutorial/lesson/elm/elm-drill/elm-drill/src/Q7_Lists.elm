@@ -39,7 +39,7 @@ numbers2 =
 -}
 length : List a -> Int
 length list =
-    Debug.crash "TODO"
+    List.length list
 
 
 {-| from から to までの数字が入ったリストを返します
