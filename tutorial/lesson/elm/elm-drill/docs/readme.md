@@ -1,4 +1,17 @@
 
+## 実行
+
+以下のコマンドでコンテナ内のテストを呼び出す。
+
+```
+./bin/test.sh
+```
+
+
+## 履歴
+
+[問題準備時点](https://github.com/hibohiboo/develop/blob/496ec091e1b14d41c29492ec9e95cb8227fbccf2/tutorial/lesson/elm/elm-drill/)
+
 
 
 ## 参考
