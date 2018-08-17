@@ -22,7 +22,7 @@ suite =
     describe "All"
         [ only T1_Numbers.suite
         , only T2_Booleans.suite
-        , T3_Strings.suite
+        , only T3_Strings.suite
         , T4_Tuples.suite
         , T5_Records.suite
         , T6_Functions.suite

@@ -12,6 +12,7 @@
 
 [問題準備時点](https://github.com/hibohiboo/develop/blob/496ec091e1b14d41c29492ec9e95cb8227fbccf2/tutorial/lesson/elm/elm-drill/)  
 [Q1解答](https://github.com/hibohiboo/develop/blob/c7aa61142463f7cdc037c728e325516f229dbb16/tutorial/lesson/elm/elm-drill/)  
+[Q2解答](https://github.com/hibohiboo/develop/blob/3ab6092b3f3d1de0a7c6a43b2dacf15c9bb24bd7/tutorial/lesson/elm/elm-drill/)  
 
 
 
