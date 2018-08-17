@@ -80,7 +80,7 @@ incrementAge person =
 -}
 isValid : Person -> Bool
 isValid person =
-    not (String.isEmpty person.name) && person.age > 0
+    String.trim person.name /= "" && person.age >= 0
 
 
 {-| `{ a | role : String }` は `role` というプロパティを持った何かです。
