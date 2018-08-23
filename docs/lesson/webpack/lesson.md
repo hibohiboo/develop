@@ -644,7 +644,7 @@ console.log(a); // { default: 'hoge' }
 [参考：webpack + babel + react][*5]  
 [migrate webpack2][*6]  
 [webpack-dev-server][*7]
-
+[最新版で学ぶwebpack 4入門 – JavaScriptのモジュールバンドラ][*8]
 
 [*1]:http://qiita.com/howdy39/items/48d85c430f90a21075cd
 [*2]:http://geta6.hatenablog.com/entry/2016/04/05/165201
@@ -653,3 +653,4 @@ console.log(a); // { default: 'hoge' }
 [*5]:https://github.com/alicoding/react-webpack-babel
 [*6]:http://javascriptplayground.com/blog/2016/10/moving-to-webpack-2/
 [*7]:http://dackdive.hateblo.jp/entry/2016/05/07/183335
+[*8]:https://ics.media/entry/12140
