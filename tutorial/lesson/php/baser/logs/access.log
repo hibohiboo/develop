@@ -52,3 +52,4 @@
 192.168.50.1 - - [04/Sep/2018:16:24:13 +0000] "GET /img/admin/bg_border_2.png HTTP/1.1" 200 415 "http://192.168.50.10/css/admin/layout.css" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
 127.0.0.1 - - [04/Sep/2018:16:24:21 +0000] "OPTIONS * HTTP/1.0" 200 126 "-" "Apache/2.4.25 (Debian) PHP/7.1.21 (internal dummy connection)"
 127.0.0.1 - - [04/Sep/2018:16:24:22 +0000] "OPTIONS * HTTP/1.0" 200 126 "-" "Apache/2.4.25 (Debian) PHP/7.1.21 (internal dummy connection)"
+192.168.50.1 - - [04/Sep/2018:16:25:03 +0000] "POST /installations/step2 HTTP/1.1" 200 4445 "http://192.168.50.10/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36"
