@@ -6,3 +6,7 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 [Tue Sep 04 15:57:48.378859 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.1.21 configured -- resuming normal operations
 [Tue Sep 04 15:57:48.379409 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
 [05-Sep-2018 01:14:18 Asia/Tokyo] PHP Parse error:  syntax error, unexpected '<', expecting end of file in /var/www/html/sqlitetest.php on line 2
+[Tue Sep 04 16:20:41.460747 2018] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.19.0.2. Set the 'ServerName' directive globally to suppress this message
+[Tue Sep 04 16:24:02.803989 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.1.21 configured -- resuming normal operations
+[Tue Sep 04 16:24:02.804865 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'

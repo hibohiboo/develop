@@ -6,7 +6,8 @@ services:
   php: 
     build: ./server/apache
     volumes:
-      - ./src:/var/www/html
+      # - ./src:/var/www/html
+      - ./basercms/:/var/www/html
       - ./logs:/var/log/apache2
     ports: 
       - "80:80"
