@@ -6,7 +6,10 @@ services:
   php: 
     build: ./apache
     volumes:
-      - ../html:/var/www/html:cached
+      - ../html/app:/var/www/html/app:cached
+      - ../basercms/lib:/var/www/html/lib
+      - ../html/index.php:/var/www/html/index.php
+      - ../html/.htaccess:/var/www/html/.htaccess
       - ../logs:/var/log/apache2
     ports: 
       - "80:80"

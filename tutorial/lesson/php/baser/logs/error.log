@@ -27,3 +27,25 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 [Wed Sep 05 14:32:38.205586 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
 [Wed Sep 05 14:32:38.207483 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/7.1.14 OpenSSL/1.0.1t configured -- resuming normal operations
 [Wed Sep 05 14:32:38.208012 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Wed Sep 05 14:36:38.930795 2018] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Wed Sep 05 14:44:49.995205 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.2. Set the 'ServerName' directive globally to suppress this message
+[Wed Sep 05 14:44:50.023330 2018] [ssl:warn] [pid 1] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Sep 05 14:44:50.023781 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Sep 05 14:44:50.025875 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/7.1.14 OpenSSL/1.0.1t configured -- resuming normal operations
+[Wed Sep 05 14:44:50.026529 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Wed Sep 05 14:45:05.412220 2018] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Wed Sep 05 14:45:09.659758 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.2. Set the 'ServerName' directive globally to suppress this message
+[Wed Sep 05 14:45:09.682565 2018] [ssl:warn] [pid 1] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Sep 05 14:45:09.683029 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Sep 05 14:45:09.684822 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/7.1.14 OpenSSL/1.0.1t configured -- resuming normal operations
+[Wed Sep 05 14:45:09.685183 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+[Wed Sep 05 14:45:18.483480 2018] [autoindex:error] [pid 18] [client 192.168.50.1:50563] AH01276: Cannot serve directory /var/www/html/: No matching DirectoryIndex (index.php,index.html) found, and server-generated directory index forbidden by Options directive
+[Wed Sep 05 14:46:13.248594 2018] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Wed Sep 05 14:46:17.187145 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.2. Set the 'ServerName' directive globally to suppress this message
+[Wed Sep 05 14:46:17.214291 2018] [ssl:warn] [pid 1] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Sep 05 14:46:17.214680 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Sep 05 14:46:17.216534 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/7.1.14 OpenSSL/1.0.1t configured -- resuming normal operations
+[Wed Sep 05 14:46:17.217200 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
