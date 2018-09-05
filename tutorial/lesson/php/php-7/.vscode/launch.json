@@ -4,25 +4,14 @@
   // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-
     {
       "name": "Listen for XDebug",
       "type": "php",
       "request": "launch",
-      "port": 9000,
-      "stopOnEntry": true,
-      "log": true,
+      "port": 9001,
       "pathMappings": {
-          "/var/www/html": "${workspaceRoot}/src",
+        "/var/www/html": "${workspaceRoot}/src"
       }
-    },
-    {
-      "name": "Launch currently open script",
-      "type": "php",
-      "request": "launch",
-      "program": "${file}",
-      "cwd": "${fileDirname}",
-      "port": 9001
     }
   ]
 }
