@@ -4,25 +4,25 @@
 //
 class DATABASE_CONFIG {
 public $default = array(
-	'datasource' => '',
+	'datasource' => 'Database/BcSqlite',
 	'persistent' => false,
 	'host' => 'localhost',
-	'port' => '',
-	'login' => 'dummy',
-	'password' => 'dummy',
-	'database' => 'dummy',
+	'port' => '3306',
+	'login' => '',
+	'password' => '',
+	'database' => '/var/www/html/app/db/sqlite/basercms.db',
 	'schema' => '',
 	'prefix' => '',
 	'encoding' => 'utf8'
 );
 public $test = array(
-	'datasource' => '',
+	'datasource' => 'Database/BcSqlite',
 	'persistent' => false,
 	'host' => 'localhost',
-	'port' => '',
-	'login' => 'dummy',
-	'password' => 'dummy',
-	'database' => 'dummy',
+	'port' => '3306',
+	'login' => '',
+	'password' => '',
+	'database' => '/var/www/html/app/db/sqlite/basercms.db',
 	'schema' => '',
 	'prefix' => 'test_',
 	'encoding' => 'utf8'
