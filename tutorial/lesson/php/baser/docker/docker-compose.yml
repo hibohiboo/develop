@@ -1,0 +1,18 @@
+version: "3"
+services:
+  # サーバー
+
+  # php
+  php: 
+    build: ./apache
+    volumes:
+      - ../html:/var/www/html:cached
+      - ../logs:/var/log/apache2
+    ports: 
+      - "80:80"
+      - "443:443"
+    environment:
+      PHP_IDE_CONFIG: "serverName=localhost"
+      COMPOSER_ALLOW_SUPERUSER: 1
+
+

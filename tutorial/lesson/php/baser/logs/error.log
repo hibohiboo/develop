@@ -15,3 +15,15 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 [Tue Sep 04 16:49:27.288017 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.1.21 configured -- resuming normal operations
 [Tue Sep 04 16:49:27.289745 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
 sh: 1: -t: not found
+[Wed Sep 05 13:33:33.593548 2018] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.19.0.2. Set the 'ServerName' directive globally to suppress this message
+[Wed Sep 05 13:33:37.323318 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.25 (Debian) PHP/7.1.21 configured -- resuming normal operations
+[Wed Sep 05 13:33:37.323675 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
+sh: 1: -t: not found
+[Wed Sep 05 13:46:49.841945 2018] [mpm_prefork:notice] [pid 1] AH00169: caught SIGTERM, shutting down
+[Wed Sep 05 14:32:38.145152 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.18.0.2. Set the 'ServerName' directive globally to suppress this message
+[Wed Sep 05 14:32:38.205208 2018] [ssl:warn] [pid 1] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Sep 05 14:32:38.205586 2018] [ssl:warn] [pid 1] AH01909: 172.18.0.2:443:0 server certificate does NOT include an ID which matches the server name
+[Wed Sep 05 14:32:38.207483 2018] [mpm_prefork:notice] [pid 1] AH00163: Apache/2.4.10 (Debian) PHP/7.1.14 OpenSSL/1.0.1t configured -- resuming normal operations
+[Wed Sep 05 14:32:38.208012 2018] [core:notice] [pid 1] AH00094: Command line: 'apache2 -D FOREGROUND'
