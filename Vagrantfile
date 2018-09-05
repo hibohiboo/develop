@@ -32,6 +32,11 @@ Vagrant.configure(2) do |config|
 
   # Google AOuth
   config.vm.network "forwarded_port", guest: 9005, host: 9005
+
+  # Xdebug
+  config.vm.network "forwarded_port", guest: 9000, host: 9000
+
+
   # 共有するフォルダの設定
   # config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
   

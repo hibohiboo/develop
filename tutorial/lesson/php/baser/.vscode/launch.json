@@ -13,7 +13,7 @@
       "stopOnEntry": true,
       "log": true,
       "pathMappings": {
-          "/var/www/html": "${workspaceRoot}/baser",
+          "/var/www/html": "${workspaceRoot}/html",
       }
     },
     {

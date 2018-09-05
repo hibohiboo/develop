@@ -6,14 +6,16 @@ services:
   php: 
     build: ./apache
     volumes:
-      - ../html/app:/var/www/html/app:cached
+      - ../html/app:/var/www/html/app
       - ../basercms/lib:/var/www/html/lib
       - ../html/index.php:/var/www/html/index.php
       - ../html/.htaccess:/var/www/html/.htaccess
+      - ../html/phpinfo.php:/var/www/html/phpinfo.php
       - ../logs:/var/log/apache2
     ports: 
       - "80:80"
       - "443:443"
+      - 9000:9000
     environment:
       PHP_IDE_CONFIG: "serverName=localhost"
       COMPOSER_ALLOW_SUPERUSER: 1
