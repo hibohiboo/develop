@@ -4,4 +4,4 @@
 bin_dir=$(cd $(dirname $0) && pwd)
 
 # docker-composeの起動。
-cd $bin_dir/../ && docker-compose up 
+cd $bin_dir/../docker && docker-compose up 

@@ -17,11 +17,11 @@ docker ps | grep $container_name
 # grepの戻り値$?の評価。 grep戻り値 0:一致した 1:一致しなかった
 if [ $? -eq 0 ]; then
   # 一致したときの処理
-  cd $bin_dir/../ && docker-compose exec $container_name bash
+  cd $bin_dir/../docker && docker-compose exec $container_name bash
 else
   # 一致しなかった時の処理
   # コンテナを立ち上げて接続
-  cd $bin_dir/../ && docker-compose run $container_name /bin/bash
+  cd $bin_dir/../docker && docker-compose run $container_name /bin/bash
 fi
 
 

@@ -7,13 +7,13 @@ services:
       - 80:80
     volumes:
       - ./nginx/server.conf:/etc/nginx/conf.d/server.conf
-      - ./src:/var/www/html
+      - ../src:/var/www/html
 
   # php
   php7: 
     build: ./php7
     volumes:
-      - ./src:/var/www/html
+      - ../src:/var/www/html
       - ./php7/php.ini:/usr/local/etc/php/php.ini
     environment:
       # 9000番はfast-cgiが使っているので１つずらす
@@ -23,7 +23,7 @@ services:
   adminer:
     image: adminer
     ports: 
-      - "8081:8080"
+      - 8080:8080
 
   # データベース
   db:
