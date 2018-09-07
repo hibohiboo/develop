@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the WordPress - 4.9.x - Development package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-07-31 06:40:29+0000\n"
+"PO-Revision-Date: 2018-09-05 06:05:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,6 +35,14 @@ msgstr "number_format_thousands_sep"
 #: wp-includes/class-wp-locale.php:220
 msgid "number_format_decimal_point"
 msgstr "number_format_decimal_point"
+
+#: wp-includes/user.php:3395
+msgid "Unable to send personal data export confirmation email."
+msgstr "個人データのエクスポート確認メールを送信できません。"
+
+#: wp-includes/user.php:3289
+msgid "Invalid user request."
+msgstr "不正なユーザーリクエスト。"
 
 #. translators: 1: Site name. 2: Name of the confirmed action.
 #: wp-includes/user.php:2978
@@ -181,7 +189,7 @@ msgstr ""
 
 #. translators: Privacy data request subject. 1: Site name, 2: Name of the
 #. action
-#: wp-includes/user.php:3357
+#: wp-includes/user.php:3366
 msgid "[%1$s] Confirm Action: %2$s"
 msgstr "[%1$s] 操作の確認: %2$s"
 
@@ -257,11 +265,11 @@ msgstr "個人データのエクスポートファイルは生成されません
 msgid "User action confirmed."
 msgstr "ユーザーの操作を確認しました。"
 
-#: wp-includes/user.php:3433
+#: wp-includes/user.php:3452
 msgid "This link has expired."
 msgstr "このリンクは有効期限が切れています。"
 
-#: wp-includes/user.php:3289 wp-includes/user.php:3429 wp-login.php:845
+#: wp-includes/user.php:3448 wp-login.php:845
 msgid "Invalid request."
 msgstr "無効なリクエスト。"
 
@@ -305,7 +313,7 @@ msgid "[deleted]"
 msgstr "[削除済み]"
 
 #. translators: %d: Comment ID
-#: wp-includes/comment.php:3359
+#: wp-includes/comment.php:3363
 msgid "Comment %d contains personal data but could not be anonymized."
 msgstr "コメント %d には個人データが含まれていますが、匿名化できませんでした。"
 
@@ -313,17 +321,17 @@ msgstr "コメント %d には個人データが含まれていますが、匿�
 msgid "Action has been confirmed."
 msgstr "操作を確認しました。"
 
-#: wp-includes/user.php:3471
+#: wp-includes/user.php:3490
 msgid "The confirmation email has expired."
 msgstr "確認メールの有効期限が切れています。"
 
-#: wp-includes/user.php:3453
+#: wp-includes/user.php:3472
 msgid "Invalid action"
 msgstr "無効な操作"
 
 #. translators: Do not translate DESCRIPTION, CONFIRM_URL, SITENAME, SITEURL:
 #. those are placeholders.
-#: wp-includes/user.php:3306
+#: wp-includes/user.php:3315
 msgid ""
 "Howdy,\n"
 "\n"
@@ -408,39 +416,39 @@ msgctxt "request status"
 msgid "Pending"
 msgstr "保留中"
 
-#: wp-includes/comment.php:3215
+#: wp-includes/comment.php:3219
 msgid "Comment URL"
 msgstr "コメント URL"
 
-#: wp-includes/comment.php:3214
+#: wp-includes/comment.php:3218
 msgid "Comment Content"
 msgstr "コメント本文"
 
-#: wp-includes/comment.php:3213
+#: wp-includes/comment.php:3217
 msgid "Comment Date"
 msgstr "コメント日付"
 
-#: wp-includes/comment.php:3212
+#: wp-includes/comment.php:3216
 msgid "Comment Author User Agent"
 msgstr "コメント投稿者ユーザーエージェント"
 
-#: wp-includes/comment.php:3211
+#: wp-includes/comment.php:3215
 msgid "Comment Author IP"
 msgstr "コメント投稿者 IP アドレス"
 
-#: wp-includes/comment.php:3210
+#: wp-includes/comment.php:3214
 msgid "Comment Author URL"
 msgstr "コメント投稿者 URL"
 
-#: wp-includes/comment.php:3209
+#: wp-includes/comment.php:3213
 msgid "Comment Author Email"
 msgstr "コメント投稿者メールアドレス"
 
-#: wp-includes/comment.php:3208
+#: wp-includes/comment.php:3212
 msgid "Comment Author"
 msgstr "コメント投稿者"
 
-#: wp-includes/comment.php:3173 wp-includes/comment.php:3282
+#: wp-includes/comment.php:3177 wp-includes/comment.php:3286
 msgid "WordPress Comments"
 msgstr "WordPress コメント"
 
@@ -478,16 +486,16 @@ msgid "Something went wrong."
 msgstr "何かがうまくいかなかったようです。"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:3970
+#: wp-includes/class-wp-customize-manager.php:3973
 msgid "%s is already customizing this changeset. Do you want to take over?"
 msgstr "%s さんがすでにこのチェンジセットをカスタマイズ中です。引き継ぎますか ?"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:3968
+#: wp-includes/class-wp-customize-manager.php:3971
 msgid "%s is already customizing this changeset. Please wait until they are done to try customizing. Your latest changes have been autosaved."
 msgstr "%s さんがすでにこのチェンジセットをカスタマイズ中です。カスタマイズが完了するまでお待ち下さい。最新の変更を自動保存しました。"
 
-#: wp-includes/class-wp-customize-manager.php:4172
+#: wp-includes/class-wp-customize-manager.php:4175
 msgid "Update anyway, even though it might break your site?"
 msgstr "サイトを壊してしまうかもしれませんが、それでもアップデートしますか ?"
 
@@ -540,7 +548,7 @@ msgctxt "post action/button label"
 msgid "Schedule"
 msgstr "予約投稿"
 
-#: wp-includes/class-wp-customize-manager.php:4627
+#: wp-includes/class-wp-customize-manager.php:4630
 #: wp-includes/script-loader.php:554
 msgctxt "customizer changeset action/button label"
 msgid "Schedule"
@@ -574,33 +582,33 @@ msgstr "%s が引き継いでカスタマイズ中です。"
 msgid "Looks like something&#8217;s gone wrong. Wait a couple seconds, and then try again."
 msgstr "何かうまくいかなかったようです。時間を置いてもう一度お試しください。"
 
-#: wp-includes/class-wp-customize-manager.php:4158
+#: wp-includes/class-wp-customize-manager.php:4161
 msgid "Take over"
 msgstr "引き継ぐ"
 
-#: wp-includes/class-wp-customize-manager.php:4154
+#: wp-includes/class-wp-customize-manager.php:4157
 msgid "Go back"
 msgstr "戻る"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:3975
+#: wp-includes/class-wp-customize-manager.php:3978
 msgid "%s is already customizing this site. Please wait until they are done to try customizing. Your latest changes have been autosaved."
 msgstr "%s がすでにサイトをカスタマイズ中です。カスタマイズが完了するまでお待ち下さい。最新の変更を自動保存しました。"
 
 #. translators: %s: User who is customizing the changeset in customizer.
-#: wp-includes/class-wp-customize-manager.php:3977
+#: wp-includes/class-wp-customize-manager.php:3980
 msgid "%s is already customizing this site. Do you want to take over?"
 msgstr "%s がすでにこのサイトをカスタマイズ中です。引き継ぎますか ?"
 
-#: wp-includes/class-wp-customize-manager.php:3228
+#: wp-includes/class-wp-customize-manager.php:3231
 msgid "Sorry, you are not allowed to take over."
 msgstr "引き継ぐ権限がありません。"
 
-#: wp-includes/class-wp-customize-manager.php:3221
+#: wp-includes/class-wp-customize-manager.php:3224
 msgid "No changeset found to take over"
 msgstr "引き継ぐチェンジセットがありません"
 
-#: wp-includes/class-wp-customize-manager.php:3212
+#: wp-includes/class-wp-customize-manager.php:3215
 msgid "Security check failed."
 msgstr "セキュリティチェックに失敗しました。"
 
@@ -642,11 +650,11 @@ msgctxt "menu locations"
 msgid "View All Locations"
 msgstr "すべての位置を表示"
 
-#: wp-includes/class-wp-customize-manager.php:4828
+#: wp-includes/class-wp-customize-manager.php:4831
 msgid "While previewing a new theme, you can continue to tailor things like widgets and menus, and explore theme-specific options."
 msgstr "新しいテーマのプレビュー中に、ウィジェットやメニューを調整したり、テーマ特有の設定を探し続けることができます。"
 
-#: wp-includes/class-wp-customize-manager.php:4827
+#: wp-includes/class-wp-customize-manager.php:4830
 msgid "Looking for a theme? You can search or browse the WordPress.org theme directory, install and preview themes, then activate them right here."
 msgstr "テーマをお探しですか ? WordPress.org テーマディレクトリを検索し、テーマをインストールし、プレビューし、そのまま有効化することができます。"
 
@@ -654,7 +662,7 @@ msgstr "テーマをお探しですか ? WordPress.org テーマディレクト�
 msgid "Something went wrong. Your change may not have been saved. Please try again. There is also a chance that you may need to manually fix and upload the file over FTP."
 msgstr "何かうまくいかなかったようです。変更が保存されていないかもしれません。手動で修正し、FTP 経由でファイルをアップロードすることもできます。"
 
-#: wp-includes/class-wp-customize-manager.php:5282
+#: wp-includes/class-wp-customize-manager.php:5285
 msgid "Screen reader users: when in forms mode, you may need to press the escape key twice."
 msgstr "スクリーンリーダー利用者: フォームモードではエスケープキーを2回押す必要があります。"
 
@@ -1432,13 +1440,13 @@ msgstr[0] "お使いのテーマにはメニューの表示位置が%sか所あ�
 msgid "Your theme can display menus in one location."
 msgstr "お使いのテーマにはメニューの表示位置が1か所あります。"
 
-#: wp-includes/class-wp-customize-manager.php:5318
+#: wp-includes/class-wp-customize-manager.php:5321
 msgid "CSS code"
 msgstr "CSS コード"
 
 #. translators: 1: link to user profile, 2: additional link attributes, 3:
 #. accessibility text
-#: wp-includes/class-wp-customize-manager.php:5289
+#: wp-includes/class-wp-customize-manager.php:5292
 #: wp-includes/widgets/class-wp-widget-custom-html.php:299
 msgid "The edit field automatically highlights code syntax. You can disable this in your <a href=\"%1$s\" %2$s>user profile%3$s</a> to work in plain text mode."
 msgstr "エディターは自動的にコードシンタックスをハイライトします。プレーンテキストモードを利用するには、<a href=\"%1$s\" %2$s>ユーザープロフィール%3$s</a>から無効化することができます。"
@@ -1447,51 +1455,51 @@ msgstr "エディターは自動的にコードシンタックスをハイライ
 msgid "Screen reader users: when in forms mode, you may need to press the Esc key twice."
 msgstr "スクリーンリーダー利用者: フォームモード利用中は、Esc キーを2回押す必要があります。"
 
-#: wp-includes/class-wp-customize-manager.php:5281
+#: wp-includes/class-wp-customize-manager.php:5284
 #: wp-includes/widgets/class-wp-widget-custom-html.php:312
 msgid "To move away from this area, press the Esc key followed by the Tab key."
 msgstr "このエリアから移動するには、Esc キーを押した後に Tab キーを押します。"
 
-#: wp-includes/class-wp-customize-manager.php:5280
+#: wp-includes/class-wp-customize-manager.php:5283
 #: wp-includes/widgets/class-wp-widget-custom-html.php:311
 msgid "In the editing area, the Tab key enters a tab character."
 msgstr "編集エリアの中で Tab キーを押すと、タブ文字を入力します。"
 
-#: wp-includes/class-wp-customize-manager.php:5278
+#: wp-includes/class-wp-customize-manager.php:5281
 #: wp-includes/widgets/class-wp-widget-custom-html.php:309
 msgid "When using a keyboard to navigate:"
 msgstr "キーボードナビゲーションの利用方法:"
 
-#: wp-includes/class-wp-customize-manager.php:5268
+#: wp-includes/class-wp-customize-manager.php:5271
 msgid "Add your own CSS code here to customize the appearance and layout of your site."
 msgstr "サイトの外観とレイアウトをカスタマイズするには、ここに独自の CSS コードを追加してください。"
 
-#: wp-includes/class-wp-customize-manager.php:5233
+#: wp-includes/class-wp-customize-manager.php:5236
 msgid "Your homepage displays"
 msgstr "ホームページの表示"
 
-#: wp-includes/class-wp-customize-manager.php:5222
+#: wp-includes/class-wp-customize-manager.php:5225
 msgid "You can choose what&#8217;s displayed on the homepage of your site. It can be posts in reverse chronological order (classic blog), or a fixed/static page. To set a static homepage, you first need to create two Pages. One will become the homepage, and the other will be where your posts are displayed."
 msgstr "投稿の逆順表示 (従来のブログ) または固定・静的なページから、サイトのホームページの表示内容を選択することができます。静的なホームページを設定するには、まず2つの固定ページを作成します。1つはホームページになり、もうひとつは投稿が表示される場所になります。"
 
-#: wp-includes/class-wp-customize-manager.php:5220
+#: wp-includes/class-wp-customize-manager.php:5223
 msgid "Homepage Settings"
 msgstr "ホームページ設定"
 
 #. translators: %s: site icon size in pixels
-#: wp-includes/class-wp-customize-manager.php:4914
+#: wp-includes/class-wp-customize-manager.php:4917
 msgid "Site Icons should be square and at least %s pixels."
 msgstr "サイトアイコンは%sピクセル以上の正方形にしてください。"
 
-#: wp-includes/class-wp-customize-manager.php:4912
+#: wp-includes/class-wp-customize-manager.php:4915
 msgid "Site Icons are what you see in browser tabs, bookmark bars, and within the WordPress mobile apps. Upload one here!"
 msgstr "サイトアイコンはブラウザーのタブやブックマークバー、WordPress モバイルアプリで表示されます。ぜひアップロードしましょう。"
 
-#: wp-includes/class-wp-customize-manager.php:4844
+#: wp-includes/class-wp-customize-manager.php:4847
 msgid "WordPress.org themes"
 msgstr "WordPress.org テーマ"
 
-#: wp-includes/class-wp-customize-manager.php:4835
+#: wp-includes/class-wp-customize-manager.php:4838
 msgid "Installed themes"
 msgstr "インストール済みテーマ"
 
@@ -1499,40 +1507,40 @@ msgstr "インストール済みテーマ"
 msgid "Publish Settings"
 msgstr "公開設定"
 
-#: wp-includes/class-wp-customize-manager.php:4202
+#: wp-includes/class-wp-customize-manager.php:4205
 msgid "Copied"
 msgstr "コピーしました"
 
-#: wp-includes/class-wp-customize-manager.php:4196
+#: wp-includes/class-wp-customize-manager.php:4199
 msgid "Preview Link"
 msgstr "プレビューリンク"
 
-#: wp-includes/class-wp-customize-manager.php:4193
+#: wp-includes/class-wp-customize-manager.php:4196
 msgid "See how changes would look live on your website, and share the preview with people who can't access the Customizer."
 msgstr "変更がサイト上でどのように反映されるか確認し、カスタマイザーの表示権限がない人へプレビューを共有しましょう。"
 
-#: wp-includes/class-wp-customize-manager.php:4191
+#: wp-includes/class-wp-customize-manager.php:4194
 msgid "Share Preview Link"
 msgstr "プレビューリンクの共有"
 
-#: wp-includes/class-wp-customize-manager.php:3042
+#: wp-includes/class-wp-customize-manager.php:3045
 msgid "Changes trashed successfully."
 msgstr "変更をゴミ箱に移動しました。"
 
-#: wp-includes/class-wp-customize-manager.php:3027
+#: wp-includes/class-wp-customize-manager.php:3030
 msgid "Changes have already been trashed."
 msgstr "変更はすでにゴミ箱に移動しました。"
 
-#: wp-includes/class-wp-customize-manager.php:3021
-#: wp-includes/class-wp-customize-manager.php:3037
+#: wp-includes/class-wp-customize-manager.php:3024
+#: wp-includes/class-wp-customize-manager.php:3040
 msgid "Unable to trash changes."
 msgstr "変更をゴミ箱に移動できません。"
 
-#: wp-includes/class-wp-customize-manager.php:3012
+#: wp-includes/class-wp-customize-manager.php:3015
 msgid "No changes saved yet, so there is nothing to trash."
 msgstr "変更が保存されていないため、ゴミ箱に移動するものがありません。"
 
-#: wp-includes/class-wp-customize-manager.php:3004
+#: wp-includes/class-wp-customize-manager.php:3007
 msgid "There was an authentication problem. Please reload and try again."
 msgstr "認証に問題が発生しました。リロードしてもう一度お試しください。"
 
@@ -1885,12 +1893,12 @@ msgstr "削除しました。"
 #: wp-includes/script-loader.php:809
 msgctxt "theme"
 msgid "Installed!"
-msgstr "インストールが完了しました。"
+msgstr "インストール完了"
 
 #: wp-includes/script-loader.php:808
 msgctxt "plugin"
 msgid "Installed!"
-msgstr "インストールが完了しました。"
+msgstr "インストール完了"
 
 #. translators: %s: Plugin name
 #: wp-includes/script-loader.php:806
@@ -2051,7 +2059,7 @@ msgstr "推奨画像サイズ: %1$s×%2$sピクセル"
 msgid "Sorry, this file type is not permitted for security reasons."
 msgstr "セキュリティ上の理由によりこのファイル形式は許可されていません。"
 
-#: wp-includes/comment.php:3066
+#: wp-includes/comment.php:3070
 msgid "Sorry, comments are not allowed for this item."
 msgstr "この項目へのコメントは受け付けていません。"
 
@@ -2720,7 +2728,7 @@ msgstr "コントロールを非表示"
 msgid "Document Preview"
 msgstr "ドキュメントプレビュー"
 
-#: wp-includes/class-wp-customize-manager.php:5003
+#: wp-includes/class-wp-customize-manager.php:5006
 msgid "Header Media"
 msgstr "ヘッダーメディア"
 
@@ -2754,7 +2762,7 @@ msgstr "表示のために変換された、添付ファイルの HTML キャプ
 msgid "Caption for the attachment, as it exists in the database."
 msgstr "データベースに存在する添付ファイルのキャプション。"
 
-#: wp-includes/class-wp-customize-manager.php:5665
+#: wp-includes/class-wp-customize-manager.php:5668
 msgid "Please enter a valid YouTube URL."
 msgstr "有効な YouTube URL を入力してください。"
 
@@ -2791,7 +2799,7 @@ msgstr "投稿はゴミ箱機能をサポートしていません。削除する
 msgid "The comment does not support trashing. Set '%s' to delete."
 msgstr "コメントはゴミ箱機能をサポートしていません。削除するには「%s」を設定してください。"
 
-#: wp-includes/class-wp-customize-manager.php:5088
+#: wp-includes/class-wp-customize-manager.php:5091
 msgid "Or, enter a YouTube URL:"
 msgstr "または YouTube の URL を入力することもできます。"
 
@@ -2845,7 +2853,7 @@ msgstr "この投稿へのトラックバックは受け付けていません。
 msgid "I really need an ID for this to work."
 msgstr "動作するには ID が必要です。"
 
-#: wp-includes/class-wp-customize-manager.php:5248
+#: wp-includes/class-wp-customize-manager.php:5251
 msgid "Homepage"
 msgstr "ホームページ"
 
@@ -3500,7 +3508,7 @@ msgstr "コメントするには、有効なコメントの投稿者名とメー
 msgid "Cannot create existing comment."
 msgstr "すでにあるコメントをすることはできません。"
 
-#: wp-includes/comment.php:3117
+#: wp-includes/comment.php:3121
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:395
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:412
 msgid "Sorry, you must be logged in to comment."
@@ -3860,122 +3868,122 @@ msgid "Post"
 msgstr "投稿"
 
 #. translators: 1: .mp4, 2: .mov
-#: wp-includes/class-wp-customize-manager.php:5641
+#: wp-includes/class-wp-customize-manager.php:5644
 msgid "Only %1$s or %2$s files may be used for header video. Please convert your video file and try again, or, upload your video to YouTube and link it with the option below."
 msgstr "%1$s または %2$s ファイルのみヘッダー動画として利用可能です。動画ファイルを変換してもう一度やり直すか、動画を YouTube にアップロードし、リンクを以下の設定で指定します。"
 
-#: wp-includes/class-wp-customize-manager.php:5635
+#: wp-includes/class-wp-customize-manager.php:5638
 msgid "This video file is too large to use as a header video. Try a shorter video or optimize the compression settings and re-upload a file that is less than 8MB. Or, upload your video to YouTube and link it with the option below."
 msgstr "動画ファイルは、ヘッダー動画として使用するには大きすぎます。動画を短くするか、圧縮設定を最適化し、8MB 未満のファイルを再度アップロードしてください。あるいは、YouTubeに動画をアップロードし、以下の設定でリンクを指定します。"
 
-#: wp-includes/class-wp-customize-manager.php:5595
+#: wp-includes/class-wp-customize-manager.php:5598
 msgid "Unrecognized background setting."
 msgstr "認識できない背景設定です。"
 
-#: wp-includes/class-wp-customize-manager.php:5586
-#: wp-includes/class-wp-customize-manager.php:5590
+#: wp-includes/class-wp-customize-manager.php:5589
+#: wp-includes/class-wp-customize-manager.php:5593
 msgid "Invalid value for background size."
 msgstr "背景のサイズが無効です。"
 
-#: wp-includes/class-wp-customize-manager.php:5582
+#: wp-includes/class-wp-customize-manager.php:5585
 msgid "Invalid value for background position Y."
 msgstr "背景の位置 Y の値が無効です。"
 
-#: wp-includes/class-wp-customize-manager.php:5578
+#: wp-includes/class-wp-customize-manager.php:5581
 msgid "Invalid value for background position X."
 msgstr "背景の位置 X の値が無効です。"
 
-#: wp-includes/class-wp-customize-manager.php:5574
+#: wp-includes/class-wp-customize-manager.php:5577
 msgid "Invalid value for background attachment."
 msgstr "背景の添付ファイルが無効です。"
 
-#: wp-includes/class-wp-customize-manager.php:5570
+#: wp-includes/class-wp-customize-manager.php:5573
 msgid "Invalid value for background repeat."
 msgstr "背景の繰り返しの値が無効です。"
 
 #. translators: accessibility text
-#: wp-includes/class-wp-customize-manager.php:4199
-#: wp-includes/class-wp-customize-manager.php:5274
-#: wp-includes/class-wp-customize-manager.php:5294
+#: wp-includes/class-wp-customize-manager.php:4202
+#: wp-includes/class-wp-customize-manager.php:5277
+#: wp-includes/class-wp-customize-manager.php:5297
 #: wp-includes/customize/class-wp-customize-nav-menu-locations-control.php:56
 #: wp-includes/widgets/class-wp-widget-custom-html.php:304
 msgid "(opens in a new window)"
 msgstr "(新しいウィンドウで開きます)"
 
-#: wp-includes/class-wp-customize-manager.php:5272
+#: wp-includes/class-wp-customize-manager.php:5275
 msgid "Learn more about CSS"
 msgstr "CSS について詳細を読む"
 
-#: wp-includes/class-wp-customize-manager.php:5305
+#: wp-includes/class-wp-customize-manager.php:5308
 msgid "Additional CSS"
 msgstr "追加 CSS"
 
-#: wp-includes/class-wp-customize-manager.php:5199
+#: wp-includes/class-wp-customize-manager.php:5202
 msgid "Scroll with Page"
 msgstr "ページと一緒にスクロール"
 
-#: wp-includes/class-wp-customize-manager.php:5187
+#: wp-includes/class-wp-customize-manager.php:5190
 msgid "Repeat Background Image"
 msgstr "背景画像の繰り返し"
 
-#: wp-includes/class-wp-customize-manager.php:5174
+#: wp-includes/class-wp-customize-manager.php:5177
 msgid "Original"
 msgstr "元のサイズ"
 
-#: wp-includes/class-wp-customize-manager.php:5170
+#: wp-includes/class-wp-customize-manager.php:5173
 msgid "Image Size"
 msgstr "画像サイズ"
 
-#: wp-includes/class-wp-customize-manager.php:5155
+#: wp-includes/class-wp-customize-manager.php:5158
 #: wp-includes/customize/class-wp-customize-background-position-control.php:66
 msgid "Image Position"
 msgstr "画像の位置"
 
-#: wp-includes/class-wp-customize-manager.php:5138
+#: wp-includes/class-wp-customize-manager.php:5141
 msgctxt "Custom Preset"
 msgid "Custom"
 msgstr "カスタム"
 
-#: wp-includes/class-wp-customize-manager.php:5137
+#: wp-includes/class-wp-customize-manager.php:5140
 msgctxt "Repeat Image"
 msgid "Repeat"
 msgstr "繰り返し"
 
-#: wp-includes/class-wp-customize-manager.php:5136
-#: wp-includes/class-wp-customize-manager.php:5175
+#: wp-includes/class-wp-customize-manager.php:5139
+#: wp-includes/class-wp-customize-manager.php:5178
 msgid "Fit to Screen"
 msgstr "画面に合わせる"
 
-#: wp-includes/class-wp-customize-manager.php:5134
+#: wp-includes/class-wp-customize-manager.php:5137
 msgctxt "Default Preset"
 msgid "Default"
 msgstr "デフォルト"
 
-#: wp-includes/class-wp-customize-manager.php:5130
+#: wp-includes/class-wp-customize-manager.php:5133
 msgctxt "Background Preset"
 msgid "Preset"
 msgstr "プリセット"
 
-#: wp-includes/class-wp-customize-manager.php:5078
+#: wp-includes/class-wp-customize-manager.php:5081
 msgid "Header Video"
 msgstr "ヘッダー動画"
 
 #. translators: 1: .mp4, 2: header height in pixels
-#: wp-includes/class-wp-customize-manager.php:5025
+#: wp-includes/class-wp-customize-manager.php:5028
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends a height of %2$s pixels."
 msgstr "%1$s 形式の動画ファイルをアップロードしてください。最良の結果を出すにはファイルサイズを最小限にしてください。お使いのテーマは動画の高さとして%2$sピクセルを推奨しています。"
 
 #. translators: 1: .mp4, 2: header width in pixels
-#: wp-includes/class-wp-customize-manager.php:5018
+#: wp-includes/class-wp-customize-manager.php:5021
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends a width of %2$s pixels."
 msgstr "%1$s 形式の動画ファイルをアップロードしてください。最良の結果を出すにはファイルサイズを最小限にしてください。お使いのテーマは動画の幅として%2$sピクセルを推奨しています。"
 
 #. translators: 1: .mp4, 2: header size in pixels
-#: wp-includes/class-wp-customize-manager.php:5011
+#: wp-includes/class-wp-customize-manager.php:5014
 msgid "Upload your video in %1$s format and minimize its file size for best results. Your theme recommends dimensions of %2$s pixels."
 msgstr "%1$s 形式の動画ファイルをアップロードしてください。最良の結果を出すにはファイルサイズを最小限にしてください。お使いのテーマは動画の大きさとして%2$sピクセルを推奨しています。"
 
-#: wp-includes/class-wp-customize-manager.php:5004
+#: wp-includes/class-wp-customize-manager.php:5007
 msgid "If you add a video, the image will be used as a fallback while the video loads."
 msgstr "動画を追加する場合、ヘッダー画像はフォールバックとして使用され、動画のロード途中に表示されます。"
 
@@ -3987,23 +3995,23 @@ msgid "Search themes&hellip;"
 msgstr "テーマを検索&hellip;"
 
 #. translators: %s: theme name
-#: wp-includes/class-wp-customize-manager.php:4710
+#: wp-includes/class-wp-customize-manager.php:4713
 msgid "Showing details for theme: %s"
 msgstr "%s テーマの詳細を表示中"
 
 #. translators: %d: number of themes being displayed, which cannot currently
 #. consider singular vs. plural forms
-#: wp-includes/class-wp-customize-manager.php:4708
+#: wp-includes/class-wp-customize-manager.php:4711
 msgid "Displaying %d themes"
 msgstr "%d件のテーマを表示中"
 
 #. translators: %d: number of theme search results, which cannot currently
 #. consider singular vs. plural forms
-#: wp-includes/class-wp-customize-manager.php:4706
+#: wp-includes/class-wp-customize-manager.php:4709
 msgid "%d themes found"
 msgstr "%d件のテーマが見つかりました"
 
-#: wp-includes/class-wp-customize-manager.php:4704
+#: wp-includes/class-wp-customize-manager.php:4707
 msgid "Are you sure you want to delete this theme?"
 msgstr "本当にこのテーマを削除してもよいですか？"
 
@@ -4479,7 +4487,7 @@ msgstr "定数 %1$s は<strong>非推奨</strong>です。サブドメインの�
 
 #. translators: 1: panel id, 2: link to 'customize_loaded_components' filter
 #. reference
-#: wp-includes/class-wp-customize-manager.php:3760
+#: wp-includes/class-wp-customize-manager.php:3763
 msgid "Removing %1$s manually will cause PHP warnings. Use the %2$s filter instead."
 msgstr "%1$s を手動で削除すると PHP の警告を引き起こす可能性があります。代わりに %2$s フィルターを使用してください。"
 
@@ -4589,20 +4597,20 @@ msgstr "ダイアログを閉じる"
 msgid "The called constructor method for %1$s in %2$s is <strong>deprecated</strong> since version %3$s! Use %4$s instead."
 msgstr "%2$s で呼び出された %1$s のコンストラクターメソッドはバージョン %3$s から<strong>非推奨</strong>になっています ! 代わりに %4$s を使ってください。"
 
-#: wp-includes/class-wp-customize-manager.php:4944
+#: wp-includes/class-wp-customize-manager.php:4947
 msgid "Choose logo"
 msgstr "ロゴを選択"
 
-#: wp-includes/class-wp-customize-manager.php:4942
+#: wp-includes/class-wp-customize-manager.php:4945
 msgid "No logo selected"
 msgstr "ロゴが選択されていません"
 
-#: wp-includes/class-wp-customize-manager.php:4939
+#: wp-includes/class-wp-customize-manager.php:4942
 msgid "Change logo"
 msgstr "ロゴを変更"
 
-#: wp-includes/class-wp-customize-manager.php:4938
-#: wp-includes/class-wp-customize-manager.php:4943
+#: wp-includes/class-wp-customize-manager.php:4941
+#: wp-includes/class-wp-customize-manager.php:4946
 msgid "Select logo"
 msgstr "ロゴを選択"
 
@@ -4664,24 +4672,24 @@ msgstr "無効なオブジェクトの種類"
 msgid "Paste URL or type to search"
 msgstr "URL をペーストするか入力して検索"
 
-#: wp-includes/class-wp-customize-manager.php:4930
+#: wp-includes/class-wp-customize-manager.php:4933
 msgid "Logo"
 msgstr "ロゴ"
 
-#: wp-includes/class-wp-customize-manager.php:4896
-#: wp-includes/class-wp-customize-manager.php:4974
+#: wp-includes/class-wp-customize-manager.php:4899
+#: wp-includes/class-wp-customize-manager.php:4977
 msgid "Display Site Title and Tagline"
 msgstr "サイトのタイトルとキャッチフレーズを表示"
 
-#: wp-includes/class-wp-customize-manager.php:4797
+#: wp-includes/class-wp-customize-manager.php:4800
 msgid "Enter mobile preview mode"
 msgstr "モバイルプレビューモードに入る"
 
-#: wp-includes/class-wp-customize-manager.php:4794
+#: wp-includes/class-wp-customize-manager.php:4797
 msgid "Enter tablet preview mode"
 msgstr "タブレットプレビューモードに入る"
 
-#: wp-includes/class-wp-customize-manager.php:4790
+#: wp-includes/class-wp-customize-manager.php:4793
 msgid "Enter desktop preview mode"
 msgstr "デスクトッププレビューモードに入る"
 
@@ -5344,7 +5352,7 @@ msgid "Press return or enter to open this section"
 msgstr "このセクションを開くには Return または Enter キーを押してください"
 
 #. translators: %s: document title from the preview
-#: wp-includes/class-wp-customize-manager.php:4372
+#: wp-includes/class-wp-customize-manager.php:4375
 msgid "Live Preview: %s"
 msgstr "ライブプレビュー: %s"
 
@@ -5492,11 +5500,11 @@ msgstr "画像を非表示"
 msgid "Hide header image"
 msgstr "ヘッダー画像を非表示"
 
-#: wp-includes/class-wp-customize-manager.php:4910
+#: wp-includes/class-wp-customize-manager.php:4913
 msgid "Site Icon"
 msgstr "サイトアイコン"
 
-#: wp-includes/class-wp-customize-manager.php:4861
+#: wp-includes/class-wp-customize-manager.php:4864
 msgid "Site Identity"
 msgstr "サイト基本情報"
 
@@ -6810,7 +6818,7 @@ msgstr "ウィジェットはコンテンツから独立したセクションで
 msgid "You are customizing %s"
 msgstr "%s をカスタマイズ中です"
 
-#: wp-includes/comment.php:3157
+#: wp-includes/comment.php:3161
 msgid "<strong>ERROR</strong>: The comment could not be saved. Please try again later."
 msgstr "<strong>エラー</strong>: コメントを保存できませんでした。後ほどもう一度お試しください。"
 
@@ -8474,11 +8482,11 @@ msgstr "テキスト"
 msgid "Skip to toolbar"
 msgstr "ツールバーへスキップ"
 
-#: wp-includes/class-wp-customize-manager.php:4981
+#: wp-includes/class-wp-customize-manager.php:4984
 msgid "Header Text Color"
 msgstr "ヘッダーテキスト色"
 
-#: wp-includes/class-wp-customize-manager.php:4958
+#: wp-includes/class-wp-customize-manager.php:4961
 msgid "Colors"
 msgstr "色"
 
@@ -8512,7 +8520,7 @@ msgstr "非公開設定の投稿を固定表示にすることはできません
 msgid "Sorry, you are not allowed to publish this page."
 msgstr "この投稿を公開する権限がありません。"
 
-#: wp-includes/class-wp-customize-manager.php:5031
+#: wp-includes/class-wp-customize-manager.php:5034
 #: wp-includes/customize/class-wp-customize-header-image-control.php:31
 msgid "Header Image"
 msgstr "ヘッダー画像"
@@ -8555,16 +8563,16 @@ msgid "Site name must be at least %s character."
 msgid_plural "Site name must be at least %s characters."
 msgstr[0] "サイト名は%s文字以上必要です。"
 
-#: wp-includes/class-wp-customize-manager.php:5238
+#: wp-includes/class-wp-customize-manager.php:5241
 msgid "A static page"
 msgstr "固定ページ"
 
-#: wp-includes/class-wp-customize-manager.php:5105
+#: wp-includes/class-wp-customize-manager.php:5108
 #: wp-includes/customize/class-wp-customize-background-image-control.php:30
 msgid "Background Image"
 msgstr "背景画像"
 
-#: wp-includes/class-wp-customize-manager.php:4996
+#: wp-includes/class-wp-customize-manager.php:4999
 msgid "Background Color"
 msgstr "背景色"
 
@@ -8580,7 +8588,7 @@ msgstr "画像を削除"
 msgid "Sorry, you are not allowed to edit this comment."
 msgstr "このコメントを編集する権限がありません。"
 
-#: wp-includes/class-wp-customize-manager.php:5260
+#: wp-includes/class-wp-customize-manager.php:5263
 msgid "Posts page"
 msgstr "投稿ページ"
 
@@ -8588,7 +8596,7 @@ msgstr "投稿ページ"
 msgid "Allowed Files"
 msgstr "アップロードできるファイル"
 
-#: wp-includes/class-wp-customize-manager.php:4940
+#: wp-includes/class-wp-customize-manager.php:4943
 #: wp-includes/class-wp-customize-widgets.php:753
 #: wp-includes/class-wp-editor.php:1256
 #: wp-includes/customize/class-wp-customize-media-control.php:226
@@ -8708,7 +8716,7 @@ msgid "ERROR: The themes directory is either empty or doesn&#8217;t exist. Pleas
 msgstr "エラー: テーマディレクトリが空か、存在しません。インストールを確認してください。"
 
 #. translators: %s: document title from the preview
-#: wp-includes/class-wp-customize-manager.php:4369
+#: wp-includes/class-wp-customize-manager.php:4372
 msgid "Customize: %s"
 msgstr "カスタマイズ: %s"
 
@@ -8718,11 +8726,11 @@ msgstr "カスタマイズ: %s"
 msgid "&mdash; Select &mdash;"
 msgstr "&mdash; 選択 &mdash;"
 
-#: wp-includes/class-wp-customize-manager.php:4883
+#: wp-includes/class-wp-customize-manager.php:4886
 msgid "Tagline"
 msgstr "キャッチフレーズ"
 
-#: wp-includes/class-wp-customize-manager.php:5237
+#: wp-includes/class-wp-customize-manager.php:5240
 msgid "Your latest posts"
 msgstr "最新の投稿"
 
@@ -8762,7 +8770,7 @@ msgstr "この投稿を編集する権限がありません。"
 msgid "Edit Site"
 msgstr "サイト編集"
 
-#: wp-includes/post.php:4044 wp-includes/script-loader.php:683
+#: wp-includes/post.php:4061 wp-includes/script-loader.php:683
 #: wp-includes/script-loader.php:755
 msgctxt "tag delimiter"
 msgid ","
@@ -8893,7 +8901,7 @@ msgstr "設定ファイルを作成"
 msgid "You can create a %s file through a web interface, but this doesn't work for all server setups. The safest way is to manually create the file."
 msgstr "ウェブインタフェース経由で %s を作成できますが、サーバーによっては動作しないかもしれません。最も安全な方法は、手動でファイルを作成することです。"
 
-#: wp-includes/class-wp-customize-manager.php:5271
+#: wp-includes/class-wp-customize-manager.php:5274
 msgid "https://codex.wordpress.org/CSS"
 msgstr "http://wpdocs.osdn.jp/CSS"
 
@@ -8978,15 +8986,15 @@ msgstr "%s は、このサイトのアップロードサイズ上限を超えて
 msgid "Feedback"
 msgstr "フィードバック"
 
-#: wp-includes/comment.php:3125
+#: wp-includes/comment.php:3129
 msgid "<strong>ERROR</strong>: please fill the required fields (name, email)."
 msgstr "<strong>エラー</strong>: 必須項目 (名前、メールアドレス) を入力してください。"
 
-#: wp-includes/comment.php:3127
+#: wp-includes/comment.php:3131
 msgid "<strong>ERROR</strong>: please enter a valid email address."
 msgstr "<strong>エラー</strong>: 有効なメールアドレスを入力してください。"
 
-#: wp-includes/comment.php:3132
+#: wp-includes/comment.php:3136
 msgid "<strong>ERROR</strong>: please type a comment."
 msgstr "<strong>エラー</strong>: コメントを入力してください。"
 
@@ -9099,7 +9107,7 @@ msgstr "タグを表示"
 
 #: wp-includes/pluggable.php:1083 wp-includes/pluggable.php:1126
 msgid "You should specify a nonce action to be verified by using the first parameter."
-msgstr "最初のパラメーターを使って検証されるノンスアクションを明記する必要があります。"
+msgstr "最初の変数を使用して検証される nonce アクションを指定してください。"
 
 #. translators: 1: site URL, 2: login URL
 #: wp-activate.php:146
@@ -10141,7 +10149,7 @@ msgstr "コメント投稿者の名前とメールアドレスは入力必須で
 #: wp-includes/class-wp-xmlrpc-server.php:6098
 #: wp-includes/class-wp-xmlrpc-server.php:6152
 #: wp-includes/class-wp-xmlrpc-server.php:6271 wp-includes/post.php:3180
-#: wp-includes/post.php:3714
+#: wp-includes/post.php:3728
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:326
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:688
 #: wp-includes/rest-api/endpoints/class-wp-rest-posts-controller.php:369
@@ -10333,8 +10341,8 @@ msgstr "<strong>エラー</strong>: メールアドレスを入力してくだ�
 #: wp-includes/user.php:2227 wp-includes/user.php:2230
 #: wp-includes/user.php:2234 wp-includes/user.php:2259
 #: wp-includes/user.php:2268 wp-includes/user.php:2272
-#: wp-includes/user.php:2289 wp-includes/user.php:3437
-#: wp-includes/user.php:3449 wp-includes/user.php:3467 wp-login.php:854
+#: wp-includes/user.php:2289 wp-includes/user.php:3456
+#: wp-includes/user.php:3468 wp-includes/user.php:3486 wp-login.php:854
 msgid "Invalid key"
 msgstr "無効なキー"
 
@@ -10847,8 +10855,8 @@ msgstr "コメントフィード"
 msgid "Insert Page Break tag"
 msgstr "Page Break タグを挿入"
 
-#: wp-includes/class-wp-customize-manager.php:5135
-#: wp-includes/class-wp-customize-manager.php:5176
+#: wp-includes/class-wp-customize-manager.php:5138
+#: wp-includes/class-wp-customize-manager.php:5179
 msgid "Fill Screen"
 msgstr "フルスクリーン"
 
@@ -10985,7 +10993,7 @@ msgstr "新規作成"
 msgid "Paste"
 msgstr "貼り付け"
 
-#: wp-includes/class-wp-customize-manager.php:4202
+#: wp-includes/class-wp-customize-manager.php:4205
 #: wp-includes/class-wp-editor.php:1043
 msgid "Copy"
 msgstr "コピー"
@@ -11831,7 +11839,7 @@ msgstr "次ページへ &raquo;"
 msgid "&laquo; Previous Page"
 msgstr "&laquo; 前ページへ"
 
-#: wp-includes/class-wp-xmlrpc-server.php:3634 wp-includes/comment.php:3039
+#: wp-includes/class-wp-xmlrpc-server.php:3634 wp-includes/comment.php:3043
 #: wp-includes/rest-api/endpoints/class-wp-rest-comments-controller.php:465
 msgid "Sorry, comments are closed for this item."
 msgstr "この投稿へのコメントは受け付けていません。"
@@ -11874,7 +11882,7 @@ msgstr "タイトル:"
 msgid "Plugin:"
 msgstr "プラグイン:"
 
-#: wp-includes/class-wp-customize-manager.php:4941
+#: wp-includes/class-wp-customize-manager.php:4944
 #: wp-includes/customize/class-wp-customize-color-control.php:51
 #: wp-includes/customize/class-wp-customize-media-control.php:225
 #: wp-includes/customize/class-wp-customize-media-control.php:235
@@ -11905,7 +11913,7 @@ msgstr "新しい投稿へのコメントを許可する"
 msgid "Email"
 msgstr "メールアドレス"
 
-#: wp-includes/class-wp-customize-manager.php:4872
+#: wp-includes/class-wp-customize-manager.php:4875
 #: wp-includes/class-wp-xmlrpc-server.php:540
 msgid "Site Title"
 msgstr "サイトのタイトル"
@@ -12052,7 +12060,7 @@ msgstr "新規固定ページ"
 msgid "Select"
 msgstr "選択"
 
-#: wp-includes/class-wp-customize-manager.php:5301
+#: wp-includes/class-wp-customize-manager.php:5304
 #: wp-includes/class-wp-editor.php:1051 wp-includes/class-wp-editor.php:1701
 #: wp-includes/script-loader.php:277 wp-includes/script-loader.php:371
 #: wp-includes/script-loader.php:562 wp-includes/script-loader.php:1137
@@ -12093,7 +12101,7 @@ msgstr "画像"
 msgid "Search"
 msgstr "検索"
 
-#: wp-includes/class-wp-customize-manager.php:4129
+#: wp-includes/class-wp-customize-manager.php:4132
 #: wp-includes/script-loader.php:146 wp-includes/script-loader.php:307
 #: wp-includes/widgets/class-wp-widget-text.php:521
 #: wp-includes/widgets/class-wp-widget-text.php:536
@@ -12278,7 +12286,7 @@ msgstr "ピンバック"
 msgid "Reply"
 msgstr "返信"
 
-#: wp-includes/class-wp-customize-manager.php:4622
+#: wp-includes/class-wp-customize-manager.php:4625
 #: wp-includes/script-loader.php:551 wp-includes/script-loader.php:705
 msgid "Save Draft"
 msgstr "下書きとして保存"
@@ -12306,7 +12314,7 @@ msgstr "プラグイン"
 msgid "Recent Comments"
 msgstr "最近のコメント"
 
-#: wp-includes/class-wp-customize-manager.php:4156
+#: wp-includes/class-wp-customize-manager.php:4159
 #: wp-includes/class-wp-editor.php:1117 wp-includes/media-template.php:1247
 msgid "Preview"
 msgstr "プレビュー"
@@ -12317,7 +12325,7 @@ msgstr "RSS"
 
 #. translators: Name of a comment's author after being anonymized.
 #: wp-includes/class-wp-theme.php:732 wp-includes/comment-template.php:31
-#: wp-includes/comment.php:3328
+#: wp-includes/comment.php:3332
 msgid "Anonymous"
 msgstr "匿名"
 
@@ -12414,12 +12422,12 @@ msgstr "リビジョン"
 msgid "Excerpt"
 msgstr "抜粋"
 
-#: wp-includes/class-wp-customize-manager.php:4617
+#: wp-includes/class-wp-customize-manager.php:4620
 #: wp-includes/script-loader.php:549 wp-includes/script-loader.php:701
 msgid "Publish"
 msgstr "公開"
 
-#: wp-includes/comment.php:3258 wp-includes/script-loader.php:656
+#: wp-includes/comment.php:3262 wp-includes/script-loader.php:656
 msgid "Comments"
 msgstr "コメント"
 
