@@ -1,27 +1,29 @@
 version: "3"
 services:
-  # php
-  php: 
-    build: ./apache
-    volumes:
-      - ../html/app:/var/www/html/app
-      - ../html/lib:/var/www/html/lib
-      - ../html/index.php:/var/www/html/index.php
-      - ../html/.htaccess:/var/www/html/.htaccess
-      - ../html/phpinfo.php:/var/www/html/phpinfo.php
-      - ../logs:/var/log/apache2
+  # サーバー
+  nginx: 
+    build: ./nginx
     ports: 
       - 80:80
-      - 443:443
+    volumes:
+      - ./nginx/server.conf:/etc/nginx/conf.d/server.conf
+      - ./src:/var/www/html
+
+  # php
+  php7: 
+    build: ./php7
+    volumes:
+      - ./src:/var/www/html
+      - ./php7/php.ini:/usr/local/etc/php/php.ini
     environment:
-      PHP_IDE_CONFIG: "serverName=localhost"
-      COMPOSER_ALLOW_SUPERUSER: 1
+      # 9000番はfast-cgiが使っているので１つずらす
       XDEBUG_CONFIG: "remote_enable=1 remote_autostart=1 remote_port=9001 remote_host=10.0.2.2"
+
   # データベースへアクセス
   adminer:
     image: adminer
     ports: 
-      - 8080:8080
+      - "8081:8080"
 
   # データベース
   db:
@@ -29,12 +31,16 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
       - /etc/localtime:/etc/localtime:ro # 時刻の同期
-      - ./server/mysql/init:/docker-entrypoint-initdb.d # 初期実行
+      - ./mysql/init:/docker-entrypoint-initdb.d # 初期実行
     ports:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: "password"
       TZ: "Asia/Tokyo"
+
 volumes:
   dbdata: # 名前付きボリューム名
+
+
+
 
