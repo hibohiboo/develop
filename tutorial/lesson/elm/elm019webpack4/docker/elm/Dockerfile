@@ -34,7 +34,7 @@ RUN yarn add --dev copy-webpack-plugin
 # RUN yarn add --dev babel-loader
 RUN yarn add --dev babel-core
 RUN yarn add --dev babel-preset-env
-RUN yarn add --dev babel-loader@7
+RUN yarn add --dev babel-loader@7.x.x
 ### loaders
 RUN yarn add --dev file-loader
 RUN yarn add --dev url-loader
