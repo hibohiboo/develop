@@ -8,10 +8,9 @@ services:
       - ../elm-webpack-starter/elm.json:/app/elm.json
       - ../elm-webpack-starter/webpack.config.js:/app/webpack.config.js
       - ../elm-webpack-starter/.babelrc:/app/.babelrc
-      - cache1:/app/elm-stuff
     ports:
       - 3000:3000
-      - 35729:35729
-    command: [yarn, start]
-volumes:
-  cache1: # 名前付きボリューム名
+      - 3002:3002
+    environment:
+      - NODE_ENV=develop
+    command: [yarn, dev, --host, 0.0.0.0 ]
