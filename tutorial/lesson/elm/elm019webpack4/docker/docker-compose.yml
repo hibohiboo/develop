@@ -1,0 +1,17 @@
+version: '3'
+services:
+  elm:
+    build: ./elm
+    volumes:
+      - ../elm-webpack-starter/src:/app/src
+      - ../elm-webpack-starter/tests:/app/tests
+      - ../elm-webpack-starter/elm.json:/app/elm.json
+      - ../elm-webpack-starter/webpack.config.js:/app/webpack.config.js
+      - ../elm-webpack-starter/.babelrc:/app/.babelrc
+      - cache1:/app/elm-stuff
+    ports:
+      - 3000:3000
+      - 35729:35729
+    command: [yarn, start]
+volumes:
+  cache1: # 名前付きボリューム名
