@@ -2,8 +2,10 @@
 
 ## メモ
 
-htmlファイルを増やしたいときは以下のようにプラグインを追加していく。
+### webpack.config.js
 
+#### htmlファイルの追加
+htmlファイルを増やしたいときは以下のようにプラグインを追加していく。
 
 ```js
     plugins: [
@@ -20,6 +22,23 @@ htmlファイルを増やしたいときは以下のようにプラグインを�
     ],
 ```
 
+#### jsの追加
+
+`entry`プロパティを増やしていく。`filename`も`entry`のプロパティ名を参照するように変更
+
+```js
+const filename = MODE == "production" ? "[name]-[hash].js" : "[name].js";
+const files = {index:"./src/index.js", card:"./src/card.js"};
+
+var common = {
+    mode: MODE,
+    entry: files,
+    output: {
+        path: path.join(__dirname, "dist"),
+        filename: filename
+    },
+```
+
 
 ## 履歴
 
@@ -27,6 +46,7 @@ htmlファイルを増やしたいときは以下のようにプラグインを�
 
 [HTMLファイル追加](https://github.com/hibohiboo/develop/tree/95b139debb63953b660ab5ce0de78b66bec84efe/tutorial/lesson/elm/elm-card)
 
+[jsファイル追加](https://github.com/hibohiboo/develop/tree/e46eeb8980fa124f500081d152c6d3f9eb7ca4b2/tutorial/lesson/elm/elm-card)
 
 
 ## 参考
