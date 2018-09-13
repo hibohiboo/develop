@@ -79,14 +79,6 @@ var common = {
 if (MODE === "development") {
     console.log("Building for dev...");
     module.exports = merge(common, {
-      // windowsとvirtual boxとdockerを組み合わせている場合、ファイルの変更の検知にポーリングが必要(webpack時)
-      watch:true,
-      watchOptions: {
-        ignored: /node_modules/,
-        aggregateTimeout: 300,
-        // ５秒毎にポーリング
-        poll: 5000
-      },
         plugins: [
             // Suggested for hot-loading
             new webpack.NamedModulesPlugin(),
@@ -142,6 +134,14 @@ if (MODE === "development") {
                 }
             },
         },
+      // windowsとvirtual boxとdockerを組み合わせている場合、ファイルの変更の検知にポーリングが必要(webpack時)
+      watch:true,
+      watchOptions: {
+        ignored: /node_modules/,
+        aggregateTimeout: 300,
+        // ５秒毎にポーリング
+        poll: 5000
+      },
     });
 }
 

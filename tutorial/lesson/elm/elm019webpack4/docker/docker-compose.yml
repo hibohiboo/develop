@@ -3,7 +3,7 @@ services:
   elm:
     build: ./elm
     volumes:
-      - ../elm-webpack-starter/src:/app/src:z
+      - ../elm-webpack-starter/src:/app/src
       - ../elm-webpack-starter/tests:/app/tests
       - ../elm-webpack-starter/elm.json:/app/elm.json
       - ../elm-webpack-starter/webpack.config.js:/app/webpack.config.js
