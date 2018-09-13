@@ -13,3 +13,6 @@ https://ja.wordpress.org/plugins/simply-static/#description
 
 * ファイルダウンロード
 https://4mirai.com/wordpress-download-manager-css-customize
+
+(試していない)
+git clone https://github.com/WordPress/WordPress.git
