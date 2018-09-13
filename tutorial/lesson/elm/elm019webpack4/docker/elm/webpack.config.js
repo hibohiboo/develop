@@ -79,6 +79,7 @@ var common = {
 if (MODE === "development") {
     console.log("Building for dev...");
     module.exports = merge(common, {
+      // windowsとvirtual boxとdockerを組み合わせている場合、ファイルの変更の検知にポーリングが必要(webpack時)
       watch:true,
       watchOptions: {
         ignored: /node_modules/,
@@ -121,10 +122,18 @@ if (MODE === "development") {
                 // e.g.
                 // app.use(convert(proxy('/api', { target: 'http://localhost:5000' })));
             },
+            // windowsとvirtual boxとdockerを組み合わせている場合、ファイルの変更の検知にポーリングが必要(webpack-serve時)
+            devMiddleware: {
+              watch:true, 
+              watchOptions:{
+                aggregateTimeout: 300,
+                poll:1000
+              }
+            },
             hotClient:{
               host: {
-                client: '192.168.50.10',
-                server: '0.0.0.0',
+                client: '192.168.50.10', // 仮想環境のIPアドレス
+                server: '0.0.0.0',       // Dockerのコンテナ上で動かすのでワイルドカードIPアドレスを指定
               },
                 port:{
                   server:3002,

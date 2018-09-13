@@ -3,7 +3,7 @@ services:
   elm:
     build: ./elm
     volumes:
-      - ../elm-webpack-starter/src:/app/src
+      - ../elm-webpack-starter/src:/app/src:z
       - ../elm-webpack-starter/tests:/app/tests
       - ../elm-webpack-starter/elm.json:/app/elm.json
       - ../elm-webpack-starter/webpack.config.js:/app/webpack.config.js
@@ -13,5 +13,4 @@ services:
       - 3002:3002
     environment:
       - NODE_ENV=develop
-    # command: [yarn, dev, --host, 0.0.0.0 ]
-    command: [yarn, build]
+    command: [yarn, dev, --host, 0.0.0.0, --config, ./webpack.config.js ]
