@@ -4,20 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prod": "webpack -p",
-    "build": "webpack",
-    "dev": "webpack-serve --host 0.0.0.0 --port 3000",
+    "test": "elm-test",
     "start": "npm run dev",
-    "etest": "elm-test",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-serve --port 3000",
+    "build": "webpack",
+    "prod": "webpack -p"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
+    "@babel/core": "^7.0.1",
+    "@babel/preset-env": "^7.0.0",
+    "babel-loader": "^8.0.2",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",

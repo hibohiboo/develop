@@ -135,11 +135,12 @@ if (MODE === "development") {
                 client: '192.168.50.10', // 仮想環境のIPアドレス
                 server: '0.0.0.0',       // Dockerのコンテナ上で動かすのでワイルドカードIPアドレスを指定
               },
-                port:{
-                  server:3002,
-                  client: 3002
-                  }
-              },
+              // hot-reloadで使われるポートを固定
+              port:{
+                server:3002,
+                client: 3002
+                }
+            },
         },
     });
 }

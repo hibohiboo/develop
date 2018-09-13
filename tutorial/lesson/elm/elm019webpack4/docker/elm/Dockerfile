@@ -28,13 +28,11 @@ RUN yarn add --dev clean-webpack-plugin
 RUN yarn add --dev copy-webpack-plugin
 
 ## babelインストール
-### babel7未対応
-# RUN yarn add --dev @babel/core
-# RUN yarn add --dev @babel/preset-env
-# RUN yarn add --dev babel-loader
-RUN yarn add --dev babel-core
-RUN yarn add --dev babel-preset-env
-RUN yarn add --dev babel-loader@7.x.x
+
+RUN yarn add --dev @babel/core
+RUN yarn add --dev @babel/preset-env
+RUN yarn add --dev babel-loader
+
 ### loaders
 RUN yarn add --dev file-loader
 RUN yarn add --dev url-loader
@@ -49,8 +47,9 @@ RUN yarn add --dev elm-webpack-loader
 RUN yarn add purecss
 
 # package.json
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"etest\": \"elm-test\",/g" /app/package.json
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"npm run dev\",/g" /app/package.json
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev\": \"webpack-serve --port 3000\",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"prod\": \"webpack -p\"/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build\": \"webpack\",/g" /app/package.json
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"prod\": \"webpack -p\",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev\": \"webpack-serve --port 3000\",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"npm run dev\",/g" /app/package.json
+RUN sed -i -e "/test/d"  /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"test\": \"elm-test\",/g" /app/package.json
