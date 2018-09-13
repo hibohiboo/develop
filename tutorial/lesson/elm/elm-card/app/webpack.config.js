@@ -29,6 +29,10 @@ var common = {
             template: "src/index.html",
             // inject details of output file at end of body
             inject: "body"
+        }),
+        new HTMLWebpackPlugin({
+          filename: "card.html",
+          template: "src/html/card.html"
         })
     ],
     resolve: {
