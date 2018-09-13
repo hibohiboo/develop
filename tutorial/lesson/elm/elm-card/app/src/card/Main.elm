@@ -73,7 +73,7 @@ view model =
     div [ class "container" ]
         [ header []
             [ img [ src "/images/logo.png" ] []
-            , h1 [] [ text "Elm 0.19 Webpack Starter, featuring hot-loading" ]
+            , h1 [] [ text "Card!" ]
             ]
         , p [] [ text "Click on the button below to increment the state. " ]
         , div []

@@ -13,11 +13,12 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var MODE = process.env.npm_lifecycle_event === "prod" ? "production" : "development";
-var filename = MODE == "production" ? "[name]-[hash].js" : "index.js";
+const filename = MODE == "production" ? "[name]-[hash].js" : "[name].js";
+const files = {index:"./src/index.js", card:"./src/card.js"};
 
 var common = {
     mode: MODE,
-    entry: "./src/index.js",
+    entry: files,
     output: {
         path: path.join(__dirname, "dist"),
         // webpack -p automatically adds hash when building for production
@@ -32,7 +33,8 @@ var common = {
         }),
         new HTMLWebpackPlugin({
           filename: "card.html",
-          template: "src/html/card.html"
+          template: "src/html/card.html",
+          inject: false
         })
     ],
     resolve: {

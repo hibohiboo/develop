@@ -24,7 +24,10 @@ htmlファイルを増やしたいときは以下のようにプラグインを�
 ## 履歴
 
 [環境構築](https://github.com/hibohiboo/develop/tree/d10f2da1feb75f090d6714af7c4c73be220c7773/tutorial/lesson/elm/elm-card)
-  
+
+[HTMLファイル追加](https://github.com/hibohiboo/develop/tree/95b139debb63953b660ab5ce0de78b66bec84efe/tutorial/lesson/elm/elm-card)
+
+
 
 ## 参考
 
