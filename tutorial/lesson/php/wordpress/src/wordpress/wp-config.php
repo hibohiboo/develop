@@ -83,6 +83,9 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', false);
 
+// マルチサイト対応
+define('WP_ALLOW_MULTISITE', true);
+
 /* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */
 
 /** Absolute path to the WordPress directory. */
