@@ -75,7 +75,7 @@ view model =
             [ img [ src "/images/logo.png" ] []
             , h1 [] [ text "Card!" ]
             ]
-        , p [] [ text "Click on the button below to increment the state. a " ]
+        , p [] [ text "Click on the button below to increment the state. " ]
         , div []
             [ button
                 [ class "pure-button pure-button-primary"

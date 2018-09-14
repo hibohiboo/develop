@@ -105,6 +105,7 @@ if (MODE === "development") {
                                 // add Elm's debug overlay to output
                                 debug: true,
                                 forceWatch: true,
+                                // optimize: true debugと同時には使えない
                             }
                         }
                     ]
@@ -180,7 +181,7 @@ if (MODE === "production") {
                     test: /\.elm$/,
                     exclude: [/elm-stuff/, /node_modules/],
                     use: [
-                        { loader: "elm-webpack-loader" }
+                        { loader: "elm-webpack-loader", options:{optimize: true} }
                     ]
                 },
             {
