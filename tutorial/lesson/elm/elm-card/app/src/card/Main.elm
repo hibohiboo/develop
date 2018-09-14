@@ -75,7 +75,7 @@ view model =
             [ img [ src "/images/logo.png" ] []
             , h1 [] [ text "Card!" ]
             ]
-        , p [] [ text "Click on the button below to increment the state. " ]
+        , p [] [ text "Click on the button below to increment the state. a " ]
         , div []
             [ button
                 [ class "pure-button pure-button-primary"
@@ -98,13 +98,9 @@ view model =
 
 main : Program Int Model Msg
 main =
-    Browser.document
+    Browser.element
         { init = init
         , update = update
-        , view =
-            \m ->
-                { title = "Elm 0.19 starter"
-                , body = [ view m ]
-                }
+        , view = view
         , subscriptions = \_ -> Sub.none
         }

@@ -29,7 +29,8 @@ var common = {
             // Use this template to get basic responsive meta tags
             template: "src/index.html",
             // inject details of output file at end of body
-            inject: "body"
+            inject: "body",
+            chunks:['index']
         }),
         new HTMLWebpackPlugin({
           filename: "card.html",

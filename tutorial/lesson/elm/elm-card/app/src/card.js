@@ -3,7 +3,8 @@
 require("./styles.scss");
 
 const {Elm} = require('./card/Main');
-var app = Elm.Main.init({flags: 6});
+const mountNode = document.getElementById('cards');
+const app = Elm.Main.init({flags: 6, node: mountNode});
 
 app.ports.toJs.subscribe(data => {
     console.log(data);
