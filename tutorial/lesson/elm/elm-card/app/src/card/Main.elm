@@ -89,10 +89,36 @@ view model =
             [ text "And now don't forget to add a star to the Github repo "
             , a [ href "https://github.com/simonh1000/elm-webpack-starter" ] [ text "elm-webpack-starter" ]
             ]
+            , secret
         ]
-
-
-
+secret : Html Msg
+secret = 
+  div[class "card black insane-wrapper out secret"][
+    div[class "card-title white-text"][text "Handout"],
+    secretInnerCard
+  ]
+secretInnerCard = div[class "card white"][
+      div[class "card black"][
+        div[class "white-text"][text "秘密"],
+        secretInnerWrapper
+        ,div[class "white-text"][text "この秘密を自分から明らかに"]
+        ,div[class "white-text"][text "することはできない"]
+      ]
+    ]
+secretInnerWrapper = div[class "insane-wrapper"][
+          secretMain
+        ]
+secretMain = div[class "card white"][
+            secretShock,
+            secretContent
+          ]
+secretShock = div[class "row"][
+              div[class "col s4"][text "ショック"],
+              div[class "col s8"][text ""]
+            ]
+secretContent = div[class "card-content"][
+              text "てすと"
+            ]
 --
 
 
