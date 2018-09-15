@@ -50,13 +50,13 @@ button {
   align-items: center;
 }
 .font-ss{
-  font-size: 0.56em;
+  font-size: 0.7em;
 }
 .font-s{
-  font-size: 0.6em;
+  font-size: 0.8em;
 }
 .font-m{
-  font-size: 0.75em;
+  font-size: 0.9em;
 }
 .insane-secret-footer{
   flex:1;
@@ -67,7 +67,15 @@ button {
     /*width: 172mm;*/ /* A4縦の幅 */
    /* height: 251mm;*/ /* A4縦の高さ */
     width: 800px;
-  
+  }
+  .font-ss{
+    font-size: 0.56em;
+  }
+  .font-s{
+    font-size: 0.6em;
+  }
+  .font-m{
+    font-size: 0.75em;
   }
   .page-footer,#navigation,h1
   {

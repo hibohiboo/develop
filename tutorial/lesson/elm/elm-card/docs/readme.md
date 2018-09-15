@@ -59,6 +59,7 @@ const app = Elm.Main.init({flags: 6, node: mountNode});
 
 [elmを一部適用](https://github.com/hibohiboo/develop/tree/7e64462bc1acecf1a0f780c00e175b6af374069b/tutorial/lesson/elm/elm-card)
 
+[elmを一部適用](https://github.com/hibohiboo/develop/tree/8df449ce1520857f15b76f47eca6f27f80fdfe2b/tutorial/lesson/elm/elm-card) [*][*6]
 
 ## 参考
 
