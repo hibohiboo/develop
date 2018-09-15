@@ -70,25 +70,8 @@ add1 model =
 view : Model -> Html Msg
 view model =
     div [ class "container" ]
-        [ header []
-            [ img [ src "/images/logo.png" ] []
-            , h1 [] [ text "Card!" ]
-            ]
-        , p [] [ text "Click on the button below to increment the state. " ]
-        , div []
-            [ button
-                [ class "pure-button pure-button-primary"
-                , onClick Inc
-                ]
-                [ text "+ 1" ]
-            , text <| String.fromInt model
-            ]
-        , p [] [ text "Then make a change to the source code and see a how the state is retained after you recompile." ]
-        , p []
-            [ text "And now don't forget to add a star to the Github repo "
-            , a [ href "https://github.com/simonh1000/elm-webpack-starter" ] [ text "elm-webpack-starter" ]
-            ]
-            , div[class "print"][
+        [ p [][],
+            div[class "print"][
               insaneHandout
             ]
         ]

@@ -139,7 +139,8 @@ if (MODE === "development") {
               port:{
                 server:3002,
                 client: 3002
-                }
+                },
+              allEntries: true
             },
         },
       // windowsとvirtual boxとdockerを組み合わせている場合、ファイルの変更の検知にポーリングが必要(webpack時)
