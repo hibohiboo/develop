@@ -80,6 +80,10 @@ const app = Elm.Main.init({flags: 6, node: mountNode});
 
 [ハンドアウト作成](https://github.com/hibohiboo/develop/tree/1bfcca589058e88007d2cf9f1e52dd67768a3659/tutorial/lesson/elm/elm-card) 
 
+### TODO開始
+[モデルとビューを作成](https://github.com/hibohiboo/develop/tree/7726dd013e034e744ab78898e1da4eee09ad5583/tutorial/lesson/elm/elm-card) 
+
+
 
 
 ## 参考

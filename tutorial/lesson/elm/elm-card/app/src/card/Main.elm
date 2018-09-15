@@ -38,14 +38,17 @@ initialModel =
 
 
 type Msg
-    = None
-
+    = NoOp
+    | AddNew Handout
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update message model =
     case message of
-        None ->
-            ( model, Cmd.none )
+        NoOp ->
+            (model, Cmd.none)
+
+        AddNew handout -> 
+            ( { model | handoutList = model.handoutList ++ [handout] }, toJs ("Add Handout" ++ handout.title)  )
 
 -- VIEW
 
@@ -53,11 +56,17 @@ update message model =
 view : Model -> Html Msg
 view model =
     div [ class "container" ]
-        [ p [][],
-            div[class "print"][
-              viewList model.handoutList
-            ]
+        [ p [][text "ハンドアウト一覧"]
+        , updateButton model.handoutList
+        , div[class "print"][
+            viewList model.handoutList
+          ]
         ]
+
+updateButton : List Handout -> Html Msg
+updateButton models = 
+    div [] 
+        [ button [ onClick (AddNew (Handout 4 "item4")) ] [ text "Click" ] ]
 
 viewList : List Handout -> Html Msg
 viewList models = 
