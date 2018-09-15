@@ -83,7 +83,7 @@ const app = Elm.Main.init({flags: 6, node: mountNode});
 ### TODO開始
 [モデルとビューを作成](https://github.com/hibohiboo/develop/tree/7726dd013e034e744ab78898e1da4eee09ad5583/tutorial/lesson/elm/elm-card) 
 
-
+[updateを作成](https://github.com/hibohiboo/develop/tree/9b2f4d76b7e0959fc3c33b8eabe40297cd72b6c3/tutorial/lesson/elm/elm-card) 
 
 
 ## 参考
