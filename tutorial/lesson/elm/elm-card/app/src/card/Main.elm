@@ -8,7 +8,6 @@ import Html.Events exposing (..)
 import Url exposing (Url)
 import Url.Parser as UrlParser
 
-
 port toJs : String -> Cmd msg
 
 
@@ -93,30 +92,44 @@ view model =
         ]
 secret : Html Msg
 secret = 
-  div[class "card black insane-wrapper out secret"][
-    div[class "card-title white-text"][text "Handout"],
+  div[class "card black insane-wrapper out secret", style "width" "190px",style  "height" "300px"][
+    div[class "card-title white-text", style "flex" "1", style "text-align" "center"][text "Handout"],
     secretInnerCard
   ]
-secretInnerCard = div[class "card white"][
-      div[class "card black"][
-        div[class "white-text"][text "秘密"],
+secretInnerCard =
+   div[class "card white", style "display" "flex"
+                         , style "width" "180px"
+                         , style "height" "290px"
+                         , style "flex-direction" "column"
+                         , style "justify-content" "center"
+                         , style "align-items" "center"][
+      div[class "card black"
+         , style "width" "170px"
+         , style "height" "280px"
+         , style "margin-bottom" "0.5rem"][
+        div[class "white-text font-s", style "flex" "1", style "text-align" "center"][text "秘密"],
         secretInnerWrapper
-        ,div[class "white-text"][text "この秘密を自分から明らかに"]
-        ,div[class "white-text"][text "することはできない"]
+        ,div[class "white-text font-s insane-secret-footer"][text "この秘密を自分から明らかに"]
+        ,div[class "white-text font-s insane-secret-footer"][text "することはできない"]
       ]
     ]
 secretInnerWrapper = div[class "insane-wrapper"][
           secretMain
         ]
-secretMain = div[class "card white"][
+secretMain = div[class "card white"
+                , style "width" "160px"
+                , style "height" "180px"
+                , style "margin" "1px"][
             secretShock,
             secretContent
           ]
-secretShock = div[class "row"][
-              div[class "col s4"][text "ショック"],
-              div[class "col s8"][text ""]
+secretShock = div[class "row font-m"
+                , style "border-bottom" "3px double #bbb"
+                , style "margin-bottom" "3px"][
+              div[class "col s4", style "border-right" "solid 1px #bbb", style "padding" "0"][text "ショック"],
+              div[class "col s8 font-ss"][text ""]
             ]
-secretContent = div[class "card-content"][
+secretContent = div[class "card-content font-ss", style "padding" "0", style "margin" "2px"][
               text "てすと"
             ]
 --

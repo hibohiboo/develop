@@ -35,7 +35,7 @@ var common = {
         new HTMLWebpackPlugin({
           filename: "card.html",
           template: "src/html/card.html",
-          inject: false
+          chunks:['card']
         })
     ],
     resolve: {

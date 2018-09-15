@@ -72,3 +72,4 @@ const app = Elm.Main.init({flags: 6, node: mountNode});
 [*3]:https://ema-hiro.hatenablog.com/entry/2017/10/12/015748
 [*4]:https://github.com/elm-community/elm-webpack-loader/pull/142/files
 [*5]:https://github.com/jantimon/html-webpack-plugin
+[*6]:https://github.com/avh4/elm-upgrade

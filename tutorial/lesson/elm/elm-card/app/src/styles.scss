@@ -40,7 +40,7 @@ button {
   margin: 10px;
 }
 .card .card-title{
-  font-size: 16px;
+  font-size: 1em;
 }
 
 .insane-wrapper{
@@ -48,6 +48,19 @@ button {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.font-ss{
+  font-size: 0.56em;
+}
+.font-s{
+  font-size: 0.6em;
+}
+.font-m{
+  font-size: 0.75em;
+}
+.insane-secret-footer{
+  flex:1;
+  text-align:center;
 }
 @media print{
   .print{
@@ -74,53 +87,4 @@ button {
      page-break-after: always;
   }
 
-}
-.insane-wrapper.out{
-  width: 190px; 
-  height: 300px;
-  .card-title{
-    flex:1; 
-    text-align:center;
-  }
-  .card.white{
-    display:flex;
-    width:180px;
-    height:290px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    .black {
-      width:170px;
-      height:280px;
-      margin-bottom:0.5rem;
-
-      .white-text{
-        font-size:10px;
-        flex:1; 
-        text-align:center;
-
-        .card{
-          width:160px;
-          height:180px;
-          margin:1px;
-
-          .row{
-            font-size:12px;
-            border-bottom: 3px double #bbb;
-            margin-bottom:3px;
-
-            .col.s4{
-              border-right: solid 1px #bbb;padding:0;
-            }
-          }
-          .card-content{
-            font-size:9px;
-            padding:0;
-            margin:2px
-          }
-        }
-      }
-    }
-  }
 }
