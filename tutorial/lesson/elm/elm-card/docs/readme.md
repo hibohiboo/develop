@@ -39,6 +39,23 @@ var common = {
     },
 ```
 
+`allEntries:true`にすると、card.htmlでもhot-loadが有効になる。
+([webpack.config.js](https://github.com/hibohiboo/develop/tree/56a1499f3a3721afb9addfffb47445528591c5d1/tutorial/lesson/elm/elm-card/app/webpack.config.js) )
+```js
+hotClient:{
+  host: {
+    client: '192.168.50.10', // 仮想環境のIPアドレス
+    server: '0.0.0.0',       // Dockerのコンテナ上で動かすのでワイルドカードIPアドレスを指定
+  },
+  // hot-reloadで使われるポートを固定
+  port:{
+    server:3002,
+    client: 3002
+    },
+  allEntries: true 
+}
+```
+
 ### elmを要素に適用
 
 Html.programWithFlagsからBrowser.elementに変更されていた
@@ -62,6 +79,7 @@ const app = Elm.Main.init({flags: 6, node: mountNode});
 [elmを一部適用](https://github.com/hibohiboo/develop/tree/8df449ce1520857f15b76f47eca6f27f80fdfe2b/tutorial/lesson/elm/elm-card) [*][*6]
 
 [ハンドアウト作成](https://github.com/hibohiboo/develop/tree/1bfcca589058e88007d2cf9f1e52dd67768a3659/tutorial/lesson/elm/elm-card) 
+
 
 
 ## 参考

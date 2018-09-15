@@ -10,59 +10,42 @@ import Url.Parser as UrlParser
 
 port toJs : String -> Cmd msg
 
+type alias Handout = 
+    { id : Int
+    , title : String
+    }
 
 type alias Model =
-    Int
+    {
+      handoutList: List Handout
+    }
 
 
 init : Int -> ( Model, Cmd Msg )
 init flags =
-    ( flags, Cmd.none )
+    ( initialModel, Cmd.none )
 
+initialModel : Model
+initialModel = 
+    { handoutList = 
+        [ Handout 1 "item1" 
+        , Handout 2 "item2"
+        , Handout 3 "item3"
+        ]
+    }
 
-
--- -- URL Parsing and Routing
---
---
--- navigationHandler : Url -> Msg
--- navigationHandler =
---     urlParser >> Set
---
---
--- urlParser : Url -> Int
--- urlParser url =
---     url
---         |> UrlParser.parse UrlParser.int
---         |> Maybe.withDefault 0
---
 -- UPDATE
 
 
 type Msg
-    = Inc
-    | Set Int
+    = None
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update message model =
     case message of
-        Inc ->
-            ( add1 model, toJs "Hello Js" )
-
-        Set m ->
-            ( m, toJs "Hello Js" )
-
-
-{-| increments the counter
-
-    add1 5 --> 6
-
--}
-add1 : Model -> Model
-add1 model =
-    model + 1
-
-
+        None ->
+            ( model, Cmd.none )
 
 -- VIEW
 
@@ -72,18 +55,27 @@ view model =
     div [ class "container" ]
         [ p [][],
             div[class "print"][
-              insaneHandout
+              viewList model.handoutList
             ]
         ]
 
-insaneHandout : Html Msg
-insaneHandout = 
-  div[class "insane-card card"][
-    div[class "f1"][
-      open
-    ],
-    div[class "f1"][
-      secret
+viewList : List Handout -> Html Msg
+viewList models = 
+    handouts models
+
+handouts models =
+  ul [] (List.map insaneHandout models)
+
+insaneHandout : Handout -> Html Msg
+insaneHandout model = 
+  li[][
+    div[class "insane-card card"][
+      div[class "f1"][
+        open model.title
+      ],
+      div[class "f1"][
+        secret
+      ]
     ]
   ]
 
@@ -130,9 +122,11 @@ secretContent = div[class "card-content font-ss", style "padding" "0", style "ma
             ]
 --
 
-open = 
+open title= 
   div[class "card white insane-wrapper", style "width" "190px",style  "height" "300px"][
-    div[class "card-title black-text", style "flex" "1", style "text-align" "center"][text "カードタイトル"],
+    div[class "card-title black-text", style "flex" "1", style "text-align" "center"][
+      text title
+    ],
     openInnerCard
   ]
 openInnerCard =

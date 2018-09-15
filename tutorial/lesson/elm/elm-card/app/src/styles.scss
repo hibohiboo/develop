@@ -29,10 +29,12 @@ button {
 .f1{
   flex: 1;
 }
-.print{
+.print ul {
   display:flex;
   flex-wrap: wrap;
+  flex-direction: row;
 }
+
 .insane-card{
   display:flex;
   flex-direction: row;
