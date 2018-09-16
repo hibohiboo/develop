@@ -53,3 +53,6 @@ RUN yarn add purecss
 # RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"npm run dev\",/g" /app/package.json
 # RUN sed -i -e "/test/d"  /app/package.json
 # RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"test\": \"elm-test\",/g" /app/package.json
+
+# formatter
+RUN yarn add --dev elm-format
