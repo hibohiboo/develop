@@ -67,6 +67,7 @@ viewList : List Handout -> Html Msg
 viewList models = 
     handouts models
 
+handouts : List Handout -> Html Msg
 handouts models =
   ul [] (List.map insaneHandout models)
 
