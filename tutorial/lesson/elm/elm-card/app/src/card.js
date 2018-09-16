@@ -2,7 +2,7 @@
 
 require("./styles.scss");
 
-const {Elm} = require('./card/Main');
+const {Elm} = require('./Card/Main');
 const mountNode = document.getElementById('cards');
 const app = Elm.Main.init({flags: 6, node: mountNode});
 
