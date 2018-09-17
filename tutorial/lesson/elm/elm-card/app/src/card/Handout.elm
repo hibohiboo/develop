@@ -8,6 +8,9 @@ import Html.Events exposing (..)
 type alias Handout =
     { id : Int
     , title : String
+    , mission : String
+    , shock : String
+    , secret : String
     , del : Bool
     }
 
@@ -31,11 +34,14 @@ update message model =
                 model
 
 
-new : Int -> String -> Bool -> Handout
-new i s d =
+new : Int -> String -> String -> String -> String -> Handout
+new i t m sh se =
     { id = i
-    , title = s
-    , del = d
+    , title = t
+    , mission = m
+    , shock = sh
+    , secret = se
+    , del = False
     }
 
 
@@ -44,7 +50,7 @@ insaneHandout model =
     li []
         [ div [ class "insane-card card" ]
             [ div [ class "f1" ]
-                [ open model.title
+                [ open model.title model.mission
                 ]
             , div [ class "f1" ]
                 [ secret
@@ -131,16 +137,16 @@ secretContent =
 --
 
 
-open title =
+open title mission =
     div [ class "card white insane-wrapper", style "width" "190px", style "height" "300px" ]
         [ div [ class "card-title black-text", style "flex" "1", style "text-align" "center" ]
             [ text title
             ]
-        , openInnerCard
+        , openInnerCard mission
         ]
 
 
-openInnerCard =
+openInnerCard mission =
     div
         [ class "card black"
         , style "display" "flex"
@@ -157,29 +163,29 @@ openInnerCard =
             , style "margin-bottom" "0.5rem"
             ]
             [ div [ class "black-text font-s", style "flex" "1", style "text-align" "center" ] [ text "使命" ]
-            , openInnerWrapper
+            , openInnerWrapper mission
             ]
         ]
 
 
-openInnerWrapper =
+openInnerWrapper mission =
     div [ class "insane-wrapper" ]
-        [ openMain
+        [ openMain mission
         ]
 
 
-openMain =
+openMain mission =
     div
         [ class "card white"
         , style "width" "160px"
         , style "height" "220px"
         , style "margin" "1px"
         ]
-        [ openContent
+        [ openContent mission
         ]
 
 
-openContent =
+openContent mission =
     div [ class "card-content font-ss", style "padding" "0", style "margin" "2px" ]
-        [ text "てすと"
+        [ text mission
         ]

@@ -92,6 +92,8 @@ elm_1  | Try using String.fromInt to turn it into a string? Or put it in [] to m
 [削除機能追加](https://github.com/hibohiboo/develop/tree/750d6ff8930f8323498cb8caf6da5a911bc787ae/tutorial/lesson/elm/elm-card)  
 [入力分離（未連携）](https://github.com/hibohiboo/develop/tree/9839c1c1729547f04ddbcc4a5dce5f3758486ce8/tutorial/lesson/elm/elm-card)  
 [入力分離（連携）](https://github.com/hibohiboo/develop/tree/fd349dfb039a3f1fe6d69397a423b474d5925c31/tutorial/lesson/elm/elm-card)  
+[input要素追加](https://github.com/hibohiboo/develop/tree/780d70b8250a3a5cbedf6443a7e427df02b382c0/tutorial/lesson/elm/elm-card)  
+
 
 
 ### TODO開始

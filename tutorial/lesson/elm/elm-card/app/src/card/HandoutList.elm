@@ -3,6 +3,7 @@ module Card.HandoutList exposing (Model, Msg(..), initialModel, update, updateBu
 import Browser
 import Browser.Navigation as Nav
 import Card.Handout exposing (Handout, Msg, insaneHandout, new, update)
+import Card.InputModel
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -16,9 +17,7 @@ type alias Model =
 
 initialModel : Model
 initialModel =
-    { handoutList =
-        [ Handout 1 "item1" False
-        ]
+    { handoutList = []
     , nextId = 2
     }
 
@@ -33,8 +32,8 @@ type Msg
     | HandoutMsg Card.Handout.Msg
 
 
-update : Msg -> String -> Model -> ( Model, Cmd Msg )
-update message title model =
+update : Msg -> Card.InputModel.Model -> Model -> ( Model, Cmd Msg )
+update message im model =
     case message of
         NoOp ->
             ( model, Cmd.none )
@@ -42,7 +41,7 @@ update message title model =
         AddNew ->
             let
                 newHO =
-                    Card.Handout.new model.nextId title False
+                    Card.Handout.new model.nextId im.title im.mission im.shock im.secret
             in
             Tuple.pair { model | handoutList = model.handoutList ++ [ newHO ], nextId = model.nextId + 1 } Cmd.none
 

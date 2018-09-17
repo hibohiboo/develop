@@ -62,7 +62,7 @@ update message model =
         HandoutListMsg subMsg ->
             let
                 ( updatedHandoutListModel, handoutListCmd ) =
-                    HandoutList.update subMsg model.inputModel.title model.handoutListModel
+                    HandoutList.update subMsg model.inputModel model.handoutListModel
             in
             ( { model | handoutListModel = updatedHandoutListModel }, Cmd.map HandoutListMsg handoutListCmd )
 
