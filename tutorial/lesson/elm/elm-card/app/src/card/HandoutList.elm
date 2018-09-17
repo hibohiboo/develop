@@ -34,7 +34,7 @@ initialModel =
 
 type Msg
     = NoOp
-    | AddNew Handout
+    | AddNew
 
 
 update : Msg -> Handout -> Model -> ( Model, Cmd Msg )
@@ -43,8 +43,8 @@ update message ho model =
         NoOp ->
             ( model, Cmd.none )
 
-        AddNew handout ->
-            ( { model | handoutList = model.handoutList ++ [ handout ] }, toJs ("Add Handout" ++ handout.title) )
+        AddNew ->
+            ( { model | handoutList = model.handoutList ++ [ ho ] }, toJs ("Add Handout" ++ ho.title) )
 
 
 
@@ -65,7 +65,7 @@ view model =
 updateButton : List Handout -> Html Msg
 updateButton models =
     div []
-        [ button [ onClick (AddNew (Handout 4 "item4")) ] [ text "Click" ] ]
+        [ button [ onClick AddNew ] [ text "Add" ] ]
 
 
 viewList : List Handout -> Html Msg

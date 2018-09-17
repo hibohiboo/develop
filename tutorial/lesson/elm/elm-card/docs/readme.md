@@ -84,6 +84,8 @@ const app = Elm.Main.init({flags: 6, node: mountNode});
 
 [ハンドアウト一覧を別ファイルに分割](https://github.com/hibohiboo/develop/tree/6b8b65530d8ed5139516dd5d0fa812c9cd8d013f/tutorial/lesson/elm/elm-card) 
 
+[入力欄表示](https://github.com/hibohiboo/develop/tree/97c609a542e2f52e19ef728a7ab72f360310edc8/tutorial/lesson/elm/elm-card) 
+
 
 ### TODO開始
 [モデルとビューを作成](https://github.com/hibohiboo/develop/tree/7726dd013e034e744ab78898e1da4eee09ad5583/tutorial/lesson/elm/elm-card) 
