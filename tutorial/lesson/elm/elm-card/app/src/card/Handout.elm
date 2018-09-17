@@ -1,4 +1,4 @@
-module Card.Handout exposing (Handout, insaneHandout, new)
+module Card.Handout exposing (Handout, Msg, insaneHandout, new, update)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -8,17 +8,38 @@ import Html.Events exposing (..)
 type alias Handout =
     { id : Int
     , title : String
+    , del : Bool
     }
 
 
-new : Int -> String -> Handout
-new i s =
+type Msg
+    = NoOp
+    | OnDelete Int
+
+
+update : Msg -> Handout -> Handout
+update message model =
+    case message of
+        NoOp ->
+            model
+
+        OnDelete id ->
+            if id == model.id then
+                { model | del = True }
+
+            else
+                model
+
+
+new : Int -> String -> Bool -> Handout
+new i s d =
     { id = i
     , title = s
+    , del = d
     }
 
 
-insaneHandout : Handout -> Html msg
+insaneHandout : Handout -> Html Msg
 insaneHandout model =
     li []
         [ div [ class "insane-card card" ]
@@ -29,6 +50,14 @@ insaneHandout model =
                 [ secret
                 ]
             ]
+        , viewDeleteButton model
+        ]
+
+
+viewDeleteButton : Handout -> Html Msg
+viewDeleteButton ho =
+    span []
+        [ button [ onClick (OnDelete ho.id) ] [ text "x" ]
         ]
 
 

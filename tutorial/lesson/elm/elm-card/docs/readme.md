@@ -68,24 +68,17 @@ const app = Elm.Main.init({flags: 6, node: mountNode});
 
 ## 履歴
 
-[環境構築](https://github.com/hibohiboo/develop/tree/d10f2da1feb75f090d6714af7c4c73be220c7773/tutorial/lesson/elm/elm-card)
-
-[HTMLファイル追加](https://github.com/hibohiboo/develop/tree/95b139debb63953b660ab5ce0de78b66bec84efe/tutorial/lesson/elm/elm-card)
-
-[jsファイル追加](https://github.com/hibohiboo/develop/tree/e46eeb8980fa124f500081d152c6d3f9eb7ca4b2/tutorial/lesson/elm/elm-card)
-
-[elmを一部適用](https://github.com/hibohiboo/develop/tree/7e64462bc1acecf1a0f780c00e175b6af374069b/tutorial/lesson/elm/elm-card)
-
-[elmを一部適用](https://github.com/hibohiboo/develop/tree/8df449ce1520857f15b76f47eca6f27f80fdfe2b/tutorial/lesson/elm/elm-card) [*][*6]
-
-[ハンドアウト作成](https://github.com/hibohiboo/develop/tree/1bfcca589058e88007d2cf9f1e52dd67768a3659/tutorial/lesson/elm/elm-card) 
-
-[ハンドアウトを別ファイルに分割](https://github.com/hibohiboo/develop/tree/266d81e5fd35f4893e230bd827a81bcbe68eff32/tutorial/lesson/elm/elm-card) 
-
-[ハンドアウト一覧を別ファイルに分割](https://github.com/hibohiboo/develop/tree/6b8b65530d8ed5139516dd5d0fa812c9cd8d013f/tutorial/lesson/elm/elm-card) 
-
-[入力欄表示](https://github.com/hibohiboo/develop/tree/97c609a542e2f52e19ef728a7ab72f360310edc8/tutorial/lesson/elm/elm-card) 
-[処理の移譲](https://github.com/hibohiboo/develop/tree/98f97438fc3f9bc6610d684da7abed146bca3ce1/tutorial/lesson/elm/elm-card) 
+[環境構築](https://github.com/hibohiboo/develop/tree/d10f2da1feb75f090d6714af7c4c73be220c7773/tutorial/lesson/elm/elm-card)  
+[HTMLファイル追加](https://github.com/hibohiboo/develop/tree/95b139debb63953b660ab5ce0de78b66bec84efe/tutorial/lesson/elm/elm-card)  
+[jsファイル追加](https://github.com/hibohiboo/develop/tree/e46eeb8980fa124f500081d152c6d3f9eb7ca4b2/tutorial/lesson/elm/elm-card)  
+[elmを一部適用](https://github.com/hibohiboo/develop/tree/7e64462bc1acecf1a0f780c00e175b6af374069b/tutorial/lesson/elm/elm-card)  
+[elmを一部適用](https://github.com/hibohiboo/develop/tree/8df449ce1520857f15b76f47eca6f27f80fdfe2b/tutorial/lesson/elm/elm-card) [*][*6]  
+[ハンドアウト作成](https://github.com/hibohiboo/develop/tree/1bfcca589058e88007d2cf9f1e52dd67768a3659/tutorial/lesson/elm/elm-card)   
+[ハンドアウトを別ファイルに分割](https://github.com/hibohiboo/develop/tree/266d81e5fd35f4893e230bd827a81bcbe68eff32/tutorial/lesson/elm/elm-card)   
+[ハンドアウト一覧を別ファイルに分割](https://github.com/hibohiboo/develop/tree/6b8b65530d8ed5139516dd5d0fa812c9cd8d013f/tutorial/lesson/elm/elm-card)   
+[入力欄表示](https://github.com/hibohiboo/develop/tree/97c609a542e2f52e19ef728a7ab72f360310edc8/tutorial/lesson/elm/elm-card)  
+[処理の移譲](https://github.com/hibohiboo/develop/tree/98f97438fc3f9bc6610d684da7abed146bca3ce1/tutorial/lesson/elm/elm-card)  
+[追加メソッド切り出し](https://github.com/hibohiboo/develop/tree/f5ede5a569326bed906de05515d65c7b7dda0f99/tutorial/lesson/elm/elm-card)  
 
 
 ### TODO開始

@@ -1,8 +1,8 @@
-port module Card.HandoutList exposing (Model, Msg(..), handouts, initialModel, toJs, update, updateButton, view, viewList)
+port module Card.HandoutList exposing (Model, Msg(..), initialModel, toJs, update, updateButton, view, viewList)
 
 import Browser
 import Browser.Navigation as Nav
-import Card.Handout exposing (Handout, insaneHandout)
+import Card.Handout exposing (Handout, Msg, insaneHandout, update)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -21,9 +21,7 @@ type alias Model =
 initialModel : Model
 initialModel =
     { handoutList =
-        [ Handout 1 "item1"
-        , Handout 2 "item2"
-        , Handout 3 "item3"
+        [ Handout 1 "item1" False
         ]
     }
 
@@ -35,6 +33,7 @@ initialModel =
 type Msg
     = NoOp
     | AddNew
+    | HandoutMsg Card.Handout.Msg
 
 
 update : Msg -> Handout -> Model -> ( Model, Cmd Msg )
@@ -45,6 +44,13 @@ update message ho model =
 
         AddNew ->
             ( { model | handoutList = model.handoutList ++ [ ho ] }, toJs ("Add Handout" ++ ho.title) )
+
+        HandoutMsg subMsg ->
+            let
+                updatedHandoutList =
+                    List.map (Card.Handout.update subMsg) model.handoutList
+            in
+            Tuple.pair { model | handoutList = updatedHandoutList } Cmd.none
 
 
 
@@ -70,9 +76,4 @@ updateButton models =
 
 viewList : List Handout -> Html Msg
 viewList models =
-    handouts models
-
-
-handouts : List Handout -> Html Msg
-handouts models =
-    ul [] (List.map insaneHandout models)
+    ul [] (List.map insaneHandout models) |> Html.map HandoutMsg
