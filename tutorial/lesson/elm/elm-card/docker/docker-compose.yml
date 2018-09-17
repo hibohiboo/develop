@@ -9,6 +9,7 @@ services:
       - ../app/elm.json:/app/elm.json
       - ../app/.babelrc:/app/.babelrc
       - ../app/webpack.config.js:/app/webpack.config.js
+      - ../dist:/app/dist
     ports:
       - 3000:3000
       - 3002:3002
