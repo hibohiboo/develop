@@ -47,10 +47,13 @@ update message ho model =
 
         HandoutMsg subMsg ->
             let
+                itemIsNotDeleted m =
+                    not m.del
+
                 updatedHandoutList =
                     List.map (Card.Handout.update subMsg) model.handoutList
             in
-            Tuple.pair { model | handoutList = updatedHandoutList } Cmd.none
+            Tuple.pair { model | handoutList = List.filter itemIsNotDeleted updatedHandoutList } Cmd.none
 
 
 
