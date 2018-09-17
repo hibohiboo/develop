@@ -5,7 +5,7 @@ services:
     volumes:
       - ../app/src:/app/src
       - ../app/tests:/app/tests
-      # - ../app/package.json:/app/package.json
+      - ../app/package.json:/app/package.json
       - ../app/elm.json:/app/elm.json
       - ../app/.babelrc:/app/.babelrc
       - ../app/webpack.config.js:/app/webpack.config.js
