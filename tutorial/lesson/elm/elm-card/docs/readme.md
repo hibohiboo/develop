@@ -82,6 +82,7 @@ const app = Elm.Main.init({flags: 6, node: mountNode});
 
 [ハンドアウトを別ファイルに分割](https://github.com/hibohiboo/develop/tree/266d81e5fd35f4893e230bd827a81bcbe68eff32/tutorial/lesson/elm/elm-card) 
 
+[ハンドアウト一覧を別ファイルに分割](https://github.com/hibohiboo/develop/tree/6b8b65530d8ed5139516dd5d0fa812c9cd8d013f/tutorial/lesson/elm/elm-card) 
 
 
 ### TODO開始

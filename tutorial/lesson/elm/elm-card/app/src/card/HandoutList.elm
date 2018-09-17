@@ -53,7 +53,7 @@ update message ho model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "container" ]
+    div []
         [ p [] [ text "ハンドアウト一覧" ]
         , updateButton model.handoutList
         , div [ class "print" ]

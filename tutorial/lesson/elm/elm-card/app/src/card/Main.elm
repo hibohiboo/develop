@@ -2,11 +2,13 @@ module Main exposing (main)
 
 import Browser
 import Card.Handout exposing (Handout)
+import Card.HandoutCreator as HandoutCreator
 import Card.HandoutList as HandoutList
 import Html exposing (..)
+import Html.Attributes exposing (..)
 
 
-main : Program Int AppModel Msg
+main : Program Int Model Msg
 main =
     Browser.element
         { init = init
@@ -20,33 +22,43 @@ main =
 -- model
 
 
-type alias AppModel =
-    { handoutListModel : HandoutList.Model
+type alias Model =
+    { handoutCreator : HandoutCreator.Model
+    , handoutListModel : HandoutList.Model
     }
 
 
-initialModel : AppModel
+initialModel : Model
 initialModel =
-    { handoutListModel = HandoutList.initialModel
+    { handoutCreator = HandoutCreator.initialModel
+    , handoutListModel = HandoutList.initialModel
     }
 
 
-init : Int -> ( AppModel, Cmd Msg )
+init : Int -> ( Model, Cmd Msg )
 init flags =
     ( initialModel, Cmd.none )
 
 
 type Msg
-    = HandoutListMsg HandoutList.Msg
+    = HandoutCreatorMsg HandoutCreator.Msg
+    | HandoutListMsg HandoutList.Msg
 
 
 
 -- update
 
 
-update : Msg -> AppModel -> ( AppModel, Cmd Msg )
+update : Msg -> Model -> ( Model, Cmd Msg )
 update message model =
     case message of
+        HandoutCreatorMsg subMsg ->
+            let
+                ( updatedCreator, handoutCreatorCmd ) =
+                    HandoutCreator.update subMsg model.handoutCreator
+            in
+            ( { model | handoutCreator = updatedCreator }, Cmd.map HandoutCreatorMsg handoutCreatorCmd )
+
         HandoutListMsg subMsg ->
             let
                 ( updatedHandoutListModel, handoutListCmd ) =
@@ -59,7 +71,7 @@ update message model =
 -- subscription
 
 
-subscriptions : AppModel -> Sub Msg
+subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.none
 
@@ -68,8 +80,9 @@ subscriptions model =
 -- view
 
 
-view : AppModel -> Html Msg
+view : Model -> Html Msg
 view model =
-    Html.div []
-        [ Html.map HandoutListMsg (HandoutList.view model.handoutListModel)
+    div [ class "container" ]
+        [ Html.map HandoutCreatorMsg (HandoutCreator.view model.handoutCreator)
+        , Html.map HandoutListMsg (HandoutList.view model.handoutListModel)
         ]
