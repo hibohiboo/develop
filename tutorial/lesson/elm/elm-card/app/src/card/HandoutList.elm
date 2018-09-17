@@ -1,4 +1,4 @@
-port module Card.HandoutList exposing (Model, Msg(..), initialModel, toJs, update, updateButton, view, viewList)
+module Card.HandoutList exposing (Model, Msg(..), initialModel, toJs, update, updateButton, view, viewList)
 
 import Browser
 import Browser.Navigation as Nav
@@ -6,9 +6,6 @@ import Card.Handout exposing (Handout, Msg, insaneHandout, new, update)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-
-
-port toJs : String -> Cmd msg
 
 
 type alias Model =

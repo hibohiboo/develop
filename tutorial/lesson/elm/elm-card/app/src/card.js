@@ -4,20 +4,12 @@ require("./styles.scss");
 
 const handouts = require('./Card/Main');
 const creator = require('./Card/HandoutCreator');
-const mountNode = document.getElementById('cards');
-const handoutsApp = handouts.Elm.Main.init({flags: 6, node: mountNode});
+
+const handoutsApp = handouts.Elm.Main.init({flags: 0, node: document.getElementById('cards')});
 const creatorApp = creator.Elm.Main.init({flags: null, node: document.getElementById('cardCreator')});
-handoutsApp.ports.toJs.subscribe(data => {
-   console.log(data);
-}) 
+
 creatorApp.ports.toJs.subscribe(data => {
-  console.log(data);
   const json = JSON.stringify(data);
   handoutsApp.ports.fromJs.send(json);
 })
-// Use ES2015 syntax and let Babel compile it for you
-var testFn = (inp) => {
-    let a = inp + 1;
-    return a;
-}
 
