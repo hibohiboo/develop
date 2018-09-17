@@ -5,6 +5,14 @@ import Card.HandoutList as HandoutList
 import Card.InputModel
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Json.Decode
+
+
+
+-- In ports
+
+
+port fromJs : (String -> msg) -> Sub msg
 
 
 main : Program Int Model Msg
@@ -13,7 +21,7 @@ main =
         { init = init
         , update = update
         , view = view
-        , subscriptions = \_ -> Sub.none
+        , subscriptions = \_ -> Sub.batch [ fromJs FromJs ]
         }
 
 
@@ -41,6 +49,7 @@ init flags =
 
 type Msg
     = HandoutListMsg HandoutList.Msg
+    | FromJs String
 
 
 
@@ -56,6 +65,22 @@ update message model =
                     HandoutList.update subMsg model.inputModel.title model.handoutListModel
             in
             ( { model | handoutListModel = updatedHandoutListModel }, Cmd.map HandoutListMsg handoutListCmd )
+
+        FromJs json ->
+            let
+                r =
+                    Json.Decode.decodeString Card.InputModel.decoder json
+
+                -- decodeに成功したら、InputModelを。失敗したら元の値を返す。
+                im =
+                    case r of
+                        Ok m ->
+                            m
+
+                        Err _ ->
+                            model.inputModel
+            in
+            ( { model | inputModel = im }, Cmd.none )
 
 
 

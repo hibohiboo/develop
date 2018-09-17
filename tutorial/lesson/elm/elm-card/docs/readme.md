@@ -104,7 +104,7 @@ elm_1  | Try using String.fromInt to turn it into a string? Or put it in [] to m
 [Elm 0.18で作るTodoアプリ(1)][*1]  
 [elm0.19 + webpack4 + babel7 のサンプルをdockerで試したメモ][*2]  
 [webpackでhtmlファイルも出力する][*3]
-
+[subscribe][*7]
 
 [*1]:https://qiita.com/tomluck/items/872787cda6682834a3a1
 [*2]:https://qiita.com/hibohiboo/items/b19519b4a9dbb5ec11b0
@@ -112,3 +112,4 @@ elm_1  | Try using String.fromInt to turn it into a string? Or put it in [] to m
 [*4]:https://github.com/elm-community/elm-webpack-loader/pull/142/files
 [*5]:https://github.com/jantimon/html-webpack-plugin
 [*6]:https://github.com/avh4/elm-upgrade
+[*7]:https://qiita.com/sand/items/eeabb2220b2ed6fc0fea
