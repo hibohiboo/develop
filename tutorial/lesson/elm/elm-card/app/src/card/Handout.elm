@@ -1,4 +1,4 @@
-module Card.Handout exposing (Handout, insaneHandout)
+module Card.Handout exposing (Handout, insaneHandout, new)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -8,6 +8,13 @@ import Html.Events exposing (..)
 type alias Handout =
     { id : Int
     , title : String
+    }
+
+
+new : Int -> String -> Handout
+new i s =
+    { id = i
+    , title = s
     }
 
 
