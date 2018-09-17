@@ -1,9 +1,12 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 import Browser
 import Html exposing (..)
-import Html.Attributes exposing (type_, value)
+import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
+
+
+port toJs : String -> Cmd msg
 
 
 main : Program Int Model Msg
@@ -52,7 +55,7 @@ update message model =
             Tuple.pair model Cmd.none
 
         UpdateInput s ->
-            Tuple.pair { model | inputStr = s } Cmd.none
+            Tuple.pair { model | inputStr = s } (toJs "test")
 
 
 
@@ -68,9 +71,9 @@ view model =
 
 handoutInput : Model -> Html Msg
 handoutInput model =
-    form []
-        [ label []
+    Html.form []
+        [ label [ attribute "for" "inputTitle" ]
             [ text "タイトル"
-            , input [ onInput UpdateInput, value model.inputStr ] []
             ]
+        , input [ attribute "type" "text", id "inputTitle", class "browser-default", onInput UpdateInput, value model.inputStr ] []
         ]
