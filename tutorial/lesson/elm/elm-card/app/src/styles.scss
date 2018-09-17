@@ -64,6 +64,9 @@ button {
   flex:1;
   text-align:center;
 }
+.deleteButton{
+  position: absolute;
+}
 @media print{
   .print{
     /*width: 172mm;*/ /* A4縦の幅 */
@@ -79,7 +82,13 @@ button {
   .font-m{
     font-size: 0.75em;
   }
-  .page-footer,#navigation,h1
+
+  .printHide,
+  .inputArea,
+  .page-footer,
+  #navigation,
+  h1,
+  .deleteButton
   {
     display:none;
   }

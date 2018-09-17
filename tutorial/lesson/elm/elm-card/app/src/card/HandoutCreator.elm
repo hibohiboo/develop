@@ -79,25 +79,25 @@ update message model =
 
 view : Model -> Html Msg
 view model =
-    div []
+    div [ class "container inputArea" ]
         [ handoutInput model
         ]
 
 
 handoutInput : Model -> Html Msg
 handoutInput model =
-    Html.form []
+    Html.form [ class "" ]
         [ inputs "タイトル" UpdateTitle model.title
-        , inputs "使命" UpdateTitle model.mission
-        , inputs "ショック" UpdateTitle model.shock
-        , inputs "秘密" UpdateTitle model.secret
+        , inputs "使命" UpdateMission model.mission
+        , inputs "ショック" UpdateShock model.shock
+        , inputs "秘密" UpdateSecret model.secret
         ]
 
 
 inputs l m v =
-    div []
-        [ label [ attribute "for" "inputTitle" ]
+    div [ class "row" ]
+        [ label [ class "col s4 m2", attribute "for" "inputTitle" ]
             [ text l
             ]
-        , input [ attribute "type" "text", id "inputTitle", class "browser-default", onInput m, value v ] []
+        , input [ class "col s8 m10", attribute "type" "text", id "inputTitle", class "browser-default", onInput m, value v ] []
         ]

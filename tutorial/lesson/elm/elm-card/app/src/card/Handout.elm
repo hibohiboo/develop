@@ -56,7 +56,7 @@ insaneHandout model =
 
 viewDeleteButton : Handout -> Html Msg
 viewDeleteButton ho =
-    span []
+    span [ class "deleteButton" ]
         [ button [ onClick (OnDelete ho.id) ] [ text "x" ]
         ]
 

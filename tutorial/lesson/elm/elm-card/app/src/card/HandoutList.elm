@@ -1,4 +1,4 @@
-module Card.HandoutList exposing (Model, Msg(..), initialModel, toJs, update, updateButton, view, viewList)
+module Card.HandoutList exposing (Model, Msg(..), initialModel, update, updateButton, view, viewList)
 
 import Browser
 import Browser.Navigation as Nav
@@ -44,7 +44,7 @@ update message title model =
                 newHO =
                     Card.Handout.new model.nextId title False
             in
-            Tuple.pair { model | handoutList = model.handoutList ++ [ newHO ], nextId = model.nextId + 1 } (toJs ("Add Handout : " ++ String.fromInt model.nextId ++ ":" ++ title))
+            Tuple.pair { model | handoutList = model.handoutList ++ [ newHO ], nextId = model.nextId + 1 } Cmd.none
 
         HandoutMsg subMsg ->
             let
@@ -74,7 +74,7 @@ view model =
 
 updateButton : List Handout -> Html Msg
 updateButton models =
-    div []
+    div [ class "printHide" ]
         [ button [ onClick AddNew ] [ text "Add" ] ]
 
 
