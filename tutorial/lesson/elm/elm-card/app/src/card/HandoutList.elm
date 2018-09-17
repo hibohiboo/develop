@@ -2,7 +2,7 @@ port module Card.HandoutList exposing (Model, Msg(..), initialModel, toJs, updat
 
 import Browser
 import Browser.Navigation as Nav
-import Card.Handout exposing (Handout, Msg, insaneHandout, update)
+import Card.Handout exposing (Handout, Msg, insaneHandout, new, update)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -15,6 +15,7 @@ port toJs : String -> Cmd msg
 
 type alias Model =
     { handoutList : List Handout
+    , nextId : Int
     }
 
 
@@ -23,6 +24,7 @@ initialModel =
     { handoutList =
         [ Handout 1 "item1" False
         ]
+    , nextId = 2
     }
 
 
@@ -36,14 +38,18 @@ type Msg
     | HandoutMsg Card.Handout.Msg
 
 
-update : Msg -> Handout -> Model -> ( Model, Cmd Msg )
-update message ho model =
+update : Msg -> String -> Model -> ( Model, Cmd Msg )
+update message title model =
     case message of
         NoOp ->
             ( model, Cmd.none )
 
         AddNew ->
-            ( { model | handoutList = model.handoutList ++ [ ho ] }, toJs ("Add Handout" ++ ho.title) )
+            let
+                newHO =
+                    Card.Handout.new model.nextId title False
+            in
+            Tuple.pair { model | handoutList = model.handoutList ++ [ newHO ], nextId = model.nextId + 1 } (toJs ("Add Handout : " ++ String.fromInt model.nextId ++ ":" ++ title))
 
         HandoutMsg subMsg ->
             let

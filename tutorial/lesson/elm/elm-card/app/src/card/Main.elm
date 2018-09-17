@@ -1,7 +1,6 @@
 module Main exposing (main)
 
 import Browser
-import Card.Handout exposing (Handout, new)
 import Card.HandoutCreator as HandoutCreator
 import Card.HandoutList as HandoutList
 import Html exposing (..)
@@ -62,7 +61,7 @@ update message model =
         HandoutListMsg subMsg ->
             let
                 ( updatedHandoutListModel, handoutListCmd ) =
-                    HandoutList.update subMsg (new 0 model.handoutCreator.inputStr False) model.handoutListModel
+                    HandoutList.update subMsg model.handoutCreator.inputStr model.handoutListModel
             in
             ( { model | handoutListModel = updatedHandoutListModel }, Cmd.map HandoutListMsg handoutListCmd )
 

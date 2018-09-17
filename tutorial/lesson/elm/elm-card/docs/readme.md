@@ -66,6 +66,16 @@ const mountNode = document.getElementById('cards');
 const app = Elm.Main.init({flags: 6, node: mountNode});
 ```
 
+### うれしいこと
+
+エラーメッセージがとても親切。
+
+```
+elm_1  | 52|             Tuple.pair { model | handoutList = model.handoutList ++ [ newHO ], nextId = model.nextId + 1 } (toJs ("Add Handout : " ++ model.nextId ++ ":" ++ title))
+elm_1  |                                                                                                                                           ^^^^^^^^^^^^
+elm_1  | Try using String.fromInt to turn it into a string? Or put it in [] to make it a
+```
+
 ## 履歴
 
 [環境構築](https://github.com/hibohiboo/develop/tree/d10f2da1feb75f090d6714af7c4c73be220c7773/tutorial/lesson/elm/elm-card)  
