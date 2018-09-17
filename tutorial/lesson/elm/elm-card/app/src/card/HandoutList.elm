@@ -6,8 +6,6 @@ import Card.Handout exposing (Handout, Msg, insaneHandout, new, update)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Url exposing (Url)
-import Url.Parser as UrlParser
 
 
 port toJs : String -> Cmd msg

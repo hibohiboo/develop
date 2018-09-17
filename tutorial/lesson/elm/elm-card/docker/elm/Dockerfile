@@ -56,3 +56,5 @@ RUN yarn add purecss
 
 # formatter
 RUN yarn add --dev elm-format
+ADD ./elm.json /app/elm.json
+RUN yarn elm install elm/json

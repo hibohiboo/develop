@@ -1,13 +1,14 @@
 port module Main exposing (main)
 
 import Browser
-import Card.InputModel exposing (Model)
+import Card.InputModel exposing (Model, encode)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
+import Json.Encode
 
 
-port toJs : String -> Cmd msg
+port toJs : Json.Encode.Value -> Cmd msg
 
 
 main : Program (Maybe String) Model Msg
@@ -41,7 +42,11 @@ update message model =
             Tuple.pair model Cmd.none
 
         UpdateInput s ->
-            Tuple.pair { model | inputStr = s } (toJs "test")
+            let
+                newModel =
+                    { model | title = s }
+            in
+            Tuple.pair newModel (toJs (encode newModel))
 
 
 
@@ -61,5 +66,5 @@ handoutInput model =
         [ label [ attribute "for" "inputTitle" ]
             [ text "タイトル"
             ]
-        , input [ attribute "type" "text", id "inputTitle", class "browser-default", onInput UpdateInput, value model.inputStr ] []
+        , input [ attribute "type" "text", id "inputTitle", class "browser-default", onInput UpdateInput, value model.title ] []
         ]

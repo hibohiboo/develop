@@ -5,8 +5,6 @@ import Browser.Navigation as Nav
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Url exposing (Url)
-import Url.Parser as UrlParser
 
 
 port toJs : String -> Cmd msg
@@ -19,24 +17,6 @@ type alias Model =
 init : Int -> ( Model, Cmd Msg )
 init flags =
     ( flags, Cmd.none )
-
-
-
--- -- URL Parsing and Routing
---
---
--- navigationHandler : Url -> Msg
--- navigationHandler =
---     urlParser >> Set
---
---
--- urlParser : Url -> Int
--- urlParser url =
---     url
---         |> UrlParser.parse UrlParser.int
---         |> Maybe.withDefault 0
---
--- UPDATE
 
 
 type Msg

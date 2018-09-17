@@ -2,6 +2,7 @@ port module Main exposing (main)
 
 import Browser
 import Card.HandoutList as HandoutList
+import Card.InputModel
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
@@ -20,20 +21,15 @@ main =
 -- model
 
 
-type alias InputModel =
-    { inputStr : String
-    }
-
-
 type alias Model =
-    { inputModel : InputModel
+    { inputModel : Card.InputModel.Model
     , handoutListModel : HandoutList.Model
     }
 
 
 initialModel : Model
 initialModel =
-    { inputModel = { inputStr = "" }
+    { inputModel = Card.InputModel.initialModel
     , handoutListModel = HandoutList.initialModel
     }
 
@@ -57,7 +53,7 @@ update message model =
         HandoutListMsg subMsg ->
             let
                 ( updatedHandoutListModel, handoutListCmd ) =
-                    HandoutList.update subMsg model.inputModel.inputStr model.handoutListModel
+                    HandoutList.update subMsg model.inputModel.title model.handoutListModel
             in
             ( { model | handoutListModel = updatedHandoutListModel }, Cmd.map HandoutListMsg handoutListCmd )
 

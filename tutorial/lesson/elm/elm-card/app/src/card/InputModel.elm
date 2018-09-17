@@ -1,4 +1,7 @@
-port module Card.InputModel exposing (Item, Model, initialModel)
+module Card.InputModel exposing (Item, Model, decoder, encode, initialModel)
+
+import Json.Decode as D
+import Json.Encode as E
 
 
 type alias Item =
@@ -6,11 +9,24 @@ type alias Item =
 
 
 type alias Model =
-    { inputStr : Item
+    { title : Item
     }
 
 
 initialModel : Model
 initialModel =
-    { inputStr = ""
+    { title = ""
     }
+
+
+encode : Model -> E.Value
+encode m =
+    E.object
+        [ ( "title", E.string m.title )
+        ]
+
+
+decoder : D.Decoder Model
+decoder =
+    D.map Model
+        (D.field "title" D.string)
