@@ -2,11 +2,12 @@
 
 require("./styles.scss");
 
-const {Elm} = require('./Card/Main');
+const handouts = require('./Card/Main');
+const creator = require('./Card/HandoutCreator2');
 const mountNode = document.getElementById('cards');
-const app = Elm.Main.init({flags: 6, node: mountNode});
-
-app.ports.toJs.subscribe(data => {
+const handoutsApp = handouts.Elm.Main.init({flags: 6, node: mountNode});
+const creatorApp = creator.Elm.Main.init({flags: 6, node: document.getElementById('cardCreator')});
+handoutsApp.ports.toJs.subscribe(data => {
     console.log(data);
 })
 // Use ES2015 syntax and let Babel compile it for you
