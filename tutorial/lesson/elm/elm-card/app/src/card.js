@@ -9,6 +9,7 @@ const handoutsApp = handouts.Elm.Main.init({flags: 0, node: document.getElementB
 const creatorApp = creator.Elm.Main.init({flags: null, node: document.getElementById('cardCreator')});
 
 creatorApp.ports.toJs.subscribe(data => {
+  console.log(data)
   const json = JSON.stringify(data);
   handoutsApp.ports.fromJs.send(json);
 })

@@ -29,6 +29,9 @@ init flags =
 type Msg
     = NoOp
     | UpdateTitle String
+    | UpdateMission String
+    | UpdateShock String
+    | UpdateSecret String
 
 
 
@@ -48,6 +51,27 @@ update message model =
             in
             Tuple.pair newModel (toJs (encode newModel))
 
+        UpdateMission s ->
+            let
+                newModel =
+                    { model | mission = s }
+            in
+            Tuple.pair newModel (toJs (encode newModel))
+
+        UpdateShock s ->
+            let
+                newModel =
+                    { model | shock = s }
+            in
+            Tuple.pair newModel (toJs (encode newModel))
+
+        UpdateSecret s ->
+            let
+                newModel =
+                    { model | secret = s }
+            in
+            Tuple.pair newModel (toJs (encode newModel))
+
 
 
 -- view
@@ -64,6 +88,9 @@ handoutInput : Model -> Html Msg
 handoutInput model =
     Html.form []
         [ inputs "タイトル" UpdateTitle model.title
+        , inputs "使命" UpdateTitle model.mission
+        , inputs "ショック" UpdateTitle model.shock
+        , inputs "秘密" UpdateTitle model.secret
         ]
 
 
