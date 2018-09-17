@@ -28,7 +28,7 @@ init flags =
 
 type Msg
     = NoOp
-    | UpdateInput String
+    | UpdateTitle String
 
 
 
@@ -41,7 +41,7 @@ update message model =
         NoOp ->
             Tuple.pair model Cmd.none
 
-        UpdateInput s ->
+        UpdateTitle s ->
             let
                 newModel =
                     { model | title = s }
@@ -63,8 +63,14 @@ view model =
 handoutInput : Model -> Html Msg
 handoutInput model =
     Html.form []
+        [ inputs "タイトル" UpdateTitle model.title
+        ]
+
+
+inputs l m v =
+    div []
         [ label [ attribute "for" "inputTitle" ]
-            [ text "タイトル"
+            [ text l
             ]
-        , input [ attribute "type" "text", id "inputTitle", class "browser-default", onInput UpdateInput, value model.title ] []
+        , input [ attribute "type" "text", id "inputTitle", class "browser-default", onInput m, value v ] []
         ]
