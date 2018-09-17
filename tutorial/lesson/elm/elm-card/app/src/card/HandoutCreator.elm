@@ -1,6 +1,7 @@
 port module Main exposing (main)
 
 import Browser
+import Card.InputModel exposing (Model)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -9,7 +10,7 @@ import Html.Events exposing (onClick, onInput)
 port toJs : String -> Cmd msg
 
 
-main : Program Int Model Msg
+main : Program (Maybe String) Model Msg
 main =
     Browser.element
         { init = init
@@ -19,24 +20,9 @@ main =
         }
 
 
-init : Int -> ( Model, Cmd Msg )
+init : Maybe String -> ( Model, Cmd Msg )
 init flags =
-    ( initialModel, Cmd.none )
-
-
-type alias Item =
-    String
-
-
-type alias Model =
-    { inputStr : Item
-    }
-
-
-initialModel : Model
-initialModel =
-    { inputStr = ""
-    }
+    ( Card.InputModel.initialModel, Cmd.none )
 
 
 type Msg
