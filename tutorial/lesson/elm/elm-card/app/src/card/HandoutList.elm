@@ -69,8 +69,8 @@ update message title model =
 view : Model -> Html Msg
 view model =
     div []
-        [ p [] [ text "ハンドアウト一覧" ]
-        , updateButton model.handoutList
+        [ updateButton model.handoutList
+        , p [] [ text "ハンドアウト一覧" ]
         , div [ class "print" ]
             [ viewList model.handoutList
             ]
