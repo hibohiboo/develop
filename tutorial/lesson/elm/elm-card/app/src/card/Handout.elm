@@ -53,7 +53,7 @@ insaneHandout model =
                 [ open model.title model.mission
                 ]
             , div [ class "f1" ]
-                [ secret
+                [ secret model.shock model.secret
                 ]
             ]
         , viewDeleteButton model
@@ -67,14 +67,14 @@ viewDeleteButton ho =
         ]
 
 
-secret =
+secret sh se =
     div [ class "card black insane-wrapper", style "width" "190px", style "height" "300px" ]
         [ div [ class "card-title white-text", style "flex" "1", style "text-align" "center" ] [ text "Handout" ]
-        , secretInnerCard
+        , secretInnerCard sh se
         ]
 
 
-secretInnerCard =
+secretInnerCard sh se =
     div
         [ class "card white"
         , style "display" "flex"
@@ -91,45 +91,45 @@ secretInnerCard =
             , style "margin-bottom" "0.5rem"
             ]
             [ div [ class "white-text font-s", style "flex" "1", style "text-align" "center" ] [ text "秘密" ]
-            , secretInnerWrapper
+            , secretInnerWrapper sh se
             , div [ class "white-text font-s insane-secret-footer" ] [ text "この秘密を自分から明らかに" ]
             , div [ class "white-text font-s insane-secret-footer" ] [ text "することはできない" ]
             ]
         ]
 
 
-secretInnerWrapper =
+secretInnerWrapper sh se =
     div [ class "insane-wrapper" ]
-        [ secretMain
+        [ secretMain sh se
         ]
 
 
-secretMain =
+secretMain sh se =
     div
         [ class "card white"
         , style "width" "160px"
         , style "height" "180px"
         , style "margin" "1px"
         ]
-        [ secretShock
-        , secretContent
+        [ secretShock sh
+        , secretContent se
         ]
 
 
-secretShock =
+secretShock shock =
     div
         [ class "row font-m"
         , style "border-bottom" "3px double #bbb"
         , style "margin-bottom" "3px"
         ]
         [ div [ class "col s4", style "border-right" "solid 1px #bbb", style "padding" "0" ] [ text "ショック" ]
-        , div [ class "col s8 font-ss" ] [ text "" ]
+        , div [ class "col s8 font-ss" ] [ text shock ]
         ]
 
 
-secretContent =
+secretContent se =
     div [ class "card-content font-ss", style "padding" "0", style "margin" "2px" ]
-        [ text "てすと"
+        [ text se
         ]
 
 
