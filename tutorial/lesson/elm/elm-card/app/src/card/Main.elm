@@ -1,7 +1,6 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 import Browser
-import Card.HandoutCreator as HandoutCreator
 import Card.HandoutList as HandoutList
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -21,15 +20,20 @@ main =
 -- model
 
 
+type alias InputModel =
+    { inputStr : String
+    }
+
+
 type alias Model =
-    { handoutCreator : HandoutCreator.Model
+    { inputModel : InputModel
     , handoutListModel : HandoutList.Model
     }
 
 
 initialModel : Model
 initialModel =
-    { handoutCreator = HandoutCreator.initialModel
+    { inputModel = { inputStr = "" }
     , handoutListModel = HandoutList.initialModel
     }
 
@@ -40,8 +44,7 @@ init flags =
 
 
 type Msg
-    = HandoutCreatorMsg HandoutCreator.Msg
-    | HandoutListMsg HandoutList.Msg
+    = HandoutListMsg HandoutList.Msg
 
 
 
@@ -51,17 +54,10 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update message model =
     case message of
-        HandoutCreatorMsg subMsg ->
-            let
-                ( updatedCreator, handoutCreatorCmd ) =
-                    HandoutCreator.update subMsg model.handoutCreator
-            in
-            ( { model | handoutCreator = updatedCreator }, Cmd.map HandoutCreatorMsg handoutCreatorCmd )
-
         HandoutListMsg subMsg ->
             let
                 ( updatedHandoutListModel, handoutListCmd ) =
-                    HandoutList.update subMsg model.handoutCreator.inputStr model.handoutListModel
+                    HandoutList.update subMsg model.inputModel.inputStr model.handoutListModel
             in
             ( { model | handoutListModel = updatedHandoutListModel }, Cmd.map HandoutListMsg handoutListCmd )
 
@@ -82,6 +78,5 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div [ class "container" ]
-        [ Html.map HandoutCreatorMsg (HandoutCreator.view model.handoutCreator)
-        , Html.map HandoutListMsg (HandoutList.view model.handoutListModel)
+        [ Html.map HandoutListMsg (HandoutList.view model.handoutListModel)
         ]

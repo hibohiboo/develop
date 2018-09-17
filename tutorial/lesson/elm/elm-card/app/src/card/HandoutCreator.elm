@@ -1,8 +1,24 @@
-module Card.HandoutCreator exposing (Item, Model, Msg(..), handoutInput, initialModel, update, view)
+module Main exposing (main)
 
+import Browser
 import Html exposing (..)
 import Html.Attributes exposing (type_, value)
 import Html.Events exposing (onClick, onInput)
+
+
+main : Program Int Model Msg
+main =
+    Browser.element
+        { init = init
+        , update = update
+        , view = view
+        , subscriptions = \_ -> Sub.none
+        }
+
+
+init : Int -> ( Model, Cmd Msg )
+init flags =
+    ( initialModel, Cmd.none )
 
 
 type alias Item =

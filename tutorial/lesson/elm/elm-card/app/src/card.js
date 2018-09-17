@@ -3,7 +3,7 @@
 require("./styles.scss");
 
 const handouts = require('./Card/Main');
-const creator = require('./Card/HandoutCreator2');
+const creator = require('./Card/HandoutCreator');
 const mountNode = document.getElementById('cards');
 const handoutsApp = handouts.Elm.Main.init({flags: 6, node: mountNode});
 const creatorApp = creator.Elm.Main.init({flags: 6, node: document.getElementById('cardCreator')});
