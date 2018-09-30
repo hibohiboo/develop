@@ -12,15 +12,16 @@
 - name: confirm check result
   debug: var=result_test_private_key.msg
 
-# パスフレーズなしの秘密鍵と公開鍵のセットを作成。
+# パスフレーズなしの秘密鍵と公開鍵のセットを作成。responsesには正規表現を書くので -()[]\?*.にエスケープが必要
 - name: generate private key
+  become: true
+  become_user: vagrant
   expect:
-    chdir: "/home/vagrant"
     command: "ssh-keygen -t rsa"
-    timeout: 60
+    timeout: 10
     responses:
-      'Enter file in which to save the key (/home/vagrant/.ssh/id_rsa):': '\n'
-      'Enter passphrase (empty for no passphrase):': '\n'
-      'Enter same passphrase again:': '\n'
+      'Enter file in which to save the key \(\/home\/vagrant\/\.ssh\/id_rsa\): ': ''
+      'Enter passphrase \(empty for no passphrase\): ': ''
+      'Enter same passphrase again: ': ''
   when:
     result_test_private_key.rc != 0
