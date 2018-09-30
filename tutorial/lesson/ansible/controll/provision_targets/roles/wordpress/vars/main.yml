@@ -1,3 +1,3 @@
 ---
 wordpress_version: 4.9
-wordpress_doc_root: "/var/www/html/wordpress"
+wordpress_doc_root: "{{ http_doc_root }}/wordpress"

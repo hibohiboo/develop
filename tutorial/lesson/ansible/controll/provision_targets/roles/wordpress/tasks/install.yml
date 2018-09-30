@@ -7,6 +7,7 @@
     version: "{{ wordpress_version }}-branch"
 
 # ドキュメントルート作成
+- include_vars: roles/nginx/vars/main.yml
 - name: install / link wordpress root document
   file:
       src: /srv/wordpress-{{ wordpress_version }}

@@ -8,7 +8,16 @@
     group: root
     mode: 0644
 
-# 2. バーチャルホスト設定の配備
+# 2. バーチャルホスト設定の配備(共通)
+- name: configure/ setup wordpress configuration file
+  template:
+    src: wordpress.conf.j2
+    dest: /etc/nginx/conf.d/common.conf
+    owner: root
+    group: root
+    mode: 0644
+
+# 3. バーチャルホスト設定の配備(wordpress)
 - include_vars: roles/wordpress/vars/main.yml
 - include_vars: roles/php-fpm/vars/main.yml
 - name: configure/ setup wordpress configuration file
