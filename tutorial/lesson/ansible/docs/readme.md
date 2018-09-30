@@ -16,7 +16,18 @@ cd targets && vagrant up
 ./controll/bin/run.sh add-publickey.sh
 ```
 
+## adminerの確認
+
+http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=testdb_wp
+パスワードはwpDbP@ssw0rd
+
+
+## 履歴
+
 [wordpressをrootにインストールした時点の状態](https://github.com/hibohiboo/develop/tree/0789aaf2640c8b2dfca2e75ca0f605631bc491b5/tutorial/lesson/ansible/)
+
+
+[wordpressをサブディレクトリにインストールしてadminerをいれた時点の状態](https://github.com/hibohiboo/develop/tree/7ce7d56a695ff667f0ab6b061ab6776697aeba09/tutorial/lesson/ansible/)
 
 ## 参考
 
