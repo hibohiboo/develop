@@ -1,0 +1,26 @@
+---
+# 秘密鍵の存在チェック
+- name: check private key
+  command:
+    test -f /home/vagrant/.ssh/id_rsa
+  register:
+    result_test_private_key
+  failed_when: result_test_private_key.rc not in [0, 1]
+  changed_when: false
+
+# 秘密鍵の存在の結果を出力（確認用。この手順は飛ばしてもよい）
+- name: confirm check result
+  debug: var=result_test_private_key.msg
+
+# パスフレーズなしの秘密鍵と公開鍵のセットを作成。
+- name: generate private key
+  expect:
+    chdir: "/home/vagrant"
+    command: "ssh-keygen -t rsa"
+    timeout: 60
+    responses:
+      'Enter file in which to save the key (/home/vagrant/.ssh/id_rsa):': '\n'
+      'Enter passphrase (empty for no passphrase):': '\n'
+      'Enter same passphrase again:': '\n'
+  when:
+    result_test_private_key.rc != 0

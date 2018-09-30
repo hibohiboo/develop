@@ -1,3 +1,4 @@
 ---
-- name: install sshpass
-  apt: name=sshpass update_cache=yes cache_valid_time=3600
+- include: roles/ssh/tasks/check_install.yml
+- include: roles/ssh/tasks/install.yml
+- include: roles/ssh/tasks/configure.yml
