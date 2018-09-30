@@ -1,0 +1,9 @@
+---
+- include_vars: "{{ item }}"
+  with_items:
+    - roles/mysql/vars/secret.yml
+    - roles/redmine/vars/secret.yml
+    - roles/nginx/vars/main.yml
+- include: roles/redmine/tasks/check_install.yml
+- include: roles/redmine/tasks/install.yml
+- include: roles/redmine/tasks/configure.yml

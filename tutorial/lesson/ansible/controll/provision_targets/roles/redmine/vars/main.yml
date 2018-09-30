@@ -1,0 +1,24 @@
+---
+redmine_user: nginx
+redmine_user_home: /srv
+# # Redmineのデプロイ先ディレクトリ
+redmine_dir: /srv/redmine
+
+# Redmineのデプロイ先ディレクトリのオーナー:グループ
+redmine_dir_owner: nginx
+redmine_dir_group: nginx
+
+# Redmineで使用する日本語フォントファイル
+redmine_font_path: /usr/share/fonts/truetype/takao-gothic/TakaoPGothic.ttf
+
+# pg_hba.confのパス
+pg_hba_conf_path: /var/lib/pgsql/data/pg_hba.conf
+redmine_version: 3.4.6
+
+# firewall設定
+redmine_ssl_port: 443
+redmine_unicorn_port: 8282
+
+redmine_firewalld_port:
+  - "{{redmine_ssl_port}}/tcp"
+  - "{{redmine_unicorn_port}}/tcp"

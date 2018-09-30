@@ -1,0 +1,26 @@
+---
+- name: Gemfile.localの作成
+  template: 
+    src=Gemfile.local
+    dest={{ redmine_dir }}/Gemfile.local
+
+- name: gemのアップデート
+  command:
+    bundle update
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+
+- name: unicorn設定
+  template:
+    src=unicorn.rb
+    dest={{ redmine_dir }}/config/unicorn.rb
+
+- name: unicornサービスの設定をSystemdへ配置
+  template:
+    src=redmine-unicorn.service
+    dest=/usr/lib/systemd/system/redmine-unicorn.service
+
+- name: unicornサービス起動・自動起動設定
+  service: name=redmine-unicorn state=started enabled=yes
+

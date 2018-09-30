@@ -43,6 +43,7 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 [NginxでWordPressを使う時の設定をまとめてみた][*10]
 [NginxでWordPressをサブディレクトリに設置][*11]
 [nginx と PHP-FPM の仕組みをちゃんと理解しながら PHP の実行環境を構築する][*12]
+[RedmineをAnsibleでインストールする][*13]
 
 [*1]:https://qiita.com/nyk0401/items/f0fdbdbadf61e1217dec
 [*2]:https://qiita.com/t_732_twit/items/2303a0c3f27c288382c5
@@ -56,3 +57,4 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 [*10]:https://worklog.be/archives/3222
 [*11]:https://owani.net/wordpress/subdirectory/445/
 [*12]:https://qiita.com/kotarella1110/items/634f6fafeb33ae0f51dc
+[*13]:http://www.torutk.com/projects/swe/wiki/Redmine%E3%82%92Ansible%E3%81%A7%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B

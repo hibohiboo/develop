@@ -1,0 +1,55 @@
+---
+# vagrant
+- name: install expect
+  command: whoami
+  register: result
+
+- debug: var=result.stdout
+
+# /home/vagrant
+- name: install expect
+  command: pwd
+  register: result
+
+- debug: var=result.stdout
+- include_vars: roles/redmine/vars/secret.yml
+- name: directory 
+  become: yes
+  file:
+    path: "{{redmine_user_home}}"
+    state: directory
+    owner: "{{redmine_user}}"
+    group: "{{redmine_user}}"
+    mode: 0755
+
+- name: 1. bundlerのインストール
+  gem:
+    name=bundler
+    user_install=no
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+
+- name: Rails向けのMySQLパッケージをインストールします。
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items: 
+    - mysql-devel
+
+# 0. firewall 再起動
+- name: Restart firewall
+  become: true
+  service:
+    name: firewalld
+    state: restarted
+
+#  firewalld のポート許可
+- name: check_install / allow ports for firewalld
+  become: true
+  firewalld:
+    port: "{{item}}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+  with_items: "{{ redmine_firewalld_port }}"
+

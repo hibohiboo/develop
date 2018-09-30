@@ -1,0 +1,164 @@
+---
+- name: Redmineのソースコードをチェックアウト
+  git:
+    repo: https://github.com/redmine/redmine.git
+    dest: "{{ redmine_dir }}"
+    version: "{{ redmine_version }}"
+
+- name: database.ymlの作成
+  template:
+    src=database.yml
+    dest={{ redmine_dir }}/config/database.yml
+    force=no
+  register:
+    result_database_yml
+
+- name: configuration.ymlの作成
+  template:
+    src=configuration.yml
+    dest={{ redmine_dir }}/config/configuration.yml
+    force=no
+
+- name: Gemfile.lockが存在するか確認
+  command:
+    test -f {{ redmine_dir }}/Gemfile.lock
+  register:
+    result_test_gemfile
+  failed_when: result_test_gemfile.rc not in [0, 1]
+  changed_when: false
+
+# windows だと rmagic で 失敗
+- name: install / gems
+  command:
+    bundle install --path vendor/bundle --without development test rmagick
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  when:
+    result_test_gemfile.rc == 1
+
+# gemsパッケージのアップデート
+- name: update / gem
+  command:
+    bundle update
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  when:
+    result_test_gemfile.rc == 0
+
+# secret tokenの作成
+- name: create secret token
+  command:
+    bundle exec rake generate_secret_token
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+
+- block:
+#### block 開始 ####
+  # 2. redmine データベース作成
+  - name: configure / create redmine database
+    mysql_db:
+      login_password: "{{ mysql_root_password }}"
+      name: "{{ redmine_db_name }}"
+      state: present
+
+  # 3. redmineユーザ作成
+  - name: configure / create redmine database user
+    mysql_user:
+      login_password: "{{ mysql_root_password }}"
+      name: "{{ redmine_db_user }}"
+      password: "{{ redmine_db_password }}"
+      host: "%"
+      priv: "{{ redmine_db_name }}.*:ALL"
+      state: present
+  run_once: true
+  # inventory.iniで設定したdbs1に処理を移譲
+  delegate_to: "{{ hostvars.dbs1.ansible_host }}"
+
+# データベースのマイグレーション
+- name: migration / db
+  command:
+    bundle exec rake db:migrate
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+
+# デフォルトデータ(日本語)をロード
+- name: load japanese
+  command:
+    bundle exec rake redmine:load_default_data
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+    REDMINE_LANG: ja
+  when:
+    result_database_yml is changed
+
+# farend_basicテーマのダウンロード
+- name: farend basic 
+  git:
+    repo=https://github.com/farend/redmine_theme_farend_basic.git
+    dest={{ redmine_dir }}/public/themes/farend_basic
+
+# テーマをfarend_basicに切り替え
+- name: change farend
+  command:
+    bundle exec rails r 'Setting["ui_theme"]="farend_basic"'
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+  when:
+    result_database_yml is changed
+
+# デフォルトの言語を日本語に変更
+- name: change default japanese 
+  command:
+    bundle exec rails r 'Setting["default_language"]="ja"'
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+  when:
+    result_database_yml is changed
+
+# ユーザー名の表示形式を「姓 名」に変更
+- name: change username
+  command:
+    bundle exec rails r 'Setting["user_format"]=:lastname_firstname'
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+  when:
+    result_database_yml is changed
+
+# 添付ファイルとリポジトリのエンコーディングを設定
+- name: set file encoding
+  command:
+    bundle exec rails r 'Setting["repositories_encodings"]="UTF-8,CP932,EUC-JP"'
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+  when:
+    result_database_yml is changed
+
+# 添付ファイルのサムネイルを表示
+- name: display sumnail 
+  command:
+    bundle exec rails r 'Setting["thumbnails_enabled"]="1"'
+    chdir={{ redmine_dir }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    RAILS_ENV: production
+  when:
+    result_database_yml is changed
+
+
+ 

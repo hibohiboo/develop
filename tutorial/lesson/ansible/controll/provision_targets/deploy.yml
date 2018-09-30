@@ -16,3 +16,6 @@
     - {role: php-fpm, tags: php-fpm}
     - {role: adminer, tags: adminer}
     - {role: wordpress, tags: wordpress}
+    - {role: ruby, tags: ruby}
+    - {role: redmine, tags: redmine}
+    - {role: unicorn, tags: unicorn}

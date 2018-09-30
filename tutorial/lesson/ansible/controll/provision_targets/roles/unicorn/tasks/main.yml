@@ -1,0 +1,7 @@
+---
+- include_vars: "{{ item }}"
+  with_items:
+    - roles/redmine/vars/main.yml
+# - include: roles/unicorn/tasks/check_install.yml
+- include: roles/unicorn/tasks/install.yml
+# - include: roles/unicorn/tasks/configure.yml

@@ -8,4 +8,4 @@ cd $bin_dir/../../provision_targets
 source /home/vagrant/venv/bin/activate
 
 # デプロイ
-ANSIBLE_CONFIG=.ansible.cfg ansible-playbook -i inventory/inventory.ini deploy.yml --tags nginx,adminer
+ANSIBLE_CONFIG=.ansible.cfg ansible-playbook -i inventory/inventory.ini deploy.yml --tags unicorn,redmine
