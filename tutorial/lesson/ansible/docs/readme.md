@@ -13,7 +13,7 @@ cd targets && vagrant up
 コントロールサーバで作成した公開鍵をターゲットサーバに登録する
 
 ```
-./bin/run.sh add-publickey.sh
+./controll/bin/run.sh add-publickey.sh
 ```
 
 
