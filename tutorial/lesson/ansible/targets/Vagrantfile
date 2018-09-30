@@ -1,0 +1,15 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7.5"
+  
+  config.vm.define "web_server_1" do |server|
+    server.vm.network "private_network", ip: "192.168.74.60"
+    server.vm.network "forwarded_port", guest: 22, host: 12223, id: "ssh"
+  end
+  config.vm.define "db_server_1" do |server|
+    server.vm.network "private_network", ip: "192.168.7.25"
+    server.vm.network "forwarded_port", guest: 22, host: 12230, id: "ssh"
+  end
+end

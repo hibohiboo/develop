@@ -1,0 +1,5 @@
+- hosts: localhost
+  become: yes 
+  become_user: root # 以下、sudoコマンドが不要になる 
+  roles:
+    - ssh
