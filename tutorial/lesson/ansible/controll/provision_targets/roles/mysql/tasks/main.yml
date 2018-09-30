@@ -5,5 +5,4 @@
 - include: roles/mysql/tasks/install.yml
 # 3. mysql 初期設定
 - include: roles/mysql/tasks/configure.yml
-# 4. wordpress設定
-- include: roles/mysql/tasks/create_wordpress_user.yml
+

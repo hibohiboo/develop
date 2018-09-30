@@ -6,10 +6,10 @@ define('DB_NAME', '{{ wordpress_db_name }}');
 define('DB_USER', '{{ wordpress_db_user }}');
 
 /** MySQL データベースのパスワード */
-define('DB_PASSWORD', '{{wordpress_db_password}}');
+define('DB_PASSWORD', '{{ wordpress_db_password }}');
 
 /** MySQL のホスト名 */
-define('DB_HOST', '{{hostvars.dbs1.ansible_host}}');
+define('DB_HOST', '{{ wordpress_db_host }}');
 
 /** データベースのテーブルを作成する際のデータベースの文字セット */
 define('DB_CHARSET', 'utf8mb4');

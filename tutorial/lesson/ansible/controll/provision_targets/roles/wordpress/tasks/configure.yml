@@ -7,7 +7,29 @@
   register: "wordpress_salt"
   run_once: true
 
-# 2. wordpress 設定の配備
+- block:
+#### block 開始 ####
+  # 2. wp データベース作成
+  - name: configure / create wordpress database
+    mysql_db:
+      login_password: "{{ mysql_root_password }}"
+      name: "{{ wordpress_db_name }}"
+      state: present
+
+  # 3. wp db ユーザ作成
+  - name: configure / create wordpress database user
+    mysql_user:
+      login_password: "{{ mysql_root_password }}"
+      name: "{{ wordpress_db_user }}"
+      password: "{{ wordpress_db_password }}"
+      host: "{{ ansible_eth1.ipv4.network }}/{{ ansible_eth1.ipv4.netmask }}"
+      priv: "{{ wordpress_db_name }}.*:ALL"
+      state: present
+
+  run_once: true
+  # inventory.iniで設定したdbs1に処理を移譲
+  delegate_to: "{{ hostvars.dbs1.ansible_host }}"
+# 4. wordpress 設定の配備
 - name: configure / deploy wordpress config file
   template: 
     src: wp-config.php.j2
