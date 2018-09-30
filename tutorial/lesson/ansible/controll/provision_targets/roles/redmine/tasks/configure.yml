@@ -1,13 +1,4 @@
 ---
-
-#  バーチャルホスト設定の配備(redmine)
-- name: configure/ setup redmine configuration file
-  template:
-    src: redmine.conf.j2
-    dest: /etc/nginx/conf.d/redmine.conf
-    owner: root
-    group: root
-    mode: 0644
 # サブディレクトリ用に設定ファイルを修正
 # 5. php動作確認用ファイルの配備
 - name: configure /setup config.ru

@@ -11,32 +11,11 @@
 # 2. バーチャルホスト設定の配備(共通)
 - name: configure/ setup wordpress configuration file
   template:
-    src: common.conf.j2
-    dest: /etc/nginx/conf.d/common.conf
+    src: host.conf.j2
+    dest: /etc/nginx/conf.d/host.conf
     owner: root
     group: root
     mode: 0644
-
-# 3. バーチャルホスト設定の配備(wordpress)
-- include_vars: roles/wordpress/vars/main.yml
-- include_vars: roles/php-fpm/vars/main.yml
-- name: configure/ setup wordpress configuration file
-  template:
-    src: wordpress.conf.j2
-    dest: /etc/nginx/conf.d/wordpress.conf
-    owner: root
-    group: root
-    mode: 0644
-
-# # 3. バーチャルホスト設定の配備
-# - include_vars: roles/redmine/vars/main.yml
-# - name: configure / setup redmine configuration file
-#   template:
-#     src: redmine.conf.j2
-#     dest: /etc/nginx/conf.d/redmine.conf
-#     owner: root
-#     group: root
-#     mode: 0644
 
 # 4.nginx起動
 - name: configure/ start nginx service

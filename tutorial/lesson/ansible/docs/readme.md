@@ -49,6 +49,8 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 [debianのnginxでredmineをsubdirectoryで動作させたくなったら][*16]
 [XSERVERでRuby on Railsを動かす その1][*17]
 [Redmine - 個人的記録][*18]
+[nginxの設定 その1][*19]
+[nginxとunicornが連携しない][*20]
 
 [*1]:https://qiita.com/nyk0401/items/f0fdbdbadf61e1217dec
 [*2]:https://qiita.com/t_732_twit/items/2303a0c3f27c288382c5
@@ -68,3 +70,5 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 [*16]:http://pojiropocket.hatenablog.com/entry/2017/07/18/125234
 [*17]:https://www.nijitei.com/it/run_ruby_on_rails_on_xserver/
 [*18]:https://nazuna.sakura.ne.jp/wiki/index.php?title=Redmine#.E3.82.B5.E3.83.96.E3.83.87.E3.82.A3.E3.83.AC.E3.82.AF.E3.83.88.E3.83.AA.E3.81.AE.E8.A8.AD.E5.AE.9A
+[*19]:https://www.bnote.net/centos/nginx_conf01.html
+[*20]:https://teratail.com/questions/27773

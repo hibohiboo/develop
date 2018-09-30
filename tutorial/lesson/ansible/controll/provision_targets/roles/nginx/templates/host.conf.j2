@@ -1,0 +1,63 @@
+upstream unicorn-redmine {
+    server unix:{{ redmine_dir }}/tmp/sockets/unicorn.sock;
+}
+server{
+  listen {{ nginx_service_ip }}:{{ nginx_service_port }};
+  root {{ http_doc_root }};
+
+  location ~*/(:uploads|files)/.*\.php$ {
+    deny all;
+  }
+
+  location / {
+          try_files $uri $uri/ index.html index.php;
+  }
+
+  location ~ [^/]\.php(/|$)  {
+    # PATH_INFO 部の分割に使用する正規表現を指定
+    # 一つ目 ( .+\.php ) は $fastcgi_script_name の値になり、二つ目 ( /.+ ) は $fastcgi_path_info の値になる
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    if (!-f $document_root$fastcgi_script_name) {
+        return 404;
+    }
+    try_files $uri =404;
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    fastcgi_index index.php;
+    fastcgi_pass unix:{{ phpfpm_unix_socket }};
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+  }
+
+  # wordpress 設定
+  location ~* /wp-config.php {
+    deny all;
+  }
+  location @wp {
+      rewrite ^/wordpress(.*) /wordpress/index.php?q=$1;
+  }
+  location ^~ /wordpress {
+      alias {{ wordpress_doc_root }};
+      index index.php index.html index.htm;
+      try_files $uri $uri/ @wp;
+
+      location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $request_filename;
+        fastcgi_pass unix:{{ phpfpm_unix_socket }};
+      }
+  }
+
+  # redmine 設定
+  location ^~ /redmine {
+      proxy_redirect off;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_connect_timeout 60;
+      proxy_read_timeout 60;
+      proxy_send_timeout 600;
+      proxy_pass http://unicorn-redmine;
+  }
+
+  error_page 500 502 503 504 /500.html;
+}
