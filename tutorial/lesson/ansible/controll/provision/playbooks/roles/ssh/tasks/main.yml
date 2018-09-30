@@ -1,4 +1,4 @@
 ---
-- include: roles/ssh/tasks/check_install.yml
+#- include: roles/ssh/tasks/check_install.yml
 - include: roles/ssh/tasks/install.yml
 - include: roles/ssh/tasks/configure.yml

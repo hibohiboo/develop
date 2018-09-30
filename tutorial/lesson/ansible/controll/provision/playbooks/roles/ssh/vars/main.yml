@@ -1,0 +1,14 @@
+---
+target_ip_web: 192.168.74.60
+target_ip_db: 192.168.7.25
+
+targets_ip:
+  - "{{target_ip_web}}"
+  - "{{target_ip_db}}"
+
+target_keyname_web: id_rsa_web
+target_keyname_db: id_rsa_db
+
+targets_keyname: 
+  - "{{target_keyname_web}}"
+  - "{{target_keyname_db}}"
