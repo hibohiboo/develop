@@ -1,0 +1,81 @@
+---
+- include_vars: roles/mysql/vars/secret.yml
+
+# 3. mysqlの起動確認
+- name: running and enabled mysqld
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+# 4. 設定ファイルの存在チェック
+- name: check .my.cnf exists
+  stat:
+    path: /root/.my.cnf
+  register: mycnf_file
+
+# 5. 一時パスワード取得
+- name: get temporary password
+  shell: cat /var/log/mysqld.log | grep "temporary password" | awk '{print $11}'
+  register: mysql_default_password
+  when: not mycnf_file.stat.exists
+
+# 6.設定ファイル追加
+- name: deploy init .my.cnf
+  template:
+    src: templates/init_my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: 0644
+  when: not mycnf_file.stat.exists
+
+  # rootパスワード設定
+- name: change password validation to the easy way
+  shell: |
+    mysql -u root -p'{{ mysql_default_password.stdout }}' --connect-expired-password -e "SET GLOBAL validate_password_length=4;"
+    mysql -u root -p'{{ mysql_default_password.stdout }}' --connect-expired-password -e "SET GLOBAL validate_password_policy=LOW;"
+  when: not mycnf_file.stat.exists
+
+# rootパスワード変更
+- name: change root user password
+  shell: |
+    mysql -u root -p'{{ mysql_default_password.stdout }}' --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '{{ mysql_root_password }}';"
+  when: not mycnf_file.stat.exists
+
+- name: deploy changed .my.cnf
+  template:
+    src: templates/my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: deploy changed .my.cnf
+  template:
+    src: templates/my.cnf.j2
+    dest: /etc/my.cnf
+
+- name: remove all anonymous user
+  mysql_user:
+    name: ''
+    state: absent
+    host: localhost
+
+- name: create database
+  mysql_db:
+    name: ansible_test
+    state: present
+    encoding: utf8mb4
+
+- name: create user
+  mysql_user:
+    name: vagrant
+    password: vagrant
+    priv: '*.*:ALL,GRANT'
+    state: present
+
+- name: restart mysqld
+  service:
+    name: mysqld
+    state: restarted

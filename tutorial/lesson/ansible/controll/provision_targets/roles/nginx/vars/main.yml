@@ -1,0 +1,9 @@
+---
+nginx_service_ip: "{{ hostvars.webs1.ansible_host }}"
+nginx_service_port: 80
+nginx_firewalld_port:
+  - "{{ nginx_service_port }}/tcp"
+wordpress_doc_root: "/srv/wordpress"
+nginx_packages:
+  - nginx
+  - MySQL-python

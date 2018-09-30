@@ -1,0 +1,24 @@
+---
+# 1. wordpressのシークレットキー取得
+- name: configure / fetch random salts for wp config
+  uri:
+    url: https://api.wordpress.org/secret-key/1.1/salt/
+    return_content: yes
+  register: "wordpress_salt"
+  run_once: true
+
+# 2. wordpress 設定の配備
+- name: configure / deploy wordpress config file
+  template: 
+    src: wp-config.php.j2
+    dest: /srv/wordpress/wp-config.php
+    owner: nginx
+    group: nginx
+    mode: 0644
+    backup: yes
+
+# 5. アプリケーションの再読み込み
+- name: configure / reload php-fpm service
+  systemd:
+    name: php-fpm
+    state: restarted

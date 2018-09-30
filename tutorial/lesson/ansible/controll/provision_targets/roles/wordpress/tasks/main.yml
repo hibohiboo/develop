@@ -1,0 +1,10 @@
+---
+- name: main / load db variables
+  include_vars: "{{ item }}"
+  with_items:
+    - roles/mysql/vars/secret.yml
+    - roles/wordpress/vars/secret.yml
+- include: roles/wordpress/tasks/check_install.yml
+- include: roles/wordpress/tasks/install.yml
+- include: roles/wordpress/tasks/configure.yml
+

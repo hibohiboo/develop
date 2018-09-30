@@ -1,0 +1,16 @@
+---
+# 0. firewall 再起動
+- name: Restart firewall
+  service:
+    name: firewalld
+    state: restarted
+
+# 1. firewalld のポート許可
+- name: check_install / allow ports for firewalld
+  firewalld:
+    port: "{{item}}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+  with_items: "{{ mysql_firewalld_port }}"
+

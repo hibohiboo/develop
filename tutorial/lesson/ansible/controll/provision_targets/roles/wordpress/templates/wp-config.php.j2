@@ -1,0 +1,53 @@
+<?php
+
+define('DB_NAME', '{{ wordpress_db_name }}');
+
+/** MySQL データベースのユーザー名 */
+define('DB_USER', '{{ wordpress_db_user }}');
+
+/** MySQL データベースのパスワード */
+define('DB_PASSWORD', '{{wordpress_db_password}}');
+
+/** MySQL のホスト名 */
+define('DB_HOST', '{{hostvars.dbs1.ansible_host}}');
+
+/** データベースのテーブルを作成する際のデータベースの文字セット */
+define('DB_CHARSET', 'utf8mb4');
+
+/** データベースの照合順序 (ほとんどの場合変更する必要はありません) */
+define('DB_COLLATE', '');
+
+/**#@+
+ * 認証用ユニークキー
+ *
+ * それぞれを異なるユニーク (一意) な文字列に変更してください。
+ * {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org の秘密鍵サービス} で自動生成することもできます。
+ * 後でいつでも変更して、既存のすべての cookie を無効にできます。これにより、すべてのユーザーを強制的に再ログインさせることになります。
+ *
+ * @since 2.6.0
+ */
+{{ wordpress_salt.content }}
+
+/**#@-*/
+
+/**
+ * WordPress データベーステーブルの接頭辞
+ */
+$table_prefix  = 'wp_';
+
+/**
+ * 開発者へ: WordPress デバッグモード
+ */
+define('WP_DEBUG', false);
+
+// マルチサイト対応
+define('WP_ALLOW_MULTISITE', true);
+
+/* 編集が必要なのはここまでです ! WordPress でブログをお楽しみください。 */
+
+/** Absolute path to the WordPress directory. */
+if ( !defined('ABSPATH') )
+	define('ABSPATH', dirname(__FILE__) . '/');
+
+/** Sets up WordPress vars and included files. */
+require_once(ABSPATH . 'wp-settings.php');

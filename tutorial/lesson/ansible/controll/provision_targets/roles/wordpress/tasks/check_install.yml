@@ -1,0 +1,6 @@
+---
+# gitパッケージのインストール
+- name: install / install require packages
+  yum:
+    name: git
+    state: present

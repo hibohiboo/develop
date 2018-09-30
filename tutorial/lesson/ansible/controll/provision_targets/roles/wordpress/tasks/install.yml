@@ -1,0 +1,24 @@
+---
+# 1. wp deploy
+- name: install / download wordpress
+  git:
+    repo: https://github.com/WordPress/WordPress.git
+    dest: "/srv/wordpress-{{ wordpress_version }}"
+    version: "{{ wordpress_version }}-branch"
+
+# ドキュメントルート作成
+- name: install / link wordpress root document
+  file:
+      src: /srv/wordpress-{{ wordpress_version }}
+      path: /srv/wordpress
+      owner: nginx
+      group: nginx
+      state: link
+
+# ドキュメントルートの所有権設定
+- name: install / change ownership in wordpress
+  file:
+    path: /srv/wordpress-{{ wordpress_version }}
+    owner: nginx
+    group: nginx
+    recurse: yes

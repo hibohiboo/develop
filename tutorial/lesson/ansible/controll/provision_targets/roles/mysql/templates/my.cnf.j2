@@ -1,0 +1,23 @@
+[client]
+user = root
+password =  {{ mysql_root_password }}
+default-character-set = utf8mb4
+
+[mysqld]
+character-set-server = utf8mb4
+skip-character-set-client-handshake
+default-storage-engine = INNODB
+collation-server = utf8mb4_general_ci
+init-connect = SET NAMES utf8mb4
+explicit_defaults_for_timestamp
+datadir = /var/lib/mysql
+socket = /var/lib/mysql/mysql.sock
+symbolic-links = 0
+log-error = /var/log/mysqld.log
+pid-file = /var/run/mysqld/mysqld.pid
+
+[mysqldump]
+default-character-set=utf8mb4
+
+[mysql]
+default-character-set=utf8mb4

@@ -1,0 +1,5 @@
+---
+## 今回は使用しないためコメントアウト
+# - include: roles/php-fpm/tasks/check_install.yml
+- include: roles/php-fpm/tasks/install.yml
+- include: roles/php-fpm/tasks/configure.yml

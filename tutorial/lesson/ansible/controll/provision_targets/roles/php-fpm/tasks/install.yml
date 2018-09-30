@@ -1,0 +1,32 @@
+---
+# 1. Remi リポジトリの登録
+# https://www.riscascape.net/archives/16990
+# http://rpms.famillecollet.com/enterprise/remi.repo
+- name: install / Import repository
+  yum_repository:
+    name: php72
+    description: "php repo"
+    baseurl: http://rpms.remirepo.net/enterprise/$releasever/php72/$basearch/
+    mirrorlist: http://cdn.remirepo.net/enterprise/$releasever/php72/mirror
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+    file: php72
+- name: install / Import repository remi
+  yum_repository:
+    name: remi
+    description: "remi"
+    baseurl: http://rpms.famillecollet.com/enterprise/7/remi/$basearch/
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: http://rpms.remirepo.net/RPM-GPG-KEY-remi
+    file: remi7
+
+
+## 2. php-fpm install
+- name: install / install required package
+  yum:
+    name: "{{ item }}"
+    state: present
+    enablerepo: php72
+  with_items: "{{ php_packages }}"

@@ -1,0 +1,38 @@
+---
+# 1. php-fpmのデフォルト設定のバックアップ
+- name: configure /backup original file
+  command: mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/php-fpm.default
+  args:
+    creates: "/etc/php-fpm.d/php-fpm.default"
+
+# php-fpm 設定の配備
+- name: configure / configuration file
+  template: 
+    src: wordpress.conf.j2
+    dest: /etc/php-fpm.d/wordpress.conf
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+
+# php-fpmのログディレクトリの設定
+- name: configure / setup log director
+  file:
+    path: /var/log/php-fpm
+    owner:  "{{ phpfpm_user }}"
+    group: "{{ phpfpm_group }}"
+    mode: 0755
+
+# php-fpmの起動
+- name: configure / start php-fpm service
+  systemd:
+    name: 'php-fpm'
+    state: restarted
+    enabled: yes
+
+# php-fpmの起動確認
+- name: configure / wait for php-fpm restart
+  wait_for:
+    path: "{{ phpfpm_unix_socket }}"
+    delay: 2
+    timeout: 60

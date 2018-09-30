@@ -1,0 +1,36 @@
+---
+# 1. mysqlのリポジトリ登録
+- name: install mysql repository
+  yum_repository:
+    name: mysql
+    description: "mysql repo"
+    baseurl: http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: http://repo.mysql.com/RPM-GPG-KEY-mysql
+    file: MySQL
+# 2. utilsのインストール
+- name: install yum-util
+  yum:
+    state: present
+    name: "{{ item }}"
+  with_items: "{{ mysql_utils }}"
+# 3. MySQL8.0リポジトリの無効化
+- name: disable mysql80-community
+  command: yum-config-manager --disable mysql80-community
+# 4. MySQL5.7リポジトリの有効化
+- name: disable mysql80-community
+  command: yum-config-manager --enable mysql57-community
+# 5. mysqlのインストール
+- name: install mysql-python, mysql-community-server
+  yum:
+    state: present
+    name: "{{ item }}"
+    enablerepo: mysql
+  with_items: "{{ mysql_packages }}"
+
+- name: mysqld 起動・自動起動設定
+  service:
+    name=mysqld
+    state=started
+    enabled=yes

@@ -1,0 +1,18 @@
+---
+phpfpm_user: nginx
+phpfpm_group: nginx
+phpfpm_unix_socket: /var/run/php-fpm/wordpress.sock
+
+php_packages:
+  - php
+  - php-common
+  - php-fpm
+  - php-mbstring
+  - php-mysql
+  - php-enchant
+  - php-process
+  - php-xml
+  - php-mysqlnd
+  - php-pdo
+  - php-gd
+  - php-zip

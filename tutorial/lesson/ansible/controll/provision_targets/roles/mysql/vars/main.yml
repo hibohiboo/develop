@@ -1,0 +1,14 @@
+---
+mysql_service_port: 3306
+mysql_rsync_port: 4444
+
+mysql_firewalld_port:
+  - "{{mysql_service_port}}/tcp"
+  - "{{mysql_rsync_port}}/tcp"
+
+mysql_utils:
+  - yum-utils
+
+mysql_packages:
+  - MySQL-python
+  - mysql-community-server

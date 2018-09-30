@@ -1,0 +1,17 @@
+---
+- name: deploy db
+  hosts: db_servers
+  become: true
+  roles:
+    - {role: common, tags: common}
+    - {role: mysql, tags: mysql}
+
+
+- name: deploy app
+  hosts: web_servers
+  become: true
+  roles:
+    - {role: common, tags: common}
+    - {role: nginx, tags: nginx}
+    - {role: php-fpm, tags: php-fpm}
+    - {role: wordpress, tags: wordpress}
