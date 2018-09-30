@@ -1,9 +1,19 @@
 ---
+- name: リポジトリが存在するか確認
+  command:
+    test -d {{ redmine_dir }}
+  register:
+    result_test_repo
+  failed_when: result_test_repo.rc not in [0, 1]
+  changed_when: false
+
 - name: Redmineのソースコードをチェックアウト
   git:
     repo: https://github.com/redmine/redmine.git
     dest: "{{ redmine_dir }}"
     version: "{{ redmine_version }}"
+  when:
+    result_test_repo.rc == 1
 
 - name: database.ymlの作成
   template:

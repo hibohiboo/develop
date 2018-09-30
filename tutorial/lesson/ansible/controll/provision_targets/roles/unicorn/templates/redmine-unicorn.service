@@ -4,10 +4,11 @@ Description=Redmine Unicorn Server
 [Service]
 WorkingDirectory={{ redmine_dir }}
 Environment=RAILS_ENV=production
+Environment=RAILS_RELATIVE_URL_ROOT=/redmine
 SyslogIdentifier=redmine-unicorn
 PIDFile={{ redmine_dir }}/tmp/pids/unicorn.pid
 
-ExecStart=/usr/local/bin/bundle exec "unicorn_rails -c config/unicorn.rb -E production" 
+ExecStart=/usr/local/bin/bundle exec "unicorn_rails -c config/unicorn.rb -E production --path /redmine" 
 ExecStop=/usr/bin/kill -QUIT $MAINPID
 ExecReload=/bin/kill -USR2 $MAINPID
 

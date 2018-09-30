@@ -8,3 +8,12 @@
     owner: root
     group: root
     mode: 0644
+# サブディレクトリ用に設定ファイルを修正
+# 5. php動作確認用ファイルの配備
+- name: configure /setup config.ru
+  copy: 
+    src: config.ru
+    dest: "{{ redmine_dir }}/config.ru"
+    owner: root
+    group: root
+    mode: 0644

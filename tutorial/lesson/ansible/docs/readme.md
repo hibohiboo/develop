@@ -44,6 +44,11 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 [NginxでWordPressをサブディレクトリに設置][*11]
 [nginx と PHP-FPM の仕組みをちゃんと理解しながら PHP の実行環境を構築する][*12]
 [RedmineをAnsibleでインストールする][*13]
+[service environment][*14]
+[Redmine 3.4をCentOS 7.0にインストールする手順][*15]
+[debianのnginxでredmineをsubdirectoryで動作させたくなったら][*16]
+[XSERVERでRuby on Railsを動かす その1][*17]
+[Redmine - 個人的記録][*18]
 
 [*1]:https://qiita.com/nyk0401/items/f0fdbdbadf61e1217dec
 [*2]:https://qiita.com/t_732_twit/items/2303a0c3f27c288382c5
@@ -58,3 +63,8 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 [*11]:https://owani.net/wordpress/subdirectory/445/
 [*12]:https://qiita.com/kotarella1110/items/634f6fafeb33ae0f51dc
 [*13]:http://www.torutk.com/projects/swe/wiki/Redmine%E3%82%92Ansible%E3%81%A7%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%99%E3%82%8B
+[*14]:https://coreos.com/os/docs/latest/using-environment-variables-in-systemd-units.html
+[*15]:http://blog.redmine.jp/articles/3_0/installation_centos/
+[*16]:http://pojiropocket.hatenablog.com/entry/2017/07/18/125234
+[*17]:https://www.nijitei.com/it/run_ruby_on_rails_on_xserver/
+[*18]:https://nazuna.sakura.ne.jp/wiki/index.php?title=Redmine#.E3.82.B5.E3.83.96.E3.83.87.E3.82.A3.E3.83.AC.E3.82.AF.E3.83.88.E3.83.AA.E3.81.AE.E8.A8.AD.E5.AE.9A

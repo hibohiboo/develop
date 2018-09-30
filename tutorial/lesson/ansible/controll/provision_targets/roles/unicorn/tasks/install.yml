@@ -24,3 +24,5 @@
 - name: unicornサービス起動・自動起動設定
   service: name=redmine-unicorn state=started enabled=yes
 
+# 再起動
+- service: name=redmine-unicorn state=reloaded

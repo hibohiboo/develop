@@ -3,15 +3,13 @@ upstream unicorn-redmine {
 }
 
 server {
-    listen 80;
-
-    root {{ redmine_dir }}/public;
+    listen {{ nginx_service_port }};
     client_max_body_size 1G;
 
-    location / {
-        try_files $uri/index.html $uri.html $uri @app;
+    location /redmine {
+        alias {{ redmine_dir }}/public;
+        try_files $uri @app;
     }
-
     location @app {
         proxy_redirect off;
         proxy_set_header X-Real-IP $remote_addr;
