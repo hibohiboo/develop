@@ -1,0 +1,25 @@
+- hosts: web_servers
+  tasks:
+    - name: ip test
+      command: /sbin/ip -4 a
+      register: result
+    
+    - name: view result
+      debug: var=result.stdout
+
+    - name: view ip
+      debug:
+        var: ansible_default_ipv4.address 
+
+- hosts: db_servers
+  tasks:
+    - name: ip test
+      command: /sbin/ip -4 a
+      register: result
+    
+    - name: view result
+      debug: var=result.stdout
+      
+    - name: view ip
+      debug:
+        var: ansible_default_ipv4.address 
