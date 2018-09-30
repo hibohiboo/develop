@@ -1,3 +1,22 @@
+## 手順
+
+### 仮想環境の立ち上げ
+まずはそれぞれの仮想環境を立ち上げておく
+
+```
+cd controll && vagrant up
+cd targets && vagrant up
+```
+
+### 鍵の登録
+
+コントロールサーバで作成した公開鍵をターゲットサーバに登録する
+
+```
+./bin/run.sh add-publickey.sh
+```
+
+
 
 ## 参考
 

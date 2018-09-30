@@ -7,7 +7,7 @@ private_key_path=$bin_dir/../.vagrant/machines/default/virtualbox/private_key
 if [[ $filename == "" ]]
 then
     ssh 192.168.50.100 -l vagrant -i $private_key_path 
-    return
+    exit
 fi
 
 
