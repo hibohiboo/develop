@@ -29,6 +29,9 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 
 [wordpressをサブディレクトリにインストールしてadminerをいれた時点の状態](https://github.com/hibohiboo/develop/tree/7ce7d56a695ff667f0ab6b061ab6776697aeba09/tutorial/lesson/ansible/)
 
+
+[redmineをサブディレクトリにいれた状態](https://github.com/hibohiboo/develop/tree/96f737ec9391efb0497d15ed7edc4c839925944d/tutorial/lesson/ansible/)
+
 ## 参考
 
 [ansible expect][*1]
