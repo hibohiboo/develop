@@ -1,0 +1,3 @@
+---
+- include_vars: roles/nginx/vars/main.yml
+- include: roles/adminer/tasks/install.yml

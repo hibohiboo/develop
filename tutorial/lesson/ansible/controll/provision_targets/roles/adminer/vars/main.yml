@@ -1,0 +1,5 @@
+---
+adminer_install_dir: /srv/adminer
+adminer_install_filename: adminer.php
+adminer_symlink_dirs: ["{{ http_doc_root }}"]
+adminer_add_apache_config: false

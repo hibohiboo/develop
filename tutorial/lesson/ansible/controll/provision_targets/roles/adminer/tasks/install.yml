@@ -1,0 +1,23 @@
+---
+# https://github.com/geerlingguy/ansible-role-adminer
+# Install Adminer.
+- name: Ensure Adminer directory exists.
+  file:
+    path: "{{ adminer_install_dir }}"
+    state: directory
+    recurse: true
+
+- name: Download Adminer to configured directory.
+  get_url:
+    url: https://www.adminer.org/latest.php
+    dest: "{{ adminer_install_dir }}/{{ adminer_install_filename }}"
+    mode: 0644
+    timeout: 60
+
+- name: Symlink Adminer into configured directories.
+  file:
+    src: "{{ adminer_install_dir }}/adminer.php"
+    dest: "{{ item }}/adminer.php"
+    state: link
+  with_items: "{{ adminer_symlink_dirs }}"
+

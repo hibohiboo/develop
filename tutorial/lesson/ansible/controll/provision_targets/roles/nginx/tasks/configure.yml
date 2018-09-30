@@ -11,7 +11,7 @@
 # 2. バーチャルホスト設定の配備(共通)
 - name: configure/ setup wordpress configuration file
   template:
-    src: wordpress.conf.j2
+    src: common.conf.j2
     dest: /etc/nginx/conf.d/common.conf
     owner: root
     group: root
@@ -52,3 +52,12 @@
     port: "{{ nginx_service_port }}" 
     delay: 3
     timeout: 60
+
+# 5. php動作確認用ファイルの配備
+- name: configure /setup phpinfo
+  copy: 
+    src: phpinfo.php
+    dest: "{{ http_doc_root }}/phpinfo.php"
+    owner: nginx
+    group: nginx
+    mode: 0644
