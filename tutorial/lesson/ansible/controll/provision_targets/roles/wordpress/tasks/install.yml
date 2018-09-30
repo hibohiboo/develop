@@ -10,7 +10,7 @@
 - name: install / link wordpress root document
   file:
       src: /srv/wordpress-{{ wordpress_version }}
-      path: /srv/wordpress
+      path: "{{ wordpress_doc_root }}"
       owner: nginx
       group: nginx
       state: link

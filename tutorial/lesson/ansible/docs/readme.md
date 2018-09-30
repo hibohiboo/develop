@@ -16,7 +16,7 @@ cd targets && vagrant up
 ./controll/bin/run.sh add-publickey.sh
 ```
 
-
+[wordpressをrootにインストールした時点の状態](https://github.com/hibohiboo/develop/tree/0789aaf2640c8b2dfca2e75ca0f605631bc491b5/tutorial/lesson/ansible/)
 
 ## 参考
 
@@ -29,6 +29,9 @@ cd targets && vagrant up
 [redmine オレオレ][*7]
 [Rack,Unicorn,Nginxの連携について][*8]
 [nginxだけでWordPressを動かすための設定][*9]
+[NginxでWordPressを使う時の設定をまとめてみた][*10]
+[NginxでWordPressをサブディレクトリに設置][*11]
+[nginx と PHP-FPM の仕組みをちゃんと理解しながら PHP の実行環境を構築する][*12]
 
 [*1]:https://qiita.com/nyk0401/items/f0fdbdbadf61e1217dec
 [*2]:https://qiita.com/t_732_twit/items/2303a0c3f27c288382c5
@@ -39,3 +42,6 @@ cd targets && vagrant up
 [*7]:https://qiita.com/0ta2/items/c7864ca8052180343f0c#_reference-31bd363c780a14be0d18
 [*8]:https://qiita.com/takahiro1127/items/fcb81753eaf381b4b33c
 [*9]:https://lealog.hateblo.jp/entry/2012/03/25/225914
+[*10]:https://worklog.be/archives/3222
+[*11]:https://owani.net/wordpress/subdirectory/445/
+[*12]:https://qiita.com/kotarella1110/items/634f6fafeb33ae0f51dc

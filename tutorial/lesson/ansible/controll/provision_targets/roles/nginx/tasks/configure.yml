@@ -9,6 +9,7 @@
     mode: 0644
 
 # 2. バーチャルホスト設定の配備
+- include_vars: roles/wordpress/vars/main.yml
 - include_vars: roles/php-fpm/vars/main.yml
 - name: configure/ setup wordpress configuration file
   template:

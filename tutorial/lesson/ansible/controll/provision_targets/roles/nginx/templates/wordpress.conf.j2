@@ -1,22 +1,40 @@
 server{
   listen {{ nginx_service_ip }}:{{ nginx_service_port }};
-
-  root {{ wordpress_doc_root }};
+  root {{ http_doc_root }};
 
   location ~*/(:uploads|files)/.*\.php$ {
     deny all;
   }
 
-  location / {
-    index index.php index.html;
-    try_files $uri $uri/ /index.php $args;
-  }
-
   location ~* /wp-config.php {
     deny all;
   }
+  location / {
+          try_files $uri $uri/ index.html index.php;
+  }
 
-  location ~ \.php$ {
+  location @wp {
+      rewrite ^/wordpress(.*) /wordpress/index.php?q=$1;
+  }
+  location ^~ /wordpress {
+      root {{ http_doc_root }};
+      index index.php index.html index.htm;
+      try_files $uri $uri/ @wp;
+
+      location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $request_filename;
+        fastcgi_pass unix:{{ phpfpm_unix_socket }};
+      }
+  }
+
+  location ~ [^/]\.php(/|$)  {
+    # PATH_INFO 部の分割に使用する正規表現を指定
+    # 一つ目 ( .+\.php ) は $fastcgi_script_name の値になり、二つ目 ( /.+ ) は $fastcgi_path_info の値になる
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    if (!-f $document_root$fastcgi_script_name) {
+        return 404;
+    }
     try_files $uri =404;
     fastcgi_split_path_info ^(.+\.php)(/.+)$;
     fastcgi_index index.php;

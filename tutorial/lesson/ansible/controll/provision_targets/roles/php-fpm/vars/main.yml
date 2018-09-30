@@ -1,7 +1,7 @@
 ---
 phpfpm_user: nginx
 phpfpm_group: nginx
-phpfpm_unix_socket: /var/run/php-fpm/wordpress.sock
+phpfpm_unix_socket: /var/run/php-fpm/php-fpm.sock
 
 php_packages:
   - php
