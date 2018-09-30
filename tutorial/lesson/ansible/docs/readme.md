@@ -21,6 +21,8 @@ cd targets && vagrant up
 ## 参考
 
 [ansible expect][*1]
+[公開鍵を使う][*2]
 
 [*1]:https://qiita.com/nyk0401/items/f0fdbdbadf61e1217dec
+[*2]:https://qiita.com/t_732_twit/items/2303a0c3f27c288382c5
 
