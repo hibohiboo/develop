@@ -25,4 +25,7 @@
   service: name=redmine-unicorn state=started enabled=yes
 
 # 再起動
-- service: name=redmine-unicorn state=reloaded
+- service: 
+    name: redmine-unicorn
+    state: restarted
+    daemon_reload: yes
