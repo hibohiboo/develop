@@ -3,3 +3,13 @@
   with_items: "{{targets_keyname}}"
   loop_control:
     loop_var: keyname
+
+# パーミッションを600にしないとssh接続できない。
+# 秘密鍵を渡されたサーバへつなげるときのサンプル
+- name: configure / copy privatekey
+  copy: 
+    src: secret.key
+    dest: /home/vagrant/.ssh/secret.key
+    owner: vagrant
+    group: vagrant
+    mode: 0600
