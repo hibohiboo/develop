@@ -21,7 +21,7 @@
     timeout: 10
     responses:
       'Enter file in which to save the key \(\/home\/vagrant\/\.ssh\/id_rsa\): ': "/home/vagrant/.ssh/{{keyname}}"
-      'Enter passphrase \(empty for no passphrase\): ': ''
-      'Enter same passphrase again: ': ''
+      'Enter passphrase \(empty for no passphrase\): ': 'asdfjkl;'
+      'Enter same passphrase again: ': 'asdfjkl;'
   when:
     result_test_private_key.rc != 0

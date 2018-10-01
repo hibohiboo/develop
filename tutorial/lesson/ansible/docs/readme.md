@@ -13,8 +13,17 @@ cd targets && vagrant up
 コントロールサーバで作成した公開鍵をターゲットサーバに登録する
 
 ```
-./controll/bin/run.sh add-publickey.sh
+./controll/bin/run.sh add-publickey
 ```
+
+### 実行
+
+```
+./controll/bin/run.sh ansible
+```
+
+ウェブサーバとDBサーバとで2回パスフレーズを聞かれるので入力する。
+何も修正していないなら、どちらも【 asdfjkl; 】になっているはず。
 
 ## adminerの確認
 
@@ -54,6 +63,9 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 [Redmine - 個人的記録][*18]
 [nginxの設定 その1][*19]
 [nginxとunicornが連携しない][*20]
+[ssh-agentの使い方][*21]
+[ansibleを公開鍵認証する時に秘密鍵のパスフレーズを何度も聞かれるのを対策する][*22]
+
 
 [*1]:https://qiita.com/nyk0401/items/f0fdbdbadf61e1217dec
 [*2]:https://qiita.com/t_732_twit/items/2303a0c3f27c288382c5
@@ -75,3 +87,6 @@ http://192.168.74.60/adminer.php?server=192.168.7.25&username=testuser_wp&db=tes
 [*18]:https://nazuna.sakura.ne.jp/wiki/index.php?title=Redmine#.E3.82.B5.E3.83.96.E3.83.87.E3.82.A3.E3.83.AC.E3.82.AF.E3.83.88.E3.83.AA.E3.81.AE.E8.A8.AD.E5.AE.9A
 [*19]:https://www.bnote.net/centos/nginx_conf01.html
 [*20]:https://teratail.com/questions/27773
+[*21]:https://qiita.com/isaoshimizu/items/84ac5a0b1d42b9d355cf
+[*22]:https://blog.kunikiya.jp/operation/server-operation/shell_script/200
+
