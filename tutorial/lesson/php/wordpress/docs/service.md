@@ -13,3 +13,5 @@ http://netbiz-life.com/archives/5819
 [テーマ切り替え](https://gist.github.com/wokamoto/4679580)
 [テーマ切り替え](https://ja.wordpress.org/support/topic/%E7%89%B9%E5%AE%9A%E3%81%AEurl%E3%80%81%E5%9B%BA%E5%AE%9A%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E3%81%BF%E3%80%8Ctheme%E3%80%8D%E3%82%92%E5%88%87%E3%82%8A%E6%9B%BF%E3%81%88%E3%82%8B/)
 [NginxでWordPressマルチサイトが簡単に作れます](https://hajimeteno-linux.site/virtualenv/nginx-wordpress-multisite-easy/)
+[1台のサーバーで複数のWordPressサイトを稼働させる方法（Nginx編）](https://4thsight.xyz/1091)
+[Nginx + WordPress + マルチドメイン機能を有効にする](http://tech.memoecho.com/ja/wordpress/nginx-wordpress-multi-domains/)
