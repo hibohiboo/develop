@@ -9,21 +9,24 @@
 <h2>PHP Info</h2>
 <p><a href="phpinfo.php">show phpinfo</a></p>
 <h2>DataBase</h2>
+<p><a href="/wordpress/">wordpress</a></p>
+<p><a href="/wordpress/test1">wordpress test1</a></p>
+
 <p><a href="//<?php echo $_SERVER["HTTP_HOST"];?>:8080/">adminer</a></p>
 <h3>接続情報</h3>
 <table>
   <tr><th>Server</th><td>db</td></tr>
-  <tr><th>Username</th><td>root</td></tr>
-  <tr><th>Pasword</th><td>password</td></tr>
-  <tr><th>Database</th><td>northwind</td></tr>
+  <tr><th>Username</th><td>wpadmin</td></tr>
+  <tr><th>Pasword</th><td>wppassword</td></tr>
+  <tr><th>Database</th><td>wpdb</td></tr>
 </table>
 <h2>sql実行</h2>
 <?php
 		// 開発環境
 		$host   = 'db';
-		$dbname = 'testdb';
-		$username = 'root';
-		$password = 'password';
+		$dbname = 'wpdb';
+		$username = 'wpadmin';
+		$password = 'wppassword';
 
 		$dsn = "mysql:dbname=$dbname;host=$host;charset=utf8";
 
