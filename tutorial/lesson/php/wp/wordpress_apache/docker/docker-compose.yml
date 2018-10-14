@@ -5,11 +5,14 @@ services:
     build: ./php7
     volumes:
       - ../src:/var/www/html
+      - ../wordpress:/wordpress
       - ./php7/php.ini:/usr/local/etc/php/php.ini
       - ../logs:/var/log/apache2
     environment:
       # 9000番はnginxだとfast-cgiが使っているので１つずらす
       XDEBUG_CONFIG: "remote_enable=1 remote_autostart=1 remote_port=9001 remote_host=10.0.2.2"
+      # documentrootをwordpress用に変更
+      APACHE_DOCUMENT_ROOT: /wordpress
     ports: 
       - 80:80
   # データベースへアクセス
