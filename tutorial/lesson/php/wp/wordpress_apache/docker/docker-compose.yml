@@ -1,0 +1,39 @@
+version: "3"
+services:
+  # php
+  php7: 
+    build: ./php7
+    volumes:
+      - ../src:/var/www/html
+      - ./php7/php.ini:/usr/local/etc/php/php.ini
+      - ../logs:/var/log/apache2
+    environment:
+      # 9000番はnginxだとfast-cgiが使っているので１つずらす
+      XDEBUG_CONFIG: "remote_enable=1 remote_autostart=1 remote_port=9001 remote_host=10.0.2.2"
+    ports: 
+      - 80:80
+  # データベースへアクセス
+  adminer:
+    image: adminer
+    ports: 
+      - 8080:8080
+
+  # データベース
+  db:
+    build: ./mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro # 時刻の同期
+      - ./mysql/init:/docker-entrypoint-initdb.d # 初期実行
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "password"
+      TZ: "Asia/Tokyo"
+
+volumes:
+  dbdata: # 名前付きボリューム名
+
+
+
+
