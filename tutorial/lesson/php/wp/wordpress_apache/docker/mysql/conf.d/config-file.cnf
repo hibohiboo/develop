@@ -3,7 +3,7 @@ character-set-server = utf8mb4
 # あいまいな照合順序。https://qiita.com/kazu56/items/6af85ffcf8d3954455ad
 # collation-server = utf8mb4_unicode_ci
 explicit_defaults_for_timestamp = true
-bind-address=127.0.0.1
+bind-address=0.0.0.0
 # エラー対策：File ./ib_logfile101: 'aio write' returned OS error 122. Cannot continue operation
 innodb_use_native_aio=0
 
