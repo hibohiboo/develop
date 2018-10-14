@@ -85,7 +85,7 @@ define('WP_DEBUG', false);
 
 // マルチサイト対応
 define('WP_ALLOW_MULTISITE', true);
-define('MULTISITE', true);
+define('MULTISITE', false);
 define('SUBDOMAIN_INSTALL', false);
 define('DOMAIN_CURRENT_SITE', '192.168.50.10');
 define('PATH_CURRENT_SITE', '/wordpress/');
