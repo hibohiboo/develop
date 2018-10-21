@@ -16,6 +16,16 @@ wp="ssh 192.168.74.60 -p 22 -l vagrant  /usr/local/bin/wp-cli.phar --path='/word
 $wp post list 
 create="$wp post create --post_author=testuser_wp --post_status=publish --porcelain $site_options"
 
+$wp term create \
+                category information \
+                --slug=information \
+                --description="お知らせ" \
+                $site_options
+$wp term create \
+                category book \
+                --slug=book \
+                --description="書籍" \
+                $site_options
 
 # サイト追加content=`cat $bin_dir/templates/post.html`
 num=1
@@ -31,13 +41,18 @@ $create --post_type=post --post_title="イベントのお知らせ:$((num++))月
 $create --post_type=post --post_title="イベントのお知らせ:$((num++))月" --post_content="$content" --post_category='information'
 $create --post_type=post --post_title="イベントのお知らせ:$((num++))月" --post_content="$content" --post_category='information'
 $create --post_type=post --post_title="イベントのお知らせ:$((num++))月" --post_content="$content" --post_category='information'
-num=1
-$create --post_type=post --post_title="ルールブック$((num++))巻発売！" --post_content="$content" --post_category='book'
-$create --post_type=post --post_title="ルールブック$((num++))巻発売！" --post_content="$content" --post_category='book'
-$create --post_type=post --post_title="ルールブック$((num++))巻発売！" --post_content="$content" --post_category='book'
-$create --post_type=post --post_title="ルールブック$((num++))巻発売！" --post_content="$content" --post_category='book'
 
 $create --post_type=post --post_title="コンベンション情報のお知らせ:7月札幌" --post_content="$content" --post_category='information'
 $create --post_type=post --post_title="コンベンション情報のお知らせ:8月大阪" --post_content="$content" --post_category='information'
 $create --post_type=post --post_title="コンベンション情報のお知らせ:9月東京" --post_content="$content" --post_category='information'
 $create --post_type=post --post_title="コンベンション情報のお知らせ:10月名古屋" --post_content="$content" --post_category='information'
+
+num=1
+$create --post_type=post --post_title="ルールブック$((num++))巻発売！" --post_content="$content" --post_category='book'
+$create --post_type=post --post_title="ルールブック$((num++))巻発売！" --post_content="$content" --post_category='book'
+$create --post_type=post --post_title="ルールブック$((num++))巻発売！" --post_content="$content" --post_category='book'
+$create --post_type=post --post_title="ルールブック$((num++))巻発売！" --post_content="$content" --post_category='book'
+# # 固定ページのデータをインポート
+# $wp import /var/www/html/exports/page.xml --authors=create $site_options
+# # 投稿ページのデータをインポート
+# $wp import /var/www/html/exports/posts.xml --authors=create $site_options
