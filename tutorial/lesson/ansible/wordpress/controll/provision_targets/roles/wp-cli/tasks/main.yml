@@ -1,0 +1,4 @@
+---
+# - include: roles/wp-cli/tasks/check_install.yml
+- include: roles/wp-cli/tasks/install.yml
+# - include: roles/wp-cli/tasks/configure.yml

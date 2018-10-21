@@ -1,0 +1,23 @@
+---
+# Install WP-CLI
+- name: make bin directory
+  file: 
+    path: "{{ bin_dir }}"
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: 0755
+
+- name: Install the WP-CLI
+  get_url:
+    url: "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
+    dest: "{{ bin_dir }}/wp-cli.phar"
+    mode: 0755
+    force: yes
+    
+- name: wp-cli test
+  command: php ~/bin/wp-cli.phar --info
+  register: result
+
+- name: view result
+  debug: var=result.stdout
