@@ -1,0 +1,13 @@
+version: '3'
+services:
+  firebase:
+    build: ./firebase
+    env_file: .env
+    volumes:
+      - ../src/functions:/app/functions
+    ports:
+      - 5000:5000
+      - 9005:9005
+      - 9229:9229
+
+
