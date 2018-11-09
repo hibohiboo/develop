@@ -9,3 +9,11 @@ services:
     environment:
       - SHELL=/bin/bash
     command: [npm, run, watch]
+
+  webpacks:
+    build: ./webpacks
+    volumes:
+      - ../src:/app/src
+      - ../dist:/app/dist
+      # 設定ファイル
+      - ../config/babel.config.js:/app/babel.config.js
