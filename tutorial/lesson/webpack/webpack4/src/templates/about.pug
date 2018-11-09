@@ -1,0 +1,27 @@
+extends _includes/commons/layout
+
+block title
+  title= このサイトについて
+
+mixin link(name, url)
+  a.collection-item(href=url)=name
+
+block main
+  .container
+    h1.center このサイトについて
+    .section
+      h2 ポートレート
+      p このサイトはhiboの作品の展示場です。ごゆるりと。
+
+    .section
+      h2 開発ツール
+      .collection
+        +link("virtual box", "https://www.virtualbox.org/") 
+        +link("vagrant", "https://www.vagrantup.com/")
+        +link("docker", "https://www.docker.com/")
+        +link("firebase", "https://firebase.google.com/")
+        +link("pug", "https://pugjs.org/api/getting-started.html")
+        +link("materializecss", "https://materializecss.com/")
+        +link("js開発", "https://github.com/hibohiboo/wasureta/blob/master/docker/webpack/package.json")
+
+
