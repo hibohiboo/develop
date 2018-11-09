@@ -1,0 +1,18 @@
+doctype html
+html(lang='ja')
+  include variables
+  head
+    block title
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0')
+    include meta_common
+    block meta
+      meta(name='og:type', content="game") 
+    //- CSS
+    link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css', rel='stylesheet')
+    block css
+    script(defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js")
+    include google-tag-head
+  block body
+    include body

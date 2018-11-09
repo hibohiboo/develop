@@ -1,0 +1,34 @@
+extends _includes/commons/layout
+//- _layout.pugをベースに作成
+
+//- タイトルのブロック
+block title
+  //- 最初にこのページで使用する変数を読み込む
+  -var title="我楽多実験場:TOP"
+  title= title
+
+block main
+  #index-banner.section.no-pad-bot
+    .container
+      h1.header.center.orange-text=sitename
+      .row.center
+        h5.header.col.s12.light まだ何もないです
+  .container
+    .section
+      // Icon Section
+      .row
+        .col.s12.m4
+          .icon-block
+            h2.center.light-blue-text
+              i.material-icons local_library
+            h5.center てすと
+        .col.s12.m4
+          .icon-block
+            h2.center.light-blue-text
+              i.material-icons group
+            h5.center てすと
+        .col.s12.m4
+          .icon-block
+            h2.center.light-blue-text
+              i.material-icons settings
+            h5.center てすと

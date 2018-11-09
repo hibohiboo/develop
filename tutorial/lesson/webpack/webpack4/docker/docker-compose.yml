@@ -1,0 +1,11 @@
+version: '3'
+services:
+  # htmlテンプレートエンジン
+  pug:
+    build: ./pug
+    volumes:
+      - ../src/templates:/app/src
+      - ../dist/html:/app/dist
+    environment:
+      - SHELL=/bin/bash
+    command: [npm, run, watch]

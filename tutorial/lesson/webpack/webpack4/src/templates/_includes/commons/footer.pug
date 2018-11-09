@@ -1,0 +1,33 @@
+
+footer.page-footer.orange
+  .container
+    .row
+      .col.l6.s12
+        h5.white-text=sitename
+        p.grey-text.text-lighten-4=description
+      .col.l3.s12
+        h5.white-text 
+        ul
+          li
+            a.white-text(href='/agreement.html') 利用規約
+          li
+            a.white-text(href='/privacy-policy.html') プライバシーポリシー
+
+      .col.l3.s12
+        h5.white-text コンタクト
+        ul
+          li: a.white-text(href="https://twitter.com/hibohiboo" target="_blank")
+            span.fab.fa-twitter(title="Twitter")
+            span twitter/@hibohiboo
+          li: a.white-text(href="https://github.com/hibohiboo/wasureta" target="_blank")
+            span.fab.fa-github(title="Github")
+            span github/hibohiboo
+  .footer-copyright
+    .container
+      | Made by 
+      a.orange-text.text-lighten-3(href='http://materializecss.com') hibo
+// Scripts
+script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js')
+
+
