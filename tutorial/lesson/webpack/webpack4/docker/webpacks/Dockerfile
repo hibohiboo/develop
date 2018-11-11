@@ -6,6 +6,15 @@ WORKDIR /app
 # 後で確認出来るようにpackage.jsonを作成
 RUN npm init -y
 
-## babelインストール
-RUN yarn add --dev @babel/core @babel/cli @babel/preset-env
+## for js
+### babel
+RUN yarn add --dev @babel/core \
+                  @babel/cli \
+                  @babel/preset-env
 RUN yarn add @babel/polyfill
+
+### lint
+RUN yarn add --dev eslint \
+                   eslint-plugin-import \
+                   eslint-config-airbnb-base \
+                   eslint-plugin-jasmine
