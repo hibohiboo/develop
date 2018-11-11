@@ -65,6 +65,7 @@ for (const value of iterable) {
 //   await doSomething(value);
 // }
 
+
 // map
 const map = new Map([
   ["五反田", "約束の地"],
