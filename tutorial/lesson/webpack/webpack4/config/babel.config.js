@@ -4,6 +4,7 @@ const presets = [
     {
       targets: {
         chrome: "70",
+        ie: "11"
       },
       useBuiltIns: "usage",
     },
