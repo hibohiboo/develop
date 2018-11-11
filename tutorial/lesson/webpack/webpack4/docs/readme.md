@@ -17,3 +17,4 @@ htmlのテンプレートエンジン
 jsのトランスパイラ
 
 [参考](https://qiita.com/shibukawa/items/19ab5c381bbb2e09d0d9)
+[参考：builtins](https://babeljs.io/docs/en/babel-preset-env)
