@@ -8,8 +8,13 @@ const destObj = {};
 Object.assign(destObj, srcObj);
 
 // オブジェクトのスプレッド演算子サポート
-const destObj2 = { ...srcObj };
+// const destObj2 = { ...srcObj };
 
+/**
+ *親クラス
+ *
+ * @class Parent
+ */
 class Parent {
   constructor() {
     this.animaltype = '動物';
@@ -20,6 +25,12 @@ class Parent {
   }
 }
 
+/**
+ *子クラス
+ *
+ * @class SmallAnimal
+ * @extends {Parent}
+ */
 class SmallAnimal extends Parent {
   constructor() {
     super();
@@ -95,6 +106,6 @@ console.log(`${name}だけど${reason} ${mind}理由の一つです`);
 // 分割代入の左辺にスプレッド演算子をおくことで、「残りの要素」を扱う
 // オブジェクトのスプレッド演算子はECMAScript 2018で公式の仕様に仲間入り
 // 配列
-const [aa, bb, ...rest] = array;
+// const [aa, bb, ...rest] = array;
 // オブジェクト
-const { aaa, bbb, ...rest2 } = obj;
+// const { aaa, bbb, ...rest2 } = obj;

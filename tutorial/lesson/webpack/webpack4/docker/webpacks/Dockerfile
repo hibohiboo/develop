@@ -18,3 +18,7 @@ RUN yarn add --dev eslint \
                    eslint-plugin-import \
                    eslint-config-airbnb-base \
                    eslint-plugin-jasmine
+
+### esdoc
+RUN yarn add --dev esdoc esdoc-standard-plugin
+

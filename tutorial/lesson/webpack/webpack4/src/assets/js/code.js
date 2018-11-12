@@ -42,7 +42,7 @@ class ContainingClass {
       return this._bar;
     }
     set bar(baz) {
-      this._bar = baz;
+      this._bar = _bar;
     }
 
     /**
