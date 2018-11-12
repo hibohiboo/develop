@@ -1,0 +1,11 @@
+{
+  "extends": ["tslint:latest", "tslint-config-airbnb"],
+	"rules": {
+    "strict-boolean-expressions": [true, "allow-boolean-or-undefined"],
+    "no-empty-interface": [false],
+    "no-submodule-imports": [false],
+    "no-duplicate-imports": [false],
+    "no-console": [false]
+  },
+  "typeCheck": true
+}

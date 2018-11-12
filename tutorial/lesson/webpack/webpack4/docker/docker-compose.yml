@@ -20,3 +20,4 @@ services:
       - ../config/.eslintrc:/app/.eslintrc
       - ../config/.esdoc.json:/app/.esdoc.json
       - ../config/tsconfig.json:/app/tsconfig.json
+      - ../config/tslint.json:/app/tslint.json

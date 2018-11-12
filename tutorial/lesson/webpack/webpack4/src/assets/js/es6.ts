@@ -1,31 +1,28 @@
 function f() {
-    let total = 0;
-    let x = 5;
-    for (let x = 1; x < 10; x++) {
-        total += x;
+  let total = 0;
+  const x = 5;
+  for (let x = 1; x < 10; x++) {
+      total += x;
     }
-    console.log(x);
+  console.log(x);
 }
 
-var rectangle = { height: 20, width: 10 };
-var areaMessage = `Rectangle area is ${rectangle.height * rectangle.width}`;
+const rectangle = { height: 20, width: 10 };
+const areaMessage = `Rectangle area is ${rectangle.height * rectangle.width}`;
 
-
-class Foo
-{
+class Foo {
     /**
      * A function that returns an object.
      * Also no type information is given, the object should be correctly reflected.
      */
-    createSomething() {
-        return {
-            foo: 'bar',
-            doSomething(a:number) { return a + 1},
-            doAnotherThing() {}
+  public createSomething() {
+      return {
+          foo: 'bar',
+          doSomething(a: number) { return a + 1;},
+          doAnotherThing() {},
         };
     }
 }
-
 
 export default class DataService {
 }
