@@ -22,3 +22,7 @@ RUN yarn add --dev eslint \
 ### esdoc
 RUN yarn add --dev esdoc esdoc-standard-plugin
 
+## for ts
+RUN yarn add --dev typescript
+RUN yarn add --dev tslint tslint-config-airbnb
+RUN yarn add --dev typedoc 

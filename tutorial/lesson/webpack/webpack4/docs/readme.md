@@ -37,3 +37,12 @@ eslintのairbnbを追加
 
 [この時点のソース](https://github.com/hibohiboo/develop/tree/bd5f0809a4f0ea034a3363ba4570c23d43a1d631/tutorial/lesson/webpack/webpack4)  
 
+## docs
+
+esdocを追加
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/d2e7e06489f5e52e22ce8d73b87f6912a8f76509/tutorial/lesson/webpack/webpack4)  
+
+## typescript
+
+[参考：ts3](https://qiita.com/vvakame/items/57a0559c45b88b2ae168)
