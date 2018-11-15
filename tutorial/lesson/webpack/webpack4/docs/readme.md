@@ -62,4 +62,24 @@ esdocを追加
 
 ## postcss
 
+`bin/postcss/autoprefix.sh` : sassから出力されたdist/css/*.cssを置き換える。
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/b1a0cd64eb5f5041bac8e6ba421ba4809b24e23f/tutorial/lesson/webpack/webpack4)  
+
 [PostCSS まとめ](https://qiita.com/morishitter/items/4a04eb144abf49f41d7d)
+
+## stylelint
+
+sass記法は対応していなさそう
+
+[npmのみでSassのstylelint 〜webpackとPostCSS不要編〜](https://qiita.com/pprhr/items/b61f84944e1e869161cc)
+[チームで美しくメンテナブルなCSSを書くための 「Stylelint」導入のすすめ](https://www.webprofessional.jp/taking-css-linting-next-level-stylelint/)
+[stylelintのorderモジュール選定](https://qiita.com/nabepon/items/4168eae542861cfd69f7)
+[実務でstylelintを導入して3ヶ月ぐらいたった感想](https://qiita.com/DesignChips/items/309a8cce0d744f2dfef6)
+[stylelintとBackstopJSで安全にcssを書ける環境を作った](https://devblog.thebase.in/entry/2018/06/06/110000)
+
+
+### sass-lint
+
+[sass-lint](https://morizyun.github.io/javascript/node-js-npm-library-sass-lint.html)
+[sass-lintのエラールールを日本語で分かるようにした](https://qiita.com/nezurika/items/4cc858ee9ebd6154dd44)

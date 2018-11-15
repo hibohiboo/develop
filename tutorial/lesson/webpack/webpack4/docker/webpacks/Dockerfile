@@ -27,10 +27,17 @@ RUN yarn add --dev typescript
 RUN yarn add --dev tslint tslint-config-airbnb
 RUN yarn add --dev typedoc 
 
-## for sass
+## for css
+### sass
 RUN yarn add --dev node-sass
 
-## for autocss
+### postcss
 RUN yarn add --dev postcss postcss-cli
 RUN yarn add --dev autoprefixer
 
+### lint
+RUN yarn add --dev stylelint 
+RUN yarn add --dev stylelint-scss
+RUN yarn add --dev stylelint-order
+RUN yarn add --dev postcss-sass
+RUN yarn add --dev stylelint-config-sass-guidelines
