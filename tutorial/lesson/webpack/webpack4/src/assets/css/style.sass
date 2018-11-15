@@ -1,0 +1,95 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block 
+  padding: 0 15px
+
+  .material-icons 
+    font-size: inherit
+
+.add1-regulation
+  display: none
+
+.add1-regulation
+  background-color: #fffacd
+
+.survival-regulation
+  background-color: #98fb98
+
+// ルールブック
+// 一言 - 引用
+.quote 
+  font-style: oblique
+
+// キャラクターシート
+.pc-image
+  max-width: 300px
+.pc-image a
+  text-shadow: white 2px 2px 0px, white -2px 2px 0px, white -2px -2px 0px, white 2px -2px 0px, white 2px 0px 0px, white 0px 2px 0px, white -2px 0px 0px, white 0px -2px 0px
+
+@media (max-width: 599px) 
+  .pc-image
+    max-height: 300px
+    overflow: hidden
+  .pc-image a
+    text-shadow: white 1px 1px 0px, white -1px 1px 0px, white -1px -1px 0px, white 1px -1px 0px, white 1px 0px 0px, white 0px 1px 0px, white -1px 0px 0px, white 0px -1px 0px
+
+  // レーダーチャート
+#myChart
+  width: 300px
+  height: 300px
+  
+// 能力値の数字
+.pc-param-number
+    font-size: 30px
+    padding-left: 10px
+    font-weight: bold
+
+$num_cols : 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+
+// スマートフォン向け
+@media (max-width: 599px) 
+  .row-flex
+    display: flex
+
+    @each $num in $num_cols 
+      .s#{$num}
+        flex: #{$num}
+
+// タブレット向け
+@media (min-width: 600px) and (max-width: 799px) 
+  .row-flex
+    display: flex
+    @each $num in $num_cols 
+      .s#{$num}
+        flex: #{$num}
+      .m#{$num}
+        flex: #{$num}
+
+  // PC向け
+@media (min-width: 800px) 
+  .row-flex
+    display: flex
+    @each $num in $num_cols 
+      .s#{$num}
+        flex: #{$num}
+      .m#{$num}
+        flex: #{$num}
+      .l#{$num}
+        flex: #{$num}
+
+.flex
+  display: flex
+
+.insane-wrapper
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  width: 180px
+

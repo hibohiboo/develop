@@ -34,4 +34,10 @@
   //postcssをとりあえずless記法とする。
   ,"files.associations": {"*.pcss": "less"}
   //,"elm.formatCommand": "D:\\develop\\develop\\node_modules\\elm-test\\bin\\elm-test"
+   , "elm.makeCommand": ".\\node_modules\\.bin\\elm-make"
+   ,"[elm]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveTimeout": 1500
+  },
+  "elm.formatCommand": ".\\node_modules\\.bin\\elm-format"
 }
