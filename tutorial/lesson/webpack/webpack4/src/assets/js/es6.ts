@@ -2,8 +2,8 @@ function f() {
   let total = 0;
   const x = 5;
   for (let x = 1; x < 10; x++) {
-      total += x;
-    }
+    total += x;
+  }
   console.log(x);
 }
 
@@ -16,12 +16,12 @@ class Foo {
      * Also no type information is given, the object should be correctly reflected.
      */
   public createSomething() {
-      return {
-          foo: 'bar',
-          doSomething(a: number) { return a + 1;},
-          doAnotherThing() {},
-        };
-    }
+    return {
+        foo: 'bar',
+        doSomething(a: number) { return a + 1; },
+        doAnotherThing() {},
+      };
+  }
 }
 
 export default class DataService {
