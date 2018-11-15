@@ -1,7 +1,4 @@
 .example {
+  border-radius: 3px;
   display: flex;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  border-radius: 3px; }
+  user-select: none; }
