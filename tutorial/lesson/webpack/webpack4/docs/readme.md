@@ -100,3 +100,8 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 
 
 [elm ドキュメント 日本語版](https://guide.elm-lang.jp/)
+
+### optimized調査
+
+[How to optimize Elm code](https://elm-lang.org/0.19.0/optimize)
+
