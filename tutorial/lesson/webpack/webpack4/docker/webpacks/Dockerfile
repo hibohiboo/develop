@@ -39,5 +39,4 @@ RUN yarn add --dev autoprefixer
 RUN yarn add --dev stylelint 
 RUN yarn add --dev stylelint-scss
 RUN yarn add --dev stylelint-order
-RUN yarn add --dev postcss-sass
 RUN yarn add --dev stylelint-config-sass-guidelines
