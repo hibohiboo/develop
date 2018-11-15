@@ -45,3 +45,6 @@ RUN yarn add --dev stylelint-config-sass-guidelines
 
 RUN yarn add --dev elm
 RUN yarn add --dev elm-format
+### elm minify
+RUN yarn add --dev uglify-js
+RUN npm i -g uglify-js
