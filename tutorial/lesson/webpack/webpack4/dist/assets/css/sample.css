@@ -1,5 +1,7 @@
 .example {
   display: flex;
-  user-select: none;
-  -webkit-border-radius: 3px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   border-radius: 3px; }
