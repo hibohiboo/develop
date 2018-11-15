@@ -29,5 +29,8 @@ RUN yarn add --dev typedoc
 
 ## for sass
 RUN yarn add --dev node-sass
+
+## for autocss
+RUN yarn add --dev postcss postcss-cli
 RUN yarn add --dev autoprefixer
 

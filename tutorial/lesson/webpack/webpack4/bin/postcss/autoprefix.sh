@@ -6,4 +6,4 @@ name=${1:-webpacks}
 dir_docker="$bin_dir/../../docker"
 
 # docker-composeの起動。 
-cd $dir_docker  && docker-compose run $name yarn run node-sass -r /app/src/assets/css -o /app/dist/assets/css
+cd $dir_docker  && docker-compose run $name yarn run postcss /app/dist/assets/css/*.css --use autoprefixer --no-map -r 
