@@ -54,13 +54,15 @@ esdocを追加
 
 [この時点のソース](https://github.com/hibohiboo/develop/tree/c350a05ad5cef36fdad93817d26bfc3a1263658e/tutorial/lesson/webpack/webpack4)  
 
-## sass
+## css
+
+### sass
 [この時点のソース](https://github.com/hibohiboo/develop/tree/b015d5d66d3c0e1f4b02970687bcfec987852ba9/tutorial/lesson/webpack/webpack4)  
 
 [node-sassでSassファイルをコンパイルする](https://qiita.com/setouchi/items/2f7ae68764abe74934fb)
 [超絶・超速のNODE-SASSでSASSコンパイルのすすめ](https://its-office.jp/blog/sass/2018/05/12/node-sass.html)
 
-## postcss
+### postcss
 
 `bin/postcss/autoprefix.sh` : sassから出力されたdist/css/*.cssを置き換える。
 
@@ -68,9 +70,21 @@ esdocを追加
 
 [PostCSS まとめ](https://qiita.com/morishitter/items/4a04eb144abf49f41d7d)
 
-## stylelint
 
-sass記法は対応していなさそう
+### sass-lint
+情報が少ない。。
+
+[sass](https://stackoverflow.com/questions/39307087/how-i-should-check-indentation-in-sass-file-with-stylelint)
+[sass-lint](https://morizyun.github.io/javascript/node-js-npm-library-sass-lint.html)
+[sass-lintのエラールールを日本語で分かるようにした](https://qiita.com/nezurika/items/4cc858ee9ebd6154dd44)
+
+### stylelint
+
+sass記法は対応していなさそう。
+sassにこだわりがあるわけではないので、scss記法に直した。
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/c750f3a4d1ce521851c2d5ad6bef02b9f6d37606/tutorial/lesson/webpack/webpack4)  
+
 
 [npmのみでSassのstylelint 〜webpackとPostCSS不要編〜](https://qiita.com/pprhr/items/b61f84944e1e869161cc)
 [チームで美しくメンテナブルなCSSを書くための 「Stylelint」導入のすすめ](https://www.webprofessional.jp/taking-css-linting-next-level-stylelint/)
@@ -78,8 +92,3 @@ sass記法は対応していなさそう
 [実務でstylelintを導入して3ヶ月ぐらいたった感想](https://qiita.com/DesignChips/items/309a8cce0d744f2dfef6)
 [stylelintとBackstopJSで安全にcssを書ける環境を作った](https://devblog.thebase.in/entry/2018/06/06/110000)
 
-
-### sass-lint
-
-[sass-lint](https://morizyun.github.io/javascript/node-js-npm-library-sass-lint.html)
-[sass-lintのエラールールを日本語で分かるようにした](https://qiita.com/nezurika/items/4cc858ee9ebd6154dd44)
