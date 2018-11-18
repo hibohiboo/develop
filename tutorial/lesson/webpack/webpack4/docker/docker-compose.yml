@@ -15,6 +15,7 @@ services:
     volumes:
       - ../src:/app/src
       - ../dist:/app/dist
+      - ../product:/app/product
       # 設定ファイル
       - ../config/babel.config.js:/app/babel.config.js
       - ../config/.eslintrc:/app/.eslintrc
@@ -23,5 +24,4 @@ services:
       - ../config/tslint.json:/app/tslint.json
       - ../config/.stylelintrc:/app/.stylelintrc
       - ../config/elm.json:/app/elm.json
-
-      
+      - ../config/webpack.config.js:/app/webpack.config.js

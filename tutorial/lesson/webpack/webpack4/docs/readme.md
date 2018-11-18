@@ -103,5 +103,9 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 
 ### optimized調査
 
+100kb -> 15kb まで圧縮
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/7e83836e5b0616363f1e53f6a6d9b9d69947be33/tutorial/lesson/webpack/webpack4)  
+
 [How to optimize Elm code](https://elm-lang.org/0.19.0/optimize)
 

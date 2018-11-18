@@ -1,13 +1,13 @@
 function f() {
     let total = 0;
-    let x = 5;
+    const x = 5;
     for (let x = 1; x < 10; x++) {
         total += x;
     }
     console.log(x);
 }
-var rectangle = { height: 20, width: 10 };
-var areaMessage = `Rectangle area is ${rectangle.height * rectangle.width}`;
+const rectangle = { height: 20, width: 10 };
+const areaMessage = `Rectangle area is ${rectangle.height * rectangle.width}`;
 class Foo {
     /**
      * A function that returns an object.
@@ -17,7 +17,7 @@ class Foo {
         return {
             foo: 'bar',
             doSomething(a) { return a + 1; },
-            doAnotherThing() { }
+            doAnotherThing() { },
         };
     }
 }

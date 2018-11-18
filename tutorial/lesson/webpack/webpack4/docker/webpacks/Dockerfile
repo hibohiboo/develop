@@ -48,3 +48,8 @@ RUN yarn add --dev elm-format
 ### elm minify
 RUN yarn add --dev uglify-js
 RUN npm i -g uglify-js
+
+## webpackインストール
+RUN yarn add --dev webpack
+RUN yarn add --dev webpack-cli
+RUN yarn add --dev webpack-merge
