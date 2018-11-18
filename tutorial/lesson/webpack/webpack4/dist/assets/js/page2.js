@@ -1,8 +1,5 @@
-(function () {
-    const mountNode = document.getElementById('test');
-    // @ts-ignore:
-    const app = Elm.Main.init({ node: mountNode });
-    app.ports.logout.subscribe(() => {
-        console.log('test');
-    });
-})();
+const page2 = require('../elm/Page2.js');
+const app2 = page2.Elm.Main.init({ node: document.getElementById('test') });
+app2.ports.logout.subscribe(() => {
+    console.log('test');
+});
