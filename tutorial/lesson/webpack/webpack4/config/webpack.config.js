@@ -4,24 +4,22 @@ const merge = require("webpack-merge");
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
 let filename = "[name].js";
 let opts = {
-  src: path.join(__dirname, 'src'),
-  dest: path.join(__dirname, 'dist')
+  src: path.join(__dirname, 'src/assets/js/'),
+  dest: path.join(__dirname, 'dist/assets/js')
 }
 
 if (MODE == "production" ) {
   filename = "[name]-[hash].js";
-  opts = {
-    src: path.join(__dirname, 'dist'),
-    dest: path.join(__dirname, 'product')
-  }
 }
-
+// entry
+const files = {
+  pageOne: 'page1.js',
+  pageTwo: 'page2.js'
+}
 var common = {
   mode: MODE,
   context: opts.src,
-  entry: {
-
-  },
+  entry: files,
   output: {
       path: opts.dest,
       filename: filename
@@ -59,9 +57,9 @@ if (MODE === "production") {
             chunks: 'initial',
             enforce: true
           },
-          elm: {
-            test: /[\\/]assets[\\/]elm[\\/]/,
-            name: 'common-elm',
+          js: {
+            test: /[\\/]assets[\\/]js[\\/]/,
+            name: 'common',
           }
         }
       }

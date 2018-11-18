@@ -53,3 +53,5 @@ RUN npm i -g uglify-js
 RUN yarn add --dev webpack
 RUN yarn add --dev webpack-cli
 RUN yarn add --dev webpack-merge
+
+RUN yarn add --dev babel-loader
