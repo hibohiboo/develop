@@ -10,14 +10,18 @@ const srcObj = {
   test: 'new!'
 };
 const destObj = {};
-Object.assign(destObj, srcObj); //オブジェクトのスプレッド演算子サポート
+Object.assign(destObj, srcObj); // オブジェクトのスプレッド演算子サポート
+// const destObj2 = { ...srcObj };
 
-const destObj2 = { ...srcObj
-};
+/**
+ *親クラス
+ *
+ * @class Parent
+ */
 
 class Parent {
   constructor() {
-    this.animaltype = "動物";
+    this.animaltype = '動物';
   }
 
   say() {
@@ -25,11 +29,18 @@ class Parent {
   }
 
 }
+/**
+ *子クラス
+ *
+ * @class SmallAnimal
+ * @extends {Parent}
+ */
+
 
 class SmallAnimal extends Parent {
   constructor() {
     super();
-    this.animaltype = "ポメラニアン";
+    this.animaltype = 'ポメラニアン';
   }
 
 }
@@ -57,7 +68,7 @@ const f2 = (a, b, ...c) => {
 f2(1, 2, 3, 4, 5, 6); // 1, 2, [3, 4, 5, 6];
 // デフォルト引数
 
-const f3 = (name = "小動物", favorite = "ストロングゼロ"); // 新しいループ
+const f3 = (name = '小動物', favorite = 'ストロングゼロ'); // 新しいループ
 
 const iterable = [10, 20, 30];
 
@@ -70,7 +81,7 @@ for (const value of iterable) {
 // map
 
 
-const map = new Map([["五反田", "約束の地"], ["戸越銀座", "TGSGNZ"]]);
+const map = new Map([['五反田', '約束の地'], ['戸越銀座', 'TGSGNZ']]);
 
 for (const [key, value] of map) {
   console.log(`${key} : ${value}`);
@@ -83,24 +94,19 @@ for (const key of map.keys()); // valueだけでループしたい場合
 for (const value of map.values());
 
 const thinking = {
-  name: "小動物",
-  mind: "Python3と寝たい",
-  reason: "`raise e from cause` べんりですよ"
+  name: '小動物',
+  mind: 'Python3と寝たい',
+  reason: '`raise e from cause` べんりですよ'
 }; // 分割代入
 
 const {
-  name = "約束の地の住人",
+  name = '約束の地の住人',
   mind,
   reason
 } = thinking;
-console.log(`${name}だけど${reason} ${mind}理由の一つです`); //分割代入の左辺にスプレッド演算子をおくことで、「残りの要素」を扱う
-//オブジェクトのスプレッド演算子はECMAScript 2018で公式の仕様に仲間入り
+console.log(`${name}だけど${reason} ${mind}理由の一つです`); // 分割代入の左辺にスプレッド演算子をおくことで、「残りの要素」を扱う
+// オブジェクトのスプレッド演算子はECMAScript 2018で公式の仕様に仲間入り
 // 配列
-
-const [aa, bb, ...rest] = array; // オブジェクト
-
-const {
-  aaa,
-  bbb,
-  ...rest2
-} = obj;
+// const [aa, bb, ...rest] = array;
+// オブジェクト
+// const { aaa, bbb, ...rest2 } = obj;
