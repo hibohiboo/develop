@@ -4,19 +4,19 @@ const merge = require("webpack-merge");
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
 let filename = "[name].js";
 let opts = {
-  src: path.join(__dirname, 'src/assets/js/'),
+  src: path.join(__dirname, 'src'),
   dest: path.join(__dirname, 'dist/assets/js')
 }
 
 if (MODE == "production" ) {
-  filename = "[name]-[hash].js";
+  //filename = "[name]-[hash].js";
 }
 // entry
 const files = {
-  pageOne: 'page1.js',
-  pageTwo: 'page2.js'
+  pageOne: 'assets/js/page1.js',
+  pageTwo: 'assets/js/page2.js'
 }
-var common = {
+let common = {
   mode: MODE,
   context: opts.src,
   entry: files,
@@ -47,21 +47,22 @@ if (MODE === "production") {
     // 共通部分をまとめる
     optimization: {
       splitChunks: {
-        // cacheGroups内にバンドルの設定を複数記述できる
-        cacheGroups: {
-          // 今回はvendorだが、任意の名前で問題ない
-          vendor: {
-            // node_modules配下のモジュールをバンドル対象とする
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendor',
-            chunks: 'initial',
-            enforce: true
-          },
-          js: {
-            test: /[\\/]assets[\\/]js[\\/]/,
-            name: 'common',
-          }
-        }
+        chunks: 'all'
+      //   // cacheGroups内にバンドルの設定を複数記述できる
+      //   cacheGroups: {
+      //     // 今回はvendorだが、任意の名前で問題ない
+      //     vendor: {
+      //       // node_modules配下のモジュールをバンドル対象とする
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name: 'vendor',
+      //       chunks: 'initial',
+      //       enforce: true
+      //     },
+      //     elm: {
+      //       test: /src[\\/]assets[\\/]elm[\\/]/,
+      //       name: 'common',
+      //     }
+      //   }
       }
     },
   });
