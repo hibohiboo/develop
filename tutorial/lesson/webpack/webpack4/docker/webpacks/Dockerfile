@@ -53,5 +53,19 @@ RUN npm i -g uglify-js
 RUN yarn add --dev webpack
 RUN yarn add --dev webpack-cli
 RUN yarn add --dev webpack-merge
+RUN yarn add --dev webpack-dev-server
 
+### loaders
 RUN yarn add --dev babel-loader
+RUN yarn add --dev ts-loader
+RUN yarn add --dev file-loader
+RUN yarn add --dev url-loader
+RUN yarn add --dev resolve-url-loader
+RUN yarn add --dev css-loader
+RUN yarn add --dev style-loader
+RUN yarn add --dev sass-loader
+RUN yarn add --dev postcss-loader
+RUN yarn add --dev elm-hot-webpack-loader
+RUN yarn add --dev elm-webpack-loader
+RUN yarn add --dev json-loader
+RUN yarn add --dev yaml-loader

@@ -9,7 +9,7 @@ let opts = {
 }
 
 if (MODE == "production" ) {
-  //filename = "[name]-[hash].js";
+  filename = "[name]-[hash].js";
 }
 // entry
 const files = {
@@ -43,27 +43,4 @@ let common = {
 
 if (MODE === "production") {
   console.log("Building for Production...");
-  module.exports = merge(common, {
-    // 共通部分をまとめる
-    optimization: {
-      splitChunks: {
-        chunks: 'all'
-      //   // cacheGroups内にバンドルの設定を複数記述できる
-      //   cacheGroups: {
-      //     // 今回はvendorだが、任意の名前で問題ない
-      //     vendor: {
-      //       // node_modules配下のモジュールをバンドル対象とする
-      //       test: /[\\/]node_modules[\\/]/,
-      //       name: 'vendor',
-      //       chunks: 'initial',
-      //       enforce: true
-      //     },
-      //     elm: {
-      //       test: /src[\\/]assets[\\/]elm[\\/]/,
-      //       name: 'common',
-      //     }
-      //   }
-      }
-    },
-  });
 }
