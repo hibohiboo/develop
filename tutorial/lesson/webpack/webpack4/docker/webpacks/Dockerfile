@@ -69,3 +69,6 @@ RUN yarn add --dev elm-hot-webpack-loader
 RUN yarn add --dev elm-webpack-loader
 RUN yarn add --dev json-loader
 RUN yarn add --dev yaml-loader
+
+## plugin
+RUN yarn add --dev mini-css-extract-plugin

@@ -115,3 +115,8 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 
 [How to optimize Elm code](https://elm-lang.org/0.19.0/optimize)
 
+## webpack
+
+[[webpack]尖りすぎない人のwebpack設定 ](http://www.kantenna.com/pg/2018/05/webpack_scss.php)
+
+[[webpack]CSS LoaderでCSSの圧縮してる人は最新版でminimizeオプションが削除されてるから気をつけて。](http://www.kantenna.com/pg/2018/09/webpack_css-loader.php)
