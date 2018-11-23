@@ -1,6 +1,6 @@
 "use strict";
 
-require("../css/style.css");
+require("../css/index.css");
 
 var _ElmTest = require("../elm/ElmTest");
 

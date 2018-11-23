@@ -65,3 +65,5 @@ RUN yarn add --dev file-loader
 RUN yarn add --dev style-loader
 RUN yarn add --dev css-loader
 RUN yarn add -D html-loader
+
+RUN yarn add --dev optimize-css-assets-webpack-plugin

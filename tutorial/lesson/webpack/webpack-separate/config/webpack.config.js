@@ -1,6 +1,7 @@
 const path = require("path");
 const merge = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
 let filename = "[name].js";
 if (MODE == "production" ) {
@@ -92,6 +93,11 @@ if (MODE === "development") {
 if (MODE === "production") {
   console.log("Building for Production...");
   module.exports = merge(common, {
+    optimization: {
+      minimizer: [
+        new OptimizeCSSAssetsPlugin({})
+      ]
+    },
     plugins: [
       new MiniCssExtractPlugin({
         filename: '/assets/css/[name].css',
