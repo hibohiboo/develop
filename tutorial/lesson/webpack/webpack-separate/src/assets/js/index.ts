@@ -1,6 +1,12 @@
 import { Elm } from '../elm/ElmTest';
-const mountNode: HTMLElement | null = document.getElementById('test');
-const app: any = Elm.Main.init({ node: mountNode });
-app.ports.log.subscribe(() => {
-  console.log('test');
-});
+(function(){
+  const tmpNode: HTMLElement | null  =  document.getElementById('test');
+  if(tmpNode  === null ){
+    return;
+  }
+  const mountNode: HTMLElement =tmpNode;
+  const app: any = Elm.Main.init({ node: mountNode });
+  app.ports.log.subscribe(() => {
+    console.log('test');
+  });  
+}());
