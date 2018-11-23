@@ -16,17 +16,9 @@ const opts = {
 
 // entry
 const files = {
-  pageOne: 'assets/js/page1.js',
-  pageTwo: 'assets/js/page2.js'
+  index: 'assets/js/index.js'
 }
 
-const postCssLoader = {
-  loader: 'postcss-loader',
-  options: {
-    ident: 'postcss',
-    plugins: (loader) => [require('autoprefixer')()]
-  }
-};
 const cssLoader = { 
   loader: 'css-loader',
   options: {
@@ -43,7 +35,7 @@ let common = {
   },
   resolve: {
       modules: [opts.src, "node_modules"],
-      extensions: [".js", ".ts"]
+      extensions: [".js"]
   },
   module: {
     rules: [
@@ -53,34 +45,11 @@ let common = {
         use: { loader: "babel-loader"}
       },
       {
-        test: /\.ts$/,
-        use: [
-          { loader: 'babel-loader' },
-          { loader: 'ts-loader'}
-        ] 
-      },
-      {
         test: /\.css$/,
         exclude: [/elm-stuff/, /node_modules/],
         use: [
           { loader:"style-loader"}, 
-          cssLoader,
-          postCssLoader
-        ]
-      },
-      {
-        test: /\.scss$/,
-        exclude: [/elm-stuff/, /node_modules/],
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader',
-            options: {
-              url: false,
-              modules: true
-            }
-          },
-          postCssLoader,
-          { loader: 'sass-loader' }
+          cssLoader
         ]
       },
     ]
@@ -92,22 +61,11 @@ if (MODE === "development") {
   console.log("Building for dev...");
   module.exports = merge(common, {
     module: {
-      rules: [
-        {
-          test: /\.elm$/,
-          exclude: [/elm-stuff/, /node_modules/],
-          use: [
-            { loader: 'elm-hot-webpack-loader' },
-            { loader: "elm-webpack-loader",
-              options: { debug: true, forceWatch: true }
-            }
-          ]
-        }
-      ]
+      rules: []
     },
     // 開発サーバの設定
     devServer: {
-      contentBase: './dist',
+      contentBase: './src',
       inline: true,
       port: 8080,
       host:"0.0.0.0",
@@ -133,32 +91,11 @@ if (MODE === "production") {
     module: {
       rules: [
         {
-          test: /\.elm$/,
-          exclude: [/elm-stuff/, /node_modules/],
-          use: [{ loader: "elm-webpack-loader", options:{optimize: true} } ]
-        },
-        {
           test: /\.css$/,
           exclude: [/elm-stuff/, /node_modules/],
           use: [
             MiniCssExtractPlugin.loader,
-            cssLoader, 
-            postCssLoader
-          ]
-        },
-        {
-          test: /\.sass$/,
-          exclude: [/elm-stuff/, /node_modules/],
-          use: [
-            MiniCssExtractPlugin.loader, 
-            { loader: 'css-loader',
-              options: {
-                url: false,
-                modules: true
-              }
-            },
-            postCssLoader,
-            { loader: 'sass-loader' }
+            cssLoader
           ]
         }
       ]
