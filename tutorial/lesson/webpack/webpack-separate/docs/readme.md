@@ -128,4 +128,10 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 * CSS-LoaderがCSSファイル間の依存関係の解決を行う
 [WebpackってCSS周りのLoaderがいっぱいあって分かりにくいので整理してみる](https://qiita.com/shuntksh/items/bb5cbea40a343e2e791a) 
 [なんとなくで理解しないWebpackのCSS周辺](https://qiita.com/terrierscript/items/0574ab1ef358fecb55b9)
- 
+
+### mini-css plugin
+
+* jsファイルに import '../css/style.css'; のように書き込んだものをcssファイルとして出力する。
+
+[webpack@4 でCSSを抽出する際は mini-css-extract-plugin を使う](https://numb86-tech.hatenablog.com/entry/2018/10/24/221130)
+

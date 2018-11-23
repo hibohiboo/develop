@@ -1,0 +1,15 @@
+extends ../_includes/commons/layout
+//- _layout.pugをベースに作成
+
+//- タイトルのブロック
+block title
+  //- 最初にこのページで使用する変数を読み込む
+  -var title="我楽多実験場:子"
+  title= title
+
+block main
+  .container
+    #test
+
+block footjs
+  script(src='../../assets/js/index.js')

@@ -10,7 +10,7 @@ if (MODE == "production" ) {
 // ソース・出力先の設定
 const opts = {
   src: path.join(__dirname, 'src'),
-  dest: path.join(__dirname, 'dist/assets/js')
+  dest: path.join(__dirname, 'dist')
 }
 
 
@@ -30,8 +30,8 @@ let common = {
   context: opts.src,
   entry: files,
   output: {
-      path: opts.dest,
-      filename: filename
+      path: opts.dest ,
+      filename: 'assets/js/' + filename
   },
   resolve: {
       modules: [opts.src, "node_modules"],
@@ -45,13 +45,14 @@ let common = {
         use: { loader: "babel-loader"}
       },
       {
-        test: /\.css$/,
-        exclude: [/elm-stuff/, /node_modules/],
+        test: /\.html$/,
         use: [
-          { loader:"style-loader"}, 
-          cssLoader
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
         ]
-      },
+      }
     ]
   }
 };
@@ -61,7 +62,16 @@ if (MODE === "development") {
   console.log("Building for dev...");
   module.exports = merge(common, {
     module: {
-      rules: []
+      rules: [
+        {
+          test: /\.css$/,
+          exclude: [/elm-stuff/, /node_modules/],
+          use: [
+            { loader:"style-loader"}, 
+            cssLoader
+          ]
+        }
+      ]
     },
     // 開発サーバの設定
     devServer: {
@@ -84,8 +94,8 @@ if (MODE === "production") {
   module.exports = merge(common, {
     plugins: [
       new MiniCssExtractPlugin({
-          //filename: "[name]-[hash].css"
-          filename: "[name].css"
+        filename: '/assets/css/[name].css',
+        chunkFilename: '/assets/css/[id].css'
       })
     ],
     module: {
@@ -94,8 +104,16 @@ if (MODE === "production") {
           test: /\.css$/,
           exclude: [/elm-stuff/, /node_modules/],
           use: [
-            MiniCssExtractPlugin.loader,
-            cssLoader
+            {
+              loader: MiniCssExtractPlugin.loader
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                  url: false,
+                  minimize: true,
+              }
+            }
           ]
         }
       ]
