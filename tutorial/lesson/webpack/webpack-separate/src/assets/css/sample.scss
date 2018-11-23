@@ -1,9 +1,10 @@
 // test
 .example {
+  -webkit-border-radius: 3px;
   display: flex;
   user-select: none;
-  -webkit-border-radius: 3px;
-  .ex2{
+
+  .ex2 {
     border-radius: 3px;
   }
   
