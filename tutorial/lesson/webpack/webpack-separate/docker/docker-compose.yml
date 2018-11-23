@@ -14,6 +14,7 @@ services:
     build: ./webpacks
     volumes:
       - ../src:/app/src
+      - ../docs:/app/docs
       - ../pre-dist:/app/dist
       # 設定ファイル
       - ../config/tsconfig.json:/app/tsconfig.json
