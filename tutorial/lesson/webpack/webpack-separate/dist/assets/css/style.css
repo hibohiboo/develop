@@ -1,0 +1,211 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+.icon-block {
+  padding: 0 15px; }
+  .icon-block .material-icons {
+    font-size: inherit; }
+
+.add1-regulation {
+  display: none; }
+
+.add1-regulation {
+  background-color: #fffacd; }
+
+.survival-regulation {
+  background-color: #98fb98; }
+
+.quote {
+  font-style: oblique; }
+
+.pc-image {
+  max-width: 300px; }
+
+.pc-image a {
+  text-shadow: white 2px 2px 0, white -2px 2px 0, white -2px -2px 0, white 2px -2px 0, white 2px 0 0, white 0 2px 0, white -2px 0 0, white 0 -2px 0; }
+
+@media (max-width: 599px) {
+  .pc-image {
+    max-height: 300px;
+    overflow: hidden; }
+  .pc-image a {
+    text-shadow: white 1px 1px 0, white -1px 1px 0, white -1px -1px 0, white 1px -1px 0, white 1px 0 0, white 0 1px 0, white -1px 0 0, white 0 -1px 0; } }
+
+#myChart {
+  height: 300px;
+  width: 300px; }
+
+.pc-param-number {
+  font-size: 30px;
+  font-weight: bold;
+  padding-left: 10px; }
+
+@media (max-width: 599px) {
+  .row-flex {
+    display: flex; }
+  .row-flex .s1 {
+    flex: 1; }
+  .row-flex .s2 {
+    flex: 2; }
+  .row-flex .s3 {
+    flex: 3; }
+  .row-flex .s4 {
+    flex: 4; }
+  .row-flex .s5 {
+    flex: 5; }
+  .row-flex .s6 {
+    flex: 6; }
+  .row-flex .s7 {
+    flex: 7; }
+  .row-flex .s8 {
+    flex: 8; }
+  .row-flex .s9 {
+    flex: 9; }
+  .row-flex .s10 {
+    flex: 10; }
+  .row-flex .s11 {
+    flex: 11; }
+  .row-flex .s12 {
+    flex: 12; } }
+
+@media (min-width: 600px) and (max-width: 799px) {
+  .row-flex {
+    display: flex; }
+  .row-flex .s1 {
+    flex: 1; }
+  .row-flex .m1 {
+    flex: 1; }
+  .row-flex .s2 {
+    flex: 2; }
+  .row-flex .m2 {
+    flex: 2; }
+  .row-flex .s3 {
+    flex: 3; }
+  .row-flex .m3 {
+    flex: 3; }
+  .row-flex .s4 {
+    flex: 4; }
+  .row-flex .m4 {
+    flex: 4; }
+  .row-flex .s5 {
+    flex: 5; }
+  .row-flex .m5 {
+    flex: 5; }
+  .row-flex .s6 {
+    flex: 6; }
+  .row-flex .m6 {
+    flex: 6; }
+  .row-flex .s7 {
+    flex: 7; }
+  .row-flex .m7 {
+    flex: 7; }
+  .row-flex .s8 {
+    flex: 8; }
+  .row-flex .m8 {
+    flex: 8; }
+  .row-flex .s9 {
+    flex: 9; }
+  .row-flex .m9 {
+    flex: 9; }
+  .row-flex .s10 {
+    flex: 10; }
+  .row-flex .m10 {
+    flex: 10; }
+  .row-flex .s11 {
+    flex: 11; }
+  .row-flex .m11 {
+    flex: 11; }
+  .row-flex .s12 {
+    flex: 12; }
+  .row-flex .m12 {
+    flex: 12; } }
+
+@media (min-width: 800px) {
+  .row-flex {
+    display: flex; }
+  .row-flex .s1 {
+    flex: 1; }
+  .row-flex .m1 {
+    flex: 1; }
+  .row-flex .l1 {
+    flex: 1; }
+  .row-flex .s2 {
+    flex: 2; }
+  .row-flex .m2 {
+    flex: 2; }
+  .row-flex .l2 {
+    flex: 2; }
+  .row-flex .s3 {
+    flex: 3; }
+  .row-flex .m3 {
+    flex: 3; }
+  .row-flex .l3 {
+    flex: 3; }
+  .row-flex .s4 {
+    flex: 4; }
+  .row-flex .m4 {
+    flex: 4; }
+  .row-flex .l4 {
+    flex: 4; }
+  .row-flex .s5 {
+    flex: 5; }
+  .row-flex .m5 {
+    flex: 5; }
+  .row-flex .l5 {
+    flex: 5; }
+  .row-flex .s6 {
+    flex: 6; }
+  .row-flex .m6 {
+    flex: 6; }
+  .row-flex .l6 {
+    flex: 6; }
+  .row-flex .s7 {
+    flex: 7; }
+  .row-flex .m7 {
+    flex: 7; }
+  .row-flex .l7 {
+    flex: 7; }
+  .row-flex .s8 {
+    flex: 8; }
+  .row-flex .m8 {
+    flex: 8; }
+  .row-flex .l8 {
+    flex: 8; }
+  .row-flex .s9 {
+    flex: 9; }
+  .row-flex .m9 {
+    flex: 9; }
+  .row-flex .l9 {
+    flex: 9; }
+  .row-flex .s10 {
+    flex: 10; }
+  .row-flex .m10 {
+    flex: 10; }
+  .row-flex .l10 {
+    flex: 10; }
+  .row-flex .s11 {
+    flex: 11; }
+  .row-flex .m11 {
+    flex: 11; }
+  .row-flex .l11 {
+    flex: 11; }
+  .row-flex .s12 {
+    flex: 12; }
+  .row-flex .m12 {
+    flex: 12; }
+  .row-flex .l12 {
+    flex: 12; } }
+
+.flex {
+  display: flex; }
+
+.insane-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 180px; }
