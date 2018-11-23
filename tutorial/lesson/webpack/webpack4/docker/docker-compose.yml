@@ -25,3 +25,6 @@ services:
       - ../config/.stylelintrc:/app/.stylelintrc
       - ../config/elm.json:/app/elm.json
       - ../config/webpack.config.js:/app/webpack.config.js
+    ports:
+      - 8080:8080
+    command: [yarn, run, webpack-dev-server]

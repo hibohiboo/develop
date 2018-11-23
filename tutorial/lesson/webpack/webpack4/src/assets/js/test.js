@@ -1,5 +1,6 @@
 // 変数宣言
 const variable = 'test';
+
 console.log(`[Debug]: ${variable}`);
 
 // オブジェクトコピー
@@ -63,7 +64,7 @@ f2(1, 2, 3, 4, 5, 6);
 // 1, 2, [3, 4, 5, 6];
 
 // デフォルト引数
-const f3 = (name = '小動物', favorite = 'ストロングゼロ');
+const f3 = (name1 = '小動物', favorite = 'ストロングゼロ');
 
 // 新しいループ
 const iterable = [10, 20, 30];

@@ -120,3 +120,11 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 [[webpack]尖りすぎない人のwebpack設定 ](http://www.kantenna.com/pg/2018/05/webpack_scss.php)
 
 [[webpack]CSS LoaderでCSSの圧縮してる人は最新版でminimizeオプションが削除されてるから気をつけて。](http://www.kantenna.com/pg/2018/09/webpack_css-loader.php)
+
+### css-loaderとstyle-loaderの違い
+
+* Style-Loaderの仕事はSTYLEタグの出力
+* CSS-LoaderがCSSファイル間の依存関係の解決を行う
+[WebpackってCSS周りのLoaderがいっぱいあって分かりにくいので整理してみる](https://qiita.com/shuntksh/items/bb5cbea40a343e2e791a) 
+[なんとなくで理解しないWebpackのCSS周辺](https://qiita.com/terrierscript/items/0574ab1ef358fecb55b9)
+ 

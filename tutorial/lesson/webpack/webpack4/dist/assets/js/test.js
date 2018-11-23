@@ -1,7 +1,5 @@
 "use strict";
 
-require("core-js/modules/web.dom.iterable");
-
 // 変数宣言
 const variable = 'test';
 console.log(`[Debug]: ${variable}`); // オブジェクトコピー
