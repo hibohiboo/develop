@@ -69,3 +69,9 @@ RUN yarn add -D html-loader
 RUN yarn add --dev optimize-css-assets-webpack-plugin
 RUN yarn add --dev clean-webpack-plugin
 RUN yarn add --dev copy-webpack-plugin
+
+RUN yarn add --dev chokidar
+RUN yarn add --dev chokidar-cli
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build-elm\": \"yarn run elm make \/app\/src\/assets\/elm\/ElmTest.elm --output=\/app\/dist\/elm\/ElmTest.js\",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"elm-watch\": \"yarn run chokidar '\/app\/**\/*.elm' -p -c 'yarn run build-elm' \",/g" /app/package.json
+

@@ -1,28 +1,28 @@
 version: '3'
 services:
   # htmlテンプレートエンジン
-  pug:
-    build: ./pug
-    volumes:
-      - ../src/templates:/app/src
-      - ../dist/html:/app/dist
-    environment:
-      - SHELL=/bin/bash
-    command: [npm, run, watch]
+  # pug:
+  #   build: ./pug
+  #   volumes:
+  #     - ../src/templates:/app/src
+  #     - ../dist/html:/app/dist
+  #   environment:
+  #     - SHELL=/bin/bash
+  #   command: [npm, run, watch]
 
-  ts:
-    build: ./webpacks
-    volumes:
-      - ../src:/app/src
-      - ../docs:/app/docs
-      - ../pre-dist:/app/dist
-      # 設定ファイル
-      - ../config/tsconfig.json:/app/tsconfig.json
-      - ../config/tslint.json:/app/tslint.json
-    command: [yarn, run, tsc, --watch]
+  # ts:
+  #   build: ./webpacks
+  #   volumes:
+  #     - ../src:/app/src
+  #     - ../docs:/app/docs
+  #     - ../pre-dist:/app/dist
+  #     # 設定ファイル
+  #     - ../config/tsconfig.json:/app/tsconfig.json
+  #     - ../config/tslint.json:/app/tslint.json
+  #   command: [yarn, run, tsc, --watch]
 
   elm:
-    build: ./webpacks
+    build: ./elm
     volumes:
       - ../src:/app/src
       - ../pre-dist/assets:/app/dist
@@ -30,42 +30,46 @@ services:
       # packageのキャッシュ
       - cacheElmStuff:/app/elm-stuff
       - cacheDotElm:/root/.elm
-  js:
-    build: ./webpacks
-    volumes:
-      - ../pre-dist:/app/src
-      - ../dist:/app/dist
-      # 設定ファイル
-      - ../config/babel.config.js:/app/babel.config.js
-      - ../config/.eslintrc:/app/.eslintrc
-      - ../config/.esdoc.json:/app/.esdoc.json
-
-  scss:
-    build: ./webpacks
-    volumes:
-      - ../src:/app/src
-      - ../pre-dist:/app/dist
-      - ../config/.stylelintrc:/app/.stylelintrc
-
-  postcss:
-    build: ./webpacks
-    volumes:
-      - ../pre-dist:/app/src
-      - ../dist:/app/dist
-      - ../config/postcss.config.js:/app/postcss.config.js
-  webpack:
-    build: ./webpacks
-    volumes:
-      - ../dist:/app/src
-      - ../app/public:/app/dist
-      # 設定ファイル
-      - ../config/babel.config.js:/app/babel.config.js
-      - ../config/webpack.config.js:/app/webpack.config.js
     environment:
-      - NODE_ENV=develop
-    ports:
-      - 8080:8080
-    command: [yarn, run, webpack-dev-server, --hot]
+      - SHELL=/bin/bash
+    command: [yarn, run, elm-watch]
+
+  # js:
+  #   build: ./webpacks
+  #   volumes:
+  #     - ../pre-dist:/app/src
+  #     - ../dist:/app/dist
+  #     # 設定ファイル
+  #     - ../config/babel.config.js:/app/babel.config.js
+  #     - ../config/.eslintrc:/app/.eslintrc
+  #     - ../config/.esdoc.json:/app/.esdoc.json
+
+  # scss:
+  #   build: ./webpacks
+  #   volumes:
+  #     - ../src:/app/src
+  #     - ../pre-dist:/app/dist
+  #     - ../config/.stylelintrc:/app/.stylelintrc
+
+  # postcss:
+  #   build: ./webpacks
+  #   volumes:
+  #     - ../pre-dist:/app/src
+  #     - ../dist:/app/dist
+  #     - ../config/postcss.config.js:/app/postcss.config.js
+  # webpack:
+  #   build: ./webpacks
+  #   volumes:
+  #     - ../dist:/app/src
+  #     - ../app/public:/app/dist
+  #     # 設定ファイル
+  #     - ../config/babel.config.js:/app/babel.config.js
+  #     - ../config/webpack.config.js:/app/webpack.config.js
+  #   environment:
+  #     - NODE_ENV=develop
+  #   ports:
+  #     - 8080:8080
+  #   command: [yarn, run, webpack-dev-server, --hot]
 
 volumes:
   # elmのpackageを毎回ダウンロードしなくてもよいように、キャッシュを行う。2か所のキャッシュが必要。
