@@ -1,4 +1,5 @@
 import '../css/index.css'; // cssを読み込む。（実際にはwebpackで分離される)
+import '../css/sample.css'; // cssを読み込む。（実際にはwebpackで分離される)
 import { Elm } from '../elm/ElmTest';
 (function () {
     const tmpNode = document.getElementById('test');
@@ -9,6 +10,5 @@ import { Elm } from '../elm/ElmTest';
     const app = Elm.Main.init({ node: mountNode });
     app.ports.log.subscribe((model) => {
         console.log('elm', model);
-
     });
 }());
