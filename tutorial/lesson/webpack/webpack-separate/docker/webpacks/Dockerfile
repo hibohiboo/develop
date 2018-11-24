@@ -67,3 +67,5 @@ RUN yarn add --dev css-loader
 RUN yarn add -D html-loader
 
 RUN yarn add --dev optimize-css-assets-webpack-plugin
+RUN yarn add --dev clean-webpack-plugin
+RUN yarn add --dev copy-webpack-plugin

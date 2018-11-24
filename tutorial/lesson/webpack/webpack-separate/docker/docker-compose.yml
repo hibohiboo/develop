@@ -26,6 +26,7 @@ services:
       - ../src:/app/src
       - ../pre-dist/assets:/app/dist
       - ../config/elm.json:/app/elm.json
+      # packageのキャッシュ
       - cacheElmStuff:/app/elm-stuff
       - cacheDotElm:/root/.elm
   js:
@@ -43,7 +44,6 @@ services:
     volumes:
       - ../src:/app/src
       - ../pre-dist:/app/dist
-      # 設定ファイル
       - ../config/.stylelintrc:/app/.stylelintrc
 
   postcss:
@@ -69,4 +69,5 @@ services:
 volumes:
   # elmのpackageを毎回ダウンロードしなくてもよいように、キャッシュを行う。2か所のキャッシュが必要。
   cacheElmStuff: 
-  cacheDotElm:   
+  cacheDotElm:
+

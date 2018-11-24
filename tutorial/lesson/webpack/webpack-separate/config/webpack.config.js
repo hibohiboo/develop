@@ -2,6 +2,8 @@ const path = require("path");
 const merge = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
 let filename = "[name].js";
 if (MODE == "production" ) {
@@ -92,8 +94,11 @@ if (MODE === "development") {
 
 if (MODE === "production") {
   console.log("Building for Production...");
+
+  // commonとマージ
   module.exports = merge(common, {
     optimization: {
+      minimize: true,
       minimizer: [
         new OptimizeCSSAssetsPlugin({})
       ]
@@ -102,7 +107,27 @@ if (MODE === "production") {
       new MiniCssExtractPlugin({
         filename: '/assets/css/[name].css',
         chunkFilename: '/assets/css/[id].css'
-      })
+      }),
+      // Delete everything from output directory and report to user
+      new CleanWebpackPlugin(["dist"], {
+        root: __dirname,
+        exclude: [],
+        verbose: true,
+        dry: false
+      }),
+      new CopyWebpackPlugin(
+        [{from: {glob: 'assets/**/*', dot: true}}],
+        {ignore: ["*.css", "*.js"]}
+      ),
+      new CopyWebpackPlugin(
+        [
+          {
+            from: '',
+            to: './',
+          },
+        ],
+        { context: 'html' }
+      ),
     ],
     module: {
       rules: [
