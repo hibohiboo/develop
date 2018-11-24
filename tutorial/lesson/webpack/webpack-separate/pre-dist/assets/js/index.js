@@ -9,5 +9,6 @@ import { Elm } from '../elm/ElmTest';
     const app = Elm.Main.init({ node: mountNode });
     app.ports.log.subscribe((model) => {
         console.log('elm', model);
+
     });
 }());

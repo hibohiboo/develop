@@ -21,29 +21,31 @@ services:
   #     - ../config/tslint.json:/app/tslint.json
   #   command: [yarn, run, tsc, --watch]
 
-  elm:
-    build: ./elm
-    volumes:
-      - ../src:/app/src
-      - ../pre-dist/assets:/app/dist
-      - ../config/elm.json:/app/elm.json
-      # packageのキャッシュ
-      - cacheElmStuff:/app/elm-stuff
-      - cacheDotElm:/root/.elm
-    environment:
-      - SHELL=/bin/bash
-    command: [yarn, run, elm-watch]
-
-  # js:
-  #   build: ./webpacks
+  # elm:
+  #   build: ./elm
   #   volumes:
-  #     - ../pre-dist:/app/src
-  #     - ../dist:/app/dist
-  #     # 設定ファイル
-  #     - ../config/babel.config.js:/app/babel.config.js
-  #     - ../config/.eslintrc:/app/.eslintrc
-  #     - ../config/.esdoc.json:/app/.esdoc.json
+  #     - ../src:/app/src
+  #     - ../pre-dist/assets:/app/dist
+  #     - ../config/elm.json:/app/elm.json
+  #     # packageのキャッシュ
+  #     - cacheElmStuff:/app/elm-stuff
+  #     - cacheDotElm:/root/.elm
+  #   environment:
+  #     - SHELL=/bin/bash
+  #   command: [yarn, run, elm-watch]
 
+  js:
+    build: ./webpacks
+    volumes:
+      - ../pre-dist:/app/src
+      - ../dist:/app/dist
+      # 設定ファイル
+      - ../config/babel.config.js:/app/babel.config.js
+      - ../config/.eslintrc:/app/.eslintrc
+      - ../config/.esdoc.json:/app/.esdoc.json
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: [yarn, run, babel, src, --out-dir, /app/dist, --watch]
   # scss:
   #   build: ./webpacks
   #   volumes:

@@ -19,6 +19,6 @@ var _ElmTest = require("../elm/ElmTest");
   });
 
   app.ports.log.subscribe(model => {
-    console.log(model);
+    console.log('elm', model);
   });
 })();
