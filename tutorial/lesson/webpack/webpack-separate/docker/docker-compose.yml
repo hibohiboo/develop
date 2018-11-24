@@ -51,7 +51,7 @@ services:
     volumes:
       - ../pre-dist:/app/src
       - ../dist:/app/dist
-
+      - ../config/postcss.config.js:/app/postcss.config.js
   webpack:
     build: ./webpacks
     volumes:

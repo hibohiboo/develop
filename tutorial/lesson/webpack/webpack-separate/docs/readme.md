@@ -79,6 +79,12 @@ esdocを追加
 
 [PostCSS まとめ](https://qiita.com/morishitter/items/4a04eb144abf49f41d7d)
 
+#### postcss.config.json の使用
+* ついでにminifyも行う
+
+[postcss](https://github.com/postcss/postcss#usage)
+[css nano](https://cssnano.co/guides/getting-started)
+[cssnanoを通したらベンダープレフィックスが消えて困った時のメモ](https://qiita.com/syannu/items/3f04f0e962df42cf25f7)
 
 ### sass-lint
 情報が少ない。。
