@@ -3,3 +3,12 @@
   user-select: none; }
   .example .ex2 {
     border-radius: 3px; }
+
+.blue {
+  color: #00f; }
+
+.bold {
+  font-weight: bold; }
+
+#plus-minus {
+  display: flex; }

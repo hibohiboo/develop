@@ -46,7 +46,17 @@ let common = {
         use: { loader: "babel-loader"}
       }
     ]
-  }
+  },
+  plugins: [
+    new CopyWebpackPlugin(
+      [{from: {glob: 'assets/**/*', dot: true}}],
+      {ignore: ["*.js"]}
+    ),
+    new CopyWebpackPlugin(
+      [{ from: '', to: './', }, ],
+      { context: 'html' }
+    ),
+  ]
 };
 
 
@@ -58,7 +68,6 @@ if (MODE === "development") {
     },
     // 開発サーバの設定
     devServer: {
-      contentBase: './src/html',
       inline: true,
       port: 8080,
       host:"0.0.0.0",
@@ -88,14 +97,6 @@ if (MODE === "production") {
         verbose: true,
         dry: false
       }),
-      new CopyWebpackPlugin(
-        [{from: {glob: 'assets/**/*', dot: true}}],
-        {ignore: ["*.js"]}
-      ),
-      new CopyWebpackPlugin(
-        [{ from: '', to: './', }, ],
-        { context: 'html' }
-      ),
     ],
     module: {
       rules: [

@@ -2,6 +2,7 @@ port module Main exposing (..)
 
 import Browser
 import Html exposing (Html, button, div, text)
+import Html.Attributes exposing (id, class)
 import Html.Events exposing (onClick)
 import Json.Decode as Decode exposing (Value)
 
@@ -34,7 +35,7 @@ update msg model =
 
 
 view model =
-    div []
+    div [ id "plus-minus", class "blue bold"]
         [ button [ onClick Decrement ] [ text "-" ]
         , div [] [ text (String.fromInt model) ]
         , button [ onClick Increment ] [ text "+" ]
