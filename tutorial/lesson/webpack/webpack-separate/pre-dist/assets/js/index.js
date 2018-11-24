@@ -8,6 +8,6 @@ import { Elm } from '../elm/ElmTest';
     const mountNode = tmpNode;
     const app = Elm.Main.init({ node: mountNode });
     app.ports.log.subscribe((model) => {
-        console.log(model);
+        console.log('elm', model);
     });
 }());

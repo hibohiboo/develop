@@ -19,6 +19,7 @@ services:
       # 設定ファイル
       - ../config/tsconfig.json:/app/tsconfig.json
       - ../config/tslint.json:/app/tslint.json
+    command: [yarn, run, tsc, --watch]
 
   elm:
     build: ./webpacks
