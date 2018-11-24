@@ -1,5 +1,3 @@
-"use strict";
-
 (function (scope) {
   'use strict';
 
@@ -4499,4 +4497,4 @@
       'init': author$project$Main$main(elm$json$Json$Decode$succeed(0))(0)
     }
   });
-})(void 0);
+})(this);
