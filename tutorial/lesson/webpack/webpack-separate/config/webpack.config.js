@@ -76,7 +76,7 @@ if (MODE === "development") {
     },
     // 開発サーバの設定
     devServer: {
-      contentBase: './src',
+      contentBase: './src/html',
       inline: true,
       port: 8080,
       host:"0.0.0.0",

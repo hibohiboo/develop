@@ -133,5 +133,10 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 
 * jsファイルに import '../css/style.css'; のように書き込んだものをcssファイルとして出力する。
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/b1040ae4b45360e9f2110502a233ca0540091108/tutorial/lesson/webpack/webpack-separate)  
 [webpack@4 でCSSを抽出する際は mini-css-extract-plugin を使う](https://numb86-tech.hatenablog.com/entry/2018/10/24/221130)
 
+## webpack-dev-server
+
+* --hotオプションをつけるか、webpack.config.jsにwebpack.HotModuleReplacementPluginが必要
+[devServer.hot ](https://webpack.js.org/configuration/dev-server/#devserver-hot)

@@ -59,6 +59,9 @@ services:
       # 設定ファイル
       - ../config/babel.config.js:/app/babel.config.js
       - ../config/webpack.config.js:/app/webpack.config.js
+    environment:
+      - NODE_ENV=develop
     ports:
       - 8080:8080
-    command: [yarn, run, webpack-dev-server]
+    command: [yarn, run, webpack-dev-server, --hot]
+
