@@ -34,25 +34,26 @@ services:
   #     - SHELL=/bin/bash
   #   command: [yarn, run, elm-watch]
 
-  js:
-    build: ./webpacks
-    volumes:
-      - ../pre-dist:/app/src
-      - ../dist:/app/dist
-      # 設定ファイル
-      - ../config/babel.config.js:/app/babel.config.js
-      - ../config/.eslintrc:/app/.eslintrc
-      - ../config/.esdoc.json:/app/.esdoc.json
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    command: [yarn, run, babel, src, --out-dir, /app/dist, --watch]
-  # scss:
+  # js:
   #   build: ./webpacks
   #   volumes:
-  #     - ../src:/app/src
-  #     - ../pre-dist:/app/dist
-  #     - ../config/.stylelintrc:/app/.stylelintrc
+  #     - ../pre-dist:/app/src
+  #     - ../dist:/app/dist
+  #     # 設定ファイル
+  #     - ../config/babel.config.js:/app/babel.config.js
+  #     - ../config/.eslintrc:/app/.eslintrc
+  #     - ../config/.esdoc.json:/app/.esdoc.json
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+  #   command: [yarn, run, babel, src, --out-dir, /app/dist, --watch]
 
+  scss:
+    build: ./webpacks
+    volumes:
+      - ../src:/app/src
+      - ../pre-dist:/app/dist
+      - ../config/.stylelintrc:/app/.stylelintrc
+    command: [yarn, run, node-sass, -r, /app/src/assets/css, -o, /app/dist/assets/css, --watch]
   # postcss:
   #   build: ./webpacks
   #   volumes:
