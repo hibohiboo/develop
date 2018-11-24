@@ -80,6 +80,9 @@ esdocを追加
 [PostCSS まとめ](https://qiita.com/morishitter/items/4a04eb144abf49f41d7d)
 
 #### postcss.config.json の使用
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/6a649b5f23756333a2e6b8b3b0f6351c636e455a/tutorial/lesson/webpack/webpack4)  
+
 * ついでにminifyも行う
 
 [postcss](https://github.com/postcss/postcss#usage)
@@ -142,7 +145,14 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 [この時点のソース](https://github.com/hibohiboo/develop/tree/b1040ae4b45360e9f2110502a233ca0540091108/tutorial/lesson/webpack/webpack-separate)  
 [webpack@4 でCSSを抽出する際は mini-css-extract-plugin を使う](https://numb86-tech.hatenablog.com/entry/2018/10/24/221130)
 
+### cssもcopyfileでまかなう
+
+* postcssでminifyを行ったので、webpackで行う必要はなさそう。
+
+[gulp.distをCopyWebpackPluginで再現する](https://qiita.com/pepoipod/items/e41105e8f3afd47dc01c)
+
 ## webpack-dev-server
 
 * --hotオプションをつけるか、webpack.config.jsにwebpack.HotModuleReplacementPluginが必要
 [devServer.hot ](https://webpack.js.org/configuration/dev-server/#devserver-hot)
+

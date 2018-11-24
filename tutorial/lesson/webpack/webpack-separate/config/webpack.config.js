@@ -1,7 +1,5 @@
 const path = require("path");
 const merge = require("webpack-merge");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
@@ -46,15 +44,6 @@ let common = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: { loader: "babel-loader"}
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
-          }
-        ]
       }
     ]
   }
@@ -65,16 +54,7 @@ if (MODE === "development") {
   console.log("Building for dev...");
   module.exports = merge(common, {
     module: {
-      rules: [
-        {
-          test: /\.css$/,
-          exclude: [/elm-stuff/, /node_modules/],
-          use: [
-            { loader:"style-loader"}, 
-            cssLoader
-          ]
-        }
-      ]
+      rules: []
     },
     // 開発サーバの設定
     devServer: {
@@ -99,15 +79,8 @@ if (MODE === "production") {
   module.exports = merge(common, {
     optimization: {
       minimize: true,
-      minimizer: [
-        new OptimizeCSSAssetsPlugin({})
-      ]
     },
     plugins: [
-      new MiniCssExtractPlugin({
-        filename: '/assets/css/[name].css',
-        chunkFilename: '/assets/css/[id].css'
-      }),
       // Delete everything from output directory and report to user
       new CleanWebpackPlugin(["dist"], {
         root: __dirname,
@@ -117,36 +90,15 @@ if (MODE === "production") {
       }),
       new CopyWebpackPlugin(
         [{from: {glob: 'assets/**/*', dot: true}}],
-        {ignore: ["*.css", "*.js"]}
+        {ignore: ["*.js"]}
       ),
       new CopyWebpackPlugin(
-        [
-          {
-            from: '',
-            to: './',
-          },
-        ],
+        [{ from: '', to: './', }, ],
         { context: 'html' }
       ),
     ],
     module: {
       rules: [
-        {
-          test: /\.css$/,
-          exclude: [/elm-stuff/, /node_modules/],
-          use: [
-            {
-              loader: MiniCssExtractPlugin.loader
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                  url: false,
-                  minimize: true,
-              }
-            }
-          ]
-        }
       ]
     }
   });
