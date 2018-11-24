@@ -26,7 +26,8 @@ services:
       - ../src:/app/src
       - ../pre-dist/assets:/app/dist
       - ../config/elm.json:/app/elm.json
-
+      - cacheElmStuff:/app/elm-stuff
+      - cacheDotElm:/root/.elm
   js:
     build: ./webpacks
     volumes:
@@ -65,3 +66,7 @@ services:
       - 8080:8080
     command: [yarn, run, webpack-dev-server, --hot]
 
+volumes:
+  # elmのpackageを毎回ダウンロードしなくてもよいように、キャッシュを行う。2か所のキャッシュが必要。
+  cacheElmStuff: 
+  cacheDotElm:   
