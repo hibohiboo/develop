@@ -2,6 +2,8 @@ const path = require("path");
 const merge = require("webpack-merge");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
 let filename = "[name].js";
 if (MODE == "production" ) {
@@ -64,7 +66,16 @@ if (MODE === "development") {
   console.log("Building for dev...");
   module.exports = merge(common, {
     module: {
-      rules: []
+      rules: [
+        {
+          test: /\.css$/,
+          exclude: [/elm-stuff/, /node_modules/],
+          use: [
+            { loader:"style-loader"}, 
+            cssLoader
+          ]
+        }
+      ]
     },
     // 開発サーバの設定
     devServer: {
@@ -97,9 +108,29 @@ if (MODE === "production") {
         verbose: true,
         dry: false
       }),
+      new MiniCssExtractPlugin({
+        filename: '/assets/css/[name].css',
+        chunkFilename: '/assets/css/[id].css'
+      }),
     ],
     module: {
       rules: [
+      {
+        test: /\.css$/,
+        exclude: [/elm-stuff/, /node_modules/],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
+          {
+            loader: 'css-loader',
+            options: {
+                url: false,
+                minimize: true,
+            }
+          }
+        ]
+      }
       ]
     }
   });

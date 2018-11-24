@@ -147,9 +147,15 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 
 ### cssもcopyfileでまかなう
 
-* postcssでminifyを行ったので、webpackで行う必要はなさそう。
+* postcssでminifyを行ったので、webpackで行う必要はない、、？
 
 [gulp.distをCopyWebpackPluginで再現する](https://qiita.com/pepoipod/items/e41105e8f3afd47dc01c)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/1a74a60c17606e1a2e821691204b3f7cf809d699/tutorial/lesson/webpack/webpack-separate)
+
+### webpack-dev-serverのhotloadでcssも賄いたい欲
+
+* hotloadは便利。
+
 
 ## webpack-dev-server
 
