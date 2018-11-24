@@ -6,7 +6,7 @@ import Html.Events exposing (onClick)
 import Json.Decode as Decode exposing (Value)
 
 
-port log : () -> Cmd msg
+port log : Model -> Cmd msg
 
 
 type alias Model =
@@ -15,7 +15,7 @@ type alias Model =
 
 init : Value -> ( Model, Cmd Msg )
 init val =
-    ( 0, Cmd.batch [ log () ] )
+    ( 0, Cmd.batch [ log 0 ] )
 
 
 type Msg
@@ -27,10 +27,10 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Increment ->
-            ( model + 1, Cmd.none )
+            ( model + 1, Cmd.batch [ log model ] )
 
         Decrement ->
-            ( model - 1, Cmd.batch [ log () ] )
+            ( model - 1, Cmd.batch [ log model ] )
 
 
 view model =

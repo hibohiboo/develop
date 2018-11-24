@@ -18,7 +18,7 @@ var _ElmTest = require("../elm/ElmTest");
     node: mountNode
   });
 
-  app.ports.log.subscribe(() => {
-    console.log('test');
+  app.ports.log.subscribe(model => {
+    console.log(model);
   });
 })();

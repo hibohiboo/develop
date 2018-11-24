@@ -7,7 +7,7 @@ import { Elm } from '../elm/ElmTest';
   }
   const mountNode: HTMLElement =tmpNode;
   const app: any = Elm.Main.init({ node: mountNode });
-  app.ports.log.subscribe(() => {
-    console.log('test');
+  app.ports.log.subscribe((model) => {
+    console.log(model);
   });  
 }());
