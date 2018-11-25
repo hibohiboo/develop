@@ -35,7 +35,7 @@ update msg model =
 
 
 view model =
-    div [ id "plus-minus", class "red bold"]
+    div [ id "plus-minus", class "blue bold"]
         [ button [ onClick Decrement ] [ text "-" ]
         , div [] [ text (String.fromInt model) ]
         , button [ onClick Increment ] [ text "+" ]

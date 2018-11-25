@@ -2,7 +2,7 @@ version: '3'
 services:
   # htmlテンプレートエンジン
   pug:
-    build: ./pug
+    build: ./webpacks
     volumes:
       - ../src/templates:/app/src
       - ../dist/html:/app/dist
@@ -22,7 +22,7 @@ services:
     command: [yarn, run, tsc, --watch]
 
   elm:
-    build: ./elm
+    build: ./webpacks
     volumes:
       - ../src:/app/src
       - ../pre-dist/assets:/app/dist

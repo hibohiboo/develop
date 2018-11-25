@@ -58,6 +58,8 @@ RUN yarn add --dev webpack-dev-server
 ## plugin
 RUN yarn add --dev mini-css-extract-plugin
 RUN yarn add --dev html-minifier-webpack-plugin
+RUN yarn add --dev clean-webpack-plugin
+RUN yarn add --dev copy-webpack-plugin
 
 ### loaders
 RUN yarn add --dev babel-loader
@@ -66,12 +68,21 @@ RUN yarn add --dev style-loader
 RUN yarn add --dev css-loader
 RUN yarn add -D html-loader
 
-RUN yarn add --dev optimize-css-assets-webpack-plugin
-RUN yarn add --dev clean-webpack-plugin
-RUN yarn add --dev copy-webpack-plugin
+## pug
+RUN yarn add --dev pug
+RUN yarn add --dev pug-cli#master
+RUN yarn add --dev https://github.com/pugjs/pug-cli.git
 
+## watch
 RUN yarn add --dev chokidar
 RUN yarn add --dev chokidar-cli
+
+## script
+### elm
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build-elm\": \"yarn run elm make \/app\/src\/assets\/elm\/ElmTest.elm --output=\/app\/dist\/elm\/ElmTest.js\",/g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"elm-watch\": \"yarn run chokidar '\/app\/**\/*.elm' -p -c 'yarn run build-elm' \",/g" /app/package.json
 
+### pug
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"pug\": \"pug -o \/app\/dist -P \",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build-pug\": \"pug \/app\/src -o \/app\/dist \",/g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"watch\": \"chokidar '\/app\/**\/*.pug' -p -c 'npm run build-pug' \",/g" /app/package.json

@@ -4292,7 +4292,7 @@
   };
 
   var author$project$Main$view = function (model) {
-    return A2(elm$html$Html$div, _List_fromArray([elm$html$Html$Attributes$id('plus-minus'), elm$html$Html$Attributes$class('red bold')]), _List_fromArray([A2(elm$html$Html$button, _List_fromArray([elm$html$Html$Events$onClick(author$project$Main$Decrement)]), _List_fromArray([elm$html$Html$text('-')])), A2(elm$html$Html$div, _List_Nil, _List_fromArray([elm$html$Html$text(elm$core$String$fromInt(model))])), A2(elm$html$Html$button, _List_fromArray([elm$html$Html$Events$onClick(author$project$Main$Increment)]), _List_fromArray([elm$html$Html$text('+')]))]));
+    return A2(elm$html$Html$div, _List_fromArray([elm$html$Html$Attributes$id('plus-minus'), elm$html$Html$Attributes$class('blue bold')]), _List_fromArray([A2(elm$html$Html$button, _List_fromArray([elm$html$Html$Events$onClick(author$project$Main$Decrement)]), _List_fromArray([elm$html$Html$text('-')])), A2(elm$html$Html$div, _List_Nil, _List_fromArray([elm$html$Html$text(elm$core$String$fromInt(model))])), A2(elm$html$Html$button, _List_fromArray([elm$html$Html$Events$onClick(author$project$Main$Increment)]), _List_fromArray([elm$html$Html$text('+')]))]));
   };
 
   var elm$browser$Browser$External = function (a) {

@@ -4854,7 +4854,7 @@ var author$project$Main$view = function (model) {
 		_List_fromArray(
 			[
 				elm$html$Html$Attributes$id('plus-minus'),
-				elm$html$Html$Attributes$class('red bold')
+				elm$html$Html$Attributes$class('blue bold')
 			]),
 		_List_fromArray(
 			[

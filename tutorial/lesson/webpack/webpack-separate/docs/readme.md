@@ -162,3 +162,8 @@ sassにこだわりがあるわけではないので、scss記法に直した。
 * --hotオプションをつけるか、webpack.config.jsにwebpack.HotModuleReplacementPluginが必要
 [devServer.hot ](https://webpack.js.org/configuration/dev-server/#devserver-hot)
 
+### watchに対応
+
+* `bin/up.sh`で起動したときに、watchコマンドを実行するようにしている
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/a6918716a40be3f6d4b03bb8a77f2a94691e4aba/tutorial/lesson/webpack/webpack-separate)
