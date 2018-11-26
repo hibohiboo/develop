@@ -8,12 +8,10 @@ const opts = {
   src: path.join(__dirname, 'src'),
   dest: path.join(__dirname, 'dist')
 }
-console.log('opts', opts)
 const files = {}
 
-globule.find([`**/*`], {cwd: opts.src}).forEach(filename => {
-  const fullPath = path.join(opts.src, filename);
-  console.log(fullPath);
+globule.find({src: [`**/*`], cwd: opts.src, prefixBase: true}).forEach(filepath => {
+  console.log(filepath);
 })
 
 

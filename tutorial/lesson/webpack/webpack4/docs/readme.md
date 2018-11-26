@@ -14,7 +14,9 @@
 
 ## ファイルの列挙
 
-[globulue.txt](./globulue.txt)を参照。指定したディレクトリのファイルを列挙する。
+* [globulue.txt](./globulue.txt)を参照。指定したディレクトリのファイルを列挙する。
+  * [この時点のソース](https://github.com/hibohiboo/develop/tree/433cc3de1b61d570e55b09d63fec58ffaa090453/tutorial/lesson/webpack/webpack4)  
+
 
 [globule](https://github.com/cowboy/node-globule)
 
