@@ -10,7 +10,10 @@ const opts = {
 }
 const files = {}
 
-globule.find({src: [`**/*`], cwd: opts.src, prefixBase: true}).forEach(filepath => {
+// _で始まるファイルと、_で始まるディレクトリ以下のファイルを無視する
+globule.find({ src: [`**/*`, `!**/_*`], cwd: opts.src,  prefixBase: true, })
+       .filter(filepath=>filepath.indexOf('/_') === -1)
+       .forEach(filepath => {
   console.log(filepath);
 })
 
