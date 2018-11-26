@@ -48,6 +48,10 @@ let common = {
   module: {
     rules: [
       {
+        test: /\.pug$/,
+        use: ExtractTextPlugin.extract(pugLoader)
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         use: { loader: "babel-loader"}
@@ -82,6 +86,11 @@ let common = {
           postCssLoader,
           { loader: 'sass-loader' }
         ]
+      },
+      {
+        test:    /\.elm$/,
+        exclude: [/elm-stuff/, /node_modules/],
+        use: [{loader: 'elm-webpack-loader',options: {verbose:true, warn:true}}]
       },
     ]
   }
