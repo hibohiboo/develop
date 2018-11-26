@@ -16,3 +16,6 @@
 
 [集約前の状態](https://github.com/hibohiboo/develop/tree/9794124363079340ba5cae45473cd82ceb142891/tutorial/lesson/webpack/webpack4)  
 
+## 参考
+
+[webpack](https://webpack.js.org/concepts/mode/)

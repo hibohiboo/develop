@@ -1,17 +1,7 @@
 version: '3'
 services:
-  # htmlテンプレートエンジン
-  pug:
-    build: ./pug
-    volumes:
-      - ../src/templates:/app/src
-      - ../dist/html:/app/dist
-    environment:
-      - SHELL=/bin/bash
-    command: [npm, run, watch]
-
-  webpacks:
-    build: ./webpacks
+  webpack:
+    build: ./webpack
     volumes:
       - ../src:/app/src
       - ../dist:/app/dist
@@ -25,7 +15,9 @@ services:
       - ../config/.stylelintrc:/app/.stylelintrc
       - ../config/postcss.config.js:/app/postcss.config.js
       - ../config/elm.json:/app/elm.json
-      - ../config/webpack.config.js:/app/webpack.config.js
+      - ../config/.babelrc:/app/.babelrc
+      - ../config/webpack.config.babel.js:/app/webpack.config.babel.js
+      - ../config/webpack:/app/webpack
     ports:
       - 8080:8080
     command: [yarn, run, webpack-dev-server]

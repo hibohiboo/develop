@@ -1,4 +1,5 @@
-const path = require("path");
+import path from 'path';
+import {rules} from './webpack/rules';
 const merge = require("webpack-merge");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
@@ -20,19 +21,6 @@ const files = {
   pageTwo: 'assets/js/page2.js'
 }
 
-const postCssLoader = {
-  loader: 'postcss-loader',
-  options: {
-    ident: 'postcss',
-    plugins: (loader) => [require('autoprefixer')()]
-  }
-};
-const cssLoader = { 
-  loader: 'css-loader',
-  options: {
-    url: false   // url()を変換しない
-  }
-};
 let common = {
   mode: MODE,
   context: opts.src,
@@ -45,55 +33,7 @@ let common = {
       modules: [opts.src, "node_modules"],
       extensions: [".js", ".ts"]
   },
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        use: ExtractTextPlugin.extract(pugLoader)
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: { loader: "babel-loader"}
-      },
-      {
-        test: /\.ts$/,
-        use: [
-          { loader: 'babel-loader' },
-          { loader: 'ts-loader'}
-        ] 
-      },
-      {
-        test: /\.css$/,
-        exclude: [/elm-stuff/, /node_modules/],
-        use: [
-          { loader:"style-loader"}, 
-          cssLoader,
-          postCssLoader
-        ]
-      },
-      {
-        test: /\.scss$/,
-        exclude: [/elm-stuff/, /node_modules/],
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader',
-            options: {
-              url: false,
-              modules: true
-            }
-          },
-          postCssLoader,
-          { loader: 'sass-loader' }
-        ]
-      },
-      {
-        test:    /\.elm$/,
-        exclude: [/elm-stuff/, /node_modules/],
-        use: [{loader: 'elm-webpack-loader',options: {verbose:true, warn:true}}]
-      },
-    ]
-  }
+  module: { rules }
 };
 
 

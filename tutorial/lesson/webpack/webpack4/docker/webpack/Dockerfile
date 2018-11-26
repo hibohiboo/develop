@@ -74,3 +74,5 @@ RUN yarn add --dev yaml-loader
 
 ## plugin
 RUN yarn add --dev mini-css-extract-plugin
+
+RUN yarn add --dev @babel/register
