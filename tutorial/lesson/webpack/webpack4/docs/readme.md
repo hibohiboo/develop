@@ -12,6 +12,12 @@
 |:--|:--|:--|
 |bin/pug.sh|src/templates|dist/html|
 
+## ファイルの列挙
+
+[globulue.txt](./globulue.txt)を参照。指定したディレクトリのファイルを列挙する。
+
+[globule](https://github.com/cowboy/node-globule)
+
 ## pug
 
 [集約前の状態](https://github.com/hibohiboo/develop/tree/9794124363079340ba5cae45473cd82ceb142891/tutorial/lesson/webpack/webpack4)  

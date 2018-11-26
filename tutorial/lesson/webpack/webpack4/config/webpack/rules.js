@@ -1,10 +1,13 @@
-import {postCssLoader, cssLoader} from './webpack/loaders';
+import {postCssLoader, cssLoader} from './loaders';
 
 export const rules = [
   {
     test: /\.pug$/,
     use:  ['html-loader', 'pug-html-loader?pretty&exports=false']
   },
+];
+
+const test =  [
   {
     test: /\.js$/,
     exclude: /node_modules/,

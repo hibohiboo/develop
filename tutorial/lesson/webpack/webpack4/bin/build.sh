@@ -5,7 +5,7 @@ name=${1:-webpack}
 dir_docker="$bin_dir/../docker"
 
 # $container_nameの有無をgrepで調べる
-docker ps | grep $container_name
+docker ps | grep $name
 
 # grepの戻り値$?の評価。 grep戻り値 0:一致した 1:一致しなかった
 if [ $? -eq 0 ]; then
