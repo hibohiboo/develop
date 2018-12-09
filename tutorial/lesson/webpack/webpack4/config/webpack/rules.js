@@ -1,9 +1,13 @@
-import {postCssLoader, cssLoader} from './loaders';
 
 export const rules = [
   {
     test: /\.pug$/,
     use:  ['html-loader', 'pug-html-loader?pretty&exports=false']
+  },
+  {
+    test: /\.js$/,
+    exclude: /node_modules/,
+    use: { loader: "babel-loader"}
   },
 ];
 
@@ -19,30 +23,6 @@ const test =  [
       { loader: 'babel-loader' },
       { loader: 'ts-loader'}
     ] 
-  },
-  {
-    test: /\.css$/,
-    exclude: [/elm-stuff/, /node_modules/],
-    use: [
-      { loader:"style-loader"}, 
-      cssLoader,
-      postCssLoader
-    ]
-  },
-  {
-    test: /\.scss$/,
-    exclude: [/elm-stuff/, /node_modules/],
-    use: [
-      { loader: 'style-loader' },
-      { loader: 'css-loader',
-        options: {
-          url: false,
-          modules: true
-        }
-      },
-      postCssLoader,
-      { loader: 'sass-loader' }
-    ]
   },
   {
     test:    /\.elm$/,

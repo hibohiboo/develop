@@ -1,7 +1,36 @@
+import {postCssLoader, cssLoader} from './loaders';
 
 export const developSetting = {
     module: {
       rules: [
+        {
+          test: /\.css$/,
+          exclude: [/elm-stuff/, /node_modules/],
+          use: [
+            { loader:"style-loader"}, 
+            cssLoader,
+            postCssLoader
+          ]
+        },
+        {
+          test: /\.scss$/,
+          exclude: [/elm-stuff/, /node_modules/],
+          use: [
+            { loader: 'style-loader' },
+            { loader: 'css-loader',
+              options: {
+                url: false,
+                modules: true
+              }
+            },
+            postCssLoader,
+            { loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        },      
         {
           test: /\.elm$/,
           exclude: [/elm-stuff/, /node_modules/],
