@@ -12,7 +12,7 @@ export const getHtmlPlugins = (opts) => {
     const chunks = [];
     const plugin = new HTMLWebpackPlugin({
       filename: `${name}.html`,
-      template: `/app/dist/${name}.html`,
+      template: `/app/src/${name}.pug`,
       chunks: chunks
     });
     htmlPlugins.push(plugin);

@@ -11,16 +11,7 @@ const opts = {
 
 const files = {}
 
-// _で始まるファイルと、_で始まるディレクトリ以下のファイルを無視する
-globule.find({ src: [`**/*`, `!**/_*`], cwd: opts.src,  prefixBase: true})
-       .filter(filepath=>filepath.indexOf('/_') === -1)
-       .forEach(filepath => {
-  //console.log(filepath);
-  
-})
-
 const htmlPlugins = getHtmlPlugins(opts); 
-
 
 let common = {
   module: { rules },
