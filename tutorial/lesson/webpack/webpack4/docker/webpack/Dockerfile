@@ -1,4 +1,4 @@
-FROM node:11.2.0
+FROM node:11.4.0
 
 # コンテナ上の作業ディレクトリ作成
 WORKDIR /app
@@ -78,3 +78,4 @@ RUN yarn add --dev mini-css-extract-plugin
 RUN yarn add --dev @babel/register
 RUN yarn add --dev globule
 RUN yarn add --dev html-webpack-plugin
+RUN yarn add --dev pug-html-loader

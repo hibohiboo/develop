@@ -16,6 +16,7 @@ globule.find({ src: [`**/*`, `!**/_*`], cwd: opts.src,  prefixBase: true})
        .filter(filepath=>filepath.indexOf('/_') === -1)
        .forEach(filepath => {
   //console.log(filepath);
+  
 })
 
 const htmlPlugins = getHtmlPlugins(opts); 

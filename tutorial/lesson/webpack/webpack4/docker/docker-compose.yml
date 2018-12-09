@@ -4,7 +4,7 @@ services:
     build: ./webpack
     volumes:
       - ../src:/app/src
-      - ../dist:/app/dist
+      - ../tmp:/app/dist
       - ../product:/app/product
       # 設定ファイル
       - ../config/babel.config.js:/app/babel.config.js

@@ -8,7 +8,14 @@ export const getHtmlPlugins = (opts) => {
   globule.find({ src: [`**/*.pug`, `!**/_*`], cwd: opts.src})
         .filter(filename=> filename.substring(0, 1) !== '_' && filename.indexOf('/_') === -1)
         .forEach(filename => {
-    console.log(filename.replace('.pug', ''));
+    const name = filename.replace('.pug', '');
+    const chunks = [];
+    const plugin = new HTMLWebpackPlugin({
+      filename: `${name}.html`,
+      template: `/app/dist/${name}.html`,
+      chunks: chunks
+    });
+    htmlPlugins.push(plugin);
   });
   return htmlPlugins;
 }
