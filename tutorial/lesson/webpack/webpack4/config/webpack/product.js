@@ -36,8 +36,9 @@ export const getProductSetting = function(opts) {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: "[name]-[hash].css",
-        chunkFilename: "[id].css"
+        // assets/cssまで含めないと、cssディレクトリにjsファイルができてしまう
+        filename: "assets/css/[name]-[hash].css",
+        chunkFilename: "assets/css/[id].css"
         //filename: "[name].css"
       }),
       ...htmlPlugins
