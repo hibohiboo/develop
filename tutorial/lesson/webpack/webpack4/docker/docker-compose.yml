@@ -20,4 +20,4 @@ services:
       - ../config/webpack:/app/webpack
     ports:
       - 8080:8080
-    command: [yarn, run, webpack-dev-server]
+    command: [yarn, run, webpack-dev-server, --mode, development]
