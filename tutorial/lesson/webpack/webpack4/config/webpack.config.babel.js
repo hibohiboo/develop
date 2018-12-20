@@ -2,7 +2,7 @@ import path from 'path';
 import globule from 'globule';
 import merge  from 'webpack-merge';
 import {rules} from './webpack/rules';
-import {developSetting} from './webpack/develop';
+import {getDevelopSetting} from './webpack/develop';
 import {getProductSetting} from './webpack/product';
 
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
@@ -37,6 +37,7 @@ let common = {
 
 if (MODE === "development") {
   console.log("Building for dev...");
+  const developSetting = getDevelopSetting(opts)
   module.exports = merge(common, developSetting);
 } else if(MODE === 'production') {
   console.log("Building for Production...");

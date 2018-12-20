@@ -1,8 +1,22 @@
 import {postCssLoader, cssLoader} from './loaders';
-
-export const developSetting = {
+import {getHtmlPlugins} from './plugins';
+import webpack  from 'webpack';
+export const getDevelopSetting = function(opts) {
+  
+  const htmlPlugins = getHtmlPlugins(opts); 
+  
+  return {
     module: {
       rules: [
+        {
+          test: /\.pug$/,
+          use:  ['html-loader', 'pug-html-loader?pretty&exports=true']
+        },
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: { loader: "babel-loader"}
+        },
         {
           test: /\.css$/,
           exclude: [/elm-stuff/, /node_modules/],
@@ -43,9 +57,13 @@ export const developSetting = {
         }
       ]
     },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      ...htmlPlugins
+    ],
     // 開発サーバの設定
     devServer: {
-      contentBase: './dist',
+      //contentBase: './dist',
       inline: true,
       port: 8080,
       host:"0.0.0.0",
@@ -59,3 +77,4 @@ export const developSetting = {
       poll: 5000
     }
   };
+}
