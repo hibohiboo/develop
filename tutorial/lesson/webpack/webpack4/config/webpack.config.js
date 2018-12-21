@@ -1,9 +1,9 @@
-import path from 'path';
-import globule from 'globule';
-import merge  from 'webpack-merge';
-import {rules} from './webpack/rules';
-import {getDevelopSetting} from './webpack/develop';
-import {getProductSetting} from './webpack/product';
+const path =require( 'path');
+const globule = require( 'globule');
+const merge  = require( 'webpack-merge');
+const {rules} = require( './webpack/rules');
+const {getDevelopSetting} = require( './webpack/develop');
+const {getProductSetting} = require( './webpack/product');
 
 const MODE = process.env.NODE_ENV === "production" ? "production" : "development";
 
@@ -44,5 +44,3 @@ if (MODE === "development") {
   const prodcutSetting = getProductSetting(opts);
   module.exports = merge(common, prodcutSetting);
 }
-
-

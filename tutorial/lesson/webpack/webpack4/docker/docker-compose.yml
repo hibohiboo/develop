@@ -15,8 +15,7 @@ services:
       - ../config/.stylelintrc:/app/.stylelintrc
       - ../config/postcss.config.js:/app/postcss.config.js
       - ../config/elm.json:/app/elm.json
-      - ../config/.babelrc:/app/.babelrc
-      - ../config/webpack.config.babel.js:/app/webpack.config.babel.js
+      - ../config/webpack.config.js:/app/webpack.config.js
       - ../config/webpack:/app/webpack
     ports:
       - 8080:8080

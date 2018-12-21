@@ -1,8 +1,8 @@
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import {getHtmlPlugins} from './plugins';
-import {postCssLoader, cssLoader} from './loaders';
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {getHtmlPlugins} =  require('./plugins');
+const {postCssLoader, cssLoader} = require('./loaders');
 
-export const getProductSetting = function(opts) {
+module.exports = { getProductSetting : function(opts) {
   
   const htmlPlugins = getHtmlPlugins(opts); 
   
@@ -36,12 +36,11 @@ export const getProductSetting = function(opts) {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        // assets/cssまで含めないと、cssディレクトリにjsファイルができてしまう
-        filename: "assets/css/[name]-[hash].css",
+        filename: "[name]-[hash].css",
         chunkFilename: "assets/css/[id].css"
         //filename: "[name].css"
       }),
       ...htmlPlugins
     ],
   };
-}
+}}

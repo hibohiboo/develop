@@ -80,3 +80,5 @@ RUN yarn add --dev globule
 RUN yarn add --dev html-webpack-plugin
 RUN yarn add --dev pug-html-loader
 RUN yarn add --dev html-loader
+RUN yarn add --dev apply-loader
+RUN yarn add --dev pug-loader

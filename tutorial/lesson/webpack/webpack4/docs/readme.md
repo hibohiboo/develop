@@ -32,3 +32,4 @@
 ## 参考
 
 [webpack](https://webpack.js.org/concepts/mode/)
+[Webpackを頑張って設定して、すごい静的サイトジェネレータとして使おう](https://qiita.com/toduq/items/2e0b08bb722736d7968c)

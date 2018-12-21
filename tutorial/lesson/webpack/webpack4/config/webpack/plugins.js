@@ -1,7 +1,7 @@
-import globule from 'globule';
-import HTMLWebpackPlugin from 'html-webpack-plugin';
+const globule  = require('globule');
+const HTMLWebpackPlugin =  require('html-webpack-plugin');
 
-export const getHtmlPlugins = (opts) => {
+module.exports = { getHtmlPlugins : (opts) => {
   const htmlPlugins = [];
   /**
    * HtmlWebpackPluginを作成して追加する
@@ -14,6 +14,7 @@ export const getHtmlPlugins = (opts) => {
     const plugin = new HTMLWebpackPlugin({
       filename: `${name}.html`,
       template: `/app/src/${name}.pug`,
+      inject: false
     });
     htmlPlugins.push(plugin);
   };
@@ -23,3 +24,4 @@ export const getHtmlPlugins = (opts) => {
         .forEach(addPlugins);
   return htmlPlugins;
 }
+};

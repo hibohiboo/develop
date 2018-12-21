@@ -1,16 +1,20 @@
-import {postCssLoader, cssLoader} from './loaders';
-import {getHtmlPlugins} from './plugins';
-import webpack  from 'webpack';
-export const getDevelopSetting = function(opts) {
+const  {postCssLoader, cssLoader} = require( './loaders');
+const  {getHtmlPlugins} = require( './plugins');
+const  webpack  = require( 'webpack');
+module.exports = {getDevelopSetting : function(opts) {
   
   const htmlPlugins = getHtmlPlugins(opts); 
   
   return {
+    output: {
+      path: opts.dest,
+      filename: '[name]-[hash].js'
+    },
     module: {
       rules: [
         {
           test: /\.pug$/,
-          use:  ['html-loader', 'pug-html-loader?pretty&exports=true']
+          use:  ['html-loader?attrs=false','pug-html-loader?pretty&exports=false']
         },
         {
           test: /\.js$/,
@@ -77,4 +81,4 @@ export const getDevelopSetting = function(opts) {
       poll: 5000
     }
   };
-}
+}}
