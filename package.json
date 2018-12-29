@@ -62,7 +62,6 @@
     "firebaseui": "^3.4.0",
     "flow": "^0.2.3",
     "flow-bin": "^0.59.0",
-    "gulp": "^3.9.1",
     "gulp-tslint": "^7.1.0",
     "history": "^4.7.2",
     "jquery": "^3.3.1",
