@@ -1,0 +1,32 @@
+version: '3'
+services:
+  nuxt:
+    build: ./nuxt
+    volumes:
+      - ../src/mypage/assets:/app/src/mypage/assets
+      - ../src/mypage/components:/app/src/mypage/components
+      - ../src/mypage/layouts:/app/src/mypage/layouts
+      - ../src/mypage/middleware:/app/src/mypage/middleware
+      - ../src/mypage/pages:/app/src/mypage/pages
+      - ../src/mypage/plugins:/app/src/mypage/plugins
+      - ../src/mypage/static:/app/src/mypage/static
+      - ../src/mypage/store:/app/src/mypage/store
+      - ../src/mypage/.editorconfig:/app/src/mypage/.editorconfig
+      - ../src/mypage/.eslintrc.js:/app/src/mypage/.eslintrc.js
+      - ../src/mypage/nuxt.config.js:/app/src/mypage/nuxt.config.js
+      - ../src/mypage/package.json:/app/src/mypage/package.json
+      - ../src/mypage/yarn.lock:/app/src/mypage/yarn.lock
+      - cacheNodeModules:/app/src/mypage/node_modules
+    env_file: .envrc
+    environment:
+      - HOST=0.0.0.0
+    working_dir: "/app/src/mypage"
+    command: [yarn, dev]
+    ports:
+      - 3000:3000
+
+volumes:
+  # yarnでインストールした結果を保存する
+  cacheNodeModules: 
+  cacheDotElm:
+
