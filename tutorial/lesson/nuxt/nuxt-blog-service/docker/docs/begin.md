@@ -142,10 +142,11 @@ githubのソースが、テキストと異なっていた。 `Bearer `が追加�
 [docker ip][*1]
 [webpack-dev-server host][*2]
 [wabpack-dev-server watch][*3]
+[ホストとポート番号を変更するには？][*4]
 
 [*0]:https://nuxt-beginners-guide.elevenback.jp/examples/
 [*1]:http://docs.docker.jp/v1.11/engine/userguide/networking/default_network/binding.html
 [*2]:https://github.com/vuejs/vue-cli/issues/144
 [*3]:https://ja.nuxtjs.org/api/configuration-watchers/
-
+[*4]:https://ja.nuxtjs.org/faq/host-port/
 

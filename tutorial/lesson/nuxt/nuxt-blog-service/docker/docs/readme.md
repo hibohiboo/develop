@@ -103,10 +103,91 @@ Stopping docker_nuxt_1 ... done
 ```
 [この時点のソース](https://github.com/hibohiboo/wasureta/tree/e01765b2d79a145c5aeacd3668ac5e617fee6933/nuxt)
 
+## ログインページの作成
+
+### モック作成
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/e2d78ad2c26a5aea00ccdbad499cdb3079ae7651/nuxt)
+
+### 簡易的なログイン作成
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/b4512f91816934dbcddd2c0a8cd7b73b9f9177fa/nuxt)
+
+
+### cookieによる永続化
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/b27eb2a1084931663857050a221432fd5491064c/nuxt)
+
+### グローバルナビゲーションでのログイン確認
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/c072e1231f40ae20cb37df8f5022a0232f4aa6a1j/nuxt)
+
+## 投稿機能の実装
+
+* 試しに投稿したときのデータベースの様子は以下。
+
+![](./images/postsdb.png)
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/628bda0623780eacc186c0a735b11a9edd88503b/nuxt)
+
+### 注意点
+
+```js
+  async publishPost({ commit }, { payload }) {
+    const user = await this.$axios.$get(
+      `/mypages/users/${payload.user.id}.json`
+    )
+    // firebaseが割り宛てたランダムな英字の投稿データIDを取得する
+    const post_id = (await this.$axios.$post('/mypages/posts.json', payload))
+      .name
+    const created_at = moment().format()
+    const post = { id: post_id, ...payload, created_at }
+    const putData = { id: post_id, ...payload, created_at }
+    // 以下のdeleteを忘れると、userの下の投稿の下にさらにuserができることとなる。
+    delete putData.user
+    await this.$axios.$put(`/mypages/users/${user.id}/posts.json`, [
+      ...(user.posts || []),
+      putData
+    ])
+    commit('addPost', { post })
+```
+
+* deleteを忘れた場合、以下のようなDBとなる。
+
+![](./images/delete-forget.png)
+
+## 投稿一覧
+
+* 投稿日時が登録されていなかったので、posts.jsで投稿日時を登録するように更新の手順を増やした。
+
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/83d0fede4748c3f2c9a6fd8a206147255fc21b99/nuxt)
+
+
+## 詳細ページを表示
+
+* lint的には computedよりfiltersのほうが上にあるほうがよいということなので、順番だけ変更
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/8b0b5d446f3faf890b9527861dec3247ceede4b0/nuxt)
+
+## ユーザページを表示
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/f73579caa91a1a7c8b25840a95ed769d551dc57d/nuxt)
+
+
+## いいね機能の追加
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/7fcb611e659a53412b84c8464a2117982ec04aa3/nuxt)
+
+## バリデーション追加
+
+[この時点のソース](https://github.com/hibohiboo/wasureta/tree/89ea3b341701bb48286e873e7ebb7890971b7752/nuxt)
+
 
 ## 参考
 
 [Nuxt.js ビギナーズガイド][*0]
-
+[スタイルガイド][*1]
 
 [*0]:https://nuxt-beginners-guide.elevenback.jp/examples/
+[*1]:https://jp.vuejs.org/v2/style-guide/
