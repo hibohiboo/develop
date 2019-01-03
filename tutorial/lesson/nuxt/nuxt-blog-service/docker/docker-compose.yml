@@ -19,6 +19,7 @@ services:
       - ../src/mypage/package.json:/app/src/mypage/package.json
       - ../src/mypage/yarn.lock:/app/src/mypage/yarn.lock
       - cacheNodeModules:/app/src/mypage/node_modules
+      - ../dist:/app/src/mypage/dist
     env_file: .envrc
     environment:
       - HOST=0.0.0.0

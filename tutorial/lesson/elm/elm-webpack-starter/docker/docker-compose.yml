@@ -1,0 +1,32 @@
+version: '3'
+services:
+
+  elm:
+    build: ./elm-webpack-starter
+    volumes:
+      - ../src:/app/src
+      - ../tests:/app/tests
+      - ../dist/assets:/app/dist
+      - ./config/elm.json:/app/elm.json
+      - ./config/webpack.config.js:/app/webpack.config.js
+      - ./config/.babelrc:/app/.babelrc
+      # packageのキャッシュ
+      - cacheElmStuffStarter:/app/elm-stuff
+      - cacheDotElmStarter:/root/.elm
+    environment:
+      - SHELL=/bin/bash
+    ports:
+      - 3000:3000
+      - 3002:3002
+    environment:
+      - NODE_ENV=develop
+    command: [yarn, webpack-dev-server, --hot, --colors, --port, '3000', --host, '0.0.0.0', ]
+      # command: [yarn, run, elm-watch]
+
+
+volumes:
+  # elmのpackageを毎回ダウンロードしなくてもよいように、キャッシュを行う。2か所のキャッシュが必要。
+  cacheElmStuffStarter: 
+  cacheDotElmStarter:
+
+
