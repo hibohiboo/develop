@@ -10,9 +10,21 @@ services:
       - ./config/elm.json:/app/elm.json
       - ./config/webpack.config.js:/app/webpack.config.js
       - ./config/.babelrc:/app/.babelrc
+      - ./config/.eslintrc:/app/.eslintrc
+      - ./config/.eslintignore:/app/.eslintignore
+      - ./config/.stylelintrc:/app/.stylelintrc
+      - ./config/tsconfig.json:/app/tsconfig.json
+      - ./config/tslint.json:/app/tslint.json
       # packageのキャッシュ
       - cacheElmStuffStarter:/app/elm-stuff
       - cacheDotElmStarter:/root/.elm
+      # 分割して出力してみる
+      - ../separate/pre-pre-dist:/app/separate/pre-pre-dist
+      - ../separate/pre-dist:/app/separate/pre-dist
+      - ../separate/dist:/app/separate/dist
+      - ./config/postcss.config.js:/app/postcss.config.js
+      - ./config/babel.config.js:/app/babel.config.js
+      - ./config/webpack.config.separate.js:/app/webpack.config.separate.js
     environment:
       - SHELL=/bin/bash
     ports:
