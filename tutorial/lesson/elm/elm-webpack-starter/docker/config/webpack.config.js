@@ -37,11 +37,11 @@ const common = {
   },
   module: {
     rules: [
-      { 
+      {
         test: /\.pug$/,
         use: [{
           loader: 'pug-loader',
-        },]
+        }],
       },
       {
         test: /\.js$/,
@@ -93,6 +93,11 @@ const common = {
         loader: 'file-loader',
       },
     ],
+  },
+  // cdnから読み込むものはここに
+  externals: {
+    jquery: 'jQuery',
+    'chart.js': 'Chart',
   },
 };
 

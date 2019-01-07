@@ -2,7 +2,7 @@
  * Elmの引数
  */
 interface IElmInitArgs {
-  // node: HTMLElement;
+  node?: HTMLElement;
   flags?: any;
 }
 

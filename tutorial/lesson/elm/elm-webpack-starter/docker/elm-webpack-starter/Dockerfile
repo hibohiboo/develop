@@ -97,3 +97,7 @@ RUN yarn global add uglify-js
 
 ## file copy
 RUN yarn add --dev cpx
+
+RUN yarn add --dev @types/jquery
+RUN yarn add --dev @types/materialize-css
+RUN yarn add --dev @types/chart.js

@@ -15,7 +15,8 @@ import Json.Decode as Decode
 -- ---------------------------
 
 
-port toJs : String -> Cmd msg
+port toJs : Int -> Cmd msg
+port initialize : () -> Cmd msg
 
 
 
@@ -32,7 +33,7 @@ type alias Model =
 
 init : Int -> ( Model, Cmd Msg )
 init flags =
-    ( { counter = flags, serverMessage = "" }, Cmd.none )
+    ( { counter = flags, serverMessage = "" }, Cmd.batch [ initialize () ]  )
 
 
 
@@ -52,10 +53,10 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update message model =
     case message of
         Inc ->
-            ( add1 model, toJs "Hello Js" )
+            ( add1 model, toJs model.counter )
 
         Set m ->
-            ( { model | counter = m }, toJs "Hello Js" )
+            ( { model | counter = m }, toJs model.counter )
 
         TestServer ->
             let
@@ -143,6 +144,7 @@ view model =
             [ text "And now don't forget to add a star to the Github repo "
             , a [ href "https://github.com/simonh1000/elm-webpack-starter" ] [ text "elm-webpack-starter" ]
             ]
+        , div[][canvas [ class "my-chart" ] []]
         ]
 
 
@@ -151,16 +153,11 @@ view model =
 -- MAIN
 -- ---------------------------
 
-
 main : Program Int Model Msg
 main =
-    Browser.document
+    Browser.element
         { init = init
         , update = update
-        , view =
-            \m ->
-                { title = "Elm 0.19 starter"
-                , body = [ view m ]
-                }
+        , view = view
         , subscriptions = \_ -> Sub.none
         }

@@ -1,10 +1,7 @@
-## webpack-dev-starterが動く形
+## starterを素直に動かす。
 
-([この時点のソース](https://github.com/hibohiboo/develop/blob/4c8cb84520a9a1c603e93f865fd675eec1de4806/tutorial/lesson/elm-webpack-starter/))
+[初期設定時点](https://github.com/hibohiboo/wasureta/tree/167566e4820be1ec3a04eae4de282842d9b07e89)  
 
-## webpack-dev-starterでtypescriptが使える形
-
-([この時点のソース](https://github.com/hibohiboo/develop/blob/e5b2eac3b43ac01e280ce77ac4670778f1177fb7/tutorial/lesson/elm-webpack-starter/))
 
 
 

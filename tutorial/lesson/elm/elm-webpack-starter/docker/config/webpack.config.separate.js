@@ -63,7 +63,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: false,
-              url: false
+              url: false,
             },
           },
         ],
