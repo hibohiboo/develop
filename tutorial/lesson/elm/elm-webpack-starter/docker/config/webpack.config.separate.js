@@ -89,4 +89,9 @@ module.exports = {
       },
     ],
   },
+    // cdnから読み込むものはここに
+    externals: {
+      jquery: 'jQuery',
+      'chart.js': 'Chart',
+    },
 };
