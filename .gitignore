@@ -13,3 +13,4 @@ coverage
 lib
 package-lock.json
 elm-stuff
+*.log

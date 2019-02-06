@@ -16,8 +16,8 @@ SHELL
 # virtual machine設定
 Vagrant.configure(2) do |config|
   # 使用するディストリビューションのボックスの設定
-  config.vm.box = "bento/ubuntu-18.04"
-
+  # config.vm.box = "bento/ubuntu-18.04"
+  config.vm.box = "ubuntu/bionic64"
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。
   # auto enp0s8
@@ -43,7 +43,7 @@ Vagrant.configure(2) do |config|
     vm.memory = 8192
     # Vagrant1.8から利用出来るLinked Cloneをオンにする。
     vm.linked_clone = true
-    # vm.cpus = 2
+
     vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
     # ↓起動が止まるときの確認用
     # vm.gui = true
