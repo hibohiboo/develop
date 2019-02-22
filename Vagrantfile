@@ -16,8 +16,9 @@ SHELL
 # virtual machine設定
 Vagrant.configure(2) do |config|
   # 使用するディストリビューションのボックスの設定
-  # config.vm.box = "bento/ubuntu-18.04"
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "bento/ubuntu-18.04"
+  # 下の公式はボックスサイズが10Gしかない。10Gくらいすぐだし、増やすのも面倒。64Gあるbentoを使う。
+  # config.vm.box = "ubuntu/bionic64"
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。
   # auto enp0s8

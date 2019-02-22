@@ -86,11 +86,27 @@ VagrantDevelop
 $ ls
 ```
 
+## 容量追加手順
+
+```
+cd D:\virtualbox\Vms\ubuntu-bionic-18.04-cloudimg-20190131 # ディスクのある位置へ移動
+VBoxManage clonehd ".\ubuntu-bionic-18.04-cloudimg.vmdk" ".\ubuntu-bionic-18.04-cloudimg.vdi" --format vdi # vdi形式に変換
+VBoxManage showhdinfo .\ubuntu-bionic-18.04-cloudimg.vdi # 容量確認
+VBoxManage modifyhd .\ubuntu-bionic-18.04-cloudimg.vdi --resize 40960 # 40GBへアップ
+VBoxManage showhdinfo .\ubuntu-bionic-18.04-cloudimg.vdi # 容量増えたの確認
+ VBoxManage clonehd ".\ubuntu-bionic-18.04-cloudimg.vdi" ".\ubuntu-bionic-18.04-cloudimg2.vmdk" --format vmdk "# vmdk形式に変換。名前は別のものにしなければならない 
+```
+vboxmanagerから既存のディスクを削除
+先ほど作ったディスクを追加。
+パーティションを拡張しなければならないが、、面倒になってきた。
+最初から64GBある、bentoを使おう
+
 
 ## 参考
 
 [メタ構文文字列][*1]
 [documentation](./dist/docs/html/index.html)
+[容量追加][*2]
 
 [*1]:https://ja.wikipedia.org/wiki/%E3%83%A1%E3%82%BF%E6%A7%8B%E6%96%87%E5%A4%89%E6%95%B0
-
+[*2]:https://qiita.com/koitaro/items/c8bf8eb1e67e78890a5c
