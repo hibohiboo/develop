@@ -16,9 +16,11 @@ SHELL
 # virtual machine設定
 Vagrant.configure(2) do |config|
   # 使用するディストリビューションのボックスの設定
-  config.vm.box = "bento/ubuntu-18.04"
+  # config.vm.box = "bento/ubuntu-18.04"
   # 下の公式はボックスサイズが10Gしかない。10Gくらいすぐだし、増やすのも面倒。64Gあるbentoを使う。
-  # config.vm.box = "ubuntu/bionic64"
+  # bentoだとvirtualbox6.0.6とvagrant2.2.4の組み合わせのときにマウントに問題がある。
+  # http://denor.daa.jp/vagrantvirtualbox%E3%81%AEubuntu%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8%E5%AE%B9%E9%87%8F%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF
+  config.vm.box = "ubuntu/bionic64"
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。
   # auto enp0s8
@@ -48,6 +50,12 @@ Vagrant.configure(2) do |config|
     vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
     # ↓起動が止まるときの確認用
     # vm.gui = true
+
+    # Vagrant assumes that this means the command failed! setup となったときに、vagrant-vbguestが悪さをしていたらfalseにする
+    config.vbguest.auto_update = false
+
+    # vagrant-disksizeでサイズを変更する。ubuntu/bionic64は10Gくらいしかない。
+    config.disksize.size = '64GB'
   end
 
   # vagrant provision を行ったときに以下のエラーが出る対策
