@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import App from './App';
+import vueCustomElement from 'vue-custom-element';
 
-new Vue({
-  el: "#vue-app",
-  components: { App },
-  template: "<app />"
-})
+Vue.use(vueCustomElement);
+
+Vue.customElement('vue-app', App);

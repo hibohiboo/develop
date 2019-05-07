@@ -30,12 +30,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue'],
     modules: [path.resolve(__dirname, 'node_modules')],
-
-    // https://qiita.com/magaya0403/items/3fbe9aa20c6a66b76662
-    // aliasを追加
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    },
+    // // https://qiita.com/magaya0403/items/3fbe9aa20c6a66b76662
+    // // aliasを追加
+    // alias: {
+    //   'vue$': 'vue/dist/vue.esm.js'
+    // },
   },
   plugins: [new VueLoaderPlugin()],
   devServer: {
