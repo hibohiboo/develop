@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web_components_vue:
+    build: ./vue
+    ports:
+      - 8080:8080
+    volumes:
+      - ../src:/app/src
+      - ./vue/webpack.config.js:/app/webpack.config.js
+      - ../../src/index.html:/index.html
+    command: [yarn, start ]
