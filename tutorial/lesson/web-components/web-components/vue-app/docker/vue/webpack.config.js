@@ -30,10 +30,23 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue'],
     modules: [path.resolve(__dirname, 'node_modules')],
+
+    // https://qiita.com/magaya0403/items/3fbe9aa20c6a66b76662
+    // aliasを追加
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    },
   },
   plugins: [new VueLoaderPlugin()],
   devServer: {
     contentBase: projectRootPath,
     historyApiFallback: true,
+    host: '0.0.0.0',
+    port: 8080
+  },
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000,
   },
 };
