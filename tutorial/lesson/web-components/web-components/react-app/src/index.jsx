@@ -7,4 +7,13 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('react-app'));
+// Custom ElementとするためにHTMLElementを継承
+class CustomElementsApp extends HTMLElement {
+  connectedCallback() {
+    const mountPoint = document.createElement('div');
+    this.attachShadow({ mode: 'open' }).appendChild(mountPoint);
+    ReactDOM.render(<App />, mountPoint);
+  }
+}
+
+customElements.define('react-app', CustomElementsApp);
