@@ -7,6 +7,6 @@ services:
     volumes:
       - ../src:/app/src
       - ./react/webpack.config.js:/app/webpack.config.js
-      - ../../src/index.html:/index.html
-      - ../../dist:/dist
+      - ../../server/src/index.html:/index.html
+      - ../../server/dist:/dist
     command: [yarn, start ]
