@@ -30,5 +30,12 @@ module.exports = {
   devServer: {
     contentBase: projectRootPath,
     historyApiFallback: true,
+    host: '0.0.0.0',
+    port: 8080
+  },
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000,
   },
 };

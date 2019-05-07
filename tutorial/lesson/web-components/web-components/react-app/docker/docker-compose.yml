@@ -6,4 +6,6 @@ services:
       - 8080:8080
     volumes:
       - ../src:/app/src
+      - ./react/webpack.config.js:/app/webpack.config.js
+      - ../../src/index.html:/index.html
     command: [yarn, start ]
