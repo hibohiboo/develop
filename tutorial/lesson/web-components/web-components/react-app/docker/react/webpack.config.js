@@ -33,7 +33,7 @@ module.exports = {
     host: '0.0.0.0',
     port: 8080
   },
-  watch: true,
+  watch: false,
   watchOptions: {
     aggregateTimeout: 300,
     poll: 1000,
