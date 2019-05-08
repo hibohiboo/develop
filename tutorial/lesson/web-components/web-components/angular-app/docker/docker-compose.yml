@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web_components_angular:
+    build: ./angular
+    ports:
+      - 8080:8080
+    volumes:
+      - ./angular/package.json:/app/package.json
+      - ./angular/tsconfig.json:/app/tsconfig.json
+      - ./angular/tslint.json:/app/tslint.json
+      - ./angular/angular.json:/app/angular.json
+      - ./angular/.gitignore:/app/.gitignore
+      - ../src:/app/src
+      - ../e2e:/app/e2e
+      - ../../server/src/index.html:/index.html
+      - ../../server/dist:/dist
+    command: [yarn, start ]
