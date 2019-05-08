@@ -43,3 +43,19 @@ RUN yarn add \
 RUN yarn add --dev typescript@3.2.x
 # core-js 3.0系だとエラー
 RUN yarn add core-js@2.6.x
+# test用
+RUN \
+  apt-get update && \
+  apt-get install -y wget curl unzip apt-utils && \
+  mkdir -p /home/root/src && cd $_ && \
+  wget -q -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip && \
+  unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/ && \
+  apt-get install -y libappindicator1 fonts-liberation libasound2 libnspr4 libnss3 libxss1 lsb-release xdg-utils && \
+  touch /etc/default/google-chrome && \
+  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+RUN apt-get install -y libappindicator3-1 \
+  libatk-bridge2.0-0 \
+  libatspi2.0-0 \
+  libgtk-3-0 
+RUN cd /home/root/src && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb  && dpkg -i google-chrome-stable_current_amd64.deb && \
+  apt-get install -y fonts-migmix

@@ -4,6 +4,8 @@ services:
     build: ./angular
     ports:
       - 8080:4200
+    environment:
+      - CHROME_BIN=/usr/bin/google-chrome
     volumes:
       - ./angular/package.json:/app/package.json
       - ./angular/tsconfig.json:/app/tsconfig.json
@@ -14,4 +16,6 @@ services:
       - ../e2e:/app/e2e
       - ../../server/src/index.html:/index.html
       - ../../server/dist:/dist
-    command: [yarn, start, --host, "0.0.0.0"]
+    # コンテナの外からつなぐために 0.0.0.0 のホストを指定。
+    # windows ではポーリングが必要
+    command: [yarn, start, --host, "0.0.0.0", --poll=2000]
