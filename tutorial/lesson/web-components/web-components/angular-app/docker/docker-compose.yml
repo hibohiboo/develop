@@ -3,7 +3,7 @@ services:
   web_components_angular:
     build: ./angular
     ports:
-      - 8080:8080
+      - 8080:4200
     volumes:
       - ./angular/package.json:/app/package.json
       - ./angular/tsconfig.json:/app/tsconfig.json
@@ -14,4 +14,4 @@ services:
       - ../e2e:/app/e2e
       - ../../server/src/index.html:/index.html
       - ../../server/dist:/dist
-    command: [yarn, start ]
+    command: [yarn, start, --host, "0.0.0.0"]

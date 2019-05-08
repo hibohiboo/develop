@@ -35,10 +35,11 @@ RUN yarn add \
   @angular/platform-browser \
   @angular/platform-browser-dynamic \
   @angular/router \
-  core-js \
   rxjs \
   zone.js \
   document-register-element 
 
 # ERROR in The Angular Compiler requires TypeScript >=3.1.1 and <3.3.0 but 3.4.5 was found instead.
-RUN yarn add --dev typescript@3.2
+RUN yarn add --dev typescript@3.2.x
+# core-js 3.0系だとエラー
+RUN yarn add core-js@2.6.x
