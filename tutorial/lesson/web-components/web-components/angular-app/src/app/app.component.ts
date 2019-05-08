@@ -3,7 +3,7 @@ import { createCustomElement } from '@angular/elements';
 import { HelloComponent } from './hello/hello.component';
 
 @Component({
-  selector: 'app-hello',
+  selector: 'angular-app',
   template: ``,
 })
 export class AppComponent {
@@ -14,6 +14,6 @@ export class AppComponent {
       HelloComponent,
       { injector: this.injector }
     );
-    customElements.define('app-hello', AppHelloElement);
+    customElements.define('angular-app', AppHelloElement);
   }
 }
