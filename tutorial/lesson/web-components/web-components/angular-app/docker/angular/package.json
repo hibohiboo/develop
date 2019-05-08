@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build:elements": "ng build --prod --output-hashing=none && cd dist && cat runtime.js polyfills.js scripts.js main.js > /dist/angularApp.js",
+    "e2e": "ng e2e",
+    "ls": "cd dist && cat runtime.js polyfills.js scripts.js main.js"
   },
   "private": true,
   "devDependencies": {

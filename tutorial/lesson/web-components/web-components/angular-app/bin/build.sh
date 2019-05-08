@@ -12,11 +12,11 @@ docker ps | grep $container_name
 # grepの戻り値$?の評価。 grep戻り値 0:一致した 1:一致しなかった
 if [ $? -eq 0 ]; then
   # 一致したときの処理
-  cd $docker_dir && docker-compose exec $container_name yarn build
+  cd $docker_dir && docker-compose exec $container_name yarn "build:elements"
 else
   # 一致しなかった時の処理
   # コンテナを立ち上げて接続
-  cd $docker_dir && docker-compose run $container_name yarn build
+  cd $docker_dir && docker-compose run $container_name yarn "build:elements"
 fi
 
 
