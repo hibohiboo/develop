@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web_components_elm:
+    build: ./elm
+    ports:
+      - 8080:8080
+    volumes:
+      # packageのキャッシュ
+      - cacheGardenElmStuffStarter:/app/elm-stuff
+      - cacheGardenDotElmStarter:/root/.elm
+      - ./elm/webpack.config.js:/app/webpack.config.js
+      - ./elm/package.json:/app/package.json 
+      - ./elm/elm.json:/app/elm.json 
+      - ./elm/.babelrc:/app/.babelrc 
+      - ../src:/app/src
+      - ../../server/src/index.html:/index.html
+      - ../../server/dist:/dist
+    command: [yarn, start ]
+
+volumes:
+  # elmのpackageを毎回ダウンロードしなくてもよいように、キャッシュを行う。2か所のキャッシュが必要。
+  cacheGardenElmStuffStarter: 
+  cacheGardenDotElmStarter:
