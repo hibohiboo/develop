@@ -7,6 +7,8 @@ services:
     volumes:
       - ../src:/app/src
       - ./vue/webpack.config.js:/app/webpack.config.js
+      - ./vue/package.json:/app/package.json
+      - ./vue/.babelrc:/app/.babelrc
       - ../../server/src/index.html:/index.html
       - ../../server/dist:/dist
     command: [yarn, start ]
