@@ -1,0 +1,16 @@
+version: '3'
+services:
+  web_components_ts:
+    build: ./ts
+    ports:
+      - 8080:8080
+    volumes:
+      - ../src:/app/src
+      - ./ts/webpack.config.js:/app/webpack.config.js
+      - ./ts/package.json:/app/package.json
+      - ./ts/.babelrc:/app/.babelrc
+      - ./ts/tsconfig.json:/app/tsconfig.json
+      - ./ts/tslint.json:/app/tslint.json
+      - ../../server/src/index.html:/index.html
+      - ../../server/dist:/dist
+    command: [yarn, start ]
