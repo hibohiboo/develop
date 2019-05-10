@@ -1,0 +1,15 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7.6"
+  config.vm.box_version = "201812.27.0"
+  config.vm.provider "virtualbox" do |vm|
+    # メモリを設定
+    vm.memory = 4092
+    # Vagrant1.8から利用出来るLinked Cloneをオンにする。
+    vm.linked_clone = true
+
+    vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
+
+    # Vagrant assumes that this means the command failed! setup となったときに、vagrant-vbguestが悪さをしていたらfalseにする
+    # config.vbguest.auto_update = false
+  end
+end
