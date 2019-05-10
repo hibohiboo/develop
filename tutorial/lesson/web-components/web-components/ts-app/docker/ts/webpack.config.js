@@ -7,7 +7,7 @@ const merge = require('webpack-merge');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 // process.env.npm_lifecycle_event : webpackコマンドを実行したnpm script名が格納されている。
-const MODE = process.env.npm_lifecycle_event === 'prod' ? 'production' : 'development';
+const MODE = process.env.npm_lifecycle_event === 'prod' || process.env.NODE_ENV === 'production' ? 'production' : 'development';
 const filename = 'tsApp.js';
 
 const common = {
@@ -123,5 +123,10 @@ if (MODE === 'development') {
       aggregateTimeout: 300,
       poll: 1000,
     },
+  });
+}
+if (MODE === 'production') {
+  console.log('Building for prod...');
+  module.exports = merge(common, {
   });
 }

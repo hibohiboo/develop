@@ -16,7 +16,7 @@ if [ $? -eq 0 ]; then
 else
   # 一致しなかった時の処理
   # コンテナを立ち上げて接続
-  cd $docker_dir && docker-compose run $container_name yarn build
+  cd $docker_dir && docker-compose run $container_name /bin/bash -c 'NODE_ENV=production yarn build'
 fi
 
 
