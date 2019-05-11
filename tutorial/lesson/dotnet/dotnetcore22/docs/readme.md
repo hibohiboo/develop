@@ -1,4 +1,34 @@
+## vault.ymlの作成時の文言
+
+ansible-vault create vault.ymlで作成するときに開かれるviには以下を入力
+
+```
+---
+# The password for the sa user. Only used if mssql-server needs to be installed.
+sa_password: '!sa_password001'
+test_user_name: 'test_db_user'
+test_user_pass: '!test_password001'
+```
+
+vault.ymlを作成するときに使ったパスワードは任意のファイル.passwdに保存してgit管理から外す
+
+### .passwd
+
+```
+password
+```
+
+## sql server バージョン確認
+
+```bash
+sqlcmd -S localhost -U test_db_user -P '!test_password001' -Q ' select @@version, @@language'
+```
+
+
+
 ## エラー発生
+
+pythonインストール時
 
 ```
     default: Traceback (most recent call last):
@@ -18,6 +48,8 @@
     default: make: *** [altinstall] Error 1
 ```
 
+パーミション設定をディレクトリに行わずにansible vaultを使ったとき
+
 ```
     default:  [WARNING]: Error in vault password file loading (default): Problem running
     default: vault password script /vagrant/provision/playbooks/.passwd ([Errno 8] Exec
@@ -29,6 +61,12 @@ The SSH command responded with a non-zero exit status. Vagrant
 assumes that this means the command failed. The output for this command
 should be in the log above. Please read the output to determine what
 went wrong.
+```
+
+vaultのパスワードを間違えた時
+
+```
+    default: ERROR! Decryption failed (no vault secrets were found that could decrypt) on /provision/playbooks/vault.yml
 ```
 
 ## コミット
@@ -56,3 +94,7 @@ went wrong.
 [microsoft/sql-server-samples](https://github.com/microsoft/sql-server-samples/tree/master/samples/features/high%20availability/Linux/Ansible%20Playbook)
 [ansible vault](http://jimaoka.hatenablog.jp/entry/ansible-vault)
 [ansible vault windows](https://mseeeen.msen.jp/vagrant-ansible-local-provisioner-with-vault-password/)
+[sqlserver サーバレベルのロール](https://docs.microsoft.com/ja-jp/sql/relational-databases/security/authentication-access/server-level-roles?view=sql-server-2017)
+[sqlserver データベースレベルのロール](https://docs.microsoft.com/ja-jp/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-2017)
+[sql server tool](https://docs.microsoft.com/ja-jp/sql/linux/quickstart-install-connect-red-hat?view=sql-server-2017)
+[sqlcmd](https://docs.microsoft.com/ja-jp/sql/tools/sqlcmd-utility?view=sql-server-2017)

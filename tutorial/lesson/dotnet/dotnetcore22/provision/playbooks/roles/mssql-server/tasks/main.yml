@@ -103,3 +103,25 @@
   service:
     name: mssql-server
     state: started
+
+# テスト用のユーザ作成
+- name: add user
+  mssql_login:
+    name: "{{ test_user_name }}"
+    password: "{{ test_user_pass }}"
+    roles:
+    # DBの追加・削除ができる権限
+      - dbcreator
+    login_name: 'sa'
+    login_password: "{{ sa_password }}"
+
+
+- name: パスを通す 接続したとき
+  lineinfile:
+    path: /home/vagrant/.bash_profile
+    line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
+
+- name: パスを通す 各bashごと毎回
+  lineinfile:
+    path: /home/vagrant/.bash_profile
+    line: 'export PATH="$PATH:/opt/mssql-tools/bin"'

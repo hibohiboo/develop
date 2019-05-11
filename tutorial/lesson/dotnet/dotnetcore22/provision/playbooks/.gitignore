@@ -1,3 +1,2 @@
-site.retry
-vault.yml
+*.retry
 .passwd
