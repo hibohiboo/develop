@@ -5,18 +5,17 @@ $ansible_install = <<SHELL
     # yum install -y https://centos7.iuscommunity.org/ius-release.rpm
     # yum search python37
     # 3.7はまだepelにいないのでソースからビルド
-    yum install zlib-devel libffi-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel libuuid-devel xz-devel
-    cd /usr/local/src \
-    && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz \
-    && tar xf Python-3.7.3.tgz \
-    && cd Python-3.7.3 \
-    && ./configure \
-    && make \
-    && make altinstall \
-    && python3.7 -v
+    # yum install -y zlib-devel libffi-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel libuuid-devel xz-devel 
+    # cd /usr/local/src \
+    # && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz \
+    # && tar xf Python-3.7.3.tgz \
+    # && cd Python-3.7.3 \
+    # && ./configure \
+    # && make \
+    # && make altinstall 
 
     # vagrantユーザとしてvirtualenvとansibleをインストール
-    # su -c "source /vagrant/provision/bash/install_ansible.sh" vagrant
+    su -c "source /vagrant/provision/bash/install_ansible.sh" vagrant
   fi
 SHELL
 

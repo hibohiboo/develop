@@ -31,3 +31,4 @@
 [python3.7](https://narito.ninja/blog/detail/20/)
 [how to install python3.7](https://tecadmin.net/install-python-3-7-on-centos/) ... インストールの参考
 [python3.8](https://qiita.com/ksato9700/items/3846e8db573a07c71c33) ... 3.8は20191020がリリースらしい
+[python -v](https://ja.stackoverflow.com/questions/41096/python-v%E3%82%92%E5%AE%9F%E8%A1%8C%E3%81%97%E3%81%9F%E6%99%82%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%A3%E3%81%BD%E3%81%84%E6%A8%99%E6%BA%96%E5%87%BA%E5%8A%9B%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
