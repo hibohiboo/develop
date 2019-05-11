@@ -109,3 +109,4 @@ ansibleのtasks/main.ymlにタブ文字を入れてしまったとき
 [DB初期化](https://sakapon.wordpress.com/2010/07/13/sqlserverscript/)
 [照合順序](https://www.ksakae1216.com/entry/2017/05/18/063000)
 [SqlServer文字化け](https://kitigai.hatenablog.com/entry/2018/05/27/010440)
+[ないときは作る](http://fla-moo.blogspot.com/2013/05/sqlserversqlite.html)

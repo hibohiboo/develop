@@ -114,8 +114,6 @@
       - dbcreator
     login_name: 'sa'
     login_password: "{{ sa_password }}"
-  register: result
-  changed_when: result.rc != 0
 
 - name: パスを通す 接続したとき
   lineinfile:
@@ -139,6 +137,6 @@
 
 
 - name: 初期データの挿入
-  shell: /opt/mssql-tools/bin/sqlcmd -S localhost -U test_db_user -P '!test_password001' -d TestDB -Q "INSERT INTO TestTable(name) VALUES ('ばなな') where NOT EXISTS (select 1 from TestTable name = 'ばなな')"
+  shell: /opt/mssql-tools/bin/sqlcmd -S localhost -U test_db_user -P '!test_password001' -d TestDB -Q "INSERT INTO TestTable(name) SELECT 'ばなな' name WHERE NOT EXISTS (select 1 from TestTable where name = 'ばなな')"
   register: result
   changed_when: result.rc != 0
