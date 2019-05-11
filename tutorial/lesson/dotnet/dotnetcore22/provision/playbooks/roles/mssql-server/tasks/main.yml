@@ -114,7 +114,8 @@
       - dbcreator
     login_name: 'sa'
     login_password: "{{ sa_password }}"
-
+  register: result
+  changed_when: result.rc != 0
 
 - name: パスを通す 接続したとき
   lineinfile:
@@ -125,3 +126,19 @@
   lineinfile:
     path: /home/vagrant/.bash_profile
     line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
+
+- name: 初期DBの作成。大文字小文字を区別する設定に変更
+  shell: /opt/mssql-tools/bin/sqlcmd -S localhost -U test_db_user -P '!test_password001' -Q "IF DB_ID (N'TestDB') IS NULL create database [TestDB] collate Japanese_CS_AS"
+  register: result
+  changed_when: result.rc != 0
+
+- name: 初期テーブルの作成。
+  shell: /opt/mssql-tools/bin/sqlcmd -S localhost -U test_db_user -P '!test_password001' -d TestDB -Q "if object_id('TestTable') is null CREATE TABLE TestTable (id INT IDENTITY(1,1) NOT NULL,name NVARCHAR(128), CONSTRAINT [PK_TestTable] PRIMARY KEY CLUSTERED ([id] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]"
+  register: result
+  changed_when: result.rc != 0
+
+
+- name: 初期データの挿入
+  shell: /opt/mssql-tools/bin/sqlcmd -S localhost -U test_db_user -P '!test_password001' -d TestDB -Q "INSERT INTO TestTable(name) VALUES ('ばなな') where NOT EXISTS (select 1 from TestTable name = 'ばなな')"
+  register: result
+  changed_when: result.rc != 0

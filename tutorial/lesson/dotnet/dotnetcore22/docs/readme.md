@@ -69,6 +69,13 @@ vaultのパスワードを間違えた時
     default: ERROR! Decryption failed (no vault secrets were found that could decrypt) on /provision/playbooks/vault.yml
 ```
 
+ansibleのtasks/main.ymlにタブ文字を入れてしまったとき
+
+```
+    default: ERROR! Syntax Error while loading YAML.
+    default:   found character '\t' that cannot start any token
+```
+
 ## コミット
 
 
@@ -98,3 +105,7 @@ vaultのパスワードを間違えた時
 [sqlserver データベースレベルのロール](https://docs.microsoft.com/ja-jp/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-2017)
 [sql server tool](https://docs.microsoft.com/ja-jp/sql/linux/quickstart-install-connect-red-hat?view=sql-server-2017)
 [sqlcmd](https://docs.microsoft.com/ja-jp/sql/tools/sqlcmd-utility?view=sql-server-2017)
+[sqlcmd](https://qiita.com/zaburo/items/6edf7c05c5d4f5e039eb)
+[DB初期化](https://sakapon.wordpress.com/2010/07/13/sqlserverscript/)
+[照合順序](https://www.ksakae1216.com/entry/2017/05/18/063000)
+[SqlServer文字化け](https://kitigai.hatenablog.com/entry/2018/05/27/010440)
