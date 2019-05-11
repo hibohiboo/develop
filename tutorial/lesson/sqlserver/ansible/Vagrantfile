@@ -1,0 +1,59 @@
+# ansibleインストール用shell
+$ansible_install = <<SHELL
+  if ! type /usr/local/bin/virtualenv > /dev/null 2>&1; then
+    # rootユーザとして実行されるためsudo不要
+    # yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+    # yum search python37
+    # 3.7はまだepelにいないのでソースからビルド
+    yum install -y zlib-devel libffi-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel libuuid-devel xz-devel 
+    cd /usr/local/src \
+    && curl -O https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz \
+    && tar xf Python-3.7.3.tgz \
+    && cd Python-3.7.3 \
+    && ./configure \
+    && make \
+    && make altinstall 
+    
+    # echo $PATHは以下の結果となり、/usr/local/binは含まれていない。
+    # /usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+    /usr/local/bin/python3.7 -m pip install --upgrade pip
+    /usr/local/bin/python3.7 -m pip install virtualenv  
+
+    # vagrantユーザとしてvirtualenvとansibleをインストール
+    su -c "source /vagrant/provision/bash/install_ansible.sh" vagrant
+  fi
+SHELL
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/centos-7.6"
+  config.vm.box_version = "201812.27.0"
+
+  config.vm.network "private_network", ip: "192.168.50.11"
+
+  config.vm.provider "virtualbox" do |vm|
+    # メモリを設定
+    vm.memory = 4092
+    # Vagrant1.8から利用出来るLinked Cloneをオンにする。
+    vm.linked_clone = true
+
+    vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
+
+    # 普段はtrue。Vagrant assumes that this means the command failed! setup となったときに、falseにしてみる。解決した場合、vagrant-vbguestが悪さをしている
+    config.vbguest.auto_update = true
+  end
+  # ansible vaultのためにパーミッションを指定
+  config.vm.synced_folder "./provision", "/provision", id: "ansible", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=664"]
+  # ansibleをインストール
+  config.vm.provision "shell", inline: $ansible_install
+  # ansibleを実行
+  config.vm.provision "shell", inline: <<-SHELL
+    # timezoneを日本に変更
+    timedatectl set-timezone Asia/Tokyo
+    # localeを日本に変更
+    localectl set-locale LANG=ja_JP.UTF-8
+    # virtualenv起動
+    source /home/vagrant/venv/bin/activate
+    # provision 実行
+    DEFAULT_VAULT_PASSWORD_FILE=ANSIBLE_CONFIG=/provision/.ansible.cfg ansible-playbook -i /provision/playbooks/inventory/hosts /provision/playbooks/play.yml -c local -v --vault-password-file /provision/playbooks/.passwd
+  SHELL
+end
