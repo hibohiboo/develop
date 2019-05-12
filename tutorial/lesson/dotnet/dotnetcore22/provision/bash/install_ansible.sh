@@ -6,3 +6,4 @@ cd $HOME
 source $HOME/venv/bin/activate
 pip install ansible
 ansible --version
+pip install docker

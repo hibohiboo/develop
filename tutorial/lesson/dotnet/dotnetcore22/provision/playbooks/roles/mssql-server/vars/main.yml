@@ -1,0 +1,4 @@
+---
+docker_name: test_sql_server
+docker_image: mcr.microsoft.com/mssql/rhel/server:2019-CTP2.4
+docker_ports: 1433

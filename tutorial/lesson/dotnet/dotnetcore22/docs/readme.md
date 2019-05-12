@@ -111,3 +111,5 @@ ansibleのtasks/main.ymlにタブ文字を入れてしまったとき
 [SqlServer文字化け](https://kitigai.hatenablog.com/entry/2018/05/27/010440)
 [ないときは作る](http://fla-moo.blogspot.com/2013/05/sqlserversqlite.html)
 [vagrant上のcentosにansibleでdocker-ceをインストールする](https://qiita.com/va034600/items/3a49d02315e5999833e5)
+[ansible で docker](https://blue1st-tech.hateblo.jp/entry/2016/06/20/085321)
+
