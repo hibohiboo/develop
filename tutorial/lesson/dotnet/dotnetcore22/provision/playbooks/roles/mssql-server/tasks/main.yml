@@ -1,6 +1,5 @@
 ---
 # - name: Pull docker
-#   sudo: yes
 #   docker_image:
 #     name: mcr.microsoft.com/mssql/rhel/server:2019-CTP2.4
 #     source: pull

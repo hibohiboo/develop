@@ -1,6 +1,9 @@
 # ansibleインストール用shell
 $ansible_install = <<SHELL
   if ! type /usr/local/bin/virtualenv > /dev/null 2>&1; then
+    # ansibleでdockerを扱うために以下が必要。
+    yum install -y python-setuptools
+    
     # rootユーザとして実行されるためsudo不要
     # yum install -y https://centos7.iuscommunity.org/ius-release.rpm
     # yum search python37
