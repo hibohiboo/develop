@@ -1,45 +1,6 @@
 ---
-
-# mssql-tools package
-
-# - name: install mssql-tools repo (CentOS, RedHat)
-#   get_url:
-#     url: "{{ centos_tools_repo_url }}"
-#     dest: /etc/yum.repos.d/mssql-tools.repo
-#   when: ansible_distribution in ['CentOS', 'RedHat']
-
-# - name: install mssql-tools repo (Ubuntu)
-#   get_url:
-#     url: "{{ ubuntu_tools_repo_url }}"
-#     dest: /etc/apt/sources.list.d/mssql-tools.list
-#   when: ansible_distribution == 'Ubuntu'
-
-# - name: refresh apt-get cache for tools repo (Ubuntu)
-#   command: apt-get update
-#   when: ansible_distribution == 'Ubuntu'
-
-# - name: install mssql-tools package
-#   package:
-#     name: mssql-tools
-#     state: latest
-#   environment:
-#     ACCEPT_EULA: 'y'
-
-# - name: パスを通す 接続したとき
-#   lineinfile:
-#     path: /home/vagrant/.bash_profile
-#     line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
-
-# - name: パスを通す 各bashごと毎回
-#   lineinfile:
-#     path: /home/vagrant/.bash_profile
-#     line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
-
-# Start mssql-server service
-
-
 - name: dockerの開始
-  shell: cd /vagrant/provision/docker  && /usr/local/bin/docker-compose up -d
+  shell: cd /vagrant/provision/docker && /usr/local/bin/docker-compose up -d
   register: result
   changed_when: result.rc != 0
 
