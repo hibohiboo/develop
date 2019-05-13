@@ -1,0 +1,4 @@
+---
+docker_container_name: db
+sa_first_password: YourStrong!Passw0rd
+
