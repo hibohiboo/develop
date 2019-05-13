@@ -2,23 +2,6 @@
 # Usage:
 #    ansible-playbook ./play.yml -i ./inventory --ask-vault-pass -e 'ansible_user=<>'
 - hosts: localhost
-
-  vars:
-    # The URL of the repo to fetch the mssql-server and mssql-server-ha packages from
-    centos_server_repo_url: 'https://packages.microsoft.com/config/rhel/7/mssql-server-2017.repo'
-    ubuntu_server_repo_url: 'https://packages.microsoft.com/config/ubuntu/16.04/mssql-server-2017.list'
-
-    # The URL of the repo to fetch the mssql-tools package from
-    centos_tools_repo_url: 'https://packages.microsoft.com/config/rhel/7/prod.repo'
-    ubuntu_tools_repo_url: 'https://packages.microsoft.com/config/ubuntu/16.04/prod.list'
-
-    # The sqlservr PID. Only used if mssql-server needs to be installed.
-    pid: 'Developer'
-
-    # The port for the TSQL endpoint
-    tsql_endpoint_port: 1433
-
-
   vars_files:
   - 'vault.yml'
 
