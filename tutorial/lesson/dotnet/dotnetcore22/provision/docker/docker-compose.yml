@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    image: microsoft/mssql-server-linux:2017-latest
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: YourStrong!Passw0rd # ※のちに再設定するパスワード
+    volumes:
+      - db-volume:/var/opt/mssql/
+    ports:
+      - "1433:1433"
+
+volumes:
+  db-volume:
+    driver: local

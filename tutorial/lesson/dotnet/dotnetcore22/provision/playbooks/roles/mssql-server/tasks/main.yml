@@ -1,13 +1,102 @@
 ---
-# - name: Pull docker
-#   docker_image:
-#     name: mcr.microsoft.com/mssql/rhel/server:2019-CTP2.4
-#     source: pull
-- name: Deploy Container
-  docker_container:
-    name: "{{docker_name}}"
-    image: "{{docker_image}}"
-    pull: true
-    restart_policy: always
-    state: started
-    ports: "{{docker_ports}}"
+
+# mssql-tools package
+
+# - name: install mssql-tools repo (CentOS, RedHat)
+#   get_url:
+#     url: "{{ centos_tools_repo_url }}"
+#     dest: /etc/yum.repos.d/mssql-tools.repo
+#   when: ansible_distribution in ['CentOS', 'RedHat']
+
+# - name: install mssql-tools repo (Ubuntu)
+#   get_url:
+#     url: "{{ ubuntu_tools_repo_url }}"
+#     dest: /etc/apt/sources.list.d/mssql-tools.list
+#   when: ansible_distribution == 'Ubuntu'
+
+# - name: refresh apt-get cache for tools repo (Ubuntu)
+#   command: apt-get update
+#   when: ansible_distribution == 'Ubuntu'
+
+# - name: install mssql-tools package
+#   package:
+#     name: mssql-tools
+#     state: latest
+#   environment:
+#     ACCEPT_EULA: 'y'
+
+# - name: パスを通す 接続したとき
+#   lineinfile:
+#     path: /home/vagrant/.bash_profile
+#     line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
+
+# - name: パスを通す 各bashごと毎回
+#   lineinfile:
+#     path: /home/vagrant/.bash_profile
+#     line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
+
+# Start mssql-server service
+
+
+# - name: dockerの開始
+#   shell: cd /vagrant/provision/docker && docker stop $(docker ps -q) && docker rm -f $(docker ps -aq) && /usr/local/bin/docker-compose up -d
+#   register: result
+#   changed_when: result.rc != 0
+
+  - name: 環境変数を確認。そのままecho $MSSQL_SA_PASSWORDをすると、コンテナ内ではなくコンテナ外の環境変数をechoしてしまうのでbashを投げてechoする
+    shell: cd /vagrant/provision/docker && /usr/local/bin/docker-compose exec -T {{ docker_container_name}}  /bin/bash -c 'echo $MSSQL_SA_PASSWORD'
+    register: ver_check
+    ignore_errors: True
+    check_mode: no
+    failed_when: no
+    changed_when: ver_check.rc != 0
+
+  - name: debug docker version
+    debug: var=ver_check
+
+# - name: パスワードを初期設定から変更
+#   shell: cd /vagrant/provision/docker && /usr/local/bin/docker-compose exec -T {{ docker_container_name}} /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '{{ sa_first_password }}' -Q 'ALTER LOGIN SA WITH PASSWORD="{{ sa_password }}"' 
+#   register: result
+#   changed_when: result.rc != 0
+
+# - name: exec
+#   shell: cd /vagrant/provision/docker && /usr/local/bin/docker-compose exec -T {{ docker_container_name}} /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P '{{ sa_password }}' -Q 'IF EXISTS(SELECT * FROM sys.sql_logins WHERE name = "{{ test_user_name }}") ALTER LOGIN  "{{ test_user_name }}" WITH PASSWORD =  "{{ test_user_pass }}" ELSE CREATE LOGIN "{{ test_user_name }}" WITH PASSWORD =  "{{ test_user_pass }}", DEFAULT_DATABASE = [master], CHECK_EXPIRATION = OFF, CHECK_POLICY = OFF' 
+#   register: result
+#   changed_when: result.rc != 0
+
+# # テスト用のユーザ作成
+# - name: add user
+#   mssql_login:
+#     name: "{{ test_user_name }}"
+#     password: "{{ test_user_pass }}"
+#     roles:
+#     # DBの追加・削除ができる権限
+#       - dbcreator
+#     login_name: 'sa'
+#     login_password: "{{ sa_password }}"
+
+# - name: パスを通す 接続したとき
+#   lineinfile:
+#     path: /home/vagrant/.bash_profile
+#     line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
+
+# - name: パスを通す 各bashごと毎回
+#   lineinfile:
+#     path: /home/vagrant/.bash_profile
+#     line: 'export PATH="$PATH:/opt/mssql-tools/bin"'
+
+# - name: 初期DBの作成。大文字小文字を区別する設定に変更
+#   shell: /opt/mssql-tools/bin/sqlcmd -S localhost -U test_db_user -P '!test_password001' -Q "IF DB_ID (N'TestDB') IS NULL create database [TestDB] collate Japanese_CS_AS"
+#   register: result
+#   changed_when: result.rc != 0
+
+# - name: 初期テーブルの作成。
+#   shell: /opt/mssql-tools/bin/sqlcmd -S localhost -U test_db_user -P '!test_password001' -d TestDB -Q "if object_id('TestTable') is null CREATE TABLE TestTable (id INT IDENTITY(1,1) NOT NULL,name NVARCHAR(128), CONSTRAINT [PK_TestTable] PRIMARY KEY CLUSTERED ([id] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]"
+#   register: result
+#   changed_when: result.rc != 0
+
+
+# - name: 初期データの挿入
+#   shell: /opt/mssql-tools/bin/sqlcmd -S localhost -U test_db_user -P '!test_password001' -d TestDB -Q "INSERT INTO TestTable(name) SELECT 'ばなな' name WHERE NOT EXISTS (select 1 from TestTable where name = 'ばなな')"
+#   register: result
+#   changed_when: result.rc != 0

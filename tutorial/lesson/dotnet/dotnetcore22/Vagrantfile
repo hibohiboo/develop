@@ -42,7 +42,7 @@ Vagrant.configure("2") do |config|
     vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
 
     # 普段はtrue。Vagrant assumes that this means the command failed! setup となったときに、falseにしてみる。解決した場合、vagrant-vbguestが悪さをしている
-    config.vbguest.auto_update = true
+    config.vbguest.auto_update = false
   end
   # ansible vaultのためにパーミッションを指定
   config.vm.synced_folder "./provision", "/provision", id: "ansible", owner: "vagrant", group: "vagrant", mount_options: ["dmode=775,fmode=664"]

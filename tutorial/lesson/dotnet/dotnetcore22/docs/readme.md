@@ -80,7 +80,7 @@ ansibleのtasks/main.ymlにタブ文字を入れてしまったとき
 
 
 [SqlServer使用可能時点](https://github.com/hibohiboo/develop/tree/9d899071d448fcf3af7baf07aed88ebca9f271c7/tutorial/lesson/dotnet/dotnetcore22) 
-
+[docker + ansible に諦めた時点](https://github.com/hibohiboo/develop/tree/f1998f1f161c5a2984e48be66347e266849dcc62/tutorial/lesson/dotnet/dotnetcore22)
 
 ## 参考
 
@@ -110,6 +110,13 @@ ansibleのtasks/main.ymlにタブ文字を入れてしまったとき
 [照合順序](https://www.ksakae1216.com/entry/2017/05/18/063000)
 [SqlServer文字化け](https://kitigai.hatenablog.com/entry/2018/05/27/010440)
 [ないときは作る](http://fla-moo.blogspot.com/2013/05/sqlserversqlite.html)
+
 [vagrant上のcentosにansibleでdocker-ceをインストールする](https://qiita.com/va034600/items/3a49d02315e5999833e5)
 [ansible で docker](https://blue1st-tech.hateblo.jp/entry/2016/06/20/085321)
-[](http://kazzna.hatenablog.com/entry/2016/02/24/200808)
+[AnsibleでDockerとかしたいのにdocker-pyに苦しめられた話](http://kazzna.hatenablog.com/entry/2016/02/24/200808)
+[Rails+SQL Server環境をDocker Composeで構築する](https://qiita.com/suzuki_sh/items/af2ba90ffa8200b996d7)
+[test](https://docs.microsoft.com/ja-jp/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/database-server-container)
+[sqlserver docker 実行と接続](https://docs.microsoft.com/ja-jp/sql/linux/quickstart-install-connect-docker?view=sql-server-2017&pivots=cs1-bash)
+[dockerコマンドをcronで実行させたら「TTYが無いよ」と怒られた件](https://hodalog.com/how-to-resolve-the-error-that-the-input-device-is-not-a-tty/)
+[Excec](https://docs.docker.com/compose/reference/exec/)
+[【解決】SQLEXPRESSインストールエラー　e:\sql11_main_t.obj.x86release？](http://40mvvm.blogspot.com/2014/)
