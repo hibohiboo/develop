@@ -59,4 +59,9 @@ Vagrant.configure("2") do |config|
     # provision 実行
     DEFAULT_VAULT_PASSWORD_FILE=ANSIBLE_CONFIG=/provision/.ansible.cfg ansible-playbook -i /provision/playbooks/inventory/hosts /provision/playbooks/play.yml -c local -v --vault-password-file /provision/playbooks/.passwd
   SHELL
+
+  # 起動するたびにDBを立ち上げる
+  config.vm.provision "shell", run: "always", inline: <<-SHELL
+    cd /vagrant/provision/docker && /usr/local/bin/docker-compose up -d
+  SHELL
 end
