@@ -1,3 +1,7 @@
+## MVC
+
+[スキャフォールディングを試す](https://docs.microsoft.com/ja-jp/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-2.2&tabs=visual-studio)
+
 ## 参考
 
 ### asp dotnet core
@@ -16,6 +20,7 @@
 [ASP.NET Core MVCを新人に説明してみよう](https://qiita.com/saxxos/items/f8bdf3a0a9d6b8e3cfef)
 [CentOS 7.2上に.NET Core 1.1をインストールして、Visual StudioでビルドしたASP.NET Core Webアプリをデプロイしてサービス化する](https://qiita.com/yamaokunousausa/items/f9f2b157e0fdca045a14)
 [ASP.NET Core 2.0 Authentication](https://qiita.com/masakura/items/85c59e60cac7f0638c1b)
+[Test](https://www.buildinsider.net/language/dotnetcore/07)
 
 ### asp.net core 事例でおもしろそうなものメモ
 

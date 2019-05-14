@@ -5,17 +5,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using MvcMovie.Models;
 
 namespace MvcMovie.Controllers
 {
+    public class LoggingEvents
+    {
+        public const int GenerateItems = 1000;
+        public const int ListItems = 1001;
+        public const int SearchItem = 1002;
+        public const int InsertItem = 1003;
+        public const int UpdateItem = 1004;
+        public const int DeleteItem = 1005;
+
+        public const int GetItemNotFound = 4000;
+        public const int UpdateItemNotFound = 4001;
+    }
+
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
+        private readonly ILogger _logger;
 
-        public MoviesController(MvcMovieContext context)
+        public MoviesController(MvcMovieContext context, ILogger<MoviesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Movies
@@ -28,6 +44,7 @@ namespace MvcMovie.Controllers
             {
                 movies = movies.Where(s => s.Title.Contains(searchString));
             }
+            _logger.LogInformation(LoggingEvents.SearchItem, "Search item {ID}", searchString);
 
             return View(await movies.ToListAsync());
         }

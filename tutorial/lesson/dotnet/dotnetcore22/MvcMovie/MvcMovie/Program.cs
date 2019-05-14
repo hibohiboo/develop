@@ -36,7 +36,7 @@ namespace MvcMovie
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+            WebHost.CreateDefaultBuilder(args) // ログプロバイダーを追加
                 .UseStartup<Startup>();
     }
 }
