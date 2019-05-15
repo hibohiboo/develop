@@ -22,8 +22,8 @@ namespace MvcMovie.Tests
             // Act
             var result = await controller.Index("");
 
-            //// Assert
-            //var viewResult = Assert.IsType<ViewResult>(result);
+            // Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
             //var model = Assert.IsAssignableFrom<IEnumerable<StormSessionViewModel>>(
             //    viewResult.ViewData.Model);
             //Assert.Equal(2, model.Count());
