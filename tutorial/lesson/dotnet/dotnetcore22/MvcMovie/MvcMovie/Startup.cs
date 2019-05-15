@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
+using MvcMovie.Core.Interfaces;
 
 namespace MvcMovie
 {
@@ -38,6 +39,8 @@ namespace MvcMovie
 
             services.AddDbContext<MvcMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+
+            services.AddScoped<IMovieRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
