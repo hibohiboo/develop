@@ -2,6 +2,15 @@
 
 [スキャフォールディングを試す](https://docs.microsoft.com/ja-jp/aspnet/core/tutorials/first-mvc-app/adding-model?view=aspnetcore-2.2&tabs=visual-studio)
 
+## リポジトリパターン + 単体テスト
+[単体テストサンプル](https://github.com/aspnet/AspNetCore.Docs/tree/master/aspnetcore/mvc/controllers/testing/sample/TestingControllersSample/src/TestingControllersSample)
+
+[リポジトリパターン + 単体テスト](https://github.com/hibohiboo/develop/tree/7da515242c5b3dd9f177566a82ee08780e59e3b8/tutorial/lesson/dotnet/dotnetcore22)
+
+## ホスティング
+[ホスティング](https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-2.2)
+[Visual Studio で .NET Core アプリをデプロイする](https://docs.microsoft.com/ja-jp/dotnet/core/deploying/deploy-with-vs?tabs=vs156)
+
 ## 参考
 
 ### asp dotnet core
@@ -31,7 +40,13 @@
 [moq で 非同期メソッドの返り値を設定する](http://kuxumarin.hatenablog.com/entry/2017/07/22/moq_%E3%81%A7_%E9%9D%9E%E5%90%8C%E6%9C%9F%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%AB%E8%BF%94%E3%81%99%E5%80%A4%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B)
 [テスト エクスプローラーでテストを実行する](https://docs.microsoft.com/ja-jp/visualstudio/test/unit-test-basics?view=vs-2019#run-tests-in-test-explorer)
 [ASP.NET MVC の Repository パターン再考](https://blog.karamem0.jp/entry/2016/11/01/190000) .. DbContextのMockの作り方例
-
+[ASP.NET Core Web API – Repository Pattern](https://code-maze.com/net-core-web-development-part4/)
+[コードカバレッジの導入](http://kouki-hoshi.hatenablog.com/entry/2017/05/20/060526)
+[dotnet core 2.2 docker image](https://docs.microsoft.com/ja-jp/aspnet/core/migration/21-to-22?view=aspnetcore-2.2&tabs=visual-studio#update-docker-images)
+[dotnet command](https://docs.microsoft.com/ja-jp/dotnet/core/tools/dotnet-run?tabs=netcore21)
+[複数のdcoker-compose で同じコンテナ内](https://tech.actindi.net/2018/12/21/100000)
+[ASP .NET Core で作った Web API を Linux サーバーでホストしてみる](https://blog.kazuakix.jp/entry/2018/02/03/172328)
+[portなど](https://stackoverflow.com/questions/45211286/using-appsettings-json-to-configure-kestrel-listen-port-dotnet-core-2-preview-2)
 
 ### asp.net core 事例でおもしろそうなものメモ
 

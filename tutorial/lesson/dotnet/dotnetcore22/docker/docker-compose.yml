@@ -1,0 +1,19 @@
+version: '3'
+services:
+  proxy:
+    build: ./nginx
+    links:
+      - dotnet
+    ports:
+      - 8080:8080
+  dotnet:
+    image: microsoft/dotnet:2.2-sdk
+    ports:
+      - 80:80
+    volumes:
+        - ../MvcMovie/MvcMovie/bin/Release/netcoreapp2.2/publish:/app
+    working_dir: /app
+    command: [dotnet, MvcMovie.dll]
+volumes:
+  db-volume:
+    driver: local
