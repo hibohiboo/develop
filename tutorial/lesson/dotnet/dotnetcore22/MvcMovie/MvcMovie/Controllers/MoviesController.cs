@@ -26,12 +26,10 @@ namespace MvcMovie.Controllers
     public class MoviesController : Controller
     {
         private readonly MvcMovieContext _context;
-        private readonly ILogger _logger;
 
-        public MoviesController(MvcMovieContext context, ILogger<MoviesController> logger)
+        public MoviesController(MvcMovieContext context)
         {
             _context = context;
-            _logger = logger;
         }
 
         // GET: Movies
@@ -44,7 +42,6 @@ namespace MvcMovie.Controllers
             {
                 movies = movies.Where(s => s.Title.Contains(searchString));
             }
-            _logger.LogInformation(LoggingEvents.SearchItem, "Search item {ID}", searchString);
 
             return View(await movies.ToListAsync());
         }

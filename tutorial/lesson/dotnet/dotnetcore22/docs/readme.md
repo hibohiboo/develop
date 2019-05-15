@@ -21,6 +21,12 @@
 [CentOS 7.2上に.NET Core 1.1をインストールして、Visual StudioでビルドしたASP.NET Core Webアプリをデプロイしてサービス化する](https://qiita.com/yamaokunousausa/items/f9f2b157e0fdca045a14)
 [ASP.NET Core 2.0 Authentication](https://qiita.com/masakura/items/85c59e60cac7f0638c1b)
 [Test](https://www.buildinsider.net/language/dotnetcore/07)
+[ASP.NET Core MVC アプリのテスト](https://docs.microsoft.com/ja-jp/dotnet/standard/modern-web-apps-azure-architecture/test-asp-net-core-mvc-apps)
+[xUnit 単体テスト 入門 in .NET Core : Assert の基礎](https://blog.beachside.dev/entry/2018/11/20/183000)
+[コントローラー ロジックの単体テスト](https://docs.microsoft.com/ja-jp/aspnet/core/mvc/controllers/testing?view=aspnetcore-2.2)
+[ASP.NET Core MVC と xUnit.NET でユニットテストを行う Part.2](http://mrgchr.hatenablog.com/entry/2016/11/09/000000)
+[コードの単体テスト](https://docs.microsoft.com/ja-jp/visualstudio/test/unit-test-your-code?view=vs-2019)
+[【Linux CentOS 7】VS2017で作成したサンプル.NET Core 2.0 MVC WEBアプリをLinuxでそのまま実行させる【.NET Core 2.0】](http://akira-arets.blogspot.com/2017/08/linux-dotnetcoremvc-from-vs2017.html)
 
 ### asp.net core 事例でおもしろそうなものメモ
 
