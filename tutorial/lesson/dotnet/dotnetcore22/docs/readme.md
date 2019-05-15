@@ -30,6 +30,8 @@
 [インフラストラクチャ](https://docs.microsoft.com/ja-jp/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-implemenation-entity-framework-core#implement-custom-repositories-with-entity-framework-core)
 [moq で 非同期メソッドの返り値を設定する](http://kuxumarin.hatenablog.com/entry/2017/07/22/moq_%E3%81%A7_%E9%9D%9E%E5%90%8C%E6%9C%9F%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89%E3%81%AB%E8%BF%94%E3%81%99%E5%80%A4%E3%82%92%E8%A8%AD%E5%AE%9A%E3%81%99%E3%82%8B)
 [テスト エクスプローラーでテストを実行する](https://docs.microsoft.com/ja-jp/visualstudio/test/unit-test-basics?view=vs-2019#run-tests-in-test-explorer)
+[ASP.NET MVC の Repository パターン再考](https://blog.karamem0.jp/entry/2016/11/01/190000) .. DbContextのMockの作り方例
+
 
 ### asp.net core 事例でおもしろそうなものメモ
 
