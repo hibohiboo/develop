@@ -47,6 +47,7 @@
 [複数のdcoker-compose で同じコンテナ内](https://tech.actindi.net/2018/12/21/100000)
 [ASP .NET Core で作った Web API を Linux サーバーでホストしてみる](https://blog.kazuakix.jp/entry/2018/02/03/172328)
 [portなど](https://stackoverflow.com/questions/45211286/using-appsettings-json-to-configure-kestrel-listen-port-dotnet-core-2-preview-2)
+[ASP.NET CoreのWebApplicationを外部公開](https://qiita.com/husky774rr/items/256609e9d126653274f0)
 
 ### asp.net core 事例でおもしろそうなものメモ
 
