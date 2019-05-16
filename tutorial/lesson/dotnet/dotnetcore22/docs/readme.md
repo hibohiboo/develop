@@ -52,3 +52,7 @@
 ### asp.net core 事例でおもしろそうなものメモ
 
 [ASP.NET CoreとVue.jsとHTTP Streamingでオンラインゲーム作ってみたおはなし](https://qiita.com/askyq/items/89c28d234723b9bfd3c9)
+
+
+### その他
+[画面操作などをGIFで録画できる「ScreenToGif」を利用して直感的に伝える](https://nelog.jp/screen-to-gif)
