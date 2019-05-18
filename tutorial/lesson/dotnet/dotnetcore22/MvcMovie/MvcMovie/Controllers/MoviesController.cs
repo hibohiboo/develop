@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace MvcMovie.Controllers
         public const int GetItemNotFound = 4000;
         public const int UpdateItemNotFound = 4001;
     }
-
+    [Authorize]
     public class MoviesController : Controller
     {
         private readonly IMovieRepository _movieRepository;

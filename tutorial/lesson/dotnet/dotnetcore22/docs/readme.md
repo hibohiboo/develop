@@ -52,7 +52,7 @@
 [portなど](https://stackoverflow.com/questions/45211286/using-appsettings-json-to-configure-kestrel-listen-port-dotnet-core-2-preview-2)
 [ASP.NET CoreのWebApplicationを外部公開](https://qiita.com/husky774rr/items/256609e9d126653274f0)
 [Asp.net Identity](https://docs.microsoft.com/ja-jp/aspnet/core/security/authentication/identity?view=aspnetcore-2.2&tabs=visual-studio)
-
+[Asp.net Authorize](https://docs.microsoft.com/ja-jp/aspnet/core/security/authorization/simple?view=aspnetcore-2.2)
 
 ### asp.net core 事例でおもしろそうなものメモ
 
