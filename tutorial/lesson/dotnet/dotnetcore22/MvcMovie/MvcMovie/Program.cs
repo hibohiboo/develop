@@ -6,6 +6,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovie;
+using NLog.Web;
 
 namespace MvcMovie
 {
@@ -37,6 +38,15 @@ namespace MvcMovie
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args) // ログプロバイダーを追加
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                            .ConfigureLogging((hostingContext, logging) =>
+                            {
+                                // NLog 以外で設定された Provider の無効化.
+                                logging.ClearProviders();
+                                // 最小ログレベルの設定.
+                                logging.SetMinimumLevel(LogLevel.Trace);
+                            })
+                // NLog を有効にする.
+                .UseNLog();
     }
 }

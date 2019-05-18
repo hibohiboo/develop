@@ -53,6 +53,9 @@
 [ASP.NET CoreのWebApplicationを外部公開](https://qiita.com/husky774rr/items/256609e9d126653274f0)
 [Asp.net Identity](https://docs.microsoft.com/ja-jp/aspnet/core/security/authentication/identity?view=aspnetcore-2.2&tabs=visual-studio)
 [Asp.net Authorize](https://docs.microsoft.com/ja-jp/aspnet/core/security/authorization/simple?view=aspnetcore-2.2)
+[ログについて](https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2)
+[Nlog](https://mslgt.hatenablog.com/entry/2018/09/06/044014) ... Nlogのインストール後にVisual Studio の再起動をしないとNugetパッケージが認識されなかった。
+
 
 ### asp.net core 事例でおもしろそうなものメモ
 
