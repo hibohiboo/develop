@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
 using MvcMovie.Core.Interfaces;
 using MvcMovie.Infrastructure;
+using Microsoft.AspNetCore.Identity;
 
 namespace MvcMovie
 {
@@ -61,6 +62,8 @@ namespace MvcMovie
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
