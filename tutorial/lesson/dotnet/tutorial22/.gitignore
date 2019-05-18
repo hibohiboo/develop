@@ -1,0 +1,5 @@
+.vagrant
+.vscode
+.vs
+node_modules
+*.log
