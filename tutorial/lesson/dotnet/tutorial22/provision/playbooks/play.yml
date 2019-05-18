@@ -1,0 +1,16 @@
+---
+# Usage:
+#    ansible-playbook ./play.yml -i ./inventory --ask-vault-pass -e 'ansible_user=<>'
+- hosts: localhost
+  vars_files:
+  - 'vault.yml'
+
+  become: yes
+  become_user: root
+  become_method: sudo
+  any_errors_fatal: true
+  max_fail_percentage: 0
+
+  roles:
+  - docker
+  - mssql-server
