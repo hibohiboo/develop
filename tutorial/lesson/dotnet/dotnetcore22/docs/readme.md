@@ -11,6 +11,9 @@
 [ホスティング](https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-2.2)
 [Visual Studio で .NET Core アプリをデプロイする](https://docs.microsoft.com/ja-jp/dotnet/core/deploying/deploy-with-vs?tabs=vs156)
 
+## ローカル接続を含んで publishするとエラー
+まあ、そうですよね。。
+
 ## 参考
 
 ### asp dotnet core
