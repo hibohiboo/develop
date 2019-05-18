@@ -87,3 +87,8 @@
   shell: cd /vagrant/provision/docker && /usr/local/bin/docker-compose exec -T {{ docker_container_name}} /opt/mssql-tools/bin/sqlcmd -S localhost -U {{test_user_name}} -P '{{ test_user_pass }}' -d TestDB  -Q  "INSERT INTO TestTable(name) SELECT N'ばなな' name WHERE NOT EXISTS (select 1 from TestTable where name = 'ばなな')" 
   register: result
   changed_when: result.rc != 0
+
+- name: Identity用DB
+  shell: cd /vagrant/provision/docker && /usr/local/bin/docker-compose exec -T {{ docker_container_name}} /opt/mssql-tools/bin/sqlcmd -S localhost -U {{test_user_name}} -P '{{ test_user_pass }}' -Q "IF DB_ID (N'TestIdentityDB') IS NULL create database [TestIdentityDB] collate Japanese_CS_AS" 
+  register: result
+  changed_when: result.rc != 0

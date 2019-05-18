@@ -55,7 +55,7 @@
 [Asp.net Authorize](https://docs.microsoft.com/ja-jp/aspnet/core/security/authorization/simple?view=aspnetcore-2.2)
 [ログについて](https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/logging/?view=aspnetcore-2.2)
 [Nlog](https://mslgt.hatenablog.com/entry/2018/09/06/044014) ... Nlogのインストール後にVisual Studio の再起動をしないとNugetパッケージが認識されなかった。
-
+[log4net vs nlog](https://blog.elmah.io/nlog-vs-log4net/)
 
 ### asp.net core 事例でおもしろそうなものメモ
 
