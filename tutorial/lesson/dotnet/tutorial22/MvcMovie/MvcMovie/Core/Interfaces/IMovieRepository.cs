@@ -2,7 +2,5 @@
 
 namespace MvcMovie.Core.Interfaces
 {
-    public interface IMovieRepository : IRepository<Movie, int>
-    {
-    }
+    public interface IMovieRepository : IRepository<Movie, int> { }
 }
