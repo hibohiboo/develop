@@ -48,6 +48,7 @@ Vagrant.configure(2) do |config|
     vm.linked_clone = true
 
     vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
+
     # ↓起動が止まるときの確認用
     # vm.gui = true
 
