@@ -30,3 +30,6 @@ RUN yarn add --dev typedoc
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"run\": \"node app\/index.js\",/g" /app/package.json
 
 RUN yarn add mkdirp request slug
+
+RUN yarn add --dev @types/mkdirp 
+RUN yarn add --dev @types/request 
