@@ -17,33 +17,48 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function spider(url, callback) {
   const filename = utilities.urlToFilename(url);
   fs.exists(filename, exists => {
-    if (!exists) {
-      console.log(`Downloading ${url}`);
-      request(url, (err, response, body) => {
-        if (err) {
-          callback(err);
-        } else {
-          mkdirp(path.dirname(filename), err => {
-            if (err) {
-              callback(err);
-            } else {
-              fs.writeFile(filename, body, err => {
-                if (err) {
-                  callback(err);
-                } else {
-                  callback(null, filename, true);
-                }
-              });
-            }
-          });
-        }
-      });
-    } else {
-      callback(null, filename, false);
+    if (exists) {
+      return callback(null, filename, false);
     }
+
+    download(url, filename, err => {
+      if (err) {
+        return callback(err);
+      }
+
+      callback(null, filename, true);
+    });
   });
 } // #@@range_end(list2)
-// #@@range_begin(list3)
+
+
+function download(url, filename, callback) {
+  console.log(`Downloading ${url}`);
+  request(url, (err, response, body) => {
+    if (err) {
+      return callback(err);
+    }
+
+    saveFile(filename, body, err => {
+      if (err) {
+        return callback(err);
+      }
+
+      console.log(`Download  and saved: ${url}`);
+      callback(null, body);
+    });
+  });
+}
+
+function saveFile(filename, contents, callback) {
+  mkdirp(path.dirname(filename), err => {
+    if (err) {
+      return callback(err);
+    }
+
+    fs.writeFile(filename, contents, callback);
+  });
+} // #@@range_begin(list3)
 
 
 spider(process.argv[2], (err, filename, downloaded) => {

@@ -6,7 +6,7 @@
 [この時点のソース](https://github.com/hibohiboo/garden/tree/3d0767437f32af8600f68aa60482b7049a905d38)  
 
 ### ts化
-[この時点のソース](https://github.com/hibohiboo/garden/tree/3d0767437f32af8600f68aa60482b7049a905d38)  
+[この時点のソース](https://github.com/hibohiboo/garden/tree/27d8b9ed06f90767c1f3b38793937c404f3efae7)  
 
 
 ## 参考
