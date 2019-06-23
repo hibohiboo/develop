@@ -9,6 +9,7 @@
   "dependencies": {
     "@types/materialize-css": "^1.0.4",
     "@types/redux-form": "^7.0.9",
+    "firebase-admin": "^8.0.0",
     "i18next": "^10.0.7",
     "i18next-browser-languagedetector": "^2.1.0",
     "material-ui-number-input": "^5.0.16",
