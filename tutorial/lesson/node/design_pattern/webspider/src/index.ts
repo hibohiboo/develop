@@ -4,36 +4,28 @@ import { get } from 'request';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as utilities from './utilities';
-import TaskQueue from './taskQueue';
+const async = require('async');
 const mkdirp = require('mkdirp');
-
-let downloadQueue = new TaskQueue(2);
 
 function spiderLinks(currentUrl, body, nesting, callback) {
   if (nesting === 0) {
     return process.nextTick(callback);
   }
 
-  const links = utilities.getPageLinks(currentUrl, body);
-  if (links.length === 0) {
-    return process.nextTick(callback);
-  }
+  let links = utilities.getPageLinks(currentUrl, body);  //[1]
+  function iterate(index) {
+    if (index === links.length) {
+      return callback();
+    }
 
-  let completed = 0, hasErrors = false;
-  links.forEach(link => {
-    downloadQueue.pushTask(done => {
-      spider(link, nesting - 1, err => {
-        if (err) {
-          hasErrors = true;
-          return callback(err);
-        }
-        if (++completed === links.length && !hasErrors) {
-          callback();
-        }
-        done();
-      });
+    spider(links[index], nesting - 1, function (err) {
+      if (err) {
+        return callback(err);
+      }
+      iterate(index + 1);
     });
-  });
+  }
+  iterate(0);
 }
 
 function saveFile(filename, contents, callback) {
@@ -45,29 +37,38 @@ function saveFile(filename, contents, callback) {
   });
 }
 
+// #@@range_begin(list1)
 function download(url, filename, callback) {
   console.log(`Downloading ${url}`);
-  get(url, (err, response, body) => {
+  let body;
+
+  async.series([
+    callback => {                              // ❶ ★外側のcallback隠蔽している
+      get(url, (err, response, resBody) => {
+        if (err) {
+          return callback(err);
+        }
+        body = resBody;
+        callback();
+      });
+    },
+
+    mkdirp.bind(null, path.dirname(filename)), // ❷
+
+    callback => {                              // ❸ ★外側のcallback隠蔽している
+      fs.writeFile(filename, body, callback);
+    }
+  ], err => {                                  // ❹
     if (err) {
       return callback(err);
     }
-    saveFile(filename, body, err => {
-      if (err) {
-        return callback(err);
-      }
-      console.log(`Downloaded and saved: ${url}`);
-      callback(null, body);
-    });
+    console.log(`Downloaded and saved: ${url}`);
+    callback(null, body);
   });
 }
+// #@@range_end(list1)
 
-let spidering = new Map();
 function spider(url, nesting, callback) {
-  if (spidering.has(url)) {
-    return process.nextTick(callback);
-  }
-  spidering.set(url, true);
-
   const filename = utilities.urlToFilename(url);
   fs.readFile(filename, 'utf8', function (err, body) {
     if (err) {
