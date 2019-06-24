@@ -19,6 +19,9 @@
 ### 同時起動タスク数の制限
 [この時点のソース](https://github.com/hibohiboo/garden/tree/f9fa82b9dc186c672fb0eeb184daa27139ba122a)  
 
+### 非同期の逐次処理
+[この時点のソース](https://github.com/hibohiboo/garden/tree/6024d65cae757a909565a2d827e4d3dfaa22f63b)  
+
 
 
 

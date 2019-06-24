@@ -7,26 +7,23 @@ import * as utilities from './utilities';
 const async = require('async');
 const mkdirp = require('mkdirp');
 
+
+// #@@range_begin(list1)
 function spiderLinks(currentUrl, body, nesting, callback) {
   if (nesting === 0) {
     return process.nextTick(callback);
   }
 
-  let links = utilities.getPageLinks(currentUrl, body);  //[1]
-  function iterate(index) {
-    if (index === links.length) {
-      return callback();
-    }
-
-    spider(links[index], nesting - 1, function (err) {
-      if (err) {
-        return callback(err);
-      }
-      iterate(index + 1);
-    });
+  let links = utilities.getPageLinks(currentUrl, body);
+  if (links.length === 0) {
+    return process.nextTick(callback);
   }
-  iterate(0);
+
+  async.eachSeries(links, (link, callback) => { // ★外側のcallback隠蔽している
+    spider(link, nesting - 1, callback);
+  }, callback);
 }
+// #@@range_end(list1)
 
 function saveFile(filename, contents, callback) {
   mkdirp(path.dirname(filename), err => {
@@ -37,36 +34,21 @@ function saveFile(filename, contents, callback) {
   });
 }
 
-// #@@range_begin(list1)
 function download(url, filename, callback) {
   console.log(`Downloading ${url}`);
-  let body;
-
-  async.series([
-    callback => {                              // ❶ ★外側のcallback隠蔽している
-      get(url, (err, response, resBody) => {
-        if (err) {
-          return callback(err);
-        }
-        body = resBody;
-        callback();
-      });
-    },
-
-    mkdirp.bind(null, path.dirname(filename)), // ❷
-
-    callback => {                              // ❸ ★外側のcallback隠蔽している
-      fs.writeFile(filename, body, callback);
-    }
-  ], err => {                                  // ❹
+  get(url, (err, response, body) => {
     if (err) {
       return callback(err);
     }
-    console.log(`Downloaded and saved: ${url}`);
-    callback(null, body);
+    saveFile(filename, body, err => {
+      if (err) {
+        return callback(err);
+      }
+      console.log(`Downloaded and saved: ${url}`);
+      callback(null, body);
+    });
   });
 }
-// #@@range_end(list1)
 
 function spider(url, nesting, callback) {
   const filename = utilities.urlToFilename(url);
