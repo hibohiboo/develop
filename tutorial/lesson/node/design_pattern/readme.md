@@ -8,6 +8,14 @@
 ### ts化
 [この時点のソース](https://github.com/hibohiboo/garden/tree/27d8b9ed06f90767c1f3b38793937c404f3efae7)  
 
+### 再帰的にリンク取得
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/9e76770bfbf25de4430c8231a22a8ed71b586f6d)  
+
+
+### 並列処理
+
+
 
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)
