@@ -2,11 +2,14 @@
 
 const path = require('path');
 const utilities = require('./utilities');
+import TaskQueue from './taskQueue';
 const request = utilities.promisify(require('request'));
 const fs = require('fs');
 const mkdirp = utilities.promisify(require('mkdirp'));
 const readFile = utilities.promisify(fs.readFile);
 const writeFile = utilities.promisify(fs.writeFile);
+
+let downloadQueue = new TaskQueue(2);
 
 // #@@range_begin(list1)
 function spiderLinks(currentUrl, body, nesting) {
@@ -15,9 +18,35 @@ function spiderLinks(currentUrl, body, nesting) {
   }
 
   const links = utilities.getPageLinks(currentUrl, body);
-  const promises = links.map(link => spider(link, nesting - 1));
+  const linksLength = links.length;
+  //we need the following because the Promise we create next
+  //will never settle if there are no tasks to process
+  if (linksLength === 0) {
+    return Promise.resolve();
+  }
 
-  return Promise.all(promises);
+  return new Promise((resolve, reject) => {
+    let completed = 0;
+    let errored = false;
+    links.forEach(link => {
+      const task = () => {
+        return spider(link, nesting - 1)
+          .then(() => {
+            if (++completed === linksLength) {
+              resolve();
+            }
+          })
+          .catch(() => {
+            if (!errored) {
+              errored = true;
+              reject();
+            }
+          })
+          ;
+      };
+      downloadQueue.pushTask(task);
+    });
+  });
 }
 // #@@range_end(list1)
 
@@ -57,7 +86,8 @@ function spider(url, nesting) {
           .then(body => spiderLinks(url, body, nesting))
           ;
       }
-    );
+    )
+    ;
 }
 
 spider(process.argv[2], 1)

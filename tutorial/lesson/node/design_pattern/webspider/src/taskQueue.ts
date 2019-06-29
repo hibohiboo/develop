@@ -1,10 +1,9 @@
 
 export default class TaskQueue {
   public running: number;
-  public queue: Array<(callback: () => void) => void>;
+  public queue: Array<() => Promise<void>>;
 
   constructor(public concurrency: number) {
-    this.concurrency = concurrency;
     this.running = 0;
     this.queue = [];
   }
@@ -24,7 +23,7 @@ export default class TaskQueue {
       }
 
       // tslint:disable-next-line ...  TS2722: Cannot invoke an object which is possibly 'undefined'.を消したかったが消えなかった。
-      task(() => {
+      task().then(() => {
         this.running--;
         this.next();
       });
