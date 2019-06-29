@@ -53,7 +53,7 @@ Vagrant.configure(2) do |config|
     # vm.gui = true
 
     # Vagrant assumes that this means the command failed! setup となったときに、vagrant-vbguestが悪さをしていたらfalseにする
-    config.vbguest.auto_update = false
+    # config.vbguest.auto_update = false
 
     # vagrant-disksizeでサイズを変更する。ubuntu/bionic64は10Gくらいしかない。
     config.disksize.size = '64GB'

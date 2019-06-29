@@ -1,80 +1,67 @@
 "use strict";
-// #@@range_begin(list1) // ←これは本にコードを引用するためのものです。読者の皆さんは無視してください。
-import { get } from 'request';
-import * as fs from 'fs';
-import * as path from 'path';
-import * as utilities from './utilities';
-const async = require('async');
-const mkdirp = require('mkdirp');
 
+const path = require('path');
+const utilities = require('./utilities');
 
-// #@@range_begin(list1)
-function spiderLinks(currentUrl, body, nesting, callback) {
+const request = utilities.promisify(require('request'));
+const fs = require('fs');
+const mkdirp = utilities.promisify(require('mkdirp'));
+const readFile = utilities.promisify(fs.readFile);
+const writeFile = utilities.promisify(fs.writeFile);
+
+function spiderLinks(currentUrl, body, nesting) {
+  let promise = Promise.resolve();
   if (nesting === 0) {
-    return process.nextTick(callback);
+    return promise;
   }
-
-  let links = utilities.getPageLinks(currentUrl, body);
-  if (links.length === 0) {
-    return process.nextTick(callback);
-  }
-
-  async.eachSeries(links, (link, callback) => { // ★外側のcallback隠蔽している
-    spider(link, nesting - 1, callback);
-  }, callback);
-}
-// #@@range_end(list1)
-
-function saveFile(filename, contents, callback) {
-  mkdirp(path.dirname(filename), err => {
-    if (err) {
-      return callback(err);
-    }
-    fs.writeFile(filename, contents, callback);
+  const links = utilities.getPageLinks(currentUrl, body);
+  links.forEach(link => {
+    promise = promise.then(() => spider(link, nesting - 1));
   });
-}
 
-function download(url, filename, callback) {
+  return promise;
+}
+// #@@range_end(list4)
+
+// #@@range_begin(list5)
+function download(url, filename) {
   console.log(`Downloading ${url}`);
-  get(url, (err, response, body) => {
-    if (err) {
-      return callback(err);
-    }
-    saveFile(filename, body, err => {
-      if (err) {
-        return callback(err);
-      }
+  let body;
+  return request(url)
+    .then(response => {
+      body = response.body;
+      return mkdirp(path.dirname(filename));
+    })
+    .then(() => writeFile(filename, body))
+    .then(() => {
       console.log(`Downloaded and saved: ${url}`);
-      callback(null, body);
-    });
-  });
+      return body;
+    })
+    ;
 }
+// #@@range_end(list5)
 
-function spider(url, nesting, callback) {
-  const filename = utilities.urlToFilename(url);
-  fs.readFile(filename, 'utf8', function (err, body) {
-    if (err) {
-      if (err.code !== 'ENOENT') {
-        return callback(err);
-      }
-
-      return download(url, filename, function (err, body) {
-        if (err) {
-          return callback(err);
+// #@@range_begin(list2)
+function spider(url, nesting) {
+  let filename = utilities.urlToFilename(url);
+  return readFile(filename, 'utf8')
+    .then(
+      (body) => (spiderLinks(url, body, nesting)),
+      (err) => {
+        if (err.code !== 'ENOENT') {
+          throw err;
         }
-        spiderLinks(url, body, nesting, callback);
-      });
-    }
 
-    spiderLinks(url, body, nesting, callback);
-  });
+        return download(url, filename)
+          .then(body => spiderLinks(url, body, nesting))
+          ;
+      }
+    );
 }
+// #@@range_end(list2)
 
-spider(process.argv[2], 1, (err) => {
-  if (err) {
-    console.log(err);
-    process.exit();
-  } else {
-    console.log('Download complete');
-  }
-});
+// #@@range_begin(list3)
+spider(process.argv[2], 1)
+  .then(() => console.log('Download complete')) // ダウンロード完了
+  .catch(err => console.log(err));
+// #@@range_end(list3)

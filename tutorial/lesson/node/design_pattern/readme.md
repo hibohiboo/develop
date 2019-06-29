@@ -22,6 +22,9 @@
 ### 非同期の逐次処理
 [この時点のソース](https://github.com/hibohiboo/garden/tree/6024d65cae757a909565a2d827e4d3dfaa22f63b)  
 
+### 各要素に適用
+[この時点のソース](https://github.com/hibohiboo/garden/tree/ad35ec986508c0000752d1b4edf04c85819e0eb7)  
+
 
 
 
