@@ -2,28 +2,25 @@
 
 const path = require('path');
 const utilities = require('./utilities');
-
 const request = utilities.promisify(require('request'));
 const fs = require('fs');
 const mkdirp = utilities.promisify(require('mkdirp'));
 const readFile = utilities.promisify(fs.readFile);
 const writeFile = utilities.promisify(fs.writeFile);
 
+// #@@range_begin(list1)
 function spiderLinks(currentUrl, body, nesting) {
-  let promise = Promise.resolve();
   if (nesting === 0) {
-    return promise;
+    return Promise.resolve();
   }
+
   const links = utilities.getPageLinks(currentUrl, body);
-  links.forEach(link => {
-    promise = promise.then(() => spider(link, nesting - 1));
-  });
+  const promises = links.map(link => spider(link, nesting - 1));
 
-  return promise;
+  return Promise.all(promises);
 }
-// #@@range_end(list4)
+// #@@range_end(list1)
 
-// #@@range_begin(list5)
 function download(url, filename) {
   console.log(`Downloading ${url}`);
   let body;
@@ -39,15 +36,19 @@ function download(url, filename) {
     })
     ;
 }
-// #@@range_end(list5)
 
-// #@@range_begin(list2)
+const spidering = new Map();
 function spider(url, nesting) {
-  let filename = utilities.urlToFilename(url);
+  if (spidering.has(url)) {
+    return Promise.resolve();
+  }
+  spidering.set(url, true);
+
+  const filename = utilities.urlToFilename(url);
   return readFile(filename, 'utf8')
     .then(
-      (body) => (spiderLinks(url, body, nesting)),
-      (err) => {
+      body => spiderLinks(url, body, nesting),
+      err => {
         if (err.code !== 'ENOENT') {
           throw err;
         }
@@ -58,10 +59,8 @@ function spider(url, nesting) {
       }
     );
 }
-// #@@range_end(list2)
 
-// #@@range_begin(list3)
 spider(process.argv[2], 1)
-  .then(() => console.log('Download complete')) // ダウンロード完了
-  .catch(err => console.log(err));
-// #@@range_end(list3)
+  .then(() => console.log('Download complete'))
+  .catch(err => console.log(err))
+  ;
