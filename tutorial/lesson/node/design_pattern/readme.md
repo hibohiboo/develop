@@ -28,6 +28,11 @@
 ### 非同期並列処理（タスク数の制限付き）
 [この時点のソース](https://github.com/hibohiboo/garden/tree/1b5e8167fdac492310d4838a42b4e77fd0b420b8)  
 
+## clone
+
+### yield
+[この時点のソース](https://github.com/hibohiboo/garden/tree/a84e8e9c63f6836dc81a35a9e07d184b62adc77b)
+  
 
 
 

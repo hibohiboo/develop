@@ -1,32 +1,40 @@
 "use strict";
 
-// #@@range_begin(list2)
 const fs = require('fs');
 const path = require('path');
-// #@@range_end(list2)
 
-// #@@range_begin(list1)
-function asyncFlow(generatorFunction) {
+function asyncFlowWithThunks(generatorFunction) {
   function callback(err) {
     if (err) {
       return generator.throw(err);
     }
     const results = [].slice.call(arguments, 1);
-    generator.next(results.length > 1 ? results : results[0]);
+    const thunk = generator.next(results.length > 1 ? results : results[0]).value;
+    thunk && thunk(callback);
   }
-  const generator = generatorFunction(callback);
-  generator.next();
+  const generator = generatorFunction();
+  const thunk = generator.next().value;
+  thunk && thunk(callback);
 }
-// #@@range_end(list1)
 
-// #@@range_begin(list3)
-asyncFlow(function* (callback) {
+const readFileThunk = (filename, options) => {
+  return (cb) => {
+    fs.readFile(filename, options, cb);
+  }
+};
+
+const writeFileThunk = (filename, options) => {
+  return (cb) => {
+    fs.writeFile(filename, options, cb);
+  }
+};
+
+asyncFlowWithThunks(function* () {
   const fileName = path.format({
     dir: '/app/app',
     base: path.basename(__filename)
   });
-  const myself = yield fs.readFile(fileName, 'utf8', callback);
-  yield fs.writeFile(`${fileName}.clone`, myself, callback);
+  const myself = yield readFileThunk(fileName, 'utf8');
+  yield writeFileThunk(`${fileName}.clone`, myself);
   console.log('Clone created');
 });
-// #@@range_end(list3)
