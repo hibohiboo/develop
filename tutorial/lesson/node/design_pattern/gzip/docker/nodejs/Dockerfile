@@ -30,3 +30,5 @@ RUN yarn add --dev typedoc
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"run\": \"node app\/index.js\",/g" /app/package.json
 
 RUN yarn add zlib
+
+RUN yarn add http

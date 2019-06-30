@@ -51,6 +51,45 @@
 
 
 
+### ストリーム使用
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/ee03583bebbcae8811de28c8ef1330499be4c42a)
+
+
+### HTTPサーバにアップロード
+
+* tscでエラーがでた。同じディレクトリのファイルがnamespaceの切らずに同じ定義をしたのが問題の模様。
+  * https://qiita.com/TsuyoshiUshio@github/items/40baab89ee09c5838e5e
+* serverとclientでビルドを分けるようにして対応。
+
+#### クライアント側
+
+* ファイルを読み込み、gzip圧縮する
+* 圧縮したファイルをHTTPサーバへアップロード
+
+#### サーバ側
+
+* 受信したファイルを読みとる
+* gzip展開する
+* ファイルに保存する
+
+#### 実行
+
+sshを２つ立ち上げる
+
+##### サーバの起動
+
+```
+$ ./bin/up.sh
+```
+
+##### クライアントの起動
+
+```
+$ ./bin/send.sh
+```
+
+
 
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)

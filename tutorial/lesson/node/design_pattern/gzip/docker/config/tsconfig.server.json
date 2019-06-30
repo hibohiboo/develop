@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "outDir": "./dist/assets/js",
     "strictNullChecks": true,
     "sourceMap": false,
-    "allowJs":true,
+    "allowJs": true,
     "declaration": false,
     "composite": false
   },
-  "include":[
-      "src/**/*" 
+  "include": [
+    "src/server/**/*"
   ],
   "exclude": [
-      "node_modules",
-      "elm-stuff"
+    "node_modules"
   ]
 }
