@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  nodejs:
+    build: ./nodejs
+    volumes:
+      - ../app:/app/app
+      - ../src:/app/src
+      - ./config/.babelrc:/app/.babelrc
+      - ./config/.eslintrc:/app/.eslintrc
+      - ./config/.eslintignore:/app/.eslintignore
+      - ./config/tsconfig.json:/app/tsconfig.json
+      - ./config/tslint.json:/app/tslint.json
+      # 分割して出力
+      - ../separate/pre-pre-dist:/app/separate/pre-pre-dist
+      - ../separate/pre-dist:/app/separate/pre-dist
+      - ./config/babel.config.js:/app/babel.config.js
+    command: [node, app/index, '/app/app/index.js']
+
