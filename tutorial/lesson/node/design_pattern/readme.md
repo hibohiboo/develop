@@ -43,7 +43,11 @@
 * thunkとは、コールバック以外の全てを部分適用した関数のこと
 [この時点のソース](https://github.com/hibohiboo/garden/tree/b7a7dfce22492c78a41be486b27954c4c9bca04f)
   
+## zlib
 
+### バッファ使用
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/53b87b1ba5934bd20e182ed471dd8df8a8c279bb)
 
 
 
