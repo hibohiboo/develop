@@ -25,6 +25,10 @@
 ### 各要素に適用
 [この時点のソース](https://github.com/hibohiboo/garden/tree/ad35ec986508c0000752d1b4edf04c85819e0eb7)  
 
+### 非同期並列処理（タスク数の制限付き）
+[この時点のソース](https://github.com/hibohiboo/garden/tree/1b5e8167fdac492310d4838a42b4e77fd0b420b8)  
+
+
 
 
 
