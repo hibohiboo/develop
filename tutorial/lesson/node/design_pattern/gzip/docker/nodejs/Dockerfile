@@ -32,3 +32,4 @@ RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"run\": \"node app\/index.js\",/g" 
 RUN yarn add zlib
 
 RUN yarn add http
+RUN yarn add crypto

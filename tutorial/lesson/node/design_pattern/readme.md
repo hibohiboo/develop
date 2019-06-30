@@ -62,6 +62,8 @@
   * https://qiita.com/TsuyoshiUshio@github/items/40baab89ee09c5838e5e
 * serverとclientでビルドを分けるようにして対応。
 
+[この時点のソース](https://github.com/hibohiboo/garden/tree/f0a4ca6d44a42da3609e91747249b92a77fbe42d)
+
 #### クライアント側
 
 * ファイルを読み込み、gzip圧縮する
