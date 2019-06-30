@@ -6,7 +6,7 @@ const fs = require('fs');
 const zlib = require('zlib');
 const http = require('http');
 const path = require('path');
-import { createCipher } from 'crypto';
+import { createCipheriv, scryptSync } from 'crypto';
 
 const file = process.argv[2];
 const server = process.argv[3];
@@ -27,9 +27,13 @@ const req = http.request(options, res => {
   console.log('Server response: ' + res.statusCode);
 });
 
+const password = 'Password used to generate key';
+const key = scryptSync(password, 'salt', 24);
+const iv = Buffer.alloc(16, 0); // Initialization vector.
+
 fs.createReadStream(file)
   .pipe(zlib.createGzip())
-  .pipe(createCipher('aes192', 'a_shared_secret'))
+  .pipe(createCipheriv('aes192', key, iv))
   .pipe(req)
   .on('finish', () => {
     console.log('File successfully sent'); // 送信成功

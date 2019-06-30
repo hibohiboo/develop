@@ -91,6 +91,11 @@ $ ./bin/up.sh
 $ ./bin/send.sh
 ```
 
+### 暗号化
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/f2002ee73e30c59f63adaace398fa290f705190b)
+
+#### createCipherがdeprecatedだったのでcreateCipherivを試してみる
 
 
 ## 参考

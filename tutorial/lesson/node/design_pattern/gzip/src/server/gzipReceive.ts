@@ -5,7 +5,11 @@ const http = require('http');
 const fs = require('fs');
 const zlib = require('zlib');
 const path = require('path');
-import { createDecipher } from 'crypto';
+import { createDecipheriv, scryptSync } from 'crypto';
+
+const password = 'Password used to generate key';
+const key = scryptSync(password, 'salt', 24);
+const iv = Buffer.alloc(16, 0); // Initialization vector.
 
 const server = http.createServer((req, res) => {
   const filename = req.headers.filename;
@@ -15,8 +19,10 @@ const server = http.createServer((req, res) => {
   });
   console.log('File request received: ' + filename);
 
+
+
   req
-    .pipe(createDecipher('aes192', 'a_shared_secret'))
+    .pipe(createDecipheriv('aes192', key, iv))
     .pipe(zlib.createGunzip())
     .pipe(fs.createWriteStream(filepath))
     .on('finish', () => {
