@@ -1,33 +1,53 @@
+const co = require('co');
 
 export default class TaskQueue {
-  public running: number;
-  public queue: Array<() => Promise<void>>;
+  private running: number;
+  private taskQueue: Array<() => IterableIterator<void>>;
+  private consumerQueue: Array<(something: any, task: () => IterableIterator<void>) => IterableIterator<void>>;
 
-  constructor(public concurrency: number) {
+  constructor(concurrency: number) {
     this.running = 0;
-    this.queue = [];
+    this.taskQueue = [];
+    this.consumerQueue = [];
+    this.spawnWorkers(concurrency);
   }
 
+  /**
+   * これを使うものがプロデューサとみなされる
+   * @param task 
+   */
   pushTask(task) {
-    this.queue.push(task);
-    this.next();
+    if (this.consumerQueue.length !== 0) {
+      this.consumerQueue.shift()!(null, task);
+    } else {
+      this.taskQueue.push(task);
+    }
   }
 
-  next() {
-    while (this.running < this.concurrency && this.queue.length) {
-      const task = this.queue.shift();
+  /**
+   * ワーカーはコンシューマの役目を持つ
+   * @param concurrency
+   */
+  spawnWorkers(concurrency: number) {
+    const self = this;
+    for (let i = 0; i < concurrency; i++) {
+      co(function* () {
+        while (true) {
+          const task = yield self.nextTask();
+          yield task;
+        }
+      });
+    }
+  }
 
-      //  this.queue.lengthでチェックしていてもtask()がundefinedの可能性があるとコンパイラに怒られたため追記
-      if (!task) {
-        return;
+  // #@@range_begin(list2)
+  nextTask() {
+    return callback => {
+      if (this.taskQueue.length !== 0) {
+        return callback(null, this.taskQueue.shift());
       }
 
-      // tslint:disable-next-line ...  TS2722: Cannot invoke an object which is possibly 'undefined'.を消したかったが消えなかった。
-      task().then(() => {
-        this.running--;
-        this.next();
-      });
-      this.running++;
+      this.consumerQueue.push(callback);
     }
   }
 };

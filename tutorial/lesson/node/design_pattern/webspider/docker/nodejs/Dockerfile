@@ -32,4 +32,4 @@ RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"run\": \"node app\/index.js\",/g" 
 RUN yarn add mkdirp request slug
 RUN yarn add --dev @types/request 
 RUN yarn add async
-
+RUN yarn add co thunkify
