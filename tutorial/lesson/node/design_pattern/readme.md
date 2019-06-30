@@ -96,6 +96,7 @@ $ ./bin/send.sh
 [この時点のソース](https://github.com/hibohiboo/garden/tree/f2002ee73e30c59f63adaace398fa290f705190b)
 
 #### createCipherがdeprecatedだったのでcreateCipherivを試してみる
+[この時点のソース](https://github.com/hibohiboo/garden/tree/8259655741d91d998cdde1fa59e6fdf754da2e13)
 
 
 ## 参考
