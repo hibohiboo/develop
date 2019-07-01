@@ -160,3 +160,5 @@ $ ./bin/send.sh
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)
 [例題github](https://github.com/mushahiroyuki/ndp2/)
+[react-router@v4を使ってみよう：シンプルなtutorial](https://qiita.com/muiscript/items/b4ca1773580317e7112e)
+[react-router v4を使って静的ページでもルーティングする](https://ueqareer.net/2568#HashRouter)

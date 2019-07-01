@@ -1,7 +1,7 @@
 "use strict";
 
 const React = require('react');
-const Link = require('react-router').Link;
+const Link = require("react-router-dom").Link;
 
 const books = [
   'The Time Machine',
@@ -16,7 +16,7 @@ class WellsBooks extends React.Component {
       <div>
         <h2>Herbert George Wells's major works</h2>
         <ul className="books">{
-          books.map( (book, key) =>
+          books.map((book, key) =>
             <li key={key} className="book">{book}</li>
           )
         }</ul>
