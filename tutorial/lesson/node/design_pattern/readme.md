@@ -151,8 +151,11 @@ $ ./bin/send.sh
 
 ### ReactでSPA
 
-#### 最初のReacgコンポーネント
+#### 最初のReactコンポーネント
 [この時点のソース](https://github.com/hibohiboo/garden/tree/9c56d8feb14efec2cf01f07edb22a7f28f2bdf18)
+
+#### ルーティングの設定
+[この時点のソース](https://github.com/hibohiboo/garden/tree/c47100d7ef59fa87d56837e5a4337d9828a3d1e8)
 
 
 

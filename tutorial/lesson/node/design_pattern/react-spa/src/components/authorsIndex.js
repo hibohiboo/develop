@@ -2,11 +2,7 @@
 
 const React = require('react');
 const Link = require("react-router-dom").Link;
-
-const authors = [
-  { id: 1, name: 'James Joyce', slug: 'joyce' },
-  { id: 2, name: 'Herbert George Wells', slug: 'h-g-wells' }
-];
+const AUTHORS = require('../authors');
 
 class AuthorsIndex extends React.Component {
   render() {
@@ -14,8 +10,8 @@ class AuthorsIndex extends React.Component {
       <div>
         <h1>List of authors</h1>
         <ul>{
-          authors.map(author =>
-            <li key={author.id}><Link to={`/author/${author.slug}`}>{author.name}</Link></li>
+          Object.keys(AUTHORS).map(id =>
+            <li key={id}><Link to={`/author/${id}`}>{AUTHORS[id].name}</Link></li>
           )
         }</ul>
       </div>

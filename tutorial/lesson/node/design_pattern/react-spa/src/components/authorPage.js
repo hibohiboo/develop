@@ -2,22 +2,16 @@
 
 const React = require('react');
 const Link = require("react-router-dom").Link;
+const AUTHORS = require('../authors');
 
-const books = [
-  'Dubliners',
-  'A Portrait of the Artist as a Young Man',
-  'Exiles and poetry',
-  'Ulysses',
-  'Finnegans Wake'
-];
-
-class JoyceBooks extends React.Component {
+class AuthorPage extends React.Component {
   render() {
+    const author = AUTHORS[this.props.match.params.id];
     return (
       <div>
-        <h2>James Joyce's major works</h2>
+        <h2>{author.name}'s major works</h2>
         <ul className="books">{
-          books.map((book, key) =>
+          author.books.map((book, key) =>
             <li key={key} className="book">{book}</li>
           )
         }</ul>
@@ -27,4 +21,4 @@ class JoyceBooks extends React.Component {
   }
 }
 
-module.exports = JoyceBooks;
+module.exports = AuthorPage;
