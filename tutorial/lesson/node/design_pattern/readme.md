@@ -29,7 +29,31 @@
 [この時点のソース](https://github.com/hibohiboo/garden/tree/1b5e8167fdac492310d4838a42b4e77fd0b420b8)  
 
 ### coを使ったらプロデューサ・コンシューマパターン
+
 * callbackに何が入ってきているのかが、よく分からなかった
+* → Node.js デザインパターン P.22 2.1.3 Node.jsのコールバックを参照
+  * 「Nodeにおいてエラーは常に先頭の引数として、そして処理結果は2番目以降の引数としてコールバックに渡されます」
+  * 「エラーが発生せずに処理が成功した場合、先頭の引数にはnullもしくはundefinedが渡されます」
+* コールバック引数について、その他に重要そうな情報は以下。
+  * 関数にコールバックを指定する場合には必ず最後の引数とする。Nodeのコアメソッドすべてに当てはまる。
+  * 間にオプションの引数の有無にかかわらず、必ず最後の引数となる。
+    * 例： fs.readFile(filename, [options], callback)
+  * これは、コールバックを無名関数でその場で記述する場合に、後ろに引数がないほうが読みやすいということが理由である。
+
+#### 参考：readFileの内部例
+
+```js
+fs.readFile = (filename, options, callback) => {
+  if(typeof options === 'function') {
+    callback = options;
+    options = {};
+  } else if (typeof options === 'string') {
+    options = {encoding: options};
+  }
+
+  // 省略 ...
+}
+```
 
 [この時点のソース](https://github.com/hibohiboo/garden/tree/b7a7dfce22492c78a41be486b27954c4c9bca04f)  
 
@@ -97,6 +121,12 @@ $ ./bin/send.sh
 
 #### createCipherがdeprecatedだったのでcreateCipherivを試してみる
 [この時点のソース](https://github.com/hibohiboo/garden/tree/8259655741d91d998cdde1fa59e6fdf754da2e13)
+
+
+### アダプタ
+
+#### LevelUp APIでのサンプル。ファイルをDBに保存する。
+
 
 
 ## 参考
