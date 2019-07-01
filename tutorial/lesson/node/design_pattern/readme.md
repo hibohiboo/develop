@@ -149,6 +149,12 @@ $ ./bin/send.sh
 #### configをjsonで設定
 [この時点のソース](https://github.com/hibohiboo/garden/tree/d61ae4708d61419abc5253433a4a21186f703477)
 
+### ReactでSPA
+
+#### 最初のReacgコンポーネント
+[この時点のソース](https://github.com/hibohiboo/garden/tree/9c56d8feb14efec2cf01f07edb22a7f28f2bdf18)
+
+
 
 
 ## 参考
