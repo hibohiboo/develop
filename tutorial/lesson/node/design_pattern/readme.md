@@ -138,6 +138,14 @@ $ ./bin/send.sh
   * 4年前の実装だが、大丈夫か、、？
 
 
+
+### ストラテジ
+
+#### configをjsonとiniで設定
+[この時点のソース](https://github.com/hibohiboo/garden/tree/d168f0b6a2502a5670677a890e5ae415355a1099)
+
+
+
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)
 [例題github](https://github.com/mushahiroyuki/ndp2/)
