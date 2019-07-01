@@ -144,6 +144,11 @@ $ ./bin/send.sh
 #### configをjsonとiniで設定
 [この時点のソース](https://github.com/hibohiboo/garden/tree/d168f0b6a2502a5670677a890e5ae415355a1099)
 
+### テンプレート
+
+#### configをjsonで設定
+[この時点のソース](https://github.com/hibohiboo/garden/tree/d61ae4708d61419abc5253433a4a21186f703477)
+
 
 
 ## 参考

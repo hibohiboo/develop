@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  nodejs:
+    build: ./nodejs
+    volumes:
+      - ../app:/app/app
+      - ../src:/app/src
+      - ./config/tsconfig.json:/app/tsconfig.json
+      - ./config/tslint.json:/app/tslint.json
+      - ./config/webpack.config.js:/app/webpack.config.js
+      - ../template/index.html:/app/index.html
+      # 分割して出力
+      - ../separate/pre-pre-dist:/app/separate/pre-pre-dist
+      - ../separate/pre-dist:/app/separate/pre-dist
+      - cacheNodeModules:/app/node_modules/.cache/
+    command: [node, app/checkUrls, /app/app/urlList.txt]
+
+volumes:
+  # babel-loaderのオプションでcacheDirectory:trueを行うと、node_modules/.cache/ディレクトリ内にキャッシュが作成される
+  cacheNodeModules: 
