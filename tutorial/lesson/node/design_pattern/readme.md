@@ -128,6 +128,14 @@ $ ./bin/send.sh
 #### LevelUp APIでのサンプル。ファイルをDBに保存する。
 [この時点のソース](https://github.com/hibohiboo/garden/tree/b3ed4283b062f7ee7805a8b21815d196a31775e3)
 
+##### TS化
+[この時点のソース](https://github.com/hibohiboo/garden/tree/dff6990dc84719d196ede0a69b7731431d50fc0c)
+
+##### 正式な実装
+
+* level-filesystem
+  * https://www.npmjs.com/package/level-filesystem
+  * 4年前の実装だが、大丈夫か、、？
 
 
 ## 参考
