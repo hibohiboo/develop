@@ -157,6 +157,9 @@ $ ./bin/send.sh
 #### ルーティングの設定
 [この時点のソース](https://github.com/hibohiboo/garden/tree/c47100d7ef59fa87d56837e5a4337d9828a3d1e8)
 
+#### 再利用可能なコンポーネントの作成
+[この時点のソース](https://github.com/hibohiboo/garden/tree/89fc92ae66a09351b86cbf6777b2abbae82181b7)
+
 
 
 
