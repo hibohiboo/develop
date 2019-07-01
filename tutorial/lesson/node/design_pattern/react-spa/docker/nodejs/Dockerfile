@@ -30,3 +30,4 @@ RUN yarn add --dev webpack webpack-cli babel-loader
 RUN yarn add  react react-dom 
 RUN yarn add --dev @babel/preset-react
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build\": \"yarn run webpack \&\& cp -r \/app\/dist \/app\/app\/ \&\& cp \/app\/index.html \/app\/app\/ \",/g" /app/package.json
+RUN yarn add  react-router

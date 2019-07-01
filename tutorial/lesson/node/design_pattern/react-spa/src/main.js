@@ -2,8 +2,8 @@
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-const JoyceBooks = require('./joyceBooks');
+const Routes = require('./routes');
 
 window.onload = () => {
-  ReactDOM.render(<JoyceBooks/>, document.getElementById('main'))
+  ReactDOM.render(<Routes/>, document.getElementById('main'))
 };
