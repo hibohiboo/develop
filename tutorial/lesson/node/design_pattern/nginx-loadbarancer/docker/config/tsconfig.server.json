@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "strictNullChecks": true,
+    "sourceMap": false,
+    "allowJs": true,
+    "declaration": false,
+    "composite": false
+  },
+  "include": [
+    "src/server/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
