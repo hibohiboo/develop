@@ -2,7 +2,7 @@
 
 const http = require('http');
 const url = require('url');
-const totalSales = require('./totalSales');
+const totalSales = require('./totalSalesBatch');
 //const totalSales = require('./totalSalesBatch');
 //const totalSales = require('./totalSalesCache');
 

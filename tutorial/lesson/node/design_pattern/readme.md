@@ -161,6 +161,35 @@ $ ./bin/send.sh
 [この時点のソース](https://github.com/hibohiboo/garden/tree/f4db7b64095d1c21b30ca9c3ba461d92859883e2)
 
 
+### 非同期のバッチ処理とキャッシュの利用
+
+#### 実行確認方法
+サーバ側
+
+```
+bin/container_build.sh
+bin/build.sh
+bin/init-db.sh
+bin/up.sh
+```
+
+クライアント側
+
+```
+bin/test.sh
+```
+
+#### キャッシュ処理もバッチ処理もないサーバの実装
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/2a7a2d055cf23390b4ed21c0fb400790e7a3a0bd)
+
+200 Total sales for item book is 1000432
+All completed in: 8481ms
+
+#### 非同期リクエストのバッチ処理
+
+200 Total sales for item book is 1000432
+All completed in: 9064ms
 
 
 ## 参考
