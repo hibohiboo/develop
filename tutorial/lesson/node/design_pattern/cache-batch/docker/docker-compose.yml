@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  nodejs:
+    build: ./nodejs
+    volumes:
+      - ../app:/app/app
+      - ../src:/app/src
+      - ./config/.babelrc:/app/.babelrc
+      - ./config/.eslintrc:/app/.eslintrc
+      - ./config/.eslintignore:/app/.eslintignore
+      - ./config/tsconfig.server.json:/app/tsconfig.server.json
+      - ./config/tsconfig.cli.json:/app/tsconfig.cli.json
+      - ./config/tslint.json:/app/tslint.json
+      # 分割して出力
+      - ../separate/pre-pre-dist:/app/separate/pre-pre-dist
+      - ../separate/pre-dist:/app/separate/pre-dist
+      - ./config/babel.config.js:/app/babel.config.js
+      # 保存フォルダ
+      - cacheExampleDb:/app/example-db
+    command: [node, app/server/app]
+
+  nodejs_cli:
+    build: ./nodejs
+    volumes:
+      - ../app:/app/app
+      - ../tmp:/tmp
+volumes:
+  # babel-loaderのオプションでcacheDirectory:trueを行うと、node_modules/.cache/ディレクトリ内にキャッシュが作成される
+  cacheExampleDb: 
