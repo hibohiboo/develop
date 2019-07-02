@@ -2,9 +2,8 @@
 
 const http = require('http');
 const url = require('url');
-const totalSales = require('./totalSalesBatch');
-//const totalSales = require('./totalSalesBatch');
-//const totalSales = require('./totalSalesCache');
+const totalSales = require('./totalSalesCache');
+
 
 http.createServer((req, res) => {
   const query = url.parse(req.url, true).query;

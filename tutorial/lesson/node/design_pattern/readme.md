@@ -188,10 +188,15 @@ All completed in: 8481ms
 
 #### 非同期リクエストのバッチ処理
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/e09cc62241543ad3f8a856186a5096b60b7904a2)
+[この時点のソース](https://github.com/hibohiboo/garden/tree/aa1a9edbf50188eb6d6b242ce7f57b009ee353f4)
 
 All completed in: 4505ms
 
+#### 非同期リクエストにキャッシュを利かせる処理
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/aa1a9edbf50188eb6d6b242ce7f57b009ee353f4)
+
+All completed in: 4029ms
 
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)
