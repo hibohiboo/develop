@@ -226,7 +226,25 @@ Time per request:       1700.806 [ms] (mean)
 Requests per second:    217.19 [#/sec] (mean)
 Time per request:       920.861 [ms] (mean)
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/16c75e50a5135e5fa4aa2e809e9c8ac1c0a465d8)
+[この時点のソース](https://github.com/hibohiboo/garden/tree/acc46ac0e273f45ed3f77a163473b2b727cf4723)
+
+#### 再起動の確認
+
+bin/bash.shでログインして確認。
+マスタープロセスのPIDに-SIGUSR2のシグナルを送る。
+
+```
+root@281786299e67:/app# ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  3.2  0.3 561496 29500 ?        Ssl  10:10   0:00 node app/server/clusteredApp
+root        13  0.6  0.3 561268 29908 ?        Sl   10:10   0:00 /usr/local/bin/node /app/app/server/clusteredApp
+root        14  0.5  0.3 561268 29852 ?        Sl   10:10   0:00 /usr/local/bin/node /app/app/server/clusteredApp
+
+root@281786299e67:/app# kill -SIGUSR2 1
+```
+
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/acc46ac0e273f45ed3f77a163473b2b727cf4723)
 
 
 ## 参考
