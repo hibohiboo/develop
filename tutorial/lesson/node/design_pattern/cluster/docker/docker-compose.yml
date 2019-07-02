@@ -16,7 +16,7 @@ services:
       - ../separate/pre-pre-dist:/app/separate/pre-pre-dist
       - ../separate/pre-dist:/app/separate/pre-dist
       - ./config/babel.config.js:/app/babel.config.js
-    command: [node, app/server/app]
+    command: [node, app/server/clusteredApp]
 
   nodejs_cli:
     build: ./nodejs

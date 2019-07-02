@@ -215,9 +215,18 @@ While a subset sum task is running, you can check the responsiveness of the serv
 
 ### クラスタのテスト
 
+#### クラスタなし
 Requests per second:    117.59 [#/sec] (mean)
 Time per request:       1700.806 [ms] (mean)
-[この時点のソース](https://github.com/hibohiboo/garden/tree/181a631751ef2afe2f2c7b791854d1d2662224e5)
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/16c75e50a5135e5fa4aa2e809e9c8ac1c0a465d8)
+
+#### クラスタにして実行(2プロセス)
+
+Requests per second:    217.19 [#/sec] (mean)
+Time per request:       920.861 [ms] (mean)
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/16c75e50a5135e5fa4aa2e809e9c8ac1c0a465d8)
 
 
 ## 参考
