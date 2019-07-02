@@ -194,9 +194,15 @@ All completed in: 4505ms
 
 #### 非同期リクエストにキャッシュを利かせる処理
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/aa1a9edbf50188eb6d6b242ce7f57b009ee353f4)
+[この時点のソース](https://github.com/hibohiboo/garden/tree/058062e3fc9f42661521ab74a2cfbca1147b5d76)
 
 All completed in: 4029ms
+
+#### プロミスを使ったバッチ処理とキャッシュ処理
+[この時点のソース](https://github.com/hibohiboo/garden/tree/058062e3fc9f42661521ab74a2cfbca1147b5d76)
+
+All completed in: 4025ms
+
 
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)
