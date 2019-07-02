@@ -199,10 +199,18 @@ All completed in: 4505ms
 All completed in: 4029ms
 
 #### プロミスを使ったバッチ処理とキャッシュ処理
-[この時点のソース](https://github.com/hibohiboo/garden/tree/058062e3fc9f42661521ab74a2cfbca1147b5d76)
+[この時点のソース](https://github.com/hibohiboo/garden/tree/9b52922d9c8bdba3aaf98ec130c149efd34e5525)
 
 All completed in: 4025ms
 
+### マルチプロセス
+
+Then try to send one or more request to trigger the subset sum task:
+  curl -G http://localhost:8000/subsetSum --data-urlencode "data=[116,119,101,101,-116,109,101,-105,-102,117,-115,-97,119,-116,-104,-105,115]" --data-urlencode "sum=0"
+  
+While a subset sum task is running, you can check the responsiveness of the server with a command like this:
+  curl -G http://localhost:8000
+  
 
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)
