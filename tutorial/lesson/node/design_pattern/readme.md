@@ -188,8 +188,9 @@ All completed in: 8481ms
 
 #### 非同期リクエストのバッチ処理
 
-200 Total sales for item book is 1000432
-All completed in: 9064ms
+[この時点のソース](https://github.com/hibohiboo/garden/tree/e09cc62241543ad3f8a856186a5096b60b7904a2)
+
+All completed in: 4505ms
 
 
 ## 参考
