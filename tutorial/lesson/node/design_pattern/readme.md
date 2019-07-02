@@ -247,6 +247,11 @@ root@281786299e67:/app# kill -SIGUSR2 1
 [この時点のソース](https://github.com/hibohiboo/garden/tree/97d1a64356a98b4f93e57256403e5da40f2d39bd)
 
 
+### nginxによる負荷分散
+[この時点のソース](https://github.com/hibohiboo/garden/tree/96758758f6926cc237784f8f1cecf5e47948e6ee)
+
+
+
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)
 [例題github](https://github.com/mushahiroyuki/ndp2/)
