@@ -203,17 +203,26 @@ All completed in: 4029ms
 
 All completed in: 4025ms
 
-### マルチプロセス
+### 部分和問題のマルチプロセスによる対処
 
 Then try to send one or more request to trigger the subset sum task:
   curl -G http://localhost:8000/subsetSum --data-urlencode "data=[116,119,101,101,-116,109,101,-105,-102,117,-115,-97,119,-116,-104,-105,115]" --data-urlencode "sum=0"
   
 While a subset sum task is running, you can check the responsiveness of the server with a command like this:
   curl -G http://localhost:8000
-  
+
+[この時点のソース](https://github.com/hibohiboo/garden/tree/181a631751ef2afe2f2c7b791854d1d2662224e5)
+
+### クラスタのテスト
+
+Requests per second:    117.59 [#/sec] (mean)
+Time per request:       1700.806 [ms] (mean)
+[この時点のソース](https://github.com/hibohiboo/garden/tree/181a631751ef2afe2f2c7b791854d1d2662224e5)
+
 
 ## 参考
 [サポートページ](https://www.marlin-arms.com/support/nodejs-design-patterns/)
 [例題github](https://github.com/mushahiroyuki/ndp2/)
 [react-router@v4を使ってみよう：シンプルなtutorial](https://qiita.com/muiscript/items/b4ca1773580317e7112e)
 [react-router v4を使って静的ページでもルーティングする](https://ueqareer.net/2568#HashRouter)
+[DockerでApache Benchをサクッと実行する](http://thr3a.hatenablog.com/entry/20190419/1555640388)
