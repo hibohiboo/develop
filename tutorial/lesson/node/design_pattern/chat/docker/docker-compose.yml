@@ -25,3 +25,5 @@ services:
     ports:
       - 8081:8081
     command: [node, app/app, '8081']
+  redis:
+    image: redis

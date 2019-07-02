@@ -2,7 +2,7 @@
 
 bin_dir=$(cd $(dirname $0) && pwd)
 parent_dir=$(cd $bin_dir/.. && pwd)
-docker_dir=$(cd parent_dir/docker && pwd)
+docker_dir=$(cd $parent_dir/docker && pwd)
 
 rm -rf  $parent_dir/app/public
 

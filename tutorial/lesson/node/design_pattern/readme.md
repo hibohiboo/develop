@@ -250,6 +250,14 @@ root@281786299e67:/app# kill -SIGUSR2 1
 ### nginxによる負荷分散
 [この時点のソース](https://github.com/hibohiboo/garden/tree/96758758f6926cc237784f8f1cecf5e47948e6ee)
 
+### メッセージ通信
+
+#### websocketを使ったチャット
+[この時点のソース](https://github.com/hibohiboo/garden/tree/b5f007be51073c0a9c76a7dad92a320836c77734)
+
+#### メッセージブローカとしてのRedisの利用。pub/subパターンを使った分散リアルタイムアプリケーション
+[この時点のソース](https://github.com/hibohiboo/garden/tree/b5f007be51073c0a9c76a7dad92a320836c77734)
+
 
 
 ## 参考
@@ -259,3 +267,5 @@ root@281786299e67:/app# kill -SIGUSR2 1
 [react-router v4を使って静的ページでもルーティングする](https://ueqareer.net/2568#HashRouter)
 [DockerでApache Benchをサクッと実行する](http://thr3a.hatenablog.com/entry/20190419/1555640388)
 [node.js express foreverアプリをdockerコンテナ化する](https://note.mu/loftkun/n/n6613a73a8007)
+[redis.confの設定内容](https://qiita.com/ono-soic/items/ebebbf6b687437d3f75c)
+[redis](https://www.npmjs.com/package/redis)

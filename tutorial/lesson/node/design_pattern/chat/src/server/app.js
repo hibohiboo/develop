@@ -1,25 +1,30 @@
 "use strict";
 
 const WebSocketServer = require('ws').Server;
+const redis = require("redis");
+const redisSub = redis.createClient(6379, 'redis'); // サブスクライバモードに入ると、その接続ではサブスクリプション関連のコマンドしか使えなくなる
+const redisPub = redis.createClient(6379, 'redis'); // 上記の問題があるため、パブリッシュするための接続を用意する。
 
 //static file server
-const server = require('http').createServer(  //[1]
-  require('ecstatic')({root: `${__dirname}/www`})
+const server = require('http').createServer(
+  require('ecstatic')({ root: `${__dirname}/www` })
 );
 
-const wss = new WebSocketServer({server: server});  //[2]
+const wss = new WebSocketServer({ server: server });
 wss.on('connection', ws => {
   console.log('Client connected');
-  ws.on('message', msg => {  //[3]
+  ws.on('message', msg => {
     console.log(`Message: ${msg}`);
-    broadcast(msg);
+    redisPub.publish('chat_messages', msg);
   });
 });
 
-function broadcast(msg) {  //[4]
-  wss.clients.forEach(client => {
+// chat_messagesチャネルにサブスクライブする。
+redisSub.subscribe('chat_messages');
+redisSub.on('message', (channel, msg) => {
+  wss.clients.forEach((client) => {
     client.send(msg);
   });
-}
+});
 
 server.listen(process.argv[2] || 8080);
