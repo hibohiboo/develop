@@ -258,6 +258,8 @@ root@281786299e67:/app# kill -SIGUSR2 1
 #### メッセージブローカとしてのRedisの利用。pub/subパターンを使った分散リアルタイムアプリケーション
 [この時点のソース](https://github.com/hibohiboo/garden/tree/076e1e132d3bea74fb591e2a51769fe1a366e532)
 
+#### p2pのチャット
+[この時点のソース](https://github.com/hibohiboo/garden/tree/24f02f13bf46f7a0bbdff8a50aaf2d38f4bccc30)
 
 
 ## 参考
