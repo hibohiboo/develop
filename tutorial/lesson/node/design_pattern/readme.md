@@ -3,30 +3,30 @@
 ## Web Spider
 
 ### サンプルコード動作確認
-[この時点のソース](https://github.com/hibohiboo/garden/tree/3d0767437f32af8600f68aa60482b7049a905d38)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/3d0767437f32af8600f68aa60482b7049a905d38)  
 
 ### ts化
-[この時点のソース](https://github.com/hibohiboo/garden/tree/27d8b9ed06f90767c1f3b38793937c404f3efae7)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/27d8b9ed06f90767c1f3b38793937c404f3efae7)  
 
 ### 再帰的にリンク取得
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/9e76770bfbf25de4430c8231a22a8ed71b586f6d)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/9e76770bfbf25de4430c8231a22a8ed71b586f6d)  
 
 
 ### 並列処理
-[この時点のソース](https://github.com/hibohiboo/garden/tree/30c6be7cd86fda3b2731a35742fc6a2a93ddf3b8)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/30c6be7cd86fda3b2731a35742fc6a2a93ddf3b8)  
 
 ### 同時起動タスク数の制限
-[この時点のソース](https://github.com/hibohiboo/garden/tree/f9fa82b9dc186c672fb0eeb184daa27139ba122a)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/f9fa82b9dc186c672fb0eeb184daa27139ba122a)  
 
 ### 非同期の逐次処理
-[この時点のソース](https://github.com/hibohiboo/garden/tree/6024d65cae757a909565a2d827e4d3dfaa22f63b)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/6024d65cae757a909565a2d827e4d3dfaa22f63b)  
 
 ### 各要素に適用
-[この時点のソース](https://github.com/hibohiboo/garden/tree/ad35ec986508c0000752d1b4edf04c85819e0eb7)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/ad35ec986508c0000752d1b4edf04c85819e0eb7)  
 
 ### 非同期並列処理（タスク数の制限付き）
-[この時点のソース](https://github.com/hibohiboo/garden/tree/1b5e8167fdac492310d4838a42b4e77fd0b420b8)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/1b5e8167fdac492310d4838a42b4e77fd0b420b8)  
 
 ### coを使ったらプロデューサ・コンシューマパターン
 
@@ -55,29 +55,29 @@ fs.readFile = (filename, options, callback) => {
 }
 ```
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/b7a7dfce22492c78a41be486b27954c4c9bca04f)  
+[この時点のソース](https://github.com/hibohiboo/develop/tree/b7a7dfce22492c78a41be486b27954c4c9bca04f)  
 
 ## clone
 
 ### yield
-[この時点のソース](https://github.com/hibohiboo/garden/tree/a84e8e9c63f6836dc81a35a9e07d184b62adc77b)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/a84e8e9c63f6836dc81a35a9e07d184b62adc77b)
   
 ### thunk
 
 * thunkとは、コールバック以外の全てを部分適用した関数のこと
-[この時点のソース](https://github.com/hibohiboo/garden/tree/b7a7dfce22492c78a41be486b27954c4c9bca04f)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/b7a7dfce22492c78a41be486b27954c4c9bca04f)
   
 ## zlib
 
 ### バッファ使用
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/53b87b1ba5934bd20e182ed471dd8df8a8c279bb)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/53b87b1ba5934bd20e182ed471dd8df8a8c279bb)
 
 
 
 ### ストリーム使用
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/ee03583bebbcae8811de28c8ef1330499be4c42a)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/ee03583bebbcae8811de28c8ef1330499be4c42a)
 
 
 ### HTTPサーバにアップロード
@@ -86,7 +86,7 @@ fs.readFile = (filename, options, callback) => {
   * https://qiita.com/TsuyoshiUshio@github/items/40baab89ee09c5838e5e
 * serverとclientでビルドを分けるようにして対応。
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/f0a4ca6d44a42da3609e91747249b92a77fbe42d)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/f0a4ca6d44a42da3609e91747249b92a77fbe42d)
 
 #### クライアント側
 
@@ -117,19 +117,19 @@ $ ./bin/send.sh
 
 ### 暗号化
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/f2002ee73e30c59f63adaace398fa290f705190b)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/f2002ee73e30c59f63adaace398fa290f705190b)
 
 #### createCipherがdeprecatedだったのでcreateCipherivを試してみる
-[この時点のソース](https://github.com/hibohiboo/garden/tree/8259655741d91d998cdde1fa59e6fdf754da2e13)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/8259655741d91d998cdde1fa59e6fdf754da2e13)
 
 
 ### アダプタ
 
 #### LevelUp APIでのサンプル。ファイルをDBに保存する。
-[この時点のソース](https://github.com/hibohiboo/garden/tree/b3ed4283b062f7ee7805a8b21815d196a31775e3)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/b3ed4283b062f7ee7805a8b21815d196a31775e3)
 
 ##### TS化
-[この時点のソース](https://github.com/hibohiboo/garden/tree/dff6990dc84719d196ede0a69b7731431d50fc0c)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/dff6990dc84719d196ede0a69b7731431d50fc0c)
 
 ##### 正式な実装
 
@@ -142,23 +142,23 @@ $ ./bin/send.sh
 ### ストラテジ
 
 #### configをjsonとiniで設定
-[この時点のソース](https://github.com/hibohiboo/garden/tree/d168f0b6a2502a5670677a890e5ae415355a1099)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/d168f0b6a2502a5670677a890e5ae415355a1099)
 
 ### テンプレート
 
 #### configをjsonで設定
-[この時点のソース](https://github.com/hibohiboo/garden/tree/d61ae4708d61419abc5253433a4a21186f703477)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/d61ae4708d61419abc5253433a4a21186f703477)
 
 ### ReactでSPA
 
 #### 最初のReactコンポーネント
-[この時点のソース](https://github.com/hibohiboo/garden/tree/9c56d8feb14efec2cf01f07edb22a7f28f2bdf18)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/9c56d8feb14efec2cf01f07edb22a7f28f2bdf18)
 
 #### ルーティングの設定
-[この時点のソース](https://github.com/hibohiboo/garden/tree/c47100d7ef59fa87d56837e5a4337d9828a3d1e8)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/c47100d7ef59fa87d56837e5a4337d9828a3d1e8)
 
 #### 再利用可能なコンポーネントの作成
-[この時点のソース](https://github.com/hibohiboo/garden/tree/f4db7b64095d1c21b30ca9c3ba461d92859883e2)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/f4db7b64095d1c21b30ca9c3ba461d92859883e2)
 
 
 ### 非同期のバッチ処理とキャッシュの利用
@@ -181,25 +181,25 @@ bin/test.sh
 
 #### キャッシュ処理もバッチ処理もないサーバの実装
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/2a7a2d055cf23390b4ed21c0fb400790e7a3a0bd)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/2a7a2d055cf23390b4ed21c0fb400790e7a3a0bd)
 
 200 Total sales for item book is 1000432
 All completed in: 8481ms
 
 #### 非同期リクエストのバッチ処理
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/aa1a9edbf50188eb6d6b242ce7f57b009ee353f4)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/aa1a9edbf50188eb6d6b242ce7f57b009ee353f4)
 
 All completed in: 4505ms
 
 #### 非同期リクエストにキャッシュを利かせる処理
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/058062e3fc9f42661521ab74a2cfbca1147b5d76)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/058062e3fc9f42661521ab74a2cfbca1147b5d76)
 
 All completed in: 4029ms
 
 #### プロミスを使ったバッチ処理とキャッシュ処理
-[この時点のソース](https://github.com/hibohiboo/garden/tree/9b52922d9c8bdba3aaf98ec130c149efd34e5525)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/9b52922d9c8bdba3aaf98ec130c149efd34e5525)
 
 All completed in: 4025ms
 
@@ -211,7 +211,7 @@ Then try to send one or more request to trigger the subset sum task:
 While a subset sum task is running, you can check the responsiveness of the server with a command like this:
   curl -G http://localhost:8000
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/181a631751ef2afe2f2c7b791854d1d2662224e5)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/181a631751ef2afe2f2c7b791854d1d2662224e5)
 
 ### クラスタのテスト
 
@@ -219,14 +219,14 @@ While a subset sum task is running, you can check the responsiveness of the serv
 Requests per second:    117.59 [#/sec] (mean)
 Time per request:       1700.806 [ms] (mean)
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/16c75e50a5135e5fa4aa2e809e9c8ac1c0a465d8)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/16c75e50a5135e5fa4aa2e809e9c8ac1c0a465d8)
 
 #### クラスタにして実行(2プロセス)
 
 Requests per second:    217.19 [#/sec] (mean)
 Time per request:       920.861 [ms] (mean)
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/acc46ac0e273f45ed3f77a163473b2b727cf4723)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/acc46ac0e273f45ed3f77a163473b2b727cf4723)
 
 #### 再起動の確認
 
@@ -244,22 +244,22 @@ root@281786299e67:/app# kill -SIGUSR2 1
 ```
 
 
-[この時点のソース](https://github.com/hibohiboo/garden/tree/97d1a64356a98b4f93e57256403e5da40f2d39bd)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/97d1a64356a98b4f93e57256403e5da40f2d39bd)
 
 
 ### nginxによる負荷分散
-[この時点のソース](https://github.com/hibohiboo/garden/tree/96758758f6926cc237784f8f1cecf5e47948e6ee)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/96758758f6926cc237784f8f1cecf5e47948e6ee)
 
 ### メッセージ通信
 
 #### websocketを使ったチャット
-[この時点のソース](https://github.com/hibohiboo/garden/tree/b5f007be51073c0a9c76a7dad92a320836c77734)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/b5f007be51073c0a9c76a7dad92a320836c77734)
 
 #### メッセージブローカとしてのRedisの利用。pub/subパターンを使った分散リアルタイムアプリケーション
-[この時点のソース](https://github.com/hibohiboo/garden/tree/076e1e132d3bea74fb591e2a51769fe1a366e532)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/076e1e132d3bea74fb591e2a51769fe1a366e532)
 
 #### p2pのチャット
-[この時点のソース](https://github.com/hibohiboo/garden/tree/24f02f13bf46f7a0bbdff8a50aaf2d38f4bccc30)
+[この時点のソース](https://github.com/hibohiboo/develop/tree/24f02f13bf46f7a0bbdff8a50aaf2d38f4bccc30)
 
 
 ## 参考
