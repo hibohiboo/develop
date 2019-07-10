@@ -57,5 +57,7 @@ CMD /etc/run.sh
 # vscodeの起動に失敗したため追加
 RUN apt-get install -y  libasound2
 
+# globalで実行させるように追加
+RUN yarn global add electron
 # X11 forward のテスト用
-RUN apt-get install -y x11-apps
+# RUN apt-get install -y x11-apps

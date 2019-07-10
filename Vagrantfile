@@ -36,9 +36,6 @@ Vagrant.configure(2) do |config|
   # Google AOuth
   config.vm.network "forwarded_port", guest: 9005, host: 9005
 
-  # xウィンドウのポートフォワードを設定。guiでの接続を可能にする。
-  config.ssh.forward_x11 = true
-
   # 共有するフォルダの設定
   # config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
   
