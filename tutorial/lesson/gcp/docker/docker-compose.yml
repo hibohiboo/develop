@@ -1,0 +1,7 @@
+version: '3'
+services:
+  # デプロイツール
+  gcloud:
+    build: ./gcloud
+    env_file: .env
+
