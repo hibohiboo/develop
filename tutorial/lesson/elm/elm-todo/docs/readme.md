@@ -10,6 +10,12 @@
 
 Elmでも同様の手順で試してみる。
 
+ExampleのTodo Listの機能は次の3つ。
+
+1. TodoをTodo Listに追加する「Add Todo」
+1. Todoの完了・未完了を切り替える「Toggle Todo」
+1. 表示するTodo Listを完了または未完了のTodoだけにする「Filter Todo」
+
 ## 環境
 
 * Windows 10
@@ -218,6 +224,158 @@ module.exports = {
 }
 ```
 
+```html:public/index.html
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Todo</title>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+</html>
+```
+
+```shell:bin/up.sh
+#!/bin/bash
+
+bin_dir=$(cd $(dirname $0) && pwd)
+parent_dir=$bin_dir/..
+docker_dir=$parent_dir/docker
+composeFile=${1:-"docker-compose.yml"}
+
+# docker-composeの起動
+cd $docker_dir && docker-compose -f $composeFile up
+```
+
+
+## Add Todo
+
+### 1. Hello World
+まずはHellow Worldを表示させる。
+
+```js
+import { Elm } from './Main';
+
+const flags = {};
+
+// elmのＤＯＭを作成する元となるＤＯＭ要素
+const mountNode = document.getElementById('app');
+
+// 初期値を与える
+const app = Elm.Main.init({ node: mountNode, flags });
+```
+
+```elm:src/Main.elm
+module Main exposing (Model, Msg(..), init, main, subscriptions, update, view)
+
+import Browser
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Json.Decode as D exposing (Value)
+
+main : Program Value Model Msg
+main =
+    Browser.element
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
+
+type alias Model =
+    { message : String
+    }
+
+
+init : Value -> ( Model, Cmd Msg )
+init flags =
+    ( Model "Hello World", Cmd.none )
+
+
+
+type Msg
+    = Nothing
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        Nothing ->
+            ( model, Cmd.none )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch []
+
+
+view : Model -> Html Msg
+view model =
+    div []
+        [ p [] [ text model.message ]
+        ]
+```
+
+これでHello Worldが表示できる。
+dockerを起動するshellは以下。
+
+```console
+bin/up.sh
+```
+
+以下のURLで、 Hellow worldが表示されているのを確認できる。
+http://192.168.50.10:3000/
+
+
+### 2. 発行したメッセージをupdateに渡してModelを更新する
+#### Model
+アプリケーションが管理すべき状態を表したもの。
+ReduxだとStoreにあたる。
+
+```elm
+type alias Model =
+    { id: Int,
+    text: String
+    }
+
+init : Value -> ( Model, Cmd Msg )
+init flags =
+    ( Model 0 "test", Cmd.none )
+
+```
+
+#### Update
+UpdateはModelを更新する関数となる。
+メッセージを受け取ってModelを更新する。
+ReduxでいえばReducerにあたる。
+メッセージは慣習的にMsgというカスタム型で表す。
+ReduxでいえばActionにあたる。
+
+```elm
+type Msg
+    = AddTodo String
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        AddTodo text ->
+            (Model 0 text , Cmd.none )
+```
+
+### 3. Modelで保持したstateをViewで表示する
+#### View
+Modelを元にHTMLを作成する。
+
+```elm
+
+```
+
 
 ## 参考
 
@@ -226,10 +384,11 @@ module.exports = {
 [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(1)][*3]
 [MithrilのTodo ListをはじめからていねいにTypescriptで(1)][*4]
 [Mithril + Redux のTodo ListをTypescriptで(1)][*5]
-
+[Elmの公式ガイド][*6]
 
 [*1]:https://qiita.com/xkumiyu/items/9dfe51d2bcb3bdb06da3
 [*2]:https://qiita.com/hibohiboo/items/e3030350ecc83cb2c3bc
 [*3]:https://qiita.com/hibohiboo/items/e344d2bbbaaab0ba8a66
 [*4]:https://qiita.com/hibohiboo/items/7ae89f840302882cf1d3
 [*5]:https://qiita.com/hibohiboo/items/335ba837425978eb5f4a
+[*6]:https://guide.elm-lang.jp/install.html

@@ -1,0 +1,30 @@
+// ユーザ設定を上書き
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  // エディターで制御文字を表示する必要があるかどうかを制御します
+  "editor.renderControlCharacters": true,
+  "editor.renderIndentGuides": true,
+  // フォント ファミリを制御します。
+  "editor.fontFamily": "'MS Gothic'",
+  // 改行コードを設定
+  "files.eol": "\n",
+  // エディターで空白文字を表示する方法を制御します。'none'、'boundary' および 'all' が使用可能です。'boundary' オプションでは、単語間の単一スペースは表示されません。
+  "editor.renderWhitespace": "all",
+  // Git Bash
+  "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+  "[elm]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveTimeout": 1500
+  },
+  "elm.compiler": ".\\node_modules\\.bin\\elm",
+  "elm.formatCommand": ".\\node_modules\\.bin\\elm-format",
+  // VSCODEのエクスプローラー上で非表示
+  "files.exclude": {
+    "elm-stuff": true,
+    "node_modules": true,
+    "LICENSE": true,
+    "**/.DS_Store": true,
+    "*console.log": true,
+  }
+}
