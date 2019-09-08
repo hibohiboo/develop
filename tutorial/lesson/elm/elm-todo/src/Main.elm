@@ -145,14 +145,14 @@ footer : Html Msg
 footer =
     p []
         [ text "Show: "
-        , link "ALL"
+        , link "ALL" (SetVisibilityFilter SHOW_ALL)
         , text ","
-        , link "Active"
+        , link "Active" (SetVisibilityFilter SHOW_ACTIVIE)
         , text ","
-        , link "Completed"
+        , link "Completed" (SetVisibilityFilter SHOW_COMPLETED)
         ]
 
 
-link : String -> Html Msg
-link val =
-    a [ href "#" ] [ text val ]
+link : String -> Msg -> Html Msg
+link val msg =
+    a [ href "#", onClick msg ] [ text val ]

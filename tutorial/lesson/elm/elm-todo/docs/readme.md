@@ -850,6 +850,28 @@ link val =
     a [ href "#" ] [ text val ]
 ```
 
+#### クリックしたときにonClickを呼ぶ
+
+
+
+```elm
+footer : Html Msg
+footer =
+    p []
+        [ text "Show: "
+        , link "ALL" (SetVisibilityFilter SHOW_ALL)
+        , text ","
+        , link "Active" (SetVisibilityFilter SHOW_ACTIVIE)
+        , text ","
+        , link "Completed" (SetVisibilityFilter SHOW_COMPLETED)
+        ]
+
+
+link : String -> Msg -> Html Msg
+link val msg =
+    a [ href "#", onClick msg ] [ text val ]
+```
+
 
 ## 参考
 
