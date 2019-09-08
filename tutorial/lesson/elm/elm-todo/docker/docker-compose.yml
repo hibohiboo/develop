@@ -1,0 +1,29 @@
+version: '3'
+services:
+  elm-todo:
+    build: ./elm-todo
+    volumes:
+      - ../src:/app/src
+      - ../public:/app/public
+      - ../dist:/app/dist
+      - ../elm.json:/app/elm.json
+      - ./config/webpack.config.js:/app/webpack.config.js
+      - ./config/babel.config.js:/app/babel.config.js
+      - ./config/webpack.config.separate.js:/app/webpack.config.separate.js
+      # packageのキャッシュ
+      - cacheGardenElmStuffStarter:/app/elm-stuff
+      - cacheGardenDotElmStarter:/root/.elm
+    ports:
+      - 3000:3000
+    env_file: .env
+    environment:
+      - NODE_ENV=develop
+      - SHELL=/bin/bash
+    command: [yarn, webpack-dev-server, --hot, --colors, --port, '3000', --host, '0.0.0.0', ]
+
+volumes:
+  # elmのpackageを毎回ダウンロードしなくてもよいように、キャッシュを行う。2か所のキャッシュが必要。
+  cacheGardenElmStuffStarter: 
+  cacheGardenDotElmStarter:
+
+

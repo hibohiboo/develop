@@ -1,15 +1,18 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "esnext",
-        "noImplicitAny": false,
-        "sourceMap": false,
-        "jsx": "preserve",
-        "allowJs":true
-    },
-    "exclude": [
-        "node_modules",
-        "**/dist/*",
-        "project"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "jsx": "preserve",
+    "typeRoots": [
+      "types"
+    ],
+    "allowJs": true
+  },
+  "exclude": [
+    "node_modules",
+    "**/dist/*",
+    "project"
+  ]
 }
