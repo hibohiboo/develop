@@ -630,6 +630,58 @@ addTodo val =
         ]
 ```
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/d147f66618a1face4a6381512d054fb0284d1dfb/tutorial/lesson/elm/elm-todo)
+
+
+## Toggle Todo
+
+Todoの完了・未完了を切り替える「Toggle Todo」の機能を作る。
+
+### 1. 完了・未完了を表すcompletedによってスタイルを変える
+
+#### todoにcompleted要素を追加して、とりあえず取り消し線を表示する
+
+complated要素を追加。デフォルトFalse。
+
+```diff
+type alias Todo =
+    { id : Int
+    , text : String
++    , completed : Bool
+    }
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        AddTodo ->
+-            ( { model | todos = Todo (List.length model.todos) model.inputText :: model.todos, inputText = "" }, Cmd.none )
++            ( { model | todos = Todo (List.length model.todos) model.inputText False :: model.todos, inputText = "" }, Cmd.none )
+
+        InputText text ->
+            ( { model | inputText = text }, Cmd.none )
+```
+
+completedによってviewを変える.
+
+```elm
+todo : Todo -> Html Msg
+todo t =
+    let
+        decorationValue =
+            if t.completed then
+                "line-through"
+
+            else
+                "none"
+    in
+    li [ style "textDecoration" decorationValue ] [ text t.text ]
+```
+
+
+これで、stateで保持されるtodoのcompletedがtrueのとき取り消し線がつく。
+動作確認は、一時的に初期値をTrueに変えてやればよい。
+
 
 ## 参考
 

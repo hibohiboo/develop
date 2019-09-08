@@ -24,6 +24,7 @@ main =
 type alias Todo =
     { id : Int
     , text : String
+    , completed : Bool
     }
 
 
@@ -47,7 +48,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         AddTodo ->
-            ( { model | todos = Todo (List.length model.todos) model.inputText :: model.todos, inputText = "" }, Cmd.none )
+            ( { model | todos = Todo (List.length model.todos) model.inputText False :: model.todos, inputText = "" }, Cmd.none )
 
         InputText text ->
             ( { model | inputText = text }, Cmd.none )
@@ -82,7 +83,15 @@ keyedTodo t =
 
 todo : Todo -> Html Msg
 todo t =
-    li [] [ text t.text ]
+    let
+        decorationValue =
+            if t.completed then
+                "line-through"
+
+            else
+                "none"
+    in
+    li [ style "textDecoration" decorationValue ] [ text t.text ]
 
 
 addTodo : String -> Html Msg
