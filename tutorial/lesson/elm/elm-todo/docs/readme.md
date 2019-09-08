@@ -513,8 +513,50 @@ addNewTodo2 =
     Task.perform AddTodo (Task.succeed "Hello Elm!")
 ```
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/ed16d7502dbd0dddfc26577f9a1b902ffacb9e3f/tutorial/lesson/elm/elm-todo)
 
-### 3. フォームからtodoを追加
+##### パフォーマンスの最適化を行う
+
+Reactでも配列を扱うときは、パフォーマンスのためにkeyを指定する。
+elmも同様な仕組みがあるので導入する。
+
+```elm
+view : Model -> Html Msg
+view model =
+    div []
+        [ lazy todoList model.todos
+        ]
+
+
+todoList : List Todo -> Html Msg
+todoList todos =
+    Keyed.node "ul" [] (List.map keyedTodo todos)
+
+
+keyedTodo : Todo -> ( String, Html Msg )
+keyedTodo t =
+    ( String.fromInt t.id, todo t )
+
+
+todo : Todo -> Html Msg
+todo t =
+    li [] [ text t.text ]
+```
+
+
+
+### 4. フォームからtodoを追加
+フォームからtodoを追加できるようにする。
+入力内容を保存する状態をModelに追加する。
+
+```elm
+
+type alias Model =
+    { todos : List Todo
+    }
+```
+
+
 
 
 ## 参考

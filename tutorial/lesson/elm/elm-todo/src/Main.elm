@@ -3,6 +3,8 @@ module Main exposing (Model, Msg(..), init, main, subscriptions, update, view)
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Keyed as Keyed
+import Html.Lazy exposing (lazy)
 import Json.Decode as D exposing (Value)
 import Task
 
@@ -66,15 +68,20 @@ view model =
     --         Debug.log "model" model
     -- in
     div []
-        [ todoList model.todos
+        [ lazy todoList model.todos
         ]
+
+
+todoList : List Todo -> Html Msg
+todoList todos =
+    Keyed.node "ul" [] (List.map keyedTodo todos)
+
+
+keyedTodo : Todo -> ( String, Html Msg )
+keyedTodo t =
+    ( String.fromInt t.id, todo t )
 
 
 todo : Todo -> Html Msg
 todo t =
     li [] [ text t.text ]
-
-
-todoList : List Todo -> Html Msg
-todoList todos =
-    ul [] (List.map todo todos)
