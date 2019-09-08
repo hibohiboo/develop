@@ -368,13 +368,153 @@ update msg model =
             (Model 0 text , Cmd.none )
 ```
 
+ここまでで、msg -> update -> modelの一連の流れができた。
+実際にModelが更新されるのを見てみる。
+
+```elm
+init : Value -> ( Model, Cmd Msg )
+init flags =
+    ( Model 0 "", addNewTodo )
+
+
+addNewTodo : Cmd Msg
+addNewTodo =
+    Task.perform AddTodo (Task.succeed "Hello World!")
+```
+
+まず、initでmodel: { id = 0, text = "" }となる。
+つぎに、addNewTodoがAddTodoのメッセージを発行する。
+updateでModelが更新され、model: { id = 0, text = "Hello World!" }となる。
+デバッグメッセージをコンソールにだして確認してみる。
+
+```elm
+view : Model -> Html Msg
+view model =
+    let
+        _ =
+            Debug.log "model" model
+    in
+    div []
+        [ text "Hello World"
+        ]
+```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/331ffdd49ce9fdbfc458f275b6f4706252f8ab20/tutorial/lesson/elm/elm-todo)
+
+
 ### 3. Modelで保持したstateをViewで表示する
-#### View
-Modelを元にHTMLを作成する。
+#### Todo Listの作成
+viewで表示する前に、少しだけModelを書き換える。
+Modelでtodoを保持することはできたが、このままでは1つのtodoしか保持できない。
+複数のtodoを保持できるよう拡張する。
 
 ```elm
 
+type alias Todo =
+    { id : Int
+    , text : String
+    }
+
+
+type alias Model =
+    { todos : List Todo
+    }
+
+
+init : Value -> ( Model, Cmd Msg )
+init flags =
+    ( Model [], Cmd.none )
+
+
+type Msg
+    = AddTodo String
+
+
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        AddTodo text ->
+            ( { model | todos = Todo (List.length model.todos) text :: model.todos }, Cmd.none )
 ```
+
+updateが少し長くなってしまったので分割してみてみる。
+
+```elm
+List.length model.todos
+```
+
+この部分は、リストの長さを出している。登録するごとに、idは1つずつ増えていく。
+
+```elm
+Todo (List.length model.todos) text
+```
+
+この部分は、新しいTodoオブジェクトを作成している。
+type alias Todoにより、Todo Int Stringの形式で、Todoオブジェクトを作るコンストラクタが自動的に生成されている。
+
+```elm
+todo :: model.todos
+```
+
+この部分はListの先頭にTodoオブジェクトを追加した新しいListを作成している。
+
+
+```elm
+{model | todos = todos}
+```
+
+この部分は、Modelのtodosを更新した新しいModelを作成している。
+
+
+
+#### View
+Modelを元にHTMLを作成する。
+
+##### ToDoのビューとTodoListのビューを作る。
+
+Todoは渡されてきたtextを表示するだけとする。
+
+```elm
+todo : Todo -> Html Msg
+todo t =
+    li [] [ text t.text ]
+```
+
+todoListはTodoをtodoに渡すものとする。
+
+```elm
+view : Model -> Html Msg
+view model =
+    div []
+        [ todoList model.todos
+        ]
+
+todoList : List Todo -> Html Msg
+todoList todos =
+    ul [] (List.map todo todos)
+
+```
+
+まだTodoを追加するフォームはないので、手動でtodoを追加。
+
+```elm
+init : Value -> ( Model, Cmd Msg )
+init flags =
+    ( Model [], Cmd.batch [ addNewTodo, addNewTodo2 ] )
+
+
+addNewTodo : Cmd Msg
+addNewTodo =
+    Task.perform AddTodo (Task.succeed "Hello World!")
+
+
+addNewTodo2 : Cmd Msg
+addNewTodo2 =
+    Task.perform AddTodo (Task.succeed "Hello Elm!")
+```
+
+
+### 3. フォームからtodoを追加
 
 
 ## 参考

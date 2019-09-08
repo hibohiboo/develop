@@ -17,20 +17,30 @@ main =
         }
 
 
-type alias Model =
+type alias Todo =
     { id : Int
     , text : String
     }
 
 
+type alias Model =
+    { todos : List Todo
+    }
+
+
 init : Value -> ( Model, Cmd Msg )
 init flags =
-    ( Model 0 "", addNewTodo )
+    ( Model [], Cmd.batch [ addNewTodo, addNewTodo2 ] )
 
 
 addNewTodo : Cmd Msg
 addNewTodo =
     Task.perform AddTodo (Task.succeed "Hello World!")
+
+
+addNewTodo2 : Cmd Msg
+addNewTodo2 =
+    Task.perform AddTodo (Task.succeed "Hello Elm!")
 
 
 type Msg
@@ -41,7 +51,7 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         AddTodo text ->
-            ( Model 0 text, Cmd.none )
+            ( { model | todos = Todo (List.length model.todos) text :: model.todos }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -51,10 +61,20 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    let
-        _ =
-            Debug.log "model" model
-    in
+    -- let
+    --     _ =
+    --         Debug.log "model" model
+    -- in
     div []
-        [ text "Hello World"
+        [ todoList model.todos
         ]
+
+
+todo : Todo -> Html Msg
+todo t =
+    li [] [ text t.text ]
+
+
+todoList : List Todo -> Html Msg
+todoList todos =
+    ul [] (List.map todo todos)
