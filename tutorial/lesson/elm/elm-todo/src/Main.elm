@@ -106,7 +106,7 @@ view model =
     div []
         [ lazy addTodo model.inputText
         , lazy todoList todos
-        , footer
+        , footer model.filter
         ]
 
 
@@ -141,18 +141,22 @@ addTodo val =
         ]
 
 
-footer : Html Msg
-footer =
+footer : Filter -> Html Msg
+footer filter =
     p []
         [ text "Show: "
-        , link "ALL" (SetVisibilityFilter SHOW_ALL)
+        , link "ALL" (SetVisibilityFilter SHOW_ALL) (filter == SHOW_ALL)
         , text ","
-        , link "Active" (SetVisibilityFilter SHOW_ACTIVIE)
+        , link "Active" (SetVisibilityFilter SHOW_ACTIVIE) (filter == SHOW_ACTIVIE)
         , text ","
-        , link "Completed" (SetVisibilityFilter SHOW_COMPLETED)
+        , link "Completed" (SetVisibilityFilter SHOW_COMPLETED) (filter == SHOW_COMPLETED)
         ]
 
 
-link : String -> Msg -> Html Msg
-link val msg =
-    a [ href "#", onClick msg ] [ text val ]
+link : String -> Msg -> Bool -> Html Msg
+link val msg isActive =
+    if isActive then
+        span [] [ text val ]
+
+    else
+        a [ href "#", onClick msg ] [ text val ]

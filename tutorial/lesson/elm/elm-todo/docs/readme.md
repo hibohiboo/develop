@@ -852,8 +852,6 @@ link val =
 
 #### クリックしたときにonClickを呼ぶ
 
-
-
 ```elm
 footer : Html Msg
 footer =
@@ -870,6 +868,40 @@ footer =
 link : String -> Msg -> Html Msg
 link val msg =
     a [ href "#", onClick msg ] [ text val ]
+```
+
+#### activeな状態なリンクを押せないようにする
+
+```elm
+
+view : Model -> Html Msg
+view model =
+    -- 省略
+    div []
+        [ lazy addTodo model.inputText
+        , lazy todoList todos
+        , footer model.filter
+        ]
+
+footer : Filter -> Html Msg
+footer filter =
+    p []
+        [ text "Show: "
+        , link "ALL" (SetVisibilityFilter SHOW_ALL) (filter == SHOW_ALL)
+        , text ","
+        , link "Active" (SetVisibilityFilter SHOW_ACTIVIE) (filter == SHOW_ACTIVIE)
+        , text ","
+        , link "Completed" (SetVisibilityFilter SHOW_COMPLETED) (filter == SHOW_COMPLETED)
+        ]
+
+
+link : String -> Msg -> Bool -> Html Msg
+link val msg isActive =
+    if isActive then
+        span [] [ text val ]
+
+    else
+        a [ href "#", onClick msg ] [ text val ]
 ```
 
 
