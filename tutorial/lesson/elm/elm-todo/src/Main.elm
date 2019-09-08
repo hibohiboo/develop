@@ -28,6 +28,19 @@ type alias Todo =
     }
 
 
+toggleTodoCompleted : Int -> List Todo -> List Todo
+toggleTodoCompleted id list =
+    List.map
+        (\t ->
+            if t.id /= id then
+                t
+
+            else
+                { t | completed = not t.completed }
+        )
+        list
+
+
 type alias Model =
     { todos : List Todo
     , inputText : String
@@ -42,6 +55,7 @@ init flags =
 type Msg
     = AddTodo
     | InputText String
+    | ToggleTodo Int
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -52,6 +66,9 @@ update msg model =
 
         InputText text ->
             ( { model | inputText = text }, Cmd.none )
+
+        ToggleTodo id ->
+            ( { model | todos = toggleTodoCompleted id model.todos }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -91,7 +108,7 @@ todo t =
             else
                 "none"
     in
-    li [ style "textDecoration" decorationValue ] [ text t.text ]
+    li [ style "textDecoration" decorationValue, onClick (ToggleTodo t.id) ] [ text t.text ]
 
 
 addTodo : String -> Html Msg

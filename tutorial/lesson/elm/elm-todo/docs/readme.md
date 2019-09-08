@@ -682,6 +682,71 @@ todo t =
 これで、stateで保持されるtodoのcompletedがtrueのとき取り消し線がつく。
 動作確認は、一時的に初期値をTrueに変えてやればよい。
 
+#### completed要素を操作する
+
+updateで更新に必要なのはtodoのid
+
+```diff
+type Msg
+    = AddTodo
+    | InputText String
++    | ToggleTodo Int
+```
+
+指定したidのcompletedを反転させる関数を作成
+
+```elm
+toggleTodoCompleted : Int -> List Todo -> List Todo
+toggleTodoCompleted id list =
+    List.map
+        (\t ->
+            if t.id /= id then
+                t
+
+            else
+                { t | completed = not t.completed }
+        )
+        list
+```
+
+update関数で上記関数を使用。
+
+```elm
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        AddTodo ->
+            ( { model | todos = Todo (List.length model.todos) model.inputText False :: model.todos, inputText = "" }, Cmd.none )
+
+        InputText text ->
+            ( { model | inputText = text }, Cmd.none )
+
+        ToggleTodo id ->
+            ( { model | todos = toggleTodoCompleted id model.todos }, Cmd.none )
+```
+
+### 2. クリックしてcompletedの値を変える
+
+イベントを追加する
+
+```diff
+todo : Todo -> Html Msg
+todo t =
+    let
+        decorationValue =
+            if t.completed then
+                "line-through"
+
+            else
+                "none"
+    in
+-    li [ style "textDecoration" decorationValue ] [ text t.text ]
++    li [ style "textDecoration" decorationValue, onClick (ToggleTodo t.id) ] [ text t.text ]
+```
+
+これでクリックするとcompletedの値が変更され、取り消し線がON/OFFされる。
+
+
 
 ## 参考
 
