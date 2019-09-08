@@ -3,7 +3,7 @@
 
 [Redux ExampleのTodo Listをはじめからていねいに(1)][*1]を以下のパターンで試した。
 
-* [Redux ExampleのTodo ListをはじめからていねいにVue.jsで(1)][*2]
+* [Redux ExampleのTodo ListをはじめからていねいにVuex+Typescriptで(1)][*2]
 * [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(1)][*3]
 * [MithrilのTodo ListをはじめからていねいにTypescriptで(1)][*4]
 * [Mithril + Redux のTodo ListをTypescriptで(1)][*5]
@@ -905,10 +905,12 @@ link val msg isActive =
 ```
 
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/2722d1be729cd8d0323fbe4863f9f3d2aef771e5/tutorial/lesson/elm/elm-todo)
+
 ## 参考
 
 [Redux ExampleのTodo Listをはじめからていねいに(1)][*1]
-[Redux ExampleのTodo ListをはじめからていねいにVue.jsで(1)][*2]
+[Redux ExampleのTodo ListをはじめからていねいにVuex+Typescriptで(1)][*2]
 [Redux ExampleのTodo ListをはじめからていねいにをTypescriptで(1)][*3]
 [MithrilのTodo ListをはじめからていねいにTypescriptで(1)][*4]
 [Mithril + Redux のTodo ListをTypescriptで(1)][*5]
