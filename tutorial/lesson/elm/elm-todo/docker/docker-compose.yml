@@ -15,10 +15,6 @@ services:
       - cacheGardenDotElmStarter:/root/.elm
     ports:
       - 3000:3000
-    env_file: .env
-    environment:
-      - NODE_ENV=develop
-      - SHELL=/bin/bash
     command: [yarn, webpack-dev-server, --hot, --colors, --port, '3000', --host, '0.0.0.0', ]
 
 volumes:
