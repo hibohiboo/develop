@@ -9,7 +9,6 @@ services:
       - ../elm.json:/app/elm.json
       - ./config/webpack.config.js:/app/webpack.config.js
       - ./config/babel.config.js:/app/babel.config.js
-      - ./config/webpack.config.separate.js:/app/webpack.config.separate.js
       # packageのキャッシュ
       - cacheGardenElmStuffStarter:/app/elm-stuff
       - cacheGardenDotElmStarter:/root/.elm
