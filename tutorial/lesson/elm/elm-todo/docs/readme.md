@@ -521,6 +521,11 @@ Reactでも配列を扱うときは、パフォーマンスのためにkeyを指
 elmも同様な仕組みがあるので導入する。
 
 ```elm
+import Html.Keyed as Keyed
+import Html.Lazy exposing (lazy)
+
+-- 省略...
+
 view : Model -> Html Msg
 view model =
     div []
@@ -543,20 +548,87 @@ todo t =
     li [] [ text t.text ]
 ```
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/94846e85f7dc21de70b100fa0245c490b61e6b79/tutorial/lesson/elm/elm-todo)
 
 
 ### 4. フォームからtodoを追加
 フォームからtodoを追加できるようにする。
 入力内容を保存する状態をModelに追加する。
+入力EventでonInputではiphoneで動かない不具合があるのでライブラリを追加する。
 
-```elm
-
-type alias Model =
-    { todos : List Todo
-    }
+```diff:elm.json
+  "dependencies": {
+    "direct": {
+      "elm/browser": "1.0.1",
+      "elm/core": "1.0.2",
+      "elm/html": "1.0.0",
+      "elm/json": "1.1.3",
++      "elm-community/html-extra": "3.2.0"
+    },
+}
 ```
 
 
+```elm
+type alias Model =
+    { todos : List Todo
+    , inputText : String
+    }
+
+init : Value -> ( Model, Cmd Msg )
+init flags =
+    ( Model [] "", Cmd.none)
+```
+
+入力内容をTodo追加のときに使うようになるため、メッセージに付与している文字列は不要になる。
+また、文字が入力された時に更新するメッセージが必要となる。
+
+```diff
+type Msg
+-    = AddTodo String
++    = AddTodo
++    | InputText String
+```
+
+更新部分は以下のように書き換える。
+
+```elm
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        AddTodo ->
+            ( { model | todos = Todo (List.length model.todos) model.inputText :: model.todos, inputText = "" }, Cmd.none )
+
+        InputText text ->
+            ( { model | inputText = text }, Cmd.none )
+```
+
+ビューを追加する。
+インプットエリアに入力されたとき、ボタンが押されたときそれぞれにイベントとメッセージを登録。
+
+```elm
+
+import Html.Events exposing (onClick)
+import Html.Events.Extra exposing (onChange)
+
+-- 省略
+
+view : Model -> Html Msg
+view model =
+    div []
+        [ lazy addTodo model.inputText
+        , lazy todoList model.todos
+        ]
+
+-- 省略
+
+addTodo : String -> Html Msg
+addTodo val =
+    div []
+        [ input [ value val, onChange InputText ] []
+        , button [ onClick AddTodo ] [ text "Add Todo" ]
+        ]
+```
 
 
 ## 参考
@@ -567,6 +639,7 @@ type alias Model =
 [MithrilのTodo ListをはじめからていねいにTypescriptで(1)][*4]
 [Mithril + Redux のTodo ListをTypescriptで(1)][*5]
 [Elmの公式ガイド][*6]
+[elm 0.19 で Todoアプリのようなものを試してみたメモ][*7]
 
 [*1]:https://qiita.com/xkumiyu/items/9dfe51d2bcb3bdb06da3
 [*2]:https://qiita.com/hibohiboo/items/e3030350ecc83cb2c3bc
@@ -574,3 +647,5 @@ type alias Model =
 [*4]:https://qiita.com/hibohiboo/items/7ae89f840302882cf1d3
 [*5]:https://qiita.com/hibohiboo/items/335ba837425978eb5f4a
 [*6]:https://guide.elm-lang.jp/install.html
+[*7]:https://qiita.com/hibohiboo/items/8d893d4995be0a1dc743
+

@@ -3,6 +3,8 @@ module Main exposing (Model, Msg(..), init, main, subscriptions, update, view)
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
+import Html.Events.Extra exposing (onChange)
 import Html.Keyed as Keyed
 import Html.Lazy exposing (lazy)
 import Json.Decode as D exposing (Value)
@@ -27,33 +29,28 @@ type alias Todo =
 
 type alias Model =
     { todos : List Todo
+    , inputText : String
     }
 
 
 init : Value -> ( Model, Cmd Msg )
 init flags =
-    ( Model [], Cmd.batch [ addNewTodo, addNewTodo2 ] )
-
-
-addNewTodo : Cmd Msg
-addNewTodo =
-    Task.perform AddTodo (Task.succeed "Hello World!")
-
-
-addNewTodo2 : Cmd Msg
-addNewTodo2 =
-    Task.perform AddTodo (Task.succeed "Hello Elm!")
+    ( Model [] "", Cmd.batch [] )
 
 
 type Msg
-    = AddTodo String
+    = AddTodo
+    | InputText String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        AddTodo text ->
-            ( { model | todos = Todo (List.length model.todos) text :: model.todos }, Cmd.none )
+        AddTodo ->
+            ( { model | todos = Todo (List.length model.todos) model.inputText :: model.todos, inputText = "" }, Cmd.none )
+
+        InputText text ->
+            ( { model | inputText = text }, Cmd.none )
 
 
 subscriptions : Model -> Sub Msg
@@ -68,7 +65,8 @@ view model =
     --         Debug.log "model" model
     -- in
     div []
-        [ lazy todoList model.todos
+        [ lazy addTodo model.inputText
+        , lazy todoList model.todos
         ]
 
 
@@ -85,3 +83,11 @@ keyedTodo t =
 todo : Todo -> Html Msg
 todo t =
     li [] [ text t.text ]
+
+
+addTodo : String -> Html Msg
+addTodo val =
+    div []
+        [ input [ value val, onChange InputText ] []
+        , button [ onClick AddTodo ] [ text "Add Todo" ]
+        ]
