@@ -50,7 +50,7 @@
     shell: killall -KILL apt.systemd.daily
     ignore_errors: True
 
-# deprecate
+# ansible 2.8.4 deprecate
   # - name: step2
   #   apt: 
   #     name: "{{item}}"
