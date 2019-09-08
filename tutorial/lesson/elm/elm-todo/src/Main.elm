@@ -106,6 +106,7 @@ view model =
     div []
         [ lazy addTodo model.inputText
         , lazy todoList todos
+        , footer
         ]
 
 
@@ -138,3 +139,20 @@ addTodo val =
         [ input [ value val, onChange InputText ] []
         , button [ onClick AddTodo ] [ text "Add Todo" ]
         ]
+
+
+footer : Html Msg
+footer =
+    p []
+        [ text "Show: "
+        , link "ALL"
+        , text ","
+        , link "Active"
+        , text ","
+        , link "Completed"
+        ]
+
+
+link : String -> Html Msg
+link val =
+    a [ href "#" ] [ text val ]

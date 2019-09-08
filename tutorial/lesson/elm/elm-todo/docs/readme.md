@@ -817,6 +817,39 @@ view model =
         ]
 ```
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/719b43305af0a5f67552b229a492cbf85e0904c3/tutorial/lesson/elm/elm-todo)
+
+### 3. リンクをクリックしてフィルターを操作してviewを変更
+
+#### とりあえず、リンクを表示させる
+
+```elm
+view : Model -> Html Msg
+view model =
+        -- 省略
+    div []
+        [ lazy addTodo model.inputText
+        , lazy todoList todos
+        , footer
+        ]
+
+footer : Html Msg
+footer =
+    p []
+        [ text "Show: "
+        , link "ALL"
+        , text ","
+        , link "Active"
+        , text ","
+        , link "Completed"
+        ]
+
+
+link : String -> Html Msg
+link val =
+    a [ href "#" ] [ text val ]
+```
+
 
 ## 参考
 
