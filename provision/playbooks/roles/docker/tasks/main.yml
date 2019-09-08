@@ -50,13 +50,24 @@
     shell: killall -KILL apt.systemd.daily
     ignore_errors: True
 
+# deprecate
+  # - name: step2
+  #   apt: 
+  #     name: "{{item}}"
+  #     state: present
+  #     update_cache: yes
+  #   with_items:
+  #     - apt-transport-https 
+  #     - ca-certificates 
+  #     - curl
+  #     - software-properties-common
+
   - name: step2
-    apt: name={{item}} state=present update_cache=yes
-    with_items:
-      - apt-transport-https 
-      - ca-certificates 
-      - curl
-      - software-properties-common
+    apt: 
+      name: "['apt-transport-https','ca-certificates', 'curl', 'software-properties-common']"
+      state: present
+      update_cache: yes
+
 
   - name: step3.1
     shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - warn=no
@@ -73,9 +84,8 @@
     shell: apt-get update warn=no
 
   - name: step6
-    apt: name={{item}} state=present update_cache=yes
-    with_items:
-      - docker-ce
+    apt: name=['docker-ce'] state=present update_cache=yes
+
 
   - name: step6.2
     shell: apt-cache madison docker-ce warn=no
@@ -119,4 +129,20 @@
   - name: step1 install docker-compose
     shell: curl -L "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
   when: result_compose.rc != 0
-  
+
+
+# https://qiita.com/tk555/items/23bb5d3d5b613a03ca2b
+# 以下のエラーが出たため。
+# ERROR: Service 'firebase' failed to build: Get https://registry-1.docker.io/v2/: dial tcp: lookup registry-1.docker.io: Temporary failure in name resolution
+# 発生バージョン。
+# "Ubuntu 18.04.3 LTS (Bionic Beaver)"
+# Docker version 19.03.2, build 6a30dfc
+# docker-compose version 1.24.1, build 4667896b
+
+- name: "プロキシ設定の修正(1)"
+  lineinfile: >-
+    dest='/etc//resolv.conf'
+    state=present
+    backrefs=yes
+    regexp='^nameserver'
+    line='nameserver 8.8.8.8'
