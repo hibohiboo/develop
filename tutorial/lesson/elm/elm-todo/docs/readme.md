@@ -746,6 +746,76 @@ todo t =
 
 これでクリックするとcompletedの値が変更され、取り消し線がON/OFFされる。
 
+## Filter Todo
+
+「Filter Todo」では、以下の3つのフィルターによって表示を変更する。
+
+* SHOW_ALL: 全部表示
+* SHOW_COMPLETED: 完了しているtodoのみ
+* SHOW_ACTIVE: 完了していないtodoのみ
+
+
+### 1. フィルターの値をModelに格納
+
+まずはModelの用意。
+
+```elm
+type Filter
+    = SHOW_ALL
+    | SHOW_COMPLETED
+    | SHOW_ACTIVIE
+
+type alias Model =
+    { todos : List Todo
+    , inputText : String
+    , filter : Filter
+    }
+
+
+init : Value -> ( Model, Cmd Msg )
+init flags =
+    ( Model [] "" SHOW_ALL, Cmd.batch [] )
+```
+
+```diff
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        AddTodo ->
+            ( { model | todos = Todo (List.length model.todos) model.inputText False :: model.todos, inputText = "" }, Cmd.none )
+
+        InputText text ->
+            ( { model | inputText = text }, Cmd.none )
+
+        ToggleTodo id ->
+            ( { model | todos = toggleTodoCompleted id model.todos }, Cmd.none )
+
++        SetVisibilityFilter filter ->
++            ( { model | filter = filter }, Cmd.none )
+```
+
+### 2. フィルターの値によってviewを変更
+
+```elm
+view : Model -> Html Msg
+view model =
+    let
+        todos =
+            case model.filter of
+                SHOW_ALL ->
+                    model.todos
+
+                SHOW_COMPLETED ->
+                    List.filter (\t -> t.completed) model.todos
+
+                SHOW_ACTIVIE ->
+                    List.filter (\t -> not t.completed) model.todos
+    in
+    div []
+        [ lazy addTodo model.inputText
+        , lazy todoList todos
+        ]
+```
 
 
 ## 参考

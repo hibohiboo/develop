@@ -44,18 +44,26 @@ toggleTodoCompleted id list =
 type alias Model =
     { todos : List Todo
     , inputText : String
+    , filter : Filter
     }
 
 
 init : Value -> ( Model, Cmd Msg )
 init flags =
-    ( Model [] "", Cmd.batch [] )
+    ( Model [] "" SHOW_ACTIVIE, Cmd.batch [] )
+
+
+type Filter
+    = SHOW_ALL
+    | SHOW_COMPLETED
+    | SHOW_ACTIVIE
 
 
 type Msg
     = AddTodo
     | InputText String
     | ToggleTodo Int
+    | SetVisibilityFilter Filter
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -70,6 +78,9 @@ update msg model =
         ToggleTodo id ->
             ( { model | todos = toggleTodoCompleted id model.todos }, Cmd.none )
 
+        SetVisibilityFilter filter ->
+            ( { model | filter = filter }, Cmd.none )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
@@ -78,13 +89,23 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    -- let
-    --     _ =
-    --         Debug.log "model" model
-    -- in
+    let
+        -- _ =
+        --     Debug.log "model" model
+        todos =
+            case model.filter of
+                SHOW_ALL ->
+                    model.todos
+
+                SHOW_COMPLETED ->
+                    List.filter (\t -> t.completed) model.todos
+
+                SHOW_ACTIVIE ->
+                    List.filter (\t -> not t.completed) model.todos
+    in
     div []
         [ lazy addTodo model.inputText
-        , lazy todoList model.todos
+        , lazy todoList todos
         ]
 
 
