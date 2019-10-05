@@ -4,7 +4,9 @@
   "description": "[Alt] + [Shift] + [→] : 選択範囲を広げる。",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "serve": "ts-node src/server.ts",
+    "watch": "ts-node-dev -- src/server.ts"
   },
   "keywords": [],
   "author": "",
