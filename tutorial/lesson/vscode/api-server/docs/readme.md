@@ -88,3 +88,14 @@ client.http のエディタ上で右クリックメニューを開き[Send Reque
 - TSLint
 
 #### tslint と prettier の連携
+
+setting.json
+
+```json
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "tslint.autoFixOnSave": true,
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+```
