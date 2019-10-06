@@ -43,6 +43,14 @@ npm i --save-dev ts-jest @types/jest @types/supertest
 
 ## vscode インストール プラグイン
 
+コマンドパレット([ctrl]+[shift]+[p])をひらいて、拡張機能で検索
+* 拡張機能：推奨条項の拡張機能を構成（ワークスペースフォルダ）を選択。
+
+extension.jsonが作成されるので、IDを列挙。
+
+![](./img/ext-setting.png)
+
+
 ### REST Client 
 * POST リクエストの応答を確認
 
