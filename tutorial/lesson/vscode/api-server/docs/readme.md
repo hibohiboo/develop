@@ -100,7 +100,12 @@ setting.json
   }
 ```
 
-### デバッグ
+### リモート Remote Development
+
+- ssh は簡単にできた。
+- container はうまく動作せず。
+
+## デバッグ
 
 [ctrl] + [shift] + [d] で開く。
 
