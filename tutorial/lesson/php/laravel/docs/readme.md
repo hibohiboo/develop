@@ -51,3 +51,4 @@ DB_PASSWORD=secret
 
 [Laravel の php artisan migrate で](https://qiita.com/coldsleep6666/items/506fd6a92ff29aee90bb)
 [DB でハマる](https://qiita.com/dnrsm/items/4bd078c17bb0d6888647)
+[Laravel 書籍 参考ソース](https://github.com/laravel-socym)
