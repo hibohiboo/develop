@@ -42,6 +42,18 @@ npm i --save-dev ts-node ts-node-dev
 npm i --save-dev ts-jest @types/jest @types/supertest
 ```
 
+### Lint
+
+```
+npm i --save-dev tslint
+```
+
+- 設定ファイルの作成
+
+```
+npx tslint -i
+```
+
 ## vscode インストール プラグイン
 
 コマンドパレット([ctrl]+[shift]+[p])をひらいて、拡張機能で検索
