@@ -106,3 +106,5 @@ setting.json
 
 「構成の追加」をクリック。
 「node.js」をクリック
+
+launch server を選んで実行すると node.js のサーバができ、ブレイクポイントも仕掛けられる。
