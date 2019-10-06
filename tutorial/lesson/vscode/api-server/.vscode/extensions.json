@@ -5,7 +5,8 @@
   "recommendations": [
     "humao.rest-client",
     "orta.vscode-jest",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-tslint-plugin"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []

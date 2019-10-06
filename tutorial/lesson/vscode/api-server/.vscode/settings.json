@@ -1,7 +1,12 @@
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnType": true
+  },
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "tslint.autoFixOnSave": true,
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

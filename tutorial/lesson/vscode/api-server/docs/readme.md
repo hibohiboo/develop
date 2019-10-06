@@ -82,3 +82,9 @@ client.http のエディタ上で右クリックメニューを開き[Send Reque
 ### フォーマットのインストール Prettier
 
 - setting.json の編集、または、.pretterrc ファイルを作成する
+
+### lint の導入
+
+- TSLint
+
+#### tslint と prettier の連携
