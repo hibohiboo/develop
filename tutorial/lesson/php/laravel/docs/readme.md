@@ -47,6 +47,10 @@ DB_USERNAME=laravel
 DB_PASSWORD=secret
 ```
 
+### 作業履歴
+
+[ユーザ登録まで](https://github.com/hibohiboo/develop/tree/61c74d3d736eaf3f837d5bc6da4d86a1724c2f46/tutorial/lesson/php/laravel)
+
 ### 参考
 
 [Laravel の php artisan migrate で](https://qiita.com/coldsleep6666/items/506fd6a92ff29aee90bb)
