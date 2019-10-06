@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "serve": "ts-node src/server.ts",
-    "watch": "ts-node-dev -- src/server.ts",
+    "watch": "ts-node-dev --inspect -- src/server.ts",
     "test": "jest --forceExit --coverage --verbose",
     "watch-test": "npm run test -- --watchAll"
   },

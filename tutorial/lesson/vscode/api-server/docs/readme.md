@@ -108,3 +108,10 @@ setting.json
 「node.js」をクリック
 
 launch server を選んで実行すると node.js のサーバができ、ブレイクポイントも仕掛けられる。
+
+#### アタッチ
+
+デバッグ実行として、--inspect オプションが必要。
+9229 のポートを選ぶ。
+
+https://jnst.hateblo.jp/entry/2018/09/10/163620
