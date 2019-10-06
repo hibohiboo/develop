@@ -28,7 +28,7 @@ app.get("/tasks", (req, res) => {
 
 app.post("/tasks", (req, res) => {
   const received = req.body;
-  if ("category" in received && "title" in received && "done" in received) {
+  if (isTaskItemsIncluded(received)) {
     const newTask: Task = {
       category: received.category,
       title: received.title,
@@ -42,3 +42,6 @@ app.post("/tasks", (req, res) => {
   }
 });
 export { app };
+function isTaskItemsIncluded(received: any) {
+  return "category" in received && "title" in received && "done" in received;
+}

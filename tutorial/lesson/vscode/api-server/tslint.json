@@ -4,7 +4,7 @@
   "jsRules": {},
   "rules": {
     "semicolon": [true, "always"],
-    "no-console": true
+    "no-console": false
   },
   "rulesDirectory": []
 }
