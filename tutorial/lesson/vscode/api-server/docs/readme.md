@@ -99,3 +99,10 @@ setting.json
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 ```
+
+### デバッグ
+
+[ctrl] + [shift] + [d] で開く。
+
+「構成の追加」をクリック。
+「node.js」をクリック
