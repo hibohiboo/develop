@@ -53,3 +53,6 @@ client.http のエディタ上で右クリックメニューを開き[Send Reque
 
 ### テスト用ツール Jest 
 * カバレッジ出力
+* テスト参考
+  * https://github.com/sakkuru/API-Server-chapter3
+  
