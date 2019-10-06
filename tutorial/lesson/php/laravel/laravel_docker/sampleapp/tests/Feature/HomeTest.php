@@ -13,10 +13,16 @@ class HomeTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function test_ステータスコード()
     {
-        $response = $this->get('/');
+        $response = $this->get('/home');
 
         $response->assertStatus(200);
     }
-}
+
+    public function test_本文()
+    {
+        $response = $this->get('/home');
+
+        $response->assertSeeText("こんにちは");
+    }}
