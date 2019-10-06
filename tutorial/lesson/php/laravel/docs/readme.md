@@ -1,44 +1,53 @@
-## 最初にやること
+setup.md
+directory.md
+test.md
+
+### マイグレーション
 
 ```
-mkdir laravel_docker
-cd laravel_docker
-git clone https://github.com/Laradock/laradock.git
-cd laradock
-cp env-example .env
+php artisan migrate
 ```
 
-## コンテナ起動 → コンテナにログイン
+うまくいかない。。。
+
+laradock の mysql のバージョンを 5.7 に変更
+
+#### laradock/.env
+
+以下に書き直す。
 
 ```
-./bin/up.sh
-./bin/login.sh
+MYSQL_VERSION=5.7
+MYSQL_DATABASE=laravel
+MYSQL_USER=laravel
+MYSQL_PASSWORD=secret
+MYSQL_PORT=3306
+MYSQL_ROOT_PASSWORD=root
+MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d
 ```
 
-## 新規プロジェクト作成
+再作成
 
 ```
-composer create-project laravel/laravel sampleapp --prefer-dist "5.5.*"
+sudo rm -rf ~/.laradock/data/mysql/
+./bin/remove_all_container.sh
+cd laravel_docker/laradock/ && docker-compose build --no-cache mysql
 ```
 
-- 少し反応が鈍かった。10 分くらい待ってもそのまま。
-- ctrl+c で一旦切って、もう一度やったらうまくいった。接続かなにかに時間がかかっていた？
-  せっかくなので 6.0 にしてみる。
+#### sampleapp/.env
+
+アプリのほうの環境変数も変更
 
 ```
-composer create-project laravel/laravel sampleapp --prefer-dist "6.0.*"
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=laravel
+DB_PASSWORD=secret
 ```
 
-### 環境変数書き換え
+### 参考
 
-laradock/.env の APP_CODE_PATH_HOST
-
-```diff
-- APP_CODE_PATH_HOST=../
-+ #APP_CODE_PATH_HOST=../
-+ APP_CODE_PATH_HOST=../sampleapp
-```
-
-環境変数の変更を反映されるために再起動
-アクセスして動作確認
-http://192.168.50.10/
+[Laravel の php artisan migrate で](https://qiita.com/coldsleep6666/items/506fd6a92ff29aee90bb)
+[DB でハマる](https://qiita.com/dnrsm/items/4bd078c17bb0d6888647)
