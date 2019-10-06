@@ -1,15 +1,17 @@
 {
-// tasks.json 形式の詳細についての資料は、
+  // tasks.json 形式の詳細についての資料は、
   // https://go.microsoft.com/fwlink/?LinkId=733558 をご覧ください
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "build",
       "type": "npm",
       "script": "build",
-      "problemMatcher": [
-        "$tsc"
-      ],
-      "group": "build"
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": ["$tsc"]
     }
   ]
 }
