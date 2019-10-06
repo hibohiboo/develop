@@ -1,0 +1,8 @@
+POST http://127.0.0.1:3000/tasks HTTP/1.1
+content-type: application/json 
+
+{
+  "title": "メール返信",
+  "category": "Work",
+  "done": false
+}
