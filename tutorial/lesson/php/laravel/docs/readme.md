@@ -47,12 +47,42 @@ DB_USERNAME=laravel
 DB_PASSWORD=secret
 ```
 
+### メールのテスト
+
+mailhog を起動するコンテナに追加。
+http://192.168.50.10:8025/ で動作確認。
+
+#### sampleapp/.env
+
+環境変数変更
+
+```
+MAIL_DRIVER=smtp
+MAIL_HOST=mailhog
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+```
+
+#### リスナークラスを作成
+
+```
+php artisan event:generate
+```
+
+app フォルダに Listeners フォルダと EventListener.php, registerdListener.php ができる。
+
 ### 作業履歴
 
 [ユーザ登録まで](https://github.com/hibohiboo/develop/tree/61c74d3d736eaf3f837d5bc6da4d86a1724c2f46/tutorial/lesson/php/laravel)
+
+[ログイン・ログアウトまで](https://github.com/hibohiboo/develop/tree/b22fd2a9a55131d19b72601075d05e3c41581665/tutorial/lesson/php/laravel)
 
 ### 参考
 
 [Laravel の php artisan migrate で](https://qiita.com/coldsleep6666/items/506fd6a92ff29aee90bb)
 [DB でハマる](https://qiita.com/dnrsm/items/4bd078c17bb0d6888647)
 [Laravel 書籍 参考ソース](https://github.com/laravel-socym)
+[larahog](https://qiita.com/munimuni/items/b902f2c3ec643ed78e4a)
+[](https://readouble.com/laravel/5.7/ja/upgrade.html)
