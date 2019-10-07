@@ -125,6 +125,8 @@ xdebug.var_display_max_depth=-1
 docker-compose build php-fpm workspace
 ```
 
+[xdebug 作成時点](https://github.com/hibohiboo/develop/tree/0c4f2b7964cdaf04576642331dc09b780a979d5d/tutorial/lesson/php/laravel)
+
 ### インテリジェンスの設定
 
 php をインストール
