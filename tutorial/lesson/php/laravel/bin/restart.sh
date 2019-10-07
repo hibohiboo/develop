@@ -5,4 +5,4 @@ docker_dir=$(cd $parent_dir/laravel_docker/laradock && pwd)
 
 cd $docker_dir
 docker-compose stop
-docker-compose up -d nginx mysql workspace phpmyadmin mailhog
+docker-compose up -d nginx mysql workspace adminer mailhog
