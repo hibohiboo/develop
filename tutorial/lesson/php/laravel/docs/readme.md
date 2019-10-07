@@ -153,3 +153,4 @@ C:\ProgramData\chocolatey\lib\php\tools\php-7.3.10-nts-Win32-VC15-x64.zip to C:\
 [](https://qiita.com/kiyo-tomo/items/a8af37537976d15c67e2)
 [VSCode で xdebug を利用する on ローカル開発 with Laravel プロジェクト](https://qiita.com/darum/items/d539e916fa6873fe2061)
 [docker+laravel+VSCode+Xdebug という開発環境を作る](https://qiita.com/kefian1go/items/bbc8f9d51fe890194ad7)
+[homebrew で PHP+XDebug+VSCode の開発環境構築をやり直す](https://qiita.com/kiwi26/items/7e94fb042c5ae819d2d8)
