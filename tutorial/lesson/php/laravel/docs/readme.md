@@ -242,7 +242,7 @@ ERROR: (gcloud.app.deploy) Error Response: [7] Access Not Configured. Cloud Buil
 ```
 
 デプロイに成功したのでアクセス。
-https://whitemaptrpg.appspot.com]
+https://whitemaptrpg.appspot.com
 
 以下のエラーが出ている。
 
@@ -289,6 +289,24 @@ composer.json の scripts ブロックに post-install-cmd を追加。
 ```
 
 [gcp 接続時点](https://github.com/hibohiboo/develop/tree/236d7b57afafdb6601ed8a7241aa0e9d88b80401/tutorial/lesson/php/laravel)
+
+## mysql
+
+laravel_docker/laradock/mysql/my.cnf
+
+```diff
+# The MySQL  Client configuration file.
+#
+# For explanations see
+# http://dev.mysql.com/doc/mysql/en/server-system-variables.html
+
+[mysql]
++ default-character-set=utf8mb4
+
+[mysqld]
+sql-mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+character-set-server=utf8
+```
 
 ### 参考
 
