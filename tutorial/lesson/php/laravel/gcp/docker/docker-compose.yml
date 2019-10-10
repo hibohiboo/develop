@@ -1,0 +1,9 @@
+version: "3"
+services:
+  # デプロイツール
+  gcloud:
+    build: ./gcloud
+    env_file: .env
+    volumes:
+      - ../../laravel_docker/sampleapp:/var/www
+    working_dir: /var/www

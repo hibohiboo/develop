@@ -1,0 +1,9 @@
+runtime: php72
+
+env_variables:
+  APP_KEY: YOUR_APP_KEY
+  APP_STORAGE: /tmp
+  VIEW_COMPILED_PATH: /tmp
+  SESSION_DRIVER: cookie
+  APP_LOG: errorlog
+  # LOG_CHANNEL: stackdriver
