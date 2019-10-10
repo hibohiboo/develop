@@ -316,3 +316,4 @@ composer.json の scripts ブロックに post-install-cmd を追加。
 [Laravel の標準ディレクトリの変更方法 まとめ](https://qiita.com/kd9951/items/45f4cfc19bfc99a90a02)
 [laravel プロジェクトを作成し GAE に展開する](https://qiita.com/bleru/items/153a228ad88d04b58d90)
 [GCP Laravel](https://cloud.google.com/community/tutorials/run-laravel-on-appengine-flexible)
+[Laravel5.5 を Google App Engine で動かす](https://qiita.com/fullkawa/items/4d6b080385de5523835c)
