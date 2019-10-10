@@ -288,6 +288,8 @@ composer.json の scripts ブロックに post-install-cmd を追加。
         ]
 ```
 
+[gcp 接続時点](https://github.com/hibohiboo/develop/tree/236d7b57afafdb6601ed8a7241aa0e9d88b80401/tutorial/lesson/php/laravel)
+
 ### 参考
 
 [Laravel の php artisan migrate で](https://qiita.com/coldsleep6666/items/506fd6a92ff29aee90bb)
