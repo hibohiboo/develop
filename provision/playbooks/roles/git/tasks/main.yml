@@ -13,11 +13,20 @@
 
   # http://lifeonubuntu.com/ubuntu-missing-add-apt-repository-command/
   # http://lifeonubuntu.com/upgrading-ubuntu-to-use-the-latest-git-version/
-  - name: step 1
-    apt: 
-      name: " ['build-essential', 'libssl-dev', 'libcurl4-gnutls-dev', 'libexpat1-dev', 'gettext', 'unzip', 'software-properties-common']"
-      state: present 
-      update_cache: yes
+    - name: step 1
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+      vars:
+        packages:
+          - build-essential
+          - libssl-dev
+          - libcurl4-gnutls-dev
+          - libexpat1-dev
+          - gettext
+          - unzip
+          - software-properties-common
 
 
   - name: step2
