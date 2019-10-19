@@ -1,16 +1,15 @@
 # ansibleインストール用shell
 $ansible_install = <<SHELL
-  if ! type virtualenv > /dev/null 2>&1; then
-    # rootユーザとして実行されるためsudo不要
-    sudo apt-get update
-    sudo apt-get -y install curl
-    sudo apt-get -y install libffi-dev libssl-dev python-pip
-    sudo pip install --upgrade pip
-    sudo pip install virtualenv
+if ! type venv > /dev/null 2>&1; then
+  # rootユーザとして実行されるためsudo不要
+  apt-get -y update
+  apt-get -y install curl
+  # apt をスクリプトで使うと警告が出る。 https://codeday.me/jp/qa/20190808/1404436.html
+  apt-get install -y python3-venv python3-pip
 
-    # vagrantユーザとしてvirtualenvとansibleをインストール
-    su -c "source /vagrant/provision/bash/install_ansible.sh" vagrant
-  fi
+  # vagrantユーザとしてvirtualenvとansibleをインストール
+  su -c "source /vagrant/virtual-environment/provision/bash/install_ansible.sh" vagrant
+fi
 SHELL
 
 # virtual machine設定
@@ -70,7 +69,7 @@ Vagrant.configure(2) do |config|
     # timezoneを日本に変更
     timedatectl set-timezone Asia/Tokyo
     # virtualenv起動
-    source /home/vagrant/venv/bin/activate
+    source /home/vagrant/venv3/bin/activate
     # provision 実行
     # 失敗した場合は vagrant up後に vagrant provision
     # それでも失敗した場合は、windows再起動後にもう一度vagrant up vagrant provision

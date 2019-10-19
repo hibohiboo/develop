@@ -1,8 +1,8 @@
 #!/bin/bash
 
-curl -kL "https://bootstrap.pypa.io/get-pip.py" | sudo python
+# https://kazuhira-r.hatenablog.com/entry/2019/01/09/231800
 cd $HOME
-virtualenv venv
-source $HOME/venv/bin/activate
-pip install ansible
+python3 -m venv venv3
+source $HOME/venv3/bin/activate
+pip3 install ansible
 ansible --version
