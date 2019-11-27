@@ -4,38 +4,36 @@ lesson_buildtool_react_ts:
   build: ./webpack
   # webpackを使用するディレクトリを共有する。
   volumes:
-   # ビルドするソースファイル
-   - ./src:/my_webpack/src
-   # ビルドファイルの出力先
-   - ./dist:/my_webpack/dist
-   # 開発用サーバのホームページに使用するhtml用ディレクトリ
-   - ./public:/my_webpack/public
-   # コンテナ上のpackage.jsonを上書き
-   - ./webpack/package.json:/my_webpack/package.json
-   # webpackの設定ファイル
-   - ./webpack/webpack.config.js:/my_webpack/webpack.config.js
-   # typescriptの設定ファイル
-   - ./webpack/tsconfig.json:/my_webpack/tsconfig.json
+    # ビルドするソースファイル
+    - ./src:/app/src
+    # ビルドファイルの出力先
+    - ./dist:/app/dist
+    # 開発用サーバのホームページに使用するhtml用ディレクトリ
+    - ./public:/app/public
+    # コンテナ上のpackage.jsonを上書き
+    - ./webpack/package.json:/app/package.json
+    # webpackの設定ファイル
+    - ./webpack/webpack.config.js:/app/webpack.config.js
+    # typescriptの設定ファイル
+    - ./webpack/tsconfig.json:/app/tsconfig.json
   # ホストのポート8080をコンテナのポート8080にポートフォワーディング
   ports:
     - "8080:8080" # ホスト:コンテナでポート指定
   # docker-compose run を行ったときにコンテナ上で下のコマンドを行う
   command: [npm, run, start]
 
-
 # document作成
 lesson_doc_tool:
   build: ./typedoc
   volumes:
-   # ビルドするソースファイル
-   - ./src:/my_typedoc/src
-   # ビルドファイルの出力先
-   - ./typedoc/docs:/my_typedoc/dist
-   # コンテナ上のpackage.jsonを上書き
-   - ./typedoc/package.json:/my_typedoc/package.json
-   # typescriptの設定ファイル
-   - ./webpack/tsconfig.json:/my_webpack/tsconfig.json
-
+    # ビルドするソースファイル
+    - ./src:/my_typedoc/src
+    # ビルドファイルの出力先
+    - ./typedoc/docs:/my_typedoc/dist
+    # コンテナ上のpackage.jsonを上書き
+    - ./typedoc/package.json:/my_typedoc/package.json
+    # typescriptの設定ファイル
+    - ./webpack/tsconfig.json:/app/tsconfig.json
 
 # lint-tool
 lesson_tslint_tool:

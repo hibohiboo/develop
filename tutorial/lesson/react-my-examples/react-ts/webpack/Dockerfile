@@ -1,9 +1,9 @@
 # docker-hubからnode入りコンテナを取得
 # https://hub.docker.com/_/node/
-FROM node:7.3.0
+FROM node:13.2.0
 
 # コンテナ上の作業ディレクトリ作成
-WORKDIR /my_webpack
+WORKDIR /app
 
 # 後で確認出来るようにpackage.jsonを作成
 RUN npm init -y
@@ -20,10 +20,11 @@ RUN npm i --save react-redux
 RUN npm i --save-dev typescript@next
 
 # ビルドツール
-RUN npm i --save-dev webpack@2.2.0-rc.3
+RUN npm i --save-dev webpack 
+RUN npm i --save-dev webpack-cli
 
 # 開発用サーバ
-RUN npm i --save-dev webpack-dev-server@2.2.0-rc.0
+RUN npm i --save-dev webpack-dev-server
 
 # webpack用typescript loader
 RUN npm i --save-dev ts-loader
