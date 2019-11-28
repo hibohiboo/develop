@@ -1,5 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
-
+import { createStore } from "redux";
+import todo from "./reducers";
+import { addTodo } from "./actions";
+const store = createStore(todo);
+store.dispatch(addTodo("Hello World!"));
+console.log(store.getState());
 ReactDOM.render(<App />, document.getElementById("root"));

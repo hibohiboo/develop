@@ -30,7 +30,10 @@ RUN npm i --save-dev @types/react-redux
 RUN npm i --save-dev @types/node
 RUN npm i --save-dev @types/jest
 
-# material-ui
-RUN npm i --save material-ui
-RUN npm i --save-dev @types/material-ui
-RUN npm i --save react-tap-event-plugin
+# ミュータブルライブラリimmer
+RUN npm i --save immer
+
+# # material-ui
+# RUN npm i --save material-ui
+# RUN npm i --save-dev @types/material-ui
+# RUN npm i --save react-tap-event-plugin
