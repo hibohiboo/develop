@@ -17,5 +17,7 @@ my_react_ts:
   # ホストのポート8080をコンテナのポート3000にポートフォワーディング
   ports:
     - 8080:3000 # ホスト:コンテナでポート指定
+  environment:
+    - CHOKIDAR_USEPOLLING=true # デフォルトの設定の場合、vagrantだとファイルの変更を検知できない。pollingが必要。
   # docker-compose run を行ったときにコンテナ上で下のコマンドを行う
   command: [yarn, start]
