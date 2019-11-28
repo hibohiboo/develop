@@ -1,0 +1,21 @@
+# lesson_buildtool_react_tsというコンテナ名で作成
+my_react_ts:
+  # Dockerfileビルド
+  build: ./node
+  # ディレクトリを共有する。
+  volumes:
+    # ビルドするソースファイル
+    - ../src:/app/src
+    # ビルドファイルの出力先
+    - ../dist:/app/dist
+    # 開発用サーバのホームページに使用するhtml用ディレクトリ
+    - ../public:/app/public
+    # package.json上書き
+    - ../package.json:/app/package.json
+    # typescriptの設定ファイル
+    - ../tsconfig.json:/app/tsconfig.json
+  # ホストのポート8080をコンテナのポート3000にポートフォワーディング
+  ports:
+    - 8080:3000 # ホスト:コンテナでポート指定
+  # docker-compose run を行ったときにコンテナ上で下のコマンドを行う
+  command: [yarn, start]
