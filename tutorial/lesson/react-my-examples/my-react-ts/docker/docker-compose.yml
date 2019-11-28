@@ -7,7 +7,7 @@ my_react_ts:
     # ビルドするソースファイル
     - ../src:/app/src
     # ビルドファイルの出力先
-    - ../dist:/app/dist
+    - ../dist:/app/build
     # 開発用サーバのホームページに使用するhtml用ディレクトリ
     - ../public:/app/public
     # package.json上書き
