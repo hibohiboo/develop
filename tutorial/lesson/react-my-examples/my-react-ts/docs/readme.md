@@ -506,6 +506,65 @@ export const reducer: Reducer<State, AddTodoAction> = produce(
 );
 ```
 
+## 4.フォームから todo を追加
+
+```tsx
+import React from "react";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
+import { addTodo } from "../actions";
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  handleClick: (text: string) => dispatch(addTodo(text))
+});
+
+let AddTodo: React.FC<any> = ({ handleClick }) => {
+  let input: HTMLInputElement;
+
+  return (
+    <div>
+      <input
+        ref={node => {
+          input = node!; // nodeがnullはありえないので、!でnullでないことを示す
+        }}
+      />
+      <button
+        onClick={() => {
+          handleClick(input.value);
+          input.value = "";
+        }}
+      >
+        Add Todo
+      </button>
+    </div>
+  );
+};
+
+AddTodo = connect(null, mapDispatchToProps)(AddTodo);
+
+export default AddTodo;
+```
+
+comonents/App.tsx
+
+```diff
+import React from "react";
+import VisibleTodoList from "../containers/VisibleTodoList";
++import AddTodo from "../containers/AddTodo";
+const App: React.FC = () => {
+  return (
+    <div>
++      <AddTodo />
+      <VisibleTodoList />
+    </div>
+  );
+};
+
+export default App;
+```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/79caa957f9de2f0f55f7ffb4611e50113d67f8a4/tutorial/lesson/react-my-examples/my-react-ts/)
+
 ## 参考
 
 [【Typescript×React】tsconfig.json の設定項目を詳しく紹介][*1]  
