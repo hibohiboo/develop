@@ -477,6 +477,35 @@ ReactDOM.render(
 );
 ```
 
+ここまでで、画面にリストが出ることを確認できる。
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/18fda80089f6c93737c2fd05dc9d04816b323d6a/tutorial/lesson/react-my-examples/my-react-ts/)
+
+いつのまにか以下のエラーがでるようになっていた。。
+
+```
+Reducer "todos" returned undefined during initialization.
+If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined. If you don't want to set a value for this reducer, you can use null instead of undefined.
+```
+
+以下のように reducer を直したらエラーは発生しなくなった。[\*][*30]
+
+```diff
+export const reducer: Reducer<State, AddTodoAction> = produce(
+-  (draft, action) => {
++  (draft = initialState(), action) => {
+    switch (action.type) {
+      case "ADD_TODO":
+        const { payload } = action;
+        draft.todos.push(payload);
+        return draft;
+      default:
+        return draft;
+    }
+  }
+);
+```
+
 ## 参考
 
 [【Typescript×React】tsconfig.json の設定項目を詳しく紹介][*1]  
@@ -499,6 +528,9 @@ ReactDOM.render(
 [React を TypeScript で書く 3: React 編][*25]
 [react-redux-typescript-guide][*26]
 [React を TypeScript で書ける環境で、Redux の Tutorial をしてみる][*27]
+[React (TypeScript): ベストプラクティス][*28]
+[エラー「Reducer returned undefined during initialization」(React/Redux)][*29]
+[Redux をソースコードから理解する その 1][*30]
 
 [*1]: https://qiita.com/shiei_kawa/items/91a79461afa1b1549f13
 [*2]: https://qiita.com/alfas/items/539ade65926deb530e0e
@@ -527,3 +559,6 @@ ReactDOM.render(
 [*25]: https://www.dkrk-blog.net/javascript/react_ts03
 [*26]: https://github.com/piotrwitek/react-redux-typescript-guide#redux-connected-components
 [*27]: https://qiita.com/IgnorantCoder/items/88f13569cbf0a1c5eaa1
+[*28]: https://qiita.com/yumaeda/items/9f5111fe7597037efb57
+[*29]: https://noah.plus/blog/023/
+[*30]: https://qiita.com/juntaki/items/d7b44fd9c2c35ea9ce24
