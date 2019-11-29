@@ -143,6 +143,8 @@ components/App.tsx
 ```tsx
 import React from "react";
 
+// React.FC は React.FunctionComponent の短縮形
+// @types/reactとlib.dom.d.tsで型が衝突することがあるため、慣習としてReactの型はnamed import({FC} from 'react'みたいなやつ)を避ける
 const App: React.FC = () => {
   return <div> Hello World!!! </div>;
 };
@@ -302,6 +304,179 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 [この時点のソース](https://github.com/hibohiboo/develop/tree/35f43860182d96e7ceecec4c2fff36c780c130d0/tutorial/lesson/react-my-examples/my-react-ts/)
 
+## 2.5 store, reducer の整理
+
+### reducer
+
+- 名前が分かりにくいので todo から reducer にリファクタリング
+- todoList を作るようの interface を定義
+- todoList を作る用の reducer に変更
+- 今後 reducer は増えていくので、集約が出来るように準備をしておく。
+- store フォルダに格納
+
+stores/todos/index.ts
+
+```ts
+import produce from "immer";
+import { AddTodoAction } from "../../actions";
+import { Reducer } from "redux";
+
+interface Todo {
+  id: number;
+  text: string;
+}
+
+interface State {
+  todos: Todo[];
+}
+
+export function initialState(): State {
+  return { todos: [] };
+}
+
+export const reducer: Reducer<State, AddTodoAction> = produce(
+  (draft, action) => {
+    switch (action.type) {
+      case "ADD_TODO":
+        const { payload } = action;
+        draft.todos.push(payload);
+        return draft;
+    }
+  }
+);
+```
+
+- combineReducers を使って集約する。
+- 今回は１つだけなのであまり意味はない。
+
+store/reducer.ts
+
+```ts
+import { combineReducers } from "redux";
+import * as Todos from "./todos";
+export function initialState() {
+  return {
+    todos: Todos.initialState()
+  };
+}
+export const reducer = combineReducers({ todos: Todos.reducer });
+```
+
+### store
+
+src/index.tsx にあった createStore を関数に切り出してフォルダを分ける。
+
+store/index.ts
+
+```ts
+import { createStore, Store } from "redux";
+import { initialState, reducer } from "./reducers";
+export type StoreState = ReturnType<typeof initialState>;
+export type ReduxStoreInstance = Store<StoreState>;
+
+export function initStore(state = initialState()) {
+  // createStoreの引数が1つだと初期値がなくてエラーとなる
+  return createStore(reducer, state);
+}
+```
+
+## 3. store で保持した state を View で表示する
+
+### components
+
+components/Todo.tsx
+
+```tsx
+import React from "react";
+
+const Todo: React.FC<{ text: string }> = ({ text }) => {
+  return <li>{text}</li>;
+};
+
+export default Todo;
+```
+
+components/TodoList.tsx
+
+```tsx
+import React from "react";
+import Todo from "./Todo";
+import { State } from "../store/todos";
+
+const TodoList: React.FC<State> = props => {
+  return (
+    <ul>
+      {props.todos.map(todo => (
+        <Todo key={todo.id} {...todo} />
+      ))}
+    </ul>
+  );
+};
+
+export default TodoList;
+```
+
+### container
+
+container/VisibleTodoList.tsx
+
+```ts
+import { connect } from "react-redux";
+import TodoList from "../components/TodoList";
+import { StoreState } from "../store";
+
+const mapStateToProps = (store: StoreState) => {
+  return { todos: store.todos.todos };
+};
+
+const VisibleTodoList = connect(mapStateToProps)(TodoList);
+
+export default VisibleTodoList;
+```
+
+### App
+
+components/App.tsx
+
+```tsx
+import React from "react";
+import VisibleTodoList from "../containers/VisibleTodoList";
+
+const App: React.FC = () => {
+  return (
+    <div>
+      <VisibleTodoList />
+    </div>
+  );
+};
+
+export default App;
+```
+
+### index
+
+index.tsx
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import App from "./components/App";
+import { addTodo } from "./actions";
+import { initStore } from "./store";
+
+const store = initStore();
+
+store.dispatch(addTodo("Hello World!"));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
+```
+
 ## 参考
 
 [【Typescript×React】tsconfig.json の設定項目を詳しく紹介][*1]  
@@ -320,6 +495,10 @@ ReactDOM.render(<App />, document.getElementById("root"));
 [TypeScript 2.4+における Redux Action][*20]
 [Flux Standard Action(FSA)の説明][*22]
 [Redux の createStore()の処理を追う(Middleware 有りの場合)][*23]
+[React ビギナーズガイドを typescript で勉強し直してわかったこと ②【propTypes の必要性について】][*24]
+[React を TypeScript で書く 3: React 編][*25]
+[react-redux-typescript-guide][*26]
+[React を TypeScript で書ける環境で、Redux の Tutorial をしてみる][*27]
 
 [*1]: https://qiita.com/shiei_kawa/items/91a79461afa1b1549f13
 [*2]: https://qiita.com/alfas/items/539ade65926deb530e0e
@@ -344,3 +523,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 [*21]: https://redux.js.org/recipes/usage-with-typescript
 [*22]: https://qiita.com/kabosusoba/items/e00af944529a5bf89d23
 [*23]: https://qiita.com/paming/items/0f660a382aae2125818c
+[*24]: https://qiita.com/HiroshiAkutsu/items/1528927165f750c37ce0
+[*25]: https://www.dkrk-blog.net/javascript/react_ts03
+[*26]: https://github.com/piotrwitek/react-redux-typescript-guide#redux-connected-components
+[*27]: https://qiita.com/IgnorantCoder/items/88f13569cbf0a1c5eaa1

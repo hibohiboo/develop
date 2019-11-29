@@ -1,13 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import App from "./components/App";
-import { createStore } from "redux";
-import todo, { initialState } from "./reducers";
 import { addTodo } from "./actions";
+import { initStore } from "./store";
 
-// createStoreの引数が1つだと初期値がなくてエラーとなる
-const store = createStore(todo, initialState());
+const store = initStore();
 
 store.dispatch(addTodo("Hello World!"));
-console.log(store.getState()); // => TodoState {id: 0, text: "Hello World!"}
-ReactDOM.render(<App />, document.getElementById("root"));
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);

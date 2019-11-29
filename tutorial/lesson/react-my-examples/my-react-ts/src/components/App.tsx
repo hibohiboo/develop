@@ -1,7 +1,12 @@
 import React from "react";
+import VisibleTodoList from "../containers/VisibleTodoList";
 
 const App: React.FC = () => {
-  return <div> Hello World!!!! </div>;
+  return (
+    <div>
+      <VisibleTodoList />
+    </div>
+  );
 };
 
 export default App;
