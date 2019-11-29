@@ -39,6 +39,8 @@ tsconfig.json
 
 ## 環境
 
+### バージョン
+
 - Windows 10 Home
 - Vagrant 2.2.6
 - virtualbox 6.0.14
@@ -46,7 +48,7 @@ tsconfig.json
 - Docker version 19.03.2, build 6a30dfc
 - docker-compose version 1.24.1, build 4667896b
 
-## ディレクトリ構成(Hello world 時)
+### ディレクトリ構成(Hello world 時)
 
 ```yaml
 app
@@ -71,7 +73,7 @@ app
     - build.sh # dist内にjsファイルをビルド
 ```
 
-## docker 設定
+### docker 設定
 
 docker-compose.yml
 
@@ -101,6 +103,23 @@ my_react_ts:
   command: [yarn, start]
 ```
 
+### 開発サーバ用 HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
 ## 1. Hello World
 
 create-react-app で作成された状態のソースは余分なものも含まれているので、まずはシンプルにする。
@@ -115,6 +134,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 
+// reactのコンポーネントを#root以下に作成する
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
@@ -272,11 +292,15 @@ import App from "./components/App";
 import { createStore } from "redux";
 import todo, { initialState } from "./reducers";
 import { addTodo } from "./actions";
+
+// createStoreの引数が1つだと初期値がなくてエラーとなる
 const store = createStore(todo, initialState());
 store.dispatch(addTodo("Hello World!"));
 console.log(store.getState());
 ReactDOM.render(<App />, document.getElementById("root"));
 ```
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/35f43860182d96e7ceecec4c2fff36c780c130d0/tutorial/lesson/react-my-examples/my-react-ts/)
 
 ## 参考
 
