@@ -16,11 +16,13 @@ export function initialState(): State {
 }
 
 export const reducer: Reducer<State, AddTodoAction> = produce(
-  (draft, action) => {
+  (draft = initialState(), action) => {
     switch (action.type) {
       case "ADD_TODO":
         const { payload } = action;
         draft.todos.push(payload);
+        return draft;
+      default:
         return draft;
     }
   }
