@@ -1,3 +1,5 @@
+import { Action } from "redux";
+
 // TypeScript3.4で導入された const assertion を利用することで各定数がstringではなく、その文字列の型として定義される
 const ADD_TODO = "ADD_TODO" as const;
 
@@ -18,4 +20,4 @@ export const addTodo = (text: string) => {
 };
 
 // TypeScript2.8で導入されたReturnTypeで型をかえす
-export type AddTodoAction = ReturnType<typeof addTodo>;
+export type AddTodoAction = ReturnType<typeof addTodo> & Action<string>;

@@ -192,8 +192,6 @@ export class TodoState {
 
 const todo = produce((draft: Draft<TodoState>, action: AddTodoAction) => {
   switch (action.type) {
-    // actionTypeがADD_TODOのとき、
-    // 新しいTodoStateを返す
     case "ADD_TODO":
       const {
         payload: { id, text }
@@ -202,13 +200,82 @@ const todo = produce((draft: Draft<TodoState>, action: AddTodoAction) => {
       draft.text = text;
       return draft;
 
-    // それ以外のときはstateを変化させない
     default:
       return draft;
   }
 });
 
 export default todo;
+```
+
+この状態だと、以下のエラーが出てハマった。
+
+```console
+my_react_ts_1  | Failed to compile.
+my_react_ts_1  |
+my_react_ts_1  | /app/src/index.tsx
+my_react_ts_1  | TypeScript error in /app/src/index.tsx(7,27):
+my_react_ts_1  | No overload matches this call.
+my_react_ts_1  |   Overload 1 of 2, '(reducer: Reducer<unknown, Action<any>>, enhancer?: StoreEnhancer<unknown, unknown> | undefined): Store<unknown, Action<any>>', gave the following error.
+my_react_ts_1  |     Argument of type '<Base extends { readonly id: number; readonly text: string; }>(base: Base, action: { type: "ADD_TODO"; payload: { id: number; text: string; }; }) => Base' is not assignable to parameter of type 'Reducer<unknown, Action<any>>'.
+my_react_ts_1  |       Types of parameters 'base' and 'state' are incompatible.
+my_react_ts_1  |         Type 'unknown' is not assignable to type '{ readonly id: number; readonly text: string; }'.
+my_react_ts_1  |   Overload 2 of 2, '(reducer: Reducer<unknown, Action<any>>, preloadedState?: DeepPartial<unknown> | undefined, enhancer?: StoreEnhancer<unknown, {}> |
+undefined): Store<...>', gave the following error.
+my_react_ts_1  |     Argument of type '<Base extends { readonly id: number; readonly text: string; }>(base: Base, action: { type: "ADD_TODO"; payload: { id: number; text: string; }; }) => Base' is not assignable to parameter of type 'Reducer<unknown, Action<any>>'.  TS2769
+my_react_ts_1  |
+my_react_ts_1  |      5 | import todo from "./reducers";
+my_react_ts_1  |      6 | import { addTodo } from "./actions";
+my_react_ts_1  |   >  7 | const store = createStore(todo);
+```
+
+tsconfig の設定を`"strict": false,`にすると動く。型の問題だけっぽい。
+`Draft<TodoState>` が違っていた模様。以下のようにしたら動いた。
+
+```ts
+import produce from "immer";
+import { AddTodoAction } from "../actions";
+import { Reducer } from "redux";
+export class TodoState {
+  constructor(public id: number, public text: string) {}
+}
+
+export const initialState = () => new TodoState(0, "");
+
+const todo: Reducer<TodoState, AddTodoAction> = produce((draft, action) => {
+  switch (action.type) {
+    // actionTypeがADD_TODOのとき、
+    // 新しいTodoStateを返す
+    case "ADD_TODO":
+      // es6の分割代入でpayloadからidとtextを取り出す
+      const {
+        payload: { id, text }
+      } = action;
+      draft.id = id;
+      draft.text = text;
+      return draft;
+    // それ以外のときはstateを変化させない。何もしないproduceは、元の状態を返す。
+    // default:
+    //   return draft;
+  }
+});
+
+export default todo;
+```
+
+index.tsx
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App";
+import { createStore } from "redux";
+import todo, { initialState } from "./reducers";
+import { addTodo } from "./actions";
+const store = createStore(todo, initialState());
+store.dispatch(addTodo("Hello World!"));
+console.log(store.getState());
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
 
 ## 参考

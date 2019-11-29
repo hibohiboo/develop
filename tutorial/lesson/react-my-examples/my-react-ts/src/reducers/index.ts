@@ -1,11 +1,14 @@
-import produce, { Draft } from "immer";
+import produce from "immer";
 import { AddTodoAction } from "../actions";
+import { Reducer } from "redux";
 
 export class TodoState {
   constructor(public id: number, public text: string) {}
 }
 
-const todo = produce((draft: Draft<TodoState>, action: AddTodoAction) => {
+export const initialState = () => new TodoState(0, "");
+
+const todo: Reducer<TodoState, AddTodoAction> = produce((draft, action) => {
   switch (action.type) {
     // actionTypeがADD_TODOのとき、
     // 新しいTodoStateを返す
@@ -16,7 +19,7 @@ const todo = produce((draft: Draft<TodoState>, action: AddTodoAction) => {
       } = action;
       draft.id = id;
       draft.text = text;
-
+      return draft;
     // それ以外のときはstateを変化させない。何もしないproduceは、元の状態を返す。
     // default:
     //   return draft;
