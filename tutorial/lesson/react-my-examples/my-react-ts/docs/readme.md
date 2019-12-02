@@ -48,6 +48,40 @@ tsconfig.json
 - Docker version 19.03.2, build 6a30dfc
 - docker-compose version 1.24.1, build 4667896b
 
+### ライブラリのバージョン
+
+```json
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "immer": "^5.0.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-redux": "^7.1.5",
+    "@types/redux": "^3.6.0",
+    "react-scripts": "^3.2.0",
+    "typescript": "^3.7.2"
+  }
+}
+```
+
 ### ディレクトリ構成(Hello world 時)
 
 ```yaml
