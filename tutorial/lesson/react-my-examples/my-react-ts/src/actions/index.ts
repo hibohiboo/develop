@@ -1,11 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 
-// 重複をなくすためのサポート関数
-function withPayloadType<T>() {
-  return (t: T) => ({ payload: t })
-}
-
-export const addTodo = createAction('ADD_TODO', withPayloadType<string>());
+let nextTodoId = 0;
+export const addTodo = createAction('ADD_TODO', (text: string) => ({ payload: { id: nextTodoId++, text } }));
 
 // export const addTodoCreator = (text: string) => {
 //   const payload = { id: nextTodoId++, text };

@@ -5,10 +5,9 @@ function initialState() {
   return { id: 0, text: '' };
 }
 
-
 export const reducer = createReducer(initialState(), builder =>
   builder
-    .addCase(addTodo, (state, action) => ({ id: nextTodoId++, text: action.payload }))
+    .addCase(addTodo, (state, action) => (action.payload))
 );
 
 // const init = initialState();
