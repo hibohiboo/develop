@@ -1,13 +1,9 @@
 import React from "react";
-import VisibleTodoList from "../containers/VisibleTodoList";
-import AddTodo from "../containers/AddTodo";
+
+// React.FC は React.FunctionComponent の短縮形
+// @types/reactとlib.dom.d.tsで型が衝突することがあるため、慣習としてReactの型はnamed import({FC} from 'react'みたいなやつ)を避ける
 const App: React.FC = () => {
-  return (
-    <div>
-      <AddTodo />
-      <VisibleTodoList />
-    </div>
-  );
+  return <div> Hello World!!! </div>;
 };
 
 export default App;
