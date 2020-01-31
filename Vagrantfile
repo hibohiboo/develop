@@ -8,7 +8,7 @@ if ! type venv > /dev/null 2>&1; then
   apt-get install -y python3-venv python3-pip
 
   # vagrantユーザとしてvirtualenvとansibleをインストール
-  su -c "source /vagrant/virtual-environment/provision/bash/install_ansible.sh" vagrant
+  su -c "source /vagrant/provision/bash/install_ansible.sh" vagrant
 fi
 SHELL
 
