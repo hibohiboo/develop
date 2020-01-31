@@ -1,6 +1,6 @@
 # docker-hubからnode入りコンテナを取得
 # https://hub.docker.com/_/node/
-FROM node:13.2.0
+FROM node:13.7.0
 
 # コンテナ上の作業ディレクトリ作成
 WORKDIR /app
@@ -20,7 +20,8 @@ RUN npm i --save react-redux
 RUN npm i --save-dev typescript
 
 # ビルドツール
-RUN npm i --save-dev react-scripts 
+# optionalがうるさいので消す。https://mimirswell.ggnet.co.jp/blog-221
+RUN npm i --save-dev react-scripts
 
 # typescriptの型定義ファイル
 RUN npm i --save-dev @types/react
@@ -28,10 +29,10 @@ RUN npm i --save-dev @types/react-dom
 RUN npm i --save-dev @types/redux
 RUN npm i --save-dev @types/react-redux
 RUN npm i --save-dev @types/node
-RUN npm i --save-dev @types/jest
+RUN npm i --save-dev @types/jest 
 
-# ミュータブルライブラリimmer
-RUN npm i --save immer
+# https://github.com/Ouvill/redux-starter-kit-sample
+RUN npm i --save @reduxjs/toolkit
 
 # # material-ui
 # RUN npm i --save material-ui
