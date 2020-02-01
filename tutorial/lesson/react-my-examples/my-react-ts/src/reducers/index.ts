@@ -1,12 +1,6 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { addTodo } from "../actions";
+import { combineReducers } from '@reduxjs/toolkit';
+import todos from "./todos";
 
-function initialState() {
-  return { id: 0, text: '' };
-}
-
-const reducer = createReducer(initialState(), builder =>
-  builder
-    .addCase(addTodo, (state, action) => (action.payload))
-);
-export default reducer;
+const rootReducer = combineReducers(todos);
+export default rootReducer;
+export type RootState = ReturnType<typeof rootReducer>
