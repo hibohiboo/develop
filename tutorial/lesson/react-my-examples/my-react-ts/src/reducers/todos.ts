@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { useSelector } from "react-redux";
 import { addTodo } from '../actions';
-import { Todo } from '../@types';
+import { ITodo } from '../@types';
 
-
-function initialState(): Todo[] {
+function initialState(): ITodo[] {
   return [];
 }
 
@@ -14,3 +14,7 @@ const todos = createReducer(initialState(), builder =>
     })
 );
 export default todos;
+
+export const useTodoItems = () => {
+  return useSelector((state: { todos: ReturnType<typeof todos> }) => { console.log('use', state); return state.todos });
+}
