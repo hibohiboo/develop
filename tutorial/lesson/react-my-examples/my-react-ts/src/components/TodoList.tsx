@@ -7,12 +7,10 @@ import { useTodoItems } from '../reducers/todos';
 const TodoList: React.FC = props => {
   const todos = useTodoItems();
   const dispatch = useDispatch();
-  const toggle = useCallback((id) => dispatch(toggleTodo(id)), [dispatch]);
+  const clickHandler = useCallback((id: number) => dispatch(toggleTodo(id)), [dispatch]);
   return (
     <ul>
-      {todos.map(todo => (
-        <Todo key={todo.id} {...todo} toggle={() => toggle(todo.id)} />
-      ))}
+      {todos.map(todo => <Todo key={todo.id} {...todo} toggle={clickHandler} />)}
     </ul>
   );
 };
