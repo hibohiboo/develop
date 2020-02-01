@@ -16,5 +16,5 @@ const todos = createReducer(initialState(), builder =>
 export default todos;
 
 export const useTodoItems = () => {
-  return useSelector((state: { todos: ReturnType<typeof todos> }) => { console.log('use', state); return state.todos });
+  return useSelector((state: { todos: ReturnType<typeof todos> }) => state.todos);
 }
