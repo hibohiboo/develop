@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { useSelector } from "react-redux";
-import { addTodo } from '../actions';
+import { addTodo, toggleTodo } from '../actions';
 import { ITodo } from '../@types';
 
 function initialState(): ITodo[] {
@@ -12,10 +12,11 @@ const todos = createReducer(initialState(), builder =>
     .addCase(addTodo, (state, action) => {
       state.push(
         {
-          completed: true,
+          completed: false,
           ...action.payload,
         });
     })
+    .addCase(toggleTodo, (state, { payload }) => state.map(todo => ({ ...todo, completed: todo.id === payload ? !todo.completed : todo.completed })))
 );
 export default todos;
 
