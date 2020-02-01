@@ -10,7 +10,11 @@ function initialState(): ITodo[] {
 const todos = createReducer(initialState(), builder =>
   builder
     .addCase(addTodo, (state, action) => {
-      state.push(action.payload);
+      state.push(
+        {
+          completed: true,
+          ...action.payload,
+        });
     })
 );
 export default todos;
