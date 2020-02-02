@@ -3,3 +3,4 @@ export interface ITodo {
   text: string;
   completed: boolean;
 }
+export type FilterType = 'SHOW_ALL' | 'SHOW_COMPLETED' | 'SHOW_ACTIVE';

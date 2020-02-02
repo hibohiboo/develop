@@ -1,5 +1,4 @@
 import todos from "./todos";
-
-const rootReducer = { todos };
+import visibleFilterModule from '../module/visibilityFilterModules';
+const rootReducer = { todos, visibleFilter: visibleFilterModule.reducer };
 export default rootReducer;
-
