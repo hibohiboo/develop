@@ -17,5 +17,5 @@ const visibilityFilterModules = createSlice({
 export default visibilityFilterModules;
 
 export const useVisibleFilter = () => {
-  return useSelector((state: { visibilityFilter: ReturnType<typeof visibilityFilterModules.reducer> }) => state.visibilityFilter);
+  return useSelector((state: { visibleFilter: ReturnType<typeof visibilityFilterModules.reducer> }) => state.visibleFilter);
 }
