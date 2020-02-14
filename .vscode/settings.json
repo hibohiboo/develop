@@ -20,8 +20,8 @@
   "tslint.enable": true,
   "tslint.configFile": "./tslint.json",
   "typescript.tsdk": "./node_modules/typescript/lib"
-    // 有効な場合、ファイルを開くときに文字セット エンコードを推測します
-    //,"files.autoGuessEncoding": false,
+  // 有効な場合、ファイルを開くときに文字セット エンコードを推測します
+  //,"files.autoGuessEncoding": false,
   // Flowに対する拡張
   //,"javascript.validate.enable": false
   //,"files.associations": {"*.js": "flow"}
@@ -32,12 +32,11 @@
   // ,"flow.useNPMPackagedFlow": true
   // ,"flow.pathToFlow": "./node_modules/.bin/flow"
   //postcssをとりあえずless記法とする。
-  ,"files.associations": {"*.pcss": "less"}
-  //,"elm.formatCommand": "D:\\develop\\develop\\node_modules\\elm-test\\bin\\elm-test"
-   , "elm.makeCommand": ".\\node_modules\\.bin\\elm-make"
-   ,"[elm]": {
-    "editor.formatOnSave": true,
-    "editor.formatOnSaveTimeout": 1500
+  ,
+  "files.associations": {
+    "*.pcss": "less"
   },
-  "elm.formatCommand": ".\\node_modules\\.bin\\elm-format"
+  "[elm]": {
+    "editor.formatOnSave": false,
+  }
 }
