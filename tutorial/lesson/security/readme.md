@@ -143,3 +143,58 @@ Referer: http://example.jp/33/33-003.html
   header('Access-Control-Allow-Origin: http://example.jp');
 +  header('Access-Control-Allow-Credentials: true');
 ```
+
+## Webアプリケーションの機能別にみるセキュリティバグ
+### ヌルバイト攻撃
+* `http://wxample.jp/test.php?p=1%00<script>alert('XSS')</script>`
+* `%00`がヌルバイト。数字のみのバリデーションを潜り抜ける
+
+```php
+<?php
+  $p = $_GET['p'];
+  if (ereg('^[0-9]+$', $p) === FALSE) {
+    die('整数値を入力してください');
+  }
+```
+
+### 正規表現
+
+```php
+<?php
+  $p = filter_input(INPUT_GET, 'p');
+  if (preg_match('/\A{a-z0-9}{1,5}\z/ui', $p) !== 1) {
+```
+
+* u修飾子
+  * 日本語環境でpreg_match関数を用いる場合は、UTF-8エンコーディングであることを表すu修飾子を指定する
+* i修飾子
+  * 大文字小文字を区別しないでマッチングするときに便利
+* 全体一致は\Aと\zで示す
+  * \Aはデータの戦闘
+  * \zはデータの末尾
+  * 以下は全体一致なら誤り
+    * ^ は行頭
+    * $ は行末
+
+### script要素のXSS
+
+* 以下のソースは、最初の`</script>`でscript要素は終了してしまう。
+  * script要素の終端は、JavaScriptの文脈を一切考慮しないため。
+
+```html
+  <script>
+    foo('</script>');
+  </script>
+```
+
+* `</script>`が以下の入力だった場合、XSS攻撃が可能となる
+
+```html
+<script>
+  foo('</script><script>alert(document.cookie)//');
+</script>
+```
+
+### 参考
+[教科書に載らないwebアプリケーションセキュリティ](https://www.atmarkit.co.jp/fcoding/index/webapp.html)
+[キヌガワマサト氏のブログ](https://masatokinugawa.l0.cm/2018/01/regex-domxss.html)
