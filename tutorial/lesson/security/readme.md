@@ -929,3 +929,69 @@ CSRFトークン > 二重送信クッキー > HTTP リクエストヘッダ
 
 ### CORSの検証不備
 
+#### オリジンとして`*`を指定する
+
+```
+Access-Control-Allow-Origin: *
+```
+
+* 公開情報を提供するなどでオリジンの制限がない場合はこれでよい
+* 非公開情報を扱う場合は、*指定だと情報漏洩の危険がある
+* オリジンの制限がある場合
+  * 原則、HTTPリクエストのOriginヘッダを検証
+  * レスポンスヘッダとして以下のようにオリジンを明示する
+  * 連携先が非常に多い場合、あえてオリジンとして*を記述し、他の方法で情報漏洩を防ぐ実装もある
+
+```
+Access-Control-Allow-Origin: https://example.jp
+```
+
+#### オリジンのチェックをわざと緩和してしまう
+* CORSの規定では、XMLHttpRequestのwithCredentialsプロパティを指定した場合、`Access-Control-Allow-Origin`ヘッダに指定するオリジンは明示しなければならない
+  * 手抜きをする開発者がいる。「まずは何でも動く状況にしてここから制限を加えていくとよい」→「CORSは理解していなくてもこれをコピペすればとりあえず動く」
+  * 開発に関しては個々のヘッダの意味を理解したうえで、本当に必要な許可だけを与えるべき
+  * 原則としてオリジンの確認はすべき
+
+### セキュリティを強化するレスポンスヘッダ
+
+* X-Frame-Options
+  * frameやiframeの内部に表示することができなくなる
+  * クリックジャッキングやiframeを用いた攻撃の防止
+
+* X-Content-Type-Options
+  * `X-Content-Type-Options: nosniff`の形で使用
+  * ブラウザはMINEタイプの解釈を厳密にするようになる
+  * MIMEタイプを誤認させる攻撃・JSONハイジャックの緩和
+
+* X-XSS-Protection
+  * モダンブラウザではXSSフィルタと呼ばれるセキュリティ機能が実装されている
+    * 利用者がXSSフィルタの有効化・無効化設定をしていても、当該ページについてXSSフィルタの設定を上書きする
+    * XSSフィルタの動作モードを指定する
+  * 通常は次を決め打ちで出力すればよい。`X-XSS-Protection: 1; mode=block`
+
+* Content-Security-Policy (CSP)
+  * XSS攻撃を緩和するためのセキュリティ機能
+  * CSPの最も基本的、かつ、厳しい設定は次。 `Xontent-Security-Policy: default-src 'self'`
+  * スクリプト、画像、CSSなどの全てのメディアをサイト自身のオリジンからのみ読み込むようになる
+  * HTMLページ内に読み込むJavaScript（インラインスクリプト）も禁止する
+  * 利用するJavaScriptでCSPに対応していることが求められる
+  * 実装されつつあるが、仕様が流動的で注視すべき機能
+  * [MDN](https://developer.mozilla.org/ja/docs/Web/HTTP/CSP)
+  * [Content Security Policy でユーザーを守ろう](https://tech.bitbank.cc/content-security-policy/)
+
+* Strict-Transport-Security (HTTPS Strict Transport Security; HSTS)
+  * HTTPSでの接続を強制するための指令
+  * 背景に、スマートフォンの普及に伴う公衆無線LANの利用が一般化したことから、通信路上の盗聴・改ざんのリスクが現実的になったことがある
+    * 常時TLSと呼ばれることもある
+    * HTTPアクセスをHTTPSにリダイレクトすることが行われる
+      * 中間者攻撃により、HTTPにダウングレードされるリスクが残る
+  * HSTSのレスポンスヘッダが設定されていると、ブラウザは当該ホストへの接続を一定期間HTTPSアクセスに強制する
+    * 上記ダウングレードのリスクを緩和
+  * 自己署名証明書など信頼できない証明書が使えなくなるデメリットがあるため、計画的な利用を推奨
+
+以下はHTTPSへの強制を1年間継続する設定
+```
+Strinct-Transport-Security: max-age=31536000
+```
+
+
