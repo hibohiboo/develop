@@ -315,7 +315,617 @@ Referer: http://example.jp/33/33-003.html
 トークンがサーバとブラウザの双方向で確実に暗号化されること、HTTPSのページを閲覧するには
 第三者の知りえないトークンが必要であることから、安全性が確保される。
 
+## ファイルアップロードにまつわる問題
+
+### 脆弱性が生まれる原因
+以下の両方を満たす
+* アップロードしたファイルが公開ディレクトリに保存される
+* アップロード後のファイル名として、.php, .asp, .jsp など、サーバスクリプトを示す拡張子が指定できる。
+
+### 対策
+* 非公開ディレクトリに保存し、ダウンロードスクリプト経由で表示
 
 
+## ファイルダウンロードによるクロスサイトスクリプティング
 
+### 脆弱性が生まれる原因
+* 間違ったContent-Typeは、ブラウザがコンテンツをHTMLとして解釈してしまう可能性がある
+  * IEは拡張子で判断する
+  * 例えば、ダウンロードスクリプトのPATH_INFO(※)にa.htmlなどを指定されるとIEでは脆弱性となる
+
+PATH_INFO： 「リクエストされたスクリプトファイル名」と「クエリ文字列」の間にあるパスの情報
+
+### 対策
+* ファイルのContent-Typeを正しく設定する
+* レスポンスヘッダ `X-ContentType-Options: nosniff` を指定する
+  * サーバ側の共通設定で行える
+* ダウンロードを想定したファイルには、レスポンスヘッダとして`Content-Disposition:attachment`を指定する
+  * `Content-Type: application/octet-stream`にすると、ファイルタイプが「ダウンロードすべきファイル」と明示できる
+  * `Content-Disposition:attachment; filename="hogehoge.pdf"` ： `Content-Disposition`ヘッダのオプション属性filenameはファイルを保存する際のデフォルトのファイル名を指示
+* PDFを扱う場合は、後述の対策を合わせて実施
+
+## PDFのFormCalcによるコンテンツハイジャック
+* PDFはFormCalcと呼ばれるスクリプト言語が使用できる
+  * URL関数という機能があり、HTTPリクエストを呼び出し、結果を受け取ることができる
+
+### 脆弱性
+* 罠に埋め込まれたPDFのFormCalcスクリプトから、exmaple.jpにHTTPリクエストが送信
+* この際、ブラウザが保持しているexample.jpのクッキーをAdobe Readerが引き継ぐ形で、罠ページに秘密情報を送信する
+
+* 罠に用いるHTMLとPDFは以下のサイトでPoC(Proof of Concent: [概念実証コード](https://securityblog.jp/words/4306.html))としてAGPLライセンスで公開されている
+  * https://github.com/nccgroup/CrossSiteContentHijacking
+
+### 対策
+* PDFファイルはブラウザ内で開かずダウンロードを強制する
+  * `X-Download-Options: noopen`
+* PDFをobject要素やembed要素では開けない仕組みを実装する
+  * ファイルダウンロードをPOSTに限定する
+
+## ファイルインクルード攻撃
+* 非公開ファイルの漏洩
+* 外部から指定したスクリプトの実行
+  * RFI(Remote File Inclusion)が有効になっている場合
+  * ファイルのアップロードが可能なサイト
+  * セッション変数の保存先としてファイルを使用しているサイト
+
+
+## キャッシュに関する問題
+
+### Cache-Control
+* 脆弱性のあるレスポンスヘッダ
+
+```
+Date: Tue, 17 Apr 2018 01:51:07 GMT
+Cache-Control: public ,max-age=60
+Expires: Tue, 17 Apr 2018 04:22:05 GMT
+ ```
+
+Cache-Controlヘッダのキャッシュ方法の種類（ディレクティブ）
+
+|ディレクティブ|意味|
+|:--|:--|
+|no-store|まったくキャッシュしない|
+|no-cache|キャッシュの有効性を毎回サーバに確認する|
+|private|1人のユーザのためのキャッシュを許可する。典型的にはブラウザのキャッシュは許可するが、キャッシュサーバのキャッシュは許可しない|
+|public|すべてのキャッシュを保存してよい|
+|must-revalidate|リソースを使う前にキャッシュが陳腐化していないことを確認する|
+|max-age|リソースが陳腐化していないと考えられる最長時間（秒）|
+
+#### キャッシュサーバの設定不備
+nginxの設定
+
+```diff
+location /4f3/ {
+  proxy_cache zonei;
+  proxy_cache_valid 200 302 180s;
++  proxy_ignore_headers Cache-Control Expires Set-Cookie;
+  proxy_set_header Host $host;
+  proxy_pass http://localhost:88/4f/;
+}
+```
+
+* キャッシュ制御の際に、レスポンスヘッダ`Cache-Control Expires Set-Cookie`を無視する。
+  * アプリケーション側で正しく設定しても、キャッシュサーバ(nginx)は無視してキャッシュの内容を表示する
+
+### 対応
+
+* アプリケーション側でキャッシュ制御用の適切なレスポンスヘッダを設定する
+* キャッシュサーバ側で、キャッシュ制御の適切な設定を行う
+
+#### アプリケーション側
+
+```
+Cache-Control: private, no-store, no-cache, must-revalidate
+Pragma: no-cache
+```
+
+* `Pragma: no-cache`はHTTP/1.1に非対応の古いソフトウェア向けの伝統的な手法
+
+#### キャッシュサーバ側
+* nginxの場合、`proxy_ignore_headers`を削除
+
+#### URLに乱数値を付与する
+* ブラウザやキャッシュサーバ、CDNのキャッシュ実装に差異があり、予想外の事故が発生する場合がある
+これを防ぐ方法として、クエリ文字列に乱数値を付与する方法がある
+
+```
+http://example.jp/mypage.php?rnd=34413940
+```
+
+ただし、以下の問題点がある。
+
+* キャッシュ自体はされてしまうのでキャッシュ用ストレージの無駄遣いとなる
+* なんらかの理由でURLを知られるとキャッシュを閲覧されるリスクがある
+
+## Web API実装における脆弱性
+
+### JSONとは
+* JavaScriptのオブジェクトリテラルの形式をデータ交換形式に発展させたもの
+* 基本的にはJavaScriptの式として解釈できる
+
+### JSONPとは
+* JavaScriptのXMLHttpRequestはもともと同一オリジンポリシーの制約があり、異なるオリジンからのデータを取得できない問題があった。
+* この問題を解決するために、CORSが規定された
+* JSONPはCORS制定前に、同一オリジンポリシーの枠内で、異なるオリジンのサーバからデータを取得するために考案された方法の１つ
+* XMLHttpRequestを使わず、script要素を用いて、外部のJavaScriptを直接実行する
+  * そのために、JSONO文字列そのままではscript要素で受け取れないため、関数呼び出しの形でデータを生成する
+
+#### JSONPの例
+
+* サーバ側
+
+```php
+<?php
+  $callback = $_GET['callback'];
+  $json = json_encode(array('time'=>date('G:i')));
+  header('Content-Type: text/javascript; charset=utf-8');
+  echo "$callback($json);";
+
+```
+
+* クライアント側
+
+* プレーンな呼び出し
+```html
+<body>
+  <script>
+    function display_time(obj) {
+      var txt = document.createTextNode('時刻は' + obj.time + 'です');
+      var p = document.getElementById('time');
+      p.appendChild(txt);
+    }
+  </script>
+  <p id="time"></p>
+  <script src="http://api.exmaple.net/test.php?callback=display_time"></script>
+</body>
+```
+
+* jqueryでの呼び出し
+  * jqueryの内部でscript要素が動的に生成される
+
+```html
+<body>
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <p id="time"></p>
+  <script>
+    function display_time(obj) {
+      $('time').text('時刻は' + obj.time + 'です');
+    }
+    $.ajax({
+      url: 'http://api.exmaple.net/test.php?callback=display_time',
+      dataType: 'jsonp',
+      jsonpCallback: 'display_time'
+    });
+  </script>
+</body>
+```
+
+### JSONエスケープの不備
+
+#### 攻撃手法と影響
+
+* サーバ
+
+```php
+<?php
+  $zip = $_GET['zip'];
+  // 郵便番号が見つからなかったとき
+  $json = '{"message": "郵便番号が見つかりません:' . $zip . '"}';
+  header('Content-Type: text/javascript; charset=utf-8');
+  echo "callback_zip($json);";
+
+```
+
+* クライアント
+
+```html
+<body>
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <p id="message"></p>
+  <script>
+    $.ajax({
+      url: 'http://api.exmaple.net/test2.php?zip=' + location.hash.slice(1),
+      dataType: 'jsonp',
+      jsonpCallback: 'callback_zip'
+    }).done(function(data){
+      $('#message').text(data.message);
+    });
+  </script>
+</body>
+```
+
+* 攻撃例
+```
+http://example.jp/test2.html#1"%2balert(document.domain)%2b"
+```
+
+#### 脆弱性がうまれる原因
+以下の2つの条件がそろうこと
+
+* JSON文字列の生成時に適切なエスケープ処理などが行われていない
+* JSONの評価にeval関数などを用いているか、JSONPを用いている
+
+
+#### 対策
+
+* 文字列連結によるJSONデータ生成をやめ、信頼できるライブラリを用いてJSONを生成する
+* eval関数ではなくJSON.parseなどの安全なAPIでJSONOを解釈する
+
+### JSON直接閲覧によるXSS
+
+#### 攻撃手法と影響
+* サーバ側
+  * 本来、MIMEタイプは`application/json`であるべきだが、その指定を怠っている
+  * 実際のMIMEタイプはPHPがデフォルトとして`text/html`を返す
+
+```php
+<?php 
+  $zip=$_GET['zip'];
+  // 以下は郵便番号が見つからなかったときの処理
+  echo json_encode(array("message"=>"郵便番号が見つかりません:" . $zip));
+
+```
+
+以下のURLでアクセス
+
+```
+http://exmaple.jp/test3.php?zip=<img+src=1+onerror=alert(document.domain)>
+```
+
+#### 脆弱性が生まれる原因
+* このレスポンスをHTMLとして解釈しようとする
+* img要素により、画像を表示しようとする
+* src=1は存在せずにエラーとなり、onerrorイベントとしてJavaScriptが実行される
+
+#### 対策
+* MIMEタイプをしっかり指定する
+```php
+  header('Content-Type: text/javascript; charset=utf-8');
+```
+* レスポンスヘッダX-Content-Options: nosniffを出力
+  * MIMEタイプを厳密に判定するという指令
+```php
+header('X-Content-Type-Options: nosniff');
+```
+
+* IE7以前では、PATH_INFOに`a.html`を入れることによってjs実行可能。古いブラウザの対応をするかはポリシーしだい。
+  * 簡単にある程度の対応ができ、副作用のない方法としてエスケープが考えられる.PHPではjson_encodeのオプションパラメータで設定可能。
+```php
+<?php 
+  $zip=$_GET['zip'];
+  // 以下は郵便番号が見つからなかったときの処理
+  header('Content-Type: text/javascript; charset=utf-8');
+  header('X-Content-Type-Options: nosniff');
+  echo json_encode(array("message"=>"郵便番号が見つかりません:" . $zip), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+
+```
+
+json_encodeのオプションパラメータ
+
+|オプション|エスケープ対象文字|エスケープ結果
+|:--           |:-- |:--|
+| JSON_HEX_TAG | < | \u003C |
+| JSON_HEX_TAG | > | \u003E |
+| JSON_HEX_AMP | & | \u0026 |
+| JSON_HEX_APOS| ' | \u0029 |
+| JSON_HEX_QUOT| " | \u0022 |
+
+* XMLHttpRequestなどCORS対応の機能だけから呼び出せるようにする
+  * JQueryなどの著名なライブラリは、XMLHttpRequestによるHttpリクエストに、以下のリクエストヘッダを自動的に付与する
+```
+X-Requested-With: XMLHttpRequest
+```
+
+```html
+<body>
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <p id="message"></p>
+  <script>
+    $.ajax({
+      url: 'http://api.exmaple.net/test2.php?zip=' + location.hash.slice(1),
+      dataType: 'json',
+    }).done(function(data){
+      $('#message').text(data.message);
+    });
+  </script>
+</body>
+```
+
+この`X-Requested-With`ヘッダを積極的に活用する方法がある。
+* このヘッダはXMLHttpRequestから送信されるリクエストには付与され、script要素などXMLHttpRequest経由以外からのアクセスには付与されない。
+* その違いにより、不正なリクエストをチェックする
+* JSONハイジャックの対策にもなるので実施を勧める
+
+```php
+if (empty($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+  header('HTTP/1.1 403 Forbidden');
+  die ("不正な呼び出しです");
+}
+```
+
+### JSONPのコールバック関数名によるXSS
+
+#### 脆弱性が生まれる原因
+* 外部から指定されたコールバック関数名を検証しないでそのまま表示している
+* MIMEタイプをtext/javascriptとするところをtext/htmlとしている
+
+#### 対策
+* コールバック関数の文字種と文字数を制限する
+
+```php
+$callback = $_GET['callback'];
+if ( preg_match('/\A[_a-z][_a-z0-9]{1,64}\z/i', $callback) !== 1)) {
+  header('HTTP/1.1 403 Forbidden');
+  die ("コールバック関数名が不正です");
+}
+```
+
+### Web APIのクロスサイトリクエストフォージェリ
+
+#### 対策
+* CSRFトークン（セッション変数にトークンを保持)
+* 二重送信クッキー
+* カスタムリクエストヘッダによる対策
+* 入力データのMIMEタイプ(application/jsonなど)を検証
+* CORSを適切に実装
+
+##### CSRFトークン
+* 乱数によるトークンをセッション変数に保存
+* hiddenパラメータなどで送信し、受取側でセッション変数と比較
+
+API呼出のjavascriptにトークンを渡す方法が問題になる。
+* Webページにhiddenパラメータやカスタム属性で保持し、JavaScriptから参照する
+* CSRFトークンを返すAPIを用意する
+  * トークンを返すAPIはCORSに対応せず、同一オリジンポリシーの制約がある状態とする
+
+###### 実装例
+* サーバ側: トークンを返すAPI
+
+```php
+<?php
+  session_start();
+  if (empty($_SESSION['mail'])) {
+    $_SESSION['mail']   = 'secret@example.jp';
+  }
+  if (empty($_SESSION['token'])) { // トークンがなければ生成する
+    $token = bin2hex(openssl_random_pseudo_bytes(24));
+    $_SESSION['token'] = $token;
+  }
+  // メールアドレス、トークンをJSONで返す
+  header('Content-Type: application/json; charset=UTF-8');
+  $json = json_encode(array(
+    'mail'   => $_SESSION['mail'],
+    'token'  => $_SESSION['token']));
+  echo $json;
+
+```
+
+* サーバ側： メールアドレスを変更するAPI
+
+```php
+<?php
+  session_start();
+  if (empty($_SESSION['mail'])) {
+    header('HTTP/1.1 403 Forbidden');
+    die('ログインが必要です');
+  }
+  $json = file_get_contents('php://input');
+  $array = json_decode($json, true);
+  $token = $_SERVER['HTTP_X_CSRF_TOKEN'];
+  if (empty($token) || $token !== $_SESSION['token']) {
+    header('HTTP/1.1 403 Forbidden');
+    // セキュリティ上の問題なのでログを生成する
+    error_log('** CSRF detected **');
+    die('正規の経路から使用ください');
+  }
+  // 更新処理
+  $_SESSION['mail'] = $array['mail'];
+  $result = array('result' => 'ok');
+  header('Content-Type: application/json; charset=UTF-8');
+  echo json_encode($result);
+
+```
+* クライアント側： 呼び出し
+
+```diff
+<body onload="mailcheck()">
+<script>
++ var token = null;
+function mailcheck() {
+  var req = new XMLHttpRequest();
+  req.open("GET", "4g-020a.php");
+  req.onreadystatechange = function() {
+    if (req.readyState == 4 && req.status == 200) {
+      var obj = JSON.parse(req.responseText);
+      var p_mail = document.getElementById("p_mail");
+      p_mail.textContent = "メールアドレス:" + obj.mail;
++      token = obj.token;
+    }
+  };
+  req.send(null);
+}
+
+function chgmail() {
+  var req = new XMLHttpRequest();
+  req.open("POST", "4g-021a.php");
++  req.setRequestHeader('X-CSRF-TOKEN', token);
+  req.onreadystatechange = function() {
+    if (req.readyState == 4 && req.status == 200) {
+      var obj = JSON.parse(req.responseText);
+      var result = document.getElementById("result");
+      result.textContent = "アドレス変更: " + obj.result;
+      mailcheck();
+    }
+  };
+  var mail = document.getElementById('mail').value;
+  json = JSON.stringify({"mail": mail});
+  req.send(json);
+}
+</script>
+<input id="mail">
+<input type="button" value="メールアドレス変更" onclick="chgmail()">
+<p id="p_mail"></p>
+<p id="result"></p>
+<body>
+```
+
+攻撃側がCSRFを行おうとしても、プリフライトリクエストにはクッキーが含まれないので、現状のスクリプトはログインしていないという理由で403を返す。
+仮に、プリフライトリクエストのチェック処理に脆弱性があり、すべての要求に対して肯定的に応答した場合でも、トークンの検査でエラーとなる。
+リクエストのチェックが多重になされているので、開発者の不注意があってもカバーされる可能性が高い状態となっている。
+
+
+##### 二重送信クッキー (Souble-submit Cookie)
+* 乱数によるトークンをクッキーとして保存しておく
+* 同じ値をリクエストヘッダのパラメータとしてクッキーとは別に送信する
+* 結果として、クッキーともう一つのヘッダで同じ値が送信されることから、二重送信クッキーと呼ばれる。
+* OWASP発行のCrossSite Request Forgery(CSRF) Prevention Cheat Sheetでも推奨されている
+
+##### 実装例
+```diff
+  if (empty($_SESSION['token'])) { // トークンがなければ生成する
+    $token = bin2hex(openssl_random_pseudo_bytes(24));
++   setcookie('CSRF_TOKEN', $token);
+  }
+```
+
+```diff
+   $token = $_SERVER['HTTP_X_CSRF_TOKEN'];
++  if (empty($token) || $token !== $_COOKIE['CSRF_TOKEN']) {
+    header('HTTP/1.1 403 Forbidden');
+    // セキュリティ上の問題なのでログを生成する
+    error_log('** CSRF detected **');
+    die('正規の経路から使用ください');
+  }
+```
+
+```diff
+<body onload="mailcheck()">
++ <!-- クッキーを簡便に扱うためにライブラリを使用 -->
++ <script src="../js/js.cookie.js"></script>
+<script>
+function mailcheck() {
+  var req = new XMLHttpRequest();
+  req.open("GET", "4g-020b.php");
+  req.onreadystatechange = function() {
+    if (req.readyState == 4 && req.status == 200) {
+      var obj = JSON.parse(req.responseText);
+      var p_mail = document.getElementById("p_mail");
+      p_mail.textContent = "メールアドレス:" + obj.mail;
+    }
+  };
+  req.send(null);
+}
+
+function chgmail() {
+  var req = new XMLHttpRequest();
+  req.open("POST", "4g-021b.php");
+  req.withCredentials = true;
+  req.onreadystatechange = function() {
+    if (req.readyState == 4 && req.status == 200) {
+      var obj = JSON.parse(req.responseText);
+      var result = document.getElementById("result");
+      result.textContent = "アドレス変更: " + obj.result;
+      mailcheck();
+    }
+  };
++  var token = Cookies.get('CSRF_TOKEN');  // クッキーからトークンを取得
++  req.setRequestHeader('X-CSRF-Token', token);
+  var mail = document.getElementById('mail').value;
+  json = JSON.stringify({"mail": mail});
+  req.send(json);
+}
+</script>
+<input id="mail">
+<input type="button" value="メールアドレス変更" onclick="chgmail()">
+<p id="p_mail"></p>
+<p id="result"></p>
+<body>
+```
+
+##### 二重送信クッキーの問題点
+* cookieは第三者から強制される可能性がある
+
+主たる経路
+* クッキーモンスターバグ
+* 対象サイトおよび対象サイトのサブドメインにXSS脆弱性がある
+* 通信路上からHTTPで強制
+
+* この問題の緩和のためにも、トークンパラメータの送信にHTTPリクエストヘッダを使う方法を勧める
+  * クロスオリジン通信でカスタムリクエストヘッダを付与するためには、プリフライトリクエストで許可される必要がある
+  * API側のプリフライトリクエストの処理にバグがなければ、CSRF攻撃は成立しない
+
+##### カスタムリクエストヘッダによる対策
+* jQUeryの付与する`X-Requested-With`ヘッダをCSRF対策に利用する
+
+```diff
+<?php
+  session_start();
+  if (empty($_SESSION['mail'])) {
+    header('HTTP/1.1 403 Forbidden');
+    die('ログインが必要です');
+  }
++  if (empty($_SERVER['HTTP_X_REQUESTED_WITH'])
++     || $_SERVER['HTTP_X_REQUESTED_WITH'] !== 'XMLHttpRequest') {
+    header('HTTP/1.1 403 Forbidden');
+    // セキュリティ上の問題なのでログを生成する
+    error_log('** CSRF detected **');
+    die('正規の経路から使用ください');
+  }
+  $json = file_get_contents('php://input');
+  $array = json_decode($json, true);
+  // 更新処理
+  $_SESSION['mail'] = $array['mail'];
+  $result = array('result' => 'ok');
+  header('Content-Type: application/json; charset=UTF-8');
+  echo json_encode($result);
+
+```
+
+##### 結局どの方法を採用すればよいか
+
+CSRFトークン > 二重送信クッキー > HTTP リクエストヘッダ
+
+### JSONハイジャック
+
+#### 攻撃手法と影響
+
+すでにブラウザ側で対策がとられているサンプル
+
+```html
+<body onload="alert(x)">
+  罠サイト
+  <script>
+    var x="";
+    Object.prototype.__defineSetter__("mail", function(v) {
+      x += v + " ";
+    })
+  </script>
+  <script src="http://exmaple.jp/api/test.json"></script>
+</body>
+```
+
+
+#### 対策
+ブラウザの脆弱性と考えられるが、アプリケーション側でも対策することを勧める
+* `X-Content-Type-Options: nosniff`ヘッダの付与
+* リクエストヘッダ`X-Requested-With: XMLHttpRequest`の確認
+
+
+### JSONPの不適切な利用
+
+* JSONPはCORSのようなアクセス制御の仕組みがない
+  * 情報公開は、公開情報の提供にとどめるべき
+  * 秘密情報の提供は避けるべき
+
+### 信頼できないJSONP APIの使用
+
+* JSONPは異なるオリジンのAPIをscript要素で呼び出すため、API側に悪意があった場合にその悪意を緩和する手立てがない。
+* 仮に悪意があった場合、任意のJavaScriptwがアプリケーションのオリジンで実行されるため、XSSと同等のリスクとなる
+
+#### まとめ
+* JSONPはできるだけ使用せず、CORS＋JSONに移行する
+* JSONPは公開情報の提供のみに用いる
+* JSONPは信頼できる提供元のみを使用する
+
+### CORSの検証不備
 

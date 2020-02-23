@@ -82,7 +82,7 @@
     "redux-thunk": "^2.3.0",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.6.4",
+    "typescript": "^3.8.2",
     "vue": "^2.6.10",
     "vuex": "^3.1.1",
     "yarn": "^1.19.1"
