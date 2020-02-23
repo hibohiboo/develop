@@ -1287,4 +1287,132 @@ $result = password_verify($password, $hash);
   * `$2y$10`はストレッチングの回数に関係するパラメータ（10回というわけではない）
   * `aR/1Q...`がソルトとハッシュ値となる。
 
+### 自動ログイン
+従来、自動ログインはセキュリティの観点から「好ましくないもの」とされてきた。
+理由は、セッションの有効期間が非常に長くなるため、XSS攻撃など受動的攻撃の被害にあいやすくなるため。
+現在のWeb利用の状況ではサイトの性格によっては自動ログインを許容してもよいと考える。理由は以下。
+* Webの利用が浸透した結果、ログイン状態を継続することを前提としたサービスが増加した（例：Googleなど）
+* 頻繁にログイン・ログアウトが要求されると、利用者が単純な（安全性の低い）パスワードをつけがちで、かえって危険度が増す
+
+
+#### 危険な実装例
+* 以下のようにユーザ名と自動ログインを示すフラグのみをクッキーとして発行しているWebサイト
+  * user=yamadaをtanakaにするだけで、別人としてログインできてしまう
+```
+Set-Cookie: user=yamada; expires=Wed; 27-ct-2010 06:20:55 GMT
+Set-Cookie: autologin=true; expires=Wed; 27-ct-2010 06:20:55 GMT
+```
+
+* 改良として以下の実装もあるが、好ましくない
+  * 別人になりすますことはできない
+  * クッキーに秘密情報を保存していると、仮にこのサイトにXSS脆弱性があった場合、パスワードまで盗まれてしまい、被害を拡大する
+
+```diff
+Set-Cookie: user=yamada; expires=Wed; 27-ct-2010 06:20:55 GMT
++ Set-Cookie: password=5x23AwpL; expires=Wed; 27-ct-2010 06:20:55 GMT
+Set-Cookie: autologin=true; expires=Wed; 27-ct-2010 06:20:55 GMT
+```
+#### 自動ログインの安全な実装例
+* セッションの寿命を延ばす
+* トークンを使う
+* チケットを使う
+
+##### セッションの寿命を延ばす
+PHPの場合は以下で簡単に伸ばせる
+* `session_set_cookie_params`関数により、セッションIDを保持するクッキーのExpires属性を設定する
+* php.iniにて`session.gc_maxlifetime`設定を1週間などに伸ばす(デフォルトは24時間）
+
+ところが、この方法だと、ログイン状態を保持しないユーザについてもセッションタイムアウトが1週間に伸びる。
+自動ログインを使わないユーザまでもがXSSを受けやすくなる問題がある。
+対策として、セッションタイムアウトをアプリケーションで制御する方法がある。
+
+```php
+<?php
+  $autologin = (@$_GET['autologin'] === 'on');
+  $timeout = 30 * 60;
+  if ($autologin) {
+    $timeout = 7 * 24 * 60 * 60;
+    session_set_cookie_params($timeout);
+  }
+  session_start();
+  session_regenerate_id(true);
+  $_SESSION['id'] = 'yamada';   // ログイン機能がないので yamada で仮置き
+  $_SESSION['timeout'] = $timeout;
+  $_SESSION['expires'] = time() + $timeout;
+?>
+<body>
+login successful<a href="51-003.php">next</a>
+</body>
+```
+
+自動ログインの場合は以下を行う
+
+* セッションタイムアウトを1週間に伸ばす
+* セッションIDのクッキーのExpires属性を1週間後に設定
+
+自動ログインか否かに関わらず、以下を実行
+
+* セッションタイムアウト時間はセッション変数`$_SESSION['timeout']`に保持
+* セッションタイムアウト時刻はセッション変数`$_SESSION['expires']`に保持
+
+ログイン確認用のスクリプト
+
+```php
+<?php
+  session_start();
+  function islogin() {
+    if (! isset($_SESSION['id'])) {
+      return false; // ログインしていない
+    }
+    if ($_SESSION['expires'] < time()) {
+      session_destroy();
+      return false; // タイムアウトしている（ログアウトさせる）
+    }
+    $_SESSION['expires'] = time() + $_SESSION['timeout'];
+    return true; // ログイン中
+  }
+  if (islogin()) {
+    $id = $_SESSION['id'];
+  } else {
+    $id = '???';
+  }
+?>
+<body>
+<?php echo htmlspecialchars($id, ENT_NOQUOTES, 'UTF-8');  ?>
+<?php
+  var_dump($_SESSION['id']);
+  var_dump($_SESSION['timeout']);
+  var_dump($_SESSION['expires']);
+?>
+</body>
+
+```
+
+##### トークンによる自動ログイン
+◆ ログイン時にトークンを発行
+* クッキーにはExpires属性を設定して、暗号論的疑似乱数生成系で発生させたトークンを発行する。
+  * HttpOnly属性はかならずつける
+  * HTTPSの場合はセキュア属性をつける
+ユーザ事の認証状況は、下図のデータベースで管理する
+
+|トークン（ユニーク）|ユーザID｜有効期限|
+|:--|:--|:--|
+
+##### 認証チケットによる自動ログイン
+* 認証情報（ユーザ名・有効期限など）をサーバーの外に持ち出せるようにしたもの
+* 偽造防止のためのデジタル署名や、内容を参照できないような暗号化が施される
+* Windowsでも採用されているKerberos認証や、ASP.NETのフォーム認証などで採用されている
+* サーバwまたがって認証情報を共有できるメリットがある
+* 独自実装は避けるべき
+* サードパーティー性のシングルサインオン（SSO)製品を購入するか、OpenID Connectなどのオープンな認証基盤の利用を推奨
+
+##### 3方式の比較
+トークン方式がもっとも好ましい
+
+* 自動ログインを選択しない利用者に影響を与えない
+* 複数端末からログインしている場合に一斉にログアウトできる
+* 管理者が、特定利用者のログイン状態をキャンセルできる
+* クライアント側に秘密情報が渡らないので、解析されるリスクがない。
+
+
 
