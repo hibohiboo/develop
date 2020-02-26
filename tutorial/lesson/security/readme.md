@@ -1521,7 +1521,81 @@ login successful<a href="51-003.php">next</a>
 ntpプロトコルがよく使われる。
 
 
+## 文字コード
 
+### DBの文字コード
+* 尾骶骨テスト
+  * 「骶」(U+9AB6)は JIS X 0208には含まれないので、文字化けした場合、Shift_JISあるいはEUC-JPの部分がある疑いがある
+* つちよしテスト
+  * 𠮷田の「𠮷」（U+20BB7)はUTF-8の４バイトの文字であるので、これが文字化けした場合、３バイトまでしか使えないDBとなる。
+    * MySQLではutf8が３バイトまでの文字、utf8mb4が４バイトまでの文字となる。utf8mb4と指定すべき。
 
+### 文字コードの自動判別を避ける
 
+HTTPリクエストの文字エンコーディングを自動判定する機能がある言語がある。
+しかし、以下の理由で自動判別は避けるべき。
 
+* Shift_JISに含まれる文字だけが入力されるという想定のアプリケーションに、Unicode固有のU+00A5が混入し、エスケープ処理が終わった後でShift_JISに変換された際に、0x5C(バックスラッシュ)に変換されることで脆弱性の原因となる
+* 文字エンコーディングの自動判別は完全ではないので、判定間違いの結果、文字が化ける場合がある。
+
+### まとめ
+文字化けをなくすという当然のことから始めるとよい。
+
+* 不正な文字エンコーディングではエラーになるか、代替文字「�」(U+FFFD)に変換されること
+* 「表」や「ソ」、「能」などが正しく登録・表示されること
+* 「尾骶骨テスト」と「つちよしテスト」をクリアすること。
+
+対策のまとめ
+* アプリケーション全体を通して文字集合をUnicodeで統一する
+* 入力時に不正な文字エンコーディングをエラーにする
+* 処理の中で文字エンコーディングを正しく使う
+* 出力時に文字エンコーディングを正しく指定する
+
+## 脆弱性診断
+
+### インストール
+#### Nmap
+
+* ポートスキャン
+* OSや稼働ソフトの推測
+
+[Nmap公式](https://nmap.org/download.html)
+[chocolatey](https://chocolatey.org/packages/nmap)
+
+```powershell
+PS C:\WINDOWS\system32> cinst -y nmap
+Chocolatey v0.10.15
+Installing the following packages:
+nmap
+By installing you accept licenses for the packages.
+Progress: Downloading nmap 7.80... 100%
+
+nmap v7.80 [Approved]
+nmap package files install completed. Performing other installation steps.
+Installing nmap...
+nmap has been installed.
+nmap installed to 'C:\Program Files (x86)\Nmap'
+  nmap may be able to be automatically uninstalled.
+Environment Vars (like PATH) have changed. Close/reopen your shell to
+ see the changes (or in powershell/cmd.exe just type `refreshenv`).
+ The install of nmap was successful.
+  Software installed as 'exe', install location is likely default.
+
+Chocolatey installed 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+ ```
+
+#### OpenVAS
+
+* フリーの脆弱性診断ツール
+* 有償のNessusから分岐
+
+[OSSのシステム脆弱性スキャン・検査ツール「OpenVAS」「Vuls」「OpenSCAP」を使ってみよう](https://thinkit.co.jp/article/12948)
+[open vas 公式](https://www.openvas.org/)
+
+#### RIPS
+オープンソースで開発が進められていたPHP用のソースコード脆弱性診断
+フリー版は0.55で開発終了し、商用版のNext Generationとして開発が継続されている。
+オープンソース版はオブジェクト指向に対応していないなど機能がかなり限定される。
+
+[RIPS download](https://sourceforge.net/projects/rips-scanner/files/)
