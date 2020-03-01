@@ -50,7 +50,11 @@ title: "2020/03/3 LT"
 
 ---
 
-### markdown形式
+### HTML
+
+---
+
+### markdown形式も可
 
 ---
 
@@ -116,7 +120,15 @@ graph TB
 
 ---
 
-* VS Codeの拡張で簡単
+### HTML書くの面倒では？
+
+---
+
+### VS Codeの拡張で簡単
+
+---
+
+## vscode-reveal
 
 ---
 
@@ -125,6 +137,35 @@ graph TB
 * evilz.vscode-reveal
 ![](img/lt/2020-02-28-21-14-43.png)
 * サンプル見ればだいたい分かる {.fragment .fade-left}
+
+---
+
+## 使い方
+
+---
+
+### 作成時のプレビュー
+
+* まずは「hoge.md」ファイルを作成
+* 「ctrl」 + 「p」でコマンドパレットを開く
+
+![](img/lt/2020-03-01-22-59-05.png)
+
+---
+
+* 「>revealjs」と打ち込む
+* 「show presentation slide」を選択
+![](img/lt/2020-03-01-23-01-17.png)
+
+---
+
+![](img/lt/2020-03-01-23-03-23.png)
+
+---
+
+### 出力時
+* コマンドパレットで「>revealjs: Open presentation in browser」
+![](img/lt/2020-03-02-08-17-18.png)
 
 ---
 
@@ -145,69 +186,13 @@ graph TB
 
 ---
 
-## mermaid.js
-* markdownの中にUMLとかどうすか
-* <a href="#" onclick="document.getElementById('theme').setAttribute('href','libs/reveal.js/3.8.0/css/theme/white.css'); return false;">ちょっと見にくいですね</a> {.fragment .fade-left}
-
-<div class="mermaid">
-sequenceDiagram
-    participant Alice
-    participant Bob 
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br/>prevail!
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!
-</div> 
-
----
-
-## さっきのソース
-* markdown中にタグとか書いてます
-```html
-* markdownの中にUMLとかどうすか
-* <a href="#" onclick="document.getElementById('theme').setAttribute('href','libs/reveal.js/3.8.0/css/theme/white.css'); return false;">ちょっと見にくいですね</a> {.fragment .fade-left}
-
-<div class="mermaid">
-graph LR
-    ID1[ノード1] -- リンク --> ID2((ノード2))
-    ID3 --> ID2
-</div> 
-
-```
-## グラフとか
-* 
-<canvas data-chart="bar">
-<!-- 
-{
- "data": {
-  "labels": ["January"," February"," March"," April"," May"," June"," July"],
-  "datasets": [
-   {
-    "data":[65,59,80,81,56,55,40],
-    "label":"My first dataset","backgroundColor":"rgba(20,220,220,.8)"
-   },
-   {
-    "data":[28,48,40,19,86,27,90],
-    "label":"My second dataset","backgroundColor":"rgba(220,120,120,.8)"
-   }
-  ]
- }, 
- "options": { "responsive": "true" }
-}
--->
-</canvas>
-
----
-
 ## キーボードショートカットとか
-
+* 本流
 * 「shift」 + 「?」
 * フルスクリーン「f」
 * スピーカーノート 「s」
+
+---
 
 ## 参考
 [これからのプレゼン資料は reveal.js を使おう](https://qiita.com/Targityen/items/40ae4795e2cb77c1adc6)
@@ -222,6 +207,7 @@ graph LR
 [mermaid.jsのフローチャートの書き方](https://ryuta46.com/516)
 [総選挙](https://dic.nicovideo.jp/a/%E3%82%B7%E3%83%B3%E3%83%87%E3%83%AC%E3%83%A9%E3%82%AC%E3%83%BC%E3%83%AB%E7%B7%8F%E9%81%B8%E6%8C%99)
 [診断チャート](https://twitter.com/kyow_no/status/1121788776735367171)
+[コロナまとめ](https://toyokeizai.net/sp/visual/tko/covid19/)
 ---
 
 ## 使用画像
