@@ -201,6 +201,7 @@ graph TB
 [reveal.jsでスライド作り。](https://qiita.com/t-kusakabe/items/725e7438892bba395062)
 [【翻訳】reveal.js - README.md](https://qiita.com/takayu90/items/0af9bd125e6704803c0d)
 [VS Codeを極める！ MarkdownやGitにもオススメの拡張機能9選](https://ics.media/entry/18756/)
+[スライドはPowerPointだけじゃない。](http://www-toralab.ics.nitech.ac.jp/~konyu/c1.html)
 
 [mermaid](https://mermaid-js.github.io/mermaid/#/)
 [chart](https://github.com/rajgoel/reveal.js-plugins/tree/master/chart)
