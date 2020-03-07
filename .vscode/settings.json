@@ -38,5 +38,13 @@
   },
   "[elm]": {
     "editor.formatOnSave": false,
+  },
+  // stylelintに従う https://marketplace.visualstudio.com/items?itemName=hex-ci.stylelint-plus
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": false
   }
 }

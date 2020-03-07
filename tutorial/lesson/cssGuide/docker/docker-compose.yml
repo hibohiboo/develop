@@ -1,0 +1,25 @@
+version: "3"
+services:
+  storybook:
+    build: ./storybook
+    volumes:
+      - ../src:/app/src
+      - ../.stylelintrc:/app/.stylelintrc
+      - ../.browserslistrc.json:/app/.browserslistrc
+      - ../separate/dist:/app/separate/dist
+      - ../postcss.config.js:/app/postcss.config.js
+      - ../package.json:/app/package.json
+      - ../stories:/app/stories
+      - ../.storybook:/app/.storybook
+    ports:
+      - 6006:6006
+    env_file: .env
+    environment:
+      - NODE_ENV=develop
+      - SHELL=/bin/bash
+    command:
+      [
+        yarn,
+        run,
+        storybook
+      ]

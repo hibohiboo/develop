@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 6006 -c .storybook/default -s static",
+    "build": "build-storybook -c .storybook/default -s static -o public"
+  },
+  "keywords": [],
+  "author": "hibohiboo <hibohiboo66@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@storybook/cli": "^5.3.14",
+    "@babel/core": "^7.8.7",
+    "@storybook/html": "^5.3.14",
+    "babel-loader": "^8.0.6"
+  }
+}
