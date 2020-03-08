@@ -12,4 +12,6 @@ RUN npm i -D -y @storybook/html
 RUN npm i -D -y @babel/core babel-loader
 RUN npm i -D -y pug pug-plain-loader html-loader
 RUN npm i -D -y @pickra/copy-code-block
+RUN npm i -D -y css-loader style-loader
+RUN npm i -D -y raw-loader
 
