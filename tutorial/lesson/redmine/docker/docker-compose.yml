@@ -1,0 +1,52 @@
+version: '3.7'
+services:
+  redmine:
+    container_name: ${REDMINE:-redmine}
+    image: redmine:4-passenger
+    restart: always
+    ports:
+      - 3333:3000
+    depends_on:
+      - ${REDMINE_DB_MYSQL:-mysql}
+      - ${REDMINE_MEMCACHED:-memcached}
+    environment:
+      TZ: ${TZ}
+      REDMINE_DB_MYSQL: ${REDMINE_DB_MYSQL:-mysql}
+      REDMINE_DB_DATABASE: ${REDMINE_DB_DATABASE}
+      REDMINE_DB_USERNAME: ${REDMINE_DB_USERNAME}
+      REDMINE_DB_PASSWORD: ${REDMINE_DB_PASSWORD}
+      REDMINE_DB_ENCODING: ${REDMINE_DB_ENCODING:-utf8mb4}
+      VIRTUAL_HOST: ${VIRTUAL_HOST}
+      VIRTUAL_PORT: ${VIRTUAL_PORT:-3000}
+      LETSENCRYPT_HOST: ${VIRTUAL_HOST}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+    volumes:
+      - ${REDMINE_PATH:-.}/config/additional_environment.rb:/usr/src/redmine/config/additional_environment.rb
+      - ${REDMINE_PATH:-.}/config/configuration.yml:/usr/src/redmine/config/configuration.yml
+      - ${REDMINE_PATH:-.}/Gemfile.local:/usr/src/redmine/Gemfile.local
+      - ${REDMINE_PATH:-.}/files:/usr/src/redmine/files:z
+      - ${REDMINE_PATH:-.}/log:/usr/src/redmine/log:Z
+      - ${REDMINE_PATH:-.}/plugins:/usr/src/redmine/plugins
+      - ${REDMINE_PATH:-.}/public/themes:/usr/src/redmine/public/themes
+  mysql:
+    container_name: ${REDMINE_DB_MYSQL:-mysql}
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      TZ: ${TZ}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${REDMINE_DB_DATABASE}
+      MYSQL_USER: ${REDMINE_DB_USERNAME}
+      MYSQL_PASSWORD: ${REDMINE_DB_PASSWORD}
+    volumes:
+      - mysql:/var/lib/mysql
+  memcached:
+    container_name: ${REDMINE_MEMCACHED:-memcached}
+    image: memcached
+    restart: always
+volumes:
+  mysql:
+    name: ${REDMINE_DB_MYSQL:-mysql}
