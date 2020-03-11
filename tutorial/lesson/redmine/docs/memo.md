@@ -4,3 +4,7 @@
 ### .env
 
 [コマンドでの環境変数の受け渡し](https://qiita.com/reflet/items/2caf9dbf0e3f775276ec)
+
+## SMTP
+
+[DockerでPHP-alpineのメール配信テスト(SMTP/sendmail)環境を構築する](https://qiita.com/idani/items/e703b8810db219bd57fa)

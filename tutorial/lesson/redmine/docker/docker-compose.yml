@@ -47,6 +47,17 @@ services:
     container_name: ${REDMINE_MEMCACHED:-memcached}
     image: memcached
     restart: always
+
+
+  ### MailDev ##############################################
+  maildev:
+    container_name: maildev
+    image: djfarrelly/maildev
+    command: bin/maildev -w 80 -s 25 --incoming-user ${MAILDEV_SMTP_USER} --incoming-pass ${MAILDEV_SMTP_PASSWORD}
+    ports:
+      - "${MAILDEV_HTTP_PORT}:80"
+      - "${MAILDEV_SMTP_PORT}:25"
+
 volumes:
   mysql:
     name: ${REDMINE_DB_MYSQL:-mysql}
