@@ -1,0 +1,13 @@
+{
+  "input": {
+    "text": "よくできました"
+  },
+  "voice": {
+    "languageCode": "ja-JP",
+    "name": "ja-JP-Standard-A",
+    "ssmlGender": "FEMALE"
+  },
+  "audioConfig": {
+    "audioEncoding": "MP3"
+  }
+}
