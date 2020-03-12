@@ -15,3 +15,5 @@ RUN apk add bash
 COPY .bashrc /root/.bashrc
 RUN /usr/src/gcp/google-cloud-sdk/install.sh
 
+# jsonから値を取得するためのパッケージ
+RUN apk add jq
