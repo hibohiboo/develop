@@ -1,0 +1,12 @@
+version: '3'
+services:
+  now_deploy:
+    # Dockerfileビルド
+    build: ./now
+    # ディレクトリを共有する。
+    volumes:
+      # ビルドするソースファイル
+      - ../src:/app/src
+      # ビルドファイルの出力先
+      - ../dist:/app/build
+
