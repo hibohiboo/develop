@@ -1,6 +1,10 @@
 import Head from 'next/head'
+// React を読み込む
+import * as React from 'react'
+// NextPage を読み込む
+import { NextPage } from 'next'
 
-const Home = () => (
+const Home: NextPage = () => (
   <div className="container">
     <Head>
       <title>Create Next App</title>

@@ -16,3 +16,7 @@ COPY ./now /root/.local/share/now/
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev\": \"next dev\", /g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build\": \"next build\", /g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"next start\", /g" /app/package.json
+
+# TypeScript追加
+RUN yarn add -D typescript @types/react @types/react-dom @types/node
+
