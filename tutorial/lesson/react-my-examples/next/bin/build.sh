@@ -5,7 +5,7 @@ bin_dir=$(cd $(dirname $0) && pwd)
 parent_dir=$(cd $bin_dir/.. && pwd)
 docker_dir=$(cd $parent_dir/docker && pwd)
 dist_dir=$(cd $parent_dir/dist && pwd)
-container_name=${1:-now_deploy}
+container_name=${1:-zeit_now}
 
 cd $docker_dir && docker-compose run -e NODE_ENV=production $container_name /bin/bash -c  'yarn build --prod'
 
