@@ -7,4 +7,4 @@ docker stop $(docker ps -q)
 docker rm -f $(docker ps -aq)
 
 # コンテナから参照されていないボリュームの削除
-docker volume ls -q -f dangling=true | xargs docker volume rm 
+docker volume ls -q -f dangling=true | xargs docker volume rm

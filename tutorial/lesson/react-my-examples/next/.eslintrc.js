@@ -1,5 +1,10 @@
 module.exports = {
-  ignorePatterns: ['!next.config.js', '!.eslintrc.js', '!.babelrc.js', '!.storybook/**/*.(js|ts)'],
+  ignorePatterns: [
+    '!next.config.js',
+    '!.eslintrc.js',
+    '!.babelrc.js',
+    '!.storybook/**/*.(js|ts)'
+  ],
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -20,7 +25,7 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true
-    },
+    }
   },
   settings: {
     react: {
