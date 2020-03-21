@@ -30,3 +30,6 @@ yarn-error.log*
 .env.build
 
 .now
+
+# stroybook
+storybook-static

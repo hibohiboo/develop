@@ -73,6 +73,15 @@ Next.js のインストールまではできているので、続きから。
 
 ### Jest と React Testing Library を追加
 
+### story book を追加
+
+./bin/bash.sh でログインして以下。
+
+```bash
+npx -p @storybook/cli sb init --type react
+cp -r stories build/
+```
+
 ## 参考
 
 ### now
@@ -92,3 +101,8 @@ Next.js のインストールまではできているので、続きから。
 ### react
 
 [styled-components を使った CSS 設計](https://qiita.com/taneba/items/4547830b461d11a69a20)
+
+### pupeteer
+
+[](https://techracho.bpsinc.jp/ebi/2019_12_11/76458)
+[Docker + docker-compose + puppeteer でスクレイピングしてみた](https://qiita.com/takayuki-miura0203/items/4fa4cdc9ef0c07a857a9)

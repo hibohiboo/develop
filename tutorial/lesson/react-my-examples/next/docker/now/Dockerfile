@@ -43,3 +43,19 @@ RUN npm i -D jest jest-dom jest-css-modules
 RUN npm i -D ts-jest @types/jest
 RUN npm i -D @testing-library/react
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tests\": \"jest src\/__tests__\/.*\/*.spec.tsx?$\", /g" /app/package.json
+
+# Story Book
+RUN npx -p @storybook/cli sb init --type react
+RUN npm i -D babel-preset-react-app
+RUN npm i -D @storybook/addon-knobs @storybook/addon-storysource @storybook/addon-viewport @storybook/addon-backgrounds @storybook/addon-console
+## Story Shot
+RUN npm i -D @storybook/addon-storyshots @storybook/addon-storyshots-puppeteer puppeteer react-test-renderer
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"puppeteer-storyshots\": \"jest src\/__tests__\/puppeteer-storyshots*.runner.ts\", /g" /app/package.json
+
+### puppetieer troubleshooting
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+  && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
+  && apt-get update \
+  && apt-get install -y google-chrome-unstable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst ttf-freefont \
+  --no-install-recommends \
+  && rm -rf /var/lib/apt/lists/*
