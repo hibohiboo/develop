@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-
+import { ServerStyleSheet } from 'styled-components'
 interface CustomDocumentInterface {
   url: string
   title: string
@@ -11,6 +11,32 @@ class CustomDocument extends Document implements CustomDocumentInterface {
   title = 'Demo Next.js'
   description = 'Demo of Next.js'
 
+  // SSR 時に styled-components で追加したスタイルが適応されない問題の対応
+  static async getInitialProps(ctx): Promise<any> {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = (): any =>
+        originalRenderPage({
+          enhanceApp: (App) => (props): void =>
+            sheet.collectStyles(<App {...props} />)
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        )
+      }
+    } finally {
+      sheet.seal()
+    }
+  }
   render(): JSX.Element {
     return (
       <Html lang="ja-JP">

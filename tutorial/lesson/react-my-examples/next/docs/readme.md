@@ -29,6 +29,7 @@ Next.jsのインストールまではできているので、続きから。
 * フレームワーク： Next.js v9.3.1 (React v16.13.1)
 * 静的型付け： TypeScript v3.8.3
 * PWA： next-offline v5.0.0
+* スタイリング： styled-components v5.0.1 + styled-media-query v2.1.2
 * 状態管理： Redux Toolkit v1.2.5
 * ルール＆整形： EditorConfig + ESLint v6.8.0 + Prettier v1.19.1
 * テスト： Jest v25.1.0 + React Testing Library v9.4.1
@@ -46,6 +47,12 @@ Next.jsのインストールまではできているので、続きから。
   * アプリ名
   * 作者
   * アイコン
+
+[この時点のソース](https://github.com/hibohiboo/develop/tree/db933aaf900b43049da8dee38cd812b2a353c8e6/tutorial/lesson/react-my-examples/next/)
+
+### styled components を追加
+* Next.js には初期設定で styled-jsx が含まれる
+* styled-components の方が人気があるのでそちらを使用
 
 
 ## 参考

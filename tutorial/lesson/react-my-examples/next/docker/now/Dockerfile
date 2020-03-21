@@ -14,9 +14,9 @@ RUN npm i next react react-dom
 
 # now loginで出来た認証トークンを保存.一度コンテナを作成した後に追加。
 COPY ./now /root/.local/share/now/
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev\": \"node server.js\", /g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"dev\": \"next dev\", /g" /app/package.json
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"build\": \"next build\", /g" /app/package.json
-RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"NODE_ENV=production node server.js\", /g" /app/package.json
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"next start\", /g" /app/package.json
 
 # TypeScript追加
 RUN npm i -D typescript @types/react @types/react-dom @types/node
@@ -24,6 +24,8 @@ RUN npm i -D typescript @types/react @types/react-dom @types/node
 # resetcss
 RUN npm i -D sanitize.css
 
-# Progressive Web Apps 対応
+# Progressive Web Apps (PWA) 対応
 RUN npm i -D next-offline
 
+# スタイリング
+RUN npm i -D styled-components styled-media-query

@@ -1,16 +1,18 @@
 import * as React from 'react'
 import App, { AppProps } from 'next/app'
-// 全体に適応する外部 CSS を読み込む
+import { ThemeProvider } from 'styled-components'
 import 'sanitize.css'
+
+const theme = {}
 
 class MyApp extends App {
   render(): JSX.Element {
     const { Component, pageProps }: AppProps = this.props
 
     return (
-      <React.Fragment>
+      <ThemeProvider theme={theme}>
         <Component {...pageProps} />
-      </React.Fragment>
+      </ThemeProvider>
     )
   }
 }
