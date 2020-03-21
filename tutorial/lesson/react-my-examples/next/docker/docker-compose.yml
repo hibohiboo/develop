@@ -12,6 +12,11 @@ services:
       - ../next.config.js:/app/next.config.js
       - ../.nowignore:/app/.nowignore
       - ../tsconfig.json:/app/tsconfig.json
+      - ../.eslintrc.js:/app/.eslintrc.js
+      - ../.gitignore:/app/.gitignore
+      - ../.babelrc.js:/app/.babelrc.js
+      - ../.prettierrc.js:/app/.prettierrc.js
+
 
     ports:
       - 3000:3000 # ホスト:コンテナでポート指定
@@ -20,4 +25,3 @@ services:
     working_dir:
         /app
     command: [now, dev]
-    

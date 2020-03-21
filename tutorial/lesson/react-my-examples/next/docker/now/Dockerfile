@@ -32,3 +32,9 @@ RUN npm i -D styled-components styled-media-query
 
 # 状態管理
 RUN npm i -D @reduxjs/toolkit react-redux redux-logger
+
+# linter formatter
+RUN npm i -D eslint eslint-plugin-react prettier eslint-config-prettier eslint-plugin-prettier
+RUN npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"lint\": \"eslint --ext .ts,.tsx --ignore-path .gitignore .\", /g" /app/package.json
+

@@ -57,7 +57,9 @@ Next.jsのインストールまではできているので、続きから。
 [この時点のソース](https://github.com/hibohiboo/develop/tree/bd6587bff1a6eb19e2a1370955de6bc66dcf5438/tutorial/lesson/react-my-examples/next/)
 
 ### Redux Toolkit
+[この時点のソース](https://github.com/hibohiboo/develop/tree/66e005ff8d9a3de36649f541ccd007c59bc5bce3/tutorial/lesson/react-my-examples/next/)
 
+### EditorConfig と ESLint と Prettier を追加
 
 ## 参考
 ### now
