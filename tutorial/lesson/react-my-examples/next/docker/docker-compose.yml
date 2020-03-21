@@ -8,9 +8,10 @@ services:
       - ../src:/app/src
       - ../public:/app/public
       - ../dist:/app/build
-      - ../next.config.js:/app/next.config.js
       - ../.now:/app/.now
+      - ../next.config.js:/app/next.config.js
       - ../.nowignore:/app/.nowignore
+      - ../tsconfig.json:/app/tsconfig.json
 
     ports:
       - 3000:3000 # ホスト:コンテナでポート指定

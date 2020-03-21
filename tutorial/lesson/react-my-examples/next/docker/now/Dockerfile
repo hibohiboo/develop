@@ -29,3 +29,6 @@ RUN npm i -D next-offline
 
 # スタイリング
 RUN npm i -D styled-components styled-media-query
+
+# 状態管理
+RUN npm i -D @reduxjs/toolkit react-redux redux-logger

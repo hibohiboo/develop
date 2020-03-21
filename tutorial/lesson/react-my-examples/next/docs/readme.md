@@ -54,6 +54,10 @@ Next.jsのインストールまではできているので、続きから。
 * Next.js には初期設定で styled-jsx が含まれる
 * styled-components の方が人気があるのでそちらを使用
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/bd6587bff1a6eb19e2a1370955de6bc66dcf5438/tutorial/lesson/react-my-examples/next/)
+
+### Redux Toolkit
+
 
 ## 参考
 ### now
