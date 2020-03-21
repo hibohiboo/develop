@@ -71,6 +71,8 @@ Next.js のインストールまではできているので、続きから。
 
 [この時点のソース](https://github.com/hibohiboo/develop/tree/84d37ee5bb84deb17ee299b45dc0f6d79cd17a27/tutorial/lesson/react-my-examples/next/)
 
+### Jest と React Testing Library を追加
+
 ## 参考
 
 ### now

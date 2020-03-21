@@ -38,3 +38,8 @@ RUN npm i -D eslint eslint-plugin-react prettier eslint-config-prettier eslint-p
 RUN npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
 RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"lint\": \"eslint --ext .ts,.tsx --ignore-path .gitignore .\", /g" /app/package.json
 
+# テストツール
+RUN npm i -D jest jest-dom jest-css-modules
+RUN npm i -D ts-jest @types/jest
+RUN npm i -D @testing-library/react
+RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"tests\": \"jest src\/__tests__\/.*\/*.spec.tsx?$\", /g" /app/package.json
