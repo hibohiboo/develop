@@ -6,6 +6,7 @@ FROM node:13.10.1
 WORKDIR /app
 
 # 後で確認出来るようにpackage.jsonを作成
+COPY .npmrc /app/.npmrc
 RUN npm init -y
 RUN npm i -g now
 
@@ -20,3 +21,5 @@ RUN sed -i -e "s/\(\"scripts\": {\)/\1\n    \"start\": \"next start\", /g" /app/
 # TypeScript追加
 RUN yarn add -D typescript @types/react @types/react-dom @types/node
 
+# resetcss
+RUN yarn add -D sanitize.css

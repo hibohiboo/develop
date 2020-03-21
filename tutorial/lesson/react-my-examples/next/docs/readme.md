@@ -35,6 +35,8 @@ Next.jsのインストールまではできているので、続きから。
 * コンポーネントカタログ: Stroybook v5.3.14 (StoryShots を含む)
 
 #### TypeScript
+* とりあえず追加時まで
+[この時点のソース](https://github.com/hibohiboo/develop/tree/894afc97b8b27e1a24f9e561146438278956ce39/tutorial/lesson/react-my-examples/next/)
 
 
 ## 参考
