@@ -82,6 +82,9 @@ npx -p @storybook/cli sb init --type react
 cp -r stories build/
 ```
 
+[この時点のソース](https://github.com/hibohiboo/develop/tree/107f07572c1d04c5ff5e2238419b6b4ce7171a9e/tutorial/lesson/react-my-examples/next/)
+※ snapshot.sh は動かない。（http://localhostに繋がらないエラーが出る） （そもそも localhost に storybook を立てているときに動かすもよう https://www.npmjs.com/package/@storybook/addon-storyshots-puppeteer）
+
 ## 参考
 
 ### now
