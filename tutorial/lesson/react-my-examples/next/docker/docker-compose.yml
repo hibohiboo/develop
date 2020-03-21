@@ -6,9 +6,11 @@ services:
     # ディレクトリを共有する。
     volumes:
       - ../src:/app/src
+      - ../public:/app/public
       - ../dist:/app/build
       - ../next.config.js:/app/next.config.js
       - ../.now:/app/.now
+      - ../.nowignore:/app/.nowignore
 
     ports:
       - 3000:3000 # ホスト:コンテナでポート指定

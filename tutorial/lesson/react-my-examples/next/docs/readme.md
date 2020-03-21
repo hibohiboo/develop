@@ -38,6 +38,15 @@ Next.jsのインストールまではできているので、続きから。
 * とりあえず追加時まで
 [この時点のソース](https://github.com/hibohiboo/develop/tree/894afc97b8b27e1a24f9e561146438278956ce39/tutorial/lesson/react-my-examples/next/)
 
+#### Next.js の App と Document のコンポーネントをオーバーライド
+[この時点のソース](https://github.com/hibohiboo/develop/tree/339f325f65d4403882c5d20dfeea681d60e4bd42/tutorial/lesson/react-my-examples/next/)
+
+####  PWA に対応
+* [manifest.jsonジェネレータで作成](https://app-manifest.firebaseapp.com/)
+  * アプリ名
+  * 作者
+  * アイコン
+
 
 ## 参考
 ### now
@@ -50,3 +59,6 @@ Next.jsのインストールまではできているので、続きから。
 [2020年初頭における Next.js をベースとしたフロントエンドの環境構築][*1]
 
 [*1]:https://qiita.com/syuji-higa/items/931e44046c17f53b432b
+
+### react
+[styled-componentsを使ったCSS設計](https://qiita.com/taneba/items/4547830b461d11a69a20)

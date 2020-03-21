@@ -17,6 +17,7 @@ class CustomDocument extends Document implements CustomDocumentInterface {
         <Head>
           <meta name="description" content={this.description} />
           <meta name="theme-color" content="#333" />
+          {/* Open Graph Protcol対応 */}
           <meta property="og:type" content="website" />
           <meta property="og:title" content={this.title} />
           <meta property="og:url" content={this.url} />
@@ -24,12 +25,15 @@ class CustomDocument extends Document implements CustomDocumentInterface {
           <meta property="og:site_name" content={this.title} />
           {/* <meta property="og:image" content={`${this.url}/ogp.png`} /> */}
           <meta name="format-detection" content="telephone=no" />
+          {/* Twitter Card対応 */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={this.title} />
           {/* <meta name="twitter:description" content={this.description} /> */}
           {/* <meta name="twitter:image" content={`${this.url}/ogp.png`}></meta> */}
           <link rel="icon" href="/favicon.ico" />
           {/* <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
+          {/* PWA対応 */}
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
           <Main />
