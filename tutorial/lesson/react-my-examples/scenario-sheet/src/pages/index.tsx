@@ -1,47 +1,36 @@
 import Head from 'next/head'
 import * as React from 'react'
 import { NextPage } from 'next'
-import { Stage, Layer, Rect, Text } from 'react-konva'
-import Konva from 'konva'
-
-const ColoredRect = () => {
-  const state = {
-    color: 'green'
-  }
-  const handleClick = () => {
-    state.color = Konva.Util.getRandomColor()
-  }
-  return <Rect x={20} y={20} width={50} height={50} fill={state.color} />
-}
+import ImageArea from './ImageArea'
+import InputArea from './InputArea'
 
 const Home: NextPage = () => {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>Create Scenario Image</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className="title">
-          ようこそ <a href="https://nextjs.org">Next.js</a>
-        </h1>
-
-        <Stage width={800} height={600}>
-          <Layer>
-            <Text text="Try click on rect" />
-            <ColoredRect />
-          </Layer>
-        </Stage>
+        <InputArea />
+        <ImageArea />
+        <a
+          href="https://twitter.com/hibimarie/status/1236259700192079873?ref_src=twsrc%5Etfw"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          参考： @hibimarie様「それっぽくなるトレーラー画像の話」
+        </a>
       </main>
 
       <footer>
         <a
-          href="https://zeit.co?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://twitter.com/hibohiboo"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by <img src="/zeit.svg" alt="ZEIT Logo" />
+          Presented by hibohiboo
         </a>
       </footer>
 

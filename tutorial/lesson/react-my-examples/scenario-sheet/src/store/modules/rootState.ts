@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit'
-import sampleModule, { SampleState } from './sampleModule'
+import scenarioModule, { Scenario } from './scenarioModule'
 
 export interface RootState {
-  sample: SampleState
+  scenario: Scenario
 }
 
 export const rootReducer = combineReducers({
-  sample: sampleModule.reducer
+  scenario: scenarioModule.reducer
 })
