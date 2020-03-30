@@ -3,6 +3,7 @@ import * as React from 'react'
 import { NextPage } from 'next'
 import ImageArea from './ImageArea'
 import InputArea from './InputArea'
+import PdfArea from './PdfArea'
 
 const Home: NextPage = () => {
   return (
@@ -15,6 +16,7 @@ const Home: NextPage = () => {
       <main>
         <InputArea />
         <ImageArea />
+        <PdfArea />
         <a
           href="https://twitter.com/hibimarie/status/1236259700192079873?ref_src=twsrc%5Etfw"
           target="_blank"

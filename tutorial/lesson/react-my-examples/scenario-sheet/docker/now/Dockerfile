@@ -62,3 +62,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 
 ## canvas library
 RUN npm install react-konva konva --save
+
+## pdf
+
+RUN npm install pdfmake
