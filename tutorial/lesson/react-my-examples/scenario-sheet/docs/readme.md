@@ -1,3 +1,5 @@
+[PDF DL 時点のソース](https://github.com/hibohiboo/develop/tree/23ec69ae4d1b4bdc3130e2d0ea5658df0740fed8/tutorial/lesson/react-my-examples/scenario-sheet/)
+
 ## 参考
 
 [トレーラー画像 - hibi（げんこう） (@hibimarie)](https://twitter.com/hibimarie/status/1236259700192079873?ref_src=twsrc%5Etfw)
@@ -17,3 +19,5 @@
 [IPAex フォント ダウンロードページ](https://ipafont.ipa.go.jp/old/ipaexfont/download.html)
 [next.js - api](https://nextjs.org/docs/basic-features/typescript#api-routes)
 [クライアントサイドだけで日本語 PDF を出力](https://qiita.com/yazashin/items/125aab246b871345f024)
+[fetch api](https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch)
+[styling](https://pdfmake.github.io/docs/document-definition-object/styling/)

@@ -1,15 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import path from 'path'
 import * as PdfPrinter from 'pdfmake'
+import { Scenario } from '../../store/modules/scenarioModule'
 
 type Data = {
   name: string
 }
 function createPdfBinary(pdfDoc, callback) {
   const gPath = path.join('src', 'pages', 'api', 'fonts', 'ipaexg.ttf')
+  const mPath = path.join('src', 'pages', 'api', 'fonts', 'ipaexm.ttf')
   const fontDescriptors = {
-    Serif: {
-      normal: path.join(__dirname, '/fonts/ipaexm.ttf')
+    IPASerif: {
+      normal: mPath,
+      bold: mPath,
+      italics: mPath,
+      bolditalics: mPath
     },
     IPAGothic: {
       normal: gPath,
@@ -34,11 +39,34 @@ function createPdfBinary(pdfDoc, callback) {
 }
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
+  const scenario: Scenario = req.body
+  console.log(scenario)
   // res.status(200).json({ name: 'John Doe' })
   const docDefinition = {
-    content: 'This is an sample PDF printed with pdfMake 日本語 てすと',
+    content: [
+      { text: scenario.copy1, margin: [0, 25, 0, 5] },
+      { text: scenario.copy2 },
+      {
+        // you can also fit the svg inside a rectangle
+        svg:
+          '<svg width="1000" height="50" viewBox="0 0 1000 50"><line x1="0" y1="25" x2="1000" y2="25" /></svg>'
+      },
+      { text: scenario.title, fontSize: 55, font: 'IPASerif' },
+      {
+        text: '.' + scenario.titleRuby,
+        fontSize: 24,
+        alignment: 'left',
+        font: 'IPASerif'
+      },
+      { text: scenario.subTitle, fontSize: 20, font: 'IPASerif' },
+      {
+        text: `PC人数:${scenario.pcNumber}    リミット: ${scenario.limit}    ${scenario.type}`,
+        margin: [0, 50, 0, 0]
+      }
+    ],
     defaultStyle: {
-      font: 'IPAGothic'
+      font: 'IPAGothic',
+      alignment: 'center'
     }
   }
   createPdfBinary(docDefinition, (binary) => {
