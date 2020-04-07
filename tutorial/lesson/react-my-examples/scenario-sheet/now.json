@@ -1,19 +1,21 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "^/service-worker.js$",
-      "dest": "/_next/static/service-worker.js",
-      "headers": {
-        "cache-control": "public, max-age=43200, immutable",
-        "Service-Worker-Allowed": "/"
-      }
-    }
-  ],
   "builds": [
     {
       "src": "next.config.js",
       "use": "@now/next"
+    },
+    {
+      "src": "src/pages/api/pdf.ts",
+      "use": "@now/node",
+      "config": {
+        "includeFiles": ["fonts/**"]
+      }
     }
-  ]
+  ],
+  "functions": {
+    "src/pages/api/pdf.ts": {
+      "includeFiles": "fonts/**"
+    }
+  }
 }

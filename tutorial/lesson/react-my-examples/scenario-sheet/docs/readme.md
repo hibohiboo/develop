@@ -21,3 +21,8 @@
 [クライアントサイドだけで日本語 PDF を出力](https://qiita.com/yazashin/items/125aab246b871345f024)
 [fetch api](https://developer.mozilla.org/ja/docs/Web/API/Fetch_API/Using_Fetch)
 [styling](https://pdfmake.github.io/docs/document-definition-object/styling/)
+
+### zeit now
+
+[Zeit Now の具体的な Tips 集](https://qiita.com/mt0m/items/3e58d6185a5335729ccc)
+[09-include-files](https://github.com/zeit/now/tree/b69f1761439b92e058aa7b9c30be0475073bcf38/packages/now-node/test/fixtures/09-include-files)

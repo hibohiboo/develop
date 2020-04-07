@@ -1,14 +1,37 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import path from 'path'
 import * as PdfPrinter from 'pdfmake'
-import { Scenario } from '../../store/modules/scenarioModule'
+import { lstatSync, existsSync, readdirSync } from 'fs'
+import { join } from 'path'
 
-type Data = {
-  name: string
+const exists = (path: string) => existsSync(path)
+const isDotFile = (name: string) => name.startsWith('.')
+const isDirectory = (path: string) => lstatSync(path).isDirectory()
+
+function summary(source: string) {
+  if (!exists(source) || !isDirectory(source)) {
+    return []
+  }
+
+  return readdirSync(source)
+    .filter((name) => !isDotFile(name))
+    .filter((name) => isDirectory(join(source, name)))
 }
+
 function createPdfBinary(pdfDoc, callback) {
-  const gPath = path.join('src', 'pages', 'api', 'fonts', 'ipaexg.ttf')
-  const mPath = path.join('src', 'pages', 'api', 'fonts', 'ipaexm.ttf')
+  console.log('/usr/src', summary('/usr/src'))
+  console.log('/var', summary('/var'))
+  console.log('/', summary('/'))
+  console.log('/var/task', summary('/var/task'))
+  console.log(__dirname, summary(__dirname))
+  console.log('.', summary('.'))
+
+  let baseDir = 'fonts/'
+  if (process.env.NODE_ENV === 'development') {
+    baseDir = 'fonts/'
+  }
+  const gPath = path.resolve(baseDir + 'ipaexg.ttf')
+  const mPath = path.resolve(baseDir + 'ipaexm.ttf')
   const fontDescriptors = {
     IPASerif: {
       normal: mPath,
@@ -39,8 +62,8 @@ function createPdfBinary(pdfDoc, callback) {
 }
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  const scenario: Scenario = req.body
-  console.log(scenario)
+  const scenario = req.body
+  // console.log(scenario)
   // res.status(200).json({ name: 'John Doe' })
   const docDefinition = {
     content: [

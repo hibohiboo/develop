@@ -1,6 +1,6 @@
 # docker-hubからnode入りコンテナを取得
 # https://hub.docker.com/_/node/
-FROM node:13.10.1
+FROM node:13.12.0
 
 # コンテナ上の作業ディレクトリ作成
 WORKDIR /app
@@ -66,3 +66,12 @@ RUN npm install react-konva konva --save
 ## pdf
 
 RUN npm install pdfmake
+
+# Node13.12.0、 Now CLI 17.1.1 dev (beta)にアップデートしたら、Watchpack Error (watcher): Error: ENOSPC: System limit for number of file watchers reached, watch '/app/src' が出るようになったため対応
+# https://qiita.com/yoshi0518/items/3fe5e162df6c5bd0fe6b
+# https://qiita.com/enta0701/items/bc9f8f8c780222979784
+# ホストと共有しているようなので、以下をホストで実行
+# sudo vi /etc/sysctl.conf
+## fs.inotify.max_user_watches= 65536 を末尾に追記
+# sudo sysctl -p
+# cat /proc/sys/fs/inotify/max_user_watches で変更を確認
