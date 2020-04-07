@@ -1,22 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import path from 'path'
 import PdfPrinter from 'pdfmake'
-import { lstatSync, existsSync, readdirSync } from 'fs'
-import { join } from 'path'
-
-const exists = (path: string) => existsSync(path)
-const isDotFile = (name: string) => name.startsWith('.')
-const isDirectory = (path: string) => lstatSync(path).isDirectory()
-
-function summary(source: string) {
-  if (!exists(source) || !isDirectory(source)) {
-    return []
-  }
-
-  return readdirSync(source)
-    .filter((name) => !isDotFile(name))
-    .filter((name) => isDirectory(join(source, name)))
-}
+import { Scenario } from '../src/store/modules/scenarioModule'
 
 function createPdfBinary(pdfDoc, callback) {
   let baseDir = 'fonts/'
@@ -55,7 +40,7 @@ function createPdfBinary(pdfDoc, callback) {
 }
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
-  const scenario = req.body
+  const scenario: Scenario = req.body
   // console.log(scenario)
   // res.status(200).json({ name: 'John Doe' })
   const docDefinition = {

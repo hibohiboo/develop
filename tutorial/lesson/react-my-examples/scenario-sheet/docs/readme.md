@@ -1,4 +1,6 @@
-[PDF DL 時点のソース](https://github.com/hibohiboo/develop/tree/23ec69ae4d1b4bdc3130e2d0ea5658df0740fed8/tutorial/lesson/react-my-examples/scenario-sheet/)
+[PDF DL 開発環境時点のソース](https://github.com/hibohiboo/develop/tree/23ec69ae4d1b4bdc3130e2d0ea5658df0740fed8/tutorial/lesson/react-my-examples/scenario-sheet/)
+
+[PDF DL 動作確認時のソース](https://github.com/hibohiboo/develop/tree/c670289100bb719d282b893a6d8d0bf9f8bc604e/tutorial/lesson/react-my-examples/scenario-sheet/)
 
 ## 参考
 
