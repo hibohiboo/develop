@@ -4,10 +4,7 @@ import PdfPrinter from 'pdfmake'
 import { Scenario } from '../src/store/modules/scenarioModule'
 
 function createPdfBinary(pdfDoc, callback) {
-  let baseDir = 'fonts/'
-  if (process.env.NODE_ENV === 'development') {
-    baseDir = 'fonts/'
-  }
+  const baseDir = 'fonts/'
   const gPath = path.resolve(baseDir + 'ipaexg.ttf')
   const mPath = path.resolve(baseDir + 'ipaexm.ttf')
   const fontDescriptors = {
@@ -41,14 +38,11 @@ function createPdfBinary(pdfDoc, callback) {
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const scenario: Scenario = req.body
-  // console.log(scenario)
-  // res.status(200).json({ name: 'John Doe' })
   const docDefinition = {
     content: [
       { text: scenario.copy1, margin: [0, 25, 0, 5] },
       { text: scenario.copy2 },
       {
-        // you can also fit the svg inside a rectangle
         svg:
           '<svg width="1000" height="50" viewBox="0 0 1000 50"><line x1="0" y1="25" x2="1000" y2="25" /></svg>'
       },
