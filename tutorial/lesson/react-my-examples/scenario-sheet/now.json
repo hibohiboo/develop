@@ -1,20 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "next.config.js",
-      "use": "@now/next"
-    },
-    {
-      "src": "src/pages/api/pdf.ts",
-      "use": "@now/node",
-      "config": {
-        "includeFiles": ["fonts/**"]
-      }
-    }
-  ],
   "functions": {
-    "src/pages/api/pdf.ts": {
+    "api/pdf.ts": {
       "includeFiles": "fonts/**"
     }
   }

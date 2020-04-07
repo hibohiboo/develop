@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import path from 'path'
-import * as PdfPrinter from 'pdfmake'
+import PdfPrinter from 'pdfmake'
 import { lstatSync, existsSync, readdirSync } from 'fs'
 import { join } from 'path'
 
@@ -19,13 +19,6 @@ function summary(source: string) {
 }
 
 function createPdfBinary(pdfDoc, callback) {
-  console.log('/usr/src', summary('/usr/src'))
-  console.log('/var', summary('/var'))
-  console.log('/', summary('/'))
-  console.log('/var/task', summary('/var/task'))
-  console.log(__dirname, summary(__dirname))
-  console.log('.', summary('.'))
-
   let baseDir = 'fonts/'
   if (process.env.NODE_ENV === 'development') {
     baseDir = 'fonts/'
