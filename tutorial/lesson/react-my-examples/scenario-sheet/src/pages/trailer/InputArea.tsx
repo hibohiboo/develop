@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import scenarioModule, {
   useScenario,
   Scenario
-} from '../store/modules/scenarioModule'
+} from '../../store/modules/scenarioModule'
 
 const InputField: React.FC<{
   scenario: Scenario

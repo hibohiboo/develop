@@ -1,5 +1,5 @@
 import React from 'react'
-import { useScenario } from '../store/modules/scenarioModule'
+import { useScenario } from '../../store/modules/scenarioModule'
 import { Stage, Layer, Rect, Text, Line } from 'react-konva'
 
 const ImageArea: React.FC = () => {

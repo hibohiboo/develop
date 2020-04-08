@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import scenarioModule, {
   useScenario,
   usePdf
-} from '../store/modules/scenarioModule'
+} from '../../store/modules/scenarioModule'
 
 const makePdf = async (scenario, dispatch) => {
   const pdf = await (
