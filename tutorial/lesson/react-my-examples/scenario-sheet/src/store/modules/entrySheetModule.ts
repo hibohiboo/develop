@@ -4,9 +4,11 @@ import { useSelector } from 'react-redux'
 const initEntrySheet = {
   system: 'LOSTRPG ～廃墟の森の子供たち～',
   title: '廃ビル断崖の冒険',
+  gmName: 'ジョンドゥー',
   theme1: '廃墟',
   theme2: '友情',
   theme3: 'スリル',
+  isExtend: 2, // 1:延長あり 2:なし
   pcNumberMin: 2,
   pcNumberBest: 4,
   pcNumberMax: 5,
@@ -14,8 +16,8 @@ const initEntrySheet = {
   role: 3, // 1: 必須、2:必須ではないが重視, 3: あると嬉しい, 4: 不要
   diceFace: 6,
   diceNumber: 2,
-  requiredRule: false,
-  other: '',
+  requiredRule: 1, // 1: 必須 2: 不要
+  requiredOther: 'スマホでルルブが見れます',
   charMake: 1, // 1: サンプルキャラあり、2:持ちみ可
   charOther: '', // 備考
   trpgBeginer: 4, // TRPG初心者x人まで
@@ -23,7 +25,7 @@ const initEntrySheet = {
   ruleBook: 4,
   summary: 4,
   equipOther: '', // 準備その他
-  free: '' // 自由記入欄
+  free: '', // 自由記入欄
 }
 export type EntrySheet = typeof initEntrySheet
 const init = { entrySheet: initEntrySheet, pdfBase64: '' }
@@ -39,8 +41,8 @@ const entrySheetModule = createSlice({
     },
     setPdf: (state, action: PayloadAction<string>) => {
       state.pdfBase64 = action.payload
-    }
-  }
+    },
+  },
 })
 
 export const useEntrySheet = () => {
