@@ -67,7 +67,7 @@ const InputArea: React.FC = () => {
     return <div>読込失敗</div>
   }
   return (
-    <div style={{ maxWidth: '800px' }}>
+    <div style={{ maxWidth: '800px', minWidth: '200px' }}>
       <InputField
         entrySheet={entrySheet}
         type="text"

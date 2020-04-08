@@ -14,8 +14,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <InputArea />
-        <ImageArea />
+        <div style={{ display: 'flex' }}>
+          <InputArea />
+          <ImageArea />
+        </div>
         <PdfArea />
         <a
           href="https://twitter.com/hibimarie/status/1236259700192079873?ref_src=twsrc%5Etfw"
