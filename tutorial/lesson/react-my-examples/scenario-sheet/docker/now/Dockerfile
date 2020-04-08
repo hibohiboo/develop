@@ -75,3 +75,5 @@ RUN npm install pdfmake
 ## fs.inotify.max_user_watches= 65536 を末尾に追記
 # sudo sysctl -p
 # cat /proc/sys/fs/inotify/max_user_watches で変更を確認
+
+RUN npm install @material-ui/core
