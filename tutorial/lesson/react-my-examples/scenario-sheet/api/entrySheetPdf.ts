@@ -2,6 +2,19 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { EntrySheet } from '../src/store/modules/entrySheetModule'
 import { createPdfBinary } from './utils/pdf'
 
+const rank = (r: 1 | 2 | 3 | 4) => {
+  switch (r) {
+    case 1:
+      return '■必須 □必須ではないが重視 □あると嬉しい □不要'
+    case 2:
+      return '□必須 ■必須ではないが重視 □あると嬉しい □不要'
+    case 3:
+      return '□必須 □必須ではないが重視 ■あると嬉しい □不要'
+    case 4:
+      return '□必須 □必須ではないが重視 □あると嬉しい ■不要'
+  }
+}
+
 const createDocDefinition = (sheet: EntrySheet) => {
   const titleSetting = {
     fillColor: '#000',
@@ -10,7 +23,7 @@ const createDocDefinition = (sheet: EntrySheet) => {
     lineHeight: 1.1,
     bold: true,
   }
-  const hdWidth = 130
+  const hdWidth = 140
   return {
     content: [
       {
@@ -58,6 +71,7 @@ const createDocDefinition = (sheet: EntrySheet) => {
               {
                 style: 'tables',
                 table: {
+                  heights: 20,
                   widths: [hdWidth, '*'],
                   body: [
                     [
@@ -67,33 +81,6 @@ const createDocDefinition = (sheet: EntrySheet) => {
                       },
                       sheet.gmName,
                     ],
-                  ],
-                },
-              },
-              {
-                rowSpan: 3,
-                table: {
-                  widths: [hdWidth, '*'],
-                  body: [
-                    [
-                      {
-                        ...titleSetting,
-                        text: ' ⑥テーマ',
-                        rowSpan: 3,
-                      },
-                      sheet.theme1,
-                    ],
-                    ['', sheet.theme2],
-                    ['', sheet.theme3],
-                  ],
-                },
-              },
-            ],
-            [
-              {
-                table: {
-                  widths: [hdWidth, '*'],
-                  body: [
                     [
                       {
                         ...titleSetting,
@@ -101,16 +88,6 @@ const createDocDefinition = (sheet: EntrySheet) => {
                       },
                       `${sheet.isExtend === 1 ? '■あり □なし' : '□あり ■なし'}`,
                     ],
-                  ],
-                },
-              },
-              '',
-            ],
-            [
-              {
-                table: {
-                  widths: [hdWidth, '*'],
-                  body: [
                     [
                       {
                         ...titleSetting,
@@ -129,11 +106,179 @@ const createDocDefinition = (sheet: EntrySheet) => {
                   ],
                 },
               },
-              '',
+              {
+                table: {
+                  heights: 20,
+                  widths: [hdWidth, '*'],
+                  body: [
+                    [
+                      {
+                        ...titleSetting,
+                        text: ' ⑥テーマ',
+                        rowSpan: 3,
+                      },
+                      sheet.theme1,
+                    ],
+                    ['', sheet.theme2],
+                    ['', sheet.theme3],
+                  ],
+                },
+              },
             ],
           ],
         },
         layout: 'noBorders',
+      },
+      {
+        style: 'tables',
+        table: {
+          widths: [hdWidth, '*'],
+          body: [
+            [
+              {
+                ...titleSetting,
+                text: ' ⑦シリアス度※',
+              },
+              { text: rank(sheet.serious as 1 | 2 | 3 | 4), fontSize: 14 },
+            ],
+          ],
+        },
+      },
+      {
+        style: 'tables',
+        table: {
+          widths: [hdWidth, '*'],
+          body: [
+            [
+              {
+                ...titleSetting,
+                text: ' ⑧演技の重要度※',
+                fontSize: 16,
+              },
+              { text: rank(sheet.role as 1 | 2 | 3 | 4), fontSize: 14 },
+            ],
+          ],
+        },
+      },
+      {
+        style: 'tables',
+        table: {
+          widths: [hdWidth, '*'],
+          body: [
+            [
+              {
+                ...titleSetting,
+                text: ' ⑨必要なもの※',
+              },
+              {
+                stack: [
+                  {
+                    text: `${sheet.diceFace}面ダイス${
+                      sheet.diceNumber
+                    }個 | ルールブック ${
+                      sheet.requiredRule === 1 ? '必須' : '不要'
+                    }`,
+                    fontSize: 14,
+                  },
+                  {
+                    text: `他(${sheet.requiredOther})`,
+                    fontSize: 14,
+                  },
+                ],
+              },
+            ],
+          ],
+        },
+      },
+      {
+        style: 'tables',
+        table: {
+          widths: [hdWidth, '*'],
+          body: [
+            [
+              {
+                ...titleSetting,
+                text: ' ⑩キャラ作成※',
+              },
+              {
+                text: `${sheet.charMake === 1 ? '■' : '□'}サンプルキャラあり ${
+                  sheet.charMake === 1 ? '□' : '■'
+                }持込・作成可 (備考${sheet.charOther})`,
+                fontSize: 14,
+              },
+            ],
+          ],
+        },
+      },
+      {
+        style: 'tables',
+        table: {
+          widths: [hdWidth, '*'],
+          body: [
+            [
+              {
+                ...titleSetting,
+                text: ' ⑪初心者対応※',
+              },
+              {
+                text: `TRPG初心者${sheet.trpgBeginer}人まで | システム初心者${sheet.systemBeginer}人まで`,
+                fontSize: 14,
+              },
+            ],
+          ],
+        },
+      },
+      {
+        style: 'tables',
+        table: {
+          widths: [hdWidth, '*'],
+          body: [
+            [
+              {
+                ...titleSetting,
+                text: ' ⑫準備※',
+              },
+              {
+                stack: [
+                  {
+                    text: `ルールブック${sheet.ruleBook}冊 | サマリー等${sheet.summary}冊`,
+                    fontSize: 14,
+                  },
+                  {
+                    text: `他(${sheet.equipOther})`,
+                    fontSize: 14,
+                  },
+                ],
+              },
+            ],
+          ],
+        },
+      },
+      {
+        style: 'tables',
+        table: {
+          heights: ['auto', 400],
+          widths: ['*'],
+          body: [
+            [
+              {
+                ...titleSetting,
+                text: ' ⑬自由記入欄',
+                alignment: 'center',
+              },
+            ],
+            [
+              {
+                stack: [
+                  {
+                    text: sheet.free,
+                    fontSize: 14,
+                  },
+                ],
+              },
+            ],
+          ],
+        },
       },
     ],
     styles: {
