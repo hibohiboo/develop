@@ -12,24 +12,24 @@ function createPdfBinary(pdfDoc, callback) {
       normal: mPath,
       bold: mPath,
       italics: mPath,
-      bolditalics: mPath
+      bolditalics: mPath,
     },
     IPAGothic: {
       normal: gPath,
       bold: gPath,
       italics: gPath,
-      bolditalics: gPath
-    }
+      bolditalics: gPath,
+    },
   }
   const printer = new PdfPrinter(fontDescriptors)
   const doc = printer.createPdfKitDocument(pdfDoc)
 
   const chunks = []
 
-  doc.on('data', function(chunk) {
+  doc.on('data', (chunk) => {
     chunks.push(chunk)
   })
-  doc.on('end', function() {
+  doc.on('end', () => {
     const result = Buffer.concat(chunks)
     callback('data:application/pdf;base64,' + result.toString('base64'))
   })
@@ -44,25 +44,25 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       { text: scenario.copy2 },
       {
         svg:
-          '<svg width="1000" height="50" viewBox="0 0 1000 50"><line x1="0" y1="25" x2="1000" y2="25" /></svg>'
+          '<svg width="1000" height="50" viewBox="0 0 1000 50"><line x1="0" y1="25" x2="1000" y2="25" /></svg>',
       },
       { text: scenario.title, fontSize: 55, font: 'IPASerif' },
       {
         text: '.' + scenario.titleRuby,
         fontSize: 24,
         alignment: 'left',
-        font: 'IPASerif'
+        font: 'IPASerif',
       },
       { text: scenario.subTitle, fontSize: 20, font: 'IPASerif' },
       {
         text: `PC人数:${scenario.pcNumber}    リミット: ${scenario.limit}    ${scenario.type}`,
-        margin: [0, 50, 0, 0]
-      }
+        margin: [0, 50, 0, 0],
+      },
     ],
     defaultStyle: {
       font: 'IPAGothic',
-      alignment: 'center'
-    }
+      alignment: 'center',
+    },
   }
   createPdfBinary(docDefinition, (binary) => {
     res.setHeader('Content-Type', 'application/json')

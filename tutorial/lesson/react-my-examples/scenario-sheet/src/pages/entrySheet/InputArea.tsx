@@ -141,7 +141,7 @@ const InputArea: React.FC = () => {
         labelText="最小PC人数"
         changeHandler={(e) =>
           dispatch(
-            update({ ...entrySheet, pcNumberMin: Number(e.target.value) })
+            update({ ...entrySheet, pcNumberMin: Number(e.target.value) }),
           )
         }
       />
@@ -152,7 +152,7 @@ const InputArea: React.FC = () => {
         labelText="最適PC人数"
         changeHandler={(e) =>
           dispatch(
-            update({ ...entrySheet, pcNumberBest: Number(e.target.value) })
+            update({ ...entrySheet, pcNumberBest: Number(e.target.value) }),
           )
         }
       />
@@ -163,7 +163,7 @@ const InputArea: React.FC = () => {
         labelText="最大PC人数"
         changeHandler={(e) =>
           dispatch(
-            update({ ...entrySheet, pcNumberMax: Number(e.target.value) })
+            update({ ...entrySheet, pcNumberMax: Number(e.target.value) }),
           )
         }
       />
@@ -211,7 +211,7 @@ const InputArea: React.FC = () => {
         labelText="ダイスの個数"
         changeHandler={(e) =>
           dispatch(
-            update({ ...entrySheet, diceNumber: Number(e.target.value) })
+            update({ ...entrySheet, diceNumber: Number(e.target.value) }),
           )
         }
       />
@@ -221,7 +221,7 @@ const InputArea: React.FC = () => {
         labelText="ルールブック"
         changeHandler={(e) =>
           dispatch(
-            update({ ...entrySheet, requiredRule: Number(e.target.value) })
+            update({ ...entrySheet, requiredRule: Number(e.target.value) }),
           )
         }
         items={[
@@ -266,7 +266,7 @@ const InputArea: React.FC = () => {
         labelText="TRPG初心者対応人数"
         changeHandler={(e) =>
           dispatch(
-            update({ ...entrySheet, trpgBeginer: Number(e.target.value) })
+            update({ ...entrySheet, trpgBeginer: Number(e.target.value) }),
           )
         }
       />
@@ -277,7 +277,7 @@ const InputArea: React.FC = () => {
         labelText="システム初心者対応人数"
         changeHandler={(e) =>
           dispatch(
-            update({ ...entrySheet, systemBeginer: Number(e.target.value) })
+            update({ ...entrySheet, systemBeginer: Number(e.target.value) }),
           )
         }
       />

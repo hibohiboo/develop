@@ -48,14 +48,14 @@ const entrySheetModule = createSlice({
 export const useEntrySheet = () => {
   return useSelector(
     (state: { entrySheet: ReturnType<typeof entrySheetModule.reducer> }) =>
-      state.entrySheet.entrySheet
+      state.entrySheet.entrySheet,
   )
 }
 
 export const usePdf = () => {
   return useSelector(
     (state: { entrySheet: ReturnType<typeof entrySheetModule.reducer> }) =>
-      state.entrySheet.pdfBase64
+      state.entrySheet.pdfBase64,
   )
 }
 
