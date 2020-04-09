@@ -317,6 +317,9 @@ const InputArea: React.FC = () => {
         value={entrySheet.free}
         style={{ marginTop: '20px', marginBottom: '20px' }}
         fullWidth={true}
+        onChange={(e) =>
+          dispatch(update({ ...entrySheet, free: e.target.value }))
+        }
       />
     </div>
   )

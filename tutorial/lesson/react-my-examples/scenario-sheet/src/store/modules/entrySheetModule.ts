@@ -12,19 +12,19 @@ const initEntrySheet = {
   pcNumberMin: 2,
   pcNumberBest: 4,
   pcNumberMax: 5,
-  serious: 3, // 1: 必須、2:必須ではないが重視, 3: あると嬉しい, 4: 不要
-  role: 3, // 1: 必須、2:必須ではないが重視, 3: あると嬉しい, 4: 不要
+  serious: 4, // 1: 必須、2:必須ではないが重視, 3: あると嬉しい, 4: 不要
+  role: 2, // 1: 必須、2:必須ではないが重視, 3: あると嬉しい, 4: 不要
   diceFace: 6,
   diceNumber: 2,
-  requiredRule: 1, // 1: 必須 2: 不要
+  requiredRule: 2, // 1: 必須 2: 不要
   requiredOther: 'スマホでルルブが見れます',
-  charMake: 1, // 1: サンプルキャラあり、2:持ちみ可
-  charOther: '', // 備考
+  charMake: 2, // 1: サンプルキャラあり、2:持込・作成可
+  charOther: 'なし', // キャラ作成備考
   trpgBeginer: 4, // TRPG初心者x人まで
   systemBeginer: 4, // システム初心者x任まで
   ruleBook: 4,
   summary: 4,
-  equipOther: '', // 準備その他
+  equipOther: '特になし', // 準備その他
   free: '', // 自由記入欄
 }
 export type EntrySheet = typeof initEntrySheet
