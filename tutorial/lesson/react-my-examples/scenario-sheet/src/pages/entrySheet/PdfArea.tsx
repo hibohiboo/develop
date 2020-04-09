@@ -1,35 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import scenarioModule, {
-  useScenario,
-  usePdf
-} from '../../store/modules/scenarioModule'
+import entrySheetModule, {
+  useEntrySheet,
+  usePdf,
+} from '../../store/modules/entrySheetModule'
 
-const makePdf = async (scenario, dispatch) => {
+const makePdf = async (sheet, dispatch) => {
   const pdf = await (
-    await fetch('/api/pdf', {
+    await fetch('/api/entrySheetPdf', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      body: JSON.stringify(scenario)
+      body: JSON.stringify(sheet),
     })
   ).text()
-  console.log(pdf)
-  dispatch(scenarioModule.actions.setPdf(pdf))
+  dispatch(entrySheetModule.actions.setPdf(pdf))
 }
 
 const PdfArea: React.FC = () => {
-  const scenario = useScenario()
+  const sheet = useEntrySheet()
   const pdf = usePdf()
   const dispatch = useDispatch()
 
-  if (!scenario) {
+  if (!sheet) {
     return <div>読込失敗</div>
   }
   return (
     <>
-      <button onClick={(e) => makePdf(scenario, dispatch)}>PDFを作る</button>
+      <button onClick={(e) => makePdf(sheet, dispatch)}>PDFを作る</button>
       {pdf !== '' && (
-        <a href={pdf} download="scenario.pdf">
+        <a href={pdf} download="sheet.pdf">
           作成したPDFをダウンロード
         </a>
       )}

@@ -19,13 +19,6 @@ const Home: NextPage = () => {
           <ImageArea />
         </div>
         <PdfArea />
-        <a
-          href="https://twitter.com/hibimarie/status/1236259700192079873?ref_src=twsrc%5Etfw"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          参考： @hibimarie様「それっぽくなるトレーラー画像の話」
-        </a>
       </main>
 
       <footer>
