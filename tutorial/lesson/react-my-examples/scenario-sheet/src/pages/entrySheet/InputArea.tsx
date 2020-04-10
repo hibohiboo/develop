@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import entrySheetModule, {
   useEntrySheet,
@@ -67,7 +67,7 @@ const InputArea: React.FC = () => {
     return <div>読込失敗</div>
   }
   return (
-    <div style={{ maxWidth: '800px', minWidth: '200px' }}>
+    <div style={{ maxWidth: '500px', minWidth: '200px' }}>
       <InputField
         entrySheet={entrySheet}
         type="text"
