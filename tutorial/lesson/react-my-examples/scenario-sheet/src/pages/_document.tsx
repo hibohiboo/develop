@@ -1,65 +1,19 @@
+import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
-interface CustomDocumentInterface {
-  url: string
-  title: string
-  description: string
-}
+import { ServerStyleSheets } from '@material-ui/core/styles'
+import theme from '../theme'
 
-class CustomDocument extends Document implements CustomDocumentInterface {
-  url = 'https://example.com'
-  title = 'Demo Next.js'
-  description = 'Demo of Next.js'
-
-  // SSR 時に styled-components で追加したスタイルが適応されない問題の対応
-  static async getInitialProps(ctx): Promise<any> {
-    const sheet = new ServerStyleSheet()
-    const originalRenderPage = ctx.renderPage
-
-    try {
-      ctx.renderPage = (): any =>
-        originalRenderPage({
-          enhanceApp: (App) => (props): void =>
-            sheet.collectStyles(<App {...props} />)
-        })
-
-      const initialProps = await Document.getInitialProps(ctx)
-      return {
-        ...initialProps,
-        styles: (
-          <>
-            {initialProps.styles}
-            {sheet.getStyleElement()}
-          </>
-        )
-      }
-    } finally {
-      sheet.seal()
-    }
-  }
-  render(): JSX.Element {
+export default class MyDocument extends Document {
+  render() {
     return (
-      <Html lang="ja-JP">
+      <Html lang="en">
         <Head>
-          <meta name="description" content={this.description} />
-          <meta name="theme-color" content="#333" />
-          {/* Open Graph Protcol対応 */}
-          <meta property="og:type" content="website" />
-          <meta property="og:title" content={this.title} />
-          <meta property="og:url" content={this.url} />
-          <meta property="og:description" content={this.description} />
-          <meta property="og:site_name" content={this.title} />
-          {/* <meta property="og:image" content={`${this.url}/ogp.png`} /> */}
-          <meta name="format-detection" content="telephone=no" />
-          {/* Twitter Card対応 */}
-          <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content={this.title} />
-          {/* <meta name="twitter:description" content={this.description} /> */}
-          {/* <meta name="twitter:image" content={`${this.url}/ogp.png`}></meta> */}
-          <link rel="icon" href="/favicon.ico" />
-          {/* <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> */}
-          {/* PWA対応 */}
-          <link rel="manifest" href="/manifest.json" />
+          {/* PWA primary color */}
+          <meta name="theme-color" content={theme.palette.primary.main} />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
         </Head>
         <body>
           <Main />
@@ -70,4 +24,46 @@ class CustomDocument extends Document implements CustomDocumentInterface {
   }
 }
 
-export default CustomDocument
+MyDocument.getInitialProps = async (ctx) => {
+  // Resolution order
+  //
+  // On the server:
+  // 1. app.getInitialProps
+  // 2. page.getInitialProps
+  // 3. document.getInitialProps
+  // 4. app.render
+  // 5. page.render
+  // 6. document.render
+  //
+  // On the server with error:
+  // 1. document.getInitialProps
+  // 2. app.render
+  // 3. page.render
+  // 4. document.render
+  //
+  // On the client
+  // 1. app.getInitialProps
+  // 2. page.getInitialProps
+  // 3. app.render
+  // 4. page.render
+
+  // Render app and page and get the context of the page with collected side effects.
+  const sheets = new ServerStyleSheets()
+  const originalRenderPage = ctx.renderPage
+
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+    })
+
+  const initialProps = await Document.getInitialProps(ctx)
+
+  return {
+    ...initialProps,
+    // Styles fragment is rendered after the app and page rendering finish.
+    styles: [
+      ...React.Children.toArray(initialProps.styles),
+      sheets.getStyleElement(),
+    ],
+  }
+}
