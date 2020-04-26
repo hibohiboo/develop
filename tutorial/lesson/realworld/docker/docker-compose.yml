@@ -6,6 +6,7 @@ services:
     # ディレクトリを共有する。
     volumes:
       - ../src:/app/src
+      - ../handson:/app/handson
     working_dir: /app
     ports:
       - 18888:18888
