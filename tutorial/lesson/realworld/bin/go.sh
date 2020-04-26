@@ -12,9 +12,9 @@ docker ps | grep $container_name
 if [ $? -eq 0 ]; then
   cd $docker_dir && docker-compose exec $container_name go run /app/src/server.go
 else
-  # cd $docker_dir && docker-compose run --service-ports $container_name go run /app/src/server.go
+  cd $docker_dir && docker-compose run --service-ports $container_name go run /app/src/server.go
   # cd $docker_dir && docker-compose run --service-ports $container_name go run /app/handson/chapter2/src/server.go
-  cd $docker_dir && docker-compose run --service-ports $container_name go run /app/handson/chapter2/src/server-digest.go
+  # cd $docker_dir && docker-compose run --service-ports $container_name go run /app/handson/chapter2/src/server-digest.go
 fi
 
 
