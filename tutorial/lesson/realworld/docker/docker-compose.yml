@@ -2,7 +2,7 @@ version: "3"
 services:
   realworld:
     # Dockerfileビルド
-    build: ./now
+    build: ./golang
     # ディレクトリを共有する。
     volumes:
       - ../src:/app/src
