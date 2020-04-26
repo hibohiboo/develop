@@ -10,6 +10,14 @@ curl ... gitbash
 choco install golang -y
 ```
 
+## 実行（3 章）
+
+- sample4.go を動かしたい場合
+
+```
+/vagrant/tutorial/lesson/realworld$ ./bin/cli-go.sh sample4
+```
+
 ## 参考
 
 [Docker で Go の開発環境を構築する](https://qiita.com/uji_/items/8c9eda89526abe0ba900)
