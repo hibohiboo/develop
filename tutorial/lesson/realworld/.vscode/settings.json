@@ -1,0 +1,19 @@
+{
+  "go.languageServerExperimentalFeatures": {
+    "format": false, // trueの場合、言語サーバーはgofmtを使用してファイルをフォーマットする　※当時はオフにしないと、1行1列目に戻ってしまってました
+    "autoComplete": true, // trueの場合、言語サーバーが提供する補完結果を表示する
+    "rename": true, // trueの場合、適切な名前変更機能が有効化される
+    "goToDefinition": true, // trueの場合、関数定義へのジャンプ機能を有効化する
+    "hover": true, // trueの場合、マウスを関数の上にかざすと定義表示がされるようになる
+    "signatureHelp": true, // trueの場合、関数のヘルプやパラメータのヒントを表示するようになる
+    "goToTypeDefinition": true, // trueの場合、型定義へのジャンプを有効化する
+    "documentSymbols": true, // trueの場合、ドキュメントシンボル表示、アウトライン表示、パンくずリスト表示を有効化する
+    "workspaceSymbols": true, // trueの場合、ワークスペースにあるシンボルジャンプを有効化する
+    "findReferences": true, // trueの場合、検索参照機能を有効化する
+    "diagnostics": true, // trueの場合、`go vet` を相当の機能を提供し、`buildOnSave`　`vetOnSave` を無視する
+    "documentLink": true, // trueの場合、importされているパッケージに対するドキュメントリンクが直接踏めるようになる
+
+    "goToImplementation": true, // ※ソースコード上に存在するだけでドキュメントがない
+    "incrementalSync": true // trueの場合、差分（増分）ドキュメント更新が有効化される　※デフォルトfalseな上に使われてない?
+  }
+}

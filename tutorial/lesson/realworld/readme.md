@@ -1,0 +1,16 @@
+# Real World HTTP ハンズオン
+
+## 環境
+
+curl ... gitbash
+
+### goloang
+
+```
+choco install golang -y
+```
+
+## 参考
+
+[Docker で Go の開発環境を構築する](https://qiita.com/uji_/items/8c9eda89526abe0ba900)
+[VSCode + golang での快適な補完について自分なりにまとめてみた](https://qiita.com/akinobufujii/items/50d605ecf22daa3309cb)
