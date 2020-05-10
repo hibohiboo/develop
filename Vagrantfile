@@ -20,6 +20,9 @@ Vagrant.configure(2) do |config|
   # bentoだとvirtualbox6.0.6とvagrant2.2.4の組み合わせのときにマウントに問題がある。
   # http://denor.daa.jp/vagrantvirtualbox%E3%81%AEubuntu%E3%82%B9%E3%83%88%E3%83%AC%E3%83%BC%E3%82%B8%E5%AE%B9%E9%87%8F%E3%82%92%E6%8B%A1%E5%BC%B5%E3%81%99%E3%82%8B%E3%81%AB%E3%81%AF
   config.vm.box = "ubuntu/bionic64"
+
+  # ubuntu20
+  # config.vm.box = "ubuntu/focal64"
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。
   # auto enp0s8
