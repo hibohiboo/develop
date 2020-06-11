@@ -2,13 +2,13 @@
 # site.yml
 #
 - hosts: localhost
-  become: yes # 
-  become_user: root # 以下、sudoコマンドが不要になる 
+  become: yes #
+  become_user: root # 以下、sudoコマンドが不要になる
   roles:
     - common
-    - git
     - docker
-    - ssh
+    # - git ... 2.25.1がデフォルト
+    # - ssh ... デフォルトで入っている
     # - minikube#
     # - node
     # - vim

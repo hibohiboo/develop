@@ -1,8 +1,8 @@
----
-docker_version: 19.03
-# edge|stable ubuntu18.04にはまだstableがない（2018.06.16)
-docker_version_type: edge
-docker_compose_version: 1.26.0
-# docker-compose参考 : https://qiita.com/goforbroke/items/b4a071af71f457960e59
-# https://github.com/docker/compose/releases/
+# ---
+# docker_version: 19.03
+# # edge|stable ubuntu18.04にはまだstableがない（2018.06.16)
+# docker_version_type: edge
+# docker_compose_version: 1.26.0
+# # docker-compose参考 : https://qiita.com/goforbroke/items/b4a071af71f457960e59
+# # https://github.com/docker/compose/releases/
 
