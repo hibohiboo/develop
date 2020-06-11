@@ -19,7 +19,7 @@
   // tslintに関する設定
   "tslint.enable": true,
   "tslint.configFile": "./tslint.json",
-  "typescript.tsdk": "./node_modules/typescript/lib"
+  "typescript.tsdk": "./node_modules/typescript/lib",
   // 有効な場合、ファイルを開くときに文字セット エンコードを推測します
   //,"files.autoGuessEncoding": false,
   // Flowに対する拡張
@@ -32,12 +32,11 @@
   // ,"flow.useNPMPackagedFlow": true
   // ,"flow.pathToFlow": "./node_modules/.bin/flow"
   //postcssをとりあえずless記法とする。
-  ,
   "files.associations": {
     "*.pcss": "less"
   },
   "[elm]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": false
   },
   // stylelintに従う https://marketplace.visualstudio.com/items?itemName=hex-ci.stylelint-plus
   "css.validate": false,
@@ -46,5 +45,7 @@
   "[markdown]": {
     "editor.wordWrap": "on",
     "editor.quickSuggestions": false
-  }
+  },
+  // パンくずリスト表示
+  "breadcrumbs.enabled": true
 }
