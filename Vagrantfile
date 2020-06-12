@@ -3,6 +3,7 @@ $ansible_install = <<SHELL
 if ! ansible --version > /dev/null 2>&1; then
   # rootユーザとして実行されるためsudo不要
   # apt をスクリプトで使うと警告が出る。 https://codeday.me/jp/qa/20190808/1404436.html
+  apt-get -y update
   apt-get install -y python3-venv python3-pip
 
   # vagrantユーザとしてvirtualenvとansibleをインストール

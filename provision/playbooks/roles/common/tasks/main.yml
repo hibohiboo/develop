@@ -8,6 +8,14 @@
 - name: install aptitude
   apt: pkg=aptitude
 
+# aptitudeでupgrade
+# https://debian-handbook.info/browse/ja-JP/stable/sect.apt-get.html
+# https://docs.ansible.com/ansible/latest/modules/file_module.html
+- name: Update and Upgrade
+  apt:
+    update_cache: "yes"
+    upgrade: "dist"
+
 # 対話型シェルの自動化に使用
 - name: expect install
   apt: name=expect state=present
