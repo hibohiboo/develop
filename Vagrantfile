@@ -12,7 +12,7 @@ fi
 SHELL
 
 # virtual machine設定
-Vagrant.configure(2) do |config|
+Vagrant.configure("2") do |config|
   # 使用するディストリビューションのボックスの設定
   # config.vm.box = "bento/ubuntu-18.04"
   # 下の公式はボックスサイズが10Gしかない。10Gくらいすぐだし、増やすのも面倒。64Gあるbentoを使う。
@@ -23,12 +23,15 @@ Vagrant.configure(2) do |config|
   # ubuntu20
   config.vm.box = "ubuntu/focal64"
   # ネットワーク設定。
-  # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。
+  # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。(ubuntu 18.4以前)
   # auto enp0s8
   # iface enp0s8 inet static
   #       address 192.168.50.10
   #       netmask 255.255.255.0
   # sudo ifconfig enp0s8 192.168.50.10
+
+  # ubuntu20.4では/etc/netplan/50-vagrant.yaml を確認
+  # 参考: https://qiita.com/zen3/items/757f96cbe522a9ad397d
   config.vm.network "private_network", ip: "192.168.50.10"
 
   # SQL Server
