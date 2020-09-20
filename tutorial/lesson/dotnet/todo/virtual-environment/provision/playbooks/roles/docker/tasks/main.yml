@@ -1,0 +1,124 @@
+---
+- block:
+    - name: dockerがインストールされていればバージョンを確認
+      shell: docker --version | grep {{ docker_version }}
+      register: ver_check
+      ignore_errors: True
+      check_mode: no
+      failed_when: no
+      changed_when: ver_check.rc != 0
+
+    - name: debug docker version
+      debug: var=ver_check
+
+    - name: バージョンがvarsで指定されたものと異なれば、Remove "docker" package
+      apt:
+        name: docker-ce
+        state: absent
+      when: ver_check.rc != 0
+      ignore_errors: True
+
+    - name: dockerがインストールされていなければインストール
+      command: docker
+      register: result
+      ignore_errors: True
+      check_mode: no
+      failed_when: no
+      changed_when: result.rc != 0
+
+- block:
+    - name: debug dockerインストール
+      debug: var=result
+
+    - name: step0.5
+      lineinfile:
+        path: /etc/hosts
+        line: "127.0.1.1 vagrant"
+
+    - name: step1
+      shell: export DEBIAN_FRONTEND=noninteractive
+    - name: step1.5
+      shell: killall -KILL apt.systemd.daily
+      ignore_errors: True
+
+    - name: step2
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+      vars:
+        packages:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+
+    - name: step3.1
+      shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - warn=no
+      register: res3
+      ignore_errors: True
+
+    - name: step4
+      shell: apt-key fingerprint 0EBFCD88 warn=no
+
+    - name: step5.1
+      shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) {{ docker_version_type }}" warn=no
+
+    - name: step5.2
+      shell: apt-get update warn=no
+
+    - name: step6
+      apt:
+        name: docker-ce
+        state: present
+        update_cache: yes
+
+    - name: step6.2
+      shell: apt-cache madison docker-ce warn=no
+
+    - name: step8
+      shell: gpasswd -a vagrant docker
+  when: result.rc != 0
+
+- block:
+    - name: docker-composeがインストールされていればバージョンを確認
+      shell: docker-compose --version | grep {{ docker_compose_version }}
+      register: ver_check_compose
+      ignore_errors: True
+      check_mode: no
+      failed_when: no
+      changed_when: ver_check_compose.rc != 0
+
+    - name: debug docker-compose
+      debug: var=ver_check_compose
+
+    - name: バージョンがvarsで指定されたものと異なれば、Remove "docker-compose" package
+      shell: rm /usr/local/bin/docker-compose
+      ignore_errors: True
+      when: ver_check_compose.rc != 0
+
+    - name: check docker-compose
+      command: docker-compose -v
+      register: result_compose
+      ignore_errors: True
+      check_mode: no
+      failed_when: no
+      changed_when: result_compose.rc != 0
+
+    - name: debug docker-compose
+      debug: var=result_compose
+
+- block:
+    - name: debug docker-compose result
+      debug: var=result_compose
+    - name: step1 install docker-compose
+      shell: curl -L "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
+  when: result_compose.rc != 0
+
+- name: "プロキシ設定の修正(1)"
+  lineinfile:
+    dest: "/etc/resolv.conf"
+    state: present
+    backrefs: yes
+    regexp: "^nameserver"
+    line: "nameserver 8.8.8.8"

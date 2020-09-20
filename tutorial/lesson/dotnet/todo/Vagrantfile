@@ -1,0 +1,48 @@
+# ansibleインストール用shell
+$ansible_install = <<SHELL
+if ! ansible --version > /dev/null 2>&1; then
+  # rootユーザとして実行されるためsudo不要
+  # apt をスクリプトで使うと警告が出る。 https://codeday.me/jp/qa/20190808/1404436.html
+  apt-get -y update
+  apt-get install -y python3-venv python3-pip
+
+  # vagrantユーザとしてvirtualenvとansibleをインストール
+  su -c "source /vagrant/virtual-environment/provision/bash/install_ansible.sh" vagrant
+fi
+SHELL
+
+# virtual machine設定
+Vagrant.configure("2") do |config|
+  # ubuntu20
+  config.vm.box = "ubuntu/focal64"
+  # ネットワーク設定。
+  # ubuntu20.4では/etc/netplan/50-vagrant.yaml を確認
+  config.vm.network "private_network", ip: "192.168.7.25"
+
+  # SQL Server
+  config.vm.network "forwarded_port", guest: 9292, host: 9292
+  # Google AOuth
+  config.vm.network "forwarded_port", guest: 9005, host: 9005
+  config.vm.provider "virtualbox" do |vm|
+    # メモリを設定
+    vm.memory = 8192
+    vm.linked_clone = true
+    vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
+    # ubuntu/focal64の起動オプションとしてttyS0が有効となっていることが原因でpanicが起こるらしい
+    vm.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+    vm.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+    # vagrant plugin install vagrant-disksize
+    config.disksize.size = '64GB'
+  end
+  # ansibleをインストール
+  config.vm.provision "shell", inline: $ansible_install
+  # ansibleを実行
+  config.vm.provision "shell", inline: <<-SHELL
+    # timezoneを日本に変更
+    timedatectl set-timezone Asia/Tokyo
+    # virtualenv起動
+    source /home/vagrant/venv3/bin/activate
+    # provision 実行
+    ANSIBLE_CONFIG=/vagrant/virtual-environment/provision/.ansible.cfg ansible-playbook -i /vagrant/virtual-environment/provision/playbooks/inventory/hosts /vagrant/virtual-environment/provision/playbooks/site.yml -c local -v
+  SHELL
+end
