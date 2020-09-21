@@ -15,3 +15,9 @@ content-type: application/json
     "name": "sample2",
     "isComplete": true
 }
+
+### 
+DELETE https://localhost:44341/api/todo/3  HTTP/1.1
+content-type: application/json
+
+
