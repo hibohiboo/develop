@@ -1,0 +1,1 @@
+cd TODOAPP/TODOAPP && dotnet ef dbcontext scaffold "Server=192.168.7.25;Database=TestDB;persist security info=True;user id=sa;password=yourStrong(!)Password;MultipleActiveResultSets=True" Microsoft.EntityFrameworkCore.SqlServer -o Models

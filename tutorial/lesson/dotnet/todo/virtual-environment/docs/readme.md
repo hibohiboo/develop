@@ -94,7 +94,13 @@ https://192.168.7.25/
 ### docker について
 
 以下は LaraDock の docker 設定を持ってきている。
+- mssql
 
+#### mssql
+
+mssqlのログインについて
+
+mssmのSQL接続を選択し、ユーザ名: `sa`、パスワード: `yourStrong(!)Password`で接続。
 
 ## 参考
 

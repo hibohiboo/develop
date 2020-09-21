@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using VueCliMiddleware;
+using Microsoft.EntityFrameworkCore;
+using TODOAPP.Models;
 
 namespace TODOAPP {
   public class Startup {
@@ -22,6 +24,9 @@ namespace TODOAPP {
 
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services) {
+      services.AddDbContext<TestDBContext>(opt => {
+        //opt.UseInMemoryDatabase("TodoList");
+      });
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
       services.AddSpaStaticFiles(configuration => {
         configuration.RootPath = "ClientApp";
