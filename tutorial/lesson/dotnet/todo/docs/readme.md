@@ -81,13 +81,22 @@ Build started...
 Build succeeded.
 ```
 
+### APIへアクセス
+#### openapi
 
+shift+alt+p openAPIファイルプレビュー
+
+ctrl+alt+r リクエスト送信
+ctrl+alt+c コード自動生成
 
 ## 履歴
 
 [vm追加時点ソース](https://github.com/hibohiboo/develop/tree/05d866588b0ab24da206a4c939135a67f773db89/tutorial/lesson/dotnet/todo/)
 [プロジェクト追加時点](https://github.com/hibohiboo/develop/tree/a782224eb21c2863b6f317d1d847d1580de92858/tutorial/lesson/dotnet/todo/)
 [vue.js 表示時点](https://github.com/hibohiboo/develop/tree/2d3881f63c82b41585fb72a53213aa91d03d9e6d/tutorial/lesson/dotnet/todo/)
+
+[API作成時点](https://github.com/hibohiboo/develop/tree/3cb4d7cab03849dd210987d698be57b87277ccb3/tutorial/lesson/dotnet/todo/)
+
 
 ## 参考
 [dotnet 2.2メモ](https://qiita.com/hibohiboo/items/1d1b5922b3e1de23dffa)

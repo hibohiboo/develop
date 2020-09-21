@@ -32,8 +32,6 @@ namespace TODOAPP.Models
 
             modelBuilder.Entity<TodoItem>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Name).HasMaxLength(255);
             });
         }

@@ -1,0 +1,17 @@
+POST https://localhost:44341/api/todo  HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sample",
+    "isComplete": true
+}
+
+### 
+PUT https://localhost:44341/api/todo/2  HTTP/1.1
+content-type: application/json
+
+{
+    "id": 2,
+    "name": "sample2",
+    "isComplete": true
+}
