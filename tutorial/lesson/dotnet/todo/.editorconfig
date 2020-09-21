@@ -1,21 +1,16 @@
-# Remove the line below if you want to inherit .editorconfig settings from higher directories
-root = true
-
-# C# files
+root=true
 [*.cs]
-
-#### Core EditorConfig Options ####
-
-# Indentation and spacing
-indent_size = 4
+# インデント
+indent_size = 2
 indent_style = space
+charset = utf-8
 tab_width = 4
 
-# New line preferences
+# 改行
 end_of_line = crlf
 insert_final_newline = false
 
-#### .NET Coding Conventions ####
+#### .NET
 
 # Organize usings
 dotnet_separate_import_directive_groups = false
@@ -119,12 +114,12 @@ csharp_using_directive_placement = inside_namespace:silent
 #### C# Formatting Rules ####
 
 # New line preferences
-csharp_new_line_before_catch = true
-csharp_new_line_before_else = true
-csharp_new_line_before_finally = true
+csharp_new_line_before_catch = false
+csharp_new_line_before_else = false
+csharp_new_line_before_finally = false
 csharp_new_line_before_members_in_anonymous_types = true
 csharp_new_line_before_members_in_object_initializers = true
-csharp_new_line_before_open_brace = all
+csharp_new_line_before_open_brace = none
 csharp_new_line_between_query_expression_clauses = true
 
 # Indentation preferences
