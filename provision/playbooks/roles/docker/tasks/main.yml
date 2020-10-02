@@ -154,6 +154,7 @@
 # "Ubuntu 18.04.3 LTS (Bionic Beaver)"
 # Docker version 19.03.2, build 6a30dfc
 # docker-compose version 1.24.1, build 4667896b
+# ネットワーク参考: https://tech-lab.sios.jp/archives/20179
 
 - name: "プロキシ設定の修正(1)"
   lineinfile:
