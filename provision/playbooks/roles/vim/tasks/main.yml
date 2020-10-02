@@ -104,9 +104,9 @@
 
 
   - name: 設定ファイルをコピー
-    copy: >
-      src=.vimrc
-      dest=/home/vagrant/.vimrc
-      owner=vagrant
-      group=vagrant
-      mode=0644
+    copy:
+      src: .vimrc
+      dest: /home/vagrant/.vimrc
+      owner: vagrant
+      group: vagrant
+      mode: 0644
