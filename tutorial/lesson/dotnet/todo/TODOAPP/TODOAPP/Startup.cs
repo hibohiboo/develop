@@ -29,7 +29,7 @@ namespace TODOAPP {
       });
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
       services.AddSpaStaticFiles(configuration => {
-        configuration.RootPath = "ClientApp";
+        configuration.RootPath = "hello-ts";// configuration.RootPath = "ClientApp";
       });
     }
 
@@ -48,14 +48,14 @@ namespace TODOAPP {
 
       app.UseSpa(spa => {
         if (env.IsDevelopment())
-          spa.Options.SourcePath = "ClientApp";
+          spa.Options.SourcePath = "hello-ts"; // spa.Options.SourcePath = "ClientApp";
         else
           spa.Options.SourcePath = "dist";
-
+#if DEBUG
         if (env.IsDevelopment()) {
           spa.UseVueCli(npmScript: "serve");
         }
-
+#endif
       });
     }
   }
