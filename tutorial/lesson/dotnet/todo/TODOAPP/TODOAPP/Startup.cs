@@ -28,8 +28,11 @@ namespace TODOAPP {
         //opt.UseInMemoryDatabase("TodoList");
       });
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+      // https://github.com/EEParker/aspnetcore-vueclimiddleware
       services.AddSpaStaticFiles(configuration => {
-        configuration.RootPath = "hello-ts";// configuration.RootPath = "ClientApp";
+        // configuration.RootPath = "hello-ts";// configuration.RootPath = "ClientApp";
+        configuration.RootPath = "hello-ts/dist";
       });
     }
 
@@ -44,18 +47,20 @@ namespace TODOAPP {
 
       app.UseHttpsRedirection();
       app.UseMvc();
+      app.UsePathBase("/aaa/view"); // UseSpaStaticFilesより前に宣言 https://qiita.com/miyapei/items/28f1b7360614551e7f15
       app.UseSpaStaticFiles();
 
       app.UseSpa(spa => {
-        if (env.IsDevelopment())
-          spa.Options.SourcePath = "hello-ts"; // spa.Options.SourcePath = "ClientApp";
-        else
-          spa.Options.SourcePath = "dist";
-#if DEBUG
-        if (env.IsDevelopment()) {
-          spa.UseVueCli(npmScript: "serve");
-        }
-#endif
+        spa.Options.SourcePath = "dist";
+//        if (env.IsDevelopment())
+//          spa.Options.SourcePath = "hello-ts"; // spa.Options.SourcePath = "ClientApp";
+//        else
+//          spa.Options.SourcePath = "dist";
+//#if DEBUG
+//        if (env.IsDevelopment()) {
+//          spa.UseVueCli(npmScript: "serve");
+//        }
+//#endif
       });
     }
   }
