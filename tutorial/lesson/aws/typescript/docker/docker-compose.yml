@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  cdk:
+    # Dockerfileビルド
+    build: ./cdk
+    # ディレクトリを共有する。
+    volumes:
+      - ../projects:/app/projects
+  
