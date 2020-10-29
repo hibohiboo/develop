@@ -1,9 +1,12 @@
 version: "3.8"
 services:
   cdk:
-    # Dockerfileビルド
     build: ./cdk
-    # ディレクトリを共有する。
     volumes:
       - ../projects:/app/projects
-  
+    env_file: .env
+  project-cdk:
+    build: ./project-cdk
+    volumes:
+      - ../projects:/app/projects
+      - /app/node_modules
