@@ -8,5 +8,7 @@ services:
   project-cdk:
     build: ./project-cdk
     volumes:
-      - ../projects:/app/projects
+      - ../projects/cdk:/app
       - /app/node_modules
+    command:
+      [ npm, run, watch]

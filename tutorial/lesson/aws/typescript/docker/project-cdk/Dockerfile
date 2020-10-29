@@ -9,5 +9,5 @@ WORKDIR /app
 COPY .npmrc /app/.npmrc
 COPY package.json /app/package.json
 RUN npm i -D @aws-cdk/assert @types/jest @types/node jest ts-jest aws-cdk ts-node typescript
-RUN npm i @aws-cdk/aws-apigateway @aws-cdk/aws-dynamodb @aws-cdk/aws-lambda
-
+RUN npm i @aws-cdk/core source-map-support @aws-cdk/aws-apigateway @aws-cdk/aws-dynamodb @aws-cdk/aws-lambda 
+RUN npm install -g aws-cdk

@@ -8,3 +8,4 @@ AWSのFunctionsにTypescriptをアップロードする手順を確認する。
 [document: aws-lambda-nodejs-readme](https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-nodejs-readme.html)
 [[AWS CDK超入門] DynamoDB + Lambda + API GatewayでAPIを作ってみた](https://dev.classmethod.jp/articles/aws-cdk-101-typescript/)
 [AWS CDKでLambdaデプロイしてみた【AWS CDK】](https://qiita.com/KsntsTt/items/4824bacf80d2f500f837)
+[cdk コマンドの機能を 実際に叩いて理解する 【 AWS CDK Command Line Interface 】](https://dev.classmethod.jp/articles/aws-cdk-command-line-interface/)
