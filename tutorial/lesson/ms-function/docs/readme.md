@@ -20,3 +20,4 @@ choco install azure-functions-core-tools-3 --params "'/x64'"
 
 [Visual Studio Code から Azure Functions をデプロイする](https://docs.microsoft.com/ja-jp/azure/developer/javascript/tutorial-vscode-serverless-node-01?tabs=bash)
 [vscode-recipes](https://github.com/microsoft/vscode-recipes/blob/master/Docker-TypeScript/package.json)
+[Functions ローカルデバッグ](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-reference-node?tabs=v2#local-debugging)
