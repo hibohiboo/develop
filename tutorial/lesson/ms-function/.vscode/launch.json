@@ -2,11 +2,16 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Attach to Node Functions",
+      "name": "Vagrant - Docker: Attach to Node Functions",
       "type": "node",
       "request": "attach",
+      // https://qiita.com/tailix/items/fe3804e7a58978741d56
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app",
+      "address": "192.168.50.10",
       "port": 9229,
-      "preLaunchTask": "func: host start"
+      "protocol": "auto",
+      // "preLaunchTask": "func: host start"
     }
   ]
 }
