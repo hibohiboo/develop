@@ -7,11 +7,11 @@
       "request": "attach",
       // https://qiita.com/tailix/items/fe3804e7a58978741d56
       // "sourceMaps": true,
-      "localRoot": "${workspaceFolder}/dist",
-      "remoteRoot": "/app/dist",
-      "outFiles": [
-        "${workspaceFolder}/dist/**/*.js"
-      ],
+      // "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app",
+      // "outFiles": [
+      //   "${workspaceFolder}/dist/**/*.js"
+      // ],
       "address": "192.168.50.10",
       "port": 9229,
       "protocol": "auto",
