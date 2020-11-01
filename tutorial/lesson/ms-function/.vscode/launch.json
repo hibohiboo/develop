@@ -6,11 +6,19 @@
       "type": "node",
       "request": "attach",
       // https://qiita.com/tailix/items/fe3804e7a58978741d56
-      "localRoot": "${workspaceFolder}",
-      "remoteRoot": "/app",
+      // "sourceMaps": true,
+      "localRoot": "${workspaceFolder}/dist",
+      "remoteRoot": "/app/dist",
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
       "address": "192.168.50.10",
       "port": 9229,
       "protocol": "auto",
+      // "runtimeExecutable": "npm",
+      // "runtimeArgs": [ "run", "docker-debug" ],
+      // "internalConsoleOptions": "neverOpen",
+      // "timeout": 60000,
       // "preLaunchTask": "func: host start"
     }
   ]
