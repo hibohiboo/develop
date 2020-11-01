@@ -16,6 +16,9 @@ https://github.com/Azure/azure-functions-core-tools
 choco install azure-functions-core-tools-3 --params "'/x64'"
 ```
 
+[デバッグ成功時点のソース](https://github.com/hibohiboo/develop/tree/4a7fb0118ae767b6b41414dca1fbc541981c346e/tutorial/lesson/ms-function)
+
+
 ## 参考
 
 [Visual Studio Code から Azure Functions をデプロイする](https://docs.microsoft.com/ja-jp/azure/developer/javascript/tutorial-vscode-serverless-node-01?tabs=bash)
