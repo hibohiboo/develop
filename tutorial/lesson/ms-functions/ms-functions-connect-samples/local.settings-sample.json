@@ -1,0 +1,18 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "languageWorkers:node:arguments": "--inspect=0.0.0.0:9229",
+    "MyStorageConnectionAppSetting": "StorageAccountの接続文字列",
+    "SQLConnectionUserName": "SQL Serverのユーザ名",
+    "SQLConnectionUserPassword": "SQL Serverのユーザ名",
+    "SQLConnectionServer": "SQLServerの名前.database.windows.net",
+    "SQLConnectionDatabase": "接続するDB名"
+  },
+  "Host" : {
+    "LocalHttpPort": 7071,
+    "CORS": "http://192.168.50.10:8080",
+    "CORSCredentials": true
+  }
+}

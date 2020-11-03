@@ -1,0 +1,20 @@
+{
+  "name": "ms-function",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "prestart": "npm run build",
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "tedious": "^9.1.2"
+  },
+  "devDependencies": {
+    "@azure/functions": "^1.0.2-beta2",
+    "@types/tedious": "^4.0.2",
+    "typescript": "^3.3.3"
+  }
+}

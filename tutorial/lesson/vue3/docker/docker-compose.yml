@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  vue:
+    # Dockerfileビルド
+    build: ./vue
+    # ディレクトリを共有する。
+    volumes:
+      - ../src:/app/src
+    # ports:
+    #   - 3000:3000
+    # environment:
+    #   - CHOKIDAR_USEPOLLING=true # デフォルトの設定の場合、vagrantだとファイルの変更を検知できない。pollingが必要。
+    # working_dir: /app
+    # # command: [vercel, dev]
+    # command: [npm, run, dev]

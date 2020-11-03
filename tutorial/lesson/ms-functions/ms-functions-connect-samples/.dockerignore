@@ -1,0 +1,13 @@
+bash
+docker-compose.yml
+Dockerfile
+docs
+host.json
+HttpExample
+local.settings.json
+local.settings-sample.json
+node_modules
+package-lock.json
+proxies.json
+README.md
+tsconfig.json

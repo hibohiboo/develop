@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "blob",
+      "direction": "in",
+      "connection": "MyStorageConnectionAppSetting",
+      "name": "messages",
+      "path": "chat-container/test.json"
+    }
+  ],
+  "scriptFile": "../dist/getMessageTest/index.js"
+}

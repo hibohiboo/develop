@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  az-functions:
+    # Dockerfileビルド
+    build: .
+    # ディレクトリを共有する。
+    volumes:
+      - .:/app
+
+    ports:
+      - 9229:9229
+      - 7071:7071
+    # environment:
+    #   - NODE_OPTIONS="--inspect=0.0.0.0:9229"
+    #   - CHOKIDAR_USEPOLLING=true # デフォルトの設定の場合、vagrantだとファイルの変更を検知できない。pollingが必要。
+    working_dir: /app
+    command: [npm, run, start]
