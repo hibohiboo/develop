@@ -4,6 +4,7 @@ import {Connection,Request, TYPES } from 'tedious'
 // https://www.microsoft.com/en-us/sql-server/developer-get-started/node/ubuntu/step/2.html
 // https://tediousjs.github.io/tedious/api-request.html
 // https://qiita.com/tabizou/items/759105b271c419fe6683
+// https://qiita.com/ymasaoka/items/516fca97db9c37040619
 let connectionInstance = null;
 export const getConnection = () => new Promise<Connection>(async (resolve, reject)=>{
   if(connectionInstance) {
