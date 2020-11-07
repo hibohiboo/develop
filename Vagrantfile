@@ -42,7 +42,9 @@ Vagrant.configure("2") do |config|
 
   # 共有するフォルダの設定
   # config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
-  
+
+  # WSL2 を 有効化しているとき、ssh接続でタイムアウトしてしまうため追記。 2020.11.07
+  config.vm.boot_timeout = 300
   # 使用するメモリ容量を変更。
   # デフォルトだと512で少ないためdockerのbuildが失敗しやすい
   config.vm.provider "virtualbox" do |vm|
