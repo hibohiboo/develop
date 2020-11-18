@@ -13,18 +13,14 @@ namespace FunctionApp1
     public static class Function1
     {
         [FunctionName("Function1")]
-        public static async Task RunOrchestrator(
+        public static void RunOrchestrator(
             [OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
         {
             var outputs = new List<string>();
 
             for (var i = 0; i < 5; i++)
             {
-                try
-                {
-                    await context.CallActivityAsync("SQLTest", i);
-                }
-                catch { }
+               context.CallActivityAsync("SQLTest", i);
             }
         }
 
@@ -52,37 +48,39 @@ namespace FunctionApp1
             log.LogInformation($"Wait end {num}.");
         }
     }
-    public class SqlActivity
+    public static class SqlActivity
     {
-        private readonly SqlConnection _con;
-        public SqlActivity(SqlConnection con)
-        {
-            _con = con;
-        }
         [FunctionName("SQLTest")]
-        public void SQLTest([ActivityTrigger] int num, ILogger log)
+        public static void SQLTest([ActivityTrigger] int num, ILogger log)
         {
             log.LogInformation($"SQL start {num}.");
-            if (ExistsUser(num))
+            var sqlConnection = Environment.GetEnvironmentVariable("SQLServerConnectionString");
+            using (var con = new SqlConnection(sqlConnection))
             {
-                log.LogInformation($"SQL stop {num}. already inserted");
-                return;
-            }
-            var sql = "insert into Users(Id, Name) values (@Id, @Name)";
+                con.Open();
 
-            using (SqlCommand command = new SqlCommand(sql, _con))
-            {
-                command.Parameters.AddWithValue("@Id", num);
-                command.Parameters.AddWithValue("@Name", $"name{num}");
-                command.ExecuteNonQuery();
+                if (ExistsUser(num, con))
+                {
+                    log.LogInformation($"SQL stop {num}. already inserted");
+                    return;
+                }
+                var sql = "insert into Users(Id, Name) values (@Id, @Name)";
+
+                using (SqlCommand command = new SqlCommand(sql, con))
+                {
+                    command.Parameters.AddWithValue("@Id", num);
+                    command.Parameters.AddWithValue("@Name", $"name{num}");
+                    command.ExecuteNonQuery();
+                }
+                log.LogInformation($"SQL end {num}.");
             }
-            log.LogInformation($"SQL end {num}.");
+
         }
 
-        private bool ExistsUser(int num)
+        private static bool ExistsUser(int num, SqlConnection con)
         {
             var sql = "select Id from Users where Id = @Id";
-            using (SqlCommand command = new SqlCommand(sql, _con))
+            using (SqlCommand command = new SqlCommand(sql, con))
             {
                 command.Parameters.AddWithValue("@Id", num);
                 using (SqlDataReader reader = command.ExecuteReader())
