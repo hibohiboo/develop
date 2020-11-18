@@ -13,15 +13,17 @@ namespace FunctionApp1
     public static class Function1
     {
         [FunctionName("Function1")]
-        public static void RunOrchestrator(
+        public static async Task RunOrchestrator(
             [OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
         {
-            var outputs = new List<string>();
+            var tasks = new List<Task>();
 
             for (var i = 0; i < 5; i++)
             {
-                 context.CallActivityAsync("SQLTest", i);
+                 tasks.Add(context.CallActivityAsync("SQLTest", i));
             }
+            await Task.WhenAll(tasks);
+
         }
 
         [FunctionName("Function1_HttpStart")]
