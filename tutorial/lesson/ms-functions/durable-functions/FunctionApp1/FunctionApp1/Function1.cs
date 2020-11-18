@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
@@ -17,26 +18,18 @@ namespace FunctionApp1
         {
             var outputs = new List<string>();
 
-            // Replace "hello" with the name of your Durable Activity Function.
             for(var i = 0; i<5; i++)
             {
-                // void1‚Å‚àawait‚·‚é‚Æ“¯Šú“I‚ÉŽÀs‚µ‚Ä‚µ‚Ü‚¤
                 try
                 {
                     // await context.CallActivityAsync<string>("WaitTest", i);
-                    context.CallActivityAsync("WaitTest", i);
+                    context.CallActivityAsync("SQLTest", i);
                 }
                 catch(Exception e)
                 {
                     log.LogError($"error orcestration: {i}", e);
                 }
             }
-            //outputs.Add(await context.CallActivityAsync<string>("Function1_Hello", "Tokyo"));
-            //outputs.Add(await context.CallActivityAsync<string>("Function1_Hello", "Seattle"));
-            //outputs.Add(await context.CallActivityAsync<string>("Function1_Hello", "London"));
-
-            // returns ["Hello Tokyo!", "Hello Seattle!", "Hello London!"]
-            //return outputs;
         }
 
         [FunctionName("Function1_Hello")]
@@ -68,6 +61,28 @@ namespace FunctionApp1
             if (num == 3) throw new Exception($"wait test {num}");
             System.Threading.Thread.Sleep(1000);
             log.LogInformation($"Wait end {num}.");
+        }
+    }
+    public class SqlActivity
+    {
+        private readonly SqlConnection _con;
+        public SqlActivity(SqlConnection con)
+        {
+            _con = con;
+        }
+        [FunctionName("SQLTest")]
+        public void SQLTest([ActivityTrigger] int num, ILogger log)
+        {
+            log.LogInformation($"SQL start {num}.");
+            var sql = "insert into Users(Id, Name) values (@Id, @Name)";
+
+            using (SqlCommand command = new SqlCommand(sql, _con))
+            {
+                command.Parameters.AddWithValue("@Id", num);
+                command.Parameters.AddWithValue("@Name", $"name{num}");
+                command.ExecuteNonQuery();
+            }
+            log.LogInformation($"SQL end {num}.");
         }
     }
 }
