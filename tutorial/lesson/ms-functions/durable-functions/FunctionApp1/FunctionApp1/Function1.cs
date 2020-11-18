@@ -18,25 +18,10 @@ namespace FunctionApp1
         {
             var outputs = new List<string>();
 
-            for(var i = 0; i<5; i++)
+            for (var i = 0; i < 5; i++)
             {
-                try
-                {
-                    // await context.CallActivityAsync<string>("WaitTest", i);
-                    context.CallActivityAsync("SQLTest", i);
-                }
-                catch(Exception e)
-                {
-                    log.LogError($"error orcestration: {i}", e);
-                }
+                context.CallActivityAsync("SQLTest", i);
             }
-        }
-
-        [FunctionName("Function1_Hello")]
-        public static string SayHello([ActivityTrigger] string name, ILogger log)
-        {
-            log.LogInformation($"Saying hello to {name}.");
-            return $"Hello {name}!";
         }
 
         [FunctionName("Function1_HttpStart")]
@@ -74,6 +59,11 @@ namespace FunctionApp1
         public void SQLTest([ActivityTrigger] int num, ILogger log)
         {
             log.LogInformation($"SQL start {num}.");
+            if (ExistsUser(num))
+            {
+                log.LogInformation($"SQL stop {num}. already inserted");
+                return;
+            }
             var sql = "insert into Users(Id, Name) values (@Id, @Name)";
 
             using (SqlCommand command = new SqlCommand(sql, _con))
@@ -83,6 +73,24 @@ namespace FunctionApp1
                 command.ExecuteNonQuery();
             }
             log.LogInformation($"SQL end {num}.");
+        }
+
+        private bool ExistsUser(int num)
+        {
+            var sql = "select Id from Users where Id = @Id";
+            using (SqlCommand command = new SqlCommand(sql, _con))
+            {
+                command.Parameters.AddWithValue("@Id", num);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Console.WriteLine("{0}", reader.GetInt32(0));
+                        return reader.GetInt32(0) == num;
+                    }
+                }
+                return false;
+            }
         }
     }
 }
