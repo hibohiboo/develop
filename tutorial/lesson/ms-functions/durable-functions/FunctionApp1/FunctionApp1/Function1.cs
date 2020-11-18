@@ -20,10 +20,11 @@ namespace FunctionApp1
 
             for (var i = 0; i < 5; i++)
             {
-
+                try
+                {
                     await context.CallActivityAsync("SQLTest", i);
- 
-                
+                }
+                catch { }
             }
         }
 
@@ -62,7 +63,6 @@ namespace FunctionApp1
         public void SQLTest([ActivityTrigger] int num, ILogger log)
         {
             log.LogInformation($"SQL start {num}.");
-            if (num == 3) throw new Exception();
             if (ExistsUser(num))
             {
                 log.LogInformation($"SQL stop {num}. already inserted");
