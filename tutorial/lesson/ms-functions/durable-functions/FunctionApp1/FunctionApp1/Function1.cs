@@ -13,14 +13,17 @@ namespace FunctionApp1
     public static class Function1
     {
         [FunctionName("Function1")]
-        public static void RunOrchestrator(
+        public static async Task RunOrchestrator(
             [OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
         {
             var outputs = new List<string>();
 
             for (var i = 0; i < 5; i++)
             {
-                context.CallActivityAsync("SQLTest", i);
+
+                    await context.CallActivityAsync("SQLTest", i);
+ 
+                
             }
         }
 
@@ -59,6 +62,7 @@ namespace FunctionApp1
         public void SQLTest([ActivityTrigger] int num, ILogger log)
         {
             log.LogInformation($"SQL start {num}.");
+            if (num == 3) throw new Exception();
             if (ExistsUser(num))
             {
                 log.LogInformation($"SQL stop {num}. already inserted");
