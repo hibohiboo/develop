@@ -13,18 +13,14 @@ namespace FunctionApp1
     public static class Function1
     {
         [FunctionName("Function1")]
-        public static async Task RunOrchestrator(
+        public static void RunOrchestrator(
             [OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
         {
             var outputs = new List<string>();
 
             for (var i = 0; i < 5; i++)
             {
-                try
-                {
-                    await context.CallActivityAsync("SQLTest", i);
-                }
-                catch { }
+                 context.CallActivityAsync("SQLTest", i);
             }
         }
 
@@ -60,10 +56,10 @@ namespace FunctionApp1
             _con = con;
         }
         [FunctionName("SQLTest")]
-        public void SQLTest([ActivityTrigger] int num, ILogger log)
+        public async Task SQLTest([ActivityTrigger] int num, ILogger log)
         {
             log.LogInformation($"SQL start {num}.");
-            if (ExistsUser(num))
+            if (await ExistsUser(num))
             {
                 log.LogInformation($"SQL stop {num}. already inserted");
                 return;
@@ -74,18 +70,18 @@ namespace FunctionApp1
             {
                 command.Parameters.AddWithValue("@Id", num);
                 command.Parameters.AddWithValue("@Name", $"name{num}");
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync();
             }
             log.LogInformation($"SQL end {num}.");
         }
 
-        private bool ExistsUser(int num)
+        private async Task<bool> ExistsUser(int num)
         {
             var sql = "select Id from Users where Id = @Id";
             using (SqlCommand command = new SqlCommand(sql, _con))
             {
                 command.Parameters.AddWithValue("@Id", num);
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlDataReader reader = await command.ExecuteReaderAsync())
                 {
                     while (reader.Read())
                     {
