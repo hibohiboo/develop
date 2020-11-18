@@ -18,7 +18,7 @@ namespace FunctionApp1
         {
             var tasks = new List<Task>();
 
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 10; i++)
             {
                  tasks.Add(context.CallActivityAsync("SQLTest", i));
             }
@@ -61,6 +61,7 @@ namespace FunctionApp1
         public async Task SQLTest([ActivityTrigger] int num, ILogger log)
         {
             log.LogInformation($"SQL start {num}.");
+            if (num == 0 || num == 6) throw new Exception();
             if (await ExistsUser(num))
             {
                 log.LogInformation($"SQL stop {num}. already inserted");
