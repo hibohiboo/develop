@@ -16,14 +16,18 @@ namespace FunctionApp1
         public static async Task RunOrchestrator(
             [OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
         {
+            log = context.CreateReplaySafeLogger(log);
             var tasks = new List<Task>();
+            var i = context.GetInput<int>();
 
-            for (var i = 0; i < 10; i++)
-            {
+            for (var i = 0; i < 10; i++) {
                  tasks.Add(context.CallActivityAsync("SQLTest", i));
             }
-            await Task.WhenAll(tasks);
-
+            try {
+                await Task.WhenAll(tasks);
+            } catch (Exception e) {
+                log.LogError($"Error RunOrchestrator: ", e);
+            }
         }
 
         [FunctionName("Function1_HttpStart")]

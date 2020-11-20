@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
   # config.vm.synced_folder 'angular2', '/home/vagrant/angular2'
 
   # WSL2 を 有効化しているとき、ssh接続でタイムアウトしてしまうため追記。 2020.11.07
-  config.vm.boot_timeout = 300
+  config.vm.boot_timeout = 500
   # 使用するメモリ容量を変更。
   # デフォルトだと512で少ないためdockerのbuildが失敗しやすい
   config.vm.provider "virtualbox" do |vm|
@@ -67,9 +67,9 @@ Vagrant.configure("2") do |config|
     # vagrant plugin install vagrant-vbguest
     # config.vbguest.auto_update = false
 
-    # vagrant-disksizeでサイズを変更する。ubuntu/bionic64は10Gくらいしかない。 "ubuntu/focal64"は40Gあるので不要かも。
+    # vagrant-disksizeでサイズを変更する。ubuntu/bionic64は10Gくらいしかない。 "ubuntu/focal64"は40Gあるので不要かも。 ->  raid6: sse2x1   gen()で止まるのでコメントアウト。2020/11/21
     # vagrant plugin install vagrant-disksize
-    config.disksize.size = '64GB'
+    # config.disksize.size = '64GB'
   end
 
   # vagrant provision を行ったときに以下のエラーが出る対策
