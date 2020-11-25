@@ -18,7 +18,6 @@ namespace FunctionApp1
         {
             log = context.CreateReplaySafeLogger(log);
             var tasks = new List<Task>();
-            var i = context.GetInput<int>();
 
             for (var i = 0; i < 10; i++) {
                  tasks.Add(context.CallActivityAsync("SQLTest", i));
@@ -62,11 +61,11 @@ namespace FunctionApp1
             _con = con;
         }
         [FunctionName("SQLTest")]
-        public async Task SQLTest([ActivityTrigger] int num, ILogger log)
+        public void SQLTest([ActivityTrigger] int num, ILogger log)
         {
             log.LogInformation($"SQL start {num}.");
             if (num == 0 || num == 6) throw new Exception();
-            if (await ExistsUser(num))
+            if (ExistsUser(num))
             {
                 log.LogInformation($"SQL stop {num}. already inserted");
                 return;
@@ -77,18 +76,18 @@ namespace FunctionApp1
             {
                 command.Parameters.AddWithValue("@Id", num);
                 command.Parameters.AddWithValue("@Name", $"name{num}");
-                await command.ExecuteNonQueryAsync();
+                command.ExecuteNonQuery();
             }
             log.LogInformation($"SQL end {num}.");
         }
 
-        private async Task<bool> ExistsUser(int num)
+        private bool ExistsUser(int num)
         {
             var sql = "select Id from Users where Id = @Id";
             using (SqlCommand command = new SqlCommand(sql, _con))
             {
                 command.Parameters.AddWithValue("@Id", num);
-                using (SqlDataReader reader = await command.ExecuteReaderAsync())
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
