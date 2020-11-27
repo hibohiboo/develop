@@ -1,4 +1,4 @@
-import type { ValueOf } from '@/types'
+import type { ValueOf } from './types'
 export const statusCode = {
   Created: 201,
   NoContent: 204,
