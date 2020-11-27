@@ -1,7 +1,22 @@
 {
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.tabCompletion": "on",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  // デフォルトの設定はオフにしておく
+  "typescript.format.enable": false,
+  "javascript.format.enable": false,
   "appService.zipIgnorePattern": [
     "node_modules{,/**}",
     ".vscode{,/**}",
     "src{,/**}"
-  ]
+  ],
+  "appService.defaultWebAppToDeploy": "${env:AZURE_SUBSCRIPTION}",
+  "appService.deploySubpath": "."
 }
