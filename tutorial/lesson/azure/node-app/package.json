@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./bin/www",
-    "build": "tsc",
+    "tsc": "tsc",
     "watch": "tsc --watch"
   },
   "keywords": [],
