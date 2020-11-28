@@ -15,8 +15,9 @@
   "appService.zipIgnorePattern": [
     "node_modules{,/**}",
     ".vscode{,/**}",
-    "src{,/**}"
+    "src{,/**}",
+    "docs{,/**}",
+    "tools{,/**}"
   ],
-  "appService.defaultWebAppToDeploy": "${env:AZURE_SUBSCRIPTION}",
   "appService.deploySubpath": "."
 }

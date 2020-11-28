@@ -1,0 +1,27 @@
+GET https://az-node-app.azurewebsites.net/api/todos HTTP/1.1
+
+###
+POST https://az-node-app.azurewebsites.net/api/todos HTTP/1.1
+content-type: application/json
+
+{"title": "テスト"}
+
+###
+# タイトルがないと400エラー
+POST https://az-node-app.azurewebsites.net/api/todos HTTP/1.1
+content-type: application/json
+
+{}
+
+###
+# 一つ目の要素をcompletedにする
+PUT https://az-node-app.azurewebsites.net/api/todos/29010728-d64e-4db2-b49e-d7c2daf09a9a/completed HTTP/1.1
+
+###
+# 一つ目の要素のcompletedを解除
+DELETE https://az-node-app.azurewebsites.net/api/todos/29010728-d64e-4db2-b49e-d7c2daf09a9a/completed HTTP/1.1
+
+###
+# 一つ目の要素を削除
+DELETE https://az-node-app.azurewebsites.net/api/todos/29010728-d64e-4db2-b49e-d7c2daf09a9a HTTP/1.1
+

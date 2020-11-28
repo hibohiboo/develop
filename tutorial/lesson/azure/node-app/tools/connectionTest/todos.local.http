@@ -1,0 +1,29 @@
+# ctrl + r でリクエストを飛ばす。 拡張機能 REST Client
+
+GET http://localhost:3000/api/todos HTTP/1.1
+
+###
+POST http://localhost:3000/api/todos HTTP/1.1
+content-type: application/json
+
+{"title": "ペン入れ"}
+
+###
+# タイトルがないと400エラー
+POST http://localhost:3000/api/todos HTTP/1.1
+content-type: application/json
+
+{}
+
+###
+# 一つ目の要素をcompletedにする
+PUT http://localhost:3000/api/todos/29010728-d64e-4db2-b49e-d7c2daf09a9a/completed HTTP/1.1
+
+###
+# 一つ目の要素のcompletedを解除
+DELETE http://localhost:3000/api/todos/29010728-d64e-4db2-b49e-d7c2daf09a9a/completed HTTP/1.1
+
+###
+# 一つ目の要素を削除
+DELETE http://localhost:3000/api/todos/29010728-d64e-4db2-b49e-d7c2daf09a9a HTTP/1.1
+
