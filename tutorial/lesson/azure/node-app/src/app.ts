@@ -3,8 +3,10 @@ import { v4 as uuidv4 } from 'uuid'
 import { statusCode, paths } from './constants'
 import type { Todo, DataStorage, HttpError, MiddlewareHandler } from './types'
 
-const dataStorage: DataStorage<Todo> = require(`./${process.env.npm_lifecycle_event}`)
-  .default
+// const dataStorage: DataStorage<Todo> = require(`./${process.env.npm_lifecycle_event}`)
+//   .default
+// const dataStorage: DataStorage<Todo> = require('./file-system').default
+const dataStorage: DataStorage<Todo> = require('./sqlite').default
 
 const app = express()
 app.use(express.json())
