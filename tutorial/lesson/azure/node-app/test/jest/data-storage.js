@@ -37,5 +37,28 @@ for (const dataStorageName of ['file-system', 'sqlite']) {
         expect(sortTodoById(await fetchAll())).toEqual([todo1, todo2, todo3])
       })
     })
+
+    describe('fetchByCompleted()', () => {
+      test('completedの値が指定したものと等しいToDoだけを取得できる', async () => {
+        // 初期状態確認
+        expect(await fetchByCompleted(true)).toEqual([])
+        expect(await fetchByCompleted(false)).toEqual([])
+
+        // ToDoを3件追加
+        const todo1 = { id: 'a', title: 'ネーム', completed: false }
+        await create(todo1)
+        const todo2 = { id: 'b', title: '下書き', completed: true }
+        await create(todo2)
+        const todo3 = { id: 'c', title: 'ペン入れ', completed: false }
+        await create(todo3)
+
+        // fetchByCompletedの結果を確認
+        expect(await fetchByCompleted(true)).toEqual([todo2])
+        expect(sortTodoById(await fetchByCompleted(false))).toEqual([
+          todo1,
+          todo3,
+        ])
+      })
+    })
   })
 }
