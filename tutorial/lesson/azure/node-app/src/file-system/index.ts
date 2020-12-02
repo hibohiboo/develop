@@ -21,10 +21,13 @@ const exportsObj: DataStorage<Todo> = {
     writeFile(`${__dirname}/${todo.id}.json`, JSON.stringify(todo)),
   update: async (id, update) => {
     const filename = `${__dirname}/${id}.json`
-    return readFile(filename, 'utf8').then((content) => {
-      const todo = { ...JSON.parse(content), ...update }
-      return writeFile(filename, JSON.stringify(todo)).then(() => todo)
-    })
+    return readFile(filename, 'utf8').then(
+      (content) => {
+        const todo = { ...JSON.parse(content), ...update }
+        return writeFile(filename, JSON.stringify(todo)).then(() => todo)
+      },
+      (err) => (err.code === 'ENOENT' ? null : Promise.reject(err)),
+    )
   },
   remove: (id) =>
     unlink(`${__dirname}/${id}.json`).then(

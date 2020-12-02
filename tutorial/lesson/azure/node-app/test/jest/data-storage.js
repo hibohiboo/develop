@@ -67,6 +67,39 @@ for (const dataStorageName of ['file-system', 'sqlite']) {
           await create(todo1)
           await create(todo2)
         })
+        test('指定したIDのToDoを更新し、更新後のToDoを返す', async () => {
+          // completedを更新
+          expect(await update('a', { completed: true })).toEqual({
+            id: 'a',
+            title: 'ネーム',
+            completed: true,
+          })
+          expect(await fetchByCompleted(true)).toEqual([
+            { id: 'a', title: 'ネーム', completed: true },
+          ])
+          expect(await fetchByCompleted(false)).toEqual([todo2])
+
+          // タイトルを更新
+          expect(await update('b', { title: 'ペン入れ' })).toEqual({
+            id: 'b',
+            title: 'ペン入れ',
+            completed: false,
+          })
+          expect(await fetchByCompleted(true)).toEqual([
+            { id: 'a', title: 'ネーム', completed: true },
+          ])
+          expect(await fetchByCompleted(false)).toEqual([
+            { id: 'b', title: 'ペン入れ', completed: false },
+          ])
+        })
+        test('存在しないIDを指定するとnullを返す', async () => {
+          expect(await update('c', { completed: true })).toBeNull()
+          expect(await fetchByCompleted(true)).toEqual([])
+          expect(sortTodoById(await fetchByCompleted(false))).toEqual([
+            todo1,
+            todo2,
+          ])
+        })
       })
       describe('remove()', () => {
         const todo1 = { id: 'a', title: 'ネーム', completed: false }
