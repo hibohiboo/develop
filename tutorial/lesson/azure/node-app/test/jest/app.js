@@ -70,5 +70,33 @@ describe('app', () => {
       })
     })
   })
-  describe('POST /api/todos', () => {})
+  describe('POST /api/todos', () => {
+    test('パラメータで指定したタイトルを引数にcreate()を実行し、結果を返す', async () => {
+      uuid.v4.mockReturnValue('a')
+      fileSystem.create.mockResolvedValue()
+      const res = await request(app)
+        .post('/api/todos')
+        .send({ title: 'ネーム' })
+      const expectedTodo = { id: 'a', title: 'ネーム', completed: false }
+      expect(res.body).toEqual(expectedTodo)
+      expect(fileSystem.create).toHaveBeenCalledWith(expectedTodo)
+    })
+    test('パラメータにタイトルが指定されていない場合、400エラーを返す', async () => {
+      for (const title of ['', undefined]) {
+        const res = await request(app).post('/api/todos').send({ title })
+        expect(res.statusCode).toBe(400)
+        expect(res.body).toEqual({ error: 'title is required' })
+        expect(fileSystem.create).not.toHaveBeenCalled()
+      }
+    })
+    test('create()が失敗したらエラーを返す', async () => {
+      fileSystem.create.mockRejectedValue(new Error('create()失敗'))
+      const res = await request(app)
+        .post('/api/todos')
+        .send({ title: 'ネーム' })
+
+      expect(res.statusCode).toBe(500)
+      expect(res.body).toEqual({ error: 'create()失敗' })
+    })
+  })
 })
