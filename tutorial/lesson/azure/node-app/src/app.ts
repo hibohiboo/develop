@@ -3,10 +3,10 @@ import { v4 as uuidv4 } from 'uuid'
 import { statusCode, paths } from './constants'
 import type { Todo, DataStorage, HttpError, MiddlewareHandler } from './types'
 
-// const dataStorage: DataStorage<Todo> = require(`./${process.env.npm_lifecycle_event}`)
-//   .default
+const dataStorage: DataStorage<Todo> = require(`./${process.env.npm_lifecycle_event}`)
+  .default
 // const dataStorage: DataStorage<Todo> = require('./file-system').default
-const dataStorage: DataStorage<Todo> = require('./sqlite').default
+// const dataStorage: DataStorage<Todo> = require('./sqlite').default
 
 const app = express()
 app.use(express.json())
@@ -64,4 +64,10 @@ app.delete(`${paths.todos}/:id`, (req, res, next) =>
     next(err)
   }, next),
 )
+
+// エラーハンドリングミドルウェア
+app.use((err: any, req: any, res: any, next: any) => {
+  console.log(err)
+  res.status(err.statusCode || 500).json({ error: err.message })
+})
 export default app
