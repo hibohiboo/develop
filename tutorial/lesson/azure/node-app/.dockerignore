@@ -1,0 +1,10 @@
+bash
+coverage
+dist
+docs
+node_modules
+tools
+.vscode
+.git
+.deployment
+
