@@ -4,9 +4,11 @@ import { statusCode, paths } from './constants'
 import type { Todo, DataStorage, HttpError, MiddlewareHandler } from './types'
 
 const dataStorage: DataStorage<Todo> = require(`./${
-  process.env.npm_lifecycle_event === 'dev-serve'
+  !process.env.npm_lifecycle_event
     ? 'file-system'
-    : process.env.npm_lifecycle_event || 'file-system'
+    : ['dev-serve', 'start'].includes(process.env.npm_lifecycle_event)
+    ? 'file-system'
+    : process.env.npm_lifecycle_event
 }`).default
 // const dataStorage: DataStorage<Todo> = require('./file-system').default
 // const dataStorage: DataStorage<Todo> = require('./sqlite').default
