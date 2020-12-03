@@ -1,0 +1,16 @@
+// https://qiita.com/INOUEMASA/items/1ba0b2625e5e5cf0e91f
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch TypeScript",
+      "program": "${workspaceFolder}\\bin\\www",
+      "preLaunchTask": "Compile TypeScript",
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ]
+    }
+  ]
+}

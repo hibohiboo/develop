@@ -5,3 +5,4 @@ parent_dir=$(cd $bin_dir/.. && pwd)
 
 cd $parent_dir
 node --inspect-brk ./bin/www
+# chromeのdeveloperツールでデバッグ可能

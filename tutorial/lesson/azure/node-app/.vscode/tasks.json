@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+      {
+          "label": "Compile TypeScript",
+          "type": "npm",
+          "script": "tsc",
+          "problemMatcher": [
+              "$tsc"
+          ]
+      }
+  ]
+}
