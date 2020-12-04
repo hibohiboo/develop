@@ -53,12 +53,17 @@ Vagrant.configure("2") do |config|
     # Vagrant1.8から利用出来るLinked Cloneをオンにする。
     vm.linked_clone = true
 
-    vm.customize [ "modifyvm", :id, "--cpus", "2", "--ioapic", "on"]
+    vm.customize [ "modifyvm", :id, "--cpus", "4", "--ioapic", "on"]
 
     # https://qiita.com/takushi1969/items/965f31abc5312dd17a68
     # ubuntu/focal64の起動オプションとしてttyS0が有効となっていることが原因でpanicが起こるらしい
     vm.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
     vm.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+    vm.customize ["modifyvm", :id, "--nestedpaging", "off"]
+    vm.customize ["modifyvm", :id, "--paravirtprovider", "hyperv"]
+    # https://vboxmania.net/%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e8%a8%ad%e5%ae%9a/
+    # vm.customize ["modifyvm", :id, "--hwvirtex", "on", "--nestedpaging", "on", "--largepages", "on",  "--pae", "on", "--paravirtprovider", "kvm",]
+
     # ↓起動が止まるときの確認用
     # vm.gui = true
 
