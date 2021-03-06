@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionApp1", "FunctionApp1\FunctionApp1.csproj", "{0F4D9527-FEED-4C56-908D-ED9F5FA706A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionApp1", "FunctionApp1\FunctionApp1.csproj", "{0F4D9527-FEED-4C56-908D-ED9F5FA706A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject1", "XUnitTestProject1\XUnitTestProject1.csproj", "{AD036F67-5726-43C7-8F62-0B471E1FDDCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{0F4D9527-FEED-4C56-908D-ED9F5FA706A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F4D9527-FEED-4C56-908D-ED9F5FA706A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F4D9527-FEED-4C56-908D-ED9F5FA706A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD036F67-5726-43C7-8F62-0B471E1FDDCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD036F67-5726-43C7-8F62-0B471E1FDDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD036F67-5726-43C7-8F62-0B471E1FDDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD036F67-5726-43C7-8F62-0B471E1FDDCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
