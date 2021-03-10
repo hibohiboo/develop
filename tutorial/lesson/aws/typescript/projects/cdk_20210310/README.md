@@ -16,3 +16,4 @@ The `cdk.json` file tells the CDK Toolkit how to execute your app.
 https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-nodejs-readme.html
 https://dev.classmethod.jp/articles/lambda-bundling-via-aws-cdk/
 https://cdkworkshop.com/20-typescript/20-create-project/300-structure.html
+https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-lambda-nodejs.NodejsFunction.html
