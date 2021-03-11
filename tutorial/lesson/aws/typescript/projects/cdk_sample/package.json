@@ -1,0 +1,34 @@
+{
+  "name": "cdk_20210310",
+  "version": "0.1.0",
+  "bin": {
+    "cdk_20210310": "bin/cdk_20210310.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "bundle": "cdk synth && cdk synth > cdk.out/template.yaml",
+    "localinvoke": "cd cdk.out && sam.cmd local invoke testAF53AC38 --no-event",
+    "localHello": "cd cdk.out && sam.cmd local invoke hello26396490 --no-event"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "1.92.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.92.0",
+    "@types/aws-lambda": "^8.10.72",
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "aws-cdk": "1.92.0",
+    "esbuild": "^0.9.0",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "@aws-cdk/core": "1.92.0",
+    "date-fns": "^2.19.0",
+    "source-map-support": "^0.5.16"
+  }
+}
