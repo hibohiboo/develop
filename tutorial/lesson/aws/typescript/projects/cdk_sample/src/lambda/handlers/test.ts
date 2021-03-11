@@ -2,7 +2,7 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import * as dateUtility from '@/lambda/utilities/dateUtility';
 const handler: APIGatewayProxyHandler = async (event) => {
   // TODO implement
-  const test: string = `Hello from Lambda! TS!${dateUtility.formatISO(new Date())}`
+  const test: string = `Hello from Lambda! TS!${dateUtility.formatISO(new Date())}, key: ${JSON.stringify(process.env.API_KEY)}`
   const response = {
     statusCode: 200,
     body: JSON.stringify(test),
