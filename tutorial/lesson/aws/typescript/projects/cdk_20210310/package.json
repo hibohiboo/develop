@@ -8,7 +8,8 @@
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "localinvoke": "sam.cmd local invoke kotatest9BC467AF --no-event"
   },
   "devDependencies": {
     "@aws-cdk/assert": "1.92.0",

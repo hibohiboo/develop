@@ -37,7 +37,20 @@ https://qiita.com/ufoo68/items/9d98e70fbb8f021b57f4
 CDK 公式ガイド
 https://docs.aws.amazon.com/cdk/latest/guide/home.html
 
+AWS CDK で AWS SAM のテンプレートを出力してデプロイする
+https://qiita.com/izanari/items/05f601f12ff5b0f32fd7
+
+【AWS】CDK で出力されるテンプレートから CDKMetadata を除く方法
+https://qiita.com/willco21/items/c44839c6b3df92f5c59c
+
+ts sample
+https://github.com/aws-samples/aws-cdk-examples/tree/master/typescript
+
+Windows10Pro で AWS SAM を使ってローカルで HelloWorld(サンプルは node.js)
+https://qiita.com/tsumita7/items/d87e4d95ed3d4bd7f69e
+
 ## SAM
 
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-windows.html
 https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/serverless-sam-cli-install-windows.html
+https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/serverless-getting-started-hello-world.html
