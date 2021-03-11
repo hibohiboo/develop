@@ -20,7 +20,7 @@ export class SampleStack extends cdk.Stack {
           'date-fns', // Layrerに入れておきたいモジュール
         ],
         define: { // Replace strings during build time
-          'process.env.API_KEY': JSON.stringify(JSON.stringify('{"value":"xxx-xxx"}')), // バグってそう
+          'process.env.API_KEY': JSON.stringify(JSON.stringify('"xxx-xxx"')), // バグってそう
         },
       },
     });
