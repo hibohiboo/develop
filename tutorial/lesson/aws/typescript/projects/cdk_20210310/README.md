@@ -49,6 +49,9 @@ https://github.com/aws-samples/aws-cdk-examples/tree/master/typescript
 Windows10Pro で AWS SAM を使ってローカルで HelloWorld(サンプルは node.js)
 https://qiita.com/tsumita7/items/d87e4d95ed3d4bd7f69e
 
+AWS CDK を使って node_modules を AWS Lambda Layers にデプロイするサンプル
+https://dev.classmethod.jp/articles/aws-cdk-node-modules-lambda-layer/
+
 ## SAM
 
 https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-windows.html
