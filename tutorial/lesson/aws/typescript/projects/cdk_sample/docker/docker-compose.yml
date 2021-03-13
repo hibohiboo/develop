@@ -1,0 +1,38 @@
+version: '3.5'
+
+networks:
+  backend:
+    driver: ${NETWORKS_DRIVER}
+
+volumes:
+  mongo:
+    driver: ${VOLUMES_DRIVER}
+  mongodb-data: {}
+
+services:
+### MongoDB ##############################################
+    mongo:
+      build: ./mongo
+      ports:
+        - "${MONGODB_PORT}:27017"
+      volumes:
+        - mongodb-data:/data/db
+      networks:
+        - backend
+
+### MongoWebUI ################################################
+    mongo-webui:
+      build:
+        context: ./mongo-webui
+      environment:
+        - ROOT_URL=${MONGO_WEBUI_ROOT_URL}
+        - MONGO_URL=${MONGO_WEBUI_MONGO_URL}
+        - INSTALL_MONGO=${MONGO_WEBUI_INSTALL_MONGO}
+      volumes:
+        - mongodb-data:/data/db
+      ports:
+        - "${MONGO_WEBUI_PORT}:3000"
+      networks:
+        - backend
+      depends_on:
+        - mongo

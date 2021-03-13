@@ -1,4 +1,4 @@
-type ResponseBody = Record<string, undefined> | number | string
+type ResponseBody = Record<string, any> | number | string
 export const badRequest = (body: ResponseBody | null = null) =>
 ({
   statusCode: 400,

@@ -3,7 +3,7 @@ import { getClient } from '@/persistant/client';
 import { User } from '../types';
 
 const _getUsers = async () => {
-  const client = await getClient();
+  const client = await getClient('mongodb://host.docker.internal:27017', 'sample');
   const users = client.collection('users');
   return users;
 }

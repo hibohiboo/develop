@@ -1,6 +1,6 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import * as response from '@/lambda/utilities/reponse';
-import * as users from '../persistant/users';
+import * as users from '../../users/persistant/users';
 
 export const lambdaHandler: APIGatewayProxyHandler = async (event) => {
   const { body } = event;

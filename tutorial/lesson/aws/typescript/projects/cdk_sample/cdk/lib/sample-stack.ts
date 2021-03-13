@@ -44,8 +44,25 @@ export class SampleStack extends cdk.Stack {
       handler: 'echoHandler'
     });
 
+    const getUserFunction = new NodejsFunction(this, 'getUser', {
+      runtime: lambda.Runtime.NODEJS_14_X,
+      entry: `${entryHandlerDir}/users/get-user.ts`,
+      functionName: 'get-user',
+      handler: 'lambdaHandler'
+    });
+    const postUserFunction = new NodejsFunction(this, 'postUser', {
+      runtime: lambda.Runtime.NODEJS_14_X,
+      entry: `${entryHandlerDir}/users/post-user.ts`,
+      functionName: 'post-user',
+      handler: 'lambdaHandler'
+    });
+
     const api = new apigateway.RestApi(this, 'ServerlessRestApi', { cloudWatchRole: false });
     api.root.addMethod('POST', new apigateway.LambdaIntegration(helloFunction));
     api.root.addResource('{id}').addMethod('GET', new apigateway.LambdaIntegration(echoFunction));
+
+    const users = api.root.addResource('users');
+    users.addResource('{username}').addMethod('GET', new apigateway.LambdaIntegration(getUserFunction));
+    users.addMethod('POST', new apigateway.LambdaIntegration(postUserFunction));
   }
 }

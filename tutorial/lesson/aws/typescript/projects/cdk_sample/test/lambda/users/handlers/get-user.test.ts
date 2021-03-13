@@ -1,5 +1,5 @@
 
-import * as app from '@/lambda/users/handlers/get-user';
+import * as app from '@/lambda/handlers/users/get-user';
 
 jest.mock('@/lambda/users/persistant/users', () => ({
   findByName: jest.fn((username: string) => {
