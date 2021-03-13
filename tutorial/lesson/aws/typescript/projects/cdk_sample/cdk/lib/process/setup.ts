@@ -28,7 +28,7 @@ const copyPackageJson = () => {
 
   // copy package.json and package.lock.json
   fs.mkdirsSync(getModulesInstallDirName());
-  ['package.json', 'package-lock.json']
+  ['package.json']
     .map(file => fs.copyFileSync(srcFilePath(file), distFilePath(file)));
 
 };
