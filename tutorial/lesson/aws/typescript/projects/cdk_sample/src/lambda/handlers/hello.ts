@@ -1,7 +1,5 @@
 import { Handler } from 'aws-lambda';
 export const lambdaHandler: Handler = async (event, context) => {
-  console.log(event)
-  console.log(context)
   let response = null;
   try {
     response = {

@@ -4,40 +4,36 @@ import type { Db } from 'mongodb';
 class DocumentDBClient {
   private connection: MongoClient;
   private connectionString: string;
-  constructor(_connectionString: string | undefined) {
+  private dbName: string;
+  private db: Db;
+  constructor(_connectionString: string | undefined, _dbName: string | undefined) {
     if (!_connectionString) {
       throw Error('document connection string is required');
     }
+    if (!_dbName) {
+      throw Error('SampleDbName is required');
+    }
     this.connectionString = _connectionString;
+    this.dbName = _dbName;
   }
   async init() {
     this.connection = await MongoClient.connect(this.connectionString);
+    this.db = await this.connection.db(this.dbName);
   }
-  async getDb(dbName: string) {
-    return this.connection.db(dbName);
+  get collection() {
+    return this.db.collection;
+  }
+  close() {
+    this.connection.close();
   }
 }
 
 let dbClient: DocumentDBClient | undefined;
-const getClient = async () => {
+export const getClient = async () => {
   if (dbClient) {
     return Promise.resolve(dbClient);
   }
-  dbClient = new DocumentDBClient(process.env.DocumentDBConnectionString)
+  dbClient = new DocumentDBClient(process.env.DOCUMENTDB_CONNECTION_STRING, process.env.DEFAULT_DB_NAME)
   await dbClient.init();
   return dbClient;
 }
-
-let db: Db;
-export const getDb = async () => {
-  if (db) {
-    return Promise.resolve(db);
-  }
-  const dbName = process.env.SampleDbName;
-  if (!dbName) {
-    throw Error('SampleDbName is required');
-  }
-  const client = await getClient();
-  return db = await client.getDb(dbName);
-}
-
