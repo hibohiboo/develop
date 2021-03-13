@@ -7,6 +7,6 @@ import { bundleNpm } from '../lib/process/setup';
 // pre-process
 bundleNpm();
 
-// create app
+// // create app
 const app = new cdk.App();
 new SampleStack(app, 'SampleStack2021');

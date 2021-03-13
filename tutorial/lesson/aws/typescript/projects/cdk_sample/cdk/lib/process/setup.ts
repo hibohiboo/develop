@@ -8,7 +8,7 @@ export const NODE_LAMBDA_LAYER_DIR = path.resolve(process.cwd(), bundlePath);
 const NODE_LAMBDA_LAYER_RUNTIME_DIR_NAME = `nodejs`;
 const runtimeDirName = path.resolve(process.cwd(), `${bundlePath}/${NODE_LAMBDA_LAYER_RUNTIME_DIR_NAME}`);
 const distFilePath = (file: string) => path.resolve(process.cwd(), `${bundlePath}/${NODE_LAMBDA_LAYER_RUNTIME_DIR_NAME}/${file}`)
-const srcFilePath = (file: string) => path.resolve(`${process.cwd()}/${file}`)
+const srcFilePath = (file: string) => path.resolve(`${process.cwd()}/../${file}`)
 
 export const bundleNpm = () => {
   // create bundle directory

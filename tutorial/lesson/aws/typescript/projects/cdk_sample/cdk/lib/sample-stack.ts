@@ -7,9 +7,10 @@ import { NODE_LAMBDA_LAYER_DIR } from './process/setup';
 export class SampleStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
+    const entryHandlerDir = '../src/lambda/handlers/';
     const helloFunction = new NodejsFunction(this, 'hello', {
       runtime: lambda.Runtime.NODEJS_14_X,
-      entry: 'src/lambda/handlers/hello.ts',
+      entry: `${entryHandlerDir}/hello.ts`,
       functionName: 'kotahello',
       handler: 'lambdaHandler'
     });
@@ -23,7 +24,7 @@ export class SampleStack extends cdk.Stack {
 
     new NodejsFunction(this, 'test', {
       runtime: lambda.Runtime.NODEJS_14_X,
-      entry: 'src/lambda/handlers/test.ts',
+      entry: `${entryHandlerDir}/test.ts`,
       functionName: 'kotatest',
       bundling: {
         externalModules: [
@@ -38,7 +39,7 @@ export class SampleStack extends cdk.Stack {
     });
     const echoFunction = new NodejsFunction(this, 'echo', {
       runtime: lambda.Runtime.NODEJS_14_X,
-      entry: 'src/lambda/handlers/get-echo.ts',
+      entry: `${entryHandlerDir}/get-echo.ts`,
       functionName: 'get-echo',
       handler: 'echoHandler'
     });
