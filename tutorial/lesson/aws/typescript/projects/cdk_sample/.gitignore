@@ -9,3 +9,4 @@ cdk.out
 !lib
 template.yaml
 bundle
+globalConfig.json
