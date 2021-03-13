@@ -4,7 +4,7 @@ import { User } from '../types';
 
 const _getUsers = async () => {
   const client = await getClient();
-  const users = await client.collection('users');
+  const users = client.collection('users');
   return users;
 }
 

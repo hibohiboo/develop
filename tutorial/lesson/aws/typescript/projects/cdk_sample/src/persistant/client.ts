@@ -1,7 +1,8 @@
 import { MongoClient } from 'mongodb';
 import type { Db } from 'mongodb';
 
-class DocumentDBClient {
+let dbClient: DocumentDBClient | undefined;
+export class DocumentDBClient {
   private connection: MongoClient;
   private connectionString: string;
   private dbName: string;
@@ -20,20 +21,24 @@ class DocumentDBClient {
     this.connection = await MongoClient.connect(this.connectionString);
     this.db = await this.connection.db(this.dbName);
   }
-  get collection() {
-    return this.db.collection;
+
+  collection(name: string) {
+    return this.db.collection(name);
   }
+
   close() {
     this.connection.close();
   }
 }
 
-let dbClient: DocumentDBClient | undefined;
-export const getClient = async () => {
+
+export const getClient = async (
+  connectionString: string | undefined = process.env.DOCUMENTDB_CONNECTION_STRING,
+  dbName: string | undefined = process.env.DEFAULT_DB_NAME) => {
   if (dbClient) {
     return Promise.resolve(dbClient);
   }
-  dbClient = new DocumentDBClient(process.env.DOCUMENTDB_CONNECTION_STRING, process.env.DEFAULT_DB_NAME)
+  dbClient = new DocumentDBClient(connectionString, dbName)
   await dbClient.init();
   return dbClient;
 }

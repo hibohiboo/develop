@@ -1,6 +1,4 @@
-import { MongoClient } from 'mongodb';
-import type { Db } from 'mongodb';
-
+import { getClient, DocumentDBClient } from '@/persistant/client'
 import * as Users from '@/lambda/users/persistant/users';
 import type { User } from '@/lambda/users/types';
 
@@ -39,30 +37,28 @@ const users: User[] = [
 ]
 
 describe('src/models/user', () => {
-  let connection: MongoClient;
-  let db: Db;
+  let client: DocumentDBClient;
 
   // データベースに接続
   beforeAll(async () => {
-    connection = await MongoClient.connect(global.__MONGO_URI__);
-    db = await connection.db(global.__MONGO_DB_NAME__);
+    client = await getClient(global.__MONGO_URI__, global.__MONGO_DB_NAME__);
   })
 
   // テストデータをテスト毎に挿入
   beforeEach(async () => {
-    await db.collection('users').deleteMany({})
-    await db.collection('users').insertMany(users)
+    await client.collection('users').deleteMany({})
+    await client.collection('users').insertMany(users)
   })
 
   // 接続を閉じる
   afterAll(() => {
-    connection.close()
+    client.close()
   })
 
   describe('クエリヘルパー', () => {
     describe('findOrCreate', () => {
       test('指定したusernameのユーザーが取得できる', async () => {
-        const result = await Users.findByName('user1', () => Promise.resolve(db.collection('users')))
+        const result = await Users.findByName('user1', () => Promise.resolve(client.collection('users')))
         expect(result?.username).toEqual('user1')
       })
     })
