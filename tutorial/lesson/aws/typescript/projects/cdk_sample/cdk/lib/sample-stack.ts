@@ -44,17 +44,28 @@ export class SampleStack extends cdk.Stack {
       handler: 'echoHandler'
     });
 
+    // const environment = {
+    //   DOCUMENTDB_CONNECTION_STRING: process.env.DOCUMENTDB_CONNECTION_STRING || '',
+    //   DEFAULT_DB_NAME: process.env.DEFAULT_DB_NAME || ''
+    // }
+    const environment = {
+      DOCUMENTDB_CONNECTION_STRING: 'mongodb://host.docker.internal:27017',
+      DEFAULT_DB_NAME: 'sample'
+    }
+
     const getUserFunction = new NodejsFunction(this, 'getUser', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: `${entryHandlerDir}/users/get-user.ts`,
       functionName: 'get-user',
-      handler: 'lambdaHandler'
+      handler: 'lambdaHandler',
+      environment
     });
     const postUserFunction = new NodejsFunction(this, 'postUser', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: `${entryHandlerDir}/users/post-user.ts`,
       functionName: 'post-user',
-      handler: 'lambdaHandler'
+      handler: 'lambdaHandler',
+      environment
     });
 
     const api = new apigateway.RestApi(this, 'ServerlessRestApi', { cloudWatchRole: false });

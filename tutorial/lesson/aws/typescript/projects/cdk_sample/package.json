@@ -7,7 +7,7 @@
     "test": "jest",
     "bundle": "cd cdk && npm run bundle",
     "localinvoke": "cd cdk && npm run localinvoke",
-    "dev-server": "cd cdk && npm run dev-server"
+    "dev-serve": "cd cdk && npm run dev-server"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.3",
