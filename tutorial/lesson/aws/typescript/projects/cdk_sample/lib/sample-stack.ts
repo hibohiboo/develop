@@ -1,11 +1,13 @@
 import * as cdk from '@aws-cdk/core';
-import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
 import * as lambda from '@aws-cdk/aws-lambda';
+import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
+import * as apigateway from '@aws-cdk/aws-apigateway'
 import { NODE_LAMBDA_LAYER_DIR } from './process/setup';
+
 export class SampleStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-    new NodejsFunction(this, 'hello', {
+    const helloFunction = new NodejsFunction(this, 'hello', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: 'src/lambda/handlers/hello.ts',
       functionName: 'kotahello',
@@ -34,6 +36,15 @@ export class SampleStack extends cdk.Stack {
       },
       layers: [nodeModulesLayer],
     });
+    const echoFunction = new NodejsFunction(this, 'echo', {
+      runtime: lambda.Runtime.NODEJS_14_X,
+      entry: 'src/lambda/handlers/get-echo.ts',
+      functionName: 'get-echo',
+      handler: 'echoHandler'
+    });
 
+    const api = new apigateway.RestApi(this, 'ServerlessRestApi', { cloudWatchRole: false });
+    api.root.addMethod('POST', new apigateway.LambdaIntegration(helloFunction));
+    api.root.addResource('{id}').addMethod('GET', new apigateway.LambdaIntegration(echoFunction));
   }
 }
