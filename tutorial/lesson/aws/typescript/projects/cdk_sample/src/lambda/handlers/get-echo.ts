@@ -13,7 +13,7 @@ export const echoHandler: APIGatewayProxyHandler = async (event) => {
   // Get id from pathParameters from APIGateway because of `/{id}` at template.yml
   const params = pathParameters;
   if (!params || !params.id) {
-    return response.badRequest('not undefined')
+    return response.badRequest('parameter is required')
   }
   const { id } = params;
   const res = response.ok(id);
