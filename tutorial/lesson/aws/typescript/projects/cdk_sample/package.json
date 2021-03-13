@@ -10,14 +10,17 @@
     "dev-server": "cd cdk && npm run dev-server"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.2.3",
     "@types/aws-lambda": "^8.10.72",
     "@types/jest": "^26.0.10",
     "@types/node": "10.17.27",
     "jest": "^26.4.2",
+    "mongodb-memory-server": "^6.9.6",
     "ts-jest": "^26.2.0",
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "date-fns": "^2.19.0"
+    "date-fns": "^2.19.0",
+    "mongodb": "^4.0.0-beta.1"
   }
 }
