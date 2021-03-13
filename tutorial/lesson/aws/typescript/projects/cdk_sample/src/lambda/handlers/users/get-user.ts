@@ -10,7 +10,8 @@ const getUsername = (params: { username?: string } | null) => {
   return username;
 }
 
-export const lambdaHandler: APIGatewayProxyHandler = async (event) => {
+export const lambdaHandler: APIGatewayProxyHandler = async (event, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
   const username = getUsername(event.pathParameters);
   if (!username) {
     return response.badRequest('parameter is required');

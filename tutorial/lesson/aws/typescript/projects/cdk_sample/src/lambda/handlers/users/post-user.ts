@@ -2,7 +2,8 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import * as response from '@/lambda/utilities/reponse';
 import * as users from '../../users/persistant/users';
 
-export const lambdaHandler: APIGatewayProxyHandler = async (event) => {
+export const lambdaHandler: APIGatewayProxyHandler = async (event, context) => {
+  context.callbackWaitsForEmptyEventLoop = false;
   const { body } = event;
   if (!body) {
     return response.badRequest('body is required')
