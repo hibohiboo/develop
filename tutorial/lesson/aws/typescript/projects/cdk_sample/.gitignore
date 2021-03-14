@@ -10,3 +10,4 @@ cdk.out
 template.yaml
 bundle
 globalConfig.json
+!jest-mongodb-config.js
