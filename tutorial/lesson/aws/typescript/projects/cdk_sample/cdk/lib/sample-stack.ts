@@ -44,14 +44,15 @@ export class SampleStack extends cdk.Stack {
       handler: 'echoHandler'
     });
 
-    // const environment = {
-    //   DOCUMENTDB_CONNECTION_STRING: process.env.DOCUMENTDB_CONNECTION_STRING || '',
-    //   DEFAULT_DB_NAME: process.env.DEFAULT_DB_NAME || ''
-    // }
     const environment = {
-      DOCUMENTDB_CONNECTION_STRING: 'mongodb://host.docker.internal:27017',
-      DEFAULT_DB_NAME: 'sample'
+      DOCUMENTDB_CONNECTION_STRING: process.env.DOCUMENTDB_CONNECTION_STRING || '',
+      DEFAULT_DB_NAME: process.env.DEFAULT_DB_NAME || ''
     }
+    // const environment = {
+    //   DOCUMENTDB_CONNECTION_STRING: 'mongodb://host.docker.internal:27017',
+    //   DEFAULT_DB_NAME: 'sample'
+    // }
+
     const bundling = {
       externalModules: ['aws-sdk', 'mongodb', 'mongodb-client-encryption'],
     }
