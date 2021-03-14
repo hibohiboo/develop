@@ -52,20 +52,24 @@ export class SampleStack extends cdk.Stack {
       DOCUMENTDB_CONNECTION_STRING: 'mongodb://host.docker.internal:27017',
       DEFAULT_DB_NAME: 'sample'
     }
+    const bundling = {
+      externalModules: ['aws-sdk', 'mongodb', 'mongodb-client-encryption'],
+    }
+    const mongoFunctionOptions = { environment, bundling, layers: [nodeModulesLayer] }
 
     const getUserFunction = new NodejsFunction(this, 'getUser', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: `${entryHandlerDir}/users/get-user.ts`,
       functionName: 'get-user',
       handler: 'lambdaHandler',
-      environment
+      ...mongoFunctionOptions,
     });
     const postUserFunction = new NodejsFunction(this, 'postUser', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: `${entryHandlerDir}/users/post-user.ts`,
       functionName: 'post-user',
       handler: 'lambdaHandler',
-      environment
+      ...mongoFunctionOptions,
     });
 
     const api = new apigateway.RestApi(this, 'ServerlessRestApi', { cloudWatchRole: false });
