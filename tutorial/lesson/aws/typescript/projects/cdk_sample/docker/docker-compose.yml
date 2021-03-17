@@ -36,3 +36,15 @@ services:
         - backend
       depends_on:
         - mongo
+### Node ################################################
+    node-test:
+      build:
+        context: ./node
+      volumes:
+        - ../package.json:/app/package.json
+        - ../package-lock.json:/app/package-lock.json
+        - ../tsconfig.json:/app/tsconfig.json
+        - ../jest.config.js:/app/jest.config.js
+        - ../jest-mongodb-config.js:/app/jest-mongodb-config.js
+        - ../src:/app/src
+        - ../test:/app/test
