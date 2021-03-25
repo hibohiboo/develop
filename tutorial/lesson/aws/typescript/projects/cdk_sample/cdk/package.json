@@ -13,20 +13,20 @@
     "debug-serve": "cd cdk.out && sam.cmd local start-api -d 5858 -n ../env.json"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.72",
+    "@types/aws-lambda": "^8.10.73",
     "@types/fs-extra": "^9.0.8",
-    "@types/jest": "^26.0.10",
+    "@types/jest": "^26.0.21",
     "@types/node": "10.17.27",
-    "esbuild": "^0.9.0",
+    "esbuild": "^0.9.7",
     "jest": "^26.4.2",
     "ts-node": "^9.0.0",
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/assert": "^1.94.1",
-    "@aws-cdk/aws-apigateway": "^1.94.1",
-    "@aws-cdk/aws-lambda-nodejs": "^1.94.1",
-    "@aws-cdk/core": "^1.94.1",
+    "@aws-cdk/assert": "^1.95.0",
+    "@aws-cdk/aws-apigateway": "^1.95.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.95.0",
+    "@aws-cdk/core": "^1.95.0",
     "fs-extra": "^9.1.0",
     "source-map-support": "^0.5.19"
   }
