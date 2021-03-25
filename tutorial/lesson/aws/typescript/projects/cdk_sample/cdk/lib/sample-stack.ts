@@ -8,11 +8,16 @@ export class SampleStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
     const entryHandlerDir = '../src/lambda/handlers/';
+    const bundlingMap = {
+      sourceMap: true,
+      tsconfig: '../tsconfig.json'
+    }
     const helloFunction = new NodejsFunction(this, 'hello', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: `${entryHandlerDir}/hello.ts`,
       functionName: 'kotahello',
-      handler: 'lambdaHandler'
+      handler: 'lambdaHandler',
+      bundling: bundlingMap
     });
 
     const nodeModulesLayer = new lambda.LayerVersion(this, 'NodeModulesLayer',
@@ -27,6 +32,7 @@ export class SampleStack extends cdk.Stack {
       entry: `${entryHandlerDir}/test.ts`,
       functionName: 'kotatest',
       bundling: {
+        ...bundlingMap,
         externalModules: [
           'aws-sdk', // Use the 'aws-sdk' available in the Lambda runtime
           'date-fns', // Layrerに入れておきたいモジュール
@@ -34,14 +40,17 @@ export class SampleStack extends cdk.Stack {
         define: { // Replace strings during build time
           'process.env.API_KEY': JSON.stringify(`\\"${'xxx-xxx'}\\"`), // バグってそう.エスケープしないとInvalid define valueのエラー
         },
+
       },
       layers: [nodeModulesLayer],
     });
+    // https://stackoverflow.com/questions/65197581/how-to-debug-in-vs-code-a-local-aws-lambda-function-with-api-gateway-written-in
     const echoFunction = new NodejsFunction(this, 'echo', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: `${entryHandlerDir}/get-echo.ts`,
       functionName: 'get-echo',
-      handler: 'echoHandler'
+      handler: 'echoHandler',
+      bundling: bundlingMap
     });
 
     const environment = {
@@ -54,6 +63,7 @@ export class SampleStack extends cdk.Stack {
     // }
 
     const bundling = {
+      ...bundlingMap,
       externalModules: ['aws-sdk', 'mongodb', 'mongodb-client-encryption'],
     }
     const mongoFunctionOptions = { environment, bundling, layers: [nodeModulesLayer] }

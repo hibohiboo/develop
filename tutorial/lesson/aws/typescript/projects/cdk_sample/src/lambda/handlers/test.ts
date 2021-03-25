@@ -1,6 +1,7 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import * as dateUtility from '@/lambda/utilities/dateUtility';
-const handler: APIGatewayProxyHandler = async (event) => {
+
+export const handler: APIGatewayProxyHandler = async (event) => {
   // TODO implement
   const test: string = `Hello from Lambda! TS!${dateUtility.formatISO(new Date())}, key: ${process.env.API_KEY}`
   const response = {
@@ -10,4 +11,4 @@ const handler: APIGatewayProxyHandler = async (event) => {
   return response;
 };
 
-exports.handler = handler
+// exports.handler = handler

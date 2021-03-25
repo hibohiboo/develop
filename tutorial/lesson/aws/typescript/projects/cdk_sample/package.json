@@ -7,7 +7,9 @@
     "test": "jest",
     "bundle": "cd cdk && npm run bundle",
     "localinvoke": "cd cdk && npm run localinvoke",
-    "dev-serve": "cd cdk && npm run dev-serve"
+    "debuginvoke": "cd cdk && npm run debuginvoke",
+    "dev-serve": "cd cdk && npm run dev-serve",
+    "debug-serve": "cd cdk && npm run debug-serve"
   },
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.2.3",
@@ -21,6 +23,7 @@
   },
   "dependencies": {
     "date-fns": "^2.19.0",
+    "date-fns-tz": "^1.1.3",
     "mongodb": "^4.0.0-beta.1",
     "mongodb-client-encryption": "^1.2.1"
   }

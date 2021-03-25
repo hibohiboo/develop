@@ -8,7 +8,9 @@
     "cdk": "cdk",
     "bundle": "cdk synth > cdk.out/template.yaml",
     "localinvoke": "cd cdk.out && sam.cmd local invoke testAF53AC38 --no-event",
-    "dev-serve": "cd cdk.out && sam.cmd local start-api -n ../env.json"
+    "debuginvoke": "cd cdk.out && sam.cmd local invoke -d 5858 testAF53AC38 --no-event",
+    "dev-serve": "cd cdk.out && sam.cmd local start-api -n ../env.json",
+    "debug-serve": "cd cdk.out && sam.cmd local start-api -d 5858 -n ../env.json"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.72",
@@ -21,10 +23,10 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
-    "@aws-cdk/assert": "^1.93.0",
-    "@aws-cdk/aws-apigateway": "^1.93.0",
-    "@aws-cdk/aws-lambda-nodejs": "^1.93.0",
-    "@aws-cdk/core": "^1.93.0",
+    "@aws-cdk/assert": "^1.94.1",
+    "@aws-cdk/aws-apigateway": "^1.94.1",
+    "@aws-cdk/aws-lambda-nodejs": "^1.94.1",
+    "@aws-cdk/core": "^1.94.1",
     "fs-extra": "^9.1.0",
     "source-map-support": "^0.5.19"
   }

@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "type": "node",
+          "request": "attach",
+          "name": "attach Program",
+          "port": 5858,
+          "address": "localhost",
+          "localRoot": "${workspaceFolder}/cdk/cdk.out/asset.ff62102abf256369f4067436df86939e80532114601e39c34faa7edd1c438306",
+          "remoteRoot": "/var/task",
+          "protocol": "inspector",
+          // "sourceMaps": true,
+          // "stopOnEntry": false,
+          // "smartStep": true,
+          // "outFiles": ["${workspaceFolder}/cdk/cdk.out/asset.ff62102abf256369f4067436df86939e80532114601e39c34faa7edd1c438306"]
+      }
+  ]
+}
