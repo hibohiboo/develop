@@ -15,7 +15,7 @@ export const bundleNpm = () => {
   copyPackageJson();
 
   // install package.json (production)
-  childProcess.execSync(`npm  install --production`, {
+  childProcess.execSync(`npm install --production`, {
     cwd: getModulesInstallDirName(),
     // bundle時にパイプで出力するtemplate.yamlに、余分な文字列が含まれてしまわないように出力はオフ
     stdio: ['ignore', 'ignore', 'ignore'],
