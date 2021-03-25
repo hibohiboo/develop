@@ -4,7 +4,7 @@
       {
           "type": "node",
           "request": "attach",
-          "name": "attach Program",
+          "name": "api echo ",
           "port": 5858,
           "address": "localhost",
           "localRoot": "${workspaceFolder}/cdk/cdk.out/asset.eb94322643dddde1077f91e199ef7ddd442fb0064b028e1c9196f8b5130ec4e1",
@@ -14,6 +14,16 @@
           // "stopOnEntry": false,
           // "smartStep": true,
           // "outFiles": ["${workspaceFolder}/cdk/cdk.out/asset.ff62102abf256369f4067436df86939e80532114601e39c34faa7edd1c438306"]
-      }
+      },
+      {
+        "type": "node",
+        "request": "attach",
+        "name": "invoke test ",
+        "port": 5858,
+        "address": "localhost",
+        "localRoot": "${workspaceFolder}/cdk/cdk.out/asset.ff62102abf256369f4067436df86939e80532114601e39c34faa7edd1c438306",
+        "remoteRoot": "/var/task",
+        "protocol": "inspector",
+    }
   ]
 }

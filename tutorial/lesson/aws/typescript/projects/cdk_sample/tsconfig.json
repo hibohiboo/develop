@@ -21,6 +21,5 @@
     "baseUrl": ".",
     "paths": { "@/*" : ["./src/*"] }
   },
-  "include": ["src/**/*"],
   "exclude": ["cdk.out"]
 }

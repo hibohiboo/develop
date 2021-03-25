@@ -10,7 +10,7 @@ export class SampleStack extends cdk.Stack {
     const entryHandlerDir = '../src/lambda/handlers/';
     const bundlingMap = {
       sourceMap: true,
-      tsconfig: '../tsconfig.json'
+      // tsconfig: '../tsconfig.json'
     }
     const helloFunction = new NodejsFunction(this, 'hello', {
       runtime: lambda.Runtime.NODEJS_14_X,
@@ -50,7 +50,8 @@ export class SampleStack extends cdk.Stack {
       entry: `${entryHandlerDir}/get-echo.ts`,
       functionName: 'get-echo',
       handler: 'echoHandler',
-      bundling: bundlingMap
+      bundling: bundlingMap,
+
     });
 
     const environment = {
