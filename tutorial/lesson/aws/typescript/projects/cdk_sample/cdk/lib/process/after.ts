@@ -1,29 +1,36 @@
-import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
 import * as fs from 'fs';
 import * as path from 'path'
 import { SampleStack } from '../sample-stack';
 const launchFilePath = path.resolve(process.cwd(), '..', '.vscode', 'launch.json');
-const assetIndex = 1;
+const assetPlaceHolder = 'ASSET_PATH';
 const debugPort = 5858;
 const configuration = {
   "type": "node",
   "request": "attach",
-  "name": "api echo ",
+  "name": "",
   "port": debugPort,
   "address": "localhost",
-  "localRoot": "${workspaceFolder}/cdk/cdk.out/ASSET_PATH",
+  "localRoot": "${workspaceFolder}/cdk/cdk.out/" + assetPlaceHolder,
   "remoteRoot": "/var/task",
   "protocol": "inspector",
 }
+type Config = typeof configuration
 export const createLaunch = async (stack: SampleStack) => {
-  const confs = stack.node.children.filter((item): item is NodejsFunction => item instanceof NodejsFunction)
-    .map((item: NodejsFunction) => ({
+  const buf = fs.readFileSync(path.join(process.cwd(), 'cdk.out', stack.templateFile))
+  const template = JSON.parse(buf.toString());
+  const resources = template.Resources;
+  const confs: Config[] = [];
+
+  for (const prop in resources) {
+    if (resources[prop].Type !== 'AWS::Lambda::Function') continue
+
+    confs.push({
       ...configuration,
-      // @ts-ignore
-      name: `lambda ${item.physicalName} ${item.permissionsNode.uniqueId.replace(stack.stackName, '')}`, // uniqueIdはdeprecatedだが現在templateに出力されているので使う
-      // @ts-ignore
-      localRoot: configuration.localRoot.replace('ASSET_PATH', item.node.children[assetIndex].assetPath)
-    }))
+      name: `lambda ${prop}`,
+      localRoot: configuration.localRoot.replace(assetPlaceHolder, resources[prop].Metadata['aws:asset:path'])
+    })
+  }
+
   const launch = {
     "version": "0.2.0",
     "configurations": confs
