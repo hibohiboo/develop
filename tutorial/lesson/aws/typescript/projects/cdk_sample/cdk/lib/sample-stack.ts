@@ -3,11 +3,11 @@ import * as lambda from '@aws-cdk/aws-lambda';
 import { NodejsFunction } from '@aws-cdk/aws-lambda-nodejs';
 import * as apigateway from '@aws-cdk/aws-apigateway'
 import { NODE_LAMBDA_LAYER_DIR } from './process/setup';
+import { entryHandlerDir } from './constants';
 
 export class SampleStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-    const entryHandlerDir = '../src/lambda/handlers/';
     const bundlingMap = {
       sourceMap: true,
       // tsconfig: '../tsconfig.json'

@@ -1,0 +1,22 @@
+version: '3.5'
+
+networks:
+  localstack:
+    driver: ${NETWORKS_DRIVER}
+#   default:
+#     external:
+#       name: "localstack"
+
+services:
+    localstack:
+      image: localstack/localstack
+      ports:
+        - 4566:4566
+      #   - 4567-4578:4567-4578
+      #   - 8080:8080
+      environment:
+        - SERVICES=cloudformation,s3
+        # - DATA_DIR=/tmp/localstack/data
+        # - TMPDIR=/private${TMPDIR- }
+      networks:
+        - localstack

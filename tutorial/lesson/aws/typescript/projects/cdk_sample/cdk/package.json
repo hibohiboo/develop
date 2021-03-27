@@ -10,7 +10,11 @@
     "localinvoke": "cd cdk.out && sam.cmd local invoke testAF53AC38 --no-event",
     "debuginvoke": "cd cdk.out && sam.cmd local invoke -d 5858 testAF53AC38 --no-event",
     "dev-serve": "cd cdk.out && sam.cmd local start-api -n ../env.json",
-    "debug-serve": "cd cdk.out && sam.cmd local start-api -d 5858 -n ../env.json"
+    "debug-serve": "cd cdk.out && sam.cmd local start-api -d 5858 -n ../env.json",
+    "s3-localdeploy": "cdklocal deploy --app \"npx ts-node --prefer-ts-exts bin/s3-index.ts\" --endpoint-url=http://localhost:4566 --profile=localstack",
+    "s3-bundle": "cdk synth --app \"npx ts-node --prefer-ts-exts bin/s3-lambda-index.ts\" > cdk.out/s3-template.yaml",
+    "s3-invoke": "cd cdk.out && echo {\"Key\": \"package.json\"} | sam.cmd local invoke s3sampleA17B5BBA --docker-network docker_localstack --profile=localstack -t s3-template.yaml -n ../env.json --event -",
+    "debug-s3-invoke": "cd cdk.out && echo {\"Key\": \"package.json\"} | sam.cmd local invoke -d 5858 s3sampleA17B5BBA --docker-network docker_localstack --profile=localstack -t s3-template.yaml -n ../env.json --event -"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.73",
@@ -26,7 +30,10 @@
     "@aws-cdk/assert": "^1.95.1",
     "@aws-cdk/aws-apigateway": "^1.95.1",
     "@aws-cdk/aws-lambda-nodejs": "^1.95.1",
+    "@aws-cdk/aws-s3": "^1.95.1",
     "@aws-cdk/core": "^1.95.1",
+    "aws-cdk": "^1.95.1",
+    "aws-cdk-local": "^1.65.4",
     "fs-extra": "^9.1.0",
     "source-map-support": "^0.5.19"
   }
