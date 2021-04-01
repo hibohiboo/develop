@@ -1,8 +1,8 @@
 ---
-docker_version: 20.10.2 # 2021.01.24
+docker_version: 20.10.5 # 2021.03.31
 # edge|stable ubuntu18.04にはまだstableがない（2018.06.16)
 docker_version_type: edge
-docker_compose_version: 1.28.0 # 2021.01.24
+docker_compose_version: 1.28.6 # 2021.03.31
 # docker-compose参考 : https://qiita.com/goforbroke/items/b4a071af71f457960e59
 # https://github.com/docker/compose/releases/
 # https://docs.docker.com/release-notes/
