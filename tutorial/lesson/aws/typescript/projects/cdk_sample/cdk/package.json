@@ -17,7 +17,7 @@
     "debug-s3-invoke": "cd cdk.out && echo {\"Key\": \"package.json\"} | sam.cmd local invoke -d 5858 s3sampleA17B5BBA --docker-network docker_localstack --profile=localstack -t s3-template.yaml -n ../env.json --event -"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.73",
+    "@types/aws-lambda": "^8.10.75",
     "@types/fs-extra": "^9.0.10",
     "@types/jest": "^26.0.22",
     "@types/node": "10.17.27",
