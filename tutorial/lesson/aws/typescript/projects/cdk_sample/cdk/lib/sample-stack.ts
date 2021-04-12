@@ -27,7 +27,7 @@ export class SampleStack extends cdk.Stack {
       }
     );
 
-    new NodejsFunction(this, 'test', {
+    const testLambda = new NodejsFunction(this, 'test', {
       runtime: lambda.Runtime.NODEJS_14_X,
       entry: `${entryHandlerDir}/test.ts`,
       functionName: 'kotatest',
@@ -91,5 +91,7 @@ export class SampleStack extends cdk.Stack {
     const users = api.root.addResource('users');
     users.addResource('{username}').addMethod('GET', new apigateway.LambdaIntegration(getUserFunction));
     users.addMethod('POST', new apigateway.LambdaIntegration(postUserFunction));
+
+    api.root.addMethod('GET', new apigateway.LambdaIntegration(testLambda));
   }
 }
