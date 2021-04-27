@@ -12,16 +12,20 @@
     "debuginvoke": "cd cdk.out && sam.cmd local invoke -d 5858 testAF53AC38 --no-event",
     "dev-serve": "cd cdk.out && sam.cmd local start-api -n ../env.json",
     "debug-serve": "cd cdk.out && sam.cmd local start-api -d 5858 -n ../env.json",
+    "localstack-bootstrap": "npx cdklocal bootstrap --profile=localstack --endpoint-url=http://localhost:4566",
     "s3-localdeploy": "cdklocal deploy --app \"npx ts-node --prefer-ts-exts bin/s3-index.ts\" --endpoint-url=http://localhost:4566 --profile=localstack",
     "s3-bundle": "cdk synth --app \"npx ts-node --prefer-ts-exts bin/s3-lambda-index.ts\" > cdk.out/s3-template.yaml",
     "s3-invoke": "cd cdk.out && echo {\"Key\": \"package.json\"} | sam.cmd local invoke s3sampleA17B5BBA --docker-network docker_localstack --profile=localstack -t s3-template.yaml -n ../env.json --event -",
-    "debug-s3-invoke": "cd cdk.out && echo {\"Key\": \"package.json\"} | sam.cmd local invoke -d 5858 s3sampleA17B5BBA --docker-network docker_localstack --profile=localstack -t s3-template.yaml -n ../env.json --event -"
+    "debug-s3-invoke": "cd cdk.out && echo {\"Key\": \"package.json\"} | sam.cmd local invoke -d 5858 s3sampleA17B5BBA --docker-network docker_localstack --profile=localstack -t s3-template.yaml -n ../env.json --event -",
+    "vm-bootstrap": "cross-env LOCALSTACK_HOSTNAME=192.168.10.50 cdklocal bootstrap --profile=localstack --endpoint-url=http://192.168.10.50:4566",
+    "sqs-localdeploy": "cdklocal deploy --app \"npx ts-node --prefer-ts-exts bin/sqs-index.ts\" --endpoint-url=http://192.168.10.50:4566 --profile=localstack"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.75",
     "@types/fs-extra": "^9.0.11",
     "@types/jest": "^26.0.22",
     "@types/node": "14.14.41",
+    "cross-env": "^7.0.3",
     "esbuild": "^0.11.11",
     "jest": "^26.6.3",
     "npm-check-updates": "^11.4.1",
@@ -31,6 +35,8 @@
   "dependencies": {
     "@aws-cdk/assert": "^1.98.0",
     "@aws-cdk/aws-apigateway": "^1.98.0",
+    "@aws-cdk/aws-iam": "^1.98.0",
+    "@aws-cdk/aws-lambda-event-sources": "^1.98.0",
     "@aws-cdk/aws-lambda-nodejs": "^1.98.0",
     "@aws-cdk/aws-s3": "^1.98.0",
     "@aws-cdk/core": "^1.98.0",
