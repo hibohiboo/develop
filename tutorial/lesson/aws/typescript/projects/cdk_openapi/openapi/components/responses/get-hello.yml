@@ -1,0 +1,6 @@
+GetHelloResponse:
+  description: Get hello response.
+  content:
+      application/json:
+        schema:
+          $ref: ../schemas/hello.yml#/Hello

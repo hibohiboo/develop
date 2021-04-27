@@ -1,0 +1,17 @@
+openapi: 3.0.3
+info:
+  title: Hello API
+  description: An api always returns HELLO
+  version: 1.0.0
+
+paths:
+  /hello:
+    $ref: ./paths/hello.yml#/Hello
+
+components:
+  schemas:
+    Hello:
+      $ref: ./components/schemas/hello.yml#/Hello
+  responses:
+    GetHelloResponse:
+      $ref: ./components/responses/get-hello.yml#/GetHelloResponse

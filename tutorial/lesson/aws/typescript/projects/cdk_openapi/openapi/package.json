@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "redoc": "npm run build && redoc-cli bundle ./openapi.json --options.menuToggle --options.pathInMiddlePanel  -o ./dist/index.html",
+    "build": "swagger-cli bundle -r ./openapi.yml -o ./openapi.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "hibohiboo <hibohiboo66+github@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "redoc": "^2.0.0-rc.48",
+    "redoc-cli": "^0.10.2",
+    "swagger-cli": "^4.0.4"
+  }
+}
