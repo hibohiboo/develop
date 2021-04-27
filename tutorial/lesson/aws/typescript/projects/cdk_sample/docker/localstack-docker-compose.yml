@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 
 networks:
   localstack:
@@ -8,15 +8,20 @@ networks:
 #       name: "localstack"
 
 services:
-    localstack:
-      image: localstack/localstack
-      ports:
-        - 4566:4566
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
       #   - 4567-4578:4567-4578
-      #   - 8080:8080
-      environment:
-        - SERVICES=cloudformation,s3
-        # - DATA_DIR=/tmp/localstack/data
-        # - TMPDIR=/private${TMPDIR- }
-      networks:
-        - localstack
+      - 8080:8080
+    environment:
+      - SERVICES=cloudformation,s3,sqs,lambda,apigateway,iam
+      - LAMBDA_EXECUTOR=docker
+      # - HOSTNAME=192.168.50.10
+      # - HOSTNAME_EXTERNAL=localstack
+      # - DOCKER_HOST=tcp://172.20.80.1:2375
+      # - LAMBDA_EXECUTOR=local
+      # - DATA_DIR=/tmp/localstack/data
+      # - TMPDIR=/private${TMPDIR- }
+    # networks:
+    #   - localstack

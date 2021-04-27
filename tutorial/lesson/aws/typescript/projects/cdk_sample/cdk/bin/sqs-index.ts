@@ -7,14 +7,8 @@ import { createLaunch } from '../lib/process/after';
 import { S3LambdaStack } from '../lib/s3-lambda-stack';
 import { S3Stack } from '../lib/s3-stack';
 import { SQSStack } from '../lib/sqs-stack'
-// pre-process
-bundleNpm();
 
 // // create app
 const app = new cdk.App();
-const stack = new SampleStack(app, 'SampleStack2021');
-new S3Stack(app, 'S3Stack2021');
-const s3Stack = new S3LambdaStack(app, 'S3LambdaStack2021');
+
 new SQSStack(app, 'SQSStack')
-// デバッガで確認したいlambdaのstackを渡す
-createLaunch(stack)
