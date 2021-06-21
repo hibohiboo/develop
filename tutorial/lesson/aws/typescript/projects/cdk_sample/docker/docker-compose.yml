@@ -1,4 +1,4 @@
-version: '3.5'
+version: "3.5"
 
 networks:
   backend:
@@ -10,56 +10,56 @@ volumes:
   mongodb-data: {}
 
 services:
-### MongoDB ##############################################
-    mongo:
-      build: ./mongo
-      ports:
-        - "${MONGODB_PORT}:27017"
-      volumes:
-        - mongodb-data:/data/db
-      networks:
-        - backend
+  ### MongoDB ##############################################
+  mongo:
+    build: ./mongo
+    ports:
+      - "${MONGODB_PORT}:27017"
+    volumes:
+      - mongodb-data:/data/db
+    networks:
+      - backend
 
-### MongoWebUI ################################################
-    mongo-webui:
-      build:
-        context: ./mongo-webui
-      environment:
-        - ROOT_URL=${MONGO_WEBUI_ROOT_URL}
-        - MONGO_URL=${MONGO_WEBUI_MONGO_URL}
-        - INSTALL_MONGO=${MONGO_WEBUI_INSTALL_MONGO}
-      volumes:
-        - mongodb-data:/data/db
-      ports:
-        - "${MONGO_WEBUI_PORT}:3000"
-      networks:
-        - backend
-      depends_on:
-        - mongo
-### Node ################################################
-    node-test:
-      build:
-        context: ./node
-      volumes:
-        - ../package.json:/app/package.json
-        - ../package-lock.json:/app/package-lock.json
-        - ../tsconfig.json:/app/tsconfig.json
-        - ../jest.config.js:/app/jest.config.js
-        - ../jest-mongodb-config.js:/app/jest-mongodb-config.js
-        - ../src:/app/src
-        - ../test:/app/test
-### PostgreSQL ###########################################
-    postgres:
-      build:
-        context: ./postgres
-        args:
-          - POSTGRES_VERSION=${POSTGRES_VERSION}
-      volumes:
-        - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
-        - ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
-      ports:
-        - "${POSTGRES_PORT}:5432"
-      environment:
-        - POSTGRES_DB=${POSTGRES_DB}
-        - POSTGRES_USER=${POSTGRES_USER}
-        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  ### MongoWebUI ################################################
+  mongo-webui:
+    build:
+      context: ./mongo-webui
+    environment:
+      - ROOT_URL=${MONGO_WEBUI_ROOT_URL}
+      - MONGO_URL=${MONGO_WEBUI_MONGO_URL}
+      - INSTALL_MONGO=${MONGO_WEBUI_INSTALL_MONGO}
+    volumes:
+      - mongodb-data:/data/db
+    ports:
+      - "${MONGO_WEBUI_PORT}:3000"
+    networks:
+      - backend
+    depends_on:
+      - mongo
+  ### Node ################################################
+  node-test:
+    build:
+      context: ./node
+    volumes:
+      - ../package.json:/app/package.json
+      - ../package-lock.json:/app/package-lock.json
+      - ../tsconfig.json:/app/tsconfig.json
+      - ../jest.config.js:/app/jest.config.js
+      - ../jest-mongodb-config.js:/app/jest-mongodb-config.js
+      - ../src:/app/src
+      - ../test:/app/test
+  ### PostgreSQL ###########################################
+  postgres:
+    build:
+      context: ./postgres
+      args:
+        - POSTGRES_VERSION=${POSTGRES_VERSION}
+    volumes:
+      # - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
+      - ${POSTGRES_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
