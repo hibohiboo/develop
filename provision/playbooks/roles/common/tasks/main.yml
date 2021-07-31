@@ -6,7 +6,8 @@
 
 # 警告がでるので追加。
 - name: install aptitude
-  apt: pkg=aptitude
+  apt:
+    pkg: aptitude
 
 # aptitudeでupgrade
 # https://debian-handbook.info/browse/ja-JP/stable/sect.apt-get.html
@@ -18,12 +19,20 @@
 
 # 対話型シェルの自動化に使用
 - name: expect install
-  apt: name=expect state=present
+  apt:
+    name: expect
+    state: present
 
 - name: bashの設定ファイルをコピー
-  copy: >
+  ansible.builtin.copy:
     src=.bashrc
     dest=/home/vagrant/.bashrc
     owner=vagrant
     group=vagrant
     mode=0644
+
+# unarchiveコマンドのために必要 (aws cliで使用)
+- name: unzip install
+  apt:
+    name: unzip
+    state: present

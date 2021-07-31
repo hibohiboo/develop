@@ -1,0 +1,8 @@
+---
+samcli_version: 1.22.0
+samcli:
+  # src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ awscli_version }}.zip
+  # zip: awscli-{{ awscli_version }}.zip
+  src: https://github.com/aws/aws-sam-cli/releases/download/sam-cli-beta-cdk/aws-sam-cli-linux-x86_64.zip
+  zip: aws-sam-cli-linux-x86_64.zip
+  

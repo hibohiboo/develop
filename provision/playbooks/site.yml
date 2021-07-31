@@ -12,4 +12,4 @@
     # - minikube#
     # - node
     # - vim
-    # - aws
+    - aws_sam_cli

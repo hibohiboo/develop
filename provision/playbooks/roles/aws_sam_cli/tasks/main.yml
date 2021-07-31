@@ -1,0 +1,44 @@
+---
+- name: exist samcli beta
+  command: which sam-beta-cdk
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  register: exist_samcli
+  changed_when: false
+  ignore_errors: true
+
+- name: get samcli version
+  shell: sam-beta-cdk --version | grep {{ samcli_version }}
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  register: version_in_samcli
+  changed_when: false
+  ignore_errors: true
+  when:
+    exist_samcli.rc == 0
+
+- block:
+  - name: get zip
+    get_url:
+      url: "{{ samcli.src }}"
+      dest: "/tmp/{{ samcli.zip }}"
+
+  - name: dest directory createssd
+    file:
+      path: /tmp/sam-installation
+      state: directory
+
+  - name: unarchive zip
+    unarchive:
+      src: /tmp/{{ samcli.zip }}
+      dest: /tmp/sam-installation
+      copy: no
+
+  - name: install
+    command:
+      cmd: ./sam-installation/install
+      chdir: /tmp
+
+  when:
+    exist_samcli.rc != 0
+    or ( version_in_samcli is defined and version_in_samcli == -1 )
