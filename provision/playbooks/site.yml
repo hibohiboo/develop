@@ -10,6 +10,6 @@
     # - git ... 2.25.1がデフォルト
     # - ssh ... デフォルトで入っている
     # - minikube#
-    # - node
+    - node
     # - vim
     - aws_sam_cli
