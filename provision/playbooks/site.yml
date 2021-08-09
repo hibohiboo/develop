@@ -13,3 +13,4 @@
     - node
     # - vim
     - aws_sam_cli
+    - awscli

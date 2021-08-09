@@ -1,0 +1,7 @@
+---
+# https://til.swfz.io/entries/ansible_install_awscliv2/
+# https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2-linux.html
+awscli_version: 2.2.27 # 2021.08.09
+awscli:
+  src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{{ awscli_version }}.zip
+  zip: awscli-{{ awscli_version }}.zip
