@@ -14,3 +14,4 @@
     # - vim
     - aws_sam_cli
     - awscli
+    - wscat

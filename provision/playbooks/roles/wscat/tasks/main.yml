@@ -1,0 +1,7 @@
+---
+# https://docs.ansible.com/ansible/2.9_ja/modules/npm_module.html
+# https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-how-to-call-websocket-api-wscat.html
+- name: Install "wscat" node.js package globally.
+  npm:
+    name: wscat
+    global: yes
