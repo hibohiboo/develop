@@ -25,10 +25,18 @@
     - name: debug docker version
       debug: var=ver_check
 
+# https://docs.docker.com/engine/install/ubuntu/
+# sudo apt-get purge docker-ce docker-ce-cli containerd.io
+
     - name: バージョンがvarsで指定されたものと異なれば、Remove "docker" package
       apt:
-        name: docker-ce
+        name: "{{ packages }}"
         state: absent
+      vars:
+        packages:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
       when: ver_check.rc != 0
       ignore_errors: True
 
@@ -83,9 +91,11 @@
           - ca-certificates
           - curl
           - software-properties-common
+          - gnupg 
+          - lsb-release
 
     - name: step3.1
-      shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - warn=no
+      shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg |  sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg - warn=no
       register: res3
       ignore_errors: True
 
@@ -93,16 +103,22 @@
       shell: apt-key fingerprint 0EBFCD88 warn=no
 
     - name: step5.1
-      shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) {{ docker_version_type }}" warn=no
+      shell: echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) {{ docker_version_type }}" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null warn=no
 
     - name: step5.2
       shell: apt-get update warn=no
 
     - name: step6
       apt:
-        name: docker-ce
+        name: "{{ packages }}"
         state: present
         update_cache: yes
+      vars:
+        packages:
+          - docker-ce 
+          - docker-ce-cli 
+          - containerd.io
+
 
     - name: step6.2
       shell: apt-cache madison docker-ce warn=no
