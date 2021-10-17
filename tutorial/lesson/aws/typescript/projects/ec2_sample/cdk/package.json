@@ -8,7 +8,9 @@
     "cdk": "cdk",
     "package-update": "ncu -u",
     "localstack-bootstrap": "npx cdklocal bootstrap --profile=localstack --endpoint-url=http://localhost:4566",
-    "ec2-localdeploy": "cdklocal deploy --app \"npx ts-node --prefer-ts-exts bin/index.ts\" --endpoint-url=http://localhost:4566 --profile=localstack"
+    "ec2-localdeploy": "cdklocal deploy --app \"npx ts-node --prefer-ts-exts bin/index.ts\" --endpoint-url=http://localhost:4566 --profile=localstack",
+    "ec2-deploy": "cdk deploy --profile=produser",
+    "ec2-destroy": "cdk destroy --profile=produser"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.84",
