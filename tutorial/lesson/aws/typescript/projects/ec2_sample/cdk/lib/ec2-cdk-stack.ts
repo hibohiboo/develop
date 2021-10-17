@@ -12,14 +12,14 @@ export class Ec2CdkStack extends cdk.Stack {
     super(scope, id, props);
 
     // Create a Key Pair to be used with this EC2 Instance
-    // const key = new KeyPair(this, 'KeyPair', {
+    // const key = new KeyPair(this, 'ec2-cdkstack-KeyPair', {
     //   name: 'cdk-keypair',
     //   description: 'Key Pair created with CDK Deployment',
     // });
     // key.grantReadOnPublicKey
 
     // Create new VPC with 2 Subnets
-    const vpc = new ec2.Vpc(this, 'VPC', {
+    const vpc = new ec2.Vpc(this, 'ec2-cdkstack-VPC', {
       natGateways: 0,
       subnetConfiguration: [{
         cidrMask: 24,
@@ -29,14 +29,14 @@ export class Ec2CdkStack extends cdk.Stack {
     });
 
     // Allow SSH (TCP Port 22) access from anywhere
-    const securityGroup = new ec2.SecurityGroup(this, 'SecurityGroup', {
+    const securityGroup = new ec2.SecurityGroup(this, 'ec2-cdkstack-SecurityGroup', {
       vpc,
       description: 'Allow SSH (TCP port 22) in',
       allowAllOutbound: true
     });
     securityGroup.addIngressRule(ec2.Peer.anyIpv4(), ec2.Port.tcp(22), 'Allow SSH Access')
 
-    const role = new iam.Role(this, 'ec2Role', {
+    const role = new iam.Role(this, 'ec2-cdkstack-ec2Role', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com')
     })
 
@@ -49,7 +49,7 @@ export class Ec2CdkStack extends cdk.Stack {
     });
 
     // Create the instance using the Security Group, AMI, and KeyPair defined in the VPC created
-    const ec2Instance = new ec2.Instance(this, 'Instance', {
+    const ec2Instance = new ec2.Instance(this, 'ec2-cdkstack-Instance', {
       vpc,
       instanceType: ec2.InstanceType.of(ec2.InstanceClass.T3, ec2.InstanceSize.NANO),
       machineImage: ami,
@@ -59,7 +59,7 @@ export class Ec2CdkStack extends cdk.Stack {
     });
 
     // Create an asset that will be used as part of User Data to run on first load
-    const asset = new Asset(this, 'Asset', { path: path.join(__dirname, '../src/config.sh') });
+    const asset = new Asset(this, 'ec2-cdkstack-Asset', { path: path.join(__dirname, '../src/config.sh') });
     const localPath = ec2Instance.userData.addS3DownloadCommand({
       bucket: asset.bucket,
       bucketKey: asset.s3ObjectKey,
