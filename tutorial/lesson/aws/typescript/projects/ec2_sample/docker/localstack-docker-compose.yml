@@ -1,0 +1,27 @@
+version: "3.5"
+
+networks:
+  localstack:
+    driver: ${NETWORKS_DRIVER}
+#   default:
+#     external:
+#       name: "localstack"
+
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - 4566:4566
+      - 4567-4593:4567-4593
+      - 8080:8080
+    environment:
+      - SERVICES=cloudformation,s3,ec2,iam,secretsmanager
+      - LAMBDA_EXECUTOR=docker
+      # - HOSTNAME=192.168.50.10
+      # - HOSTNAME_EXTERNAL=localstack
+      # - DOCKER_HOST=tcp://172.20.80.1:2375
+      # - LAMBDA_EXECUTOR=local
+      # - DATA_DIR=/tmp/localstack/data
+      # - TMPDIR=/private${TMPDIR- }
+    # networks:
+    #   - localstack
