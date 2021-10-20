@@ -1,5 +1,5 @@
 ---
-docker_version: 20.10.8 # 2021.08.09 ... 20.10.8
+docker_version: 20.10.9 # 2021.10.20 ... 20.10.8
 docker_version_type: stable
 docker_compose_version: 1.29.2 # 2021.06.10
 # docker-compose参考 : https://qiita.com/goforbroke/items/b4a071af71f457960e59
