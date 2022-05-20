@@ -4,7 +4,6 @@
   "editor.insertSpaces": true,
   // エディターで制御文字を表示する必要があるかどうかを制御します
   "editor.renderControlCharacters": true,
-  "editor.renderIndentGuides": true,
   // フォント ファミリを制御します。
   "editor.fontFamily": "'MS Gothic'",
   // 改行コードを設定
@@ -47,5 +46,6 @@
     "editor.quickSuggestions": false
   },
   // パンくずリスト表示
-  "breadcrumbs.enabled": true
+  "breadcrumbs.enabled": true,
+  "editor.guides.indentation": true
 }

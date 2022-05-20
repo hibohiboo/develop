@@ -1,16 +1,16 @@
 ---
-nvm_repo: "git://github.com/creationix/nvm.git"
+nvm_repo: "https://github.com/creationix/nvm.git"
 # This could be set to 'user' to support user installs.
 nvm_env: user
 
-nvm_version: v0.38.0
+nvm_version: v0.39.1
 
 # This sets the nvm global nodejs version.| stable:最新, lts/boron:6.9.1, lts/argon:4.6.2 
-nvm_default_node_version: 14
+nvm_default_node_version: 18.2.0
 
 # List of nodejs versions to install.
 nvm_node_versions:
-  - 14
+  - 18.2.0
 
 # List of default packages to install on each nodejs version.
 nvm_global_packages: []

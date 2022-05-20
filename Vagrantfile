@@ -2,8 +2,19 @@
 $ansible_install = <<SHELL
 if ! ansible --version > /dev/null 2>&1; then
   # rootユーザとして実行されるためsudo不要
-  # apt をスクリプトで使うと警告が出る。 https://codeday.me/jp/qa/20190808/1404436.html
+
+  # apt-getのnameserverの名前解決ができないときの調査メモ
+  # https://aquasoftware.net/blog/?p=1575
+  ln -sf ../run/systemd/resolve/resolv.conf /etc/resolv.conf
+  cp /vagrant/01-netcfg.yaml /etc/netplan/01-netcfg.yaml
+  netplan apply
+  systemctl restart systemd-resolved.service
+
+  # apt をスクリプトで使うと警告が出る。(aptはcli向けではないのでapt-getを使え) https://codeday.me/jp/qa/20190808/1404436.html
   apt-get -y update
+
+  # https://sig9.org/archives/4525#toc32
+  # ubuntu22ではpython3.10.4がインストールされている
   apt-get install -y python3-venv python3-pip
 
   # vagrantユーザとしてvirtualenvとansibleをインストール
@@ -21,7 +32,8 @@ Vagrant.configure("2") do |config|
   # config.vm.box = "ubuntu/bionic64"
 
   # ubuntu20
-  config.vm.box = "ubuntu/focal64"
+  # config.vm.box = "ubuntu/focal64"
+  config.vm.box = "ubuntu/jammy64"
   # ネットワーク設定。
   # 繋がらないときは/etc/network/interfaces を確認。enp0s8に設定してやる。(ubuntu 18.4以前)
   # auto enp0s8
@@ -45,6 +57,7 @@ Vagrant.configure("2") do |config|
 
   # WSL2 を 有効化しているとき、ssh接続でタイムアウトしてしまうため追記。 2020.11.07
   config.vm.boot_timeout = 500
+
   # 使用するメモリ容量を変更。
   # デフォルトだと512で少ないためdockerのbuildが失敗しやすい
   config.vm.provider "virtualbox" do |vm|
@@ -57,10 +70,11 @@ Vagrant.configure("2") do |config|
 
     # https://qiita.com/takushi1969/items/965f31abc5312dd17a68
     # ubuntu/focal64の起動オプションとしてttyS0が有効となっていることが原因でpanicが起こるらしい
-    vm.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-    vm.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
-    vm.customize ["modifyvm", :id, "--nestedpaging", "off"]
-    vm.customize ["modifyvm", :id, "--paravirtprovider", "hyperv"]
+    # vm.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+    # vm.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+    # vm.customize ["modifyvm", :id, "--nestedpaging", "off"]
+    # vm.customize ["modifyvm", :id, "--paravirtprovider", "hyperv"]
+
     # https://vboxmania.net/%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e8%a8%ad%e5%ae%9a/
     # vm.customize ["modifyvm", :id, "--hwvirtex", "on", "--nestedpaging", "on", "--largepages", "on",  "--pae", "on", "--paravirtprovider", "kvm",]
 

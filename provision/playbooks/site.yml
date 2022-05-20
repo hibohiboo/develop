@@ -2,15 +2,15 @@
 # site.yml
 #
 - hosts: localhost
-  become: yes #
+  become: true #
   become_user: root # 以下、sudoコマンドが不要になる
   roles:
     - common
     - docker
-    # - git ... 2.25.1がデフォルト
+    # - git ... 2.34.1がデフォルト
     # - ssh ... デフォルトで入っている
     # - minikube#
     - node
     # - vim
-    - aws_sam_cli
-    - awscli
+    # - aws_sam_cli
+    # - awscli

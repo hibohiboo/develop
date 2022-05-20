@@ -1,0 +1,10 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s8:
+      dhcp4: true
+      dhcp6: false
+      optional: true
+      nameservers:
+        addresses: [192.168.2.1]
