@@ -160,7 +160,7 @@
     - name: debug docker-compose result
       debug: var=result_compose
     - name: step1 install docker-compose
-      shell: curl -L "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
+      shell: curl -SL "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose &&  chmod +x /usr/local/bin/docker-compose warn=no
   when: result_compose.rc != 0
 
 # https://qiita.com/tk555/items/23bb5d3d5b613a03ca2b
