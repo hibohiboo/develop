@@ -71,10 +71,10 @@ Vagrant.configure("2") do |config|
     # https://qiita.com/takushi1969/items/965f31abc5312dd17a68
     # ubuntu/focal64の起動オプションとしてttyS0が有効となっていることが原因でpanicが起こるらしい
     # ubuntu/jammy64でdocker-composeを起動したときに、soft lockup が出ることの対応、、？ 因果関係は未証明 2022.05.21
-    vm.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
-    vm.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
-    vm.customize ["modifyvm", :id, "--nestedpaging", "off"]
-    vm.customize ["modifyvm", :id, "--paravirtprovider", "hyperv"]
+    # vm.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+    # vm.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+    # vm.customize ["modifyvm", :id, "--nestedpaging", "off"]
+    # vm.customize ["modifyvm", :id, "--paravirtprovider", "hyperv"]
 
     # https://vboxmania.net/%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e8%a8%ad%e5%ae%9a/
     # vm.customize ["modifyvm", :id, "--hwvirtex", "on", "--nestedpaging", "on", "--largepages", "on",  "--pae", "on", "--paravirtprovider", "kvm",]

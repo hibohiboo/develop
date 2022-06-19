@@ -43,7 +43,11 @@
   "scss.validate": false,
   "[markdown]": {
     "editor.wordWrap": "on",
-    "editor.quickSuggestions": false
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
   },
   // パンくずリスト表示
   "breadcrumbs.enabled": true,
